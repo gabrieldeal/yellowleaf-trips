@@ -1,0 +1,37 @@
+#-*-perl-*-
+
+use strict;
+
+my ($backups, $images) = @ARGV;
+defined $images or die "Missing args";
+
+foreach my $backup_dir (glob "$backups/*/*/*") {
+  $backup_dir =~ s{/+}{/}g;
+  my ($unused, $yy, $mm, $dd) = split /\//, $backup_dir;
+  my ($image_dir) = glob("$images/$yy-$mm-$dd-*");
+  defined $image_dir or die "Can't find image dir for $backup_dir\n";
+
+  foreach my $backup_file (glob "$backup_dir/*") {
+    next unless $backup_file =~ /(jpg|jgp|jpeg|gif|png|orf)$/i;
+    my $copied_backup_file = $backup_file;
+    $copied_backup_file =~ s{^.*/}{};
+    if ($backup_file !~ /\.orf$/i) {
+      $copied_backup_file =~ s/(\..*?)$/.orig$1/;
+    }
+    $copied_backup_file = "$image_dir/$copied_backup_file";
+    my @command = ("cp", $backup_file, $copied_backup_file);
+    die "Exists @command" if -e $copied_backup_file && $copied_backup_file !~ /ORF$/;
+    next if  -e $copied_backup_file;
+    my_system(@command);
+  }
+}
+
+sub my_system {
+  my (@command) = @_;
+
+  print "Running @command\n";
+  system(@command);
+  $? == 0 or die "Error running @command";
+}
+
+exit 0;

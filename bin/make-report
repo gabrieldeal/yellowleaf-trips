@@ -1,0 +1,277 @@
+#!c:/Perl64/bin/perl
+#-*-perl-*-
+
+use strict;
+use lib './lib';
+use IO::File ();
+#use Image::IPTCInfo ();
+use Data::Dumper ();
+use Image::ExifTool ();
+
+my $SMALL_IMAGE_SIZE = 333;
+my $LARGE_IMAGE_SIZE = 1075;
+
+my $dir = shift @ARGV;
+
+if ($ARGV[-1] =~ /fuck-line-feeds/) {
+  pop @ARGV;
+}
+
+exit(make_xml($dir, @ARGV));
+
+######################################################################
+
+sub make_xml {
+    my ($image_dir, $trip_type, $title) = @_;
+
+    defined $title or die "Missing arguments: image-dir-path filename trip-type report-title";
+    -d $image_dir or die "Non-existant image dir: $image_dir";
+
+    my ($data_dir, $image_subdir) = ($image_dir =~ m{^(.*)/images/+([^/]+)/*$});
+    defined $image_subdir or die "Bad images dir: $image_dir";
+
+    my ($date) = ($image_subdir =~ /^(\d{4}-\d\d-\d\d)/);
+    defined $date or die "Unable to get date from image subdirectory: $image_subdir";
+
+    my $image_xml = make_image_xml($image_dir, $date);
+    my $image_xml_file = "$image_dir/images.xml";
+    if (-e $image_xml_file) {
+      print "$image_xml_file already exists\n";
+    } else {
+      write_file($image_xml_file, $image_xml);
+    }
+
+    my $report_xml = make_report_xml($date, $title, $trip_type);
+    my $report_xml_file = "$data_dir/reports/$image_subdir.xml";
+    if (-e $report_xml_file) {
+      print "$report_xml_file already exists\n";
+    } else {
+      write_file($report_xml_file, $report_xml);
+    }
+
+    return 0;
+}
+
+sub make_report_xml {
+    my ($date, $title, $type) = @_;
+    return <<EOT;
+<trip
+    start-date="$date"
+    name="$title"
+    type="$type"
+    display-mode="spare"
+    trip-id="1"
+>
+
+<party size="1">
+<member name="Gabriel Deal" type="author"/>
+</party>
+
+</trip>
+EOT
+}
+
+sub make_image_xml {
+    my ($dir, $date) = @_;
+
+    my $xml = <<EOT;
+<images date="$date"
+        in-chronological-order="true"
+        trip-id="1"
+>
+EOT
+
+    -d $dir or die "No such directory '$dir'";
+    my @files = glob "$dir/*{JPG,jpg,jpeg,JPEG,png,gif,PNG,GIF,gpx,GPX}";
+    @files = grep { $_ !~ /-orig\./ } @files;
+    die "No images found in $dir" unless @files;
+
+    foreach my $file (@files) {
+	$file =~ s,.*/,,;
+	next if $file =~ /-(enl|ENL)\./;
+	next if $file =~ /images.xml$/;
+	next if $file =~ /~$/;
+
+	my $type = "picture";
+	$type = "gps" if $file =~ /\.gpx$/i;
+	$type = "map" if $file eq 'route.jpg';
+
+	my $metadata = get_image_metadata("$dir/$file");
+
+	my $rating = get_rating($metadata->{rating}, $type);
+
+	my $caption = $metadata->{'caption'} || '';
+
+	my $timestamp = $metadata->{'timestamp'};
+	my $timestamp_attr = '';
+	if ($timestamp) {
+	  $timestamp_attr = qq(\tcapture-timestamp="$timestamp"\n);
+	}
+
+	if ($type ne 'gps') {
+	  make_resized_images($dir, $file);
+	}
+
+	next if $file =~ /~$/;
+	$xml .= <<EOT;
+<image filename="$file"
+        title="$caption"
+	rating3="$rating"
+	type="$type"
+	photographer="Gabriel Deal"
+$timestamp_attr/>
+EOT
+    }
+    $xml .= "</images>\n";
+    return $xml;
+}
+
+sub get_rating {
+  my ($rating, $type) = @_;
+
+  if (!defined $rating or $rating == 1) {
+    return 3;
+  } elsif ($rating == 2) {
+    return 2;
+  } elsif ($rating == 3) {
+    return 1;
+  } else {
+    die "Out-of-bounds rating '$rating'.  Must be 1, 2, or 3.";
+  }
+}
+
+sub make_resized_images {
+  my ($dir, $file) = @_;
+
+  my $enl_file = copy($dir, $file, "enl");
+  return unless defined $enl_file;
+
+  copy($dir, $file, "orig");
+
+  resize($dir, $file, $SMALL_IMAGE_SIZE);
+  resize($dir, $enl_file, $LARGE_IMAGE_SIZE);
+}
+
+sub write_file {
+    my ($filename, $content) = @_;
+
+    die "$filename already exists" if -e $filename;
+
+    my $fh = IO::File->new($filename, "w");
+    $fh || die "Can't open '$filename': $!";
+    $fh->print($content);
+    $fh->close() or die "Error writing to '$filename': $!";
+}
+
+sub get_image_metadata {
+  my ($file) = @_;
+
+  return undef unless $file =~ /(\.jpg|\.jpeg|\.tiff)$/i;
+
+#   my $info = new Image::IPTCInfo($file);
+#   die "Error opening $file: " . Image::IPTCInfo::Error() unless defined($info);
+#   my $capture_date = $info->Attribute('date created');
+#   $capture_date =~ s{^(\d{4})(\d\d)(\d\d)}{$1/$2/$3};
+
+#   my $capture_time = $info->Attribute('time created');
+#   $capture_time =~ s{^(\d{2})(\d\d)(\d\d)}{$1:$2:$3};
+
+#
+#   print Data::Dumper::Dumper($info);
+# exit(0);
+
+
+# use Image::MetaData::JPEG;
+#   my $image = Image::MetaData::JPEG->new($file);
+#   die 'Error: ' . Image::MetaData::JPEG::Error() unless $image;
+# print $image->get_description();
+
+#   my @segments = $image->get_segments('APP');
+# printf "Got %d segments from $file\n", scalar(@segments);
+#   foreach my $segment (@segments) {
+#     my $records = $segment->{records};
+#     printf '%s has %d records\n', $segment->{name}, scalar @$records;
+#     foreach my $record (@$records) {
+#       printf("   Record name '%s' type %s: %s\n",
+# 	     $record->{key},
+# 	     $record->{type},
+# 	    $record->get_description());
+#     }
+# print "Segment " . $segment->{name} . "\n";
+#     my $hash_ref = $segment->get_app13_data('TEXTUAL', 'IPTC');
+#     while (my ($key, $vals) = each %$hash_ref) {
+#       printf "# %20s =", $key; print " '$_'" for @$vals; print "\n"; }
+#   }
+#exit(0);
+
+  my @tags = qw(Caption-Abstract Rating DateTimeCreated); 
+  my $info = Image::ExifTool::ImageInfo($file, \@tags);
+  die "Error opening $file: " . $info->{Error} if exists $info->{Error};
+  print "Warning opening $file: " . $info->{Warning} if exists $info->{Warning};
+
+  my $timestamp = $info->{DateTimeCreated};
+  $timestamp =~ s{^(\d{4}):(\d\d):(\d\d)}{$1/$2/$3};
+
+  return {
+	  rating => $info->{Rating},
+	  timestamp => $timestamp,
+	  caption => $info->{'Caption-Abstract'},
+	 };
+}
+
+sub get_dimensions {
+  my ($file) = @_;
+
+  my $command = qq(identify -format "%w %h" $file);
+  my $dimension_str = `$command`;
+  my ($height, $width) = ($dimension_str =~ /^(\d+) (\d+)$/);
+  die "Unable to get size from command $command" unless defined $width;
+  return ($height, $width);
+}
+
+sub min { $_[0] < $_[1] ? $_[0] : $_[1] }
+
+sub resize {
+    my ($dir, $file, $target_height) = @_;
+
+    my ($height, $width) = get_dimensions("$dir/$file");
+
+    my $resize_pct;
+    if ($width > $height) {
+      # Landscape orientation
+      $resize_pct = min(100, 100 * $target_height / $width);
+    } else {
+      # Portrait orientation
+      $resize_pct = min(100, 100 * $target_height / $height);
+    }
+
+    
+
+
+    printf("Resizing $file to %.2f%%...\n", $resize_pct);
+    my_system("mogrify", "-resize", "$resize_pct%", "$dir/$file") == 0
+      or die "Failed to convert $dir/$file";
+}
+
+sub copy {
+    my ($dir, $file, $type) = @_;
+
+    my ($name, $ext) = ($file =~ /(.*)\.(jpg|gif|jpeg|png)/i);
+    die "Can't parse filename '$file'" unless defined $name;
+
+    my $copy_file = "$name-$type.$ext";
+    my $copy_path = "$dir/$copy_file";
+    if (-e $copy_path) {
+      warn "Not copying to $copy_path, it already exists\n";
+      return undef;
+    }
+    my_system("cp", "$dir/$file", "$copy_path") == 0
+        or die "Failed to copy $dir/$file to $copy_path";
+
+    return $copy_file;
+}
+
+sub my_system {
+    my (@command) = @_;
+    return system @command;
+}

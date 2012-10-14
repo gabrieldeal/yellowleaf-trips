@@ -1,0 +1,149 @@
+use Google::GeoCoder::Smart;
+
+use strict;
+use Data::Dumper;
+use Peaks::Kloke;
+use Peaks::ListsOfJohn;
+
+exit(main());
+
+sub main {
+  my $placemarks = make_placemarks();
+  my $kml = make_kml($placemarks);
+
+  print $kml;
+
+  return 0;
+}
+
+sub make_placemarks {
+  my $placemarks = '';
+
+  my $unknown_lat = 47.3400;
+  my $unknown_lon = -120.0;
+
+  foreach my $kloke_peak (sort { $a->{name} cmp $b->{name} } @{ $Peaks::Kloke::Peaks }) {
+    my $name = $kloke_peak->{name};
+    my @quads = split(/,\s*/, $kloke_peak->{quads});
+    my $elevation = $kloke_peak->{elevation};
+
+    my @john_peaks;
+    foreach my $quad (@quads) {
+      if (exists $Peaks::ListsOfJohn::Peaks{$name}{$quad}) {
+	push @john_peaks, $Peaks::ListsOfJohn::Peaks{$name}{$quad};
+      }
+    }
+
+    if (@john_peaks > 1) {
+      die "Multiple matches: " . Dumper(\@john_peaks);
+    }
+    if (@john_peaks == 0) {
+      my @quads = keys %{ $Peaks::ListsOfJohn::Peaks{$name} };
+      if (@quads == 1
+	  && $Peaks::ListsOfJohn::Peaks{$name}{$quads[0]}{elevation} == $elevation
+	  && ! ($name =~  /^Point /))
+      {
+	push @john_peaks, $Peaks::ListsOfJohn::Peaks{$name}{$quads[0]};
+      }
+    }
+    if (@john_peaks == 0) {
+      warn "No match for $name (@quads) $elevation'";
+      my $description = sprintf("Elevation: %d<br/>\n"
+				. "Quads: %s<br/>",
+				$kloke_peak->{elevation},
+				$kloke_peak->{quads});
+      $placemarks .= make_placemark($name,
+				    $description,
+				    $unknown_lon,
+				    $unknown_lat);
+      $unknown_lat += 0.05;
+      next;
+    }
+
+    my $description = sprintf("Elevation: %d<br/>\n"
+			      . "Prominence: %d<br/>\n"
+			      . "Quad: %s<br/>\n"
+			      . "County: %s<br/>",
+			      $john_peaks[0]->{elevation},
+			      $john_peaks[0]->{prominence},
+			      $john_peaks[0]->{quad},
+			      $john_peaks[0]->{county});
+
+    $placemarks .= make_placemark($name,
+				  $description,
+				  $john_peaks[0]{coordinates}{longitude},
+				  $john_peaks[0]{coordinates}{latitude});
+
+  }
+    return $placemarks;
+}
+
+sub encode {
+  my ($value) = @_;
+
+  $value =~ s/&/&amp;/g;
+
+  return $value;
+}
+
+# Geocoding didn't work very well.
+#
+# sub make_placemarks {
+#   my $placemarks = '';
+
+#   my $geo = Google::GeoCoder::Smart->new();
+
+#   foreach my $peak (@peaks) {
+#     my $address = $peak->{name};
+
+#     my ($resultnum, $error, @results, $returncontent)
+#       = $geo->geocode("address" => $address,
+# 		      state => "WA");
+#     my $description = "Elevation: $peak->{elevation}'<br/>\nUSGS quads: $peak->{quads}<br/>\n";
+
+#     $placemarks .= "<!-- Num results: $resultnum -->\n";
+
+#     if ($resultnum == 0) {
+#       $placemarks .= make_placemarks($peak->{name}, $description, "?", "?");
+#     }
+
+#     for (my $i = 0; $i < $resultnum; ++$i) {
+#       my $result = $results[$i];
+#       my $lat = $result->{geometry}{location}{lat};
+#       my $lng = $result->{geometry}{location}{lng};
+#       $placemarks .= make_placemark($peak->{name}, $description, $lng, $lat);
+#     }
+#   }
+
+#   return $placemarks;
+# }
+
+sub make_kml {
+  my ($placemarks) = @_;
+  return <<EOT;
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+$placemarks
+</Document>
+</kml>
+EOT
+}
+
+sub make_placemark {
+  my ($name, $description, $lat, $lng) = @_;
+
+  $description = encode($description);
+  $name = encode($name);
+
+  return <<EOT;
+
+  <Placemark>
+    <name>$name</name>
+    <description>
+$description
+    </description>
+    <Point><coordinates>$lat,$lng</coordinates></Point>
+  </Placemark>
+EOT
+  }

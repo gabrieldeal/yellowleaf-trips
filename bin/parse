@@ -1,0 +1,473 @@
+#-*-perl-*-
+
+use strict;
+use lib './lib';
+
+use Carp ();
+use Data::Dumper ();
+use Date::Manip ();
+use File::Find ();
+use File::Path ();
+use Getopt::Long ();
+use IO::File ();
+use Scramble::Area ();
+use Scramble::Geekery ();
+use Scramble::List ();
+use Scramble::Location ();
+use Scramble::Logger ();
+use Scramble::Misc ();
+use Scramble::Image ();
+use Scramble::Reference ();
+use Scramble::Report ();
+use Scramble::Resume ();
+use Scramble::Tests ();
+use Scramble::Winter ();
+use Scramble::XML ();
+use Spell ();
+
+my $gRoot = "yellowleaf.org/scramble";
+local $Data::Dumper::Maxdepth = 5;
+local $^W = 1;
+local $| = 1;
+local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
+local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
+
+my @g_options = qw(
+                   dictionary-directory=s
+		   timezone=s
+		   verbose
+		   action=s@
+		   skip=s@
+		   file=s@
+		   reports-directory=s
+		   images-directory=s
+                   templates-directory=s
+                   javascript-directory=s
+                   output-directory=s
+                   no-copy-images
+                   help
+		   );
+my %g_options = (
+                 "file" => [],
+                 "action" => [],
+                 "skip" => [],
+                 "timezone" => "PDT",
+                 "dictionary-directory=" => "dict/english.0",
+		 "images-directory" => "data/$ENV{USER}/images",
+		 "reports-directory" => "data/$ENV{USER}/reports",
+                 "templates-directory" => "data/$ENV{USER}/templates",
+                 "javascript-directory" => "data/javascript",
+                 "output-directory" => "html",
+		 );
+
+exit(main());
+
+###
+
+sub usage {
+    my ($prog) = ($0 =~ /([^\/]+)$/);
+    sprintf("Usage: $prog [ OPTIONS ]\nOptions:\n\t--"
+	    . join("\n\t--", @g_options)
+            . <<EOT);
+
+
+Reads XML from the data directory and writes HTML to the html/g
+directory.
+
+Example:
+\$ perl -w bin/parse \\
+        --verbose \\
+        --reports-directory data/$ENV{USER}/reports \\
+        --templates-directory data/$ENV{USER}/templates \\
+        --javascript-directory data/$ENV{USER}/javascript \\
+        --images-directory html/pictures
+EOT
+}
+
+sub get_options {
+    local $SIG{__WARN__};
+    if (! Getopt::Long::GetOptions(\%g_options, @g_options)
+	|| $g_options{'help'})
+    {
+	print usage();
+        exit 1;
+    }
+
+    if (exists $g_options{'timezone'}) {
+	$ENV{'TZ'} = $g_options{'timezone'};
+    }
+
+    foreach my $required (qw(reports-directory
+                             images-directory
+                             output-directory
+                             javascript-directory
+                             templates-directory)) 
+    {
+	die "Missing --$required" unless exists $g_options{$required};
+        if ($g_options{$required} =~ m,^/, || $g_options{$required} =~ m,\.\.,) {
+            die "--$required must be a relative path and contain no '..'";
+        }
+    }
+
+    Scramble::Misc::set_output_directory($g_options{'output-directory'});
+    Scramble::Logger::set_verbose($g_options{'verbose'});
+}
+
+sub spell_check {
+    Spell::initialize($g_options{'dictionary-directory'});
+
+    my $location_collection = Scramble::Location::get_all();
+    foreach my $location ($location_collection->get_all()) {
+        Spell::add_words($location->get_name());
+        foreach my $aka ($location->get_aka_names()) {
+            Spell::add_words($aka);
+        }
+    }
+
+    foreach my $id (Scramble::Reference::get_ids()) {
+        Spell::add_words($id);
+    }
+
+    my @misspelled;
+    foreach my $report (Scramble::Report::get_all()) {
+        next unless defined $report->get_route();
+        my @texts; # = map { ($_->get_start_location(), $_->get_end_location()) } $report->get_waypoints()->get_waypoints();
+        push @texts, ($report->get_route(), $report->get_name());
+        foreach my $text (@texts) {
+            push @misspelled,_spell_check($text, $report->get_filename(), $report->get_start_date());
+        }
+    }
+
+    foreach my $image (Scramble::Image::get_all_images_collection()->get_all()) {
+        foreach my $text ($image->get_title(), $image->get_of(), $image->get_from()) {
+            push @misspelled,_spell_check($text, $image->get_source_directory(), $image->get_date());
+        }
+    }
+    if (@misspelled) {
+        die join("\n", @misspelled) . "\n";
+    }
+}
+
+sub _spell_check {
+    my ($text, $name, $date) = @_;
+
+    return unless defined $text;
+
+    my @misspelled = Spell::check($text);
+    return unless @misspelled;
+
+    my $message = "Misspelled in " . $name . ": @misspelled.";
+    if (defined $date && $date gt '2007/07/01') {
+        return ($message);
+    } else {
+        print "$message\n";
+        return ();
+    }
+}
+
+sub main {
+    srand($$ ^ time());
+    get_options();
+
+    File::Path::mkpath([
+			"$g_options{'output-directory'}/g/li",
+			"$g_options{'output-directory'}/g/a", 
+			"$g_options{'output-directory'}/g/js",
+			"$g_options{'output-directory'}/g/r", 
+			"$g_options{'output-directory'}/g/l", 
+			"$g_options{'output-directory'}/g/enl", 
+			"$g_options{'output-directory'}/g/kml", 
+			"$g_options{'output-directory'}/g/m",
+		       ], 
+		       0, 
+		       0755);
+
+    should('htaccess') && make_htaccess();
+
+    Scramble::Area::open();
+    Scramble::Area::Quad::init();
+    Scramble::Reference::open();
+    Scramble::Image::open($g_options{'images-directory'});
+    if (! $g_options{'no-copy-images'}) {
+        Scramble::Image::copy();
+    }
+
+    Scramble::Location::open_all();
+    Scramble::Report::open_all($g_options{'reports-directory'});
+    Scramble::List::open(glob("data/lists/*.xml"));
+
+    if (should('template')) {
+	make_html_file("$g_options{'templates-directory'}/kloke.html",
+                       "Kloke's Cascade winter climbs",
+		       'no-add-picture' => 1);
+	make_html_file("$g_options{'templates-directory'}/sfox.html",
+                       "Steve Fox's winter scrambles",
+		       'no-add-picture' => 1);
+	make_html_file("$g_options{'templates-directory'}/disclaimer.html",
+                       "Disclaimer");
+	make_html_file("$g_options{'templates-directory'}/missing.html", 
+                       "Missing Page");
+	make_html_file("$g_options{'templates-directory'}/usgs.html", 
+                       "USGS Map",
+                       'enable-embedded-google-map' => 1,
+                       'no-title' => 1,
+                       'no-insert-links' => 1,
+                       'no-add-picture' => 1);
+    }
+
+    should('spell') && spell_check();
+
+    foreach my $file (@{ $g_options{'file'} }) {
+	if ($file =~ m,\breports/,) {
+	    my $report = Scramble::Report->new($file);
+	    $report->make_page_html();
+	} elsif ($file =~ m,\blocations/,) {
+	    my @locations = Scramble::Location->new_objects($file);
+	    foreach(@locations) { $_->make_page_html() }
+	}
+    }
+    if (@{ $g_options{'file'} } && ! @{ $g_options{'action'} }) {
+        return 0;
+    }
+
+    should('kml') && copy_kml();
+    should('javascript') && copy_javascript();
+    should('report-index') && Scramble::Report::make_reports_index_page();
+    should('report') && Scramble::Report::make_all_report_pages();
+    should('picture') && Scramble::Image::make_pictures_page();
+    should('winter') && Scramble::Winter::make_winter_page();
+    should('resume') && Scramble::Resume::make_resume_page();
+    should('rss') && Scramble::Report::make_rss();
+    should('geekery') && Scramble::Geekery::make_page();
+    should('locations-index') && Scramble::Location::make_locations_index();
+    should('picture-by-year') && Scramble::Image::make_images_by_year_page();
+    (should('quad-layout') || should('area')) && Scramble::Area::Quad::make_quad_layout();
+    should('private') && Scramble::Misc::make_all_internal_links_page();
+    should('quad') && Scramble::Location::make_quads();
+    should('todo') && make_todo();
+    should('list') && Scramble::List::make_lists();
+    should('link') && Scramble::Reference::make_references();
+    should('location') && Scramble::Location::make_locations();
+    should('area') && Scramble::Area::make_pages();
+    should('test') && Scramble::Tests::run();
+
+    return 0;
+}
+
+sub should {
+    my ($page_type) = @_;
+
+    return 0 if grep { $page_type eq $_ || "${page_type}s" eq $_ } @{ $g_options{'skip'} };
+
+    return 1 if ! exists $g_options{'action'} or ! @{ $g_options{'action'} };
+    return scalar(grep { $page_type eq $_ || "${page_type}s" eq $_ } @{ $g_options{'action'} });
+}
+
+sub copy_kml {
+    my $command = sprintf("cp %s/*.kml %s/g/kml/",
+                   $g_options{'templates-directory'},
+                   $g_options{'output-directory'});
+    system($command);
+    if ($?) {
+        die "Error running $command: $!, $?";
+    }
+}
+
+sub copy_javascript {
+    my $command = sprintf("cp %s/*.js %s/g/js/",
+                   $g_options{'javascript-directory'},
+                   $g_options{'output-directory'});
+    system($command);
+    if ($?) {
+        die "Error running $command: $!, $?";
+    }
+}
+
+sub make_htaccess {
+    # Not r or li -- they have index.html files.
+    foreach my $dir (qw(m l a)) {
+        Scramble::Misc::create("$dir/.htaccess", <<EOT);
+Redirect /scramble/g/$dir/index.html http://$gRoot/g/m/missing.html
+EOT
+    }
+
+  Scramble::Misc::create(".htaccess", <<EOT);
+ErrorDocument 404 /scramble/g/m/missing.html
+Redirect /scramble/g/index.html http://$gRoot/g/m/missing.html
+EOT
+
+  # cheating here
+  Scramble::Misc::create("../.htaccess", <<EOT);
+ErrorDocument 404 /scramble/g/m/home.html
+Redirect /scramble/index.html http://$gRoot/g/m/missing.html
+EOT
+}
+
+sub get_photogenic_reports_html {
+    my $min_reports = 10;
+    my $n_reports_to_choose = 5;
+
+    my @reports = Scramble::Report::get_all();
+    if (@reports < $min_reports) {
+        return '';
+    }
+
+    @reports = grep { $_->get_average_pic_rating() <= 44 } @reports;
+    my @chosen_reports;
+    foreach (1 .. $n_reports_to_choose) {
+        my $i = int(rand(@reports));
+        push @chosen_reports, splice @reports, $i, 1;
+    }
+
+    my $report_html = '';
+    foreach my $report (sort { $a->get_average_pic_rating() <=> $b->get_average_pic_rating() } @chosen_reports) {
+	$report_html .= sprintf("<li>%s%s %s</li>", 
+				$report->get_start_date(),
+				($report->get_end_date()
+				 ? " to " . $report->get_end_date()
+				 : ""),
+				$report->get_link_html());
+    }
+    return sprintf(qq(<h2>Most Photogenic Trips</h2><ul>%s</ul>),
+                   $report_html);
+}
+sub make_recognizable_area_summary {
+    my @areas = Scramble::Area->get_all()->find('is_recognizable_area' => 'true');
+    return '' unless @areas;
+    my $html;
+    foreach my $area (sort { scalar($b->get_reports()) <=> scalar($a->get_reports()) } @areas) {
+        my @reports = $area->get_reports();
+        next unless @reports;
+        $html .= sprintf("<li>%s (%s)", $area->get_short_link_html(), scalar(@reports));
+    }
+
+    return "<ul>$html</ul>";
+}
+
+# This is now made as part of Report::make_reports_index_page()
+#
+# sub make_home_page {
+#     my $report_html;
+
+#     my @reports = Scramble::Report::get_all();
+#     foreach my $report (@reports[0 .. 9]) {
+#         next unless $report;
+# 	$report_html .= sprintf("<li>%s%s %s</li>", 
+# 				$report->get_start_date(),
+# 				($report->get_end_date()
+# 				 ? " to " . $report->get_end_date()
+# 				 : ""),
+# 				$report->get_link_html());
+#     }
+#     my $recent_reports = sprintf(qq(<h2>Most Recent Trips</h2><ul>%s</ul>),
+# 			       $report_html);
+
+#     my $photogenic_reports = ''; # get_photogenic_reports_html();
+#     my $area_summary_html = make_recognizable_area_summary();
+
+#     my $filename = "$g_options{'templates-directory'}/home.html";
+#     my $html = make_template_html($filename,
+#                                   'after-file-contents' => "$recent_reports$photogenic_reports");
+
+#     my ($ofile) = ($filename =~ m,/([^/]+)$,);
+
+#     my $pic_html = (Scramble::Image::get_random_picture_html('align' => undef)
+#                     . "\n<p>\n"
+#                     . Scramble::Image::get_random_picture_html('align' => undef)
+#                    );
+#     my $title = '';
+#     Scramble::Misc::create("m/$ofile",
+# 			   Scramble::Misc::make_2_column_page($title,
+# 							      $html,
+# 							      $pic_html,
+#                                                               'no-add-picture' => 1,
+#                                                               'add-amazon-associates-html' => 0));
+# }
+
+
+######################################################################
+
+
+sub make_todo {
+    my $ipath = "$g_options{'templates-directory'}/TODO";
+    if (! -e $ipath) {
+        print "Missing $ipath\n";
+        return;
+    }
+    my $ifh = IO::File->new($ipath, 'r') or die "Unable to open '$ipath': $!";
+    my $contents = join('', <$ifh>);
+    $contents =~ s(\n\n)(\n</pre><hr color="black"><pre>\n)g;
+    $contents =~ s(</h2>\n)(</h2>)g;
+    my $html = Scramble::Misc::htmlify($contents);
+    Scramble::Misc::create("m/todo.html",
+			   Scramble::Misc::make_2_column_page("My To-Do's",
+							      "<pre>$html</pre>",
+							      undef,
+							      'no-add-picture' => 1));
+}
+
+sub make_template_html {
+    my ($filename, %options) = @_;
+
+    my $fh = IO::File->new($filename, 'r')
+	or die "Unable to open '$filename': $!";
+    my $html = join('', <$fh>);
+    if (! $options{'no-insert-links'}) {
+        Scramble::Misc::insert_links($html);
+    }
+    $html .= delete $options{'after-file-contents'} if exists $options{'after-file-contents'};
+
+    return $html;
+}
+
+sub make_html_file {
+    my ($filename, $title, %options) = @_;
+
+    if (! -e $filename) {
+        print "Missing $filename\n";
+        return;
+    }
+
+    my $html = make_template_html($filename, %options);
+
+    my ($ofile) = ($filename =~ m,/([^/]+)$,);
+
+    Scramble::Misc::create("m/$ofile",
+			   Scramble::Misc::make_2_column_page($title, 
+							      $html,
+							      undef,
+							      %options));
+}
+
+# sub backup_images {
+#     foreach my $image (sort { $a cmp $b } Scramble::Image::get_all_images_collection()->get_all()) {
+#         next unless defined $image->get_date();
+#         my ($number) = ($image->get_filename() =~ /^([A-Z]*\d+)/);
+#         next unless defined $number;
+
+#         my ($yyyy, $mm, $dd) = Scramble::Time::parse_date($image->get_date());
+#         my $glob = "~/pictures/$yyyy/$mm/$dd*/*$number*";
+#         my @matches = glob $glob;
+#         if ((! @matches) && "$yyyy/$mm/$dd" gt "2010/11/01") {
+#             die "Can't find original image of glob '$glob'";
+#         }
+#         foreach my $match (@matches) {
+#             my $target_dir = "$g_options{'image-backup-directory'}/$yyyy/$mm/$dd/";
+#             if (! -d $target_dir) {
+#                 File::Path::mkpath([$target_dir], 0, 0755);
+#             }
+# 	    my ($file) = ($match =~ /([^\/]+)$/); 
+#             defined $file or die "Unable to parse $match";
+#             my $target = "$target_dir/$file";
+#             if (-e "$target") {
+#                 next;
+#             }
+
+#             my $command = qq(cp "$match" "$target");
+#             print "$command\n";
+#             system($command) == 0 or die "Error copying '$match' to '$target': $!";
+#         }
+#     }
+# }
+
+1;

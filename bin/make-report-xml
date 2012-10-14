@@ -1,0 +1,23 @@
+#!c:/Perl64/bin/perl
+#-*-perl-*-
+
+use strict;
+use lib './lib';
+
+my ($date) = @ARGV;
+defined $date or die "Missing arguments";
+
+print <<EOT;
+<trip
+    start-date="$date"
+    name=""
+    type=""
+    display-mode="spare"
+>
+
+<party size="">
+<member name="Gabriel Deal" type="author"/>
+</party>
+
+</trip>
+EOT

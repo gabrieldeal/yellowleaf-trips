@@ -1,0 +1,20 @@
+#!c:/Perl64/bin/perl
+#-*-perl-*-
+
+use strict;
+use lib './lib';
+use Date::Manip;
+
+local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
+local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
+
+use Date::Manip;
+
+
+  # Date::Manip to DateTime
+  my $dm = ParseDate("January 1st, 2001");
+
+
+
+ 
+1;

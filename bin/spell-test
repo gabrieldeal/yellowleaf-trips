@@ -1,0 +1,5 @@
+use Spell;
+use strict;
+
+Spell::initialize($ARGV[0]);
+print "Misspelled: " . join(", ", Spell::check("swich back")) . "\n";

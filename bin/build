@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+cd ~/scramble && perl bin/parse --dictionary-dir dict --rep data/gabrielx/reports --images data/gabrielx/images --tem data/gabrielx/templates --out html -v "$@"

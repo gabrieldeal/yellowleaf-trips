@@ -1,0 +1,207 @@
+#-*-perl-*-
+
+# http://geonames.usgs.gov/pls/gnispublic/f?p=171:1:1813888766918258185
+
+use strict;
+use lib './lib';
+
+use Scramble::Area ();
+use Scramble::Location ();
+use Carp ();
+use Data::Dumper ();
+use IO::File ();
+use Scramble::XML ();
+use Scramble::Logger ();
+
+my $g_id = 100;
+local $Data::Dumper::Maxdepth = 5;
+local $^W = 1;
+local $| = 1;
+local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
+local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
+
+exit(main());
+
+sub main {
+    my $file = $ARGV[0] or die "Missing filename";
+
+    Scramble::Logger::set_verbose(1);
+    Scramble::Area::open();
+    Scramble::Location::open_all();
+
+    my $fh = IO::File->new($file, 'r') or die "Can't open '$file': $!";
+    my @columns = parse_line($fh->getline());
+    foreach my $column (@columns) {
+        if ($column eq 'Ele(ft)') {
+            $column = 'Elevation';
+        }
+        if ($column eq 'Cell') {
+            $column = 'Quad';
+        }
+        if ($column eq 'Class') {
+            $column = 'Type';
+        }
+        if ($column eq 'Feature Name') {
+            $column = 'Name';
+        }
+    }
+
+    my $area_fh = IO::File->new('temp-area.xml', 'w');
+    my $location_fh = IO::File->new('temp-location.xml', 'w');
+
+    my %areas;
+    while (defined(my $line = $fh->getline())) {
+        my @fields = parse_line($line);
+        if (@fields != @columns) {
+            $" = ', ';
+            die "Mismatch: (@fields) (@columns)";
+        }
+        my %location;
+        for (my $idx = 0; $idx < @columns; ++$idx) {
+            $location{$columns[$idx]} = $fields[$idx];
+        }
+
+        %location = normalize(%location);
+        make_areas(\%areas, \%location);
+        $location_fh->print(make_location_xml(%location));
+    }
+
+    foreach my $area_id (keys %areas) {
+        $area_fh->print(make_area_xml($areas{$area_id}));
+    }
+
+    return 0;
+}
+
+sub make_areas {
+    my ($areas, $location) = @_;
+
+    my $match = find_matching_area($location->{CountyID}, $location->{County}, 'county');
+    if ($match) {
+        $location->{CountyID} = $match->get_id();
+        $location->{County} = $match->get_name();
+    }
+    $areas->{$location->{CountyID}} = { id => $location->{CountyID},
+                                      name => $location->{County},
+                                      type => 'county',
+                                      matched => $match,
+                                      'in-areas' => $location->{'State'},
+                                    };
+    my $match = find_matching_area($location->{QuadID}, $location->{Quad}, 'USGS quad');
+    if ($match) {
+        $location->{QuadID} = $match->get_id();
+        $location->{Quad} = $match->get_name();
+    }
+    $areas->{$location->{QuadID}} = { id => $location->{QuadID},
+                                    name => $location->{Quad},
+                                    type => 'USGS quad',
+                                    matched => $match,
+                                    'in-areas' => $location->{'State'},
+                                  };
+}
+
+sub find_matching_area {
+    my ($quad_id, $quad_name, $type) = @_;
+
+    my @quads = Scramble::Area::get_all()->find('id' => $quad_id, type => $type);
+    push @quads, Scramble::Area::get_all()->find('name' => $quad_name, type => $type);
+    push @quads, Scramble::Area::get_all()->find('id' => $quad_name, type => $type);
+
+    my %dedup = map { ("$_", $_) } @quads;
+
+    if (keys %dedup == 0) {
+        return undef;
+    }
+    if (keys %dedup > 1) {
+        print "Too many matching $quad_id ($quad_name): ". Data::Dumper::Dumper(%dedup);
+    }
+
+    @quads = values %dedup;
+    return $quads[0];
+}
+
+sub make_area_xml {
+    my ($area) = @_;
+
+    if ($area->{matched}) {
+        print "Skipping $area->{id} ($area->{name})\n";
+        return;
+    }
+
+    return <<EOT;
+<area id="$area->{id}"
+      name="$area->{name}"
+      type="$area->{type}"
+      in-areas="$area->{'in-areas'}"
+/>
+EOT
+}
+
+sub normalize {
+    my (%location) = @_;
+
+    $location{'Id'} = ++$g_id;
+    $location{'Longitude'} =~ s/^(\d\d\d)/$1./;
+    $location{'Longitude'} =~ s/([NWES])$/ $1/;
+
+    $location{'Latitude'} =~ s/^(\d\d)/$1./;
+    $location{'Latitude'} =~ s/([NWES])$/ $1/;
+    if ($location{'Type'} eq 'Summit') {
+        $location{'Type'} = 'peak';
+    }
+
+    $location{'QuadID'} = $location{'Quad'} . "Quad";
+    $location{'QuadID'} =~ s/ //;
+
+    $location{'CountyID'} = $location{'County'} . "County";
+    $location{'CountyID'} =~ s/ //;
+
+    return %location;
+}
+
+sub make_location_xml {
+    my (%location) = @_;
+
+    if (grep { $_->is($location{Name}, $location{QuadID}) } Scramble::Location::get_all()->get_all())
+    {
+        print "Skipping location $location{Name}\n";
+        return '';
+    }
+
+    return <<EOT;
+
+<location
+    type="peak"
+    elevation="$location{Elevation}"
+    id="$location{Id}"
+>
+
+<name value="$location{Name}"/>
+
+<coordinates datum="NAD83"
+             latitude="$location{Latitude}"
+	     longitude="$location{Longitude}"
+/>
+
+<areas>
+<area id="$location{CountyID}"/>
+<area id="$location{State}"/>
+<area id="$location{QuadID}"/>
+</areas>
+
+</location>
+
+EOT
+}
+
+sub parse_line {
+    my ($line) = @_;
+
+    my @fields = split /\|/, $line;
+    foreach (@fields) { s/\"//g }
+    $fields[-1] =~ s/\s*$//;
+    if ($fields[-1] =~ /^\s*$/) {
+        pop @fields;
+    }
+    return @fields;
+}

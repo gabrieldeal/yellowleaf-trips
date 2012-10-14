@@ -1,0 +1,61 @@
+#-*-perl-*-
+
+use strict;
+use warnings;
+
+my %cash = ('target-balance' => 23000,
+            'balance' => 50847,
+           );
+my %investments = (
+                   'foreign-emerging' => { 'target-percentage' => .1,
+                                           balance => 41251,
+                                         },
+                   'foreign-developed' => { 'target-percentage' => .2,
+                                            balance => 67202,
+                                          },
+                   'reit' => { 'target-percentage' => .1,
+                               balance => 26745,
+                             },
+                   'bonds' => { 'target-percentage' => .1,
+                                balance => 32516,
+                              },
+                   'us-small-cap' => { 'target-percentage' => .25,
+                                       balance => 81244,
+                                     },
+                   'us-large-cap' => { 'target-percentage' => .25,
+                                       balance => 81630,
+                                     },
+                   'us-mid-cap' => { 'target-percentage' => 0,
+                                     balance => 6880,
+                                   },
+                  );
+
+
+my $total = 0;
+foreach my $type (keys %investments) {
+    $total += $investments{$type}{balance};
+}
+
+my $free_cash = $cash{balance} - $cash{'target-balance'};
+print "Total investments: $total\n";
+print "Total cash: $cash{balance}\n";
+print "Free cash: $free_cash\n";
+print "\n";
+
+my %readjust;
+foreach my $type (sort keys %investments) {
+    my $pct_off = ($investments{$type}{balance}/$total) - $investments{$type}{'target-percentage'};
+    printf("$type %.3f\n",$pct_off);
+
+    if ($pct_off > 0) {
+        print "    N/A\n";
+    } else {
+        my $readjust_cash = abs($pct_off * $total);
+        $free_cash -= $readjust_cash;
+        printf "    \$%.2f\n", $readjust_cash;
+    }
+}
+
+print "Free cash left: $free_cash\n";
+
+exit(0);

@@ -1,0 +1,25 @@
+#!/bin/sh
+
+dir=html
+if [ ! -d $dir ]
+then
+	echo "Missing '$dir'" 1>&2
+	exit 1
+fi
+
+echo fixing ownership of files...
+find $dir -type f -exec chmod +r {} \;
+
+echo fixing ownership of directories...
+find $dir -type d -exec chmod +xr {} \;
+
+echo "Ready to rsync website ('n' to skip)?"
+read pauseme
+if [ "$pausme" != "n" ]
+then
+    rsync2.5.1-dev.exe --delete --size-only  -e ssh -avz html/ gabrielx@addr6.addr.com:~/public_html/scramble2
+fi
+
+echo "Ready to backup data?"
+read pauseme
+rsync2.5.1-dev.exe --size-only  -e ssh -avz . gabrielx@addr6.addr.com:~/website-data --exclude images --include images.xml --exclude $dir --exclude '*~'
