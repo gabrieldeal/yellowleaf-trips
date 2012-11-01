@@ -1,3 +1,4 @@
+#!/usr/bin/perl
 #-*-perl-*-
 
 use strict;
@@ -113,6 +114,66 @@ sub get_options {
     Scramble::Logger::set_verbose($g_options{'verbose'});
 }
 
+sub get_party_stats {
+  my %stats;
+  my %people;
+  foreach my $report (Scramble::Report::get_all()) {
+    my $party = $report->_get_optional_content('party');
+    next unless $party;
+
+    my @members = map { $_->{name} } @{ $party->{member} || [] };
+    push @members, grep /\S/, split(/\n/, $party->{content}) if $party->{content};
+
+    my ($yyyy, $mm, $dd) = Scramble::Time::parse_date($report->get_start_date());
+
+    die "$yyyy/$mm/$dd" . Data::Dumper::Dumper($party) unless $party->{size};
+
+    $stats{$mm}{trip_count}++;
+    $stats{$mm}{person_count} += $party->{size};
+
+    foreach my $member (@members) {
+      my $name;
+      if (ref $member) {
+	$name = $member->{name};
+      } else {
+	$name = $member;
+      }
+      $name =~ s/^\s*(.*?)[\s\.]*$/$1/i;
+      $name =~ s/^Mom$/Bonnie Deal/i;
+      $name =~ s/^Boni Deal$/Bonnie Deal/i;
+      $name = "Laurie Cullen" if $name =~ /^Laurie C$/;
+      $name =~ s/^Carla S$/Carla Schauble/i;
+      $name =~ s/^Carla Shauble$/Carla Schauble/i;
+      $name =~ s/^David Deal$/Dave Deal/i;
+      $name =~ s/^Matt B$/Matt Burton/i;
+      $name = "Yana Radenska" if $name =~ /\byana\b/i;
+      $name = "Jiri Richter" if $name =~ /\bjiri\b/i;
+      $name = "Lindsay Malone" if $name =~ /\bLindsay Malone\b/i;
+      $name = "Brian Walkenhauer" if $name =~ /^(Brian|Bryan) Walk/;
+      $name = "Putz in boots" if $name =~ /\bputz\b/i;
+      $name = "Tazz" if $name =~ /\btazz\b/i || $name eq 'Ann Arnoldy';
+      $name = "Lynn Graff" if $name eq "Lynn Graf";
+      $name = "Mike Helminger" if $name =~ /\biron\b/i || $name eq "Mike Hemlinger" || $name =~ /^Mike H$/;
+      $name = "Matt Burton" if $name =~ /\bmatt\b/i && $name =~ /\bburton\b/;
+      $name = "David Suhr" if $name eq "David Sur";
+      $name = "Atsuko Yamaguchi" if $name =~ /\batsuko\b/i;
+      $name =~ s/^Brett D$/Brett Dyson/i;
+      $name =~ s/^Bruno$/Bruno Reinys/i;
+      $people{$name}++;
+    }
+  }
+
+  foreach my $name (sort { $people{$a} <=> $people{$b} } keys %people) {
+    printf("%d %s\n", $people{$name}, $name);
+  }
+
+  foreach my $mm (sort { $a <=> $b } keys %stats) {
+    printf("$mm: %.2f people on average in %d trips\n",
+	   $stats{$mm}{person_count} / $stats{$mm}{trip_count},
+	   $stats{$mm}{trip_count});
+  }
+}
+
 sub spell_check {
     Spell::initialize($g_options{'dictionary-directory'});
 
@@ -215,6 +276,7 @@ sub main {
                        'no-add-picture' => 1);
     }
 
+    should('party-stats') && get_party_stats();
     should('spell') && spell_check();
 
     foreach my $file (@{ $g_options{'file'} }) {
