@@ -619,6 +619,7 @@ EOT
     }
 
   return <<EOT;
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <title>$gSiteName $options{title}</title>
@@ -768,6 +769,7 @@ sub make_3_column_page {
     my $middle_column_alignment = $options{'center-middle-column'} ? 'center' : 'left';
 
     return <<EOT;
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <title>$gSiteName $title</title>
@@ -1165,9 +1167,10 @@ EOT
 sub render_cells_into_flow {
   my ($htmls) = @_;
 
+  my $li_html = qq(    <li style="display: inline-block; padding: 5px;">);
   return (qq(<ul style="padding: 0; margin: 0;">\n)
-	  . qq(    <li style="float: left; padding: 5px;">)
-	  . join(qq(</li>\n    <li style="display: inline-block; padding: 5px;">), @$htmls)
+	  . $li_html
+	  . join(qq(</li>\n$li_html), @$htmls)
 	  . "</li>\n"
 	  . "</ul>");
 }
