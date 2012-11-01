@@ -49,7 +49,6 @@ sub test_files_exist {
 		   m/quad-layout.html
 		   li/middleforkpeakselevation.html
 		   .htaccess
-		   m/pictures.html
 		   );
 
     my $outdir = Scramble::Misc::get_output_directory();

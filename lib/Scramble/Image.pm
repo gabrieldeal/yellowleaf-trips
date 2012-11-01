@@ -377,24 +377,6 @@ sub get_random_picture_html {
                                                          'image-attributes' => $align);
 }
 
-sub make_pictures_page {
-    _make_images_page('type' => 'map', 
-                      'columns' => 2);
-    _make_images_page('type' => 'picture', 
-                      'columns' => 2);
-    _make_images_page('type' => 'picture', 
-                      'columns' => 1, 
-                      'filename' => "-with-paths",
-                      'show-path' => 1, 
-                      'images-per-page' => 99999);
-    _make_images_page('type' => 'picture', 
-                      'columns' => 1, 
-                      'filename' => 'sorted-by-date',
-                      'sort-by' => 'date',
-                      'images-per-page' => 99999);
-    make_enl_picture_pages();
-}
-
 sub make_enl_picture_pages {
     foreach my $image (sort { cmp_date($a, $b) } $g_collection->get_all()) {
         $image->make_enl_page();
@@ -465,76 +447,6 @@ sub get_picture_html_filename {
     return sprintf("m/$args{type}s%s%s.html",
 		   ($args{'filename'} ? $args{'filename'} : ''),
 		   ($i == 0 ? "" : $i));
-}
-sub _make_images_page {
-    my (%args) = @_;
-
-    my ($type, $num_columns, $show_path, $n_pictures_per_page) = @args{qw(type columns show-path images-per-page)};
-
-    $n_pictures_per_page = 10 unless defined $n_pictures_per_page;
-
-    my $count = 0;
-    my @images = Scramble::Image::get_all_images_collection()->find('type' => $type);
-    if (! @images) {
-	Scramble::Misc::create(get_picture_html_filename(0, %args),
-			       Scramble::Misc::make_2_column_page("No Pictures", 
-								  "I don't have any pictures yet", 
-								  ));
-	  return;
-    }
-
-    if ($args{'sort-by'}) {
-        my $method = "get_" . $args{'sort-by'};
-        @images = sort { $b->$method() cmp $a->$method() } @images;
-    }
-
-    my $n_pages = scalar(@images) / $n_pictures_per_page;
-    for (my $i = 0; @images; ++$i) {
-	my ($html1, $html2) = ('', '');
-	foreach my $image (splice @images, 0, $n_pictures_per_page) {
-	    my $html = sprintf("%s.%s<p>",
-			       $image->get_html(),
-			       ($show_path
-                                ? sprintf("  Path (%s): %s/%s", $image->get_rating(), $image->get_subdirectory(), $image->get_filename())
-                                : ''));
-	    if ($type eq 'map' || 0 == $count++ % $num_columns) {
-		$html1 .= $html;
-	    } else {
-		$html2 .= $html;
-	    }
-	}
-
-        my $footer;
-	if ($i > 0) {
-	    $footer .= sprintf(qq(<A href="../../g/%s"><b>Previous&lt;</b></a>&nbsp;&nbsp;),
-                               get_picture_html_filename($i-1, %args));
-	}
-        my @page_numbers = grep { $_ >= 0 && $_ < $n_pages } ($i - 10 .. $i + 10);
-        foreach my $page_no (@page_numbers) {
-            if ($page_no eq $i) {
-                $footer .= "<b>&nbsp;" . ($i+1) . "&nbsp;</b> ";
-            } else {
-                $footer .= sprintf(qq(<A href="../../g/%s">%s</a> ),
-                                   get_picture_html_filename($page_no, %args),
-                                   $page_no + 1);
-            }
-        }
-	if (@images) {
-	    $footer .= sprintf(qq(&nbsp;&nbsp;<A href="../../g/%s"><b>&gt;Next</b></a>),
-                               get_picture_html_filename($i+1, %args));
-	}
-
-
-	my $uctype = ucfirst($type);
-	my $file = get_picture_html_filename($i, %args);
-	Scramble::Misc::create($file,
-			       Scramble::Misc::make_2_column_page("${uctype}s", 
-								  $html1, 
-								  $html2, 
-								  'top-two-cell-row' => "$footer",
-								  'bottom-two-cell-row' => "$footer",
-								  'no-add-picture' => 1));
-    }
 }
 
 sub n_per_date {

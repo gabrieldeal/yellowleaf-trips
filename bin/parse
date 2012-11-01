@@ -264,8 +264,6 @@ sub main {
 	make_html_file("$g_options{'templates-directory'}/sfox.html",
                        "Steve Fox's winter scrambles",
 		       'no-add-picture' => 1);
-	make_html_file("$g_options{'templates-directory'}/disclaimer.html",
-                       "Disclaimer");
 	make_html_file("$g_options{'templates-directory'}/missing.html", 
                        "Missing Page");
 	make_html_file("$g_options{'templates-directory'}/usgs.html", 
@@ -296,7 +294,7 @@ sub main {
     should('javascript') && copy_javascript();
     should('report-index') && Scramble::Report::make_reports_index_page();
     should('report') && Scramble::Report::make_all_report_pages();
-    should('picture') && Scramble::Image::make_pictures_page();
+    should('picture') && Scramble::Image::make_enl_picture_pages();
     should('winter') && Scramble::Winter::make_winter_page();
     should('resume') && Scramble::Resume::make_resume_page();
     should('rss') && Scramble::Report::make_rss();
@@ -306,7 +304,6 @@ sub main {
     (should('quad-layout') || should('area')) && Scramble::Area::Quad::make_quad_layout();
     should('private') && Scramble::Misc::make_all_internal_links_page();
     should('quad') && Scramble::Location::make_quads();
-    should('todo') && make_todo();
     should('list') && Scramble::List::make_lists();
     should('link') && Scramble::Reference::make_references();
     should('location') && Scramble::Location::make_locations();
@@ -449,24 +446,6 @@ sub make_recognizable_area_summary {
 
 ######################################################################
 
-
-sub make_todo {
-    my $ipath = "$g_options{'templates-directory'}/TODO";
-    if (! -e $ipath) {
-        print "Missing $ipath\n";
-        return;
-    }
-    my $ifh = IO::File->new($ipath, 'r') or die "Unable to open '$ipath': $!";
-    my $contents = join('', <$ifh>);
-    $contents =~ s(\n\n)(\n</pre><hr color="black"><pre>\n)g;
-    $contents =~ s(</h2>\n)(</h2>)g;
-    my $html = Scramble::Misc::htmlify($contents);
-    Scramble::Misc::create("m/todo.html",
-			   Scramble::Misc::make_2_column_page("My To-Do's",
-							      "<pre>$html</pre>",
-							      undef,
-							      'no-add-picture' => 1));
-}
 
 sub make_template_html {
     my ($filename, %options) = @_;
