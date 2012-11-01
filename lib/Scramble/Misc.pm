@@ -290,7 +290,7 @@ sub get_horizontal_nav_links {
     }
 </script>
 <form action="http://www.google.com/search" method="get" onSubmit="Gsitesearch(this)">
-    <table bgcolor="DFF2FD" border=0 cellspacing=5 cellpadding=0><tr><td>
+    <table width="100%" bgcolor="DFF2FD" border=0 cellspacing=5 cellpadding=0><tr><td>
         $html_links
         <input name="q" type="hidden"/>
         <input name="qfront" type="text" style="width: 180px" /><input type="submit" value="Search" />
