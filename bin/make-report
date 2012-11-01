@@ -24,7 +24,7 @@ exit(make_xml($dir, @ARGV));
 sub make_xml {
     my ($image_dir, $trip_type, $title) = @_;
 
-    defined $title or die "Missing arguments: image-dir-path filename trip-type report-title";
+    defined $title or die "Missing arguments: image-dir trip-type title";
     -d $image_dir or die "Non-existant image dir: $image_dir";
 
     my ($data_dir, $image_subdir) = ($image_dir =~ m{^(.*)/images/+([^/]+)/*$});
