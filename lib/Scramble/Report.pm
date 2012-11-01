@@ -553,9 +553,9 @@ $date
 $trip_type
 $elevation_html
 $miles_html
+$short_times_html
 $quads_html
 $recognizable_areas_html
-$short_times_html
 $short_route_references
 $long_times_html
 $long_route_references
