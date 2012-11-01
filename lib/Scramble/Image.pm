@@ -434,12 +434,12 @@ sub make_enl_page {
     if (! $self->get_enlarged_filename()) {
         return;
     }
-    
+
     my $output_filename = $self->get_enl_html_filename();
 
     my $image_html = $self->get_img_tag('enlarged' => 1);
 
-    my $title_html = $self->get_title_html();
+    my $title_html = $self->get_title() || "Untitled";
     if ($self->get_report_url()) {
         $title_html .= sprintf(qq( (from <a href="%s">this trip</a>)),
                                $self->get_report_url());
@@ -551,8 +551,8 @@ sub n_per_date {
     return map { @{ $trips{$_} } } keys %trips;
 }
 sub make_images_by_year_page {
-    my $n_pictures_per_year = 25;
-    my $n_per_date = 2;
+    my $n_pictures_per_year = 50;
+    my $n_per_date = 4;
 
     my @images = Scramble::Image::get_all_images_collection()->find('type' => 'picture');
 
