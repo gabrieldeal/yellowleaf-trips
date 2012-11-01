@@ -447,20 +447,13 @@ sub get_map_summary_html {
     return Scramble::Misc::make_colon_line($title, join(", ", @maps));
 }
 
-sub get_multi_point_embedded_google_map_html {
-    my $self = shift;
-
-    return Scramble::Misc::get_multi_point_embedded_google_map_html([ $self->get_locations_visited() ]);
-}
-
 sub _make_page_html {
     my $self = shift;
 
     if ($self->get_display_mode() eq 'normal'
-	|| $self->get_display_mode() eq 'no-links-to')
+	|| $self->get_display_mode() eq 'no-links-to'
+	|| $self->get_display_mode() eq 'spare')
     {
-        return $self->make_full_page_html();
-    } elsif ($self->get_display_mode() eq 'spare') {
         return $self->make_spare_page_html();
     } else {
         die "Bad display mode: " . $self->get_display_mode();
@@ -560,9 +553,9 @@ $short_route_references
 $long_times_html
 $long_route_references
 EOT
-    $right_html = Scramble::Misc::make_cell_html($right_html);
-    my $image_htmls = [ map { $_->get_html('no-report-link' => 1) } ($self->get_map_objects(), $self->get_picture_objects()) ];
-    my $cells_html = Scramble::Misc::render_cells_into_flow([ $right_html, @$image_htmls ]);
+
+    my $cells_html = Scramble::Misc::render_images_into_flow('htmls' => [ $right_html ],
+							     'images' => [$self->get_map_objects(), $self->get_picture_objects() ]);
 
     my $route = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("%s", $self->get_route()));
 
@@ -582,84 +575,6 @@ EOT
 			   Scramble::Misc::make_1_column_page('title' => $title, 
 							      'include-header' => 1,
 							      'html' => $html,
-							      'copyright-year' => $copyright_year));
-}
-
-sub make_full_page_html {
-    my $self = shift;
-
-    Scramble::Logger::verbose(sprintf("Rendering HTML for '%s'\n", 
-				      $self->get_name()));
-
-    my $trip_type = Scramble::Misc::make_colon_line("Trip type", $self->get_type());
-    my $directions_html
-	= Scramble::Misc::make_optional_line("<h2>Driving Directions</h2> %s",
-					     $self->get_driving_directions_html());
-    my $special_gear = Scramble::Misc::make_optional_line("<b>Special gear:</b> %s<br>",
-							  $self->get_special_gear());
-    my $route_html = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("<p>%s</p>", $self->get_route()));
-    my $miles_html = $self->get_distances_html();
-    my $state_html = Scramble::Misc::make_optional_line("<b>State:</b> %s<br>",
-							sub { $_[0] eq 'done' ? undef : $_[0] },
-							$self->get_state());
-    my $date = $self->make_date_html();
-
-    my $elevation_gain_html = $self->get_elevation_gain_html();
-    my $times_html = Scramble::Misc::make_optional_line("<h2>Travel Times</h2> %s",
-							$self->get_waypoints()->get_detailed_time_html());
-
-    my $route_references = Scramble::Misc::make_optional_line("<h2>References</h2>%s",
-							      $self->get_reference_html());
-
-    my $maps_html = $self->get_map_html();
-    my $short_time_summary_html = $self->get_waypoints()->get_car_to_car_html();
-    my $quads_html = $self->get_map_summary_html();
-    my $recognizable_areas_html = $self->get_recognizable_areas_html('no-link' => 1);
-
-    my $top_html = <<EOT;
-$state_html
-$date
-$trip_type
-$special_gear
-$elevation_gain_html
-$miles_html
-$short_time_summary_html
-$quads_html
-$recognizable_areas_html
-$route_html
-$directions_html
-EOT
-
-    my $left_html = Scramble::Misc::make_cell_html(<<EOT);
-$route_references
-$maps_html
-$times_html
-EOT
-
-    my $image_htmls = [ map { $_->get_html('no-report-link' => 1) } $self->get_picture_objects() ];
-    my $route_map_html = $self->get_route_map_html();
-    push @$image_htmls, Scramble::Misc::make_cell_html($route_map_html) if $route_map_html;
-    my $google_map = $self->get_multi_point_embedded_google_map_html();
-    unshift @$image_htmls, Scramble::Misc::make_cell_html($google_map) if $google_map;
-
-    my $cells_html = Scramble::Misc::render_cells_into_flow([ $left_html, @$image_htmls ]);
-
-    my $copyright_year = $self->get_copyright_html();
-    my $title = $self->get_title_html();
-
-    my $html = <<EOT;
-<h1>$title</h1>
-$top_html
-$cells_html
-EOT
-
-    Scramble::Misc::create(sprintf("r/%s", $self->get_filename()),
-			   Scramble::Misc::make_1_column_page(title => $title, 
-							      html => $html,
-							      'include-header' => 1,
-							      'enable-google-ad' => 0,
-							      'no-add-picture' => 1,
-                                                              'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap,
 							      'copyright-year' => $copyright_year));
 }
 

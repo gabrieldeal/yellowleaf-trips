@@ -674,9 +674,6 @@ sub make_page_html {
     my $maps_html = $self->get_maps_html($self);
     my $recognizable_areas_html = $self->get_recognizable_areas_html();
 
-    my $all_pictures_html = ($self->get_embedded_google_map_html()
-                             . $self->get_image_htmls('type' => 'picture'));
-
     my $state_html = Scramble::Misc::make_colon_line("State", $self->get_state_html());
 
     my $aka_html = Scramble::Misc::make_optional_line("<b>AKA:</b> %s<br>",
@@ -697,7 +694,7 @@ sub make_page_html {
 
 #my $terraserver_html = $self->get_terraserver_html();
 
-    my $html = <<EOT;
+    my $text_html = <<EOT;
 $aka_html
 $elevation
 $prominence
@@ -717,13 +714,21 @@ $lists_html
 $locations_nearby_html
 EOT
 
+    my $cells_html = Scramble::Misc::render_images_into_flow('htmls' => [ $text_html, $self->get_embedded_google_map_html() ],
+							     'images' => [ $self->get_picture_objects() ]);
+
+    my $html = <<EOT;
+<h1>$title$location_name_note</h1>
+$cells_html
+EOT
+
     Scramble::Misc::create(sprintf("l/%s", $self->get_filename()),
-			   Scramble::Misc::make_2_column_page($title,
-							      $html, 
-							      $all_pictures_html,
-							      'h1-title' => "$title$location_name_note",
-                                                              'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap,
-							      'no-add-picture' => 1));
+			   Scramble::Misc::make_1_column_page(title => $title,
+							      'include-header' => 1,
+							      html => $html,
+							      'enable-google-ad' => 0,
+							      'no-add-picture' => 1,
+                                                              'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap));
 }
 
 sub make_locations {

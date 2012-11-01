@@ -263,7 +263,7 @@ sub get_locations_html {
     return $html;
 }
 
-sub get_image_html {
+sub get_images {
     my $self = shift;
 
     my @images = Scramble::Misc::get_images_for_locations($self->get_locations());
@@ -274,7 +274,7 @@ sub get_image_html {
 
     push @images, Scramble::Image::get_all_images_collection()->find('areas' => $self);
 
-    return Scramble::Image::make_best_of_html(@images);
+    return @images;
 }
 
 sub cmp {
@@ -289,11 +289,9 @@ sub make_page {
 
     my $area_type_html = '';
     if ($self->get_type() ne 'area') {
-        $area_type_html = Scramble::Misc::make_colon_line("Area Type", $self->get_type());
+        $area_type_html = Scramble::Misc::make_colon_line("Area type", $self->get_type());
     }
 
-    my $image_html = (Scramble::Misc::get_multi_point_embedded_google_map_html([$self->get_locations()])
-                      . $self->get_image_html());
     my $report_html = $self->get_reports_html();
 
     my $misc_html = $self->get_misc_html();
@@ -309,7 +307,7 @@ sub make_page {
 				 join("</li><li>", sort map { $_->get_link() } $self->in_area_objects()));
     }
 
-    my $html = <<EOT;
+    my $text_html = <<EOT;
 $area_type_html
 $county_high_point_html
 $misc_html
@@ -319,12 +317,21 @@ $locations_html
 $in_areas_html
 EOT
 
+    my $map_html = Scramble::Misc::get_multi_point_embedded_google_map_html([$self->get_locations()]);
+    my $cells_html = Scramble::Misc::render_images_into_flow(htmls => [ $text_html, $map_html ],
+							     images => [ Scramble::Image::get_best_images($self->get_images) ]);
+
+    my $title = $self->get_name();
+    my $html = <<EOT;
+<h1>$title</h1>
+$cells_html
+EOT
+
     Scramble::Misc::create($self->get_relative_path(),
-			   Scramble::Misc::make_2_column_page($self->get_name(),
-							      $html,
-							      $image_html,
-                                                              'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap,
-							      'no-add-picture' => 1));
+			   Scramble::Misc::make_1_column_page(title => $title,
+							      'include-header' => 1,
+							      'html' => $html,
+                                                              'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap));
 }
 
 ######################################################################

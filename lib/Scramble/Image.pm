@@ -184,17 +184,18 @@ sub get_rating {
   return 3;
 }
 
-
-sub make_best_of_html {
+sub get_best_images {
     my @images = @_;
 
     @images = Scramble::Misc::dedup(@images);
     @images = sort { Scramble::Image::cmp($a, $b) } @images;
-    if (@images > 10) {
-        @images = @images[0..9];
+
+    my $max = 50;
+    if (@images > $max) {
+        @images = @images[0 .. $max-1];
     }
 
-    return join("<p>", map { $_->get_html() } @images);
+    return @images;
 }
 
 sub get_enlarged_html_url {
@@ -589,12 +590,7 @@ sub make_images_by_year_page {
     my $header = join(", ", @header) . "<p>";
 
     foreach my $year (sort keys %pictures) {
-	my @image_htmls;
-        foreach my $image (@{ $pictures{$year}{images} }) {
-	  push @image_htmls, Scramble::Misc::make_cell_html($image->get_html());
-        }
-	my $images_html = Scramble::Misc::render_cells_into_flow(\@image_htmls);
-
+	my $images_html = Scramble::Misc::render_images_into_flow(images => $pictures{$year}{images});
 	my $title = "My Favorite Photos of $year";
 
 	my $html = <<EOT;

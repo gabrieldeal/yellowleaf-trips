@@ -215,7 +215,7 @@ sub get_misc_html {
     if ($self->get_download_id()) {
 	my $reference = Scramble::Reference::get_reference_for_id($self->get_download_id());
 	$download_at
-	    = Scramble::Misc::make_colon_line("Download At",
+	    = Scramble::Misc::make_colon_line("Download at",
 					      Scramble::Reference::get_reference_html_with_name_only($reference));
     }
 
@@ -238,16 +238,12 @@ sub get_misc_html {
     my $peakbagger_html = '';
     if ($self->in_washington()) {
         my $url = Scramble::Misc::get_peakbagger_quad_url($self);
-        $peakbagger_html = <<EOT;
-<p>
-You can find a list of all peaks on this quad with at least 400 feet of prominence at <a
-href="$url">Northwest Peakbagger\'s Asylum</a>.
-EOT
+	$peakbagger_html = Scramble::Misc::make_colon_line("See the peaks on this quad at",
+							   qq(<a href="$url">Northwest Peakbagger\'s Asylum</a>));
     }
-    
+
     return <<EOT;
 $download_at
-
 $peakbagger_html
 
 $neighbor_quads

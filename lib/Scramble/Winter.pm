@@ -28,7 +28,7 @@ sub get_winter_locations {
     return @locations;
 }
 
-sub get_images_html {
+sub get_images {
     my @locations = @_;
 
     # Hack to get just a couple pics per report
@@ -46,7 +46,8 @@ sub get_images_html {
     foreach my $image (@images) {
         push @winter_images, $image if Scramble::Time::is_winter($image->get_date());
     }
-    return Scramble::Image::make_best_of_html(@winter_images);
+
+    return Scramble::Image::get_best_images(@winter_images);
 }
 
 sub make_body_html {
@@ -63,7 +64,7 @@ sub make_body_html {
         }
     }
 
-    my $html = "These are destinations that I have visited between Dec 22 and March 22 or destinations in ski or snowshoe guide books.";
+    my $html = "";
     foreach my $key (sort { $area_objects{$a}{'area'}->get_name() cmp $area_objects{$b}{'area'}->get_name() } keys %area_objects) {
         my @locations = Scramble::Location::dedup(@{ $area_objects{$key}{'locations'} });
         @locations = sort { $a->get_name() cmp $b->get_name() } @locations;
@@ -86,13 +87,24 @@ sub make_body_html {
 
 sub make_winter_page {
     my @locations = get_winter_locations();
+    my @images = get_images(@locations);
+    my $text_html = make_body_html(@locations);
+    my $cells_html = Scramble::Misc::render_images_into_flow(htmls => [ $text_html ],
+							     images => \@images);
+    my $title = "Winter Destinations";
+
+    my $html = <<EOT;
+<h1>$title</h1>
+These are destinations that I have visited between Dec 22 and March 22 or destinations in ski or snowshoe guide books.
+<br/>
+$cells_html
+EOT
 
     Scramble::Misc::create
 	    ("m/winter.html",
-	     Scramble::Misc::make_2_column_page("Winter Destinations",
-                                                make_body_html(@locations),
-                                                get_images_html(@locations),
-                                                'no-add-picture' => 1));
+	     Scramble::Misc::make_1_column_page(title => $title,
+                                                'include-header' => 1,
+						html => $html));
 }
 
 1;

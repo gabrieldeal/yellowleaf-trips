@@ -292,8 +292,8 @@ sub get_horizontal_nav_links {
 <form action="http://www.google.com/search" method="get" onSubmit="Gsitesearch(this)">
     <table width="100%" bgcolor="DFF2FD" border=0 cellspacing=5 cellpadding=0><tr><td>
         $html_links
-        <input name="q" type="hidden"/>
-        <input name="qfront" type="text" style="width: 180px" /><input type="submit" value="Search" />
+        &nbsp;&nbsp;
+        <input name="q" type="hidden"/><input name="qfront" type="text" style="width: 180px" /><input type="submit" value="Search" />
     </td></tr></table>
 </form>
 EOT
@@ -509,7 +509,6 @@ sub make_optional_line {
 sub make_1_column_page {
     my (%args) = @_;
 
-    my $title = $args{'title'};
     my $html = $args{'html'};
     my $footer_html = make_footer(%args);
     my $header = get_header(%args);
@@ -1081,12 +1080,23 @@ EOT
 sub render_cells_into_flow {
   my ($htmls) = @_;
 
-  my $li_html = qq(    <li style="display: inline-block; padding: 5px;">);
+  # The first one needs to float left because it is likely to be a large table.
+  # Floating all the rest left causes odd display in IE.
   return (qq(<ul style="padding: 0; margin: 0;">\n)
-	  . $li_html
-	  . join(qq(</li>\n$li_html), @$htmls)
+	  . qq(    <li style="float: left; display: inline-block; padding: 5px;">)
+	  . join(qq(</li>\n    <li style="display: inline-block; padding: 5px;">), @$htmls)
 	  . "</li>\n"
 	  . "</ul>");
+}
+
+sub render_images_into_flow {
+  my (%args) = @_;
+
+  my @cells;
+  push @cells, map { make_cell_html($_) } @{ $args{'htmls'} || [] };
+  push @cells, map { $_->get_html('no-report-link' => 1) } @{ $args{'images'} };
+
+  return Scramble::Misc::render_cells_into_flow(\@cells);
 }
 
 1;
