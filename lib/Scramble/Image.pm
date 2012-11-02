@@ -265,7 +265,7 @@ sub get_html {
 
     my $caption = $self->get_title_html();
     if ($self->get_report_url() && ! $options{'no-report-link'}) {
-	$caption .= sprintf(qq( (from <a href="%s">this trip</a>)),
+	$caption .= sprintf(qq( (From <a href="%s">this trip</a>.)),
 			    $self->get_report_url());
 
     }
