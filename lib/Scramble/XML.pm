@@ -21,6 +21,28 @@ sub _get_optional_content {
     return ref $self->{'xml'}{$name} eq 'ARRAY' ?  $self->{'xml'}{$name}[0] : $self->{'xml'}{$name};
 }
 
+sub _set_required {
+  my $self = shift;
+
+  $self->_set(1, @_);
+}
+sub _set_optional {
+  my $self = shift;
+
+  $self->_set(0, @_);
+}
+
+sub _set {
+  my $self = shift;
+  my ($is_required, @attrs) = @_;
+
+  foreach my $attr (@attrs) {
+    my $value = $self->_get_optional($attr);
+    die "Missing required attribute '$attr': " . Data::Dumper::Dumper($self) if ! $value && $is_required;
+    $self->{$attr} = $value;
+  }
+}
+
 sub _get_required {
     my $self = shift;
     my (@keys) = @_;
@@ -179,6 +201,7 @@ sub get_driving_directions_html {
 	    $html .= Scramble::Misc::htmlify($direction) . "<p>";
 	} elsif (exists $direction->{'from-location'}) {
 	    my $location = Scramble::Location::find_location('name' => $direction->{'from-location'},
+							     quad => $direction->{quad},
 							     'include-unvisited' => 1,
 							     );
 	    $html .= $location->get_driving_directions_html();

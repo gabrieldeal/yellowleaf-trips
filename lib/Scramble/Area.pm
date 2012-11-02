@@ -19,11 +19,16 @@ sub new {
 	     };
     bless($self, ref($arg0) || $arg0);
 
+    $self->_set_required(qw(type id));
+    $self->_set_optional(qw(weather-id URL));
+
     if ($self->get_type() eq 'USGS quad') {
-	return Scramble::Area::Quad->new($self);
-    } else {
-	return $self;
+      $self = Scramble::Area::Quad->new($self);
     }
+
+    $self->_set_required(qw(name));
+
+    return $self;
 }
 
 sub county_matches {
@@ -87,13 +92,13 @@ sub in_washington {
     return $area ? 1 : 0;
 }
 
-sub get_name { $_[0]->_get_required('name') }
+sub get_name { $_[0]->{name} }
 sub get_short_name { $_[0]->get_name() }
-sub get_id { $_[0]->_get_required('id') }
-sub get_weather_id { $_[0]->_get_optional('weather-id') }
-sub get_type { $_[0]->_get_required('type') }
+sub get_id { $_[0]->{id} }
+sub get_weather_id { $_[0]->{'weather-id'} }
+sub get_type { $_[0]->{type} }
 sub get_is_recognizable_area { $_[0]->_get_optional('is-recognizable-area') ? 'true' : 0 }
-sub get_info_url { $_[0]->_get_optional('URL') }
+sub get_info_url { $_[0]->{URL} }
 
 sub in_areas_transitive_closure {
     my $self = shift;
@@ -111,7 +116,11 @@ sub equals {
     my $self = shift;
     my ($obj) = @_;
 
-    return $self->get_id() eq $obj->get_id();
+    if (ref $obj) {
+      return $self->get_id() eq $obj->get_id();
+    } else {
+      return $self->get_id() eq $obj;
+    }
 }
 
 sub get_in_areas_collection {
@@ -383,10 +392,10 @@ sub open {
 
 	    my $neighbor = eval { Scramble::Area::get_all()->find_one('id' => $neighbor_id) };
 	    if (! $neighbor) {
-		$neighbor = Scramble::Area::Quad->new({ 'xml' => { 'id' => $neighbor_id,
-								   $dirs->[1] => $quad->get_id(),
-								   'type' => $quad->get_type(),
-							       }});
+		$neighbor = Scramble::Area->new({ 'id' => $neighbor_id,
+						  $dirs->[1] => $quad->get_id(),
+						  'type' => $quad->get_type(),
+						});
 		get_all()->add($neighbor);
 	    }
 	    $neighbor->add_neighboring_quad_id($dirs->[1], $quad->get_id());

@@ -121,7 +121,8 @@ sub find_location_in_lists {
 sub find_location_in_list {
     my ($list_xml, $location_xml) = @_;
 
-    return grep { $location_xml->is($_->{'name'}, $_->{'quad'}) } @{ $list_xml->{'location'} };
+    return grep { $location_xml->is(name => $_->{'name'},
+				    quad => $_->{'quad'}) } @{ $list_xml->{'location'} };
 }
 
 sub sort_list {

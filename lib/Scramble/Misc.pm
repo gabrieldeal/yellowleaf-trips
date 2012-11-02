@@ -195,9 +195,7 @@ sub htmlify {
     $html = insert_links($html);
 
     $html =~ s/---NO-OP---//g;
-    $html =~ s/\n+$//;
-    $html =~ s/^\n+//;
-    $html =~ s(\n\n+)(<p>)g;
+    $html =~ s(\n\s*\n\s*)(<p />)g;
 
     return $html;
 }
@@ -879,7 +877,8 @@ sub create {
     Scramble::Logger::verbose "Creating $path\n";
     my $ofh = IO::File->new($path, "w") 
 	or die "Unable to open '$path': $!";
-    $ofh->print($html);
+    $ofh->print($html) or die "Failed to write to '$path': $!";
+    $ofh->close() or die "Failed to flush to '$path': $!";
 }
 
 my $g_conv_factor = .3048;

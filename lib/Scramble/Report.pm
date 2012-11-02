@@ -47,6 +47,7 @@ sub new {
     foreach my $location_element ($self->get_locations()) {
 	push @locations_visited, Scramble::Location::find_location('name' => $location_element->{'name'},
 								   'quad' => $location_element->{'quad'},
+								   'country' => $location_element->{country},
 								   'include-unvisited' => 1,
 								   );
     }
@@ -608,9 +609,19 @@ sub open_all {
     die "No such directory '$directory'" unless -d $directory;
 
     my @reports;
+    my @failed;
     foreach my $path (reverse(glob("$directory/*.xml"))) {
-	my $report = Scramble::Report->new($path);
+	my $report = eval { Scramble::Report->new($path) };
+	if ($@) {
+	  print STDERR "$@\n";
+	  push @failed, $path;
+	  next;
+	}
 	push @reports, $report if $report;
+    }
+
+    if (@failed) {
+      die "Failed to parse these reports: @failed";
     }
 
     @reports = sort { $b->cmp($a) } @reports;

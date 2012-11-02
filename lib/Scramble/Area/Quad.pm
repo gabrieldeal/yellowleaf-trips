@@ -14,10 +14,14 @@ sub new {
     bless($self, ref($arg0) || $arg0);
 
     my $short_name = eval { $self->get_name() } || $self->get_id();
+
     $self->{'xml'} = { 'name' => $short_name . " USGS quad",
                        'short-name' => $short_name,
 		       %{ $self->{'xml'} },
 		   };
+    $self->_set_required(qw(short-name));
+    $self->_set_optional(qw(corner-id no-lat-lon datum));
+
 
     if (defined(my $lat = $self->_get_optional("upper-left-latitude"))) {
 	my $lon = $self->_get_optional("upper-left-longitude");
@@ -28,20 +32,10 @@ sub new {
     return $self;
 }
 
-# The quads don't all have names, this is a data bug.
-sub equals {
-    my $self = shift;
-    my ($quad_name) = @_;
-
-    return (($self->get_name() && $quad_name eq $self->get_name())
-            || ($self->get_id() && $quad_name eq $self->get_id())
-            || ($self->get_short_name() && $quad_name eq $self->get_short_name()));
-}
-
-sub get_short_name { $_[0]->_get_required('short-name') }
-sub get_corner_id { $_[0]->_get_optional('corner-id') }
-sub no_lat_lon { $_[0]->_get_optional('no-lat-lon') }
-sub get_map_datum { $_[0]->_get_optional("datum") }
+sub get_short_name { $_[0]->{'short-name'} }
+sub get_corner_id { $_[0]->{'corner-id'} }
+sub no_lat_lon { $_[0]->{'no-lat-lon'} }
+sub get_map_datum { $_[0]->{"datum"} }
 sub set_map_datum { 
     my $self = shift;
     my ($datum) = @_;

@@ -87,7 +87,6 @@ sub new {
 
     $self->{'country-object'} = $self->get_areas_collection()->find_one('type' => 'country');
 
-
     if (Scramble::Image::get_all_images_collection()) {
 	$self->{'map-objects'} = [];
 	$self->{'picture-objects'} = [];
@@ -185,7 +184,6 @@ sub new_objects {
 sub name_is_unique { return ! $_[0]->{'has-twin'} }
 
 sub is_in_USA() { $_[0]->get_country_object()->get_name() eq 'USA'; }
-sub get_country { "USA" }
 sub get_country_object { $_[0]->{'country-object'} }
 
 sub is_high_point {
@@ -474,10 +472,10 @@ sub set_have_visited {
 
 sub open_all {
     my %check_for_duplicate_ids;
-    foreach my $path (glob("data/locations/*.xml")) {
+    foreach my $path (sort glob("data/locations/*.xml")) {
 	foreach my $location (Scramble::Location->new_objects($path)) {
 	    push @g_hidden_locations, $location;
-	    
+
 	    if (exists $check_for_duplicate_ids{$location->get_id()}) {
 		die "Duplicate location (add 'id' attr to new location): " . $location->get_id();
 	    }
@@ -509,40 +507,54 @@ sub equals {
     my $self = shift;
     my ($location) = @_;
 
-    my @location_quads = $location->get_quad_objects();
-    if (! @location_quads) {
-        if ($self->get_quad_objects()) {
-            return 0;
-        }
-        return $self->is($location->get_name());
-    }
+    return 1 if $self eq $location;
 
-    return $self->is($location->get_name(), $location_quads[0]->get_short_name());
+    my @quads = $location->get_quad_objects();
+    my $country = $location->get_country_object();
+
+    return $self->is(name => $location->get_name(),
+		     quad => @quads ? $quads[0] : undef,
+		     country => $country ? $country : undef);
 }
 sub is {
     my $self = shift;
-    my ($name, $quad) = @_;
+    my (%args) = @_;
 
-    return 0 unless defined $name;
+    defined $args{name} or die "Need name";
 
-    if ($quad && ! grep { $_->equals($quad) } $self->get_quad_objects()) {
-	return 0;
+    return 0 unless $args{name} ~~ [$self->get_name(), $self->get_aka_names()]; # ~~ is smart match
+
+    if ($args{quad}) {
+      return 0 unless _contains_area($args{quad}, $self->get_quad_objects());
+    } elsif($args{country}) {
+      return 0 unless _contains_area($args{country}, $self->get_country_object());
+    } else {
+      die "Need quad or country";
     }
 
-    foreach my $this_name ($self->get_name(), $self->get_aka_names()) {
-	return 1 if $this_name eq $name;
-    }
+    return 1;
+}
 
-    return 0;
+sub _contains_area {
+  my ($area_name, @areas) = @_;
+
+  foreach my $area (@areas) {
+    return 1 if $area->equals($area_name);
+  }
+  return 0;
 }
 
 sub find_location {
     my (%args) = @_;
 
     my $name = $args{'name'} || die "Not given name";
-    my @locations = grep({ $_->is($name, $args{'quad'}) } get_visited());
+    my @locations = grep({ $_->is(name => $name,
+				  quad => $args{quad},
+				  country => $args{country}) } get_visited());
     if ($args{'include-unvisited'}) {
-	push @locations, grep({ $_->is($name, $args{'quad'}) } get_unvisited());
+	push @locations, grep({ $_->is(name => $name,
+				       quad => $args{quad},
+				       country => $args{country} ) } get_unvisited());
     }
 
     Carp::confess "No match for '$name'" if @locations == 0;
