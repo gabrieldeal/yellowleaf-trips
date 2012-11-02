@@ -294,22 +294,26 @@ sub get_UTM_coordinates_html {
 sub get_aka_names { 
     my $self = shift;
 
-    my @names;
+    if (! $self->{'aka-names'}) {
+      my @names;
 
-    foreach my $aka_xml (@{ $self->_get_optional('name', 'AKA') || [] }) {
+      foreach my $aka_xml (@{ $self->_get_optional('name', 'AKA') || [] }) {
 	push @names, $aka_xml->{'name'};
-    }
+      }
 
-    my $names = $self->_get_optional('AKA');
-    return @names unless $names;
+      my $names = $self->_get_optional('AKA');
+      return @names unless $names;
 
-    if ($names =~ /;/) {
+      if ($names =~ /;/) {
 	push @names, split(/;\s*/, $names);
-    } else {
+      } else {
 	push @names, split(/,\s*/, $names);
+      }
+
+      $self->{'aka-names'} = \@names;
     }
 
-    return @names;
+    return $self->{'aka-names'};
 }
 sub get_aka_names_html {
     my $self = shift;
