@@ -556,7 +556,8 @@ $long_route_references
 EOT
 
     my $cells_html = Scramble::Misc::render_images_into_flow('htmls' => [ $right_html ],
-							     'images' => [$self->get_map_objects(), $self->get_picture_objects() ]);
+							     'images' => [$self->get_map_objects(), $self->get_picture_objects() ],
+							    'no-report-link' => 1);
 
     my $route = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("%s", $self->get_route()));
 
