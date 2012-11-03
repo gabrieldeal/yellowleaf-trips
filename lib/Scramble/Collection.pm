@@ -6,15 +6,14 @@ sub new {
     my $arg0 = shift;
     my (%args) = @_;
 
-    my @objects;
-    if ($args{'objects'}) {
-	push @objects, @{ $args{'objects'} };
-    }
+    my $self = {
+		'objects' => [],
+	       };
+    bless($self, ref($arg0) || $arg0);
 
-    my $self = {'objects' => \@objects,
-	    };
+    $self->add(@{ $args{'objects'} }) if $args{'objects'};
 
-    return bless($self, ref($arg0) || $arg0);
+    return $self;
 }
 
 sub get_all { @{ $_[0]->{'objects'} } }
@@ -24,8 +23,10 @@ sub add {
     my (@objs) = @_;
 
     foreach my $obj (@objs) {
-        push @{ $self->{'objects'} }, $obj
-            unless grep { $obj->equals($_) } $self->get_all();
+	my $id = $obj->get_id();
+	next if grep { $obj->equals($_) } @{ $self->{'id-cache'}{$id} || [] };
+	push @{ $self->{'id-cache'}{$id} }, $obj;
+        push @{ $self->{'objects'} }, $obj;
     }
 }
 
@@ -46,16 +47,19 @@ sub find {
     my $self = shift;
     my (%args) = @_;
 
+    my $id = delete $args{id};
+    my @results = $id ? @{ $self->{'id-cache'}{$id} || [] } : $self->get_all();
+
     my $isa = delete $args{'isa'};
-    my @results = $self->get_all();
+    if (defined $isa) {
+	@results = grep { $_->isa($isa) } @results;
+    }
+
     foreach my $key (keys %args) {
 	my $method = "get_$key";
 	$method =~ s/-/_/g;
 	my @culled;
 	foreach my $obj (@results) {
-	    if (defined $isa && ! $obj->isa($isa)) {
-		next;
-	    }
 	    my @values = $obj->$method();
 	    next unless @values;
 	    next unless grep { _equals($_, $args{$key}) } @values;

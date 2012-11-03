@@ -13,7 +13,7 @@ sub new {
 
     bless($self, ref($arg0) || $arg0);
 
-    my $short_name = eval { $self->get_name() } || $self->get_id();
+    my $short_name = $self->get_name();
 
     $self->{'xml'} = { 'name' => $short_name . " USGS quad",
                        'short-name' => $short_name,

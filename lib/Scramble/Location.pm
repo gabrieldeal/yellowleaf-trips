@@ -291,29 +291,17 @@ sub get_UTM_coordinates_html {
 		   $self->get_map_datum());
 }
 
-sub get_aka_names { 
+sub get_aka_names {
     my $self = shift;
 
     if (! $self->{'aka-names'}) {
-      my @names;
-
-      foreach my $aka_xml (@{ $self->_get_optional('name', 'AKA') || [] }) {
-	push @names, $aka_xml->{'name'};
-      }
-
-      my $names = $self->_get_optional('AKA');
-      return @names unless $names;
-
-      if ($names =~ /;/) {
-	push @names, split(/;\s*/, $names);
-      } else {
-	push @names, split(/,\s*/, $names);
-      }
-
-      $self->{'aka-names'} = \@names;
+	$self->{'aka-names'} = [];
+	foreach my $aka_xml (@{ $self->_get_optional('name', 'AKA') || [] }) {
+	    push @{ $self->{'aka-names'} }, $aka_xml->{'name'};
+	}
     }
 
-    return $self->{'aka-names'};
+    return @{ $self->{'aka-names'} };
 }
 sub get_aka_names_html {
     my $self = shift;
@@ -664,8 +652,6 @@ sub make_page_html {
     my $self = shift;
 
     1;# this keeps lame font-mode from screwing up indentation.
-    Scramble::Logger::verbose(sprintf("Rendering HTML for '%s'\n", 
-                                      $self->get_name()));
 
     my $location_name_note = ($self->get_is_unofficial_name()
 			      ? " (unofficial name)"

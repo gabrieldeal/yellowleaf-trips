@@ -19,14 +19,13 @@ sub new {
 	     };
     bless($self, ref($arg0) || $arg0);
 
-    $self->_set_required(qw(type id));
+    $self->_set_required(qw(type id name));
     $self->_set_optional(qw(weather-id URL));
 
     if ($self->get_type() eq 'USGS quad') {
       $self = Scramble::Area::Quad->new($self);
     }
 
-    $self->_set_required(qw(name));
 
     return $self;
 }
@@ -393,6 +392,7 @@ sub open {
 	    my $neighbor = eval { Scramble::Area::get_all()->find_one('id' => $neighbor_id) };
 	    if (! $neighbor) {
 		$neighbor = Scramble::Area->new({ 'id' => $neighbor_id,
+						  name => $neighbor_id,
 						  $dirs->[1] => $quad->get_id(),
 						  'type' => $quad->get_type(),
 						});

@@ -1065,7 +1065,8 @@ sub render_images_into_flow {
 
   my @cells;
   push @cells, map { make_cell_html($_) } @{ $args{'htmls'} || [] };
-  push @cells, map { $_->get_html('no-report-link' => $args{'no-report-link'}) } @{ $args{'images'} };
+  push @cells, map { $_->get_html('no-report-link' => $args{'no-report-link'},
+				  'direct-image-links' => $args{'direct-image-links'}) } @{ $args{'images'} };
 
   return Scramble::Misc::render_cells_into_flow(\@cells);
 }

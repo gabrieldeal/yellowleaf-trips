@@ -121,6 +121,7 @@ sub new_from_path {
     return $arg0->new_from_attrs($self);
 }
 
+sub get_id { $_[0]->get_source_directory() . "|" . $_[0]->get_filename() }
 sub get_trip_id { $_[0]->{'trip-id'} }
 sub get_areas { @{ $_[0]->{'areas'} || [] } }
 sub get_chronological_order { $_[0]->{'chronological-order'} }
@@ -256,9 +257,12 @@ sub get_html {
 
     my $img_html = $self->get_img_tag(%options);
     if ($self->get_enlarged_html_url()) {
-	$img_html = sprintf(qq(<a href="%s">$img_html</a>), $self->get_enlarged_html_url());
-
+	my $url = ($options{'direct-image-links'}
+		   ? $self->get_enlarged_img_url()
+		   : $self->get_enlarged_html_url());
+	$img_html = sprintf(qq(<a href="%s">$img_html</a>), $url);
     }
+
     if ($options{'no-title'}) {
 	return $img_html;
     }
@@ -271,6 +275,13 @@ sub get_html {
     }
 
     return Scramble::Misc::make_cell_html($img_html, $caption);
+}
+
+sub equals {
+    my $self = shift;
+    my ($image) = @_;
+
+    return $image->get_id() eq $self->get_id();
 }
 
 sub cmp {

@@ -92,6 +92,7 @@ sub new {
                 'date' => $self->get_start_date(),
                );
     my $picture_objs = [ Scramble::Image::get_all_images_collection()->find(%args, 'type' => 'picture') ];
+
     if (@$picture_objs && $picture_objs->[0]->in_chronological_order()) {
         $picture_objs = [ sort { $a->get_chronological_order() <=> $b->get_chronological_order() } @$picture_objs ];
     }
@@ -108,6 +109,7 @@ sub new {
     return $self;
 }
 
+sub get_id { $_[0]->get_start_date() . "|" . ($_[0]->get_trip_id() || "") }
 sub get_trip_id { $_[0]->_get_optional('trip-id') }
 sub get_display_mode { $_[0]->_get_optional('display-mode') || 'normal' }
 sub get_trip_organizer { $_[0]->_get_optional('trip-organizer') || 'private' }
@@ -511,9 +513,6 @@ sub get_elevation_gain_html {
 sub make_spare_page_html {
     my $self = shift;
 
-    Scramble::Logger::verbose(sprintf("Rendering spare HTML for '%s'\n", 
-				      $self->get_name()));
-
     my $date = $self->make_date_html();
     my $trip_type = Scramble::Misc::make_colon_line("Trip type", $self->get_type());
     my $elevation_html = $self->get_elevation_gain_html();
@@ -557,7 +556,8 @@ EOT
 
     my $cells_html = Scramble::Misc::render_images_into_flow('htmls' => [ $right_html ],
 							     'images' => [$self->get_map_objects(), $self->get_picture_objects() ],
-							    'no-report-link' => 1);
+							     'direct-image-links' => 1,
+							     'no-report-link' => 1);
 
     my $route = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("%s", $self->get_route()));
 
@@ -588,6 +588,13 @@ sub make_all_report_pages {
     foreach my $report_xml (get_all()) {
 	$report_xml->make_page_html();
     }
+}
+
+sub equals {
+    my $self = shift;
+    my ($report) = @_;
+
+    return $report->get_id() eq $self->get_id();
 }
 
 sub cmp {
