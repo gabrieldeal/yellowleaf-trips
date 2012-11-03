@@ -11,7 +11,7 @@ our @ISA = qw(Scramble::XML);
 sub new {
     my ($arg0, $id, $xml) = @_;
 
-    my $self =  bless({ 'xml' => $xml, '_id' => $id }, ref($arg0) || $arg0);
+    my $self =  bless({ %$xml, '_id' => $id }, ref($arg0) || $arg0);
 
     $self->{'waypoints'} = [ Scramble::Waypoint::new_waypoints($id, $self->_get_optional('time')) ];
 

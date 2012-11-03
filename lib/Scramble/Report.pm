@@ -19,9 +19,9 @@ my $g_max_rating = 5;
 sub new {
     my ($arg0, $path) = @_;
 
-    my $self = bless({}, ref($arg0) || $arg0);
-    $self->{'xml'} = Scramble::XML::parse($path);
-    if ($self->{'xml'}{'skip'}) {
+    my $self = Scramble::XML::parse($path);
+    bless($self, ref($arg0) || $arg0);
+    if ($self->{'skip'}) {
 	return undef;
     }
 

@@ -10,15 +10,15 @@ sub new {
     my $arg0 = shift;
     my ($parsed_xml) = @_;
 
-    return bless { 'xml' => $parsed_xml }, ref($arg0) || $arg0;
+    return bless { %$parsed_xml }, ref($arg0) || $arg0;
 }
 
 sub _get_optional_content {
     my $self = shift;
     my ($name) = @_;
 
-    return undef unless exists $self->{'xml'}{$name};
-    return ref $self->{'xml'}{$name} eq 'ARRAY' ?  $self->{'xml'}{$name}[0] : $self->{'xml'}{$name};
+    return undef unless exists $self->{$name};
+    return ref $self->{$name} eq 'ARRAY' ?  $self->{$name}[0] : $self->{$name};
 }
 
 sub _set_required {
@@ -47,15 +47,15 @@ sub _get_required {
     my $self = shift;
     my (@keys) = @_;
 
-    return $self->_get_optional(@keys) || die "Missing @keys: " . Data::Dumper::Dumper($self->{'xml'});
+    return $self->_get_optional(@keys) || die "Missing @keys: " . Data::Dumper::Dumper($self);
 }
 sub _get_optional {
     my $self = shift;
     my (@keys) = @_;
 
-    my $hr = $self->{'xml'};
+    my $hr = $self;
     foreach my $key (@keys) {
-	return undef unless ref($hr) eq 'HASH';
+	return undef unless UNIVERSAL::isa($hr, 'HASH');
 	return undef unless exists $hr->{$key};
 	$hr = $hr->{$key};
     }
@@ -68,15 +68,15 @@ sub set {
     my ($key, $value) = @_;
 
     if (! ref $key) {
-	$self->{'xml'}{$key} = $value;
+	$self->{$key} = $value;
     } elsif (@$key == 2) { # how to do generically?
-	$self->{'xml'}{$key->[0]}{$key->[1]} = $value;
+	$self->{$key->[0]}{$key->[1]} = $value;
     } else {
 	die "Not supported: " . Data::Dumper::Dumper($key);
     }
 }
 sub should_not_warn { $_[0]->_get_optional('log-no-warnings') }
-sub get_directory { $_[0]->{'xml'}{'directory'} }
+sub get_directory { $_[0]->{'directory'} }
 
 ######################################################################
 # shared between Scramble::Location and Scramble::Report

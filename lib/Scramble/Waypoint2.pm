@@ -8,7 +8,7 @@ sub new {
     my $arg0 = shift;
     my ($xml) = @_;
 
-    my $self = bless({ 'xml' => $xml }, ref($arg0) || $arg0);
+    my $self = bless({ %$xml }, ref($arg0) || $arg0);
 
     my $elevation = $self->_get_optional('elevation');
     if (defined $elevation) {

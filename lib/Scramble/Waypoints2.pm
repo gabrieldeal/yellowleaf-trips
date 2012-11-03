@@ -12,7 +12,8 @@ sub new {
     my $arg0 = shift;
     my ($id, $xml) = @_;
 
-    my $self = bless({ 'xml' => $xml, '_id' => $id }, ref($arg0) || $arg0);
+    $xml ||= {};
+    my $self = bless({ %$xml, '_id' => $id }, ref($arg0) || $arg0);
 
     my $waypoints = $self->_get_optional('waypoint') || [];
 

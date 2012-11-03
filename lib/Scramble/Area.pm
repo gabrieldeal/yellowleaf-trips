@@ -14,7 +14,7 @@ sub new {
     my $arg0 = shift;
     my ($xml) = @_;
 
-    my $self = { 'xml' => $xml,
+    my $self = { %$xml,
 		 'locations' => {},
 	     };
     bless($self, ref($arg0) || $arg0);

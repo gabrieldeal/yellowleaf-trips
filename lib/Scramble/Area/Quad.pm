@@ -11,14 +11,12 @@ sub new {
     my $arg0 = shift;
     my ($self) = @_;
 
-    bless($self, ref($arg0) || $arg0);
-
     my $short_name = $self->get_name();
 
-    $self->{'xml'} = { 'name' => $short_name . " USGS quad",
-                       'short-name' => $short_name,
-		       %{ $self->{'xml'} },
-		   };
+    $self->{'name'} = $short_name . " USGS quad";
+    $self->{'short-name'} = $short_name;
+    bless($self, ref($arg0) || $arg0);
+
     $self->_set_required(qw(short-name));
     $self->_set_optional(qw(corner-id no-lat-lon datum));
 
@@ -163,7 +161,7 @@ sub add_neighboring_quad_id {
 	die $self->get_id() . " quad mismatch to $dir, currently have '$existing_quad_id', given '$quad_id'";
     }
 
-    $self->{'xml'}{$dir} = $quad_id;
+    $self->{$dir} = $quad_id;
 }
 sub has_neighbors {
     my $self = shift;

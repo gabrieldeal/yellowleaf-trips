@@ -39,9 +39,9 @@ sub in_areas_transitive_closure {
 
 sub new {
     my $arg0 = shift;
-    my (%args) = @_;
+    my ($args) = @_;
 
-    my $self = bless({ %args }, ref($arg0) || $arg0);
+    my $self = bless({ %$args }, ref($arg0) || $arg0);
 
     $self->{'have-visited'} = 0;
     {
@@ -167,15 +167,15 @@ sub new_objects {
 
     if (! $xml->{'location'}) {
 	return () if $xml->{'incomplete'} || $xml->{'skip'};
-	return (Scramble::Location->new('xml' => $xml));
+	return (Scramble::Location->new($xml));
     }
 
     my @retval;
     foreach my $location (@{ $xml->{'location'} }) {
 	next if $location->{'incomplete'};
-	push @retval, Scramble::Location->new('xml' => { %$xml, 
-							 %$location },
-					      'has-twin' => 1);
+	push @retval, Scramble::Location->new({ %$xml, 
+						%$location,
+						'has-twin' => 1 });
     }
 
     return @retval;

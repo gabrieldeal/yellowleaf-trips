@@ -1,3 +1,4 @@
 #!/usr/bin/bash
 
-cd ~/scramble && perl  -d:NYTProf bin/parse --dictionary-dir dict --rep data/gabrielx/reports --images data/gabrielx/images --tem data/gabrielx/templates --out html -v "$@"
+debug="-d:NYTProf"
+cd ~/scramble && perl $debug  bin/parse --dictionary-dir dict --rep data/gabrielx/reports --images data/gabrielx/images --tem data/gabrielx/templates --out html -v "$@"

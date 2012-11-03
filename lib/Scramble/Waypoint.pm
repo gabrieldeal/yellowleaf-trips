@@ -7,7 +7,7 @@ our @ISA = qw(Scramble::XML);
 sub new {
     my ($arg0, $xml) = @_;
 
-    return bless({ 'xml' => $xml}, ref($arg0) || $arg0);
+    return bless({ %$xml }, ref($arg0) || $arg0);
 }
 
 sub new_waypoints {
