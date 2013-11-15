@@ -14,20 +14,25 @@ then
     echo fixing ownership of files...
     find $dir -type f -exec chmod +r {} \;
 
+    # Otherwise, Backblaze won't backup the files:
+    find data -type f -exec chmod +r {} \;
+
     echo fixing ownership of directories...
     find $dir -type d -exec chmod +xr {} \;
+
+    find data -type d -exec chmod +xr {} \;
 fi
 
 echo "Ready to rsync website ('n' to skip)?"
 read pauseme
 if [ -z "$pauseme" ]
 then
-    rsync --delete --size-only  -e ssh -avz html/ gabrielx@addr11.addr.com:~/public_html/scramble
+    rsync --delete --size-only  -e ssh -avz html/ gabrielx@addr43.addr.com:~/public_html/scramble
 fi
 
-echo "Ready to backup data?"
-read pauseme
-if [ -z "$pauseme" ]
-then
-    rsync --size-only  -e ssh -avz . gabrielx@addr11.addr.com:~/website-data --exclude $dir --exclude '*~'
-fi
+# echo "Ready to backup data?"
+# read pauseme
+# if [ -z "$pauseme" ]
+# then
+#     rsync --size-only  -e ssh -avz . gabrielx@addr11.addr.com:~/website-data --exclude $dir --exclude '*~'
+# fi

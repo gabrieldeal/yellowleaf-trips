@@ -2,6 +2,7 @@ package Scramble::Report;
 
 use strict;
 
+use JSON ();
 use Scramble::ObjectAdaptor ();
 use Scramble::Waypoints ();
 use Scramble::Waypoints2 ();
@@ -10,7 +11,7 @@ use Scramble::Reference ();
 
 our @ISA = qw(Scramble::XML);
 
-my $g_reports_on_index_page = 50;
+my $g_reports_on_index_page = 25;
 
 my %location_to_reports_mapping;
 my $g_report_collection;
@@ -103,6 +104,7 @@ sub new {
     if ($self->should_show()) {
         foreach my $image (@$picture_objs, $self->get_map_objects()) {
             $image->set_report_url($self->get_report_page_url());
+            $image->set_pager_url(sprintf("%s?%s#", $self->get_pager_url(), $image->get_id()));
         }
     }
 
@@ -122,6 +124,7 @@ sub get_end_date { $_[0]->_get_optional('end-date') }
 sub get_start_date { $_[0]->_get_required('start-date') }
 sub get_name { $_[0]->_get_required('name') }
 sub get_filename { $_[0]->_get_required('filename') }
+sub get_pager_filename { $_[0]->_get_required('pager-filename') }
 sub get_special_gear { $_[0]->_get_optional('special-gear') }
 sub get_locations { @{ $_[0]->_get_optional('locations', 'location') || [] } }
 sub get_state { $_[0]->_get_optional('state') || "done" }
@@ -216,6 +219,15 @@ sub should_show {
     return 1;
 }
 
+sub link_if_should_show {
+    my $self = shift;
+    my ($html) = @_;
+
+    return ($self->should_show() 
+            ? sprintf(qq(<a href="%s">%s</a>), $self->get_report_page_url(), $html) 
+            : $html);
+}
+
 sub get_parsed_start_date {
     my $self = shift;
 
@@ -265,43 +277,62 @@ sub get_report_page_url {
     return sprintf("../../g/r/%s", $self->get_filename());
 }
 
+sub get_pager_url {
+    my $self = shift;
+
+    return sprintf("../../g/r/%s", $self->get_pager_filename());
+}
+
 sub get_link_html {
     my $self = shift;
 
     my @info;
     push @info, $self->get_state() unless $self->get_state() eq 'done';
     my $info = @info ? " (" . join(", ", @info) . ")" : '';
-#     my $stars = '';
-#     if (defined(my $rating = $self->get_aesthetic_rating())) {
-# 	my $nstars = int($rating);
-# 	my $nhalf_stars = ($rating - $nstars > 0 ? 1 : 0);
-# 	my $nspaces = $g_max_rating - $nstars - $nhalf_stars;
-# 	$stars = (" <nobr>"
-# 		  . sprintf(qq(<img alt="(%s %s)" src="../../pics/vbar.gif">),
-# 			    $rating,
-# 			    Scramble::Misc::pluralize($rating, "star"))
-# 		  . qq(<img alt="" src="../../pics/star.gif">) x $nstars
-# 		  . qq(<img alt="" src="../../pics/half-star.gif">) x $nhalf_stars
-# 		  . qq(<img alt="" src="../../pics/hbars.gif">) x $nspaces
-# 		  . qq{<img alt="" src="../../pics/vbar.gif">}
-# 		  . "</nobr>");
-#     }
 
-    my $pictures = '';
-    if ($self->has_pictures() && $self->should_show()) {
- 	$pictures = " " . Scramble::Misc::get_pictures_img_html($self->get_picture_objects());
+    my $date = $self->get_start_date();
+    if (defined $self->get_end_date()) {
+	$date .= " to " . $self->get_end_date();
     }
 
-    my $link;
+    my $name = $self->link_if_should_show($self->get_name());
+
+    my $image_html = '';
     if ($self->should_show()) {
-	$link = sprintf(qq(<a href="%s">%s</a>),
-			$self->get_report_page_url(),
-			Scramble::Misc::remove_quad_specifier($self->get_name()));
-    } else {
-	$link = $self->get_name();
+	my $image_obj = $self->get_best_picture_object();
+	if ($image_obj) {
+	    $image_html = sprintf(qq(<img width="125" src="%s">), $image_obj->get_url());
+            $image_html = $self->link_if_should_show($image_html);
+#            $image_html = qq(<div class="report-thumbnail-image">$image_html</div>);
+	}
     }
 
-    return "$link$info$pictures";
+    my $html = <<EOT;
+<div class="report-thumbnail">
+    <div class="report-thumbnail-title">$name$info</div>
+    <div class="report-thumbnail-image">$image_html</div>
+    <div class="report-thumbnail-date">$date</div>
+</div>
+EOT
+
+#	$link = sprintf(qq(<a href="%s">%s</a>),
+#			$self->get_report_page_url(),
+#			Scramble::Misc::remove_quad_specifier($self->get_name()));
+
+    return $html;
+}
+
+sub get_embedded_google_map_html {
+    my $self = shift;
+
+    return '' if $self->get_map_objects();
+
+    my @locations = $self->get_locations_visited();
+    return '' unless @locations;
+
+    return '' if grep { ! defined $_->get_latitude() } @locations;
+
+    return Scramble::Misc::get_multi_point_embedded_google_map_html(\@locations);
 }
 
 sub get_map_html {
@@ -450,12 +481,150 @@ sub get_map_summary_html {
     return Scramble::Misc::make_colon_line($title, join(", ", @maps));
 }
 
+sub make_pager_html {
+    my $self = shift;
+
+    my @images;
+    foreach my $image ($self->get_map_objects(), $self->get_picture_objects()) {
+	my $url = $image->get_enlarged_img_url() || $image->get_url();
+        push @images, { title => $image->get_title(),
+			id => $image->get_id(),
+			src => $url,
+	              };
+    }
+    my $images_js = JSON::encode_json(\@images);
+
+    my $html = <<EOT;
+<style>
+body {
+    width: 98%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.left-pager-image, .right-pager-image {
+    height: 500px;
+    border: none;
+}
+.left-pager-image {
+    margin-right: auto;
+    margin-left: 0;
+}
+.right-pager-image {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.left-pager, .right-pager {
+    position: relative;
+    z-index: 2;
+    display: block;
+    float: left;
+    width: 10%;
+    vertical-align: top;
+}
+.left-pager {
+    text-align: left;
+}
+.right-pager {
+    text-align: right;
+}
+
+.image-container {
+    position: relative;
+    z-index: -1;
+    display: block;
+    float: left;
+    width: 80%;
+    height: 100%;
+    min-height: 100px;
+}
+.image {
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+}
+.title {
+    margin-top: 15px;
+}
+</style>
+<script type="text/javascript">
+    var currentImageIndex = 0;
+    var images = $images_js;
+
+function loadPage() {
+    var img = document.getElementById('page-image');
+    var imgContainer = img.parentNode;
+    imgContainer.removeChild(img);
+
+    var newImg = document.createElement('img');
+    newImg.className = 'image';
+    newImg.id = 'page-image';
+    newImg.src = images[currentImageIndex]['src'];
+    imgContainer.appendChild(newImg);
+
+    document.getElementById('title').innerHTML = images[currentImageIndex]['title'];
+    document.getElementById("left-pager-link").style.visibility = (currentImageIndex === 0 ? 'hidden' : 'visible');
+    document.getElementById("right-pager-link").style.visibility = (currentImageIndex === images.length - 1 ? 'hidden' : 'visible');
+}
+function firstPage() {
+    var matches = /\\?(.+)#\$/.exec(window.location);
+    currentImageIndex = null;
+    if (matches !== null) {
+        var imageId = matches[1];
+        for (var i = 0; i < images.length; ++i) {
+            if (imageId === images[i].id) {
+                currentImageIndex = i;
+            }
+        }
+    }
+    if (currentImageIndex === null || currentImageIndex < 0 || currentImageIndex >= images.length) {
+        currentImageIndex = 0;
+    }
+    loadPage();
+}
+function nextPage() {
+    currentImageIndex++;
+    loadPage();
+}
+function previousPage() {
+    currentImageIndex--;
+    loadPage();
+}
+currentImageIndex</script>
+<br />
+<div class="left-pager">
+	<a id="left-pager-link" href="#" onclick="previousPage()"><img class="left-pager-image" src="../../pics/pager-previous.png" /></a>
+</div>
+<div class="image-container">
+	<img class="image" id="page-image"/>
+</div>
+<div class="right-pager">
+	<a id="right-pager-link" href="#" onclick="nextPage()"><img class="right-pager-image" src="../../pics/pager-next.png" /></a>
+	<div class="title" id="title"></div>
+</div>
+
+<script type="text/javascript">
+	firstPage();
+</script>
+EOT
+
+    my $title = sprintf("%s (pictures)", $self->get_title_html());
+    Scramble::Misc::create(sprintf("r/%s", $self->get_pager_filename()),
+			   Scramble::Misc::make_1_column_page('include-header' => 1,
+							      'skip-footer' => 1,
+							      'title' => $title,
+							      'html' => $html));
+}
+
 sub _make_page_html {
     my $self = shift;
 
     if ($self->get_display_mode() eq 'normal'
 	|| $self->get_display_mode() eq 'no-links-to'
-	|| $self->get_display_mode() eq 'spare')
+	|| $self->get_display_mode() eq 'spare'
+	|| $self->get_display_mode() eq 'bare')
     {
         return $self->make_spare_page_html();
     } else {
@@ -468,6 +637,7 @@ sub make_page_html {
 
     eval {
 	$self->_make_page_html(@args);
+	$self->make_pager_html(@args);
     };
     if ($@) {
 	local $SIG{__DIE__};
@@ -508,6 +678,30 @@ sub get_elevation_gain_html {
 
     return Scramble::Misc::make_optional_line("<b>Elevation gain:</b> approx. %s<br>",
                                               $self->get_waypoints()->get_elevation_gain("ascending|descending"));
+}
+
+sub split_by_date {
+    my @picture_objs = @_;
+
+    return ([]) if !@picture_objs;
+
+    my $curr_date = $picture_objs[0]->get_capture_date();
+    return (\@picture_objs) unless defined $curr_date;
+
+    my @splits;
+    my $split = [];
+    foreach my $picture_obj (@picture_objs) {
+        if ($curr_date eq $picture_obj->get_capture_date()) {
+            push @$split, $picture_obj;
+        } else {
+            push @splits, $split;
+            $split = [ $picture_obj ];
+            $curr_date = $picture_obj->get_capture_date();
+        }
+    }
+    push @splits, $split;
+
+    return @splits;
 }
 
 sub make_spare_page_html {
@@ -554,10 +748,27 @@ $long_times_html
 $long_route_references
 EOT
 
-    my $cells_html = Scramble::Misc::render_images_into_flow('htmls' => [ $right_html ],
-							     'images' => [$self->get_map_objects(), $self->get_picture_objects() ],
-							     'direct-image-links' => 1,
-							     'no-report-link' => 1);
+    my @htmls;
+    if ($self->get_display_mode() ne 'bare') {
+	push @htmls, $right_html;
+	push @htmls, $self->get_embedded_google_map_html();
+    }
+
+    my $cells_html;
+    my $count = 1;
+    my @map_objects = $self->get_map_objects();
+    foreach my $picture_objs (split_by_date($self->get_picture_objects())) {
+        if ($count != 1) {
+            $cells_html .= "<h1>Day $count</h1>";
+        }
+        $count++;
+        $cells_html .= Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
+ 							       'images' => [@map_objects, @$picture_objs ],
+							       'pager-links' => 1,
+                                                               'no-float-first' => ($count != 1),
+							       'no-report-link' => 1);
+        @htmls = @map_objects = ();
+    }	
 
     my $route = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("%s", $self->get_route()));
 
@@ -577,6 +788,7 @@ EOT
 			   Scramble::Misc::make_1_column_page('title' => $title, 
 							      'include-header' => 1,
 							      'html' => $html,
+                                                              'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap,
 							      'copyright-year' => $copyright_year));
 }
 
@@ -617,9 +829,11 @@ sub open_all {
     die "No such directory '$directory'" unless -d $directory;
 
     my @reports;
+    my $die_immediately = 1;
     my @failed;
     foreach my $path (reverse(glob("$directory/*.xml"))) {
 	my $report = eval { Scramble::Report->new($path) };
+        die $@ if $@ && $die_immediately;
 	if ($@) {
 	  print STDERR "$@\n";
 	  push @failed, $path;
@@ -644,6 +858,9 @@ sub get_all {
 sub make_rss {
     my $items;
     my $count = 0;
+
+    my $xml = new XML::Simple();
+
     foreach my $report (get_all()) {
         next unless $report->should_show();
         my $best_image = $report->get_best_picture_object();
@@ -673,7 +890,7 @@ sub make_rss {
 
         my $content = $image_html ? "<![CDATA[$image_html]]>" : $route;
 
-        my $title = $report->get_name();
+        my $title = $xml->escape_value($report->get_name());
         my $filename = $report->get_filename();
         $items .= <<EOT;
     <item>
@@ -726,12 +943,8 @@ sub make_reports_index_page {
     foreach my $report (get_all()) {
 	my ($yyyy) = $report->get_parsed_start_date();
         $latest_year = $yyyy if $yyyy > $latest_year;
-	my $end = ($report->get_end_date()
-		   ? sprintf(" to %s", $report->get_end_date())
-		   : '');
-	my $html = sprintf("<li>%s$end %s</li>",
-			   $report->get_start_date(),
-			   $report->get_link_html());
+
+	my $html = $report->get_link_html();
 	if ($report->get_state() eq 'planned') {
 	    $report_htmls{'planned'} .= $html;
 	} else {
@@ -741,6 +954,9 @@ sub make_reports_index_page {
 		$report_htmls{'index'} .= $html;
 	    }
 	}
+    }
+    foreach my $id (keys %report_htmls) {
+	$report_htmls{$id} = sprintf(qq(<div class="report-thumbnails">%s</div>), $report_htmls{$id});
     }
 
     my @link_htmls;
@@ -757,7 +973,7 @@ sub make_reports_index_page {
 	    $title = "$id Trips";
 	}
 	$report_htmls{$id} = { 'title' => $title,
-			       'html' => "<ol>$report_htmls{$id}</ol>",
+			       'html' => $report_htmls{$id},
 			       'subdirectory' => "r",
 			   };
     }
@@ -780,6 +996,7 @@ sub make_reports_index_page {
 	     Scramble::Misc::make_2_column_page($report_htmls{$id}{'title'},
 						$report_links . $report_htmls{$id}{'html'} . $report_links,
 						undef,
+                                                'no-add-picture' => 1,
                                                 'copyright-year' => $copyright_year,
 						'image-size' => '50%'));
 	

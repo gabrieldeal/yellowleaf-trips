@@ -65,6 +65,8 @@ sub get_stats {
                              'estimated-gain' => 0,
                              'climbing-trips' => 0,
                              'climbing-days' => 0,
+                             'trail-run-trips' => 0,
+                             'trail-run-days' => 0,
                             };
         }
 
@@ -75,6 +77,9 @@ sub get_stats {
         if ($report->get_type() =~ /crag|climb|boulder/) {
             $stats{$year}{'climbing-days'} += $ndays;
             $stats{$year}{'climbing-trips'}++;
+        } elsif ($report->get_type() =~ /trail run/) {
+            $stats{$year}{'trail-run-days'} += $ndays;
+            $stats{$year}{'trail-run-trips'}++;
         }
 
 	my @locations = grep { $_->get_type() eq 'peak' } $report->get_locations_visited();
@@ -106,11 +111,11 @@ sub get_stats {
 		  <th>Year</th>
 		  <th>Total trips</th>
 		  <th>Climbing trips</th>
+		  <th>Trail Run trips</th>
 		  <th>Total days</th>
 		  <th>Climbing days</th>
+		  <th>Trail Run days</th>
 		  <th>Total peaks</th>
-		  <th>Average elevation gain per trip</th>
-		  <th>Total elevation gain</th>
 		  <th>Max gain in one trip</th>
 		  <th>Max gain per day in one trip</th>
 		  <th>Most peaks in one trip</th>
@@ -134,11 +139,11 @@ sub get_stats {
 			    <td><a href="%s">%d</a></td>
 			    <td align=right>%d</td> <!-- total trips -->
 			    <td align=right>%d</td>
+			    <td align=right>%d</td>
 			    <td align=right>%d</td> <!-- total days -->
 			    <td align=right>%d</td>
+			    <td align=right>%d</td>
 			    <td align=right>%d</td> <!-- total peaks -->
-			    <td align=right>%s</td> <!-- average gain -->
-			    <td align=right>%s (%s miles)</td>
 			    <td align=right><a href="%s">%s</a></td> <!-- max gain in one trip -->
 			    <td align=right><a href="%s">%s</a></td> <!-- max gain in one day -->
 			    <td align=right><a href="%s">%d</a></td> <!-- max peaks -->
@@ -147,12 +152,11 @@ sub get_stats {
 			 $year,
 			 nlvl($stats{$year}{'total-trips'}, 0),
                          nlvl($stats{$year}{'climbing-trips'}, 0),
+                         nlvl($stats{$year}{'trail-run-trips'}, 0),
 			 nlvl($stats{$year}{'total-days'}, 0),
                          nlvl($stats{$year}{'climbing-days'}, 0),
+                         nlvl($stats{$year}{'trail-run-days'}, 0),
 			 nlvl($stats{$year}{'total-peaks'}, 0),
-			 $formatted_average_gain,
-			 $formatted_estimated_gain,
-                         $average_gain_per_trip,
 			 nlvl($stats{$year}{'max-gain-URL'}, "?"),
 			 $formatted_max_gain,
 			 nlvl($stats{$year}{'max-gain-per-day-URL'}, "?"),
@@ -168,15 +172,15 @@ sub get_stats {
         $html .= "<h2>Projections for $this_year</h2>";
         my $day_of_year = Date::Manip::UnixDate("today", "%j");
         $html .= Scramble::Misc::make_colon_line("Number of days",
-                                                 sprintf("%.2d", (365/$day_of_year) * get_total_days($stats{$this_year})));
+                                                 sprintf("%d", (365/$day_of_year) * get_total_days($stats{$this_year})));
         $html .= Scramble::Misc::make_colon_line("Number of trips",
-                                                 sprintf("%.2d", (365/$day_of_year) * $stats{$this_year}{'total-trips'}));
+                                                 sprintf("%d", (365/$day_of_year) * $stats{$this_year}{'total-trips'}));
         $html .= Scramble::Misc::make_colon_line("Number of climbing trips",
-                                                 sprintf("%.2d", (365/$day_of_year) * $stats{$this_year}{'climbing-trips'}));
+                                                 sprintf("%d", (365/$day_of_year) * $stats{$this_year}{'climbing-trips'}));
+        $html .= Scramble::Misc::make_colon_line("Number of trail run trips",
+                                                 sprintf("%d", (365/$day_of_year) * $stats{$this_year}{'trail-run-trips'}));
         $html .= Scramble::Misc::make_colon_line("Number of peaks",
-                                                 sprintf("%.2d", (365/$day_of_year) * $stats{$this_year}{'total-peaks'}));
-        $html .= Scramble::Misc::make_colon_line("Elevation gain",
-                                                 Scramble::Misc::format_elevation_short(sprintf("%.2d", (365/$day_of_year) * $stats{$this_year}{'estimated-gain'})));
+                                                 sprintf("%d", (365/$day_of_year) * $stats{$this_year}{'total-peaks'}));
     }
 
     return $html;

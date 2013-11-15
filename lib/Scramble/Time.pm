@@ -31,14 +31,29 @@ sub parse_date_and_time {
   my ($t) = @_;
 
   my ($year, $mon, $day, $hour, $minute, $ampm) = ($t =~ m,^(\d\d\d\d)/(\d\d)/(\d\d)\s+(\d\d?):(\d\d)\s+(\w\w)\s*$,);
-  if (! defined $year) {
+  if (! defined $day) {
     ($day, $hour, $minute, $ampm) = ($t =~ m,^(\d\d?):(\d\d)\s+(\w\w)\s*$,);
   }
+  if (! defined $day) {
+    my ($seconds);
+    ($year, $mon, $day, $hour, $minute, $seconds) = ($t =~ m,^(\d\d\d\d)/(\d\d)/(\d\d)\s+(\d\d):(\d\d):(\d\d)$,);
+  }
+  if (! defined $day) {
+    ($year, $mon, $day, $hour, $minute) = ($t =~ m,^(\d\d\d\d)/(\d\d)/(\d\d)\s+(\d\d?):(\d\d)$,);
+  }
+
   if (! defined $day) {
     die "Unable to parse date/time '$t'";
   }
 
   return ($year, $mon, $day, $hour, $minute, $ampm);
+}
+
+sub get_days_since_1BC {
+    my ($date) = @_;
+
+    my ($year, $mon, $day) = parse_date_and_time($date);
+    return Date::Manip::Date_DaysSince1BC($mon, $day, $year);
 }
 
 sub delta_dates {
@@ -82,10 +97,9 @@ sub format_time {
     if ($days > 0) {
 	$retval .= "$days " . Scramble::Misc::pluralize($days, "day") . " ";
     }
-    if ($hours > 0 || defined($retval)) {
+    if ($hours > 0) {
 	$retval .= "$hours " . Scramble::Misc::pluralize($hours, "hour") . " ";
     }
-
     if ($minutes > 0) {
 	$retval .= "$minutes " . Scramble::Misc::pluralize($minutes, "minute");
     }

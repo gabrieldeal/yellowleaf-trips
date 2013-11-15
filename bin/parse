@@ -44,6 +44,7 @@ my @g_options = qw(
 		   images-directory=s
                    templates-directory=s
                    javascript-directory=s
+                   css-directory=s
                    output-directory=s
                    no-copy-images
                    help
@@ -58,6 +59,7 @@ my %g_options = (
 		 "reports-directory" => "data/$ENV{USER}/reports",
                  "templates-directory" => "data/$ENV{USER}/templates",
                  "javascript-directory" => "data/javascript",
+                 "css-directory" => "data/css",
                  "output-directory" => "html",
 		 );
 
@@ -80,7 +82,7 @@ Example:
         --verbose \\
         --reports-directory data/$ENV{USER}/reports \\
         --templates-directory data/$ENV{USER}/templates \\
-        --javascript-directory data/$ENV{USER}/javascript \\
+        --css-directory data/$ENV{USER}/css \\
         --images-directory html/pictures
 EOT
 }
@@ -102,6 +104,7 @@ sub get_options {
                              images-directory
                              output-directory
                              javascript-directory
+                             css-directory
                              templates-directory)) 
     {
 	die "Missing --$required" unless exists $g_options{$required};
@@ -139,6 +142,8 @@ sub get_party_stats {
 	$name = $member;
       }
       $name =~ s/^\s*(.*?)[\s\.]*$/$1/i;
+      $name = "Brad (Mister Fox) White" if $name =~ /(mr\.?|mister)\s*fox/i;
+      $name = "Courtney (Rocklocks) Braun" if $name =~ /rock\s*locks/i;
       $name =~ s/^Mom$/Bonnie Deal/i;
       $name =~ s/^Boni Deal$/Bonnie Deal/i;
       $name = "Laurie Cullen" if $name =~ /^Laurie C$/;
@@ -234,6 +239,7 @@ sub main {
 			"$g_options{'output-directory'}/g/li",
 			"$g_options{'output-directory'}/g/a", 
 			"$g_options{'output-directory'}/g/js",
+			"$g_options{'output-directory'}/g/css",
 			"$g_options{'output-directory'}/g/r", 
 			"$g_options{'output-directory'}/g/l", 
 			"$g_options{'output-directory'}/g/enl", 
@@ -244,6 +250,8 @@ sub main {
 		       0755);
 
     should('htaccess') && make_htaccess();
+    should('javascript') && copy_javascript();
+    should('css') && copy_css();
 
     Scramble::Area::open();
     Scramble::Area::Quad::init();
@@ -274,7 +282,6 @@ sub main {
                        'no-add-picture' => 1);
     }
 
-    should('party-stats') && get_party_stats();
     should('spell') && spell_check();
 
     foreach my $file (@{ $g_options{'file'} }) {
@@ -291,8 +298,9 @@ sub main {
     }
 
     should('kml') && copy_kml();
-    should('javascript') && copy_javascript();
     should('report-index') && Scramble::Report::make_reports_index_page();
+    should('link') && Scramble::Reference::make_references();
+    should('list') && Scramble::List::make_lists();
     should('report') && Scramble::Report::make_all_report_pages();
     should('picture') && Scramble::Image::make_enl_picture_pages();
     should('winter') && Scramble::Winter::make_winter_page();
@@ -304,10 +312,9 @@ sub main {
     (should('quad-layout') || should('area')) && Scramble::Area::Quad::make_quad_layout();
     should('private') && Scramble::Misc::make_all_internal_links_page();
     should('quad') && Scramble::Location::make_quads();
-    should('list') && Scramble::List::make_lists();
-    should('link') && Scramble::Reference::make_references();
     should('location') && Scramble::Location::make_locations();
     should('area') && Scramble::Area::make_pages();
+    should('party-stats') && get_party_stats();
     should('test') && Scramble::Tests::run();
 
     return 0;
@@ -335,6 +342,16 @@ sub copy_kml {
 sub copy_javascript {
     my $command = sprintf("cp %s/*.js %s/g/js/",
                    $g_options{'javascript-directory'},
+                   $g_options{'output-directory'});
+    system($command);
+    if ($?) {
+        die "Error running $command: $!, $?";
+    }
+}
+
+sub copy_css {
+    my $command = sprintf("cp %s/*.css %s/g/css/",
+                   $g_options{'css-directory'},
                    $g_options{'output-directory'});
     system($command);
     if ($?) {

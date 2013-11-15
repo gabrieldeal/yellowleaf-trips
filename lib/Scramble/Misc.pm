@@ -48,7 +48,7 @@ my @g_links = ({'URL' => qq(../../g/m/home.html),
 		 'no-display' => 1,
 	     },
 	       { 'URL' => qq(../../g/m/references.html),
-		 'name' => 'Links',
+		 'name' => 'References',
 	     },
 	       { 'URL' => qq(mailto:scramble\@yellowleaf.org),
 		 'name' => 'Mail me',
@@ -263,7 +263,11 @@ sub get_horizontal_nav_links {
     <table width="100%" bgcolor="DFF2FD" border=0 cellspacing=5 cellpadding=0><tr><td>
         $html_links
         &nbsp;&nbsp;
-        <input name="q" type="hidden"/><input name="qfront" type="text" style="width: 180px" /><input type="submit" value="Search" />
+        <div style="display: inline-block">
+            <input name="q" type="hidden">
+            <input name="qfront" type="text" style="width: 180px">
+            <input type="submit" value="Search">
+        </div>
     </td></tr></table>
 </form>
 EOT
@@ -352,17 +356,6 @@ sub get_abbreviated_name_links {
 # 		       join("\n", @lines[int(scalar(@lines)/2 + .9) .. $#lines]));
 #     }
 # }
-
-sub get_pictures_img_html {
-    return '';
-
-    my (@images) = @_;
-
-    my $icon = (2 <= scalar(grep { $_->get_rating() <= 40 } @images)
-                ? "good-picture-icon.gif"
-                : "picture-icon.gif");
-    return qq(<img alt="(has pictures)" src="../../pics/$icon">);
-}
 
 sub remove_quad_specifier {
     my ($name) = @_;
@@ -480,8 +473,12 @@ sub make_1_column_page {
     my (%args) = @_;
 
     my $html = $args{'html'};
-    my $footer_html = make_footer(%args);
     my $header = get_header(%args);
+
+    my $footer_html = '';
+    if (! $args{'skip-footer'}) {
+        $footer_html = make_footer(%args);
+    }
 
     my $links = '';
     if ($args{'include-header'}) {
@@ -540,7 +537,7 @@ sub get_multi_point_embedded_google_map_html {
 <div id="mapContainer" style="position: relative">
     <div id="map" style="width: 335px; height: 235px"></div>
 </div>
-<a href="../m/usgs.html?lat=$lat&lon=$lon&type=$map_type&zoom=6">Go to the full-sized map</a>
+<a href="../m/usgs.html?lat=$lat&lon=$lon&type=$map_type&zoom=3">Full sized map</a>
 <script type="text/javascript" src="../js/map.js"></script>
 <script>
     setInput('points', $info{'points-javascript'});
@@ -587,14 +584,30 @@ sub get_header {
 EOT
     }
 
+    my $google_analytics_script = <<'EOM';
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30591814-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+EOM
+
   return <<EOT;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>$gSiteName $options{title}</title>
+    <title>$options{title}</title>
     <link rel="SHORTCUT ICON" href="../../pics/favicon.ico">
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="../css/site.css" />
     $maps_script
+    $google_analytics_script
   </head>
 $body
 EOT
@@ -620,10 +633,10 @@ sub make_2_column_page {
         }
     }
 
-    if (! $options{'no-add-picture'}) {
-	my $pic_html = Scramble::Image::get_random_picture_html('attributes' => 'align="right"');
-	$middle_html = "$pic_html$middle_html";
-    }
+#    if (! $options{'no-add-picture'}) {
+#	my $pic_html = Scramble::Image::get_random_picture_html('attributes' => 'align="right"');
+#	$middle_html = "$pic_html$middle_html";
+#    }
 
     my $footer_html = make_footer(%options);
 
@@ -688,38 +701,6 @@ $after_table_html
 $after_table_footer_html
 </body>
 </html>
-EOT
-}
-
-sub get_google_search_html {
-    my ($value) = @_;
-
-    $value = '' unless defined $value;
-    return <<EOT;
-<form><input type="submit" value=""></form>
-<script type="text/javascript">
-function Gsitesearch(curobj){
-curobj.q.value="site:www.yellowleaf.org "+curobj.qfront.value
-}
-</script>
-<form action="http://www.google.com/search" method="get" onSubmit="Gsitesearch(this)">
-<input name="q" type="hidden"/><input name="qfront" type="text" style="width: 180px" /><input type="submit" value="Search" />
-</form>
-EOT
-
-    return <<EOT;
-<FORM method=GET action=http://www.google.com/custom>
-<TABLE bgcolor=#FFFFFF cellspacing=0 border=0>
-<tr valign=center><td>
-<A HREF=http://www.google.com/search>
-<IMG SRC=http://www.google.com/logos/Logo_40wht.gif border=0 ALT=Google align=middle></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value="$value">
-<INPUT type=submit name=sa VALUE="Google Search">
-<INPUT type=hidden name=cof VALUE="S:http://www.yellowleaf.org;GL:0;AH:center;AWFID:ecb9b7112e917e77;">
-</td></tr></TABLE>
-</FORM>
 EOT
 }
 
@@ -1049,12 +1030,14 @@ sub make_cell_html {
 EOT
 }
 sub render_cells_into_flow {
-  my ($htmls) = @_;
+  my ($htmls, %opts) = @_;
+
+  my $ul_style = $opts{'no-float-first'} ? '' : 'float: left;';
 
   # The first one needs to float left because it is likely to be a large table.
   # Floating all the rest left causes odd display in IE.
   return (qq(<ul style="padding: 0; margin: 0;">\n)
-	  . qq(    <li style="float: left; display: inline-block; padding: 5px;">)
+	  . qq(    <li style="$ul_style display: inline-block; padding: 5px;">)
 	  . join(qq(</li>\n    <li style="display: inline-block; padding: 5px;">), @$htmls)
 	  . "</li>\n"
 	  . "</ul>");
@@ -1066,9 +1049,10 @@ sub render_images_into_flow {
   my @cells;
   push @cells, map { make_cell_html($_) } @{ $args{'htmls'} || [] };
   push @cells, map { $_->get_html('no-report-link' => $args{'no-report-link'},
+				  'pager-links' => $args{'pager-links'},
 				  'direct-image-links' => $args{'direct-image-links'}) } @{ $args{'images'} };
 
-  return Scramble::Misc::render_cells_into_flow(\@cells);
+  return Scramble::Misc::render_cells_into_flow(\@cells, 'no-float-first' => $args{'no-float-first'});
 }
 
 1;

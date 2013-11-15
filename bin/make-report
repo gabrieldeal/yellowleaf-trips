@@ -33,15 +33,15 @@ sub make_xml {
     my ($date) = ($image_subdir =~ /^(\d{4}-\d\d-\d\d)/);
     defined $date or die "Unable to get date from image subdirectory: $image_subdir";
 
-    my $image_xml = make_image_xml($image_dir, $date);
+    my %image_data = process_images($image_dir, $date);
     my $image_xml_file = "$image_dir/images.xml";
     if (-e $image_xml_file) {
       print "$image_xml_file already exists\n";
     } else {
-      write_file($image_xml_file, $image_xml);
+      write_file($image_xml_file, $image_data{xml});
     }
 
-    my $report_xml = make_report_xml($date, $title, $trip_type);
+    my $report_xml = make_report_xml($date, $title, $trip_type, \%image_data);
     my $report_xml_file = "$data_dir/reports/$image_subdir.xml";
     if (-e $report_xml_file) {
       print "$report_xml_file already exists\n";
@@ -49,11 +49,16 @@ sub make_xml {
       write_file($report_xml_file, $report_xml);
     }
 
+    chmod(0744, glob("$image_dir/*")) || die "Failed to chmod: $!";
+
     return 0;
 }
 
 sub make_report_xml {
-    my ($date, $title, $type) = @_;
+    my ($date, $title, $type, $image_data) = @_;
+
+    my $start = $image_data->{first_timestamp} || '';
+    my $end = $image_data->{last_timestamp} || '';
     return <<EOT;
 <trip
     start-date="$date"
@@ -63,15 +68,38 @@ sub make_report_xml {
     trip-id="1"
 >
 
+<references />
+
+<locations>
+<location name="" quad="" />
+</locations>
+
 <party size="1">
 <member name="Gabriel Deal" type="author"/>
 </party>
+
+<!--
+
+<waypoints>
+<waypoint type="ascending"
+       location=""
+       time="$start"
+       elevation=""
+/>
+<waypoint type="break"
+       location=""
+       time="$end"
+       elevation=""
+/>
+</waypoints>
+
+-->
 
 </trip>
 EOT
 }
 
-sub make_image_xml {
+sub process_images {
     my ($dir, $date) = @_;
 
     my $xml = <<EOT;
@@ -82,54 +110,76 @@ sub make_image_xml {
 EOT
 
     -d $dir or die "No such directory '$dir'";
-    my @files = glob "$dir/*{JPG,jpg,jpeg,JPEG,png,gif,PNG,GIF,gpx,GPX}";
-    @files = grep { $_ !~ /-orig\./ } @files;
-    die "No images found in $dir" unless @files;
+    my @filenames = glob "$dir/*{JPG,jpg,jpeg,JPEG,png,gif,PNG,GIF,gpx,GPX}";
+    @filenames = grep { $_ !~ /-orig\./ } @filenames;
+    @filenames = sort @filenames;
+    die "No images found in $dir" unless @filenames;
 
-    foreach my $file (@files) {
-	$file =~ s,.*/,,;
-	next if $file =~ /-(enl|ENL)\./;
-	next if $file =~ /images.xml$/;
-	next if $file =~ /~$/;
+    my @files;
+    foreach my $filename (@filenames) {
+	$filename =~ s,.*/,,;
+	next if $filename =~ /-(enl|ENL)\./;
+	next if $filename =~ /images.xml$/;
+	next if $filename =~ /~$/;
 
 	my $type = "picture";
-	$type = "gps" if $file =~ /\.gpx$/i;
-	$type = "map" if $file eq 'route.jpg';
+	$type = "map" if $filename =~ /\broute\b/ or $filename =~ /\bmap\b/;
+	$type = "gps" if $filename =~ /\.gpx$/i;
 
-	my $metadata = get_image_metadata("$dir/$file");
+	my $metadata = get_image_metadata("$dir/$filename");
 
-	my $rating = get_rating($metadata->{rating}, $type);
+	my $rating = get_rating($metadata->{rating}, $type, $filename);
 
 	my $caption = $metadata->{'caption'} || '';
 
 	my $timestamp = $metadata->{'timestamp'};
-	my $timestamp_attr = '';
-	if ($timestamp) {
-	  $timestamp_attr = qq(\tcapture-timestamp="$timestamp"\n);
+
+        push @files, {
+	    filename => $filename,
+	    type => $type,
+	    caption => $caption,
+	    rating => $rating,
+            timestamp => $timestamp,
+        };
+    }
+
+    my ($first_timestamp, $last_timestamp);
+    foreach my $file (sort { $a->{timestamp} cmp $b->{timestamp} } @files) {
+        $last_timestamp = $file->{timestamp};
+        if (! defined $first_timestamp) {
+            $first_timestamp = $file->{timestamp};
+        }
+
+	if ($file->{type} ne 'gps') {
+	  make_resized_images($dir, $file->{filename});
 	}
 
-	if ($type ne 'gps') {
-	  make_resized_images($dir, $file);
-	}
-
-	next if $file =~ /~$/;
+	next if $file->{filename} =~ /~$/;
 	$xml .= <<EOT;
-<image filename="$file"
-        title="$caption"
-	rating3="$rating"
-	type="$type"
+<image filename="$file->{filename}"
+        title="$file->{caption}"
+	rating3="$file->{rating}"
+	type="$file->{type}"
 	photographer="Gabriel Deal"
-$timestamp_attr/>
+        capture-timestamp="$file->{timestamp}"
+/>
 EOT
     }
     $xml .= "</images>\n";
-    return $xml;
+
+    return (xml => $xml,
+	    first_timestamp => $first_timestamp,
+	    last_timestamp => $last_timestamp);
 }
 
 sub get_rating {
-  my ($rating, $type) = @_;
+  my ($rating, $type, $file) = @_;
 
-  if (!defined $rating or $rating == 1) {
+  return 3 if $type =~ /^(map|gps)$/;
+
+  if (!defined $rating) {
+      die "Missing a rating on '$file'";
+  } elsif ($rating == 1) {
     return 3;
   } elsif ($rating == 2) {
     return 2;
@@ -143,10 +193,19 @@ sub get_rating {
 sub make_resized_images {
   my ($dir, $file) = @_;
 
-  my $enl_file = copy($dir, $file, "enl");
-  return unless defined $enl_file;
+  my ($name, $ext) = ($file =~ /(.*)\.(jpg|gif|jpeg|png)/i);
+  die "Can't parse filename '$file'" unless defined $name;
 
-  copy($dir, $file, "orig");
+  my $enl_file = "$name-enl.$ext";
+  my $orig_file = "$name-orig.$ext";
+
+  if (! should_copy($dir, $file, $enl_file)) {
+      warn "Not copying to $enl_file, it already exists and $file has not changes since $enl_file was created\n";
+      return undef;
+  }
+
+  copy($dir, $file, $enl_file);
+  copy($dir, $file, $orig_file);
 
   resize($dir, $file, $SMALL_IMAGE_SIZE);
   resize($dir, $enl_file, $LARGE_IMAGE_SIZE);
@@ -204,7 +263,7 @@ sub get_image_metadata {
 #   }
 #exit(0);
 
-  my @tags = qw(Caption-Abstract Rating DateTimeCreated); 
+  my @tags = qw(Caption-Abstract Rating DateTimeCreated);
   my $info = Image::ExifTool::ImageInfo($file, \@tags);
   die "Error opening $file: " . $info->{Error} if exists $info->{Error};
   print "Warning opening $file: " . $info->{Warning} if exists $info->{Warning};
@@ -212,10 +271,15 @@ sub get_image_metadata {
   my $timestamp = $info->{DateTimeCreated};
   $timestamp =~ s{^(\d{4}):(\d\d):(\d\d)}{$1/$2/$3};
 
+  my $caption = $info->{'Caption-Abstract'} || '';
+  $caption = '' if $caption eq "OLYMPUS DIGITAL CAMERA";
+  $caption =~ s/&/&amp;/g;
+  $caption =~ s/"/&quot;/g;
+
   return {
 	  rating => $info->{Rating},
 	  timestamp => $timestamp,
-	  caption => $info->{'Caption-Abstract'},
+	  caption => $caption,
 	 };
 }
 
@@ -245,30 +309,28 @@ sub resize {
       $resize_pct = min(100, 100 * $target_height / $height);
     }
 
-    
-
-
     printf("Resizing $file to %.2f%%...\n", $resize_pct);
-    my_system("mogrify", "-resize", "$resize_pct%", "$dir/$file") == 0
+    my_system("mogrify", "-interlace", "Line", "-resize", "$resize_pct%", "$dir/$file") == 0
       or die "Failed to convert $dir/$file";
 }
 
+sub should_copy {
+    my ($dir, $src_file, $dest_file) = @_;
+
+    return 1 unless -e "$dir/$dest_file";
+
+    my $src_file_mtime = (stat("$dir/$src_file"))[9];
+    my $dest_file_mtime = (stat("$dir/$dest_file"))[9];
+    return $src_file_mtime > $dest_file_mtime;
+}
+
 sub copy {
-    my ($dir, $file, $type) = @_;
+    my ($dir, $src_file, $dest_file) = @_;
 
-    my ($name, $ext) = ($file =~ /(.*)\.(jpg|gif|jpeg|png)/i);
-    die "Can't parse filename '$file'" unless defined $name;
+    my $dest_path = "$dir/$dest_file";
 
-    my $copy_file = "$name-$type.$ext";
-    my $copy_path = "$dir/$copy_file";
-    if (-e $copy_path) {
-      warn "Not copying to $copy_path, it already exists\n";
-      return undef;
-    }
-    my_system("cp", "$dir/$file", "$copy_path") == 0
-        or die "Failed to copy $dir/$file to $copy_path";
-
-    return $copy_file;
+    my_system("cp", "$dir/$src_file", "$dest_path") == 0
+        or die "Failed to copy $dir/$src_file to $dest_path";
 }
 
 sub my_system {

@@ -95,8 +95,15 @@ sub get_car_to_car_delta {
     my @waypoints = $self->get_on_trail_waypoints();
     return '' unless @waypoints;
 
-    return Scramble::Time::delta_dates($waypoints[0]->get_time(), 
-                                       $waypoints[$#waypoints]->get_time());
+    my $minutes = Scramble::Time::delta_dates($waypoints[0]->get_time(), 
+                 	                      $waypoints[$#waypoints]->get_time());
+    if ($minutes < 24*60) {
+        return $minutes;
+    }
+
+    my $start_day = Scramble::Time::get_days_since_1BC($waypoints[0]->get_time());
+    my $end_day = Scramble::Time::get_days_since_1BC($waypoints[$#waypoints]->get_time());
+    return ($end_day - $start_day + 1) * 24 * 60;
 }
 
 sub get_car_to_car_html {

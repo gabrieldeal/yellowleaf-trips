@@ -735,7 +735,7 @@ EOT
 
 sub make_locations {
     my @locations;
-    foreach my $location_xml (get_visited(), get_unvisited()) {
+    foreach my $location_xml (sort { lc($a->get_filename()) cmp lc($b->get_filename()) } (get_visited(), get_unvisited())) {
 	$location_xml->make_page_html();
     }
 }
@@ -743,17 +743,13 @@ sub make_locations {
 sub get_link_html {
     my $self = shift;
 
-    my $picture_icon_html = ($self->has_pictures() 
-			     ? " " . Scramble::Misc::get_pictures_img_html()
-			     : '');
     my $elevation = "";
     if ($self->get_short_formatted_elevation()) {
         $elevation = "(" . $self->get_short_formatted_elevation() . ")";
     }
-    return sprintf("%s %s%s",
+    return sprintf("%s %s",
 		   $self->get_short_link_html(),
-                   $elevation,
-		   $picture_icon_html);
+                   $elevation);
 }
 
 sub get_short_link_html {

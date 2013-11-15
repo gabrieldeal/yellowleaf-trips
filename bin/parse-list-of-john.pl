@@ -8,7 +8,7 @@ use Data::Dumper;
 exit(main());
 
 sub main {
-  my $state_page_url = "http://listsofjohn.com/PeakStats/countystats.php?sort=&State=WA";
+  my $state_page_url = "http://listsofjohn.com/PeakStats/countystats.php?sort=&State=OR";
   my $state_page = get_tree($state_page_url);
 
   my @county_urls;
@@ -55,6 +55,7 @@ sub main {
 		  Coords
 		  Rise
 		 );
+  print "Peak URLs: @peak_urls\n";
   my %peaks;
   foreach my $peak_url (@peak_urls) {
     my $tree = get_tree($peak_url);
@@ -62,9 +63,15 @@ sub main {
     shift @fonts; # Peak Statistics
     my $name_font = shift @fonts;
     my @b = $name_font->content_list();
-    @b == 1 or die "too many b's: " . $name_font->dump();
+    if (@b != 1) {
+        warn "too many b's in $peak_url: " . $name_font->dump();
+        next;
+    }
     my @name = $b[0]->content_list();
-    @name == 1 or die "too many names: " . Dumper(@name);
+    if (@name != 1) {
+        die "too many names: in $peak_url" . Dumper(@name);
+        next;
+    }
 
     my %fields;
     foreach my $font (@fonts) {

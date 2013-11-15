@@ -349,10 +349,7 @@ EOT
 sub area_sort {
     my ($a, $b) = @_;
 
-    if ($a->get_type() ne $b->get_type()) {
-	return $a->get_type() cmp $b->get_type();
-    }
-    return $a->get_name() cmp $b->get_name();
+    return lc($a->get_name()) cmp lc($b->get_name());
 }
 
 sub get_all { $g_all }

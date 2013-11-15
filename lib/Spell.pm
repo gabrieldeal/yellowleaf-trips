@@ -44,6 +44,9 @@ sub strip_word {
 
     $word =~ s/\b(1st|2nd|3rd|[4-9]th|\d+th)\b//;
 
+    # Strip decades like "1970s":
+    $word =~ s/\b(18|19)\d\ds\b//;
+
     $word =~ s/^[\W_]+//;
     $word =~ s/[\W\d_]+$//;
 
@@ -82,6 +85,9 @@ sub check {
     my ($text) = @_;
 
     $text =~ s,\bhttp://\S+,,g;
+
+    # Strip letters like "A" in "Plan A:":
+    $text =~ s/\b[A-Z]://g;
 
     chomp $text;
     $text = lc $text;

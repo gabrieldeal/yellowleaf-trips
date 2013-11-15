@@ -137,9 +137,21 @@ sub get_from { $_[0]->{'from'} || '' }
 sub get_url { sprintf("../../$g_pics_dir/%s/%s", $_[0]->get_subdirectory(), $_[0]->get_filename()) }
 sub get_report_url { $_[0]->{'report-url'} }
 sub set_report_url { $_[0]->{'report-url'} = $_[1] }
+sub get_pager_url { $_[0]->{'pager-url'} }
+sub set_pager_url { $_[0]->{'pager-url'} = $_[1] }
 sub get_should_skip_report { $_[0]->{'skip-report'} }
 sub is_narrow { $_[0]->get_filename() =~ /^\d\dn-/ }
 sub get_type { $_[0]->{'type'} }
+
+sub get_capture_date {
+    my $self = shift;
+
+    my $capture_date = $self->{'capture-timestamp'};
+    return undef unless defined $capture_date;
+
+    my ($date) = ($capture_date =~ m,^(\d\d\d\d/\d\d/\d\d),);
+    return $date;
+}
 
 sub get_rating {
   my $self = shift;
@@ -210,6 +222,8 @@ sub get_enlarged_html_url {
 sub get_enlarged_img_url {
     my $self = shift;
 
+    return undef unless defined $self->get_enlarged_filename();
+
     return sprintf("../../$g_pics_dir/%s/%s",
                    $self->get_subdirectory,
                    $self->get_enlarged_filename());
@@ -257,9 +271,14 @@ sub get_html {
 
     my $img_html = $self->get_img_tag(%options);
     if ($self->get_enlarged_html_url()) {
-	my $url = ($options{'direct-image-links'}
-		   ? $self->get_enlarged_img_url()
-		   : $self->get_enlarged_html_url());
+	my $url;
+        if ($options{'direct-image-links'}) {
+	    $url = $self->get_enlarged_img_url();
+        } elsif ($options{'pager-links'} && $self->get_pager_url()) {
+	    $url = $self->get_pager_url();
+        } else {
+            $url = $self->get_enlarged_html_url();
+        }
 	$img_html = sprintf(qq(<a href="%s">$img_html</a>), $url);
     }
 

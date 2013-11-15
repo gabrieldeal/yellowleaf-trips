@@ -274,8 +274,8 @@ sub parse {
     $xml->{'directory'} =~ s,/[^/]+$,,;
 
     my ($ofilename) = ($path =~ m,/([^/]+).xml$,);
-    $ofilename .= ".html";
-    $xml->{'filename'} = $ofilename;
+    $xml->{'filename'} = $ofilename . ".html";
+    $xml->{'pager-filename'} = $ofilename . "_pager.html";
 
     return $xml;
 }
