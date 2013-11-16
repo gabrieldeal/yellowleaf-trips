@@ -16,8 +16,7 @@ sub get_location_xmls { @{ $_[0]->{'location'} } }
 sub get_sortby {
     my ($list_xml) = @_;
 
-    return () unless exists $list_xml->{'sortby'};
-    return split /\|/, $list_xml->{'sortby'};
+    return $list_xml->{'sortby'};
 }
 
 sub get_id {
@@ -66,12 +65,6 @@ sub new_sorted_list {
 
     return \%new_list;
 }
-sub find_list {
-    my (%args) = @_;
-
-    my $id = $args{'id'} or die 'missing id';
-    return grep { $id eq $_->{'id'} } @g_lists;
-}
 sub open {
     my (@paths) = @_;
     
@@ -79,24 +72,11 @@ sub open {
     @g_lists or die "No lists";
 
     for (my $i = 0; $i < @g_lists; ++$i) {
-        my @to_include_xmls;
-        foreach my $include_list_xml (@{ $g_lists[$i]{'include-list'} || [] }) {
-            push @to_include_xmls, find_list('id' => $include_list_xml->{'id'});
-        }
-        foreach my $to_include_xml (@to_include_xmls) {
-            $g_lists[$i]{'location'} = [ @{ $g_lists[$i]{'location'} },
-                                         @{ $to_include_xml->{'location'} },
-                                       ];
-        }
-    }
-
-    for (my $i = 0; $i < @g_lists; ++$i) {
-	1; # Keeps font-mode from screwing up indentation.
 	Scramble::Logger::verbose "Processing $g_lists[$i]{'name'}\n";
 	next unless exists $g_lists[$i]{'sortby'};
 	
-	my ($first_sortby) = get_sortby($g_lists[$i]);
-	my $new_list = new_sorted_list($g_lists[$i], $first_sortby);
+	my $sortby = get_sortby($g_lists[$i]);
+	my $new_list = new_sorted_list($g_lists[$i], $sortby);
 	splice(@g_lists, $i, 1, $new_list);
     }
     for (my $i = 0; $i < @g_lists; ++$i) {
@@ -105,17 +85,6 @@ sub open {
 	next if exists $g_lists[$i]{'URL'};
 	$g_lists[$i]{'URL'} = $g_lists[$i]{'internal-URL'};
     }
-}
-
-sub find_location_in_lists {
-    my ($location_xml) = @_;
-
-    my @hits;
-    foreach my $list_xml (get_all_lists()) {
-	push @hits, find_location_in_list($list_xml, $location_xml);
-    }
-
-    return @hits;
 }
 
 sub find_location_in_list {
@@ -190,22 +159,6 @@ sub get_aka_names {
     return $list_location->{'AKA'};
 }
 
-sub get_sorted_by_html {
-    my ($list_xml) = @_;
-
-    my @sortby = get_sortby($list_xml);
-    if (@sortby <= 1) {
-	return '';
-    }
-
-    my @htmls;
-    foreach my $sortby (@sortby) {
-	my $path = get_list_path($list_xml, $sortby);
-	push @htmls, qq(<a href="../$path">sorted by $sortby</a>);
-    }
-
-    return join(" &#149; ", @htmls) . "<p>";
-}
 sub get_list_path {
     my ($list_xml, $sortby) = @_;
 
@@ -325,8 +278,6 @@ sub get_images_to_display_for_locations {
 sub make_list_page {
     my ($list_xml) = @_;
 
-    my $sorted_by_html = get_sorted_by_html($list_xml);
-
     my @location_objects;
     my $county = $list_xml->{'location'}[0]{'county'};
 
@@ -391,7 +342,6 @@ $max_images = 100;
     my $html = <<EOT;
 <h1>$title</h1>
 $note
-$sorted_by_html
 $images_html
 EOT
 

@@ -16,7 +16,6 @@ our $gSiteName = 'yellowleaf.org';
 #my $gDisableTopoZone = 1;
 #my $gDisableTerraServerEmbedded = 1;
 #my $gEnableTerraserver = 0;
-my $gEnableGoogleMaps = 0;
 
 my $g_bullet = '&#149;&nbsp;';
 my $g_amazon_associates_link = qq(<A HREF="http://www.amazon.com/exec/obidos/redirect?tag=yellowleaforg-20">In association with Amazon.</a>);
@@ -96,7 +95,6 @@ the given 'id' to the 'URL' for the 'id'.
 The 'id' from list names turns into a link with the 'name' from that list.
 
 =cut
-sub get_regex { "\\b\\Q$_[0]\\E\\b" }
 my %g_transformations;
 sub make_link_transformations {
     foreach my $list_xml (Scramble::List::get_all_lists()) {
@@ -112,11 +110,6 @@ sub make_link_transformations {
 	my $regex = sprintf('\b%s(\s+USGS)?\s+quad(rangle)?\b', $quad->get_id());
  	$g_transformations{'quad'}{$regex} = _insert_links_pack($link);
     }
-#     foreach my $regex (Scramble::Location::get_all_regex_keys()) {
-# 	my $location = Scramble::Location::get_regex_value($regex);
-# 	my $link = _insert_links_pack($location->get_short_link_html());
-# 	$g_transformations{'location'}{$regex} = _insert_links_pack($link);
-#     }
     foreach my $area (Scramble::Area::get_all()->get_all()) {
 	next if $area->get_type() eq 'USGS quad';
 	my $regex = sprintf('\b%s\b', $area->get_id());
@@ -275,96 +268,6 @@ EOT
     return $html;
 }
 
-# sub split_words_for_bullet_list {
-#     my ($words) = @_;
-
-#     my $max = length($g_links[0]->{'name'} || $g_links[0]->{'html'});
-#     foreach my $link (@g_links) {
-# 	my $len = length($link->{'name'} || );
-# 	$max = $len if $len > $max;
-#     }
-
-#     my @words = split(/\s+/, $words);
-#     return join("&nbsp;", @words) if length($words) < $max;
-
-#     my @lines;
-#     my $line = shift @words;
-#     while(@words) {
-# 	my $word = shift @words;
-# 	if (length($line) + 1 + length($word) < $max) {
-# 	    $line .= "&nbsp;$word";
-# 	} else {
-# 	    push @lines, $line;
-# 	    $line = $word;
-# 	}
-#     }
-
-#     return (@lines, $line);
-# }
-# sub make_list {
-#     my ($title, @objects) = @_;
-
-#     return '' unless @objects;
-
-#     my %dedup = map { $_->get_id() => $_ } @objects;
-#     @objects = values %dedup;
-#     @objects = sort { $a->get_name() cmp $b->get_name() } @objects;
-
-#     my @links;
-#     foreach my $object (@objects) {
-# 	my @split_name = Scramble::Misc::split_words_for_bullet_list($object->get_name());
-# 	push @links, join("<br>&nbsp;&nbsp;",
-# 			  map { $object->get_short_link_html($_) } @split_name);
-#     }
-#     return Scramble::Misc::make_bullet_list($title, @links);
-# }
-# sub make_bullet_list {
-#     my ($title, @elements) = @_;
-
-#     return (qq(<h3>$title:</h3>$g_bullet)
-# 	    . join("<br>$g_bullet", @elements)
-# 	    . "<p>");
-# }
-
-sub get_abbreviated_name_links {
-    my (@objects) = @_;
-
-    @objects = Scramble::Misc::dedup(@objects);
-    @objects = sort { $a->get_name() cmp $b->get_name() } @objects;
-
-    my @links;
-    foreach my $object (@objects) {
-	my $name = Scramble::Misc::abbreviate_name($object->get_name());
-	push @links, $object->get_short_link_html($name);
-    }
-
-    return @links;
-}
-
-# sub make_into_table {
-#     my ($columns, $lines) = @_;
-
-#     die "Not supported: $columns" if $columns != 1 && $columns != 2;
-
-#     my @lines = grep { defined $_ && length($_) > 0 } @$lines;
-
-#     if ($columns == 1) {
-# 	return join("\n", @lines);
-#     } else {
-# 	return sprintf(qq(<table border=0 cellspacing=5><tr><td valign="top" align="left">%s</td><td valign="top" align="left">%s</td></tr></table>),
-# 		       join("\n", @lines[0 .. int(scalar(@lines)/2 + .9) - 1]),
-# 		       join("\n", @lines[int(scalar(@lines)/2 + .9) .. $#lines]));
-#     }
-# }
-
-sub remove_quad_specifier {
-    my ($name) = @_;
-
-    $name =~ s/\([^\)]+\squad\)//g;
-
-    return $name;;
-}
-
 sub make_colon_line {
     my ($title, $text) = @_;
 
@@ -426,25 +329,6 @@ sub make_usgs_quad_link {
     my $area = Scramble::Area::get_all()->find_one('id' => $quad,
 						    'type' => 'USGS quad');
     return $area->get_short_link_html();
-}
-
-sub pack_name_link {
-    my ($name) = @_;
-
-    $name =~ s/\s+/_/g;
-
-    return $name;
-}
-
-sub build_name_links {
-    my ($html, $links, $name) = @_;
-
-    if (length $$html == 0) {
-	return;
-    }
-
-    $$html = qq(<a name="$name"></a>) . $$html;
-    push @$links, qq(<a href="#$name">$name</a>);
 }
 
 sub make_optional_line {
@@ -722,25 +606,6 @@ sub get_MSN_maps_url {
 # "http://maps.msn.com/(lp0jjjnvyhderb45nqsxco55)/map.aspx?L=USA&C=$lat%2c$lon&A=7.16667&P=|$lat%2c$lon|1||L1|";
 }
 
-sub get_noaa_forecast_url {
-    my ($lat, $lon, $datum) = @_;
-
-    return "http://forecast.weather.gov/MapClick.php?lat=$lat&lon=$lon&site=sew&smap=1&marine=0&unit=0&lg=en";
-#    return "http://ifps.wrh.noaa.gov/cgi-bin/dwf?outFormat=Text&duration=168hr&interval=12&citylist=Select+City%2C%2Cnone&latitude=$lat&longitude=$lon&latlon=Go&ZOOMLEVEL=1&XSTART=&YSTART=&XC=&YC=&X=&Y=&siteID=SEW";;
-}
-
-sub get_google_maps_url {
-    my ($lat, $lon, $datum, %options) = @_;
-
-    return '' unless $gEnableGoogleMaps;
-
-    return sprintf("http://maps.google.com/maps?q=%s+%s&t=h&ll=%s,%s&spn=0.116785,0.343323&t=h",
-                   $lat,
-                   $lon,
-                   $lat,
-                   $lon);
-}
-
 sub get_my_google_maps_url {
     my ($lat, $lon, $datum, %options) = @_;
 
@@ -748,79 +613,6 @@ sub get_my_google_maps_url {
                    $lon,
                    $lat);
 }
-
-# sub get_terraserver_html {
-#     my ($easting, $northing, $zone) = @_;
-
-#     return '' if $gDisableTerraServerEmbedded;
-#     return '' unless defined $easting;
-
-#     $zone =~ s/[A-Z]$//;
-
-#     my $scale = 12;
-#     my $multiplier = 800;
-
-#     my $easting_tile = int($easting / $multiplier);
-#     my $northing_tile = int($northing / $multiplier);
-
-#     my $html = "<table border=0 cellspacing=0 cellpadding=0>\n";
-#     my $format = "http://terraserver-usa.com/tile.ashx?T=2&S=$scale&X=%d&Y=%d&Z=$zone";
-#     for (my $y = $northing_tile + 1; $y >= $northing_tile - 1; --$y) {
-#         $html .= "<tr>";
-#         foreach my $x ($easting_tile - 1 .. $easting_tile + 1) {
-#             $html .= sprintf("<td><img src=$format></td>", $x, $y);
-#         }
-#         $html .= "</tr>\n";
-#     }
-#     $html .= "</table>\n";
-
-#     return $html;
-# }
-# sub get_terraserver_url {
-#     my ($easting, $northing, $zone) = @_;
-
-#     return '' unless $gEnableTerraserver;
-#     return '' unless defined $easting;
-
-#     $zone =~ s/[A-Z]$//;
-
-#     my $scale = 12;
-#     my $multiplier = 800;
-
-#     my $easting_tile = int($easting / $multiplier);
-#     my $northing_tile = int($northing / $multiplier);
-
-#     return sprintf("http://terraserver-usa.com/image.aspx?T=2&S=$scale&X=%d&Y=%d&Z=$zone",
-#                    $easting_tile,
-#                    $northing_tile);
-# }
-
-# sub get_topozone_url {
-#     my ($lat, $lon, $datum, %options) = @_;
-
-#     return undef if $gDisableTopoZone;
-
-#     my $options = '';
-#     if (exists $options{'scale'}) {
-# 	$options .= sprintf("&s=%s", $options{'scale'} / 1000);
-#     }
-#     my $size = exists $options{'size'} ? $options{'size'} : 'large';
-#     $options .= "&size=$size";
-
-#     # This number determines the map datum and the coordinate system
-#     # and format (UTM, DD.MM.SS, DD.DDD) displayed on the topozone
-#     # page.
-#     my $datum_num = { 'nad83' => 4,
-# 		      'wgs84' => 4,
-# 		      'nad27' => 0,
-# 		  }->{lc($datum)};
-#     defined $datum_num || die "Unrecognized datum '$datum'";
-
-#     return sprintf("http://www.topozone.com/map.asp?lat=%s&lon=%s&u=$datum_num$options",
-# 		   numerify($lat),
-# 		   numerify($lon));
-# }
-
 
 sub get_peakbagger_quad_url {
     my ($quad_obj) = @_;
@@ -885,12 +677,6 @@ sub format_elevation {
 
     my $feet = sprintf("%s$plus feet", commafy($details{feet}));
     my $meters = sprintf("%s$plus meters", commafy($details{meters}));
-
-#    if ($details{'units'} eq 'meters') {
-#        return "$approx$meters ($approx_str$feet)";
-#    } else {
-#        return "$approx$feet ($approx_str$meters)";
-#    }
 
     return "$approx$feet";
 }

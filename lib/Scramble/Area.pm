@@ -94,7 +94,6 @@ sub in_washington {
 sub get_name { $_[0]->{name} }
 sub get_short_name { $_[0]->get_name() }
 sub get_id { $_[0]->{id} }
-sub get_weather_id { $_[0]->{'weather-id'} }
 sub get_type { $_[0]->{type} }
 sub get_is_recognizable_area { $_[0]->_get_optional('is-recognizable-area') ? 'true' : 0 }
 sub get_info_url { $_[0]->{URL} }
@@ -165,18 +164,6 @@ sub get_link {
     return sprintf("%s: %s",
 		   ucfirst $self->get_type(),
 		   $self->get_short_link_html($self->get_name()));
-}
-
-sub get_info_link {
-    my $self = shift;
-
-    if ($self->get_info_url()) {
-	return sprintf(qq(<a href="%s">%s</a>),
-		       $self->get_info_url(),
-		       $self->get_name());
-    } else {
-	return $self->get_name();
-    }
 }
 
 sub get_locations { values %{ $_[0]->{'locations'} } }

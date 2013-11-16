@@ -116,14 +116,6 @@ sub get_car_to_car_html {
                                      Scramble::Time::format_time(0, $delta));
 }
 
-sub _get_elev {
-    my ($waypoint) = @_;
-    my $elevation = eval { $waypoint->get_elevation() };
-    return '' unless defined $elevation;
-    return ($waypoint->get_type() =~ /$gOnTrailTypeRegexes/i
-	    ? ' (' . Scramble::Misc::format_elevation_short($elevation) . ')'
-	    : '');
-}
 sub get_detailed_time_html {
     my $self = shift;
 
@@ -159,44 +151,6 @@ sub get_detailed_time_html {
     }
 
     my @summary_htmls;
-
-## This logic was getting convoluted, and the resulting HTML was still a little confusing:
-#
-#     foreach my $summary (@summaries) {
-#         my $html = Scramble::Misc::make_colon_line(ucfirst sprintf("%s time", $summary->{'type'}),
-#                                                    Scramble::Time::format_time(0, $summary->{'accum'}));
-#         push @summary_htmls, $html;
-#     }
-#
-#     if (scalar(grep /ascending/i, @summary_htmls) > 1
-#         || scalar(grep /descending/i, @summary_htmls) > 1
-#         || scalar(grep /traversing/i, @summary_htmls) > 1)
-#     {
-# 	# It looks wierd to say "descending time" twice.
-#         @summary_htmls = ();
-#     }
-#     if (@summary_htmls == @waypoint_htmls) {
-#         # It's dumb for the summary to be the same as the waypoints.
-#         @summary_htmls = ();
-#     }
-#     if (@waypoint_htmls == 1) {
-#         @waypoint_htmls = ();
-#     }
-
-#     # Get rid of the ascending/traveresing/descending summary if it is
-#     # the same as the details.
-#     my $onTrailSummaryCount = scalar(grep /$gOnTrailTypeRegexes/i, @summary_htmls);
-#     my $onTrailWaypointCount = scalar(grep /$gOnTrailTypeRegexes/i, @waypoint_htmls);
-#     if ($onTrailWaypointCount == $onTrailSummaryCount) {
-#         @summary_htmls = grep { ! /$gOnTrailTypeRegexes/i } @summary_htmls;
-#     }
-
-#     # Get rid of the driving summary if it is the same as the details.
-#     my $onDrivingSummaryCount = scalar(grep /driving/i, @summary_htmls);
-#     my $onDrivingWaypointCount = scalar(grep /driving/i, @waypoint_htmls);
-#     if ($onDrivingWaypointCount == $onDrivingSummaryCount) {
-#         @summary_htmls = grep { ! /driving/i } @summary_htmls;
-#     }
 
     if ($self->get_car_to_car_delta()) {
         unshift @summary_htmls, $self->get_car_to_car_html();

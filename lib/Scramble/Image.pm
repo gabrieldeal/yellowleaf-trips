@@ -140,7 +140,6 @@ sub set_report_url { $_[0]->{'report-url'} = $_[1] }
 sub get_pager_url { $_[0]->{'pager-url'} }
 sub set_pager_url { $_[0]->{'pager-url'} = $_[1] }
 sub get_should_skip_report { $_[0]->{'skip-report'} }
-sub is_narrow { $_[0]->get_filename() =~ /^\d\dn-/ }
 sub get_type { $_[0]->{'type'} }
 
 sub get_capture_date {
@@ -296,13 +295,6 @@ sub get_html {
     return Scramble::Misc::make_cell_html($img_html, $caption);
 }
 
-sub equals {
-    my $self = shift;
-    my ($image) = @_;
-
-    return $image->get_id() eq $self->get_id();
-}
-
 sub cmp {
   my ($a, $b) = @_;
 
@@ -380,33 +372,6 @@ sub open {
     $g_collection = Scramble::Collection->new('objects' => \@images);
 }
 
-my $g_image_index;
-sub get_random_picture_html {
-    my (%options) = @_;
-
-    my @images = get_all_images_collection()->find('type' => 'picture');
-    @images = grep { ($_->get_rating() <= $g_image_rating_threshold) } @images;
-    if (! @images) {
-	return '';
-    }
-
-    if (! defined $g_image_index) {
-	$g_image_index = int(rand(scalar(@images)));
-    }
-
-    my $align;
-    if (defined $options{'align'}) {
-        $align = sprintf('align="%s"', $options{'align'}, 'right');
-    } elsif (exists $options{'align'}) {
-        $align = '';
-    } else {
-        $align = sprintf('align="%s"', 'right');
-    }
-
-    return $images[$g_image_index++ % @images]->get_html('no-title' => 1,
-                                                         'image-attributes' => $align);
-}
-
 sub make_enl_picture_pages {
     foreach my $image (sort { cmp_date($a, $b) } $g_collection->get_all()) {
         $image->make_enl_page();
@@ -470,13 +435,6 @@ EOT
                                              'no-add-picture' => 1,
                                              'no-links-box' => 1);
     Scramble::Misc::create($output_filename, $page_html);
-}
-
-sub get_picture_html_filename {
-    my ($i, %args) = @_;
-    return sprintf("m/$args{type}s%s%s.html",
-		   ($args{'filename'} ? $args{'filename'} : ''),
-		   ($i == 0 ? "" : $i));
 }
 
 sub n_per_date {

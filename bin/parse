@@ -379,88 +379,6 @@ Redirect /scramble/index.html http://$gRoot/g/m/missing.html
 EOT
 }
 
-sub get_photogenic_reports_html {
-    my $min_reports = 10;
-    my $n_reports_to_choose = 5;
-
-    my @reports = Scramble::Report::get_all();
-    if (@reports < $min_reports) {
-        return '';
-    }
-
-    @reports = grep { $_->get_average_pic_rating() <= 44 } @reports;
-    my @chosen_reports;
-    foreach (1 .. $n_reports_to_choose) {
-        my $i = int(rand(@reports));
-        push @chosen_reports, splice @reports, $i, 1;
-    }
-
-    my $report_html = '';
-    foreach my $report (sort { $a->get_average_pic_rating() <=> $b->get_average_pic_rating() } @chosen_reports) {
-	$report_html .= sprintf("<li>%s%s %s</li>", 
-				$report->get_start_date(),
-				($report->get_end_date()
-				 ? " to " . $report->get_end_date()
-				 : ""),
-				$report->get_link_html());
-    }
-    return sprintf(qq(<h2>Most Photogenic Trips</h2><ul>%s</ul>),
-                   $report_html);
-}
-sub make_recognizable_area_summary {
-    my @areas = Scramble::Area->get_all()->find('is_recognizable_area' => 'true');
-    return '' unless @areas;
-    my $html;
-    foreach my $area (sort { scalar($b->get_reports()) <=> scalar($a->get_reports()) } @areas) {
-        my @reports = $area->get_reports();
-        next unless @reports;
-        $html .= sprintf("<li>%s (%s)", $area->get_short_link_html(), scalar(@reports));
-    }
-
-    return "<ul>$html</ul>";
-}
-
-# This is now made as part of Report::make_reports_index_page()
-#
-# sub make_home_page {
-#     my $report_html;
-
-#     my @reports = Scramble::Report::get_all();
-#     foreach my $report (@reports[0 .. 9]) {
-#         next unless $report;
-# 	$report_html .= sprintf("<li>%s%s %s</li>", 
-# 				$report->get_start_date(),
-# 				($report->get_end_date()
-# 				 ? " to " . $report->get_end_date()
-# 				 : ""),
-# 				$report->get_link_html());
-#     }
-#     my $recent_reports = sprintf(qq(<h2>Most Recent Trips</h2><ul>%s</ul>),
-# 			       $report_html);
-
-#     my $photogenic_reports = ''; # get_photogenic_reports_html();
-#     my $area_summary_html = make_recognizable_area_summary();
-
-#     my $filename = "$g_options{'templates-directory'}/home.html";
-#     my $html = make_template_html($filename,
-#                                   'after-file-contents' => "$recent_reports$photogenic_reports");
-
-#     my ($ofile) = ($filename =~ m,/([^/]+)$,);
-
-#     my $pic_html = (Scramble::Image::get_random_picture_html('align' => undef)
-#                     . "\n<p>\n"
-#                     . Scramble::Image::get_random_picture_html('align' => undef)
-#                    );
-#     my $title = '';
-#     Scramble::Misc::create("m/$ofile",
-# 			   Scramble::Misc::make_2_column_page($title,
-# 							      $html,
-# 							      $pic_html,
-#                                                               'no-add-picture' => 1,
-#                                                               'add-amazon-associates-html' => 0));
-# }
-
-
 ######################################################################
 
 
@@ -496,36 +414,5 @@ sub make_html_file {
 							      undef,
 							      %options));
 }
-
-# sub backup_images {
-#     foreach my $image (sort { $a cmp $b } Scramble::Image::get_all_images_collection()->get_all()) {
-#         next unless defined $image->get_date();
-#         my ($number) = ($image->get_filename() =~ /^([A-Z]*\d+)/);
-#         next unless defined $number;
-
-#         my ($yyyy, $mm, $dd) = Scramble::Time::parse_date($image->get_date());
-#         my $glob = "~/pictures/$yyyy/$mm/$dd*/*$number*";
-#         my @matches = glob $glob;
-#         if ((! @matches) && "$yyyy/$mm/$dd" gt "2010/11/01") {
-#             die "Can't find original image of glob '$glob'";
-#         }
-#         foreach my $match (@matches) {
-#             my $target_dir = "$g_options{'image-backup-directory'}/$yyyy/$mm/$dd/";
-#             if (! -d $target_dir) {
-#                 File::Path::mkpath([$target_dir], 0, 0755);
-#             }
-# 	    my ($file) = ($match =~ /([^\/]+)$/); 
-#             defined $file or die "Unable to parse $match";
-#             my $target = "$target_dir/$file";
-#             if (-e "$target") {
-#                 next;
-#             }
-
-#             my $command = qq(cp "$match" "$target");
-#             print "$command\n";
-#             system($command) == 0 or die "Error copying '$match' to '$target': $!";
-#         }
-#     }
-# }
 
 1;

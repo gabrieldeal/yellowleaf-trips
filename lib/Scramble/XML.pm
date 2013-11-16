@@ -75,88 +75,14 @@ sub set {
 	die "Not supported: " . Data::Dumper::Dumper($key);
     }
 }
-sub should_not_warn { $_[0]->_get_optional('log-no-warnings') }
-sub get_directory { $_[0]->{'directory'} }
 
 ######################################################################
 # shared between Scramble::Location and Scramble::Report
 ######################################################################
 
-sub has_pictures { scalar($_[0]->get_picture_objects()) }
 sub get_map_objects { @{ $_[0]->{'map-objects'} } }
 sub get_picture_objects { @{ $_[0]->{'picture-objects'} } }
 sub set_picture_objects { $_[0]->{'picture-objects'} = $_[1] }
-sub get_image_htmls {
-    my $self = shift;
-    my (%options) = @_;
-
-    my $type = delete $options{'type'} || die "Missing type";
-
-    my $method = "get_${type}_objects";
-    return join("<p>", map { $_->get_html(%options) } $self->$method());
-}
-# sub get_2_column_image_htmls {
-#     my $self = shift;
-#     my (%options) = @_;
-
-#     my $type = delete $options{'type'} || die "Missing type";
-
-#     my $method = "get_${type}_objects";
-#     my $count = 0;
-#     my $col1 = '';
-#     my $col2 = '';
-#     foreach my $image ($self->$method()) {
-#         my $html = sprintf("%s<p>", $image->get_html(%options));
-#         if ($count++ % 2) {
-#             $col2 .= $html;
-#         } else {
-#             $col1 .= $html;
-#         }
-#     }
-#     return qq(<table><tr><td valign="top">$col1</td><td valign="top">$col2</td></tr></table>);
-# }
-
-
-# sub divide_into_columns {
-#   my $self = shift;
-#   my (%options) = @_;
-
-#   my $htmls = $options{htmls};
-#   my $n_columns = $options{'num-columns'};
-
-#   my @columns;
-#   my $column = 0;
-#   foreach my $html (@$htmls) {
-#     my $index = $column++ % $n_columns;
-#     push @{ $columns[$index] }, $html;
-#   }
-
-#   return \@columns;
-# }
-
-
-# sub render_into_rows {
-#     my $self = shift;
-#     my ($columns) = @_;
-
-#     my $html = '';
-#     my $num_rows = List::Util::max(map { scalar(@$_) } @$columns);
-#     foreach my $row (1 .. $num_rows) {
-#       $html .= qq(<tr valign="top">);
-#       foreach my $column (@$columns) {
-# 	if ($row < @$column) {
-# 	  $html .= sprintf("<td>%s</td>", $column->[$row-1]);
-# 	} elsif ($row == @$column) {
-# 	  $html .= sprintf(qq(<td rowspan="%d">%s</td>),
-# 			    1 + $num_rows - $row,
-# 			    $column->[$row-1]);
-# 	}
-#       }
-#       $html .= "</tr>";
-#     }
-
-#     return $html;
-# }
 
 sub get_areas_from_xml {
     my $self = shift;
@@ -246,7 +172,6 @@ sub parse {
 				     'comments', 
 				     'description',
 				     'directions',
-                                     'include-list',
 				     'location', 
 				     'map', 
                                      'member',

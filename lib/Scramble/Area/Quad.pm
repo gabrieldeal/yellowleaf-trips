@@ -32,7 +32,6 @@ sub new {
 
 sub get_short_name { $_[0]->{'short-name'} }
 sub get_corner_id { $_[0]->{'corner-id'} }
-sub no_lat_lon { $_[0]->{'no-lat-lon'} }
 sub get_map_datum { $_[0]->{"datum"} }
 sub set_map_datum { 
     my $self = shift;
@@ -47,12 +46,6 @@ sub set_map_datum {
     $self->set("datum", $datum);
 }
 
-sub _init_lat_lon {
-    my $self = shift;
-
-    return if defined $self->{'ul-lat'};
-
-}
 sub get_upper_left_latitude { $_[0]->{'ul-lat'} }
 sub get_upper_left_longitude { $_[0]->{'ul-lon'} }
 sub set_upper_left_longitude {
@@ -82,32 +75,6 @@ sub set_upper_left_latitude {
     $self->{'ul-lat'} = $lat;
 }
 
-# sub get_topozone_html {
-#     my $self = shift;
-
-#     return '' if $self->no_lat_lon();
-
-#     my $lat = $self->get_upper_left_latitude();
-#     return undef unless defined $lat;
-
-#     my $lon = $self->get_upper_left_longitude();
-#     defined $lon or die sprintf("'%s' missing longitude", $self->get_name());
-
-#     my $middle_offset = (7.5 / 60) / 2; # half of 7.5 minutes
-#     my $middle_lat = $lat - $middle_offset;
-#     my $middle_lon = $lon + $middle_offset;
-#     my $url = Scramble::Misc::get_topozone_url($middle_lat,
-# 					       $middle_lon,
-# 					       $self->get_map_datum(),
-# 					       'size' => 'large',
-# 					       'scale' => 100_000,
-# 					       );
-#     return '' unless $url;
-#     return Scramble::Misc::make_colon_line("See Map",
-# 					   qq(<a href="$url">TopoZone.com</a>));
-
-# }
-
 sub get_download_id { 
     my $self = shift;
 
@@ -117,32 +84,6 @@ sub get_download_id {
     return $self->in_washington() ? 'WAUWUSGSQuads' : undef;
 }
 
-# sub find_corner {
-#     my $self = shift;
-#     my ($dir1, $dir2, $found_quad_obj) = @_;
-
-#     my ($found_quad_obj1, $found_quad_obj2);
-#     my ($dist1, $dist2) = (0, 0);
-#     my $q1 = $self->get_neighboring_quad_object($dir1);
-#     if ($q1) {
-# 	$dist1 = $q1->find_corner($dir1, $dir2, \$found_quad_obj1);
-#     }
-#     my $q2 = $self->get_neighboring_quad_object($dir2);
-#     if ($q2) {
-# 	$dist2 = $q2->find_corner($dir1, $dir2, \$found_quad_obj2);
-#     }
-
-#     if (! $found_quad_obj1 && ! $found_quad_obj2) {
-# 	$$found_quad_obj = $self;
-# 	return 1;
-#     } elsif ($dist1 > $dist2) {
-# 	$$found_quad_obj = $found_quad_obj1;
-# 	return 1 + $dist1;
-#     } else {
-# 	$$found_quad_obj = $found_quad_obj2;
-# 	return 1 + $dist2;
-#     }
-# }
 sub get_neighboring_quad_object {
     my $self = shift;
     my ($dir) = @_;
@@ -301,20 +242,6 @@ sub _init {
     }
 }
 
-sub get_row_quads {
-    my ($row_head) = @_;
-
-    my @quads;
-    my $quad = $row_head;
-    for (my $quad = $row_head; 
-	 $quad; 
-	 $quad = $quad->get_neighboring_quad_object('east')) 
-    {
-	push @quads, $quad;
-    }
-
-    return @quads;
-}
 sub make_layout_array {
     my ($quad, $x, $y, $array) = @_;
 

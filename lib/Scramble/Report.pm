@@ -7,7 +7,6 @@ use MIME::Types ();
 use DateTime ();
 use DateTime::Format::Mail ();
 use JSON ();
-use Scramble::ObjectAdaptor ();
 use Scramble::Waypoints ();
 use Scramble::Waypoints2 ();
 use Scramble::Image ();
@@ -129,13 +128,10 @@ sub get_start_date { $_[0]->_get_required('start-date') }
 sub get_name { $_[0]->_get_required('name') }
 sub get_filename { $_[0]->_get_required('filename') }
 sub get_pager_filename { $_[0]->_get_required('pager-filename') }
-sub get_special_gear { $_[0]->_get_optional('special-gear') }
 sub get_locations { @{ $_[0]->_get_optional('locations', 'location') || [] } }
 sub get_state { $_[0]->_get_optional('state') || "done" }
-sub get_pictures { @{ $_[0]->_get_optional('pictures', 'picture') || [] } }
 sub is_planned { $_[0]->get_state() eq 'planned' }
 sub get_route { $_[0]->_get_optional_content('route') }
-sub get_comments { $_[0]->_get_optional_content('comments') }
 sub get_rock_routes { @{ $_[0]->_get_optional('rock-routes', 'rock-route') || [] } }
 
 sub get_best_picture_object {
@@ -164,30 +160,6 @@ sub get_leaders {
     }
 
     return @leaders;
-}
-
-# I get problems with $a or $b being undefined if I do this the normal
-# way.
-sub stupid_hack($$) {
-    return $_[0]->cmp($_[1]);
-}
-sub get_average_pic_rating {
-    my $self = shift;
-
-    my $min_images = 5;
-
-    my @images = $self->get_picture_objects();
-    if (@images < $min_images) {
-        return 100; # worst rating
-    }
-
-    my @sorted_images = sort stupid_hack @images;
-
-    my $sum = 0;
-    foreach my $image (@sorted_images[0 .. $min_images-1]) {
-        $sum += $image->get_rating();
-    }
-    return $sum / $min_images;
 }
 
 sub get_num_days {
@@ -238,23 +210,6 @@ sub get_parsed_start_date {
     my @date = split('/', $self->get_start_date());
     @date == 3 or die sprintf("Bad start date '%s'", $self->get_start_date());
     return @date;
-}
-
-sub get_visited_html {
-    my $self = shift;
-
-    my @objects;
-    foreach my $location ($self->get_locations_visited()) {
-	next if $location->get_is_driving_location();
-	push @objects, $location->get_areas_collection()->get_all();
-	push @objects, $location;
-    }
-
-    @objects = grep { $_->get_name() ne 'USA' } @objects;
-
-    return Scramble::Misc::make_optional_line("<h2>Visited</h2> <ul><li>%s</li></ul>", 
-					      join("</li><li>", 
-						   Scramble::Misc::get_abbreviated_name_links(@objects)));
 }
 
 sub get_best_map_type {
@@ -338,43 +293,6 @@ sub get_embedded_google_map_html {
 
     return Scramble::Misc::get_multi_point_embedded_google_map_html(\@locations);
 }
-
-sub get_map_html {
-    my ($self) = @_;
-
-    my @map_references = $self->get_maps();
-    #push @map_references, grep { ! $_->{'is-driving-location'} } map { $_->get_maps() } $self->get_locations_visited();
-    @map_references =  sort { Scramble::Reference::cmp_references($a, $b) } @map_references;
-    return '' unless @map_references;
-
-    my @map_htmls = Scramble::Reference::get_map_htmls(\@map_references);
-
-    my $maps_html =  Scramble::Misc::make_optional_line("<h2>Maps</h2> <ul><li>%s</li></ul>",
-							@map_htmls ? join("</li><li>", @map_htmls) : undef);
-}
-
-sub get_route_map_html {
-    my $self = shift;
-
-    return Scramble::Misc::make_optional_line("<h2>Route Map</h2> %s",
-					      $self->get_image_htmls('type' => 'map',
-								     'no-report-link' => 1));
-}
-
-# sub get_weather_html {
-#     my $self = shift;
-
-#     my @links;
-#     foreach my $location ($self->get_locations_visited()) {
-# 	next if $location->get_is_driving_location();
-# 	push @links, $location->get_weather_forecast_link_htmls();
-#     }
-#     @links = Scramble::Misc::dedup(@links);
-#     @links = sort @links;
-
-#     return Scramble::Misc::make_optional_line("<h2>Weather</h2> <ul><li>%s</li></ul>",
-# 					      join("</li><li>", @links));
-# }
 
 sub get_distances_html {
     my $self = shift;

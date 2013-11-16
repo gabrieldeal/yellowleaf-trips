@@ -107,14 +107,6 @@ sub get_reference_for_id {
 	    || die "Unable to find reference for ID '$id'");
 }
 
-sub get_link_for_id {
-    my ($id) = @_;
-
-    my $reference = get_reference_for_id($id);
-
-    return get_reference_html_with_name_only($reference);
-}
-
 sub get_map_type { $_[0]->{'id'} }
 sub get_map_name { $_[0]->{'name'} }
 
@@ -169,21 +161,17 @@ sub get_reference_html_with_name_only {
     my $id = $reference->{'id'};
     my $url = get_reference_attr('URL', $reference);
 
-    my $name;
-    if (defined $options{name}) {
-      $name = $options{name};
-      die "I don't think this option is used";
-    } else {
-      my @name_ids = qw(name);
-      if (defined $options{'name-ids'}) {
+    my @name_ids = qw(name);
+    if (defined $options{'name-ids'}) {
 	@name_ids = @{ $options{'name-ids'} };
-      }
-      foreach my $id (@name_ids) {
+    }
+    my $name;
+    foreach my $id (@name_ids) {
 	$name = get_reference_attr($id, $reference);
 	last if defined $name;
-      }
     }
-      defined $name or Carp::confess "Unable to get name from " . Data::Dumper::Dumper($reference);
+
+    defined $name or Carp::confess "Unable to get name from " . Data::Dumper::Dumper($reference);
 
     my $type = get_reference_attr('type', $reference);
 
