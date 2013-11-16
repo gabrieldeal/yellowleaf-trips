@@ -510,7 +510,7 @@ sub _get_point_data {
         my $lon = $point->get_longitude();
         my $name = $point->get_name();
         my $link = $point->get_short_link_html();
-        $link =~ s/\"/\\"/g;
+        $link =~ s/\"/\\\"/g;
         $link =~ s/\'/\\'/g;
         $points .= qq({ lat: $lat, lon: $lon, name: "$link" },);
     }
