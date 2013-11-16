@@ -2,6 +2,10 @@ package Scramble::Report;
 
 use strict;
 
+use XML::RSS ();
+use MIME::Types ();
+use DateTime ();
+use DateTime::Format::Mail ();
 use JSON ();
 use Scramble::ObjectAdaptor ();
 use Scramble::Waypoints ();
@@ -856,84 +860,61 @@ sub get_all {
 }
 
 sub make_rss {
-    my $items;
+    # http://feedvalidator.org/
+    # http://www.w3schools.com/rss/default.asp
+
+    my $rss = XML::RSS->new(version => '1.0');
+    my $now = DateTime::Format::Mail->format_datetime(DateTime->now());
+    $rss->channel(title => 'yellowleaf.org',
+		  link => 'http://yellowleaf.org/scramble/g/m/home.html',
+		  language => 'en',
+		  description => 'Mountains and pictures. Pictures and mountains.',
+		  copyright => 'Copyright 2013, Gabriel Deal',
+		  pubDate => $now,
+		  lastBuildDate => $now,
+	      );
+    $rss->image(title => 'yellowleaf.org',
+		url => 'http://yellowleaf.org/scramble/pics/favicon.jpg',
+		link => 'http://yellowleaf.org/scramble/g/m/home.html',
+		width => 16,
+		height => 16,
+		description => "It's a snowy mountain and the sun!"
+	    );
+
     my $count = 0;
-
-    my $xml = new XML::Simple();
-
+    my $mime = MIME::Types->new(only_complete => 1);
     foreach my $report (get_all()) {
+        last unless ++$count <= 15; 
         next unless $report->should_show();
         my $best_image = $report->get_best_picture_object();
-        my $route = $report->get_route();
-        next unless $best_image || $route;
+	next unless $best_image;
 
-        last unless ++$count <= 15; 
+	# The "../.." in the URL was stopping Feedly from displaying
+	# an image in the feed preview.
+	my $image_url = sprintf(qq(http://yellowleaf.org/scramble/%s), $best_image->get_url());
+	$image_url =~ s{\.\./\.\./}{};
 
-        my $report_url = sprintf("http://yellowleaf.org/scramble/g/r/%s",
-                                 $report->get_report_page_url());
+        my $report_url = sprintf("http://yellowleaf.org/scramble/%s", $report->get_report_page_url());
+	$report_url =~ s{\.\./\.\./}{};
 
-        my $image_html;
-        if ($best_image) {
-            $image_html = sprintf qq(<a href="%s"><img src="http://yellowleaf.org/scramble/g/r/%s"/></a>),
-                $report_url,
-                $best_image->get_url();
-        }
+	my $image_html = sprintf(qq(<a href="%s"><img src="%s" alt="%s"></a>),
+				 $report_url,
+				 $image_url,
+				 $best_image->get_title());
+	my $description = qq(<![CDATA[$image_html]]>);
 
-        my ($yyyy, $mm, $dd) = $report->get_parsed_start_date();
-        my $date = "$yyyy-$mm-${dd}T00:00:00Z";
-
-        if (defined $route) {
-            $route =~ s/^(.{250}).*/${1}.../s;
-        } else {
-            $route = '';
-        }
-
-        my $content = $image_html ? "<![CDATA[$image_html]]>" : $route;
-
-        my $title = $xml->escape_value($report->get_name());
-        my $filename = $report->get_filename();
-        $items .= <<EOT;
-    <item>
-      <title>$title</title>
-      <link>$report_url</link>
-      <guid isPermaLink="false">$filename</guid>
-      <description><![CDATA[]]></description>
-      <content:encoded>$content</content:encoded>
-      <dc:date>$date</dc:date>
-    </item>
-EOT
+	$rss->add_item(title => $report->get_name(),
+		       link => $report_url,
+		       description => $description,
+		       content => {
+			   encoded => $description,
+		       },
+		       enclosure => { url => $image_url,
+				      type => $mime->mimeTypeOf($best_image->get_filename()),
+				  });
     }
 
-
-    # http://feedvalidator.org/
-
-
-    my ($sec,$min,$hour,$mday,$mon,$year) = gmtime(time);
-    $year += 1900;
-    $mon += 1;
-    my $date = "$year-$mon-${mday}T$hour:$min:${sec}Z";
-    my $xml = <<EOT;
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
- <rss version="2.0" 
-	xmlns:content="http://purl.org/rss/1.0/modules/content/"
-	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
-	xmlns:dc="http://purl.org/dc/elements/1.1/"
-        xmlns:atom="http://www.w3.org/2005/Atom"
->
-  <channel>
-    <title>yellowleaf.org</title>
-    <atom:link href="http://yellowleaf.org/scramble/g/r/rss.xml" rel="self" type="application/rss+xml"/>
-    <link>http://yellowleaf.org/scramble/g/m/home.html</link>
-    <description>Gabriel's scrambling, climbing, skiing, and etceteras</description>
-    <language>en-us</language>
-
-    $items
-
-  </channel>
-</rss>
-EOT
-
-    Scramble::Misc::create("r/rss.xml", $xml);
+    Scramble::Misc::create("r/rss.xml", $rss->as_string());
 }
 
 sub make_reports_index_page {
