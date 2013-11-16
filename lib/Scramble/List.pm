@@ -368,15 +368,6 @@ sub make_lists {
         Scramble::Logger::verbose("Making $list_xml->{name} list\n");
 	make_list_page($list_xml);
         make_google_kml($list_xml);
-
-	if (! exists $list_xml->{'sortby'}) {
-	    next;
-	}
-	my ($first_is_already_done, @sortby) = get_sortby($list_xml);
-	foreach my $sortby (@sortby) {
-	    my $list = new_sorted_list($list_xml, $sortby);
-	    make_list_page($list);
-	}
     }
 
     $index_html = <<EOT;
@@ -397,12 +388,6 @@ sub make_lists_html {
     foreach my $list_xml (get_all_lists()) {
 	my (@hits) = find_location_in_list($list_xml, $location_xml);
 	next unless @hits;
-# Some lists have the same location twice:
-# 	die(sprintf("Too many hits for '%s' in '%s': %s", 
-# 		    $location_xml->get_name(),
-# 		    $list_xml->{'name'},
-# 		    Data::Dumper::Dumper(\@hits)))
-# 	    unless @hits == 1;
 	$html .= sprintf(qq(<li>#%s in the <a %s href="%s">%s</a> list</li>),
 			 $hits[0]->{'order'},
 			 Scramble::Misc::get_target($list_xml->{'URL'}),
