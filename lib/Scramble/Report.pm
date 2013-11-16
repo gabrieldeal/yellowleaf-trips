@@ -809,10 +809,12 @@ sub make_rss {
 
 	# The "../.." in the URL was stopping Feedly from displaying
 	# an image in the feed preview.
-	my $image_url = sprintf(qq(http://yellowleaf.org/scramble/%s), $best_image->get_url());
+	my $image_url = sprintf(qq(http://yellowleaf.org/scramble/%s),
+				$best_image->get_enlarged_img_url());
 	$image_url =~ s{\.\./\.\./}{};
 
-        my $report_url = sprintf("http://yellowleaf.org/scramble/%s", $report->get_report_page_url());
+        my $report_url = sprintf("http://yellowleaf.org/scramble/%s",
+				 $report->get_report_page_url());
 	$report_url =~ s{\.\./\.\./}{};
 
 	my $image_html = sprintf(qq(<a href="%s"><img src="%s" alt="%s"></a>),
