@@ -21,10 +21,11 @@ then
     find $dir -type d -exec chmod +xr {} \;
 
     find data -type d -exec chmod +xr {} \;
+
+    echo "Ready to rsync website ('n' to skip)?"
+    read pauseme
 fi
 
-echo "Ready to rsync website ('n' to skip)?"
-read pauseme
 if [ -z "$pauseme" ]
 then
     rsync --delete --size-only  -e ssh -avz html/ gabrielx@addr43.addr.com:~/public_html/scramble
