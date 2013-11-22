@@ -19,26 +19,19 @@ exit(main());
 sub main {
   get_options();
 
-#  Scramble::Logger::set_verbose(1);
-#  Scramble::Area::open();
-#  Scramble::Location::open_all();
-#  my @locations = Scramble::Location::get_all()->find(name => $g_options{name});
-
-  my $peaks = $Peaks::ListsOfJohn::Peaks{$g_options{name}};
-  if (! defined $peaks) {
+  my @peaks;
+  foreach my $name (keys %Peaks::ListsOfJohn::Peaks) {
+      next unless $name =~ $g_options{name};
+      push @peaks, values $Peaks::ListsOfJohn::Peaks{$name};
+  }
+  if (! @peaks) {
     printf("Lists of John has no such peak '%s'", $g_options{name});
     return 1;
   }
 
-  my $filename = $g_options{name};
-  $filename =~ s/[^\w]+/-/g;
-  $filename = $g_options{'output-directory'} . "/$filename.xml";
-  die "$filename already exists" if -e $filename;
-
-  my @peaks = values %$peaks;
   foreach my $i (0 .. $#peaks) {
     my $peak = $peaks[$i];
-    print "$i) $peak->{quad}\n";
+    print qq[$i) $peak->{name} ($peak->{quad})\n];
   }
 
   my $choice;
@@ -47,7 +40,14 @@ sub main {
     chomp($choice = <STDIN>);
   } while ($choice !~ /^\d+$/ || $choice < 0 || $choice > $#peaks);
 
-  my $xml = make_location_xml($peaks[$choice]);
+  my $peak = $peaks[$choice];
+
+  my $filename = $peak->{name};
+  $filename =~ s/[^\w]+/-/g;
+  $filename = $g_options{'output-directory'} . "/$filename.xml";
+  die "$filename already exists" if -e $filename;
+
+  my $xml = make_location_xml($peak);
 
   my $fh = IO::File->new($filename, "w");
   $fh->print($xml);
