@@ -268,8 +268,8 @@ sub get_link_html {
 
     my $html = <<EOT;
 <div class="report-thumbnail">
-    <div class="report-thumbnail-title">$name$info</div>
     <div class="report-thumbnail-image">$image_html</div>
+    <div class="report-thumbnail-title">$name$info</div>
     <div class="report-thumbnail-date">$date</div>
 </div>
 EOT
