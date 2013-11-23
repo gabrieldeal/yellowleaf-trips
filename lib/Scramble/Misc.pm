@@ -458,6 +458,12 @@ sub get_header {
   my (%options) = @_;
 
   my $body = qq(<body bgcolor="white">);
+
+  my $js_includes = '';
+  foreach my $js (@{ $options{'js-includes'} || [] }) {
+      $js_includes .= qq(<script type="text/javascript" src="../js/$js"></script>\n);
+  }  
+
   my $maps_script = '';
   if ($options{'enable-embedded-google-map'}) {
     $body = qq(<body bgcolor="white" onload="ShowMeTheMap();" onunload="GUnload()">);
@@ -490,6 +496,7 @@ EOM
     <link rel="SHORTCUT ICON" href="../../pics/favicon.ico">
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" type="text/css" href="../css/site.css" />
+    $js_includes
     $maps_script
     $google_analytics_script
   </head>
