@@ -37,16 +37,6 @@ sub new {
 							 $self->_get_optional('waypoints'));
     }
 
-    my @locations_attempted;
-    foreach my $location_element (@{ $self->_get_optional('locations', 'attempted') || [] }) {
-        eval {
-            push @locations_attempted, Scramble::Location::find_location('name' => $location_element->{'name'},
-                                                                          'quad' => $location_element->{'quad'},
-                                                                          'include-unvisited' => 1,
-                                                                          );
-        };
-    }
-    $self->{'locations-attempted'} = \@locations_attempted;
     my @locations_visited;
     foreach my $location_element ($self->get_locations()) {
 	push @locations_visited, Scramble::Location::find_location('name' => $location_element->{'name'},
@@ -64,6 +54,11 @@ sub new {
                                                                            );
         };
     }
+
+    foreach my $l ($self->get_waypoints()->get_locations_visited()) {
+	printf("MISSING %s from %s\n", $l->get_name, $self->get_filename()) unless grep { $l->equals($_) } @locations_visited;
+    }
+
     push @locations_visited, $self->get_waypoints()->get_locations_visited();
     foreach my $location (@locations_not_visited) {
         my @tmp = grep { ! $location->equals($_) } @locations_visited;
@@ -121,7 +116,6 @@ sub get_trip_organizer { $_[0]->_get_optional('trip-organizer') || 'private' }
 sub get_areas_collection { $_[0]->{'areas-object'} }
 sub get_waypoints { $_[0]->{'waypoints'} }
 sub get_locations_visited { @{ $_[0]->{'locations-visited'} } }
-sub get_locations_attempted { @{ $_[0]->{'locations-attempted'} } }
 sub get_type { $_[0]->_get_optional('type') || 'scramble' }
 sub get_end_date { $_[0]->_get_optional('end-date') }
 sub get_start_date { $_[0]->_get_required('start-date') }
@@ -245,39 +239,34 @@ sub get_pager_url {
 sub get_link_html {
     my $self = shift;
 
-    my @info;
-    push @info, $self->get_state() unless $self->get_state() eq 'done';
-    my $info = @info ? " (" . join(", ", @info) . ")" : '';
-
     my $date = $self->get_start_date();
     if (defined $self->get_end_date()) {
 	$date .= " to " . $self->get_end_date();
     }
 
     my $name = $self->link_if_should_show($self->get_name());
+    if ($self->get_state() ne 'done') {
+	$name .= sprintf(" (%s)", $self->get_state());
+    }
 
     my $image_html = '';
     if ($self->should_show()) {
 	my $image_obj = $self->get_best_picture_object();
 	if ($image_obj) {
-	    $image_html = sprintf(qq(<img width="125" onload="resizeThumbnail(this, 125)" src="%s">),
+	    my $size = 125;
+	    $image_html = sprintf(qq(<img width="$size" onload="resizeThumbnail(this, $size)" src="%s">),
 				  $image_obj->get_url());
             $image_html = $self->link_if_should_show($image_html);
-#            $image_html = qq(<div class="report-thumbnail-image">$image_html</div>);
 	}
     }
 
     my $html = <<EOT;
 <div class="report-thumbnail">
     <div class="report-thumbnail-image">$image_html</div>
-    <div class="report-thumbnail-title">$name$info</div>
+    <div class="report-thumbnail-title">$name</div>
     <div class="report-thumbnail-date">$date</div>
 </div>
 EOT
-
-#	$link = sprintf(qq(<a href="%s">%s</a>),
-#			$self->get_report_page_url(),
-#			Scramble::Misc::remove_quad_specifier($self->get_name()));
 
     return $html;
 }
@@ -912,7 +901,7 @@ sub get_reports_for_location {
     my @retval;
     foreach my $report (get_all()) {
 	next if $report->is_planned();
-	push @retval, $report if grep { $location->equals($_) } ($report->get_locations_visited(), $report->get_locations_attempted());
+	push @retval, $report if grep { $location->equals($_) } $report->get_locations_visited();
     }
     return @retval;
 }
