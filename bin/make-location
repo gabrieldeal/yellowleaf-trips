@@ -21,7 +21,7 @@ sub main {
 
   my @peaks;
   foreach my $name (keys %Peaks::ListsOfJohn::Peaks) {
-      next unless $name =~ $g_options{name};
+      next unless $name =~ /$g_options{name}/i;
       push @peaks, values $Peaks::ListsOfJohn::Peaks{$name};
   }
   if (! @peaks) {
