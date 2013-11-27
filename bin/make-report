@@ -310,7 +310,13 @@ sub resize {
     }
 
     printf("Resizing $file to %.2f%%...\n", $resize_pct);
-    my_system("mogrify", "-interlace", "Line", "-resize", "$resize_pct%", "$dir/$file") == 0
+    my_system("mogrify",
+	      "-strip",
+	      "-interlace", "Line",
+	      "-resize", "$resize_pct%",
+	      "-unsharp", "2x0.5+0.7+0",
+	      "-quality", "80",
+	      "$dir/$file") == 0
       or die "Failed to convert $dir/$file";
 }
 
