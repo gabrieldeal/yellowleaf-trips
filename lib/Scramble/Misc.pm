@@ -806,16 +806,20 @@ sub commafy {
 }
 
 sub make_cell_html {
-  my ($contents_html, $caption) = @_;
+  my (%args) = @_;
 
-  my $caption_html = '';
-  if ($caption) {
-    $caption_html = qq(<caption align="bottom" style="text-align: left">$caption</caption>);
-  }
+  my $contents_html = $args{content} || die "Missing 'content' argument";
+  my $description = $args{description} || '';
+  my $title = $args{title} || '';
+  my $link = $args{link} || '';
 
   return <<EOT;
 <table border="0" style="display: inline-block; vertical-align: text-top;">
-    $caption_html
+    <caption align="bottom" style="text-align: left">
+        <div class="cell-title">$title</div>
+        <div class="cell-description">$description</div>
+        <div class="report-link">$link</div>
+    </caption>
     <tr>
         <td>$contents_html</td>
     </tr>
@@ -840,7 +844,7 @@ sub render_images_into_flow {
   my (%args) = @_;
 
   my @cells;
-  push @cells, map { make_cell_html($_) } @{ $args{'htmls'} || [] };
+  push @cells, map { make_cell_html(content => $_) } @{ $args{'htmls'} || [] };
   push @cells, map { $_->get_html('no-report-link' => $args{'no-report-link'},
 				  'pager-links' => $args{'pager-links'},
 				  'direct-image-links' => $args{'direct-image-links'}) } @{ $args{'images'} };

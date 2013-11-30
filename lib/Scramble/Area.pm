@@ -313,7 +313,11 @@ $in_areas_html
 EOT
 
     my $map_html = Scramble::Misc::get_multi_point_embedded_google_map_html([$self->get_locations()]);
-    my $cells_html = Scramble::Misc::render_images_into_flow(htmls => [ $text_html, $map_html ],
+
+    my @htmls = ($text_html);
+    push @htmls, $map_html if $map_html;
+
+    my $cells_html = Scramble::Misc::render_images_into_flow(htmls => \@htmls,
 							     images => [ Scramble::Image::get_best_images($self->get_images) ]);
 
     my $title = $self->get_name();

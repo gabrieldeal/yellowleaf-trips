@@ -629,7 +629,11 @@ $lists_html
 $locations_nearby_html
 EOT
 
-    my $cells_html = Scramble::Misc::render_images_into_flow('htmls' => [ $text_html, $self->get_embedded_google_map_html() ],
+    my @htmls = ($text_html);
+    my $map_html =  $self->get_embedded_google_map_html();
+    push @htmls, $map_html if $map_html;
+
+    my $cells_html = Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
 							     'images' => [ $self->get_picture_objects() ]);
 
     my $html = <<EOT;

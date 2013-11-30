@@ -400,6 +400,7 @@ sub make_pager_html {
     foreach my $image ($self->get_map_objects(), $self->get_picture_objects()) {
 	my $url = $image->get_enlarged_img_url() || $image->get_url();
         push @images, { title => $image->get_title(),
+			description => $image->get_description(),
 			id => $image->get_id(),
 			src => $url,
 	              };
@@ -457,7 +458,7 @@ body {
     margin-right: auto;
     display:block;
 }
-.title {
+.image-title {
     margin-top: 15px;
 }
 </style>
@@ -477,6 +478,7 @@ function loadPage() {
     imgContainer.appendChild(newImg);
 
     document.getElementById('title').innerHTML = images[currentImageIndex]['title'];
+    document.getElementById('description').innerHTML = images[currentImageIndex]['description'];
     document.getElementById("left-pager-link").style.visibility = (currentImageIndex === 0 ? 'hidden' : 'visible');
     document.getElementById("right-pager-link").style.visibility = (currentImageIndex === images.length - 1 ? 'hidden' : 'visible');
 }
@@ -514,7 +516,8 @@ currentImageIndex</script>
 </div>
 <div class="right-pager">
 	<a id="right-pager-link" href="#" onclick="nextPage()"><img class="right-pager-image" src="../../pics/pager-next.png" /></a>
-	<div class="title" id="title"></div>
+	<div class="image-title" id="title"></div>
+	<div class="image-description" id="description"></div>
 </div>
 
 <script type="text/javascript">
@@ -663,7 +666,9 @@ EOT
     my @htmls;
     if ($self->get_display_mode() ne 'bare') {
 	push @htmls, $right_html;
-	push @htmls, $self->get_embedded_google_map_html();
+
+	my $map_html = $self->get_embedded_google_map_html();
+	push @htmls, $map_html if $map_html;
     }
 
     my $cells_html;

@@ -76,15 +76,12 @@ sub new_from_attrs {
         }
     }
 
-    if ($self->{'title'}) {
-	$self->{'title'} = ucfirst($self->{'title'});
-    } elsif ($self->get_of()) {
+    $self->{'title'} = $self->{'title'} ? ucfirst($self->{'title'}) : '';
+    if ($self->get_of() && not ($self->{'title'} || $self->get_description())) {
 	$self->{'title'} = ucfirst($self->get_of());
 	if ($self->{'from'}) {
 	    $self->{'title'} .= " from " . $self->{'from'};
 	}
-    } else {
-        $self->{'title'} = '';
     }
 
     if (defined $self->{'date'}) {
@@ -130,8 +127,12 @@ sub get_source_directory { $_[0]->{'source-directory'} }
 sub get_filename { $_[0]->{'filename'} }
 sub get_enlarged_filename { $_[0]->{'enlarged-filename'} }
 sub get_subdirectory { $_[0]->{'subdirectory'} }
+
+# This should be "report id".
 sub get_date { $_[0]->{'date'} } # optional for maps that are not for a particular trip
+
 sub get_title { $_[0]->{'title'} }
+sub get_description { $_[0]->{'description'} }
 sub get_of { $_[0]->{'of'} || '' }
 sub get_from { $_[0]->{'from'} || '' }
 sub get_url { sprintf("../../$g_pics_dir/%s/%s", $_[0]->get_subdirectory(), $_[0]->get_filename()) }
@@ -285,14 +286,25 @@ sub get_html {
 	return $img_html;
     }
 
-    my $caption = $self->get_title_html();
+    my $title = $self->get_title_html();
+    my $description = $self->get_description();
+    my $report_link = '';
     if ($self->get_report_url() && ! $options{'no-report-link'}) {
-	$caption .= sprintf(qq( (From <a href="%s">this trip</a>.)),
-			    $self->get_report_url());
-
+	$report_link = $self->get_report_link_html();
     }
 
-    return Scramble::Misc::make_cell_html($img_html, $caption);
+    return Scramble::Misc::make_cell_html(content => $img_html,
+					  title => $title, 
+					  description => $description,
+					  link => $report_link);
+}
+
+sub get_report_link_html {
+    my $self = shift;
+
+    return sprintf(qq(<a href="%s">%s</a>),
+		   $self->get_report_url(),
+		   $self->get_capture_date() || $self->get_date());
 }
 
 sub cmp {
@@ -417,19 +429,21 @@ sub make_enl_page {
 
     my $image_html = $self->get_img_tag('enlarged' => 1);
 
-    my $title_html = $self->get_title() || "Untitled";
+    my $title = $self->get_title() || $self->get_description() || "Untitled";
+
+    my $title_html = $title;
+    my $link_html = '';
     if ($self->get_report_url()) {
-        $title_html .= sprintf(qq( (from <a href="%s">this trip</a>)),
-                               $self->get_report_url());
+        $link_html = $self->get_report_link_html();
     }
 
     my $html = <<EOT;
-<h1>$title_html</h1>
+<h1>$title_html <div class="report-link">$link_html</div></h1>
 $image_html
 EOT
 
     my $page_html
-        = Scramble::Misc::make_1_column_page('title' => $self->get_title(),
+        = Scramble::Misc::make_1_column_page('title' => $title,
                                              'date' => $self->get_date(),
                                              'html' => $html,
                                              'no-add-picture' => 1,
