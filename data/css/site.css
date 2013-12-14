@@ -1,0 +1,39 @@
+.image-description { 
+    display: inline-block;
+}
+.cell-description  { 
+    display: inline;
+}
+.report-link { 
+    font-size: small;
+    display: inline;
+}
+
+.report-thumbnails {
+    margin-top: 2em;
+    overflow: hidden;
+}
+.report-thumbnail {
+    display: block;
+    clear: left;
+    margin-bottom: 1em;
+    overflow: hidden;
+}
+.report-thumbnail-title {
+    display: block;
+    font-size: 150%;
+    margin-bottom: 2px;
+}
+.report-thumbnail-image {
+    display: inline-block;
+    margin-right: 1px;
+    float: left;
+}
+.report-thumbnail-date {
+    display: block;
+    font-size: 90%;
+}
+
+a img {
+    border: 0px;
+}
