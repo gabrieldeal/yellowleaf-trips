@@ -846,8 +846,8 @@ sub render_images_into_flow {
   my @cells;
   push @cells, map { make_cell_html(content => $_) } @{ $args{'htmls'} || [] };
   push @cells, map { $_->get_html('no-report-link' => $args{'no-report-link'},
-				  'pager-links' => $args{'pager-links'},
-				  'direct-image-links' => $args{'direct-image-links'}) } @{ $args{'images'} };
+				  'pager-links' => $args{'pager-links'})
+		 } @{ $args{'images'} };
 
   return Scramble::Misc::render_cells_into_flow(\@cells, 'no-float-first' => $args{'no-float-first'});
 }

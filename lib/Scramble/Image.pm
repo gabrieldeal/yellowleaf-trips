@@ -69,7 +69,10 @@ sub new_from_attrs {
         $glob =~ s/ /\\ /g;
         my @match = glob($glob);
         die "Too many matches for '$glob': @match" if @match > 1;
-        die "No match ($glob): " . Data::Dumper::Dumper($self) if @match == 0 && $glob =~ /2010-04-30-/;
+        die "No match ($glob): " . Data::Dumper::Dumper($self) 
+	    if (@match == 0 
+		&& $glob !~ /200\d-\d\d-\d\d-/
+		&& $self->{'type'} eq 'picture');
         if (@match) {
             $self->{'enlarged-filename'} = $match[0];
             $self->{'enlarged-filename'} =~ s(.*/)();
@@ -272,9 +275,7 @@ sub get_html {
     my $img_html = $self->get_img_tag(%options);
     if ($self->get_enlarged_html_url()) {
 	my $url;
-        if ($options{'direct-image-links'}) {
-	    $url = $self->get_enlarged_img_url();
-        } elsif ($options{'pager-links'} && $self->get_pager_url()) {
+	if ($options{'pager-links'} && $self->get_pager_url()) {
 	    $url = $self->get_pager_url();
         } else {
             $url = $self->get_enlarged_html_url();
@@ -287,7 +288,7 @@ sub get_html {
     }
 
     my $title = $self->get_title_html();
-    my $description = $self->get_description();
+    my $description = Scramble::Misc::htmlify($self->get_description());
     my $report_link = '';
     if ($self->get_report_url() && ! $options{'no-report-link'}) {
 	$report_link = $self->get_report_link_html();
