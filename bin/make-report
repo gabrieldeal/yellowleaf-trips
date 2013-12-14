@@ -110,32 +110,38 @@ sub process_images {
 EOT
 
     -d $dir or die "No such directory '$dir'";
-    my @filenames = glob "$dir/*{JPG,jpg,jpeg,JPEG,png,gif,PNG,GIF,gpx,GPX}";
-    @filenames = grep { $_ !~ /-orig\./ } @filenames;
+    my @filenames = glob "$dir/*-orig\.{JPG,jpg,jpeg,JPEG,png,gif,PNG,GIF,gpx,GPX}";
     @filenames = sort @filenames;
     die "No images found in $dir" unless @filenames;
 
     my @files;
-    foreach my $filename (@filenames) {
-	$filename =~ s,.*/,,;
-	next if $filename =~ /-(enl|ENL)\./;
-	next if $filename =~ /images.xml$/;
-	next if $filename =~ /~$/;
+    foreach my $orig_filename (@filenames) {
+	$orig_filename =~ s,.*/,,;
+	next if $orig_filename =~ /images.xml$/;
+	next if $orig_filename =~ /~$/;
 
 	my $type = "picture";
-	$type = "map" if $filename =~ /\broute\b/ or $filename =~ /\bmap\b/;
-	$type = "gps" if $filename =~ /\.gpx$/i;
+	$type = "map" if $orig_filename =~ /\broute\b/ or $orig_filename =~ /\bmap\b/;
+	$type = "gps" if $orig_filename =~ /\.gpx$/i;
 
-	my $metadata = get_image_metadata("$dir/$filename");
+	my $metadata = get_image_metadata("$dir/$orig_filename");
 
-	my $rating = get_rating($metadata->{rating}, $type, $filename);
+	my $rating = get_rating($metadata->{rating}, $type, $orig_filename);
 
 	my $caption = $metadata->{'caption'} || '';
 
 	my $timestamp = $metadata->{'timestamp'};
 
+	my $thumb_filename = $orig_filename;
+	$thumb_filename =~ s/-orig\././ or die "$orig_filename";
+
+	my $enl_filename = $orig_filename;
+	$enl_filename =~ s/-orig\./-enl./ or die "$orig_filename";
+
         push @files, {
-	    filename => $filename,
+	    filename => $orig_filename,
+	    thumb_filename => $thumb_filename,
+	    enl_filename => $enl_filename,
 	    type => $type,
 	    caption => $caption,
 	    rating => $rating,
@@ -151,13 +157,14 @@ EOT
         }
 
 	if ($file->{type} ne 'gps') {
-	  make_resized_images($dir, $file->{filename});
+	  make_resized_images($dir, $file);
 	}
 
 	next if $file->{filename} =~ /~$/;
 	$xml .= <<EOT;
-<image filename="$file->{filename}"
-        title="$file->{caption}"
+<image filename="$file->{thumb_filename}"
+       enlarged-filename="$file->{enl_filename}"
+        description="$file->{caption}"
 	rating3="$file->{rating}"
 	type="$file->{type}"
 	photographer="Gabriel Deal"
@@ -193,21 +200,19 @@ sub get_rating {
 sub make_resized_images {
   my ($dir, $file) = @_;
 
-  my ($name, $ext) = ($file =~ /(.*)\.(jpg|gif|jpeg|png)/i);
-  die "Can't parse filename '$file'" unless defined $name;
+  my $orig_file = $file->{filename};
+  my $thumb_file = $file->{thumb_filename};
+  my $enl_file = $file->{enl_filename};
 
-  my $enl_file = "$name-enl.$ext";
-  my $orig_file = "$name-orig.$ext";
-
-  if (! should_copy($dir, $file, $enl_file)) {
-      warn "Not copying to $enl_file, it already exists and $file has not changes since $enl_file was created\n";
+  if (! should_copy($dir, $orig_file, $enl_file)) {
+      warn "Not copying to $enl_file, it already exists and $orig_file has not changes since $enl_file was created\n";
       return undef;
   }
 
-  copy($dir, $file, $enl_file);
-  copy($dir, $file, $orig_file);
+  copy($dir, $orig_file, $enl_file);
+  copy($dir, $orig_file, $thumb_file);
 
-  resize($dir, $file, $SMALL_IMAGE_SIZE);
+  resize($dir, $thumb_file, $SMALL_IMAGE_SIZE);
   resize($dir, $enl_file, $LARGE_IMAGE_SIZE);
 }
 
