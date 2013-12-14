@@ -90,7 +90,7 @@ sub new {
                 # for locations like Green Mountain that are on
                 # multiple quads.
                 if (! (($image->get_of() && $image->get_of() =~ $regex)
-                       || $image->get_title() =~ $regex))
+                       || $image->get_description() =~ $regex))
                 {
                     next;
                 }

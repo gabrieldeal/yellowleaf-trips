@@ -79,11 +79,11 @@ sub new_from_attrs {
         }
     }
 
-    $self->{'title'} = $self->{'title'} ? ucfirst($self->{'title'}) : '';
-    if ($self->get_of() && not ($self->{'title'} || $self->get_description())) {
-	$self->{'title'} = ucfirst($self->get_of());
+    $self->{'description'} = $self->{'description'} ? ucfirst($self->{'description'}) : '';
+    if ($self->get_of() && not $self->{'description'}) {
+	$self->{'description'} = ucfirst($self->get_of());
 	if ($self->{'from'}) {
-	    $self->{'title'} .= " from " . $self->{'from'};
+	    $self->{'description'} .= " from " . $self->{'from'};
 	}
     }
 
@@ -103,11 +103,11 @@ sub new_from_path {
     $self->{'source-directory'} = File::Basename::dirname($path);
     $self->{'filename'} = File::Basename::basename($path);
 
-    $self->{'title'} = $self->{'filename'};
-    $self->{'noroute'} = ($self->{'title'} =~ s/-noroute-map/-map/);
-    $self->{'title'} =~ s/\..*$//; # filename extension
-    $self->{'title'} =~ s/^\d+n?-*//;
-    $self->{'title'} = Scramble::Misc::make_path_into_location($self->{'title'});
+    $self->{'description'} = $self->{'filename'};
+    $self->{'noroute'} = ($self->{'description'} =~ s/-noroute-map/-map/);
+    $self->{'description'} =~ s/\..*$//; # filename extension
+    $self->{'description'} =~ s/^\d+n?-*//;
+    $self->{'description'} = Scramble::Misc::make_path_into_location($self->{'description'});
 
     my ($yyyy, $mm, $dd) = ($path =~ m,/(\d\d\d\d)[/-](\d\d)[/-](\d\d)[/-],);
     $self->{'date'} = "$yyyy/$mm/$dd" if defined $dd;
@@ -134,7 +134,6 @@ sub get_subdirectory { $_[0]->{'subdirectory'} }
 # This should be "report id".
 sub get_date { $_[0]->{'date'} } # optional for maps that are not for a particular trip
 
-sub get_title { $_[0]->{'title'} }
 sub get_description { $_[0]->{'description'} }
 sub get_of { $_[0]->{'of'} || '' }
 sub get_from { $_[0]->{'from'} || '' }
@@ -232,22 +231,22 @@ sub get_enlarged_img_url {
                    $self->get_enlarged_filename());
 }
 
-sub get_title_html { 
+sub get_description_html { 
     my $self = shift;
 
     # have to calculate lazily b/c of circular dependencies with Scramble::Location
 
-    if (! $self->{'title-html'}) {
-	$self->{'title-html'} = Scramble::Misc::htmlify($self->get_title());
+    if (! $self->{'description-html'}) {
+	$self->{'description-html'} = Scramble::Misc::htmlify($self->get_description());
     }
 
-    return $self->{'title-html'};
+    return $self->{'description-html'};
 }
 
 sub get_map_reference {
     my $self = shift;
 
-    return { 'name' => $self->get_title(),
+    return { 'name' => $self->get_description(),
 	     'URL' => $self->get_url(),
 	     'id' => 'routeMap', # used by Scramble::Reference
 	     'type' => ($self->{'noroute'} 
@@ -265,7 +264,7 @@ sub get_img_tag {
     return sprintf(qq(<img %s src="%s" alt="Image of %s" border="$border" hspace="1" vspace="1">),
                    (exists $options{'image-attributes'} ? $options{'image-attributes'} : ''),
                    $enlarged ? $self->get_enlarged_img_url() : $self->get_url(),
-                   $self->get_title());
+                   $self->get_description());
 }
 
 sub get_html {
@@ -283,11 +282,6 @@ sub get_html {
 	$img_html = sprintf(qq(<a href="%s">$img_html</a>), $url);
     }
 
-    if ($options{'no-title'}) {
-	return $img_html;
-    }
-
-    my $title = $self->get_title_html();
     my $description = Scramble::Misc::htmlify($self->get_description());
     my $report_link = '';
     if ($self->get_report_url() && ! $options{'no-report-link'}) {
@@ -295,7 +289,6 @@ sub get_html {
     }
 
     return Scramble::Misc::make_cell_html(content => $img_html,
-					  title => $title, 
 					  description => $description,
 					  link => $report_link);
 }
@@ -430,21 +423,21 @@ sub make_enl_page {
 
     my $image_html = $self->get_img_tag('enlarged' => 1);
 
-    my $title = $self->get_title() || $self->get_description() || "Untitled";
+    my $description = $self->get_description() || "Untitled";
 
-    my $title_html = $title;
+    my $description_html = $description;
     my $link_html = '';
     if ($self->get_report_url()) {
         $link_html = $self->get_report_link_html();
     }
 
     my $html = <<EOT;
-<h1>$title_html <div class="report-link">$link_html</div></h1>
+<h1>$description_html <div class="report-link">$link_html</div></h1>
 $image_html
 EOT
 
     my $page_html
-        = Scramble::Misc::make_1_column_page('title' => $title,
+        = Scramble::Misc::make_1_column_page('title' => $description,
                                              'date' => $self->get_date(),
                                              'html' => $html,
                                              'no-add-picture' => 1,

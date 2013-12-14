@@ -197,7 +197,7 @@ sub spell_check {
     my @misspelled;
     foreach my $report (Scramble::Report::get_all()) {
         next unless defined $report->get_route();
-        my @texts; # = map { ($_->get_start_location(), $_->get_end_location()) } $report->get_waypoints()->get_waypoints();
+        my @texts;
         push @texts, ($report->get_route(), $report->get_name());
         foreach my $text (@texts) {
             push @misspelled,_spell_check($text, $report->get_filename(), $report->get_start_date());
@@ -205,7 +205,7 @@ sub spell_check {
     }
 
     foreach my $image (Scramble::Image::get_all_images_collection()->get_all()) {
-        foreach my $text ($image->get_title(), $image->get_of(), $image->get_from()) {
+        foreach my $text ($image->get_description(), $image->get_of(), $image->get_from()) {
             push @misspelled,_spell_check($text, $image->get_source_directory(), $image->get_date());
         }
     }

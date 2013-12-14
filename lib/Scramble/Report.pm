@@ -399,7 +399,7 @@ sub make_pager_html {
     my @images;
     foreach my $image ($self->get_map_objects(), $self->get_picture_objects()) {
 	my $url = $image->get_enlarged_img_url() || $image->get_url();
-        push @images, { title => $image->get_title(),
+        push @images, { 
 			description => $image->get_description(),
 			id => $image->get_id(),
 			src => $url,
@@ -458,9 +458,6 @@ body {
     margin-right: auto;
     display:block;
 }
-.image-title {
-    margin-top: 15px;
-}
 </style>
 <script type="text/javascript">
     var currentImageIndex = 0;
@@ -477,7 +474,6 @@ function loadPage() {
     newImg.src = images[currentImageIndex]['src'];
     imgContainer.appendChild(newImg);
 
-    document.getElementById('title').innerHTML = images[currentImageIndex]['title'];
     document.getElementById('description').innerHTML = images[currentImageIndex]['description'];
     document.getElementById("left-pager-link").style.visibility = (currentImageIndex === 0 ? 'hidden' : 'visible');
     document.getElementById("right-pager-link").style.visibility = (currentImageIndex === images.length - 1 ? 'hidden' : 'visible');
@@ -516,7 +512,6 @@ currentImageIndex</script>
 </div>
 <div class="right-pager">
 	<a id="right-pager-link" href="#" onclick="nextPage()"><img class="right-pager-image" src="../../pics/pager-next.png" /></a>
-	<div class="image-title" id="title"></div>
 	<div class="image-description" id="description"></div>
 </div>
 
@@ -815,7 +810,7 @@ sub make_rss {
 	my $image_html = sprintf(qq(<a href="%s"><img src="%s" alt="%s"></a>),
 				 $report_url,
 				 $image_url,
-				 $best_image->get_title());
+				 $best_image->get_description());
 	my $description = qq(<![CDATA[$image_html]]>);
 
 	$rss->add_item(title => $report->get_name(),

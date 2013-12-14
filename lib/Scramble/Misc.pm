@@ -516,18 +516,10 @@ sub make_2_column_page {
 
     my $top_text = $options{'top-text'} || '';
 
-    my $h1_title = '';
-    if (! $options{'no-title'}) {
-        $h1_title = exists $options{'h1-title'} ? $options{'h1-title'} : $title;
-        if ($h1_title) {
-            $h1_title = "<h1>$h1_title</h1>";
-        }
+    my $h1_title = exists $options{'h1-title'} ? $options{'h1-title'} : $title;
+    if ($h1_title) {
+	$h1_title = "<h1>$h1_title</h1>";
     }
-
-#    if (! $options{'no-add-picture'}) {
-#	my $pic_html = Scramble::Image::get_random_picture_html('attributes' => 'align="right"');
-#	$middle_html = "$pic_html$middle_html";
-#    }
 
     my $footer_html = make_footer(%options);
 
@@ -810,13 +802,11 @@ sub make_cell_html {
 
   my $contents_html = $args{content} || die "Missing 'content' argument";
   my $description = $args{description} || '';
-  my $title = $args{title} || '';
   my $link = $args{link} || '';
 
   return <<EOT;
 <table border="0" style="display: inline-block; vertical-align: text-top;">
     <caption align="bottom" style="text-align: left">
-        <div class="cell-title">$title</div>
         <div class="cell-description">$description</div>
         <div class="report-link">$link</div>
     </caption>
