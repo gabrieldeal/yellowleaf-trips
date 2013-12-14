@@ -802,10 +802,10 @@ sub make_rss {
         my $best_image = $report->get_best_picture_object();
 	next unless $best_image;
 
-	# The "../.." in the URL was stopping Feedly from displaying
-	# an image in the feed preview.
 	my $image_url = sprintf(qq(http://yellowleaf.org/scramble/%s),
 				$best_image->get_enlarged_img_url());
+	# The "../.." in the URL was stopping Feedly from displaying
+	# an image in the feed preview.
 	$image_url =~ s{\.\./\.\./}{};
 
         my $report_url = sprintf("http://yellowleaf.org/scramble/%s",
