@@ -373,8 +373,6 @@ sub open {
         }
     }
 
-    @images = sort { $a->cmp($b) } @images;
-
     $g_collection = Scramble::Collection->new('objects' => \@images);
 }
 
