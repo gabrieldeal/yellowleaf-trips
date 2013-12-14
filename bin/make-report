@@ -110,36 +110,36 @@ sub process_images {
 EOT
 
     -d $dir or die "No such directory '$dir'";
-    my @filenames = glob "$dir/*-orig\.{JPG,jpg,jpeg,JPEG,png,gif,PNG,GIF,gpx,GPX}";
+    my @filenames = glob "$dir/*.gpx";
+    push @filenames, glob "$dir/*-enl\.{jpg,png}";
     @filenames = sort @filenames;
     die "No images found in $dir" unless @filenames;
 
     my @files;
-    foreach my $orig_filename (@filenames) {
-	$orig_filename =~ s,.*/,,;
-	next if $orig_filename =~ /images.xml$/;
-	next if $orig_filename =~ /~$/;
+    foreach my $enl_filename (@filenames) {
+	$enl_filename =~ s,.*/,,;
 
-	my $type = "picture";
-	$type = "map" if $orig_filename =~ /\broute\b/ or $orig_filename =~ /\bmap\b/;
-	$type = "gps" if $orig_filename =~ /\.gpx$/i;
+	my ($type, $caption, $rating, $timestamp);
+	if ($enl_filename =~ /\.gpx$/i) {
+	    $type = "gps";
+	} elsif ($enl_filename =~ /\broute\b/ or $enl_filename =~ /\bmap\b/) {
+	    $type = "map" ;
+	} else {
+	    my ($orig_filename) = ($enl_filename =~ /^\d+-(\d+)-enl.jpg$/) or die "Failed to parsse '$enl_filename'";
+	    my $metadata = get_image_metadata("$dir/$orig_filename.dng");
 
-	my $metadata = get_image_metadata("$dir/$orig_filename");
+	    $type = "picture";
+	    $rating = get_rating($metadata->{rating}, $enl_filename);
+	    $caption = $metadata->{'caption'} || '';
+	    $timestamp = $metadata->{'timestamp'};
+	}
 
-	my $rating = get_rating($metadata->{rating}, $type, $orig_filename);
-
-	my $caption = $metadata->{'caption'} || '';
-
-	my $timestamp = $metadata->{'timestamp'};
-
-	my $thumb_filename = $orig_filename;
-	$thumb_filename =~ s/-orig\././ or die "$orig_filename";
-
-	my $enl_filename = $orig_filename;
-	$enl_filename =~ s/-orig\./-enl./ or die "$orig_filename";
+	my $thumb_filename = $enl_filename;
+	if ($type ne 'gps') {
+	    $thumb_filename =~ s/-enl\././ or die "$enl_filename, $type";
+	}
 
         push @files, {
-	    filename => $orig_filename,
 	    thumb_filename => $thumb_filename,
 	    enl_filename => $enl_filename,
 	    type => $type,
@@ -150,17 +150,18 @@ EOT
     }
 
     my ($first_timestamp, $last_timestamp);
-    foreach my $file (sort { $a->{timestamp} cmp $b->{timestamp} } @files) {
+    foreach my $file (@files) {
         $last_timestamp = $file->{timestamp};
         if (! defined $first_timestamp) {
             $first_timestamp = $file->{timestamp};
         }
 
+	print "$file->{thumb_filename}:\n";
+
 	if ($file->{type} ne 'gps') {
 	  make_resized_images($dir, $file);
 	}
 
-	next if $file->{filename} =~ /~$/;
 	$xml .= <<EOT;
 <image filename="$file->{thumb_filename}"
        enlarged-filename="$file->{enl_filename}"
@@ -180,11 +181,9 @@ EOT
 }
 
 sub get_rating {
-  my ($rating, $type, $file) = @_;
+  my ($rating, $file) = @_;
 
-  return 3 if $type =~ /^(map|gps)$/;
-
-  if (!defined $rating) {
+  if (! defined $rating) {
       die "Missing a rating on '$file'";
   } elsif ($rating == 1) {
     return 3;
@@ -200,17 +199,14 @@ sub get_rating {
 sub make_resized_images {
   my ($dir, $file) = @_;
 
-  my $orig_file = $file->{filename};
   my $thumb_file = $file->{thumb_filename};
   my $enl_file = $file->{enl_filename};
 
-  if (! should_copy($dir, $orig_file, $enl_file)) {
-      warn "Not copying to $enl_file, it already exists and $orig_file has not changes since $enl_file was created\n";
-      return undef;
-  }
-
-  copy($dir, $orig_file, $enl_file);
-  copy($dir, $orig_file, $thumb_file);
+  # if (! should_copy($dir, $enl_file, $thumb_file)) {
+  #     return undef;
+  # }
+  #
+  # copy($dir, $enl_file, $thumb_file);
 
   resize($dir, $thumb_file, $SMALL_IMAGE_SIZE);
   resize($dir, $enl_file, $LARGE_IMAGE_SIZE);
@@ -230,56 +226,22 @@ sub write_file {
 sub get_image_metadata {
   my ($file) = @_;
 
-  return undef unless $file =~ /(\.jpg|\.jpeg|\.tiff)$/i;
-
-#   my $info = new Image::IPTCInfo($file);
-#   die "Error opening $file: " . Image::IPTCInfo::Error() unless defined($info);
-#   my $capture_date = $info->Attribute('date created');
-#   $capture_date =~ s{^(\d{4})(\d\d)(\d\d)}{$1/$2/$3};
-
-#   my $capture_time = $info->Attribute('time created');
-#   $capture_time =~ s{^(\d{2})(\d\d)(\d\d)}{$1:$2:$3};
-
-#
-#   print Data::Dumper::Dumper($info);
-# exit(0);
-
-
-# use Image::MetaData::JPEG;
-#   my $image = Image::MetaData::JPEG->new($file);
-#   die 'Error: ' . Image::MetaData::JPEG::Error() unless $image;
-# print $image->get_description();
-
-#   my @segments = $image->get_segments('APP');
-# printf "Got %d segments from $file\n", scalar(@segments);
-#   foreach my $segment (@segments) {
-#     my $records = $segment->{records};
-#     printf '%s has %d records\n', $segment->{name}, scalar @$records;
-#     foreach my $record (@$records) {
-#       printf("   Record name '%s' type %s: %s\n",
-# 	     $record->{key},
-# 	     $record->{type},
-# 	    $record->get_description());
-#     }
-# print "Segment " . $segment->{name} . "\n";
-#     my $hash_ref = $segment->get_app13_data('TEXTUAL', 'IPTC');
-#     while (my ($key, $vals) = each %$hash_ref) {
-#       printf "# %20s =", $key; print " '$_'" for @$vals; print "\n"; }
-#   }
-#exit(0);
-
-  my @tags = qw(Caption-Abstract Rating DateTimeCreated);
+  my @tags = qw(ImageDescription Rating DateCreated);
   my $info = Image::ExifTool::ImageInfo($file, \@tags);
   die "Error opening $file: " . $info->{Error} if exists $info->{Error};
   print "Warning opening $file: " . $info->{Warning} if exists $info->{Warning};
 
-  my $timestamp = $info->{DateTimeCreated};
+  # use Data::Dumper;  print Data::Dumper::Dumper($info);
+
+  my $timestamp = $info->{DateCreated} or die "Missing date in '$file'";
   $timestamp =~ s{^(\d{4}):(\d\d):(\d\d)}{$1/$2/$3};
 
-  my $caption = $info->{'Caption-Abstract'} || '';
+  my $caption = $info->{'ImageDescription'} || '';
   $caption = '' if $caption eq "OLYMPUS DIGITAL CAMERA";
   $caption =~ s/&/&amp;/g;
   $caption =~ s/"/&quot;/g;
+
+  die "Missing rating in '$file'" unless $info->{Rating} =~ /^\d+$/;
 
   return {
 	  rating => $info->{Rating},
@@ -288,14 +250,22 @@ sub get_image_metadata {
 	 };
 }
 
-sub get_dimensions {
+sub get_image_attributes {
   my ($file) = @_;
 
-  my $command = qq(identify -format "%w %h" $file);
-  my $dimension_str = `$command`;
-  my ($height, $width) = ($dimension_str =~ /^(\d+) (\d+)$/);
+  my $command = qq(identify -verbose $file);
+  my $data = `$command`;
+
+  my ($height, $width) = ($data =~ /^\s*Geometry: (\d+)x(\d+)\+/m);
   die "Unable to get size from command $command" unless defined $width;
-  return ($height, $width);
+
+  my ($interlacing) = ($data =~ /^\s*Interlace: (\w+)/m);
+  die "No interlacing from $command" unless defined $interlacing;
+
+  return { height => $height,
+	   width => $width,
+	   interlaced => $interlacing ne 'None',
+       };
 }
 
 sub min { $_[0] < $_[1] ? $_[0] : $_[1] }
@@ -303,18 +273,30 @@ sub min { $_[0] < $_[1] ? $_[0] : $_[1] }
 sub resize {
     my ($dir, $file, $target_height) = @_;
 
-    my ($height, $width) = get_dimensions("$dir/$file");
+    my $image_attrs = get_image_attributes("$dir/$file");
 
     my $resize_pct;
-    if ($width > $height) {
+    if ($image_attrs->{width} > $image_attrs->{height}) {
       # Landscape orientation
-      $resize_pct = min(100, 100 * $target_height / $width);
+      $resize_pct = min(100, 100 * $target_height / $image_attrs->{width});
     } else {
       # Portrait orientation
-      $resize_pct = min(100, 100 * $target_height / $height);
+      $resize_pct = min(100, 100 * $target_height / $image_attrs->{height});
     }
 
-    printf("Resizing $file to %.2f%%...\n", $resize_pct);
+    my $delta = 0.1;
+    if (abs($resize_pct - 100.0) < $delta) {
+	if (! $image_attrs->{interlaced}) {
+	    print "\tInterlacing $file\n";
+	    my_system("mogrify",
+		      "-strip",
+		      "-interlace", "Line",
+		      "$dir/$file");
+	}
+	return;
+    }
+
+    printf("\tResizing $file to %.2f%%...\n", $resize_pct);
     my_system("mogrify",
 	      "-strip",
 	      "-interlace", "Line",
@@ -340,6 +322,7 @@ sub copy {
 
     my $dest_path = "$dir/$dest_file";
 
+    print "\tCopying $src_file to $dest_file\n";
     my_system("cp", "$dir/$src_file", "$dest_path") == 0
         or die "Failed to copy $dir/$src_file to $dest_path";
 }
