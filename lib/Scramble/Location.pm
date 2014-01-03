@@ -645,7 +645,6 @@ EOT
 			   Scramble::Misc::make_1_column_page(title => $title,
 							      'include-header' => 1,
 							      html => $html,
-							      'enable-google-ad' => 0,
 							      'no-add-picture' => 1,
                                                               'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap));
 }

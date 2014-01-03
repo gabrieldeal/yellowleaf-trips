@@ -61,25 +61,6 @@ my @g_links = ({'URL' => qq(../../g/m/home.html),
 	     },
 	       );
 
-my $g_google_ad_javascript = <<EOT;
-<script type="text/javascript"><!--
-google_ad_client = "pub-1958612489793586";
-google_ad_width = 120;
-google_ad_height = 240;
-google_ad_format = "120x240_as";
-google_ad_channel ="";
-google_color_border = "DFF2FD";
-google_color_bg = "DFF2FD";
-google_color_link = "0000CC";
-google_color_url = "008000";
-google_color_text = "000000";
-//--></script>
-<script type="text/javascript"
-  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-EOT
-
-
 =head1 Inserting links into text
 
 "XXX quad" or "XXX quadrangle" turns into link named "XXX" to quad
@@ -509,7 +490,6 @@ sub make_2_column_page {
 
     defined $middle_html or die "Middle HTML is not defined";
 
-    my $ad_javascript = $options{'enable-google-ad'} ? $g_google_ad_javascript : '';
     my $left_column_content = ($options{'left-column-content'} 
 			       ? $options{'left-column-content'}
 			       : '');
@@ -541,13 +521,7 @@ sub make_2_column_page {
                             : '');
 
 
-    my $below_nav_box = $ad_javascript;
     $right_html = '' unless defined $right_html;
-#     if (defined $right_html && length $right_html > 0) {
-# 	$below_nav_box = $ad_javascript;
-#     } else {
-# 	$right_html = $ad_javascript;
-#     }
 
     my $links = '';
     if (! $options{'no-links-box'}) {

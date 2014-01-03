@@ -1,0 +1,28 @@
+trips
+    trip_id
+    type
+    state
+    start date
+    end date
+    description
+
+waypoints
+    waypoint_id
+    trip id
+    time
+    elevation
+    name
+
+location
+    location_id
+    name
+    elevation
+    prominence
+    lat/lon/datum
+    aka names
+    name origin
+    list<area>
+
+area
+
+image
