@@ -7,6 +7,7 @@ use Scramble::Logger ();
 use Scramble::Reference ();
 use Scramble::List ();
 use Scramble::Area ();
+use URI::Encode ();
 
 our $gEnableEmbeddedGoogleMap = 1;
 my $gDisableGoogleMaps = 0;
@@ -368,7 +369,7 @@ sub _get_point_data {
     @locations or die "Missing locations";
 
     my $map_type = 'usgs';
-    my $points = "[";
+    my @points;
     foreach my $point (@locations) {
         $map_type = 'satellite' unless $point->is_in_USA();
         my $lat = $point->get_latitude();
@@ -377,11 +378,10 @@ sub _get_point_data {
         my $link = $point->get_short_link_html();
         $link =~ s/\"/\\\"/g;
         $link =~ s/\'/\\'/g;
-        $points .= qq({ lat: $lat, lon: $lon, name: "$link" },);
+        push @points, qq({"lat":$lat,"lon":$lon,"name":"$name"});
     }
-    $points .= "]";
 
-    return ('points-javascript' => $points,
+    return ('points-javascript' => sprintf("[%s]", join(",", @points)),
             'map-type' => $map_type);
 }
 sub get_multi_point_embedded_google_map_html {
@@ -398,18 +398,15 @@ sub get_multi_point_embedded_google_map_html {
 
     my %info = _get_point_data(@$locations);
 
+    my $points = URI::Encode::uri_encode($info{'points-javascript'});
     my $script = <<EOT;
 <div id="mapContainer" style="position: relative">
-    <div id="map" style="width: 335px; height: 235px"></div>
+    <div id="map" style="width: 333px; height: 250px"></div>
 </div>
-<a href="../m/usgs.html?lat=$lat&lon=$lon&type=$map_type&zoom=3">Full sized map</a>
+<a href="../m/usgs.html?points=$points">Larger map</a>
 <script type="text/javascript" src="../js/map.js"></script>
 <script>
     setInput('points', $info{'points-javascript'});
-    setInput('lat', '$lat');
-    setInput('lon', '$lon');
-    setInput('zoom', 3);
-    setInput('type', '$map_type');
 </script>
 <p>
 EOT
@@ -447,11 +444,12 @@ sub get_header {
 
   my $maps_script = '';
   if ($options{'enable-embedded-google-map'}) {
-    $body = qq(<body bgcolor="white" onload="ShowMeTheMap();" onunload="GUnload()">);
+    $body = qq(<body bgcolor="white">);
 
     $maps_script = <<EOT;
-    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAzfKF_G3MmHWWJ8-9AKo-LhQm8q5vZmOTIOU_7tSbBBaPCrUNFBRqJJF5iDqFypI-b5NunX98iHhI2A"
-      type="text/javascript"></script>
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAL-uATrgEqPxb9sGCq4QFKnBOSwSaKC5g&sensor=false">
+</script>
 EOT
     }
 
@@ -496,9 +494,12 @@ sub make_2_column_page {
 
     my $top_text = $options{'top-text'} || '';
 
-    my $h1_title = exists $options{'h1-title'} ? $options{'h1-title'} : $title;
-    if ($h1_title) {
-	$h1_title = "<h1>$h1_title</h1>";
+    my $h1_title = '';
+    if (! $options{'no-title'}) {
+	$h1_title = exists $options{'h1-title'} ? $options{'h1-title'} : $title;
+	if ($h1_title) {
+	    $h1_title = "<h1>$h1_title</h1>";
+	}
     }
 
     my $footer_html = make_footer(%options);

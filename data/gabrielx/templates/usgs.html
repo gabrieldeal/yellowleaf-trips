@@ -1,0 +1,17 @@
+<div id="mapContainer" style="position: relative">
+    <div id="map" style="width: 1250px; height: 700px"></div>
+</div>
+<script type="text/javascript">
+  function resizeMap() {
+      var map = document.getElementById('map');
+      map.style.width = window.innerWidth * .95 + "px";
+      map.style.height = window.innerHeight * .90 + "px";
+  }
+
+  window.addEventListener('resize', resizeMap);
+  resizeMap();
+</script>
+
+<script type="text/javascript" src="../js/map.js"></script>
+
+
