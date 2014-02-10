@@ -159,6 +159,7 @@ sub get_party_stats {
       $name = "Tazz" if $name =~ /\btazz\b/i || $name eq 'Ann Arnoldy';
       $name = "Lynn Graff" if $name eq "Lynn Graf";
       $name = "Mike Helminger" if $name =~ /\biron\b/i || $name eq "Mike Hemlinger" || $name =~ /^Mike H$/;
+      $name = "Tom Nanevicz" if $name =~ /\bTom N\b/i || $name =~ /\bGeoTom\b/i;
       $name = "Matt Burton" if $name =~ /\bmatt\b/i && $name =~ /\bburton\b/;
       $name = "David Suhr" if $name eq "David Sur";
       $name = "Atsuko Yamaguchi" if $name =~ /\batsuko\b/i;
