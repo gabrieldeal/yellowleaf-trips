@@ -29,11 +29,8 @@ fi
 if [ -z "$pauseme" ]
 then
     rsync --delete --size-only  -e ssh -avz html/ gabrielx@addr43.addr.com:~/public_html/scramble
+
+    # rsync -aviPh --progress --delete-after -e ssh --rsync-path=/home/gabrielx1/bin/rsync html/ gabrielx1@192.186.234.160:~/public_html/scramble
+    rsync --delete --size-only  -e ssh -avz --rsync-path=/home/gabrielx1/bin/rsync html/ gabrielx1@192.186.234.160:~/public_html/scramble
 fi
 
-# echo "Ready to backup data?"
-# read pauseme
-# if [ -z "$pauseme" ]
-# then
-#     rsync --size-only  -e ssh -avz . gabrielx@addr11.addr.com:~/website-data --exclude $dir --exclude '*~'
-# fi
