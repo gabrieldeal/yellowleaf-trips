@@ -683,6 +683,9 @@ EOT
     }	
 
     my $route = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("%s", $self->get_route()));
+    if ($route) {
+	$route = "<p>$route</p>";
+    }
 
     my $title = $self->get_title_html();
     if ($self->get_state() eq 'attempted') {
