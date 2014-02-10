@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+#-*-perl-*-
+
+use strict;
+use lib './lib';
+
+use Carp ();
+use Cwd ();
+use File::chdir;
+use Data::Dumper ();
+use File::Basename ();
+use IO::File ();
+use File::Path ();
+use Getopt::Long ();
+
+local $Data::Dumper::Maxdepth = 5;
+local $Data::Dumper::Sortkeys = 1;
+local $^W = 1;
+local $| = 1;
+local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
+local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
+
+foreach my $file (@ARGV) {
+    my $fh = IO::File->new($file) or die $!;
+    my @text = <$fh>;
+    $fh->close() or die $!;
+
+    my $text = "@text";
+    my @paragraphs = split(/\n\s*\n/, $text);
+    my $new_text;
+    foreach my $paragraph (@paragraphs) {
+	$paragraph =~ s/\s+/ /gm;
+	$new_text .= "$paragraph\n\n";
+    }
+
+    my $fh = IO::File->new($file, 'w') or die $!;
+    $fh->print($new_text);
+    $fh->close() or die $!;
+}
+
+1;

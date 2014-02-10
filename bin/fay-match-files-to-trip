@@ -1,0 +1,310 @@
+#!/usr/bin/perl
+#-*-perl-*-
+
+use strict;
+use lib './lib';
+
+use Carp ();
+use Cwd ();
+use File::chdir;
+use Data::Dumper ();
+use File::Basename ();
+use IO::File ();
+use File::Path ();
+use Getopt::Long ();
+
+local $Data::Dumper::Maxdepth = 5;
+local $Data::Dumper::Sortkeys = 1;
+local $^W = 1;
+local $| = 1;
+local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
+local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
+
+my @g_options = qw(
+    input-directory=s
+    output-directory=s
+    verbose
+    help
+);
+my %g_options = (
+    verbose => 1,
+    "antiword-app" => "/cygdrive/c/Users/Gabriel/home/antiword-0_37-windows/antiword/antiword.exe",
+    "extractallimages-app" => "/usr/local/bin/extractallimages.pl",
+);
+
+exit(main());
+
+######################################################################
+
+sub usage {
+    my ($prog) = ($0 =~ /([^\/]+)$/);
+    sprintf("Usage: $prog [ OPTIONS ]\nOptions:\n\t--"
+	    . join("\n\t--", @g_options)
+            . <<EOT);
+EOT
+}
+
+sub get_options {
+    local $SIG{__WARN__};
+    if (! Getopt::Long::GetOptions(\%g_options, @g_options)
+	|| $g_options{'help'})
+    {
+	print usage();
+        exit 1;
+    }
+
+    if (exists $g_options{'timezone'}) {
+	$ENV{'TZ'} = $g_options{'timezone'};
+    }
+
+    foreach my $required (qw(input-directory output-directory)) {
+	die "Missing --$required" unless exists $g_options{$required};
+    }
+}
+
+sub main {
+    srand($$ ^ time());
+    get_options();
+
+    mkpaths([ "$g_options{'output-directory'}" ]);
+
+    my $raw_reports = get_raw_reports($g_options{'input-directory'});
+    convert_reports($raw_reports);
+}
+
+sub mkpaths {
+    my ($paths) = @_;
+
+    File::Path::mkpath($paths, 0, 0755);
+}
+
+sub normalize_path {
+    my ($path) = @_;
+
+    my $name = File::Basename::basename($path);
+    $name =~ s/,//g;
+    $name =~ s/_/ /g;
+    $name =~ s/\s+/ /g;
+    $name =~ s/^\s+//;
+    $name =~ s/\s+$//;
+    $name =~ s/\d Pictures\.pdf$//i;
+    $name =~ s/Pictures\.pdf$//i;
+    $name =~ s/Pictures 2\.pdf$//;
+    $name =~ s/Pictures\)\.pdf$//;
+    $name =~ s/Picture\.pdf$//;
+    $name =~ s/Photos 2\.pdf$//;
+    $name =~ s/Picyures\.pdf$//;
+    $name =~ s/Photos\.pdf$//;
+    $name =~ s/\.pdf$//;
+
+    $name =~ s/ Mtn \d\.doc//;
+    $name =~ s/\.docx?$//;
+    $name =~ s/\.rtf$//;
+
+    $name =~ s/ \d Route\.JPG$//i;
+    $name =~ s/ Routes?.(JPG|BMP)$//i;
+    $name =~ s/ Roure.JPG$//i;
+    $name =~ s/ Route Detail.JPG$//i;
+    $name =~ s/ Route - Copy.JPG$//i;
+    $name =~ s/ Map.JPG$//;
+    $name =~ s/ Track.JPG$//;
+    $name =~ s/ Routes? ?(\d).JPG$//;
+    $name =~ s/\.JPG$//;
+    $name =~ s/[\(\)]//g;
+
+    $name =~ s/([^\d])\d$/$1/;
+
+    $name =~ s/\b(Mount|Mt|Mtn|Ridge|Lake|Lk|Mountain)\b//ig if $name ne 'Lake Mountain';
+    $name =~ s/\b(Pks?|Peaks?)\b(?!\s*\d+)//ig;
+    $name =~ s/\b(Pks?|Peak)\s*(\d+)/Peak $2/ig;
+    $name =~ s/\bski tours?/ski/i;
+    $name =~ s/\bpoint\b/pt/i;
+
+    $name =~ s/\s+/ /;
+    $name =~ s/^\s+//;
+    $name =~ s/\s+$//;
+
+    $name =~ s/Allen-Catt-East Rock/Allen/;
+    $name =~ s/Cole Butte BM/Cole BM/;
+    $name =~ s/Anderson Butte and LO Wynoochee/Anderson Butte Wynoochee/;
+    $name =~ s/D & Thatsit/D/;
+    $name =~ s/DollarWatch/Dollar Watch/;
+    $name =~ s/Dungeon Circumnavigation/Dungeon Loop/;
+    $name =~ s/Dungeon Loop/Dungeon Loop/;
+    $name =~ s/Eagle Cap Wilderness/Eagle Cap/;
+    $name =~ s/East Rock Olympics/East Rock/;
+    $name =~ s/Echo Ridge Ski Trails/Echo Ridge/;
+    $name =~ s/Elija Ridge/Elija/;
+    $name =~ s/Fifes West/Fifes/;
+    $name =~ s/Higgins Quad 2/Higgins2/;
+    $name =~ s/AKA the needle//i;
+    $name =~ s/Lemei Rock/Lemei/i;
+    $name =~ s/Horsethief Basin/Horsethief/i;
+    $name =~ s/Loup Loup.*/Loup Loup/;
+    $name =~ s/Misery Highline.*/Misery/;
+    $name =~ s/^N Cascade/Cascade N/;
+    $name =~ s/N Grass/Grass North/;
+    $name =~ s/Nason 1/Nason/;
+    $name =~ s/Newby n/Newby/i;
+    $name =~ s/Quartz w/Quartz/i;
+    $name =~ s/Pelletgun Hill/Pelletgun/i;
+    $name =~ s/Quilcene area/Quilcene/i;
+    $name =~ s/randle area/randle/i;
+    $name =~ s/s hozomeen/hozomeen s/i;
+    $name =~ s/san henry/sam henry/i;
+    $name =~ s/skate.berry.*/skate berry/i;
+    $name =~ s/^slate.*/slate/i;
+    $name =~ s/^sleepover.*/sleepover/i;
+    $name =~ s/^south twin.*/south twin/i;
+    $name =~ s/^spokane.*/spokane/i;
+    $name =~ s/^tatoosh.*/tatoosh/i;
+    $name =~ s/^the //i;
+    $name =~ s/timberwof/timberwolf/i;
+    $name =~ s/torment nw glacier/torment/i;
+    $name =~ s/^twinlks/twin lakes/i;
+    $name =~ s/^uprising.*/uprising/i;
+    $name =~ s/^w bald/bald/i;
+    $name =~ s/^war cr$/war creek/i;
+    $name =~ s/^west mcmillian.*/west mcmillan/i;
+    $name =~ s/^worthy hill/worthy/i;
+
+    $name =~ s/^~\$ffany$/Tiffany/;
+    $name =~ s/^~\$illy$/chilly/;
+    $name =~ s/^~\$llickers pt$/willickers pt/;
+    $name =~ s/^~\$marack$/Tamarack/;
+    $name =~ s/^~\$ttlesnakes$/rattlesnake/;
+
+    $name =~ s/\s+/ /;
+    $name =~ s/^\s+//;
+    $name =~ s/\s+$//;
+
+    return lc($name);
+}
+
+sub add_path {
+    my ($reports, $type, $glob) = @_;
+
+    foreach my $path (glob($glob)) {
+	my $mtime = (stat($path))[9];
+	my ($day, $mon, $year) = (localtime($mtime))[3, 4, 5];
+	++$mon;
+	$year += 1900;
+
+	my $name = normalize_path($path);
+
+	my $date = sprintf("%d-%02d-%02d", $year, $mon, $day);
+	push @{ $reports->{$name}{$type} }, { path => $path, 
+					      date => $date,
+					  };
+	$reports->{$name}{date} = $date;
+    }
+}
+
+sub get_raw_reports {
+    my ($input_directory) = @_;
+
+    my %reports;
+    add_path(\%reports, "maps", "$input_directory/Exported\\ Routes/*/*");
+    add_path(\%reports, "word_docs", "$input_directory/Trip\\ Reports/*/*");
+    add_path(\%reports, "pdfs", "$input_directory/Adobe/*/*");
+
+    print Data::Dumper::Dumper(\%reports);
+
+    exit 1;
+
+    return \%reports;
+}
+
+sub convert_reports {
+    my ($reports) = @_;
+
+    foreach my $name (sort keys %$reports) {
+	my $report = $reports->{$name};
+
+	my $subdir = sprintf("%s-%s", $report->{date}, $name);
+	$subdir =~ s/\s+/-/g;
+	$subdir =~ s/[^-\w]//g;
+
+	my $output_dir = "$g_options{'output-directory'}/$subdir";
+	mkpaths([$output_dir]);
+
+	eval {
+	    my $text = extract_word_doc(get_paths('word_docs', $report), $output_dir);
+	    my $images = extract_images_from_pdf(get_paths('pdfs', $report), $output_dir);
+	    my $maps = copy_maps(get_paths('maps', $report), $output_dir);
+
+	    #print "Images: @$images\nMaps: @$maps\n$text\n";
+	}; 
+	if ($@) {
+	    print $@;
+	}
+    }
+}
+
+sub get_paths {
+    my ($type, $report) = @_;
+
+    if (exists $report->{$type}) {
+	return [ map { $_->{path} } @{ $report->{$type} } ];
+    }
+    return [];
+}
+
+sub copy_maps {
+    my ($maps, $output_dir) = @_;
+
+    my @maps;
+    foreach my $map (@$maps) {
+	my_system("cp", $map, $output_dir);
+	push @maps, File::Basename::basename($map);
+    }
+
+    return \@maps;
+}
+
+sub extract_images_from_pdf {
+    my ($pdfs, $output_dir) = @_;
+
+    my @pdfs;
+    foreach my $pdf (@$pdfs) {
+	my $cwd = Cwd::cwd();
+	my $bin_dir = File::Basename::dirname($g_options{'extractallimages-app'});
+	local $CWD = $bin_dir;
+	my_system($g_options{'extractallimages-app'},  "$cwd/$pdf", $output_dir);
+
+	push @pdfs, [ map { File::Basename::basename($_) } glob("$output_dir/*") ];
+    }
+
+    return \@pdfs;
+}
+
+sub extract_word_doc {
+    my ($word_docs, $output_dir) = @_;
+
+    return '' unless @$word_docs == 1;
+    my $word_doc = $word_docs->[0];
+
+    my $text = `$g_options{'antiword-app'} "$word_doc" 2>&1`;
+    if ($? != 0 || ! defined $text || length($text) == 0 || $text =~ /I can't open /) {
+	die "Unable to read $word_doc: $text";
+    }
+
+    mkpaths([$output_dir]);
+    my $output_file = "$output_dir/text.txt";
+    my $fh = IO::File->new($output_file, 'w') or die "Can't open '$output_file': $!";
+    $fh->print($text) or die;
+    $fh->close() or die;
+
+    return $text;
+}
+
+sub my_system {
+    my (@cmd) = @_;
+
+    system @cmd;
+    if ($? != 0) {
+	die "Failed to run @cmd";
+    }
+}
+
+1;
