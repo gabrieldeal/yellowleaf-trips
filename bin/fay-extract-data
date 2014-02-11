@@ -21,7 +21,7 @@ local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
 local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
 
 my @g_options = qw(
-    input-directory=s
+    output-directory=s
     verbose
     help
 );
@@ -56,7 +56,7 @@ sub get_options {
 	$ENV{'TZ'} = $g_options{'timezone'};
     }
 
-    foreach my $required (qw(input-directory)) {
+    foreach my $required (qw( output-directory)) {
 	die "Missing --$required" unless exists $g_options{$required};
     }
 }
@@ -65,69 +65,10 @@ sub main {
     srand($$ ^ time());
     get_options();
 
-    mkpaths([ "$g_options{'input-directory'}" ]);
-
     my $reports = require "bin/fay-files.pl";
 
-#    add_locations($reports);
-
-    qa_reports($reports);
+    convert_reports($reports);
 }
-
-sub add_locations {
-    my ($reports) = @_;
-
-    foreach my $name (sort keys %$reports) {
-	my $report = $reports->{$name};
-
-	my $subdir = sprintf("%s-%s", $report->{date}, $name);
-	$subdir =~ s/\s+/-/g;
-	$subdir =~ s/[^-\w]//g;
-
-	my $report_file = "$g_options{'input-directory'}/$subdir/text.txt";
-	next unless -e $report_file;
-	$report->{subdir} = $subdir;
-
-	my $fh = IO::File->new($report_file, 'r') || die "$!";
-	my $count = 0;
-	my $start = '';
-	my $matches;
-	while (defined(my $line = <$fh>)) {
-	    next if $line =~ /^\s*$/;
-#	    if ($line =~ /^\s*([^\(]+)\(([^\(]*\b(\d+\+?\s*ft|\d+ feet|\b\d+P\b|\bP\d+\b|USGS|quad|greentrails|GT)\b[^\)]*)\)/i || $line =~ /by Fay Pullen/) {
-	    if ($line =~ /\b(\d+\+?\s*ft|\d+ feet|\b\d+P\b|\bP\d+\b|USGS|quad|greentrails|GT)\b/i || $line =~ /by Fay Pullen/) {
-		$matches .= $line;
-	    }
-	    if (++$count <= 2) {
-		$start .= $line;
-	    }
-	}
-	if (defined $matches) {
-	    $report->{destination} = $matches;
-	} else {
-	    $report->{destination} = $start;
-	}
-    }
-    print Data::Dumper::Dumper($reports);
-exit 1;
-}
-
-sub qa_reports {
-    my ($reports) = @_;
-
-    foreach my $name (sort keys %$reports) {
-	my $report = $reports->{$name};
-print ".";
-print "$name\n" if $report->{word_doc} && @{ $report->{word_doc} } > 1;
-next;
-	next if $report->{skip};
-	my $clean = $report->{no_tr} ? "clean" : "";
-	print "$clean ", join(", ", map { $_->{path} } @{ $report->{pdfs} || [] }, @{ $report->{maps} || [] }, @{ $report->{word_docs} || [] }), "\n";
-
-#	print Data::Dumper::Dumper($report) if $@;
-    }
-}
-
 sub mkpaths {
     my ($paths) = @_;
 
@@ -140,20 +81,22 @@ sub convert_reports {
     foreach my $name (sort keys %$reports) {
 	my $report = $reports->{$name};
 
-	my $subdir = sprintf("%s-%s", $report->{date}, $name);
+	my $subdir = sprintf("%s-%s-%s-%s", $report->{year}, $report->{month}, $report->{day}, $name);
 	$subdir =~ s/\s+/-/g;
 	$subdir =~ s/[^-\w]//g;
 
 	my $output_dir = "$g_options{'output-directory'}/$subdir";
 	mkpaths([$output_dir]);
 
-	eval {
-	    my $text = extract_word_doc(get_paths('word_docs', $report), $output_dir);
-	    my $images = extract_images_from_pdf(get_paths('pdfs', $report), $output_dir);
-	    my $maps = copy_maps(get_paths('maps', $report), $output_dir);
-
-	    #print "Images: @$images\nMaps: @$maps\n$text\n";
-	}; 
+	eval { extract_word_doc(get_paths('word_docs', $report), $output_dir) }; 
+	if ($@) {
+	    print $@;
+	}
+	eval { extract_images_from_pdf(get_paths('pdfs', $report), $output_dir)	}; 
+	if ($@) {
+	    print $@;
+	}
+	eval { copy_maps(get_paths('maps', $report), $output_dir) }; 
 	if ($@) {
 	    print $@;
 	}
@@ -186,12 +129,19 @@ sub extract_images_from_pdf {
 
     my @pdfs;
     foreach my $pdf (@$pdfs) {
+	my $subdir = File::Basename::basename($pdf);
+	my $pdf_output_dir = "$output_dir/$subdir";
+	$pdf_output_dir =~ s/\s+/-/g;
+	$pdf_output_dir =~ s/\.pdf$//;
+	mkpaths([$pdf_output_dir]);
+
 	my $cwd = Cwd::cwd();
 	my $bin_dir = File::Basename::dirname($g_options{'extractallimages-app'});
 	local $CWD = $bin_dir;
-	my_system($g_options{'extractallimages-app'},  "$cwd/$pdf", $output_dir);
+	my_system("cp", "$cwd/$pdf", $output_dir);
+	my_system($g_options{'extractallimages-app'},  "$cwd/$pdf", $pdf_output_dir);
 
-	push @pdfs, [ map { File::Basename::basename($_) } glob("$output_dir/*") ];
+	push @pdfs, [ map { File::Basename::basename($_) } glob("$pdf_output_dir/*") ];
     }
 
     return \@pdfs;
@@ -220,6 +170,7 @@ sub extract_word_doc {
 sub my_system {
     my (@cmd) = @_;
 
+#    print "@cmd\n";
     system @cmd;
     if ($? != 0) {
 	die "Failed to run @cmd";

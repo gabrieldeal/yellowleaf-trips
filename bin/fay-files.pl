@@ -916,7 +916,7 @@ $VAR1 = {
                                           ],
                            'year' => 2007
                          },
-          'big four  attempt' => {
+          'big four attempt' => {
                                    'day' => '21',
                                    'destination' => 'Big Four Mountain Attempt (6160+ ft - 1080P - Silverton Quad) - February 21, 2009',
                                    'maps' => [
@@ -2787,7 +2787,8 @@ Thatsit Pk (5498 ft - 458P - Captain Point Quad) - April 17, 2007',
                            'year' => 2006
                          },
           'divide' => {
-                        'day' => '23',
+                        'day' => '22',
+			'destination' => 'Divide Ridge (4878 ft - 638P), Huckleberry Mtn (4903 ft - 743P) and Nagrom Quad 1 (3080+ ft - 400P) - Nagrom Quad - March 22, 2008',
                         'maps' => [
                                     {
                                       'date' => '2008-03-23',
@@ -3640,7 +3641,7 @@ Thatsit Pk (5498 ft - 458P - Captain Point Quad) - April 17, 2007',
                                        ],
                         'year' => 2009
                       },
-          'fury-challenger' => {
+          'fury challenger' => {
                                  'day' => '14',
                                  'destination' => 'Northern Pickets Loop (Mt Fury East Pk (8288 ft), Mt Fury West Pk (8292 ft) and Mt Challenger (8207 ft) - Mt Challenger Quad - July 14-21, 2009',
                                  'maps' => [
@@ -6449,11 +6450,8 @@ Mt Goodie (4040+ ft - 640P - Mineral Quad), Quiemuth Pk (2922 ft - 762P - Eatonv
                           'year' => 2003
                         },
           'morton blobs' => {
-                              'day' => '12',
-                              'destination' => 'Cottlers Rock (2760+ ft - 1440P - Morton Quad)
-Moss BM (1600+ ft - 640P - Mossyrock Quad)
-Mossyrock Quad 1 (2440+ ft - 680P) and Bellicum Pk (2280+ ft - 480P) - Mossyrock Quad
-Fling Mtn (2880+ ft - 1720P - Morton Quad)',
+                              'day' => '11',
+                              'destination' => 'Morton Blobs',
                               'maps' => [
                                           {
                                             'date' => '2008-03-12',
@@ -6801,7 +6799,7 @@ Fling Mtn (2880+ ft - 1720P - Morton Quad)',
                        'timestamp' => '2010-08-19',
                        'year' => '2010'
                      },
-          'o\'neil' => {
+          'oneil' => {
                          'day' => '02',
                          'destination' => 'Mt O’Neil (4295 ft - P415), Quinault Ridge 5 (4072 ft - P872) and Wooded Pk (3865 ft - P 505) - Lake Quinault East Quad - May2-4, 2013',
                          'maps' => [
@@ -7904,7 +7902,7 @@ Fling Mtn (2880+ ft - 1720P - Morton Quad)',
                                         ],
                          'year' => 2009
                        },
-          'repulse-hinkhouse' => {
+          'repulse hinkhouse' => {
                                    'day' => '19',
                                    'destination' => 'Repulse Pk (7923 ft - 523P - Mt Arriva Quad) - June 19, 2009 
  Hinkhouse Pk (7560+ ft - 760P - Washington Pass Quad) - June 20, 2009',
@@ -9668,7 +9666,7 @@ Mt Spokane Ski Trails - February 16-18, 2013
                                          ],
                           'year' => 2006
                         },
-          'ten-four' => {
+          'ten four' => {
                           'day' => '27',
                           'destination' => 'Ten-Four Mountain (4384 ft - 2744 Prominence - Gold Bar Quad) - January 27, 2005',
                           'month' => '01',
