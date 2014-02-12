@@ -116,6 +116,8 @@ sub make_html {
     $text =~ s,\s*\n\s*\n\s*,\n<br><br>\n,gs;
 
 
+    my $images_html = join("<br><h3>On Another Day</h3>", @images);
+
     return <<EOT;
 <html>
 <body>
@@ -132,7 +134,7 @@ sub make_html {
 @maps
 $text
 <br clear="left">
-@images
+$images_html
 </body>
 </html>
 EOT

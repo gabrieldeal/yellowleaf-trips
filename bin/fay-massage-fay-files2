@@ -1,0 +1,121 @@
+#!/usr/bin/perl
+#-*-perl-*-
+
+use strict;
+use lib './lib';
+
+use Carp ();
+use Cwd ();
+use File::chdir;
+use Data::Dumper ();
+use File::Basename ();
+use IO::File ();
+use File::Path ();
+use Getopt::Long ();
+
+local $Data::Dumper::Maxdepth = 5;
+local $Data::Dumper::Sortkeys = 1;
+local $^W = 1;
+local $| = 1;
+local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
+local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
+
+my @g_options = qw(
+    directory=s
+    verbose
+    help
+);
+my %g_options = (
+    verbose => 1,
+);
+
+exit(main());
+
+######################################################################
+
+sub usage {
+    my ($prog) = ($0 =~ /([^\/]+)$/);
+    sprintf("Usage: $prog [ OPTIONS ]\nOptions:\n\t--"
+	    . join("\n\t--", @g_options)
+            . <<EOT);
+EOT
+}
+
+sub get_options {
+    local $SIG{__WARN__};
+    if (! Getopt::Long::GetOptions(\%g_options, @g_options)
+	|| $g_options{'help'})
+    {
+	print usage();
+        exit 1;
+    }
+
+    if (exists $g_options{'timezone'}) {
+	$ENV{'TZ'} = $g_options{'timezone'};
+    }
+
+    foreach my $required (qw(directory)) {
+	die "Missing --$required" unless exists $g_options{$required};
+    }
+}
+
+sub main {
+    my $reports = require "bin/fay-files2.pl";
+
+    foreach my $report (@$reports) {
+	$report->{title} = get_title($report);
+	$report->{images} = sort_images($report);
+    }
+
+    print Data::Dumper::Dumper($reports);
+}
+
+sub sort_images {
+    my ($report)= @_;
+
+    my @imagess;
+    foreach my $images (@{ $report->{images} }) {
+	push @imagess, [ sort { cmp_images($a, $b) } @$images ];
+    }
+
+    return \@imagess;
+}
+
+sub cmp_images {
+    my ($a, $b) = @_;
+
+    my ($aa) = ($a =~ m,(\d+)\.jpg$,i) or die $a;
+    my ($bb) = ($b =~ m,(\d+)\.jpg$,i) or die $b;
+
+    return $aa <=> $bb;
+}
+
+sub get_title {
+    my ($report) = @_;
+
+    return $report->{title} if defined $report->{title};
+
+    my @images = map { @$_ } @{ $report->{images} };
+    my @files = map { File::Basename::dirname($_) } @images;
+    push @files, @{ $report->{maps} };
+
+    my %names;
+    foreach my $file (@files) {
+	$file =~ s/\.(jpg|jpeg|bmp|pdf)$//i;
+	$file =~ s/[_-]+/ /g;
+	$file =~ s/pic[ty]ures?\d?//i;
+	$file =~ s/photos?\d?//i;
+	$file =~ s/route\d?//i;
+	$file =~ s/^\s*//;
+	$file =~ s/\s*$//;
+	$names{$file} = 1;
+    }
+
+    die Data::Dumper::Dumper($report) unless keys %names;
+
+    my $longest_key = (sort { length($b) <=> length($a) } keys %names)[0];
+
+    return $longest_key;
+}
+
+1;

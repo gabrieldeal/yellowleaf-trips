@@ -1670,16 +1670,6 @@ Pullen, Kent, 9/4/03.
             'year' => '2004'
           },
           {
-            'day' => '17',
-            'images' => [],
-            'maps' => [],
-            'month' => '03',
-            'subdir' => '2004-03-17-swauk-pass-back-court',
-            'title' => undef,
-            'tr' => undef,
-            'year' => '2004'
-          },
-          {
             'day' => '07',
             'images' => [],
             'maps' => [],
