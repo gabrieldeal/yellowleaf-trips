@@ -503,6 +503,9 @@ sub make_images_by_year_page {
 <h1>$title</h1>
 $header
 $images_html
+
+<br clear="both">
+<br>
 $header
 EOT
 
