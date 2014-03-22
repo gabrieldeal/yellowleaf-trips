@@ -1,4 +1,4 @@
-[
+$VAR1 = [
           {
             'day' => '18',
             'images' => [],
@@ -71,6 +71,9 @@ descend the Lake Constance trail in the dark.
 
 14 miles and 9080 feet
 ',
+            'tr-docs' => [
+                           'fay-html//2000-07-18-inner-constance/Inner Constance.doc'
+                         ],
             'year' => 2000
           },
           {
@@ -177,6 +180,9 @@ Estimated total mileage for the trip 50, total elevation gain 15,400 ft.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2000-10-04-fernow-and-ice-lakes/Mt Fernow and Ice Lakes.doc'
+                         ],
             'year' => 2000
           },
           {
@@ -357,6 +363,9 @@ back to get the peaks I missed. 23 miles and 11,250 ft.  Fay Pullen, 8/7-9,
 2002
 
 ',
+            'tr-docs' => [
+                           'fay-html//2002-08-07-mccartney-snowfield/McCartney_ Snowfield Peaks.doc'
+                         ],
             'year' => 2002
           },
           {
@@ -601,6 +610,9 @@ the Appleton Pass TH, which took another hour. Grand total - 55.5 miles  and
  
 
 ',
+            'tr-docs' => [
+                           'fay-html//2002-08-20-bailey-range-traverse/Bailey Range Traverse.doc'
+                         ],
             'year' => 2002
           },
           {
@@ -666,6 +678,9 @@ up terribly, despite frequent scraping, and refused to  glide  well  on  the
 last long level stretch of road. It had snowed all day long. 18 miles,  3500
 ft and 9:30 hr.  Fay Pullen, 12/30/02.
 ',
+            'tr-docs' => [
+                           'fay-html//2002-12-30-ugly-duckling/Ugly Duckling.doc'
+                         ],
             'year' => 2002
           },
           {
@@ -721,6 +736,9 @@ stable winter conditions.  It is very scenic, there is no brush  and  it  is
 surprising how interesting the terrain is on the  NE  side  of  Granite.  11
 miles, 9 hrs, 5350 ft RT. Fay Pullen, 1/10/03.
 ',
+            'tr-docs' => [
+                           'fay-html//2003-01-10-low/Low Mountain.doc'
+                         ],
             'year' => 2003
           },
           {
@@ -792,6 +810,9 @@ miles, 3500 ft & 7.5 hrs. Fay Pullen 2/12/03.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2003-02-12-lightning/Lightning Peak.doc'
+                         ],
             'year' => 2003
           },
           {
@@ -848,6 +869,9 @@ tolerable. This actually turned out to be a  reasonable  route  and  shorter
 than reversing my way up (3 hours down from summit). 11 miles, 5600  ft  and
 9 hours total.  Fay Pullen, 6/18/03.
 ',
+            'tr-docs' => [
+                           'fay-html//2003-06-18-dirtyface/Dirtyface Pk.doc'
+                         ],
             'year' => 2003
           },
           {
@@ -897,6 +921,9 @@ Fay Pullen, 7/2/03
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2003-07-02-ruby/Ruby Mtn.doc'
+                         ],
             'year' => 2003
           },
           {
@@ -976,6 +1003,9 @@ surroundings before heading out.  It took 3.5 hrs to get  back  to  my  car.
 About 21 miles and 10,000 ft elev gain.  Fay Pullen, 7/17-18/ 2003.
 
 ',
+            'tr-docs' => [
+                           'fay-html//2003-07-17-colonial/Colonial Pk.doc'
+                         ],
             'year' => 2003
           },
           {
@@ -1138,6 +1168,9 @@ dark.  They really should have stopped at Trout Lake.  25 miles, 10,100  ft,
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2003-09-22-ironcap/Ironcap Mtn.doc'
+                         ],
             'year' => 2003
           },
           {
@@ -1243,6 +1276,9 @@ this splendid trip if I had paid attention to the signs. 26 miles, 7400  ft,
 Fay Pullen, Kent, 11/5-6.
 
 ',
+            'tr-docs' => [
+                           'fay-html//2003-10-05-tower/Tower Mtn.doc'
+                         ],
             'year' => 2003
           },
           {
@@ -1302,6 +1338,9 @@ at dark.  14 miles, 5150 ft, - Fay Pullen, Kent, 10/12-13.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2003-10-12-gilbert/Gilbert Mtn.doc'
+                         ],
             'year' => 2003
           },
           {
@@ -1371,6 +1410,9 @@ the car at 9:30 PM.
 16 miles, 5000 ft, 10.5  hours,  -  Fay  Pullen,  Kent,
 10/31.
 ',
+            'tr-docs' => [
+                           'fay-html//2003-10-31-shroud/Shroud Mtn.doc'
+                         ],
             'year' => 2003
           },
           {
@@ -1415,6 +1457,9 @@ cover the front half of the boot) for the icy descent  down  the  trail.   I
 reached the TH 2 hours later for the frigid blast down  to  the  car  on  my
 bike.  15 miles, 4400 ft, 10:45 hrs, - Fay Pullen, Kent, 11/4.
 ',
+            'tr-docs' => [
+                           'fay-html//2003-11-04-morpheus/Mt Morpheus.doc'
+                         ],
             'year' => 2003
           },
           {
@@ -1614,6 +1659,9 @@ Grand total 32 miles, 7800 ft, - Fay Pullen, Kent, 11/6-7.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2003-11-06-loowit-trail/Loowit Trail.doc'
+                         ],
             'year' => 2003
           },
           {
@@ -1667,6 +1715,9 @@ until emerging on the bank of the river at dusk.
 3800  ft,  9:30  hrs,  Fay
 Pullen, Kent, 9/4/03.
 ',
+            'tr-docs' => [
+                           'fay-html//2004-03-17-burntboot/Burntboot Pk.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -1699,6 +1750,9 @@ slacked off.  I made it back to the car without further mishap. 9 miles,
 
 4350 ft, 6.5 hr, - Fay Pullen, Kent, 4/7.
 ',
+            'tr-docs' => [
+                           'fay-html//2004-04-07-evergreen/Evergreen Mtn.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -1732,6 +1786,9 @@ skis back down the patchy snow from the logging road to the car.
 6  miles, 3300 ft, 5:15 hr, - Fay Pullen, Kent, 4/2.
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-04-13-arrowhead/Arrowhead Mtn.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -1793,6 +1850,9 @@ allowed me to dry out slightly.
 Kent, 4/16.
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-04-16-red-west/Red Mtn, West Pk.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -1875,6 +1935,9 @@ miles and 10,100 ft total for the trip.  Fay Pullen, 9/6-7/02
  
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-04-21-big-chiwaukum/Big Chiwaukum.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -1993,6 +2056,9 @@ then down the other side staggering into the TH at midnight.  No  Ubiquitous
 Ranger at this hour.  Even he must sleep. 28 miles and 11,700 ft  gain.  Fay
 Pullen 7/22-23/2003.
 ',
+            'tr-docs' => [
+                           'fay-html//2004-04-21-buckner/Mt Buckner.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -2092,6 +2158,9 @@ parking lot was absolutely jammed with horse trailers!  14  miles  and  6200
 ft. Fay Pullen 9/13-14/02.
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-04-21-robinson/Robinson Mtn.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -2290,6 +2359,9 @@ ft. Fay Pullen 9/13-14/02.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-04-21-sawtooth/Sawtooth Ridge.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -2369,6 +2441,9 @@ beautiful, but I don\'t think I fully appreciated them at the time.
 Anyway, I managed to come out right at my car.  Thank heavens for
 GPS\'s.  About 7 miles, 3500 ft and 7 hrs - Fay Pullen 12/3/02.
 ',
+            'tr-docs' => [
+                           'fay-html//2004-04-21-terrace/Terrace Mtn.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -2407,6 +2482,9 @@ back at the TH, with wet feet as I was too lazy to remove my boots  for  the
 final crossing of Miller Creek. 6 miles, 2600  ft,  5:15  hrs.  Fay  Pullen,
 5/3/04.
 ',
+            'tr-docs' => [
+                           'fay-html//2004-05-03-bearjack/Bearjack Ridge.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -2437,6 +2515,9 @@ Hope Lake and so initially missed the Lake, but I was soon  back  on  route.
 On to the car, where it was still drizzle and fog.   7  miles,  3700  ft,  6
 hours. Fay Pullen, 5/11/04.
 ',
+            'tr-docs' => [
+                           'fay-html//2004-05-12-k/K9.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -2543,6 +2624,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-05-13-reynolds/Reynolds Peak.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -2635,6 +2719,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-05-19-horse/Horse Lake Mtn.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -2705,6 +2792,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-05-27-mountaineer/Mountaineer Peak.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -2857,6 +2947,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-06-02-martin/Martin Peak.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -2977,6 +3070,9 @@ Fay Pullen
   
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-06-04-grotto/Grotto Mtn.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -3041,6 +3137,9 @@ Fay Pullen, 6/4-5/03.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-06-04-turquoise-and-malachite/Turquoise Pk and Malachite Pk.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -3142,6 +3241,9 @@ gain.  Fay Pullen, 6/11-13/03.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-06-11-black-pyramid-and-three-musketeer/Black Pyramid and Three Musketeer Ridge.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -3232,6 +3334,9 @@ Grand total 16 miles and 8100 feet
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-06-11-sherpani/Sherpani Peak.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -3373,6 +3478,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-06-28-bonanza/Bonanza Peak.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -3563,6 +3671,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-07-07-cathedral/Cathedral Peak.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -3652,6 +3763,9 @@ following it 7.5 long, dusty miles back to the car at 7:30.   27  miles  and
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-07-10-tieton/Tieton Pk.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -3792,6 +3906,9 @@ Grand total: 14.5 miles and 9565 ft.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-07-11-big-craggy/Big Craggy.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -3979,6 +4096,9 @@ Grand Total: 25 miles and 12,200 ft      Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-07-13-jack/Jack Mountain.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -4051,6 +4171,9 @@ Total: 16 miles, 6100 feet and 11.5 hours - Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-07-20-bismarck/Bismarck Peak.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -4261,6 +4384,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-07-27-goode/Goode Mountain.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -4320,6 +4446,9 @@ Fay Pullen, Kent - 7/29-30/03.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-07-29-triad/The Triad.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -4427,6 +4556,9 @@ extinguished for the most part by the heavy rain  (18  miles,  1600  ft  and
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-08-04-logan/Mt Logan.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -4577,6 +4709,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-08-11-horseshoe/Horseshoe Peak.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -4648,6 +4783,9 @@ guys again I am not sure.  11 miles, 4000 ft and  7:15  hrs  to  Obstruction
 Pt. 30 miles and 11,200 ft total for  the  trip,  Fay  Pullen,  Kent,  8/18-
 20/03.
 ',
+            'tr-docs' => [
+                           'fay-html//2004-08-18-cameron/Mt Cameron.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -4821,6 +4959,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-09-08-osceola/Osceola Peak.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -4999,6 +5140,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-09-15-lake-mountain/Lake Mountain.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -5160,6 +5304,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-09-23-luahna/Luahna Peak.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -5318,6 +5465,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-09-28-ptarmigan/Ptarmigan Peak.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -5426,6 +5576,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-10-09-greenwood/Greenwood Mountain.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -5520,6 +5673,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-10-21-hoodoo-and-raven/Hoodoo Pk and Raven Ridge.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -5675,6 +5831,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-10-30-south-spectacle-butte/South Spectacle Butte.doc'
+                         ],
             'year' => '2004'
           },
           {
@@ -5752,6 +5911,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-11-04-fortune/Fortune Mountain.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -5849,6 +6011,9 @@ Total: 20 miles and 6600 ft
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-11-10-atrium/Atrium.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -5964,6 +6129,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-11-16-nimbus/Nimbus Mountain.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -6006,6 +6174,9 @@ snowed lightly most of the way out.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2004-11-30-little-bulger/Little Bulger Peak.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -6138,6 +6309,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2004-12-02-bentrim-hill/Bentrim Hill.doc'
+                         ],
             'year' => 2004
           },
           {
@@ -6220,6 +6394,9 @@ that pushing worth it. Total: 20 miles, 3950 ft, 4:50 hrs.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-01-25-blue/Blue Mountain.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -6310,6 +6487,9 @@ Total: 21.2 miles on bike, 1.5 mile on foot, 4500 ft gain, 7:40 hrs.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-01-27-ten-four/Ten-Four.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -6408,6 +6588,9 @@ Total: 23.5 miles, 4100 ft gain and 7:30 hr
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2005-02-01-cascade-lookout/Cascade Lookout.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -6477,6 +6660,9 @@ Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-02-02-mcdonald/McDonald Mtn.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -6549,6 +6735,9 @@ Total: 38 miles, 2800 ft gain and 7:50 hrs.  Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-02-05-drunken-charlie/Drunken Charlie Mountain.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -6614,6 +6803,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-02-25-rock/Rock Peak.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -6681,6 +6873,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-03-04-elbert/Mt Elbert.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -6733,6 +6928,9 @@ Total: 14.5 miles, 3200 ft and 4:30 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2005-03-06-whacme/Whacme Mtn.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -6810,6 +7008,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-03-10-huffaker/Huffaker Mtn.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -6883,6 +7084,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-03-27-lyman-hill/Lyman Hill.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -6940,6 +7144,9 @@ Total: 12 miles, 3400 ft, 6 hrs up and 1:30 hrs down.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2005-03-30-captain-pt/Captain Point.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -7013,6 +7220,9 @@ Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-04-03-anderson/Anderson Mtn.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -7070,6 +7280,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-04-08-boistfort/Boistfort Pk.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -7114,6 +7327,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-04-12-welldiggers-ass/Welldiggers Ass.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -7175,6 +7391,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-04-14-walker/Mt Walker.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -7240,6 +7459,9 @@ road, and hit the road ½ mile from the car.  A much better way to go.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2005-04-18-goat/Goat Mtn.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -7310,6 +7532,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-04-21-badger/Badger Mtn.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -7429,6 +7654,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-04-26-opportunity/Opportunity Mtn.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -7481,6 +7709,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-05-15-silo/Silo Mtn.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -7537,6 +7768,9 @@ had left it.
 
 Total: Maybe 6 miles, 4950 ft, 6:40 hrs.
 ',
+            'tr-docs' => [
+                           'fay-html//2005-05-17-chiwaukum-mtns/Chiwaukum Mtns.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -7677,6 +7911,9 @@ Total: A pitiful 7 miles and 5200 ft in 3 days.    Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-05-25-big-snagtooth/Big Snagtooth.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -7803,6 +8040,9 @@ Total: 22 miles and 9000 ft.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2005-06-02-flora/Flora Mtn.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -7825,6 +8065,10 @@ Fay Pullen
             'subdir' => '2005-06-13-windy',
             'title' => 'Windy Peak',
             'tr' => undef,
+            'tr-docs' => [
+                           'fay-html//2005-06-13-windy/Windy Mtn.doc',
+                           'fay-html//2005-06-13-windy/Windy Pk.doc'
+                         ],
             'year' => '2005'
           },
           {
@@ -7903,6 +8147,9 @@ Total: 16 miles, 7500 ft, and 13 hrs.   Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-06-15-pilot/Pilot Peak.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -8138,6 +8385,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-06-19-formidable/Mt Formidable.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -8316,6 +8566,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-07-03-mesahchie/Mesahchie Pk.doc'
+                         ],
             'year' => '2005'
           },
           {
@@ -8419,6 +8672,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-07-07-bulls-tooth/Bulls Tooth.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -8649,6 +8905,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-07-14-spickard/Mt Spickard.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -8766,6 +9025,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-07-22-chaval/Mt Chaval.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -8888,6 +9150,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-07-27-boston/Boston Pk.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -9016,6 +9281,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-08-02-dorado-needle/Dorado Needle.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -9175,6 +9443,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-08-07-azurite/Azurite Peak.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -9311,6 +9582,9 @@ Total: 28 miles and 12, 200 ft in 3 days         Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-08-15-cosho/Cosho Pk.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -9496,6 +9770,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-08-24-primus/Primus Peak.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -9605,6 +9882,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-09-10-mac/Mac Peak.doc'
+                         ],
             'year' => '2005'
           },
           {
@@ -9736,6 +10016,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-09-13-granite-s/Granite Mtn S Pk.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -9839,6 +10122,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-09-17-bandit/Bandit Peak.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -9898,6 +10184,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-09-21-crook/Crook Mtn.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -10017,6 +10306,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-09-24-index/Mt Index.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -10130,6 +10422,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-10-06-dip-top/Dip Top Peak.doc'
+                         ],
             'year' => '2005'
           },
           {
@@ -10185,6 +10480,9 @@ Total: 17.5 miles, 7000 ft and 9:45 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2005-10-14-david/Mt David.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -10322,6 +10620,9 @@ Total: 30 miles and 8400 ft in 3 days.       Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-10-26-ares/Ares Pk.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -10446,6 +10747,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-11-02-galleon/Galleon Mtn.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -10569,6 +10873,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-11-21-north/North Mtn.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -10631,6 +10938,9 @@ Total: 16 miles, 3900 ft and 8 hours.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-12-01-jeff/Jeff Pk.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -10699,6 +11009,9 @@ Total: 16 miles, 3900 ft and 8 hours.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-12-01-peak-6217/Pk 6217.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -10777,6 +11090,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-12-07-lost-ranger/Lost Ranger Pk.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -10841,6 +11157,9 @@ Fay Pullen
 
 .
 ',
+            'tr-docs' => [
+                           'fay-html//2005-12-15-rampart-se/Rampart Ridge SE Pk.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -10906,6 +11225,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2005-12-20-peak-4973/Peak 4973.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -10965,6 +11287,9 @@ Total: 13 miles, 3650 ft and 6:45 hrs
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2005-12-29-sawmill/Sawmill Ridge.doc'
+                         ],
             'year' => 2005
           },
           {
@@ -11009,6 +11334,9 @@ Total: 18.8 miles, 2260 ft and 5 hrs.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-01-01-boise/Boise Ridge.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -11066,6 +11394,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-01-03-pechugh/Pechugh Pk.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -11114,6 +11445,9 @@ squalls. 10.5 miles, 2700 ft and 7 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2006-01-04-teanaway/Teanaway Ridge.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -11174,6 +11508,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-01-08-enumclaw/Enumclaw Mtn.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -11278,6 +11615,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-01-09-table/Table Mtn.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -11356,6 +11696,9 @@ Total: 19 miles, 3200 ft and 8 hrs.  Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-01-13-big-muffin/Big Muffin.doc'
+                         ],
             'year' => '2006'
           },
           {
@@ -11430,6 +11773,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-01-17-peak-4080/Peak 4080.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -11504,6 +11850,9 @@ operator was somewhat shocked to see me). He passed me again on the flat.
 Total: 13 miles, 4100 ft and 7:50 hrs        Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-01-19-snowshed-head/Snowshed Head.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -11579,6 +11928,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-01-24-meadow/Meadow Mtn.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -11653,6 +12005,9 @@ Total: 11 miles, 3800 ft and 8 hrs.   Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-01-31-huckleberry/Huckleberry Ridge.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -11713,6 +12068,9 @@ Total: 20.5 miles, 4500 ft and 10 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2006-02-05-greenway/Greenway Mtn.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -11823,6 +12181,9 @@ Total: 17.7 miles, 3800 ft and 7 hours.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2006-02-09-grass-north/Grass North.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -11888,6 +12249,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-02-14-bald/Bald Mtn.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -11959,6 +12323,9 @@ Total: 17 miles, 3850 ft, 9 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2006-02-16-peak-4898/Pk 4898.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -12036,6 +12403,9 @@ and 9 hrs.     Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-02-19-wiley/Wiley Ridge.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -12098,6 +12468,9 @@ Total: 15 miles, 3100 ft and 7 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2006-02-21-cabin/Cabin Mtn.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -12158,6 +12531,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-02-28-cole-bm/Cole BM.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -12216,6 +12592,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-03-02-cole-butte/Cole Butte.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -12248,6 +12627,9 @@ even after recent trips together. Ian, I admire  your  perseverance.  Stefan
 and Paul - this is getting to be a habit, but a good one.  And  Annette,  we
 are just getting started.
 ',
+            'tr-docs' => [
+                           'fay-html//2006-03-05-twin/Twin Peaks.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -12311,6 +12693,9 @@ Total: 9 miles, 3000 ft and 7.5 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2006-03-07-peak-5528/Peak 5528.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -12373,6 +12758,9 @@ Total: 13.5 miles, 2650 ft and 7:15 hrs.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-03-10-cross-under-butte/Cross Under Butte.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -12392,6 +12780,10 @@ Fay Pullen
             'subdir' => '2006-03-15-lookout',
             'title' => 'Lookout Mtn',
             'tr' => undef,
+            'tr-docs' => [
+                           'fay-html//2006-03-15-lookout/Lookout Mtn 2.doc',
+                           'fay-html//2006-03-15-lookout/Lookout Mtn.doc'
+                         ],
             'year' => '2006'
           },
           {
@@ -12470,6 +12862,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-03-16-psilocybin-hill/Psilocybin Hill.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -12548,6 +12943,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-03-31-snowshoe-butte/Snowshoe Butte.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -12598,6 +12996,9 @@ Total: 10.5 miles, 3150 ft, 8 hrs.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-04-04-peak-4485/Pk 4485.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -12671,6 +13072,9 @@ Total: 22 miles, 4500 ft and 10:30 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2006-04-06-sleepover/Sleepover Butte.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -12787,6 +13191,9 @@ Sauk Prairie Rd, then after several miles right  onto  Prairie  Mtn  Rd,  Rd
  I missed it on my first pass. The road goes about 6 miles before ending  at
 2600 ft at a big ditch
 ',
+            'tr-docs' => [
+                           'fay-html//2006-04-11-prairie/Prairie Mtn.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -12844,6 +13251,9 @@ Total: 17 miles, 3600 ft and 8 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2006-04-13-scarface/Scarface.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -12924,6 +13334,9 @@ extra .7 mile I didn\'t have to walk.
 Total: 18 miles, 4900 ft and 11 hrs.      Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-04-18-grand-park/Grand Park Pk.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -12936,6 +13349,7 @@ Total: 18 miles, 4900 ft and 11 hrs.      Fay Pullen
             'subdir' => '2006-04-19-liberty',
             'title' => 'Liberty',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2006'
           },
           {
@@ -13006,6 +13420,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-04-27-natapoc/Natapoc Mtn.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -13072,6 +13489,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-05-16-tiptop/Tiptop2.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -13112,6 +13532,9 @@ husband died on April 14 (and several months before).  It felt great  to  be
 back in the mountains but was I ever sore afterward! 10 miles and  5300  ft.
 Fay Pullen, 5/18-19/03.
 ',
+            'tr-docs' => [
+                           'fay-html//2006-05-18-abernathy/Abernathy Peak.doc'
+                         ],
             'year' => '2006'
           },
           {
@@ -13279,6 +13702,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-05-28-dark/Dark Peak.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -13291,6 +13717,7 @@ Fay Pullen
             'subdir' => '2006-06-07-olo-and-blue-mtns',
             'title' => 'Olo and Blue Mtns',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2006'
           },
           {
@@ -13318,6 +13745,10 @@ Fay Pullen
             'subdir' => '2006-06-11-dome',
             'title' => 'Dome Peak',
             'tr' => undef,
+            'tr-docs' => [
+                           'fay-html//2006-06-11-dome/Dome Peak.doc',
+                           'fay-html//2006-06-11-dome/Dome Pk.doc'
+                         ],
             'year' => '2006'
           },
           {
@@ -13330,6 +13761,7 @@ Fay Pullen
             'subdir' => '2006-06-15-wheeler',
             'title' => 'Wheeler Mtn',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2006'
           },
           {
@@ -13463,6 +13895,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-06-20-klawatti/Klawatti Pk.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -13673,6 +14108,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-06-25-tupshin/Tupshin Pk.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -13854,6 +14292,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-07-01-hozomeen-s/Hozomeen Mtn, S Pk.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -14021,6 +14462,9 @@ Total: 31.5 miles and 12,350 ft in 3 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-07-08-ballard/Mt Ballard.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -14187,6 +14631,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-07-14-majestic/Majestic Mtn.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -14466,6 +14913,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-07-21-se-twin-spire-mox/SE Twin Spire (Mox).doc'
+                         ],
             'year' => 2006
           },
           {
@@ -14588,6 +15038,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-08-02-illabot/Illabot Peaks.doc'
+                         ],
             'year' => '2006'
           },
           {
@@ -14799,6 +15252,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-08-05-sinister/Sinister Peak.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -14874,6 +15330,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-08-13-big-gee/Big Gee.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -15103,6 +15562,9 @@ who you are.  I couldn\'t have done it without you.
 
 Fay Pullen.
 ',
+            'tr-docs' => [
+                           'fay-html//2006-08-17-forbidden/Forbidden Peak.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -15245,6 +15707,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-08-24-graybeard/Graybeard Pk.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -15257,6 +15722,7 @@ Fay Pullen
             'subdir' => '2006-09-02-floating-rock',
             'title' => 'Floating Rock',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2006'
           },
           {
@@ -15500,6 +15966,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-09-08-duckabush/Mt Duckabush.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -15660,6 +16129,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-09-22-olsen/Mt Olsen.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -15720,6 +16192,9 @@ Total: 6.5 miles, 2700 ft and 7 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2006-09-27-discovery/Discovery Pk.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -15900,6 +16375,9 @@ Total: 42 miles and 12,300 ft in 3 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-10-01-lacrosse/Mt LaCrosse.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -16078,6 +16556,9 @@ Total: 30 miles and 10,100 ft in 3 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-10-07-mt-lena/Mt Lena.doc'
+                         ],
             'year' => '2006'
           },
           {
@@ -16204,6 +16685,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-10-27-indian-head/Indian Head Pk.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -16269,6 +16753,9 @@ Total: 16.5 miles, 5345 ft and 9:30 hrs.
 Fay Pullen
 .
 ',
+            'tr-docs' => [
+                           'fay-html//2006-11-09-muller/Mt Muller.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -16281,6 +16768,7 @@ Fay Pullen
             'subdir' => '2006-11-10-sumas',
             'title' => 'Sumas',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2006'
           },
           {
@@ -16362,6 +16850,9 @@ wonderful up to that point and worth putting up  with  a  little  annoyance.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-11-14-poch/Poch Pk.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -16450,6 +16941,9 @@ Total: 7 miles, 4250 ft and 9:15 hrs
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2006-11-17-berry/Berry Pk.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -16462,6 +16956,7 @@ Fay Pullen
             'subdir' => '2006-11-20-bald-hill',
             'title' => 'Bald Hill',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2006'
           },
           {
@@ -16616,6 +17111,9 @@ whole mess. I reached my car at 8:40 (17 miles, 3800 ft, 12 hrs).
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2006-11-22-glacier-view/Glacier View.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -16666,6 +17164,9 @@ of rocks scraping my bases made me stop and take off  my  skis.   12  miles,
 4500 ft, 8 hrs.  Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-11-28-dixie/Dixie Pk.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -16769,6 +17270,9 @@ sponsored by Ohop Light or some such.  Made me smile all the way home.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2006-12-01-mineral-tops/Mineral Tops.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -16801,6 +17305,9 @@ required. By now the snow was freezing which made for a very fast run  down.
 I came out the last bit by the light of the almost full moon.  (10.4  miles,
 2415 ft, 5:45 hrs RT)
 ',
+            'tr-docs' => [
+                           'fay-html//2006-12-01-spiraltop/Spiraltop.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -16861,6 +17368,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-12-03-pelletgun/Pelletgun Hill.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -16952,6 +17462,9 @@ Total: 21.6 miles by bike, maybe 1.6 miles on foot, 4360 ft, 10 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2006-12-08-siberia/Siberia Mtn.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -17057,6 +17570,9 @@ Total: 30 miles, 5035 ft, 10:20 hrs.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-12-12-worthy/Worthy Hill.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -17168,6 +17684,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2006-12-14-mineral-more-tops/Mineral More Tops.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -17249,6 +17768,9 @@ disaster and I could barely make it through on foot. 6.5 miles, 1260 ft  and
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2006-12-17-eatonville-eight/Eatonville Eight.doc'
+                         ],
             'year' => 2006
           },
           {
@@ -17306,6 +17828,9 @@ Total - 13.5 miles, 2650 ft and 6:30 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-01-11-peak-4235/Peak 4235.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -17391,6 +17916,9 @@ troublesome. 8 miles, 1400 ft and 4 hrs.  Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-01-16-monohan/Monohan Mtn.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -17470,6 +17998,9 @@ Total: 16 miles, 3000 ft and 7:20 hrs. Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-01-23-hicks-butte/Hicks Butte.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -17524,6 +18055,9 @@ Total: 8 miles, 4300 ft and 7:30 hrs
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-02-02-ark/The Ark.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -17572,6 +18106,9 @@ Total: 8 miles, 3950 ft and 8:50 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-02-06-pulpit/The Pulpit.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -17646,6 +18183,9 @@ Total: 9 miles, 4500 ft and 8:55 hrs    Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-02-11-frog/Frog Mtn.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -17714,6 +18254,9 @@ Total: 16 miles, 4200 ft & 9:30 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-02-14-el-capitan/El Capitan.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -17796,6 +18339,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-02-20-cle-elum/Cle Elum Ridge.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -17929,6 +18475,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-02-27-swauk/Swauk Ridge.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -18004,6 +18553,9 @@ Total: 13.6 miles, 4500 ft and 7:45 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-03-06-jolly/Jolly Mtn.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -18152,6 +18704,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-03-09-red/Red Mtn.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -18232,6 +18787,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-03-20-flapjack-pt/Flapjack Point.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -18311,6 +18869,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-03-22-spinnaker/Spinnaker Pk.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -18399,6 +18960,9 @@ Total: 21 miles, 6150 ft and 11 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-04-05-blowout/Blowout1.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -18454,6 +19018,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-04-07-baring/Baring1.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -18518,6 +19085,9 @@ Total: 12 miles, 4100 ft and 10:20 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-04-10-quarterdome/Quarterdome.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -18621,6 +19191,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-04-13-d/D Mtn.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -18710,6 +19283,9 @@ Total: 13 miles, 4600 ft and 9:15 hrs.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-04-19-nason/Nason Ridge 1.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -18783,6 +19359,9 @@ Total: 15.6 miles, 5600 ft and 11:25 hrs
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-04-26-aegeus/Aegeus Pk.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -18950,6 +19529,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-04-29-cascade/Cascade Mtn.doc'
+                         ],
             'year' => '2007'
           },
           {
@@ -19040,6 +19622,9 @@ may not have been higher than the flat summit.
 Totals: Old Butte and Squaw Saddle- 4.2 miles, 1050 ft and 2:30 hr
             Castle Rock - 1.2 miles, 770 ft and :45 hr
 ',
+            'tr-docs' => [
+                           'fay-html//2007-05-04-sheep-rock/Sheep Rock.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -19285,6 +19870,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-05-09-castle/Castle Pk.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -19340,6 +19928,9 @@ Total: 6 miles, 5100 ft and 11:20 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-05-17-silver-eagle/Silver Eagle Pk.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -19392,6 +19983,9 @@ Total: 4.5 miles, 4650 ft and 10:45 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-05-22-wild-dare/Wild Dare Pk.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -19578,6 +20172,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-05-24-garfield/Garfield Mtn.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -19713,6 +20310,9 @@ Grand Total: 23.5 miles and 10,700 ft in three days
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-06-01-sherman/Sherman Pk.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -19806,6 +20406,9 @@ this year
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-06-17-lincoln-attempt/Lincoln Pk Attempt.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -19935,6 +20538,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-06-26-bacon/Bacon Pk.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -20063,6 +20669,9 @@ Grand Total: 29 miles and 10, 200 ft in 3 days
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-07-02-hozomeen/Hozomeen Mtn.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -20201,6 +20810,9 @@ be helicoptered off the saddle between Hagan and Bacon.  But  I  will  leave
 it to Jim to tell that tale.
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-07-04-blum/Mt Blum.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -20368,6 +20980,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-07-12-spire/Spire Mtn.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -20549,6 +21164,9 @@ Grand Total: 24 miles and 12,100 ft in 3 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-07-25-big-devil/Big Devil Pk.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -20767,6 +21385,9 @@ Grand total: 36 miles and 9050 ft in 5 days
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-08-04-luna/Luna Peak.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -20829,6 +21450,9 @@ Total: 9 miles, 4700 ft and 10 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-08-15-cascade-n/N Cascade Mtn.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -20879,6 +21503,9 @@ Total: 6 miles, 3400 ft and 6 hrs.
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-08-26-anderson-butte/Anderson Butte.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -21048,6 +21675,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-08-28-elephant-butte/Elephant Butte.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -21223,6 +21853,9 @@ P.S. Azurite1 and Azurite4 finishes up the Azurite Pk Quad for me.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-09-12-methow-pinnacles/Methow Pinnacles.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -21235,6 +21868,7 @@ P.S. Azurite1 and Azurite4 finishes up the Azurite Pk Quad for me.
             'subdir' => '2007-09-18-devils-slide',
             'title' => 'Devils Slide 2',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2007'
           },
           {
@@ -21408,6 +22042,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-09-19-stiletto/Stiletto Pk.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -21525,6 +22162,9 @@ Oh yes, I still have American Ridge 1 left to do.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-09-27-american/American Ridge.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -21635,6 +22275,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-10-08-nelson/Nelson Ridge.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -21701,6 +22344,10 @@ Fay Pullen
             'subdir' => '2007-10-15-cougar',
             'title' => 'Cougar Lake Peaks',
             'tr' => undef,
+            'tr-docs' => [
+                           'fay-html//2007-10-15-cougar/Cougar Lake 3.doc',
+                           'fay-html//2007-10-15-cougar/Cougar Lake Peaks.doc'
+                         ],
             'year' => '2007'
           },
           {
@@ -21736,6 +22383,9 @@ Total: 10 miles, 4300 ft and 10:50 hrs
 
 Fay Pullen
 ',
+            'tr-docs' => [
+                           'fay-html//2007-10-21-tahtlum/Tahtlum Peak.rtf'
+                         ],
             'year' => 2007
           },
           {
@@ -21781,6 +22431,10 @@ Fay Pullen
             'subdir' => '2007-11-08-fifes',
             'title' => 'Fifes Peaks',
             'tr' => undef,
+            'tr-docs' => [
+                           'fay-html//2007-11-08-fifes/Fifes Peaks.doc',
+                           'fay-html//2007-11-08-fifes/Fifes West Peak.doc'
+                         ],
             'year' => '2007'
           },
           {
@@ -21867,6 +22521,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-11-18-sexagenarian/Sexagenarian Pk.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -21958,6 +22615,9 @@ Total: 18.2 miles, 4100 ft and 7:45 hrs.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-11-21-raven-roost/Raven Roost.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -22107,6 +22767,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2007-12-06-skate/Skate Mtn Peaks.doc'
+                         ],
             'year' => 2007
           },
           {
@@ -22194,6 +22857,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-01-09-taneum-pt/Taneum Point.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -22331,6 +22997,9 @@ where I have proper tools and spare screws. Total: 9 miles, 2550  ft  and  6
 hrs.
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-01-17-lone-tree/Lone Tree Mtn.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -22555,6 +23224,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-01-17-randle-ski/Randle Area Ski Tours.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -22641,6 +23313,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-01-24-greenhorn-buttes/Greenhorn Buttes 1.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -22827,6 +23502,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-01-24-randle-blobs/Randle Area Blobs.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -22948,6 +23626,9 @@ at 10:30. At least I had a short drive home.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-01-31-grass/Grass Mtn.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -22960,6 +23641,7 @@ Fay Pullen
             'subdir' => '2008-02-24-naughty-hill',
             'title' => 'Naughty Hill',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2008'
           },
           {
@@ -23001,6 +23683,9 @@ Total: 3.5 miles, 950 ft and 2:10 hrs.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-02-25-long-hill/Long Hill.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -23045,6 +23730,9 @@ Total: 5.75 miles, 1380 ft and 2:30 hrs.
 Fay
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-02-26-mitchell-hill/Mitchell Hill.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -23149,6 +23837,9 @@ Total: 14 miles, 4100 ft and 12 hrs.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-03-04-rampart/Rampart Ridge.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -23200,6 +23891,9 @@ is limited to the old visitor center.
 Fay
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-03-06-mcclure-rock/McClure Rock.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -23217,6 +23911,9 @@ Moss BM (1600+ ft - 640P - Mossyrock Quad)  This was a fairly easy bike ride wit
 Mossyrock Quad 1 (2440+ ft - 680P) and Bellicum Pk (2280+ ft - 480P) - Mossyrock Quad.  These two gave me more trouble and took longer than anticipated, but only because I ran into more snow than thought and had neither snowshoes nor skis along on my bike (dumb, dumb!).  For Mossyrock 1 I was able to avoid some snow by sticking to the woods. The south side of the summit had fresh logging cuttings and debris strewn all over and was completely impenetrable. Fortunately the summit itself was clear although I had to do an end-run around to get to it. It was all snow all the way to Bellicum with no way to avoid it. I tried a spur road that looked shorter on the map but I don\'t think it was and probably should have stuck to the main road. I ended up eventually back on it anyway. It continued around the south side of Bellicum to switchback to the summit ridge but took too long to do so I went straight up through dense woods.  This peak is fairly steep near the top and has some rocky areas.  10 miles, 2600 ft and 5:15 hrs.
 Fling Mtn (2880+ ft - 1720P - Morton Quad)  For completion I have included my route up this blob although I did it in January. I just never got around to writing it up. I was able to ski right from the car. Somehow I got off on a good looking spur road that then deadened below the radio tower. Rather than retreat, I forced a way to the tower road and continued on my way. I had to leave skis just below the summit and boot through thick woods to the top. It was a nice ski back down the road. 7 miles, 1300 ft and 3 hrs.
 Fay',
+            'tr-docs' => [
+                           'fay-html//2008-03-11-morton-blobs/Morton Blobs.docx'
+                         ],
             'year' => '2008'
           },
           {
@@ -23227,6 +23924,7 @@ Fay',
             'subdir' => '2008-03-12-morton-blobs',
             'title' => 'Morton Blobs',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2008'
           },
           {
@@ -23302,6 +24000,9 @@ Total: 15 miles, 4150 ft and 11:20 hrs.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-03-18-coal-cr-bluff/Coal Cr Bluff.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -23340,6 +24041,9 @@ Back at the saddle I picked up another spur road that curved around Point 4758 t
 Total: 21 miles, 4900 ft and 11 hrs.      Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-03-22-divide/Divide Ridge.docx'
+                         ],
             'year' => '2008'
           },
           {
@@ -23350,6 +24054,7 @@ Total: 21 miles, 4900 ft and 11 hrs.      Fay Pullen
             'subdir' => '2008-03-23-divide',
             'title' => 'Divide Ridge (4878 ft - 638P), Huckleberry Mtn (4903 ft - 743P) and Nagrom Quad 1 (3080+ ft - 400P) - Nagrom Quad - March 22, 2008',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2008'
           },
           {
@@ -23465,6 +24170,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-04-03-osborne/Osborne Mtn.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -23485,6 +24193,9 @@ this year, the Orr Cr  Sno-Park has been relocated to the junction of  Roads
  56 and 5601 some 2.5 miles before the normal site.
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-04-22-green/Green Mtn.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -23565,6 +24276,9 @@ Total: 5 miles, 3700 ft and 8:20 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-04-26-quartz/Quartz Mtn.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -23577,6 +24291,7 @@ Fay Pullen
             'subdir' => '2008-05-05-chinook-loop',
             'title' => 'Chinook Pk Loop',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2008'
           },
           {
@@ -23642,6 +24357,9 @@ ridge. (.6 miles, 540 ft, :55 hr.)
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-05-16-vance-cr-blobs/Vance Cr Blobs.doc'
+                         ],
             'year' => '2008'
           },
           {
@@ -23791,6 +24509,9 @@ Total: 6 miles, 5200 ft and 15:45 hrs             Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-05-18-garfield-summit/Garfield Summit.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -23803,6 +24524,7 @@ Total: 6 miles, 5200 ft and 15:45 hrs             Fay Pullen
             'subdir' => '2008-06-06-yozoo-butte',
             'title' => 'Yozoo Butte',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2008'
           },
           {
@@ -23924,6 +24646,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-06-08-north-craggy/North Craggy.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -24027,6 +24752,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-06-09-billy-goat/Billy Goat Mtn.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -24166,6 +24894,9 @@ Howbert\'s Master List gives it as 6145 ft.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-06-14-damfino/Damfino Pk.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -24272,6 +25003,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-06-20-south-pt/South Point.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -24485,6 +25219,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-06-27-lincoln/Lincoln Peak.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -24497,6 +25234,7 @@ Fay Pullen
             'subdir' => '2008-07-06-clear-west-1',
             'title' => 'Clear West 1 3',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2008'
           },
           {
@@ -24616,6 +25354,9 @@ Fay Pullen
 .
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-07-08-liberty-cap/Liberty Cap.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -24828,6 +25569,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-07-23-chimney-rock/Chimney Rock.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -24847,6 +25591,9 @@ Purcell Mtn Quad - July 31, 2008
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-07-31-twin-sisters/Twin Sisters.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -25054,6 +25801,9 @@ Grand Total: 32 miles and 15,500 ft in 6 days.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-08-07-agnes/Agnes Mtn.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -25250,6 +26000,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-08-22-elija/Elija Ridge.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -25386,6 +26139,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-08-29-arriva/Arriva.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -25495,6 +26251,9 @@ Such was the ignominious end to a very nice climb.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-09-10-south-twin/South Twin Sister.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -25646,6 +26405,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-09-13-american-border/American Border Peak.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -25754,6 +26516,9 @@ the way. For enjoyment stick to the east portion of Canyon Ridge.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-09-17-canyon/Canyon Ridge.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -25780,6 +26545,9 @@ splendid though somewhat hazy view of American Border peak where I had  just
 been a few days before (1450 ft, 1:30 ht).
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-09-17-cowap/Cowap Pk.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -25952,6 +26720,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-09-26-fool-hen/Fool Hen Peak.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -25995,6 +26766,10 @@ Fay Pullen
             'subdir' => '2008-10-14-tiffany',
             'title' => 'Tiffany  2',
             'tr' => undef,
+            'tr-docs' => [
+                           'fay-html//2008-10-14-tiffany/Tiffany Mtn.doc',
+                           'fay-html//2008-10-14-tiffany/~$ffany Mtn.doc'
+                         ],
             'year' => '2008'
           },
           {
@@ -26118,6 +26893,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-10-24-strawberry/Strawberry Mtn.doc'
+                         ],
             'year' => '2008'
           },
           {
@@ -26288,6 +27066,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-10-25-hardy/Hardy.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -26300,6 +27081,7 @@ Fay Pullen
             'subdir' => '2008-11-05-ohanapecosh',
             'title' => 'Ohanapecosh1',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2008'
           },
           {
@@ -26329,6 +27111,9 @@ Fay
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-11-11-sam-henry/Sam Henry Mtn.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -26449,6 +27234,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-11-17-silver-star/Silver Star Mtn.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -26461,6 +27249,7 @@ Fay Pullen
             'subdir' => '2008-11-24-stimson-hill',
             'title' => 'Stimson Hill',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2008'
           },
           {
@@ -26473,6 +27262,7 @@ Fay Pullen
             'subdir' => '2008-12-01-saddle-mtns',
             'title' => 'Saddle Mtns',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2008'
           },
           {
@@ -26616,6 +27406,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2008-12-03-monte-cristo/Monte Cristo.doc'
+                         ],
             'year' => 2008
           },
           {
@@ -26628,6 +27421,7 @@ Fay Pullen
             'subdir' => '2009-01-18-crater',
             'title' => 'Crater Lake Mtn',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2009'
           },
           {
@@ -26640,6 +27434,7 @@ Fay Pullen
             'subdir' => '2009-01-18-rodger-bluff',
             'title' => 'Rodger Bluff',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2009'
           },
           {
@@ -26771,6 +27566,9 @@ There are several nice camp sites at the lake that could be used as  a  base
 for forays to more remote peaks in the vicinity.
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-01-23-zekes/Zekes Pk.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -26858,6 +27656,9 @@ wouldn\'t have wanted much more fresh snow than I had.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-01-30-bald-silverton/Bald Mtn (Silverton).doc'
+                         ],
             'year' => 2009
           },
           {
@@ -26928,6 +27729,9 @@ Total: 10 miles, 2900 ft and 7:30 hours
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-02-03-table-baker/Table Mtn (Baker).doc'
+                         ],
             'year' => 2009
           },
           {
@@ -27048,6 +27852,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-02-06-hurricane/Hurricane Ridge.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -27087,6 +27894,9 @@ Total: 12.4 miles, 4000 ft and 8 hours.
 P.S. It would be a very boring snow shoe trip.
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-02-10-red-rock/Red Rock Mtn.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -27172,6 +27982,9 @@ Total: 6 miles, 3100 ft and 8 hours
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-02-12-herman/Mt Herman.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -27247,6 +28060,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-02-17-barometer/Barometer Mtn.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -27330,6 +28146,9 @@ Total: to high point of 4500 ft - 9 miles, 3000 ft and 9 hours
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-02-21-big-four-attempt/Big Four Mountain Attempt.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -27381,6 +28200,9 @@ Total: 12 miles, 4200 ft and 7:30 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-02-27-goat-grandy/Goat Mtn (Grandy Lake).doc'
+                         ],
             'year' => 2009
           },
           {
@@ -27433,6 +28255,9 @@ Total: 8 miles, 3000 ft and 6:30 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-02-28-round/Round Mtn.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -27520,6 +28345,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-03-06-washington-monument/Washington Monument.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -27543,6 +28371,7 @@ Fay Pullen
             'subdir' => '2009-03-10-bruce-hill',
             'title' => 'Bruce Hill',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2009'
           },
           {
@@ -27622,6 +28451,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-03-12-stevens/Stevens Ridge.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -27662,6 +28494,9 @@ Total: 10 miles, 1700 ft and 6:20 hrs.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-03-26-gold/Gold Mtn.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -27715,6 +28550,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-03-29-higgins-quad/Mt Higgins Quad 2.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -27759,6 +28597,9 @@ Fay
 No pictures, it was too foggy.
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-04-06-umtanum/Umtanum Ridge.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -27815,6 +28656,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-04-16-pickhandle-pt/Pickhandle Point.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -27887,6 +28731,9 @@ Total: 12 miles, 3500 ft and 8:15 hrs.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-04-21-long-east/Long Mtn East Peak.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -27976,6 +28823,9 @@ Total: 10 miles, 3700 ft, 7 hrs.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-04-24-hurricane-hill/Hurricane Hill.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -28020,6 +28870,9 @@ Total: 7 miles, 2600 ft and 5:20 hrs.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-04-28-wenatchee/Wenatchee Mtn.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -28098,6 +28951,9 @@ Fay
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-04-30-klahane/Klahane Ridge.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -28120,6 +28976,7 @@ Fay
             'subdir' => '2009-05-08-grasshopper',
             'title' => 'Grasshopper',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2009'
           },
           {
@@ -28211,6 +29068,9 @@ Total: 5 miles, 6400 ft and 12:15 hrs     Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-05-10-davis-diablo/Davis Pk.doc'
+                         ],
             'year' => '2009'
           },
           {
@@ -28341,6 +29201,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-05-22-saul/Mt Saul.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -28372,6 +29235,7 @@ Fay Pullen
             'subdir' => '2009-05-27-chair-loop',
             'title' => 'Chair Peak Loop',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2009'
           },
           {
@@ -28384,6 +29248,7 @@ Fay Pullen
             'subdir' => '2009-05-28-dungeon',
             'title' => 'Dungeon',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2009'
           },
           {
@@ -28456,6 +29321,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-05-28-independence/Independence Pk.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -28585,6 +29453,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-05-30-frozen/Frozen Mtn.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -28761,6 +29632,9 @@ Grand Total: 18 miles and 9850 ft in 3 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-06-02-bullen/Mt Bullen.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -28915,6 +29789,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-06-10-rocky/Rocky Pk.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -28995,6 +29872,9 @@ Total: 5.5 miles, 4400 ft and 9:30 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-06-16-tailgunner/Tailgunner Pk.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -29098,6 +29978,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-06-19-repulse/Repulse Pk.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -29231,6 +30114,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-06-19-repulse-hinkhouse/Repulse-Hinkhouse.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -29307,6 +30193,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-06-20-hinkhouse/Hinkhouse Pk.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -29420,6 +30309,9 @@ Total: 24 miles and 8500 ft in 2 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-06-23-beargrass-butte/Beargrass Butte.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -29655,6 +30547,9 @@ Grand Total: 46.5 miles and 22,150 ft in 6 days        Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-07-02-enigma/Enigma Pk.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -29855,6 +30750,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-07-14-fury-challenger/Fury-Challenger.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -30009,6 +30907,9 @@ Grand Total: 25 miles and 11,700 ft in 3 days.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-08-03-west-mcmillan/West McMillian Spire.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -30102,6 +31003,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-08-15-citadel/The Citadel.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -30222,6 +31126,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-08-21-andrew/Andrew Pk.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -30346,6 +31253,9 @@ Grand Total: 27.5 miles and 7250 ft in 3 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-08-26-horseshoe-basin/Horseshoe Basin Peaks.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -30504,6 +31414,9 @@ Garmin they will do that for me. They sure make one rugged GPS.
 P.S. Garmin did replace the back cover free of charge under the warranty.
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-09-11-triumph/Mt Triumph.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -30648,6 +31561,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-09-19-finney/Finney Pk.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -30762,6 +31678,9 @@ Grand Total for the trip: 34 miles and 14,150 ft in 4 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-09-24-three-pinnacles/Three Pinnacles.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -30774,6 +31693,7 @@ Fay Pullen
             'subdir' => '2009-10-01-peak-5160',
             'title' => 'Pk 5160',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2009'
           },
           {
@@ -30905,6 +31825,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-10-08-camels-hump/Camels Hump.doc'
+                         ],
             'year' => '2009'
           },
           {
@@ -31014,6 +31937,9 @@ Grand Total: 21.5 mile and 9100 ft in 3 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-10-09-horsethief/Horsethief Basin Peaks.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -31105,6 +32031,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-10-20-mcleod/McLeod Mtn.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -31172,6 +32101,9 @@ Total: 17 miles and 5400 ft in two days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-10-27-gray/Gray Peak.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -31201,6 +32133,10 @@ Fay Pullen
             'subdir' => '2009-11-05-chilly',
             'title' => 'Chilly',
             'tr' => undef,
+            'tr-docs' => [
+                           'fay-html//2009-11-05-chilly/Chilly Peak.doc',
+                           'fay-html//2009-11-05-chilly/~$illy Peak.doc'
+                         ],
             'year' => '2009'
           },
           {
@@ -31213,6 +32149,7 @@ Fay Pullen
             'subdir' => '2009-11-08-baker-wilderness',
             'title' => 'Mt Baker Wilderness',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2009'
           },
           {
@@ -31313,6 +32250,9 @@ Total: 31 miles and 6200 ft in 2 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-11-11-crow-hill/Crow Hill.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -31406,6 +32346,9 @@ Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-12-01-stormy/Stormy Mtn.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -31495,6 +32438,9 @@ Total: 6 miles, 5000 ft and 10:45 hours                Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2009-12-27-jumbo/Jumbo Mtn.doc'
+                         ],
             'year' => 2009
           },
           {
@@ -31577,6 +32523,9 @@ Total: 9 miles, 2600 ft and 7 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-01-03-bald-glacier/Bald Mtn (Glacier).doc'
+                         ],
             'year' => 2010
           },
           {
@@ -31666,6 +32615,9 @@ Total: 28 miles and 6050 ft in 2 days       Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-01-06-lookout-clifty/Lookout Mtn (Mt Clifty).doc'
+                         ],
             'year' => 2010
           },
           {
@@ -31747,6 +32699,9 @@ Total: 8 miles, 4500 ft and 9:30 hrs
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-01-10-pemmican/Pemmican Pk.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -31770,6 +32725,7 @@ Total: 8 miles, 4500 ft and 9:30 hrs
             'subdir' => '2010-01-17-loomis',
             'title' => 'Loomis',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2010'
           },
           {
@@ -31887,6 +32843,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-01-21-breccia/Breccia Pk.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -32021,6 +32980,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-01-26-grouse/Grouse Ridge.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -32116,6 +33078,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-02-03-skyline-divide/Skyline Divide.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -32223,6 +33188,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-02-10-fourmile/Fourmile Ridge.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -32235,6 +33203,7 @@ Fay Pullen
             'subdir' => '2010-02-14-goblin',
             'title' => 'Goblin Mountain and Storm Ridge',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2010'
           },
           {
@@ -32409,6 +33378,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-02-18-coleman-pinnacle/Coleman Pinnacle.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -32476,6 +33448,9 @@ Total: 13 miles, 4300 ft and 9:30 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-03-03-hogback/Hogback Mtn.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -32646,6 +33621,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-03-10-blankenship/Blankenship Mtn.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -32717,6 +33695,9 @@ Total: 11 miles and 4650 ft in two half days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-03-17-heliotrope/Heliotrope Ridge.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -32825,6 +33806,9 @@ Total: 18 miles and 5500 ft in 2 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-03-23-portals/The Portals.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -32938,6 +33922,9 @@ Carlton Ridge finished the White Pass Quad for me.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-04-01-carlton/Carlton Ridge.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -33042,6 +34029,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-04-06-mcneil/McNeil Pk.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -33070,6 +34060,7 @@ Fay Pullen
             'subdir' => '2010-04-15-cathedral-rocks',
             'title' => 'Cathedral Rocks',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2010'
           },
           {
@@ -33116,6 +34107,9 @@ Total: 13 miles, 2200 ft and 7 hrs.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-04-29-snyder/Snyder Mtn.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -33194,6 +34188,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-05-04-slash/Slash Mtn.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -33296,6 +34293,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-05-07-ulalach/Ulalach Pk.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -33438,6 +34438,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-05-14-slate/Slate Mtn - Mamie Pk.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -33597,6 +34600,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-05-29-battle/Battle Mtn.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -33651,6 +34657,9 @@ Oh, does anyone have a name for this peak? It certainly deserves one. I  did
 build a cairn and leave a register (but not a name).
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-06-03-tatoosh/Tatoosh Lakes Quad1.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -33762,6 +34771,9 @@ Total: 24 miles and 7400 ft in 2 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-06-07-talus-butte/Talus Butte.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -33802,6 +34814,9 @@ fence to Access summit. 1000 ft and 1:30 RT.
 Fay
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-06-09-newby/Newby Ridge N.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -33990,6 +35005,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-06-12-bears-breast/Bears Breast Mtn.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -34128,6 +35146,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-06-22-mcalester/McAlester Mtn.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -34360,6 +35381,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-07-02-riddle/Riddle Pk.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -34513,6 +35537,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-07-12-devils/Devils Pk.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -34604,6 +35631,9 @@ Total for trip: 13.5 miles and 7200 ft in 2 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-07-17-stonesthrow/Stonesthrow Pk.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -34803,6 +35833,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-07-22-terror/Mt Terror.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -34964,6 +35997,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-08-06-cloudcomb/Cloudcomb Pk.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -35136,6 +36172,9 @@ recommend rodent proof (Kevlar) bags to hang food in.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-08-13-meany/Mt Meany.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -35148,6 +36187,7 @@ recommend rodent proof (Kevlar) bags to hang food in.
             'subdir' => '2010-08-19-noyes',
             'title' => 'Noyes',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2010'
           },
           {
@@ -35316,6 +36356,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-08-23-despair/Mt Despair.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -35470,6 +36513,9 @@ Total: 26 miles and 11,200 ft in 3.5 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-09-09-silver-moon/Silver Moon.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -35555,6 +36601,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-09-15-midnight/Midnight Mtn.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -35729,6 +36778,9 @@ Total for trip: 51.5 miles and 17,750 ft in 5 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-09-22-many-trails/Many Trails Pk.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -35886,6 +36938,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-09-30-big-kangaroo/Big Kangaroo.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -35998,6 +37053,9 @@ Trip Total: 43 miles and 11,400 ft in 3 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-10-05-sheep/Sheep Mtn.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -36158,6 +37216,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-10-12-dollar-watch/Dollar Watch Mtn.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -36317,6 +37378,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-10-19-holliway/Holliway Mtn.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -36393,6 +37457,9 @@ Total: 10 miles, 3800 ft and 6 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-10-27-sunrise/Sunrise Pk.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -36453,6 +37520,9 @@ Fay
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-11-03-finney-darrington/Finney Pk (Darrington).doc'
+                         ],
             'year' => 2010
           },
           {
@@ -36559,6 +37629,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-11-04-klone/Klone Pk.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -36712,6 +37785,9 @@ Trip    Total:    24     miles     and     7300     ft     in     3     days
                                                                Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-11-10-tyee/Tyee Mtn.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -36783,6 +37859,9 @@ I hit the barricade on the east side. I had to turn around  and  go  through
 Yakima adding several hours to my drive time. I was not happy.      Fay
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-11-16-miners/Miners Ridge.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -36857,6 +37936,9 @@ Total: 16 miles, 4450 ft and 12 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-12-01-finn/Mt Finn.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -36942,6 +38024,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-12-04-bethel/Bethel Ridge.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -37006,6 +38091,9 @@ Total: 11 miles, 3750 ft and 9 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-12-09-round-nason/Round Mtn (Nason Ridge).doc'
+                         ],
             'year' => 2010
           },
           {
@@ -37114,6 +38202,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-12-19-udono/Udono Pk.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -37234,6 +38325,9 @@ Total: 18 miles and 5200 ft in 2 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2010-12-31-west-church/West Church.doc'
+                         ],
             'year' => 2010
           },
           {
@@ -37276,6 +38370,10 @@ Fay Pullen
             'subdir' => '2011-01-13-black',
             'title' => 'Black Mtn',
             'tr' => undef,
+            'tr-docs' => [
+                           'fay-html//2011-01-13-black/Black Mtn.doc',
+                           'fay-html//2011-01-13-black/Black Peak.doc'
+                         ],
             'year' => '2011'
           },
           {
@@ -37308,6 +38406,10 @@ Fay Pullen
             'subdir' => '2011-01-20-willickers-pt',
             'title' => 'Willickers Point',
             'tr' => undef,
+            'tr-docs' => [
+                           'fay-html//2011-01-20-willickers-pt/Willickers Point.doc',
+                           'fay-html//2011-01-20-willickers-pt/~$llickers Point.doc'
+                         ],
             'year' => '2011'
           },
           {
@@ -37389,6 +38491,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-01-26-damnation/Damnation Pk.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -37477,6 +38582,9 @@ Total: 7 miles, 3800 ft and 8:30 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-02-01-groat/Groat Mtn.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -37625,6 +38733,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-02-08-grouse-butte/Grouse Butte.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -37764,6 +38875,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-02-13-allen/Allen Mtn.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -37807,6 +38921,9 @@ Total: 14 miles, 4600 ft and 9:30 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-02-25-uprising/Uprising Pt.docx'
+                         ],
             'year' => 2011
           },
           {
@@ -37890,6 +39007,9 @@ Total: 17 miles, 3600 ft and 7:30 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-03-04-yakso/Yakso-Josephine.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -37976,6 +39096,9 @@ Total: 13 miles, 3900 ft and 9 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-03-11-cornell/Cornell Mtn.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -38061,6 +39184,9 @@ Trip total: 19 miles and 4500 ft in 2 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-03-17-slide/Slide Mtn.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -38141,6 +39267,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-03-23-toboggan/Toboggan Mtn.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -38214,6 +39343,9 @@ Total: 11 miles, 4500 ft and 12:15 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-04-08-porter/Porter Peak.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -38269,6 +39401,9 @@ Total: 20 miles, 3000 ft and 9:30 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-04-22-skate-berry/Skate Berry Pk.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -38398,6 +39533,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-04-26-timberwolf/Timberwolf Mtn.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -38534,6 +39672,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-05-03-divide-rimrock/Divide Ridge (Rimrock).doc'
+                         ],
             'year' => 2011
           },
           {
@@ -38693,6 +39834,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-05-09-darland/Darland Mtn.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -38799,6 +39943,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-05-11-church/Mt Church.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -38811,6 +39958,7 @@ Fay Pullen
             'subdir' => '2011-05-22-white-chick',
             'title' => 'White Chick',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2011'
           },
           {
@@ -38950,6 +40098,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-05-24-ironstone/Ironstone Mtn.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -39082,6 +40233,9 @@ equal him when I am that age. My hat is off to "Amazing Roy".
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-06-08-bearcat/Bearcat Peak.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -39225,6 +40379,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-06-16-crescent/Crescent Mtn.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -39339,6 +40496,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-06-21-marsupial/Marsupial Mtn.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -39539,6 +40699,9 @@ Trip Total: 20 miles and 11,850 ft in 4 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-07-02-sable/Sable Ridge.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -39702,6 +40865,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-07-09-napeequa/Napeequa Pk.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -39778,6 +40944,9 @@ Total: 10 miles, 5300 ft and 11:20 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-07-19-frisco/Frisco Mtn.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -39928,6 +41097,9 @@ Trip Total: 26 miles and 7800 ft in 3 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-07-22-tenpeak/Tenpeak Mtn.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -40128,6 +41300,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-07-29-middle-index/Middle Index.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -40317,6 +41492,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-08-06-kololo/Kololo Peaks.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -40479,6 +41657,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-08-12-horsemans-pack/Horsemans Pack aka The Needle.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -40706,6 +41887,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-08-19-spider/Spider Mtn.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -40882,6 +42066,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-08-26-mcgregor/McGregor Mtn.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -41039,6 +42226,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-09-09-devils-tongue/Devils Tongue.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -41153,6 +42343,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-10-19-elk/Elk Mtn.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -41188,6 +42381,10 @@ Fay Pullen
             'subdir' => '2011-10-29-lakeview',
             'title' => 'Lakeview Mtn',
             'tr' => undef,
+            'tr-docs' => [
+                           'fay-html//2011-10-29-lakeview/Lakeview Mtn.doc',
+                           'fay-html//2011-10-29-lakeview/Lakeview Pk.doc'
+                         ],
             'year' => '2011'
           },
           {
@@ -41338,6 +42535,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-11-01-nelson-butte/Nelson Butte.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -41426,6 +42626,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-11-06-tubal-cain/Tubal Cain Pk.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -41621,6 +42824,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-11-14-siouxon/Siouxon Pk.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -41778,6 +42984,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-12-05-april/April Pk.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -41811,6 +43020,7 @@ Fay Pullen
             'subdir' => '2011-12-18-cowlitz-rocks',
             'title' => 'Cowlitz Rocks',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2011'
           },
           {
@@ -41940,6 +43150,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2011-12-31-puyallup-lo/Puyallup LO.doc'
+                         ],
             'year' => 2011
           },
           {
@@ -41952,6 +43165,7 @@ Fay Pullen
             'subdir' => '2012-01-09-green-quilcene',
             'title' => 'Green Mtn Quilcene',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2012'
           },
           {
@@ -41964,6 +43178,7 @@ Fay Pullen
             'subdir' => '2012-01-13-hoodsport',
             'title' => 'Hoodsport s',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2012'
           },
           {
@@ -42056,6 +43271,9 @@ Total:       8       miles,       3600       ft       and       9       hrs.
          Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-01-28-margaret-via-rocky-run/Mt Margaret via Rocky Run.doc'
+                         ],
             'year' => '2012'
           },
           {
@@ -42174,6 +43392,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-02-02-dungeon-loop/Dungeon Pk Circumnavigation.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -42186,6 +43407,7 @@ Fay Pullen
             'subdir' => '2012-02-06-wildcat-peak-1320',
             'title' => 'Wildcat Pk 1320',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2012'
           },
           {
@@ -42367,6 +43589,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-02-22-quilcene-dumpsters/Quilcene Area Dumpsters.doc'
+                         ],
             'year' => '2012'
           },
           {
@@ -42433,6 +43658,9 @@ Total: 25.5 miles, 4100 ft and 8:30 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-02-23-dow/Dow Mtn.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -42552,6 +43780,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-03-08-east-rock/East Rock.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -42671,6 +43902,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-03-21-watch/Watch Mtn.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -42745,6 +43979,9 @@ Total: 8.5 miles, 2600 ft and 7 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-04-04-bergen/Bergen Mtn.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -42818,6 +44055,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-04-07-salvation/Salvation Pk.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -42905,6 +44145,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-04-14-davis-packwood/Davis Mtn.doc'
+                         ],
             'year' => '2012'
           },
           {
@@ -42998,6 +44241,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-04-27-kiona/Kiona Pk.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -43139,6 +44385,9 @@ before heading home (3/4 mile, 370 ft, 1 hr RT).
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-05-15-gibson/Gibson Pk.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -43240,6 +44489,9 @@ Total: 6 miles, 4600 ft and 12 hrs                    Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-05-26-big-methow-needle/Big Methow Needle.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -43417,6 +44669,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-06-09-columbia-gorge/Columbia Gorge Peaks.doc'
+                         ],
             'year' => '2012'
           },
           {
@@ -43429,6 +44684,7 @@ Fay Pullen
             'subdir' => '2012-06-11-three-sisters',
             'title' => 'Three Sisters',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2012'
           },
           {
@@ -43566,6 +44822,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-06-14-twin-lakes-bm/Twin Lakes BM.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -43709,6 +44968,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-06-20-muncaster/Muncaster Mtn.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -43802,6 +45064,9 @@ Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-06-27-hoquiam/Mt Hoquiam.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -43940,6 +45205,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-07-05-torment-attempt/Mt Torment Attempt.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -44093,6 +45361,9 @@ Trip Total: 15.5 miles and 7500 ft in 2.5 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-07-13-brothers/The Brothers.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -44276,6 +45547,9 @@ Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-07-21-west-challenger/West Challenger.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -44552,6 +45826,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-08-14-ptarmigan-traverse/The Ptarmigan Traverse.doc'
+                         ],
             'year' => '2012'
           },
           {
@@ -44735,6 +46012,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-08-22-painted-traverse/The Painted Traverse.doc'
+                         ],
             'year' => '2012'
           },
           {
@@ -44869,6 +46149,9 @@ BTW Skalabats is a shortening  of  an  Indian  name  (Skahala-bats)  meaning
 "Painted Mountain" that was originally applied to Red Mtn.
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-08-24-skalabats/Skalabats Pk.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -45029,6 +46312,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-09-07-mad-eagle/Mad Eagle Pk.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -45185,6 +46471,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-09-28-pasayten/Pasayten Pk.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -45343,6 +46632,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-10-04-winthrop/Mt Winthrop.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -45476,6 +46768,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-10-17-lemei/Lemei Rock.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -45576,6 +46871,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-11-01-soda-west/Soda Pks West.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -45699,6 +46997,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-11-09-three-lakes/Three Lakes Peaks.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -45787,6 +47088,9 @@ Day     Total:     10      miles,      2300      ft      and      7      hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2012-12-31-rinker/Rinker Ridge.doc'
+                         ],
             'year' => 2012
           },
           {
@@ -45896,6 +47200,9 @@ Day total: 16.2 miles, 2755 ft and 8:20 hrs               Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-02-12-echo-ski-trails/Echo Ridge Ski Trails.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -46044,6 +47351,9 @@ Trip Total: 29 miles and 6200 ft in 3 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-02-16-spokane/Mt Spokane Ski Trails.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -46130,6 +47440,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-02-18-loup-loup/Loup Loup Ski Trails.doc'
+                         ],
             'year' => '2013'
           },
           {
@@ -46283,6 +47596,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-03-07-lone-butte/Lone Butte.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -46295,6 +47611,7 @@ Fay Pullen
             'subdir' => '2013-03-18-stonewall',
             'title' => 'Stonewall',
             'tr' => undef,
+            'tr-docs' => [],
             'year' => '2013'
           },
           {
@@ -46439,6 +47756,9 @@ Trip Total: - 25 miles and 4850 ft in 2 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-03-21-king/King Mtn.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -46564,6 +47884,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-03-30-snowflea-hill/Snowflea Hill.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -46662,6 +47985,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-04-09-burton/Burton Mtn.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -46809,6 +48135,9 @@ Day Total: 12 miles, 3100 ft and 6:45 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-04-26-big-huckleberry/Big Huckleberry Mtn.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -47023,6 +48352,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-05-02-oneil/Mt O\'Neil.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -47163,6 +48495,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-05-08-capitol/Capitol Pk.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -47234,6 +48569,9 @@ Trip Total: 13 miles and 6800 ft in 3 days
 Fay
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-05-20-lena/Lena Lake Peaks.doc'
+                         ],
             'year' => '2013'
           },
           {
@@ -47320,6 +48658,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-05-26-chelan-lakeshore-trail/Chelan Lakeshore Trail.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -47460,6 +48801,9 @@ Trip Total: 33.5 miles and 7000 ft in 3 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-06-02-misery/Mt Misery Highline.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -47581,6 +48925,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-06-07-kitling-pass/Kitling Pass Peaks.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -47749,6 +49096,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-06-14-torment/Mt Torment.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -47862,6 +49212,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-06-21-white-mtns/White Mtns.doc'
+                         ],
             'year' => '2013'
           },
           {
@@ -47990,6 +49343,9 @@ Day Total: 7.5 miles, 2050 ft and 5:45 hrs
 Trip Total: 40 miles and 12,050 ft in 5 days
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-07-24-whatcom-pass/Whatcom Pass.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -48060,6 +49416,9 @@ Day Total: 11 miles, 1000 ft and 6 hrs
 
 Trip Total: 48 miles and 14,700 ft in 8 days
 ',
+            'tr-docs' => [
+                           'fay-html//2013-07-30-crooked-thumb/Crooked Thumb Attempt.doc'
+                         ],
             'year' => '2013'
           },
           {
@@ -48251,6 +49610,9 @@ in the tread.
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-08-07-baekos/Baekos Pk.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -48397,6 +49759,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-08-13-june-10th/June 10th Pk.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -48574,6 +49939,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-08-21-lawson/Mt Lawson.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -48790,6 +50158,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-09-06-eagle-cap/Eagle Cap Wilderness.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -48833,6 +50204,10 @@ Fay Pullen
             'subdir' => '2013-09-24-copper',
             'title' => 'Copper Mtn',
             'tr' => undef,
+            'tr-docs' => [
+                           'fay-html//2013-09-24-copper/Copper Mtn.doc',
+                           'fay-html//2013-09-24-copper/Copper Peak.doc'
+                         ],
             'year' => '2013'
           },
           {
@@ -48866,6 +50241,10 @@ Fay Pullen
             'subdir' => '2013-09-29-rattlesnake',
             'title' => 'Rattlesnake Peaks',
             'tr' => undef,
+            'tr-docs' => [
+                           'fay-html//2013-09-29-rattlesnake/Rattlesnake Pks.doc',
+                           'fay-html//2013-09-29-rattlesnake/~$ttlesnakes Pks.doc'
+                         ],
             'year' => '2013'
           },
           {
@@ -49017,6 +50396,9 @@ Trip Total: 11.5 miles and 5700 ft in 1 full day, 2 half days and 2 nights
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-10-08-nook/Nook Mtn.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -49132,13 +50514,13 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-10-16-pomas/Pomas Peak.doc'
+                         ],
             'year' => 2013
           },
           {
             'day' => '29',
-            'maps' => [
-                        'Mt Storrm King Route.JPG'
-                      ],
             'images' => [
                           [
                             'Storm-King-Pictures/4.jpg',
@@ -49154,10 +50536,17 @@ Fay Pullen
                             'Storm-King-Pictures/63.jpg'
                           ]
                         ],
+            'maps' => [
+                        'Mt Storrm King Route.JPG'
+                      ],
             'month' => '10',
             'subdir' => '2013-10-29-storm-king',
             'title' => 'Storm King',
             'tr' => undef,
+            'tr-docs' => [
+                           'fay-html//2013-10-29-storm-king/Mt Storm King.doc',
+                           'fay-html//2013-10-29-storm-king/Storm King Mtn.doc'
+                         ],
             'year' => '2013'
           },
           {
@@ -49198,6 +50587,10 @@ Fay Pullen
             'subdir' => '2013-10-30-tamarack',
             'title' => 'Tamarack',
             'tr' => undef,
+            'tr-docs' => [
+                           'fay-html//2013-10-30-tamarack/Tamarack Pk.doc',
+                           'fay-html//2013-10-30-tamarack/~$marack Pk.doc'
+                         ],
             'year' => '2013'
           },
           {
@@ -49288,6 +50681,9 @@ Total: 4.5 miles, 2700 ft and 6:30 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-11-01-whalehead/Whalehead Ridge.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -49413,6 +50809,9 @@ Trip Total: 23 miles and 7600 ft in 3 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-11-08-lizard-head/Lizard Head Peak.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -49479,6 +50878,9 @@ Total: 8 miles, 3400 ft and 10 hours
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-11-14-tirzah/Tirzah Pk.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -49548,6 +50950,9 @@ Total: 7 miles, 3000 ft and 5:30 hours
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-11-19-sweet/Sweet Pk.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -49699,6 +51104,9 @@ Trip Total: 21.5 miles and 7050 ft in 3 days
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-11-21-baldy/Baldy Ridge.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -49838,6 +51246,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-12-11-anderson-butte-wynoochee/Anderson Butte (Wynoochee).doc'
+                         ],
             'year' => 2013
           },
           {
@@ -49960,6 +51371,9 @@ Trip Total: 10 miles, 3550 ft and 8:30 hrs.
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2013-12-19-langille/Langille Pk.doc'
+                         ],
             'year' => 2013
           },
           {
@@ -50029,6 +51443,9 @@ Day Total: 11 miles, 3400 ft and 12:50 hrs
 Fay Pullen
 
 ',
+            'tr-docs' => [
+                           'fay-html//2014-01-01-wallace/Wallace Peak.doc'
+                         ],
             'year' => 2014
           },
           {
@@ -50188,6 +51605,9 @@ Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2014-01-04-tumwater/Tumwater Mtn.doc'
+                         ],
             'year' => 2014
           },
           {
@@ -50304,6 +51724,9 @@ Fay Pullen
 
 
 ',
+            'tr-docs' => [
+                           'fay-html//2014-01-26-persindex/Persindex.doc'
+                         ],
             'year' => 2014
           }
         ];
