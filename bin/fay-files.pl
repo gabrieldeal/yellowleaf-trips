@@ -2380,7 +2380,7 @@ $VAR1 = {
                                'timestamp' => '2013-07-30',
                                'word_docs' => [
                                                 {
-                                                  'path' => 'data/faypullen.orig/Trip Reports/C/Crooked Thumb Attempt.doc'
+                                                  'path' => 'data/faypullen/Trip Reports/C/Crooked Thumb Attempt.doc'
                                                 }
                                               ],
                                'year' => '2013'
