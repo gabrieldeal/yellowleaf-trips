@@ -1,4 +1,4 @@
-$VAR1 = [
+[
           {
             'day' => '18',
             'images' => [],
@@ -4057,10 +4057,10 @@ Total: 16 miles, 6100 feet and 11.5 hours - Fay Pullen
             'day' => '27',
             'images' => [
                           [
+                            'Goode_Pictures/7.jpg',
                             'Goode_Pictures/27.jpg',
                             'Goode_Pictures/46.jpg',
                             'Goode_Pictures/65.jpg',
-                            'Goode_Pictures/7.jpg',
                             'Goode_Pictures/84.jpg'
                           ]
                         ],
@@ -7543,14 +7543,14 @@ Total: Maybe 6 miles, 4950 ft, 6:40 hrs.
             'day' => '25',
             'images' => [
                           [
-                            'Big_Snagtooth_Photos_2/103.jpg',
-                            'Big_Snagtooth_Photos_2/122.jpg',
-                            'Big_Snagtooth_Photos_2/141.jpg',
+                            'Big_Snagtooth_Photos_2/7.jpg',
                             'Big_Snagtooth_Photos_2/27.jpg',
                             'Big_Snagtooth_Photos_2/46.jpg',
                             'Big_Snagtooth_Photos_2/65.jpg',
-                            'Big_Snagtooth_Photos_2/7.jpg',
-                            'Big_Snagtooth_Photos_2/84.jpg'
+                            'Big_Snagtooth_Photos_2/84.jpg',
+                            'Big_Snagtooth_Photos_2/103.jpg',
+                            'Big_Snagtooth_Photos_2/122.jpg',
+                            'Big_Snagtooth_Photos_2/141.jpg'
                           ]
                         ],
             'maps' => [],
@@ -7683,10 +7683,10 @@ Total: A pitiful 7 miles and 5200 ft in 3 days.    Fay Pullen
             'day' => '02',
             'images' => [
                           [
+                            'Flora_Pictures/7.jpg',
                             'Flora_Pictures/27.jpg',
                             'Flora_Pictures/46.jpg',
                             'Flora_Pictures/65.jpg',
-                            'Flora_Pictures/7.jpg',
                             'Flora_Pictures/84.jpg'
                           ]
                         ],
@@ -7809,21 +7809,21 @@ Fay Pullen
             'day' => '13',
             'images' => [
                           [
-                            'Windy_Peak_Pictures/103.jpg',
-                            'Windy_Peak_Pictures/122.jpg',
-                            'Windy_Peak_Pictures/141.jpg',
-                            'Windy_Peak_Pictures/160.jpg',
+                            'Windy_Peak_Pictures/7.jpg',
                             'Windy_Peak_Pictures/27.jpg',
                             'Windy_Peak_Pictures/46.jpg',
                             'Windy_Peak_Pictures/65.jpg',
-                            'Windy_Peak_Pictures/7.jpg',
-                            'Windy_Peak_Pictures/84.jpg'
+                            'Windy_Peak_Pictures/84.jpg',
+                            'Windy_Peak_Pictures/103.jpg',
+                            'Windy_Peak_Pictures/122.jpg',
+                            'Windy_Peak_Pictures/141.jpg',
+                            'Windy_Peak_Pictures/160.jpg'
                           ]
                         ],
             'maps' => [],
             'month' => '06',
             'subdir' => '2005-06-13-windy',
-            'title' => undef,
+            'title' => 'Windy Peak',
             'tr' => undef,
             'year' => '2005'
           },
@@ -7831,12 +7831,12 @@ Fay Pullen
             'day' => '15',
             'images' => [
                           [
-                            'Pilot-Peak-Pictures/103.jpg',
+                            'Pilot-Peak-Pictures/7.jpg',
                             'Pilot-Peak-Pictures/27.jpg',
                             'Pilot-Peak-Pictures/46.jpg',
                             'Pilot-Peak-Pictures/65.jpg',
-                            'Pilot-Peak-Pictures/7.jpg',
-                            'Pilot-Peak-Pictures/84.jpg'
+                            'Pilot-Peak-Pictures/84.jpg',
+                            'Pilot-Peak-Pictures/103.jpg'
                           ]
                         ],
             'maps' => [],
@@ -7909,13 +7909,13 @@ Total: 16 miles, 7500 ft, and 13 hrs.   Fay Pullen
             'day' => '19',
             'images' => [
                           [
-                            'Mt_Formidable_pictures/103.jpg',
-                            'Mt_Formidable_pictures/122.jpg',
+                            'Mt_Formidable_pictures/7.jpg',
                             'Mt_Formidable_pictures/27.jpg',
                             'Mt_Formidable_pictures/46.jpg',
                             'Mt_Formidable_pictures/65.jpg',
-                            'Mt_Formidable_pictures/7.jpg',
-                            'Mt_Formidable_pictures/84.jpg'
+                            'Mt_Formidable_pictures/84.jpg',
+                            'Mt_Formidable_pictures/103.jpg',
+                            'Mt_Formidable_pictures/122.jpg'
                           ]
                         ],
             'maps' => [],
@@ -8144,14 +8144,14 @@ Fay Pullen
             'day' => '03',
             'images' => [
                           [
-                            'Mesahchie_Pictures/103.jpg',
-                            'Mesahchie_Pictures/122.jpg',
-                            'Mesahchie_Pictures/141.jpg',
+                            'Mesahchie_Pictures/7.jpg',
                             'Mesahchie_Pictures/27.jpg',
                             'Mesahchie_Pictures/46.jpg',
                             'Mesahchie_Pictures/65.jpg',
-                            'Mesahchie_Pictures/7.jpg',
-                            'Mesahchie_Pictures/84.jpg'
+                            'Mesahchie_Pictures/84.jpg',
+                            'Mesahchie_Pictures/103.jpg',
+                            'Mesahchie_Pictures/122.jpg',
+                            'Mesahchie_Pictures/141.jpg'
                           ]
                         ],
             'maps' => [],
@@ -8322,10 +8322,10 @@ Fay Pullen
             'day' => '07',
             'images' => [
                           [
+                            'Bulls_Tooth_Picyures/7.jpg',
                             'Bulls_Tooth_Picyures/27.jpg',
                             'Bulls_Tooth_Picyures/46.jpg',
                             'Bulls_Tooth_Picyures/65.jpg',
-                            'Bulls_Tooth_Picyures/7.jpg',
                             'Bulls_Tooth_Picyures/84.jpg'
                           ]
                         ],
@@ -8425,14 +8425,14 @@ Fay Pullen
             'day' => '14',
             'images' => [
                           [
-                            'Spickard-Pictures/103.jpg',
-                            'Spickard-Pictures/122.jpg',
-                            'Spickard-Pictures/141.jpg',
+                            'Spickard-Pictures/7.jpg',
                             'Spickard-Pictures/27.jpg',
                             'Spickard-Pictures/46.jpg',
                             'Spickard-Pictures/65.jpg',
-                            'Spickard-Pictures/7.jpg',
-                            'Spickard-Pictures/84.jpg'
+                            'Spickard-Pictures/84.jpg',
+                            'Spickard-Pictures/103.jpg',
+                            'Spickard-Pictures/122.jpg',
+                            'Spickard-Pictures/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -8655,14 +8655,14 @@ Fay Pullen
             'day' => '22',
             'images' => [
                           [
-                            'Chaval_Pictures/103.jpg',
-                            'Chaval_Pictures/122.jpg',
-                            'Chaval_Pictures/141.jpg',
+                            'Chaval_Pictures/7.jpg',
                             'Chaval_Pictures/27.jpg',
                             'Chaval_Pictures/46.jpg',
                             'Chaval_Pictures/65.jpg',
-                            'Chaval_Pictures/7.jpg',
-                            'Chaval_Pictures/84.jpg'
+                            'Chaval_Pictures/84.jpg',
+                            'Chaval_Pictures/103.jpg',
+                            'Chaval_Pictures/122.jpg',
+                            'Chaval_Pictures/141.jpg'
                           ]
                         ],
             'maps' => [],
@@ -8772,14 +8772,14 @@ Fay Pullen
             'day' => '27',
             'images' => [
                           [
-                            'Boston_Pictures/103.jpg',
-                            'Boston_Pictures/122.jpg',
-                            'Boston_Pictures/141.jpg',
+                            'Boston_Pictures/7.jpg',
                             'Boston_Pictures/27.jpg',
                             'Boston_Pictures/46.jpg',
                             'Boston_Pictures/65.jpg',
-                            'Boston_Pictures/7.jpg',
-                            'Boston_Pictures/84.jpg'
+                            'Boston_Pictures/84.jpg',
+                            'Boston_Pictures/103.jpg',
+                            'Boston_Pictures/122.jpg',
+                            'Boston_Pictures/141.jpg'
                           ]
                         ],
             'maps' => [],
@@ -8894,15 +8894,15 @@ Fay Pullen
             'day' => '02',
             'images' => [
                           [
-                            'Dorado_Needle_Pictures/103.jpg',
-                            'Dorado_Needle_Pictures/122.jpg',
-                            'Dorado_Needle_Pictures/141.jpg',
-                            'Dorado_Needle_Pictures/160.jpg',
+                            'Dorado_Needle_Pictures/7.jpg',
                             'Dorado_Needle_Pictures/27.jpg',
                             'Dorado_Needle_Pictures/46.jpg',
                             'Dorado_Needle_Pictures/65.jpg',
-                            'Dorado_Needle_Pictures/7.jpg',
-                            'Dorado_Needle_Pictures/84.jpg'
+                            'Dorado_Needle_Pictures/84.jpg',
+                            'Dorado_Needle_Pictures/103.jpg',
+                            'Dorado_Needle_Pictures/122.jpg',
+                            'Dorado_Needle_Pictures/141.jpg',
+                            'Dorado_Needle_Pictures/160.jpg'
                           ]
                         ],
             'maps' => [
@@ -9022,13 +9022,13 @@ Fay Pullen
             'day' => '07',
             'images' => [
                           [
-                            'Azurite_Photos/103.jpg',
-                            'Azurite_Photos/122.jpg',
+                            'Azurite_Photos/7.jpg',
                             'Azurite_Photos/27.jpg',
                             'Azurite_Photos/46.jpg',
                             'Azurite_Photos/65.jpg',
-                            'Azurite_Photos/7.jpg',
-                            'Azurite_Photos/84.jpg'
+                            'Azurite_Photos/84.jpg',
+                            'Azurite_Photos/103.jpg',
+                            'Azurite_Photos/122.jpg'
                           ]
                         ],
             'maps' => [],
@@ -9181,15 +9181,15 @@ Fay Pullen
             'day' => '15',
             'images' => [
                           [
-                            'Cosho_and_Kimtah_Pictures/103.jpg',
-                            'Cosho_and_Kimtah_Pictures/122.jpg',
-                            'Cosho_and_Kimtah_Pictures/141.jpg',
-                            'Cosho_and_Kimtah_Pictures/160.jpg',
+                            'Cosho_and_Kimtah_Pictures/7.jpg',
                             'Cosho_and_Kimtah_Pictures/27.jpg',
                             'Cosho_and_Kimtah_Pictures/46.jpg',
                             'Cosho_and_Kimtah_Pictures/65.jpg',
-                            'Cosho_and_Kimtah_Pictures/7.jpg',
-                            'Cosho_and_Kimtah_Pictures/84.jpg'
+                            'Cosho_and_Kimtah_Pictures/84.jpg',
+                            'Cosho_and_Kimtah_Pictures/103.jpg',
+                            'Cosho_and_Kimtah_Pictures/122.jpg',
+                            'Cosho_and_Kimtah_Pictures/141.jpg',
+                            'Cosho_and_Kimtah_Pictures/160.jpg'
                           ]
                         ],
             'maps' => [],
@@ -9317,14 +9317,14 @@ Total: 28 miles and 12, 200 ft in 3 days         Fay Pullen
             'day' => '24',
             'images' => [
                           [
-                            'Primus_Pictures/103.jpg',
-                            'Primus_Pictures/122.jpg',
-                            'Primus_Pictures/141.jpg',
+                            'Primus_Pictures/7.jpg',
                             'Primus_Pictures/27.jpg',
                             'Primus_Pictures/46.jpg',
                             'Primus_Pictures/65.jpg',
-                            'Primus_Pictures/7.jpg',
-                            'Primus_Pictures/84.jpg'
+                            'Primus_Pictures/84.jpg',
+                            'Primus_Pictures/103.jpg',
+                            'Primus_Pictures/122.jpg',
+                            'Primus_Pictures/141.jpg'
                           ]
                         ],
             'maps' => [],
@@ -9502,12 +9502,12 @@ Fay Pullen
             'day' => '10',
             'images' => [
                           [
-                            'Mac_Pictures/103.jpg',
+                            'Mac_Pictures/7.jpg',
                             'Mac_Pictures/27.jpg',
                             'Mac_Pictures/46.jpg',
                             'Mac_Pictures/65.jpg',
-                            'Mac_Pictures/7.jpg',
-                            'Mac_Pictures/84.jpg'
+                            'Mac_Pictures/84.jpg',
+                            'Mac_Pictures/103.jpg'
                           ]
                         ],
             'maps' => [],
@@ -9611,16 +9611,16 @@ Fay Pullen
             'day' => '13',
             'images' => [
                           [
+                            'S-Granite-Pictures/7.jpg',
+                            'S-Granite-Pictures/27.jpg',
+                            'S-Granite-Pictures/46.jpg',
+                            'S-Granite-Pictures/65.jpg',
+                            'S-Granite-Pictures/84.jpg',
                             'S-Granite-Pictures/103.jpg',
                             'S-Granite-Pictures/122.jpg',
                             'S-Granite-Pictures/141.jpg',
                             'S-Granite-Pictures/160.jpg',
-                            'S-Granite-Pictures/179.jpg',
-                            'S-Granite-Pictures/27.jpg',
-                            'S-Granite-Pictures/46.jpg',
-                            'S-Granite-Pictures/65.jpg',
-                            'S-Granite-Pictures/7.jpg',
-                            'S-Granite-Pictures/84.jpg'
+                            'S-Granite-Pictures/179.jpg'
                           ]
                         ],
             'maps' => [],
@@ -9742,16 +9742,16 @@ Fay Pullen
             'day' => '17',
             'images' => [
                           [
+                            'Bandit_Peak/7.jpg',
+                            'Bandit_Peak/27.jpg',
+                            'Bandit_Peak/46.jpg',
+                            'Bandit_Peak/65.jpg',
+                            'Bandit_Peak/84.jpg',
                             'Bandit_Peak/103.jpg',
                             'Bandit_Peak/122.jpg',
                             'Bandit_Peak/141.jpg',
                             'Bandit_Peak/160.jpg',
-                            'Bandit_Peak/179.jpg',
-                            'Bandit_Peak/27.jpg',
-                            'Bandit_Peak/46.jpg',
-                            'Bandit_Peak/65.jpg',
-                            'Bandit_Peak/7.jpg',
-                            'Bandit_Peak/84.jpg'
+                            'Bandit_Peak/179.jpg'
                           ]
                         ],
             'maps' => [],
@@ -9904,13 +9904,13 @@ Fay Pullen
             'day' => '24',
             'images' => [
                           [
-                            'Index_Pictures/103.jpg',
-                            'Index_Pictures/122.jpg',
+                            'Index_Pictures/7.jpg',
                             'Index_Pictures/27.jpg',
                             'Index_Pictures/46.jpg',
                             'Index_Pictures/65.jpg',
-                            'Index_Pictures/7.jpg',
-                            'Index_Pictures/84.jpg'
+                            'Index_Pictures/84.jpg',
+                            'Index_Pictures/103.jpg',
+                            'Index_Pictures/122.jpg'
                           ]
                         ],
             'maps' => [],
@@ -10023,15 +10023,15 @@ Fay Pullen
             'day' => '06',
             'images' => [
                           [
-                            'Dip-Top-Pictures/103.jpg',
-                            'Dip-Top-Pictures/122.jpg',
-                            'Dip-Top-Pictures/141.jpg',
-                            'Dip-Top-Pictures/160.jpg',
+                            'Dip-Top-Pictures/7.jpg',
                             'Dip-Top-Pictures/27.jpg',
                             'Dip-Top-Pictures/46.jpg',
                             'Dip-Top-Pictures/65.jpg',
-                            'Dip-Top-Pictures/7.jpg',
-                            'Dip-Top-Pictures/84.jpg'
+                            'Dip-Top-Pictures/84.jpg',
+                            'Dip-Top-Pictures/103.jpg',
+                            'Dip-Top-Pictures/122.jpg',
+                            'Dip-Top-Pictures/141.jpg',
+                            'Dip-Top-Pictures/160.jpg'
                           ]
                         ],
             'maps' => [],
@@ -10191,15 +10191,15 @@ Fay Pullen
             'day' => '26',
             'images' => [
                           [
-                            'Ares-Pictures/103.jpg',
-                            'Ares-Pictures/122.jpg',
-                            'Ares-Pictures/141.jpg',
-                            'Ares-Pictures/160.jpg',
+                            'Ares-Pictures/7.jpg',
                             'Ares-Pictures/27.jpg',
                             'Ares-Pictures/46.jpg',
                             'Ares-Pictures/65.jpg',
-                            'Ares-Pictures/7.jpg',
-                            'Ares-Pictures/84.jpg'
+                            'Ares-Pictures/84.jpg',
+                            'Ares-Pictures/103.jpg',
+                            'Ares-Pictures/122.jpg',
+                            'Ares-Pictures/141.jpg',
+                            'Ares-Pictures/160.jpg'
                           ]
                         ],
             'maps' => [],
@@ -10328,10 +10328,10 @@ Total: 30 miles and 8400 ft in 3 days.       Fay Pullen
             'day' => '02',
             'images' => [
                           [
+                            'Sorcery-Pictures/7.jpg',
                             'Sorcery-Pictures/27.jpg',
                             'Sorcery-Pictures/46.jpg',
                             'Sorcery-Pictures/65.jpg',
-                            'Sorcery-Pictures/7.jpg',
                             'Sorcery-Pictures/84.jpg'
                           ]
                         ],
@@ -10637,9 +10637,9 @@ Fay Pullen
             'day' => '01',
             'images' => [
                           [
+                            'Pk_6217_Pictures/7.jpg',
                             'Pk_6217_Pictures/27.jpg',
-                            'Pk_6217_Pictures/46.jpg',
-                            'Pk_6217_Pictures/7.jpg'
+                            'Pk_6217_Pictures/46.jpg'
                           ]
                         ],
             'maps' => [],
@@ -10705,18 +10705,18 @@ Fay Pullen
             'day' => '07',
             'images' => [
                           [
+                            'Lost-Ranger-Pictures-2/7.jpg',
                             'Lost-Ranger-Pictures-2/27.jpg',
                             'Lost-Ranger-Pictures-2/46.jpg',
-                            'Lost-Ranger-Pictures-2/65.jpg',
-                            'Lost-Ranger-Pictures-2/7.jpg'
+                            'Lost-Ranger-Pictures-2/65.jpg'
                           ],
                           [
-                            'Lost_Ranger_Pictures/103.jpg',
+                            'Lost_Ranger_Pictures/7.jpg',
                             'Lost_Ranger_Pictures/27.jpg',
                             'Lost_Ranger_Pictures/46.jpg',
                             'Lost_Ranger_Pictures/65.jpg',
-                            'Lost_Ranger_Pictures/7.jpg',
-                            'Lost_Ranger_Pictures/84.jpg'
+                            'Lost_Ranger_Pictures/84.jpg',
+                            'Lost_Ranger_Pictures/103.jpg'
                           ]
                         ],
             'maps' => [],
@@ -10783,10 +10783,10 @@ Fay Pullen
             'day' => '15',
             'images' => [
                           [
+                            'Rampart_Ridge_SE_Peak-Pictures/7.jpg',
                             'Rampart_Ridge_SE_Peak-Pictures/27.jpg',
                             'Rampart_Ridge_SE_Peak-Pictures/46.jpg',
-                            'Rampart_Ridge_SE_Peak-Pictures/65.jpg',
-                            'Rampart_Ridge_SE_Peak-Pictures/7.jpg'
+                            'Rampart_Ridge_SE_Peak-Pictures/65.jpg'
                           ]
                         ],
             'maps' => [],
@@ -10912,9 +10912,9 @@ Fay Pullen
             'day' => '29',
             'images' => [
                           [
+                            'Sawmill_Ridge_Photos/7.jpg',
                             'Sawmill_Ridge_Photos/27.jpg',
-                            'Sawmill_Ridge_Photos/46.jpg',
-                            'Sawmill_Ridge_Photos/7.jpg'
+                            'Sawmill_Ridge_Photos/46.jpg'
                           ]
                         ],
             'maps' => [],
@@ -11015,8 +11015,8 @@ Fay Pullen
             'day' => '03',
             'images' => [
                           [
-                            'Pechugh_Pk_Photos/27.jpg',
-                            'Pechugh_Pk_Photos/7.jpg'
+                            'Pechugh_Pk_Photos/7.jpg',
+                            'Pechugh_Pk_Photos/27.jpg'
                           ]
                         ],
             'maps' => [],
@@ -11072,12 +11072,12 @@ Fay Pullen
             'day' => '04',
             'images' => [
                           [
-                            'Teanaway_Ridge_Pictures/103.jpg',
+                            'Teanaway_Ridge_Pictures/7.jpg',
                             'Teanaway_Ridge_Pictures/27.jpg',
                             'Teanaway_Ridge_Pictures/46.jpg',
                             'Teanaway_Ridge_Pictures/65.jpg',
-                            'Teanaway_Ridge_Pictures/7.jpg',
-                            'Teanaway_Ridge_Pictures/84.jpg'
+                            'Teanaway_Ridge_Pictures/84.jpg',
+                            'Teanaway_Ridge_Pictures/103.jpg'
                           ]
                         ],
             'maps' => [
@@ -11180,14 +11180,14 @@ Fay Pullen
             'day' => '09',
             'images' => [
                           [
-                            'Table-Mtn-Pictures/109.jpg',
+                            'Table-Mtn-Pictures/4.jpg',
+                            'Table-Mtn-Pictures/9.jpg',
                             'Table-Mtn-Pictures/14.jpg',
                             'Table-Mtn-Pictures/19.jpg',
                             'Table-Mtn-Pictures/24.jpg',
                             'Table-Mtn-Pictures/29.jpg',
                             'Table-Mtn-Pictures/34.jpg',
                             'Table-Mtn-Pictures/39.jpg',
-                            'Table-Mtn-Pictures/4.jpg',
                             'Table-Mtn-Pictures/44.jpg',
                             'Table-Mtn-Pictures/49.jpg',
                             'Table-Mtn-Pictures/54.jpg',
@@ -11198,20 +11198,20 @@ Fay Pullen
                             'Table-Mtn-Pictures/79.jpg',
                             'Table-Mtn-Pictures/84.jpg',
                             'Table-Mtn-Pictures/89.jpg',
-                            'Table-Mtn-Pictures/9.jpg',
-                            'Table-Mtn-Pictures/94.jpg'
+                            'Table-Mtn-Pictures/94.jpg',
+                            'Table-Mtn-Pictures/109.jpg'
                           ],
                           [
+                            'Table_Mountain_Pictures/7.jpg',
+                            'Table_Mountain_Pictures/27.jpg',
+                            'Table_Mountain_Pictures/46.jpg',
+                            'Table_Mountain_Pictures/65.jpg',
+                            'Table_Mountain_Pictures/84.jpg',
                             'Table_Mountain_Pictures/103.jpg',
                             'Table_Mountain_Pictures/122.jpg',
                             'Table_Mountain_Pictures/141.jpg',
                             'Table_Mountain_Pictures/160.jpg',
-                            'Table_Mountain_Pictures/179.jpg',
-                            'Table_Mountain_Pictures/27.jpg',
-                            'Table_Mountain_Pictures/46.jpg',
-                            'Table_Mountain_Pictures/65.jpg',
-                            'Table_Mountain_Pictures/7.jpg',
-                            'Table_Mountain_Pictures/84.jpg'
+                            'Table_Mountain_Pictures/179.jpg'
                           ]
                         ],
             'maps' => [
@@ -11284,9 +11284,9 @@ Fay Pullen
             'day' => '13',
             'images' => [
                           [
+                            'Big_Muffin_Pictures/7.jpg',
                             'Big_Muffin_Pictures/27.jpg',
-                            'Big_Muffin_Pictures/46.jpg',
-                            'Big_Muffin_Pictures/7.jpg'
+                            'Big_Muffin_Pictures/46.jpg'
                           ]
                         ],
             'maps' => [],
@@ -11362,10 +11362,10 @@ Total: 19 miles, 3200 ft and 8 hrs.  Fay Pullen
             'day' => '17',
             'images' => [
                           [
+                            'Pk-4080-Pictures/7.jpg',
                             'Pk-4080-Pictures/27.jpg',
                             'Pk-4080-Pictures/46.jpg',
                             'Pk-4080-Pictures/65.jpg',
-                            'Pk-4080-Pictures/7.jpg',
                             'Pk-4080-Pictures/84.jpg'
                           ]
                         ],
@@ -11436,9 +11436,9 @@ Fay Pullen
             'day' => '19',
             'images' => [
                           [
+                            'Lake_Laura_Pictures/7.jpg',
                             'Lake_Laura_Pictures/27.jpg',
-                            'Lake_Laura_Pictures/46.jpg',
-                            'Lake_Laura_Pictures/7.jpg'
+                            'Lake_Laura_Pictures/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -11510,9 +11510,9 @@ Total: 13 miles, 4100 ft and 7:50 hrs        Fay Pullen
             'day' => '24',
             'images' => [
                           [
+                            'Meadow_Mtn_Pictures/7.jpg',
                             'Meadow_Mtn_Pictures/27.jpg',
-                            'Meadow_Mtn_Pictures/46.jpg',
-                            'Meadow_Mtn_Pictures/7.jpg'
+                            'Meadow_Mtn_Pictures/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -11585,9 +11585,9 @@ Fay Pullen
             'day' => '31',
             'images' => [
                           [
+                            'Huckleberry_Ridge_Pictures/7.jpg',
                             'Huckleberry_Ridge_Pictures/27.jpg',
-                            'Huckleberry_Ridge_Pictures/46.jpg',
-                            'Huckleberry_Ridge_Pictures/7.jpg'
+                            'Huckleberry_Ridge_Pictures/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -11659,10 +11659,10 @@ Total: 11 miles, 3800 ft and 8 hrs.   Fay Pullen
             'day' => '05',
             'images' => [
                           [
+                            'Greenway_Pictures/7.jpg',
                             'Greenway_Pictures/27.jpg',
                             'Greenway_Pictures/46.jpg',
                             'Greenway_Pictures/65.jpg',
-                            'Greenway_Pictures/7.jpg',
                             'Greenway_Pictures/84.jpg'
                           ]
                         ],
@@ -11719,10 +11719,10 @@ Fay Pullen
             'day' => '09',
             'images' => [
                           [
+                            'N_Grass_Pictures/7.jpg',
                             'N_Grass_Pictures/27.jpg',
                             'N_Grass_Pictures/46.jpg',
-                            'N_Grass_Pictures/65.jpg',
-                            'N_Grass_Pictures/7.jpg'
+                            'N_Grass_Pictures/65.jpg'
                           ]
                         ],
             'maps' => [
@@ -11829,9 +11829,9 @@ Fay Pullen
             'day' => '14',
             'images' => [
                           [
+                            'W_Bald_Mtn_Pictures/7.jpg',
                             'W_Bald_Mtn_Pictures/27.jpg',
-                            'W_Bald_Mtn_Pictures/46.jpg',
-                            'W_Bald_Mtn_Pictures/7.jpg'
+                            'W_Bald_Mtn_Pictures/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -11894,10 +11894,10 @@ Fay Pullen
             'day' => '16',
             'images' => [
                           [
+                            'Pk_4898_Pictures/7.jpg',
                             'Pk_4898_Pictures/27.jpg',
                             'Pk_4898_Pictures/46.jpg',
-                            'Pk_4898_Pictures/65.jpg',
-                            'Pk_4898_Pictures/7.jpg'
+                            'Pk_4898_Pictures/65.jpg'
                           ]
                         ],
             'maps' => [
@@ -11965,10 +11965,10 @@ Fay Pullen
             'day' => '19',
             'images' => [
                           [
+                            'Wiley_Ridge_Pictures/7.jpg',
                             'Wiley_Ridge_Pictures/27.jpg',
                             'Wiley_Ridge_Pictures/46.jpg',
-                            'Wiley_Ridge_Pictures/65.jpg',
-                            'Wiley_Ridge_Pictures/7.jpg'
+                            'Wiley_Ridge_Pictures/65.jpg'
                           ]
                         ],
             'maps' => [
@@ -12042,10 +12042,10 @@ and 9 hrs.     Fay Pullen
             'day' => '21',
             'images' => [
                           [
+                            'Cabin_Mtn_Pictures/7.jpg',
                             'Cabin_Mtn_Pictures/27.jpg',
                             'Cabin_Mtn_Pictures/46.jpg',
-                            'Cabin_Mtn_Pictures/65.jpg',
-                            'Cabin_Mtn_Pictures/7.jpg'
+                            'Cabin_Mtn_Pictures/65.jpg'
                           ]
                         ],
             'maps' => [
@@ -12104,10 +12104,10 @@ Fay Pullen
             'day' => '28',
             'images' => [
                           [
+                            'Cole_BM_Pictures/7.jpg',
                             'Cole_BM_Pictures/27.jpg',
                             'Cole_BM_Pictures/46.jpg',
                             'Cole_BM_Pictures/65.jpg',
-                            'Cole_BM_Pictures/7.jpg',
                             'Cole_BM_Pictures/84.jpg'
                           ]
                         ],
@@ -12164,9 +12164,9 @@ Fay Pullen
             'day' => '02',
             'images' => [
                           [
+                            'Cole_Butte_Photos/7.jpg',
                             'Cole_Butte_Photos/27.jpg',
-                            'Cole_Butte_Photos/46.jpg',
-                            'Cole_Butte_Photos/7.jpg'
+                            'Cole_Butte_Photos/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -12254,9 +12254,9 @@ are just getting started.
             'day' => '07',
             'images' => [
                           [
+                            'Pk_5528_Pictures/7.jpg',
                             'Pk_5528_Pictures/27.jpg',
-                            'Pk_5528_Pictures/46.jpg',
-                            'Pk_5528_Pictures/7.jpg'
+                            'Pk_5528_Pictures/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -12317,10 +12317,10 @@ Fay Pullen
             'day' => '10',
             'images' => [
                           [
+                            'Cross_Under_Butte_Pictures/7.jpg',
                             'Cross_Under_Butte_Pictures/27.jpg',
                             'Cross_Under_Butte_Pictures/46.jpg',
-                            'Cross_Under_Butte_Pictures/65.jpg',
-                            'Cross_Under_Butte_Pictures/7.jpg'
+                            'Cross_Under_Butte_Pictures/65.jpg'
                           ]
                         ],
             'maps' => [
@@ -12379,10 +12379,10 @@ Fay Pullen
             'day' => '15',
             'images' => [
                           [
+                            'Lookout_Mtn_Pictures/7.jpg',
                             'Lookout_Mtn_Pictures/27.jpg',
                             'Lookout_Mtn_Pictures/46.jpg',
-                            'Lookout_Mtn_Pictures/65.jpg',
-                            'Lookout_Mtn_Pictures/7.jpg'
+                            'Lookout_Mtn_Pictures/65.jpg'
                           ]
                         ],
             'maps' => [
@@ -12390,7 +12390,7 @@ Fay Pullen
                       ],
             'month' => '03',
             'subdir' => '2006-03-15-lookout',
-            'title' => undef,
+            'title' => 'Lookout Mtn',
             'tr' => undef,
             'year' => '2006'
           },
@@ -12398,10 +12398,10 @@ Fay Pullen
             'day' => '16',
             'images' => [
                           [
+                            'Psilocybin_Hill_Pictures/7.jpg',
                             'Psilocybin_Hill_Pictures/27.jpg',
                             'Psilocybin_Hill_Pictures/46.jpg',
-                            'Psilocybin_Hill_Pictures/65.jpg',
-                            'Psilocybin_Hill_Pictures/7.jpg'
+                            'Psilocybin_Hill_Pictures/65.jpg'
                           ]
                         ],
             'maps' => [
@@ -12476,12 +12476,12 @@ Fay Pullen
             'day' => '31',
             'images' => [
                           [
-                            'Snowshoe_Butte_Pictures/103.jpg',
+                            'Snowshoe_Butte_Pictures/7.jpg',
                             'Snowshoe_Butte_Pictures/27.jpg',
                             'Snowshoe_Butte_Pictures/46.jpg',
                             'Snowshoe_Butte_Pictures/65.jpg',
-                            'Snowshoe_Butte_Pictures/7.jpg',
-                            'Snowshoe_Butte_Pictures/84.jpg'
+                            'Snowshoe_Butte_Pictures/84.jpg',
+                            'Snowshoe_Butte_Pictures/103.jpg'
                           ]
                         ],
             'maps' => [
@@ -12554,10 +12554,10 @@ Fay Pullen
             'day' => '04',
             'images' => [
                           [
+                            'Pk_4485_Pictures/7.jpg',
                             'Pk_4485_Pictures/27.jpg',
                             'Pk_4485_Pictures/46.jpg',
                             'Pk_4485_Pictures/65.jpg',
-                            'Pk_4485_Pictures/7.jpg',
                             'Pk_4485_Pictures/84.jpg'
                           ]
                         ],
@@ -12604,9 +12604,9 @@ Fay Pullen
             'day' => '06',
             'images' => [
                           [
+                            'Sleepover_Pictures/7.jpg',
                             'Sleepover_Pictures/27.jpg',
-                            'Sleepover_Pictures/46.jpg',
-                            'Sleepover_Pictures/7.jpg'
+                            'Sleepover_Pictures/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -12677,14 +12677,14 @@ Fay Pullen
             'day' => '11',
             'images' => [
                           [
-                            'Prairie_Mtn_Photos/103.jpg',
-                            'Prairie_Mtn_Photos/122.jpg',
-                            'Prairie_Mtn_Photos/141.jpg',
+                            'Prairie_Mtn_Photos/7.jpg',
                             'Prairie_Mtn_Photos/27.jpg',
                             'Prairie_Mtn_Photos/46.jpg',
                             'Prairie_Mtn_Photos/65.jpg',
-                            'Prairie_Mtn_Photos/7.jpg',
-                            'Prairie_Mtn_Photos/84.jpg'
+                            'Prairie_Mtn_Photos/84.jpg',
+                            'Prairie_Mtn_Photos/103.jpg',
+                            'Prairie_Mtn_Photos/122.jpg',
+                            'Prairie_Mtn_Photos/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -12793,9 +12793,9 @@ Sauk Prairie Rd, then after several miles right  onto  Prairie  Mtn  Rd,  Rd
             'day' => '13',
             'images' => [
                           [
+                            'Scarface_Pictures/7.jpg',
                             'Scarface_Pictures/27.jpg',
-                            'Scarface_Pictures/46.jpg',
-                            'Scarface_Pictures/7.jpg'
+                            'Scarface_Pictures/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -12850,14 +12850,14 @@ Fay Pullen
             'day' => '18',
             'images' => [
                           [
-                            'Grand_Park_Pk_Pictures/103.jpg',
-                            'Grand_Park_Pk_Pictures/122.jpg',
-                            'Grand_Park_Pk_Pictures/141.jpg',
+                            'Grand_Park_Pk_Pictures/7.jpg',
                             'Grand_Park_Pk_Pictures/27.jpg',
                             'Grand_Park_Pk_Pictures/46.jpg',
                             'Grand_Park_Pk_Pictures/65.jpg',
-                            'Grand_Park_Pk_Pictures/7.jpg',
-                            'Grand_Park_Pk_Pictures/84.jpg'
+                            'Grand_Park_Pk_Pictures/84.jpg',
+                            'Grand_Park_Pk_Pictures/103.jpg',
+                            'Grand_Park_Pk_Pictures/122.jpg',
+                            'Grand_Park_Pk_Pictures/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -12934,7 +12934,7 @@ Total: 18 miles, 4900 ft and 11 hrs.      Fay Pullen
                       ],
             'month' => '04',
             'subdir' => '2006-04-19-liberty',
-            'title' => undef,
+            'title' => 'Liberty',
             'tr' => undef,
             'year' => '2006'
           },
@@ -12942,9 +12942,9 @@ Total: 18 miles, 4900 ft and 11 hrs.      Fay Pullen
             'day' => '27',
             'images' => [
                           [
+                            'Natapoc_Tumwater_Pictures/7.jpg',
                             'Natapoc_Tumwater_Pictures/27.jpg',
-                            'Natapoc_Tumwater_Pictures/46.jpg',
-                            'Natapoc_Tumwater_Pictures/7.jpg'
+                            'Natapoc_Tumwater_Pictures/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -13012,10 +13012,10 @@ Fay Pullen
             'day' => '16',
             'images' => [
                           [
+                            'Tiptop2_Pictures/7.jpg',
                             'Tiptop2_Pictures/27.jpg',
                             'Tiptop2_Pictures/46.jpg',
-                            'Tiptop2_Pictures/65.jpg',
-                            'Tiptop2_Pictures/7.jpg'
+                            'Tiptop2_Pictures/65.jpg'
                           ]
                         ],
             'maps' => [
@@ -13118,17 +13118,17 @@ Fay Pullen, 5/18-19/03.
             'day' => '28',
             'images' => [
                           [
+                            'Dark-Pk-Pictures/7.jpg',
+                            'Dark-Pk-Pictures/27.jpg',
+                            'Dark-Pk-Pictures/46.jpg',
+                            'Dark-Pk-Pictures/65.jpg',
+                            'Dark-Pk-Pictures/84.jpg',
                             'Dark-Pk-Pictures/103.jpg',
                             'Dark-Pk-Pictures/122.jpg',
                             'Dark-Pk-Pictures/141.jpg',
                             'Dark-Pk-Pictures/160.jpg',
                             'Dark-Pk-Pictures/179.jpg',
-                            'Dark-Pk-Pictures/200.jpg',
-                            'Dark-Pk-Pictures/27.jpg',
-                            'Dark-Pk-Pictures/46.jpg',
-                            'Dark-Pk-Pictures/65.jpg',
-                            'Dark-Pk-Pictures/7.jpg',
-                            'Dark-Pk-Pictures/84.jpg'
+                            'Dark-Pk-Pictures/200.jpg'
                           ]
                         ],
             'maps' => [
@@ -13289,7 +13289,7 @@ Fay Pullen
                       ],
             'month' => '06',
             'subdir' => '2006-06-07-olo-and-blue-mtns',
-            'title' => undef,
+            'title' => 'Olo and Blue Mtns',
             'tr' => undef,
             'year' => '2006'
           },
@@ -13297,18 +13297,18 @@ Fay Pullen
             'day' => '11',
             'images' => [
                           [
+                            'Dome_Peak_Pictures/7.jpg',
+                            'Dome_Peak_Pictures/27.jpg',
+                            'Dome_Peak_Pictures/46.jpg',
+                            'Dome_Peak_Pictures/65.jpg',
+                            'Dome_Peak_Pictures/84.jpg',
                             'Dome_Peak_Pictures/103.jpg',
                             'Dome_Peak_Pictures/122.jpg',
                             'Dome_Peak_Pictures/141.jpg',
                             'Dome_Peak_Pictures/160.jpg',
                             'Dome_Peak_Pictures/179.jpg',
                             'Dome_Peak_Pictures/200.jpg',
-                            'Dome_Peak_Pictures/219.jpg',
-                            'Dome_Peak_Pictures/27.jpg',
-                            'Dome_Peak_Pictures/46.jpg',
-                            'Dome_Peak_Pictures/65.jpg',
-                            'Dome_Peak_Pictures/7.jpg',
-                            'Dome_Peak_Pictures/84.jpg'
+                            'Dome_Peak_Pictures/219.jpg'
                           ]
                         ],
             'maps' => [
@@ -13316,7 +13316,7 @@ Fay Pullen
                       ],
             'month' => '06',
             'subdir' => '2006-06-11-dome',
-            'title' => undef,
+            'title' => 'Dome Peak',
             'tr' => undef,
             'year' => '2006'
           },
@@ -13328,7 +13328,7 @@ Fay Pullen
                       ],
             'month' => '06',
             'subdir' => '2006-06-15-wheeler',
-            'title' => undef,
+            'title' => 'Wheeler Mtn',
             'tr' => undef,
             'year' => '2006'
           },
@@ -13336,18 +13336,18 @@ Fay Pullen
             'day' => '20',
             'images' => [
                           [
+                            'Klawatti_Pictures/7.jpg',
+                            'Klawatti_Pictures/27.jpg',
+                            'Klawatti_Pictures/46.jpg',
+                            'Klawatti_Pictures/65.jpg',
+                            'Klawatti_Pictures/84.jpg',
                             'Klawatti_Pictures/103.jpg',
                             'Klawatti_Pictures/122.jpg',
                             'Klawatti_Pictures/141.jpg',
                             'Klawatti_Pictures/160.jpg',
                             'Klawatti_Pictures/179.jpg',
                             'Klawatti_Pictures/200.jpg',
-                            'Klawatti_Pictures/219.jpg',
-                            'Klawatti_Pictures/27.jpg',
-                            'Klawatti_Pictures/46.jpg',
-                            'Klawatti_Pictures/65.jpg',
-                            'Klawatti_Pictures/7.jpg',
-                            'Klawatti_Pictures/84.jpg'
+                            'Klawatti_Pictures/219.jpg'
                           ]
                         ],
             'maps' => [
@@ -13469,18 +13469,18 @@ Fay Pullen
             'day' => '25',
             'images' => [
                           [
+                            'Tupshin_Pictures/7.jpg',
+                            'Tupshin_Pictures/27.jpg',
+                            'Tupshin_Pictures/46.jpg',
+                            'Tupshin_Pictures/65.jpg',
+                            'Tupshin_Pictures/84.jpg',
                             'Tupshin_Pictures/103.jpg',
                             'Tupshin_Pictures/122.jpg',
                             'Tupshin_Pictures/141.jpg',
                             'Tupshin_Pictures/160.jpg',
                             'Tupshin_Pictures/179.jpg',
                             'Tupshin_Pictures/200.jpg',
-                            'Tupshin_Pictures/219.jpg',
-                            'Tupshin_Pictures/27.jpg',
-                            'Tupshin_Pictures/46.jpg',
-                            'Tupshin_Pictures/65.jpg',
-                            'Tupshin_Pictures/7.jpg',
-                            'Tupshin_Pictures/84.jpg'
+                            'Tupshin_Pictures/219.jpg'
                           ]
                         ],
             'maps' => [
@@ -13679,6 +13679,11 @@ Fay Pullen
             'day' => '01',
             'images' => [
                           [
+                            'S_Hozomeen_Pictures/7.jpg',
+                            'S_Hozomeen_Pictures/27.jpg',
+                            'S_Hozomeen_Pictures/46.jpg',
+                            'S_Hozomeen_Pictures/65.jpg',
+                            'S_Hozomeen_Pictures/84.jpg',
                             'S_Hozomeen_Pictures/103.jpg',
                             'S_Hozomeen_Pictures/122.jpg',
                             'S_Hozomeen_Pictures/141.jpg',
@@ -13687,12 +13692,7 @@ Fay Pullen
                             'S_Hozomeen_Pictures/200.jpg',
                             'S_Hozomeen_Pictures/219.jpg',
                             'S_Hozomeen_Pictures/238.jpg',
-                            'S_Hozomeen_Pictures/257.jpg',
-                            'S_Hozomeen_Pictures/27.jpg',
-                            'S_Hozomeen_Pictures/46.jpg',
-                            'S_Hozomeen_Pictures/65.jpg',
-                            'S_Hozomeen_Pictures/7.jpg',
-                            'S_Hozomeen_Pictures/84.jpg'
+                            'S_Hozomeen_Pictures/257.jpg'
                           ]
                         ],
             'maps' => [
@@ -13860,18 +13860,18 @@ Fay Pullen
             'day' => '08',
             'images' => [
                           [
+                            'Ballard_Pictures/7.jpg',
+                            'Ballard_Pictures/27.jpg',
+                            'Ballard_Pictures/46.jpg',
+                            'Ballard_Pictures/65.jpg',
+                            'Ballard_Pictures/84.jpg',
                             'Ballard_Pictures/103.jpg',
                             'Ballard_Pictures/122.jpg',
                             'Ballard_Pictures/141.jpg',
                             'Ballard_Pictures/160.jpg',
                             'Ballard_Pictures/179.jpg',
                             'Ballard_Pictures/200.jpg',
-                            'Ballard_Pictures/219.jpg',
-                            'Ballard_Pictures/27.jpg',
-                            'Ballard_Pictures/46.jpg',
-                            'Ballard_Pictures/65.jpg',
-                            'Ballard_Pictures/7.jpg',
-                            'Ballard_Pictures/84.jpg'
+                            'Ballard_Pictures/219.jpg'
                           ]
                         ],
             'maps' => [
@@ -14027,6 +14027,11 @@ Fay Pullen
             'day' => '14',
             'images' => [
                           [
+                            'Majestic_Photos/7.jpg',
+                            'Majestic_Photos/27.jpg',
+                            'Majestic_Photos/46.jpg',
+                            'Majestic_Photos/65.jpg',
+                            'Majestic_Photos/84.jpg',
                             'Majestic_Photos/103.jpg',
                             'Majestic_Photos/122.jpg',
                             'Majestic_Photos/141.jpg',
@@ -14035,12 +14040,7 @@ Fay Pullen
                             'Majestic_Photos/200.jpg',
                             'Majestic_Photos/219.jpg',
                             'Majestic_Photos/238.jpg',
-                            'Majestic_Photos/257.jpg',
-                            'Majestic_Photos/27.jpg',
-                            'Majestic_Photos/46.jpg',
-                            'Majestic_Photos/65.jpg',
-                            'Majestic_Photos/7.jpg',
-                            'Majestic_Photos/84.jpg'
+                            'Majestic_Photos/257.jpg'
                           ]
                         ],
             'maps' => [
@@ -14193,6 +14193,11 @@ Fay Pullen
             'day' => '21',
             'images' => [
                           [
+                            'Mox_Pictures/7.jpg',
+                            'Mox_Pictures/27.jpg',
+                            'Mox_Pictures/46.jpg',
+                            'Mox_Pictures/65.jpg',
+                            'Mox_Pictures/84.jpg',
                             'Mox_Pictures/103.jpg',
                             'Mox_Pictures/122.jpg',
                             'Mox_Pictures/141.jpg',
@@ -14202,7 +14207,6 @@ Fay Pullen
                             'Mox_Pictures/219.jpg',
                             'Mox_Pictures/238.jpg',
                             'Mox_Pictures/257.jpg',
-                            'Mox_Pictures/27.jpg',
                             'Mox_Pictures/276.jpg',
                             'Mox_Pictures/296.jpg',
                             'Mox_Pictures/315.jpg',
@@ -14213,12 +14217,8 @@ Fay Pullen
                             'Mox_Pictures/411.jpg',
                             'Mox_Pictures/430.jpg',
                             'Mox_Pictures/449.jpg',
-                            'Mox_Pictures/46.jpg',
                             'Mox_Pictures/468.jpg',
-                            'Mox_Pictures/488.jpg',
-                            'Mox_Pictures/65.jpg',
-                            'Mox_Pictures/7.jpg',
-                            'Mox_Pictures/84.jpg'
+                            'Mox_Pictures/488.jpg'
                           ]
                         ],
             'maps' => [
@@ -14472,10 +14472,10 @@ Fay Pullen
             'day' => '02',
             'images' => [
                           [
+                            'Illabot_Peaks_Pictures/7.jpg',
                             'Illabot_Peaks_Pictures/27.jpg',
                             'Illabot_Peaks_Pictures/46.jpg',
-                            'Illabot_Peaks_Pictures/65.jpg',
-                            'Illabot_Peaks_Pictures/7.jpg'
+                            'Illabot_Peaks_Pictures/65.jpg'
                           ]
                         ],
             'maps' => [
@@ -14594,6 +14594,11 @@ Fay Pullen
             'day' => '05',
             'images' => [
                           [
+                            'Sinister_Photos/7.jpg',
+                            'Sinister_Photos/27.jpg',
+                            'Sinister_Photos/46.jpg',
+                            'Sinister_Photos/65.jpg',
+                            'Sinister_Photos/84.jpg',
                             'Sinister_Photos/103.jpg',
                             'Sinister_Photos/122.jpg',
                             'Sinister_Photos/141.jpg',
@@ -14603,16 +14608,16 @@ Fay Pullen
                             'Sinister_Photos/219.jpg',
                             'Sinister_Photos/238.jpg',
                             'Sinister_Photos/257.jpg',
-                            'Sinister_Photos/27.jpg',
                             'Sinister_Photos/276.jpg',
                             'Sinister_Photos/296.jpg',
-                            'Sinister_Photos/315.jpg',
-                            'Sinister_Photos/46.jpg',
-                            'Sinister_Photos/65.jpg',
-                            'Sinister_Photos/7.jpg',
-                            'Sinister_Photos/84.jpg'
+                            'Sinister_Photos/315.jpg'
                           ],
                           [
+                            'Sinister_Pictures/7.jpg',
+                            'Sinister_Pictures/27.jpg',
+                            'Sinister_Pictures/46.jpg',
+                            'Sinister_Pictures/65.jpg',
+                            'Sinister_Pictures/84.jpg',
                             'Sinister_Pictures/103.jpg',
                             'Sinister_Pictures/122.jpg',
                             'Sinister_Pictures/141.jpg',
@@ -14622,13 +14627,8 @@ Fay Pullen
                             'Sinister_Pictures/219.jpg',
                             'Sinister_Pictures/238.jpg',
                             'Sinister_Pictures/257.jpg',
-                            'Sinister_Pictures/27.jpg',
                             'Sinister_Pictures/276.jpg',
-                            'Sinister_Pictures/296.jpg',
-                            'Sinister_Pictures/46.jpg',
-                            'Sinister_Pictures/65.jpg',
-                            'Sinister_Pictures/7.jpg',
-                            'Sinister_Pictures/84.jpg'
+                            'Sinister_Pictures/296.jpg'
                           ]
                         ],
             'maps' => [
@@ -14805,10 +14805,10 @@ Fay Pullen
             'day' => '13',
             'images' => [
                           [
+                            'Big_Gee_Photos/7.jpg',
                             'Big_Gee_Photos/27.jpg',
                             'Big_Gee_Photos/46.jpg',
                             'Big_Gee_Photos/65.jpg',
-                            'Big_Gee_Photos/7.jpg',
                             'Big_Gee_Photos/84.jpg'
                           ]
                         ],
@@ -14880,6 +14880,11 @@ Fay Pullen
             'day' => '17',
             'images' => [
                           [
+                            'Forbidden_Photos/7.jpg',
+                            'Forbidden_Photos/27.jpg',
+                            'Forbidden_Photos/46.jpg',
+                            'Forbidden_Photos/65.jpg',
+                            'Forbidden_Photos/84.jpg',
                             'Forbidden_Photos/103.jpg',
                             'Forbidden_Photos/122.jpg',
                             'Forbidden_Photos/141.jpg',
@@ -14889,18 +14894,13 @@ Fay Pullen
                             'Forbidden_Photos/219.jpg',
                             'Forbidden_Photos/238.jpg',
                             'Forbidden_Photos/257.jpg',
-                            'Forbidden_Photos/27.jpg',
                             'Forbidden_Photos/276.jpg',
                             'Forbidden_Photos/296.jpg',
                             'Forbidden_Photos/315.jpg',
                             'Forbidden_Photos/334.jpg',
                             'Forbidden_Photos/353.jpg',
                             'Forbidden_Photos/372.jpg',
-                            'Forbidden_Photos/392.jpg',
-                            'Forbidden_Photos/46.jpg',
-                            'Forbidden_Photos/65.jpg',
-                            'Forbidden_Photos/7.jpg',
-                            'Forbidden_Photos/84.jpg'
+                            'Forbidden_Photos/392.jpg'
                           ]
                         ],
             'maps' => [
@@ -15109,6 +15109,11 @@ Fay Pullen.
             'day' => '24',
             'images' => [
                           [
+                            'Graybeard_Pictures/7.jpg',
+                            'Graybeard_Pictures/27.jpg',
+                            'Graybeard_Pictures/46.jpg',
+                            'Graybeard_Pictures/65.jpg',
+                            'Graybeard_Pictures/84.jpg',
                             'Graybeard_Pictures/103.jpg',
                             'Graybeard_Pictures/122.jpg',
                             'Graybeard_Pictures/141.jpg',
@@ -15118,13 +15123,8 @@ Fay Pullen.
                             'Graybeard_Pictures/219.jpg',
                             'Graybeard_Pictures/238.jpg',
                             'Graybeard_Pictures/257.jpg',
-                            'Graybeard_Pictures/27.jpg',
                             'Graybeard_Pictures/276.jpg',
-                            'Graybeard_Pictures/296.jpg',
-                            'Graybeard_Pictures/46.jpg',
-                            'Graybeard_Pictures/65.jpg',
-                            'Graybeard_Pictures/7.jpg',
-                            'Graybeard_Pictures/84.jpg'
+                            'Graybeard_Pictures/296.jpg'
                           ]
                         ],
             'maps' => [
@@ -15255,7 +15255,7 @@ Fay Pullen
                       ],
             'month' => '09',
             'subdir' => '2006-09-02-floating-rock',
-            'title' => undef,
+            'title' => 'Floating Rock',
             'tr' => undef,
             'year' => '2006'
           },
@@ -15263,6 +15263,11 @@ Fay Pullen
             'day' => '08',
             'images' => [
                           [
+                            'Duckabush_Pictures/7.jpg',
+                            'Duckabush_Pictures/27.jpg',
+                            'Duckabush_Pictures/46.jpg',
+                            'Duckabush_Pictures/65.jpg',
+                            'Duckabush_Pictures/84.jpg',
                             'Duckabush_Pictures/103.jpg',
                             'Duckabush_Pictures/122.jpg',
                             'Duckabush_Pictures/141.jpg',
@@ -15272,17 +15277,12 @@ Fay Pullen
                             'Duckabush_Pictures/219.jpg',
                             'Duckabush_Pictures/238.jpg',
                             'Duckabush_Pictures/257.jpg',
-                            'Duckabush_Pictures/27.jpg',
                             'Duckabush_Pictures/276.jpg',
                             'Duckabush_Pictures/296.jpg',
                             'Duckabush_Pictures/315.jpg',
                             'Duckabush_Pictures/334.jpg',
                             'Duckabush_Pictures/353.jpg',
-                            'Duckabush_Pictures/372.jpg',
-                            'Duckabush_Pictures/46.jpg',
-                            'Duckabush_Pictures/65.jpg',
-                            'Duckabush_Pictures/7.jpg',
-                            'Duckabush_Pictures/84.jpg'
+                            'Duckabush_Pictures/372.jpg'
                           ]
                         ],
             'maps' => [
@@ -15506,6 +15506,11 @@ Fay Pullen
             'day' => '22',
             'images' => [
                           [
+                            'Mt_Olsen_Pictures/7.jpg',
+                            'Mt_Olsen_Pictures/27.jpg',
+                            'Mt_Olsen_Pictures/46.jpg',
+                            'Mt_Olsen_Pictures/65.jpg',
+                            'Mt_Olsen_Pictures/84.jpg',
                             'Mt_Olsen_Pictures/103.jpg',
                             'Mt_Olsen_Pictures/122.jpg',
                             'Mt_Olsen_Pictures/141.jpg',
@@ -15515,13 +15520,8 @@ Fay Pullen
                             'Mt_Olsen_Pictures/219.jpg',
                             'Mt_Olsen_Pictures/238.jpg',
                             'Mt_Olsen_Pictures/257.jpg',
-                            'Mt_Olsen_Pictures/27.jpg',
                             'Mt_Olsen_Pictures/276.jpg',
-                            'Mt_Olsen_Pictures/296.jpg',
-                            'Mt_Olsen_Pictures/46.jpg',
-                            'Mt_Olsen_Pictures/65.jpg',
-                            'Mt_Olsen_Pictures/7.jpg',
-                            'Mt_Olsen_Pictures/84.jpg'
+                            'Mt_Olsen_Pictures/296.jpg'
                           ]
                         ],
             'maps' => [
@@ -15666,14 +15666,14 @@ Fay Pullen
             'day' => '27',
             'images' => [
                           [
-                            'Discovery_Pk_Pictures/103.jpg',
-                            'Discovery_Pk_Pictures/122.jpg',
-                            'Discovery_Pk_Pictures/141.jpg',
+                            'Discovery_Pk_Pictures/7.jpg',
                             'Discovery_Pk_Pictures/27.jpg',
                             'Discovery_Pk_Pictures/46.jpg',
                             'Discovery_Pk_Pictures/65.jpg',
-                            'Discovery_Pk_Pictures/7.jpg',
-                            'Discovery_Pk_Pictures/84.jpg'
+                            'Discovery_Pk_Pictures/84.jpg',
+                            'Discovery_Pk_Pictures/103.jpg',
+                            'Discovery_Pk_Pictures/122.jpg',
+                            'Discovery_Pk_Pictures/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -15726,6 +15726,11 @@ Fay Pullen
             'day' => '01',
             'images' => [
                           [
+                            'LaCrosse_Photos/7.jpg',
+                            'LaCrosse_Photos/27.jpg',
+                            'LaCrosse_Photos/46.jpg',
+                            'LaCrosse_Photos/65.jpg',
+                            'LaCrosse_Photos/84.jpg',
                             'LaCrosse_Photos/103.jpg',
                             'LaCrosse_Photos/122.jpg',
                             'LaCrosse_Photos/141.jpg',
@@ -15735,12 +15740,7 @@ Fay Pullen
                             'LaCrosse_Photos/219.jpg',
                             'LaCrosse_Photos/238.jpg',
                             'LaCrosse_Photos/257.jpg',
-                            'LaCrosse_Photos/27.jpg',
-                            'LaCrosse_Photos/276.jpg',
-                            'LaCrosse_Photos/46.jpg',
-                            'LaCrosse_Photos/65.jpg',
-                            'LaCrosse_Photos/7.jpg',
-                            'LaCrosse_Photos/84.jpg'
+                            'LaCrosse_Photos/276.jpg'
                           ]
                         ],
             'maps' => [
@@ -15906,6 +15906,11 @@ Fay Pullen
             'day' => '07',
             'images' => [
                           [
+                            'Bandersnatch_Pictures/7.jpg',
+                            'Bandersnatch_Pictures/27.jpg',
+                            'Bandersnatch_Pictures/46.jpg',
+                            'Bandersnatch_Pictures/65.jpg',
+                            'Bandersnatch_Pictures/84.jpg',
                             'Bandersnatch_Pictures/103.jpg',
                             'Bandersnatch_Pictures/122.jpg',
                             'Bandersnatch_Pictures/141.jpg',
@@ -15914,12 +15919,7 @@ Fay Pullen
                             'Bandersnatch_Pictures/200.jpg',
                             'Bandersnatch_Pictures/219.jpg',
                             'Bandersnatch_Pictures/238.jpg',
-                            'Bandersnatch_Pictures/257.jpg',
-                            'Bandersnatch_Pictures/27.jpg',
-                            'Bandersnatch_Pictures/46.jpg',
-                            'Bandersnatch_Pictures/65.jpg',
-                            'Bandersnatch_Pictures/7.jpg',
-                            'Bandersnatch_Pictures/84.jpg'
+                            'Bandersnatch_Pictures/257.jpg'
                           ]
                         ],
             'maps' => [
@@ -15927,7 +15927,7 @@ Fay Pullen
                       ],
             'month' => '10',
             'subdir' => '2006-10-07-mt-lena',
-            'title' => undef,
+            'title' => 'Bandersnatch',
             'tr' => '
 Mt Lena, East Pk (5800+ ft - 640P - The Brothers Quad) & The Bandersnatch
 (5480+ ft - Mt Skokomish Quad) - October 4-6, 2006
@@ -16084,16 +16084,16 @@ Fay Pullen
             'day' => '27',
             'images' => [
                           [
+                            'Indian_Head_Pictures/7.jpg',
+                            'Indian_Head_Pictures/27.jpg',
+                            'Indian_Head_Pictures/46.jpg',
+                            'Indian_Head_Pictures/65.jpg',
+                            'Indian_Head_Pictures/84.jpg',
                             'Indian_Head_Pictures/103.jpg',
                             'Indian_Head_Pictures/122.jpg',
                             'Indian_Head_Pictures/141.jpg',
                             'Indian_Head_Pictures/160.jpg',
-                            'Indian_Head_Pictures/179.jpg',
-                            'Indian_Head_Pictures/27.jpg',
-                            'Indian_Head_Pictures/46.jpg',
-                            'Indian_Head_Pictures/65.jpg',
-                            'Indian_Head_Pictures/7.jpg',
-                            'Indian_Head_Pictures/84.jpg'
+                            'Indian_Head_Pictures/179.jpg'
                           ]
                         ],
             'maps' => [
@@ -16279,7 +16279,7 @@ Fay Pullen
                       ],
             'month' => '11',
             'subdir' => '2006-11-10-sumas',
-            'title' => undef,
+            'title' => 'Sumas',
             'tr' => undef,
             'year' => '2006'
           },
@@ -16287,14 +16287,14 @@ Fay Pullen
             'day' => '14',
             'images' => [
                           [
-                            'Poch_Pk_Pictures/103.jpg',
-                            'Poch_Pk_Pictures/122.jpg',
-                            'Poch_Pk_Pictures/141.jpg',
+                            'Poch_Pk_Pictures/7.jpg',
                             'Poch_Pk_Pictures/27.jpg',
                             'Poch_Pk_Pictures/46.jpg',
                             'Poch_Pk_Pictures/65.jpg',
-                            'Poch_Pk_Pictures/7.jpg',
-                            'Poch_Pk_Pictures/84.jpg'
+                            'Poch_Pk_Pictures/84.jpg',
+                            'Poch_Pk_Pictures/103.jpg',
+                            'Poch_Pk_Pictures/122.jpg',
+                            'Poch_Pk_Pictures/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -16368,9 +16368,9 @@ wonderful up to that point and worth putting up  with  a  little  annoyance.
             'day' => '17',
             'images' => [
                           [
+                            'Paul-Peak-Pictures/7.jpg',
                             'Paul-Peak-Pictures/27.jpg',
-                            'Paul-Peak-Pictures/46.jpg',
-                            'Paul-Peak-Pictures/7.jpg'
+                            'Paul-Peak-Pictures/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -16460,7 +16460,7 @@ Fay Pullen
                       ],
             'month' => '11',
             'subdir' => '2006-11-20-bald-hill',
-            'title' => undef,
+            'title' => 'Bald Hill',
             'tr' => undef,
             'year' => '2006'
           },
@@ -16468,17 +16468,17 @@ Fay Pullen
             'day' => '22',
             'images' => [
                           [
+                            'Glacier_View_Photos/7.jpg',
+                            'Glacier_View_Photos/27.jpg',
+                            'Glacier_View_Photos/46.jpg',
+                            'Glacier_View_Photos/65.jpg',
+                            'Glacier_View_Photos/84.jpg',
                             'Glacier_View_Photos/103.jpg',
                             'Glacier_View_Photos/122.jpg',
                             'Glacier_View_Photos/141.jpg',
                             'Glacier_View_Photos/160.jpg',
                             'Glacier_View_Photos/179.jpg',
-                            'Glacier_View_Photos/200.jpg',
-                            'Glacier_View_Photos/27.jpg',
-                            'Glacier_View_Photos/46.jpg',
-                            'Glacier_View_Photos/65.jpg',
-                            'Glacier_View_Photos/7.jpg',
-                            'Glacier_View_Photos/84.jpg'
+                            'Glacier_View_Photos/200.jpg'
                           ]
                         ],
             'maps' => [
@@ -16622,6 +16622,11 @@ Fay Pullen
             'day' => '28',
             'images' => [
                           [
+                            'Dixie_Pictures/7.jpg',
+                            'Dixie_Pictures/27.jpg',
+                            'Dixie_Pictures/46.jpg',
+                            'Dixie_Pictures/65.jpg',
+                            'Dixie_Pictures/84.jpg',
                             'Dixie_Pictures/103.jpg',
                             'Dixie_Pictures/122.jpg',
                             'Dixie_Pictures/141.jpg',
@@ -16629,12 +16634,7 @@ Fay Pullen
                             'Dixie_Pictures/179.jpg',
                             'Dixie_Pictures/200.jpg',
                             'Dixie_Pictures/219.jpg',
-                            'Dixie_Pictures/238.jpg',
-                            'Dixie_Pictures/27.jpg',
-                            'Dixie_Pictures/46.jpg',
-                            'Dixie_Pictures/65.jpg',
-                            'Dixie_Pictures/7.jpg',
-                            'Dixie_Pictures/84.jpg'
+                            'Dixie_Pictures/238.jpg'
                           ]
                         ],
             'maps' => [
@@ -16672,14 +16672,14 @@ of rocks scraping my bases made me stop and take off  my  skis.   12  miles,
             'day' => '01',
             'images' => [
                           [
-                            'Mineral_Tops_Pictures/103.jpg',
-                            'Mineral_Tops_Pictures/122.jpg',
-                            'Mineral_Tops_Pictures/141.jpg',
+                            'Mineral_Tops_Pictures/7.jpg',
                             'Mineral_Tops_Pictures/27.jpg',
                             'Mineral_Tops_Pictures/46.jpg',
                             'Mineral_Tops_Pictures/65.jpg',
-                            'Mineral_Tops_Pictures/7.jpg',
-                            'Mineral_Tops_Pictures/84.jpg'
+                            'Mineral_Tops_Pictures/84.jpg',
+                            'Mineral_Tops_Pictures/103.jpg',
+                            'Mineral_Tops_Pictures/122.jpg',
+                            'Mineral_Tops_Pictures/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -16867,10 +16867,10 @@ Fay Pullen
             'day' => '08',
             'images' => [
                           [
+                            'Siberia_Pictures/7.jpg',
                             'Siberia_Pictures/27.jpg',
                             'Siberia_Pictures/46.jpg',
                             'Siberia_Pictures/65.jpg',
-                            'Siberia_Pictures/7.jpg',
                             'Siberia_Pictures/84.jpg'
                           ]
                         ],
@@ -16958,10 +16958,10 @@ Fay Pullen
             'day' => '12',
             'images' => [
                           [
+                            'Worthy_Pictures/7.jpg',
                             'Worthy_Pictures/27.jpg',
                             'Worthy_Pictures/46.jpg',
-                            'Worthy_Pictures/65.jpg',
-                            'Worthy_Pictures/7.jpg'
+                            'Worthy_Pictures/65.jpg'
                           ]
                         ],
             'maps' => [
@@ -17255,14 +17255,14 @@ Fay Pullen
             'day' => '11',
             'images' => [
                           [
-                            'Peak_4235_Pictures/103.jpg',
-                            'Peak_4235_Pictures/122.jpg',
-                            'Peak_4235_Pictures/141.jpg',
+                            'Peak_4235_Pictures/7.jpg',
                             'Peak_4235_Pictures/27.jpg',
                             'Peak_4235_Pictures/46.jpg',
                             'Peak_4235_Pictures/65.jpg',
-                            'Peak_4235_Pictures/7.jpg',
-                            'Peak_4235_Pictures/84.jpg'
+                            'Peak_4235_Pictures/84.jpg',
+                            'Peak_4235_Pictures/103.jpg',
+                            'Peak_4235_Pictures/122.jpg',
+                            'Peak_4235_Pictures/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -17312,15 +17312,15 @@ Fay Pullen
             'day' => '16',
             'images' => [
                           [
-                            'Monohan_Pictures_2/103.jpg',
-                            'Monohan_Pictures_2/122.jpg',
-                            'Monohan_Pictures_2/141.jpg',
-                            'Monohan_Pictures_2/160.jpg',
+                            'Monohan_Pictures_2/7.jpg',
                             'Monohan_Pictures_2/27.jpg',
                             'Monohan_Pictures_2/46.jpg',
                             'Monohan_Pictures_2/65.jpg',
-                            'Monohan_Pictures_2/7.jpg',
-                            'Monohan_Pictures_2/84.jpg'
+                            'Monohan_Pictures_2/84.jpg',
+                            'Monohan_Pictures_2/103.jpg',
+                            'Monohan_Pictures_2/122.jpg',
+                            'Monohan_Pictures_2/141.jpg',
+                            'Monohan_Pictures_2/160.jpg'
                           ]
                         ],
             'maps' => [
@@ -17397,15 +17397,15 @@ troublesome. 8 miles, 1400 ft and 4 hrs.  Fay Pullen
             'day' => '23',
             'images' => [
                           [
-                            'Hicks_Butte_Pictures/103.jpg',
-                            'Hicks_Butte_Pictures/122.jpg',
-                            'Hicks_Butte_Pictures/141.jpg',
-                            'Hicks_Butte_Pictures/160.jpg',
+                            'Hicks_Butte_Pictures/7.jpg',
                             'Hicks_Butte_Pictures/27.jpg',
                             'Hicks_Butte_Pictures/46.jpg',
                             'Hicks_Butte_Pictures/65.jpg',
-                            'Hicks_Butte_Pictures/7.jpg',
-                            'Hicks_Butte_Pictures/84.jpg'
+                            'Hicks_Butte_Pictures/84.jpg',
+                            'Hicks_Butte_Pictures/103.jpg',
+                            'Hicks_Butte_Pictures/122.jpg',
+                            'Hicks_Butte_Pictures/141.jpg',
+                            'Hicks_Butte_Pictures/160.jpg'
                           ]
                         ],
             'maps' => [
@@ -17476,15 +17476,15 @@ Total: 16 miles, 3000 ft and 7:20 hrs. Fay Pullen
             'day' => '02',
             'images' => [
                           [
-                            'Ark_Pictures/103.jpg',
-                            'Ark_Pictures/122.jpg',
-                            'Ark_Pictures/141.jpg',
-                            'Ark_Pictures/160.jpg',
+                            'Ark_Pictures/7.jpg',
                             'Ark_Pictures/27.jpg',
                             'Ark_Pictures/46.jpg',
                             'Ark_Pictures/65.jpg',
-                            'Ark_Pictures/7.jpg',
-                            'Ark_Pictures/84.jpg'
+                            'Ark_Pictures/84.jpg',
+                            'Ark_Pictures/103.jpg',
+                            'Ark_Pictures/122.jpg',
+                            'Ark_Pictures/141.jpg',
+                            'Ark_Pictures/160.jpg'
                           ]
                         ],
             'maps' => [
@@ -17530,10 +17530,10 @@ Fay Pullen
             'day' => '06',
             'images' => [
                           [
+                            'Pulpit_Pictures/7.jpg',
                             'Pulpit_Pictures/27.jpg',
                             'Pulpit_Pictures/46.jpg',
                             'Pulpit_Pictures/65.jpg',
-                            'Pulpit_Pictures/7.jpg',
                             'Pulpit_Pictures/84.jpg'
                           ]
                         ],
@@ -17652,15 +17652,15 @@ Total: 9 miles, 4500 ft and 8:55 hrs    Fay Pullen
             'day' => '14',
             'images' => [
                           [
-                            'El_Capitan_Pictures/103.jpg',
-                            'El_Capitan_Pictures/122.jpg',
-                            'El_Capitan_Pictures/141.jpg',
-                            'El_Capitan_Pictures/160.jpg',
+                            'El_Capitan_Pictures/7.jpg',
                             'El_Capitan_Pictures/27.jpg',
                             'El_Capitan_Pictures/46.jpg',
                             'El_Capitan_Pictures/65.jpg',
-                            'El_Capitan_Pictures/7.jpg',
-                            'El_Capitan_Pictures/84.jpg'
+                            'El_Capitan_Pictures/84.jpg',
+                            'El_Capitan_Pictures/103.jpg',
+                            'El_Capitan_Pictures/122.jpg',
+                            'El_Capitan_Pictures/141.jpg',
+                            'El_Capitan_Pictures/160.jpg'
                           ]
                         ],
             'maps' => [
@@ -17720,18 +17720,18 @@ Fay Pullen
             'day' => '20',
             'images' => [
                           [
+                            'Cle_Elum_Ridge_Pictures/7.jpg',
+                            'Cle_Elum_Ridge_Pictures/27.jpg',
+                            'Cle_Elum_Ridge_Pictures/46.jpg',
+                            'Cle_Elum_Ridge_Pictures/65.jpg',
+                            'Cle_Elum_Ridge_Pictures/84.jpg',
                             'Cle_Elum_Ridge_Pictures/103.jpg',
                             'Cle_Elum_Ridge_Pictures/122.jpg',
                             'Cle_Elum_Ridge_Pictures/141.jpg',
                             'Cle_Elum_Ridge_Pictures/160.jpg',
                             'Cle_Elum_Ridge_Pictures/179.jpg',
                             'Cle_Elum_Ridge_Pictures/200.jpg',
-                            'Cle_Elum_Ridge_Pictures/219.jpg',
-                            'Cle_Elum_Ridge_Pictures/27.jpg',
-                            'Cle_Elum_Ridge_Pictures/46.jpg',
-                            'Cle_Elum_Ridge_Pictures/65.jpg',
-                            'Cle_Elum_Ridge_Pictures/7.jpg',
-                            'Cle_Elum_Ridge_Pictures/84.jpg'
+                            'Cle_Elum_Ridge_Pictures/219.jpg'
                           ]
                         ],
             'maps' => [
@@ -17802,12 +17802,12 @@ Fay Pullen
             'day' => '27',
             'images' => [
                           [
-                            'Swauk_Ridge_Pictures/103.jpg',
+                            'Swauk_Ridge_Pictures/7.jpg',
                             'Swauk_Ridge_Pictures/27.jpg',
                             'Swauk_Ridge_Pictures/46.jpg',
                             'Swauk_Ridge_Pictures/65.jpg',
-                            'Swauk_Ridge_Pictures/7.jpg',
-                            'Swauk_Ridge_Pictures/84.jpg'
+                            'Swauk_Ridge_Pictures/84.jpg',
+                            'Swauk_Ridge_Pictures/103.jpg'
                           ]
                         ],
             'maps' => [
@@ -17935,18 +17935,18 @@ Fay Pullen
             'day' => '06',
             'images' => [
                           [
+                            'Jolly_Pictures/7.jpg',
+                            'Jolly_Pictures/27.jpg',
+                            'Jolly_Pictures/46.jpg',
+                            'Jolly_Pictures/65.jpg',
+                            'Jolly_Pictures/84.jpg',
                             'Jolly_Pictures/103.jpg',
                             'Jolly_Pictures/122.jpg',
                             'Jolly_Pictures/141.jpg',
                             'Jolly_Pictures/160.jpg',
                             'Jolly_Pictures/179.jpg',
                             'Jolly_Pictures/200.jpg',
-                            'Jolly_Pictures/219.jpg',
-                            'Jolly_Pictures/27.jpg',
-                            'Jolly_Pictures/46.jpg',
-                            'Jolly_Pictures/65.jpg',
-                            'Jolly_Pictures/7.jpg',
-                            'Jolly_Pictures/84.jpg'
+                            'Jolly_Pictures/219.jpg'
                           ]
                         ],
             'maps' => [
@@ -18010,6 +18010,11 @@ Fay Pullen
             'day' => '09',
             'images' => [
                           [
+                            'Red_Mtn_Pictures/7.jpg',
+                            'Red_Mtn_Pictures/27.jpg',
+                            'Red_Mtn_Pictures/46.jpg',
+                            'Red_Mtn_Pictures/65.jpg',
+                            'Red_Mtn_Pictures/84.jpg',
                             'Red_Mtn_Pictures/103.jpg',
                             'Red_Mtn_Pictures/122.jpg',
                             'Red_Mtn_Pictures/141.jpg',
@@ -18019,15 +18024,10 @@ Fay Pullen
                             'Red_Mtn_Pictures/219.jpg',
                             'Red_Mtn_Pictures/238.jpg',
                             'Red_Mtn_Pictures/257.jpg',
-                            'Red_Mtn_Pictures/27.jpg',
                             'Red_Mtn_Pictures/276.jpg',
                             'Red_Mtn_Pictures/296.jpg',
                             'Red_Mtn_Pictures/315.jpg',
-                            'Red_Mtn_Pictures/334.jpg',
-                            'Red_Mtn_Pictures/46.jpg',
-                            'Red_Mtn_Pictures/65.jpg',
-                            'Red_Mtn_Pictures/7.jpg',
-                            'Red_Mtn_Pictures/84.jpg'
+                            'Red_Mtn_Pictures/334.jpg'
                           ]
                         ],
             'maps' => [
@@ -18158,17 +18158,17 @@ Fay Pullen
             'day' => '20',
             'images' => [
                           [
+                            'Flapjack-Point-Pictures/7.jpg',
+                            'Flapjack-Point-Pictures/27.jpg',
+                            'Flapjack-Point-Pictures/46.jpg',
+                            'Flapjack-Point-Pictures/65.jpg',
+                            'Flapjack-Point-Pictures/84.jpg',
                             'Flapjack-Point-Pictures/103.jpg',
                             'Flapjack-Point-Pictures/122.jpg',
                             'Flapjack-Point-Pictures/141.jpg',
                             'Flapjack-Point-Pictures/160.jpg',
                             'Flapjack-Point-Pictures/179.jpg',
-                            'Flapjack-Point-Pictures/200.jpg',
-                            'Flapjack-Point-Pictures/27.jpg',
-                            'Flapjack-Point-Pictures/46.jpg',
-                            'Flapjack-Point-Pictures/65.jpg',
-                            'Flapjack-Point-Pictures/7.jpg',
-                            'Flapjack-Point-Pictures/84.jpg'
+                            'Flapjack-Point-Pictures/200.jpg'
                           ]
                         ],
             'maps' => [
@@ -18238,14 +18238,14 @@ Fay Pullen
             'day' => '22',
             'images' => [
                           [
-                            'Spinnaker_Pictures/103.jpg',
-                            'Spinnaker_Pictures/122.jpg',
-                            'Spinnaker_Pictures/141.jpg',
+                            'Spinnaker_Pictures/7.jpg',
                             'Spinnaker_Pictures/27.jpg',
                             'Spinnaker_Pictures/46.jpg',
                             'Spinnaker_Pictures/65.jpg',
-                            'Spinnaker_Pictures/7.jpg',
-                            'Spinnaker_Pictures/84.jpg'
+                            'Spinnaker_Pictures/84.jpg',
+                            'Spinnaker_Pictures/103.jpg',
+                            'Spinnaker_Pictures/122.jpg',
+                            'Spinnaker_Pictures/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -18317,16 +18317,16 @@ Fay Pullen
             'day' => '05',
             'images' => [
                           [
+                            'Blowout1_Pictures/7.jpg',
+                            'Blowout1_Pictures/27.jpg',
+                            'Blowout1_Pictures/46.jpg',
+                            'Blowout1_Pictures/65.jpg',
+                            'Blowout1_Pictures/84.jpg',
                             'Blowout1_Pictures/103.jpg',
                             'Blowout1_Pictures/122.jpg',
                             'Blowout1_Pictures/141.jpg',
                             'Blowout1_Pictures/160.jpg',
-                            'Blowout1_Pictures/179.jpg',
-                            'Blowout1_Pictures/27.jpg',
-                            'Blowout1_Pictures/46.jpg',
-                            'Blowout1_Pictures/65.jpg',
-                            'Blowout1_Pictures/7.jpg',
-                            'Blowout1_Pictures/84.jpg'
+                            'Blowout1_Pictures/179.jpg'
                           ]
                         ],
             'maps' => [
@@ -18405,14 +18405,14 @@ Fay Pullen
             'day' => '07',
             'images' => [
                           [
-                            'Baring1_Pictures/103.jpg',
-                            'Baring1_Pictures/122.jpg',
-                            'Baring1_Pictures/141.jpg',
+                            'Baring1_Pictures/7.jpg',
                             'Baring1_Pictures/27.jpg',
                             'Baring1_Pictures/46.jpg',
                             'Baring1_Pictures/65.jpg',
-                            'Baring1_Pictures/7.jpg',
-                            'Baring1_Pictures/84.jpg'
+                            'Baring1_Pictures/84.jpg',
+                            'Baring1_Pictures/103.jpg',
+                            'Baring1_Pictures/122.jpg',
+                            'Baring1_Pictures/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -18460,14 +18460,14 @@ Fay Pullen
             'day' => '10',
             'images' => [
                           [
-                            'Quarterdome_Pictures/103.jpg',
-                            'Quarterdome_Pictures/122.jpg',
-                            'Quarterdome_Pictures/141.jpg',
+                            'Quarterdome_Pictures/7.jpg',
                             'Quarterdome_Pictures/27.jpg',
                             'Quarterdome_Pictures/46.jpg',
                             'Quarterdome_Pictures/65.jpg',
-                            'Quarterdome_Pictures/7.jpg',
-                            'Quarterdome_Pictures/84.jpg'
+                            'Quarterdome_Pictures/84.jpg',
+                            'Quarterdome_Pictures/103.jpg',
+                            'Quarterdome_Pictures/122.jpg',
+                            'Quarterdome_Pictures/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -18524,25 +18524,25 @@ Fay Pullen
             'day' => '13',
             'images' => [
                           [
-                            'D_Mtn_Pictures/103.jpg',
-                            'D_Mtn_Pictures/122.jpg',
+                            'D_Mtn_Pictures/7.jpg',
                             'D_Mtn_Pictures/27.jpg',
                             'D_Mtn_Pictures/46.jpg',
                             'D_Mtn_Pictures/65.jpg',
-                            'D_Mtn_Pictures/7.jpg',
-                            'D_Mtn_Pictures/84.jpg'
+                            'D_Mtn_Pictures/84.jpg',
+                            'D_Mtn_Pictures/103.jpg',
+                            'D_Mtn_Pictures/122.jpg'
                           ],
                           [
+                            'Thatsit_Pictures/7.jpg',
+                            'Thatsit_Pictures/27.jpg',
+                            'Thatsit_Pictures/46.jpg',
+                            'Thatsit_Pictures/65.jpg',
+                            'Thatsit_Pictures/84.jpg',
                             'Thatsit_Pictures/103.jpg',
                             'Thatsit_Pictures/122.jpg',
                             'Thatsit_Pictures/141.jpg',
                             'Thatsit_Pictures/160.jpg',
-                            'Thatsit_Pictures/179.jpg',
-                            'Thatsit_Pictures/27.jpg',
-                            'Thatsit_Pictures/46.jpg',
-                            'Thatsit_Pictures/65.jpg',
-                            'Thatsit_Pictures/7.jpg',
-                            'Thatsit_Pictures/84.jpg'
+                            'Thatsit_Pictures/179.jpg'
                           ]
                         ],
             'maps' => [
@@ -18627,16 +18627,16 @@ Fay Pullen
             'day' => '19',
             'images' => [
                           [
+                            'Nason_Ridge_Pictures/7.jpg',
+                            'Nason_Ridge_Pictures/27.jpg',
+                            'Nason_Ridge_Pictures/46.jpg',
+                            'Nason_Ridge_Pictures/65.jpg',
+                            'Nason_Ridge_Pictures/84.jpg',
                             'Nason_Ridge_Pictures/103.jpg',
                             'Nason_Ridge_Pictures/122.jpg',
                             'Nason_Ridge_Pictures/141.jpg',
                             'Nason_Ridge_Pictures/160.jpg',
-                            'Nason_Ridge_Pictures/179.jpg',
-                            'Nason_Ridge_Pictures/27.jpg',
-                            'Nason_Ridge_Pictures/46.jpg',
-                            'Nason_Ridge_Pictures/65.jpg',
-                            'Nason_Ridge_Pictures/7.jpg',
-                            'Nason_Ridge_Pictures/84.jpg'
+                            'Nason_Ridge_Pictures/179.jpg'
                           ]
                         ],
             'maps' => [
@@ -18716,16 +18716,16 @@ Fay Pullen
             'day' => '26',
             'images' => [
                           [
+                            'Aegeus-Pictures/7.jpg',
+                            'Aegeus-Pictures/27.jpg',
+                            'Aegeus-Pictures/46.jpg',
+                            'Aegeus-Pictures/65.jpg',
+                            'Aegeus-Pictures/84.jpg',
                             'Aegeus-Pictures/103.jpg',
                             'Aegeus-Pictures/122.jpg',
                             'Aegeus-Pictures/141.jpg',
                             'Aegeus-Pictures/160.jpg',
-                            'Aegeus-Pictures/179.jpg',
-                            'Aegeus-Pictures/27.jpg',
-                            'Aegeus-Pictures/46.jpg',
-                            'Aegeus-Pictures/65.jpg',
-                            'Aegeus-Pictures/7.jpg',
-                            'Aegeus-Pictures/84.jpg'
+                            'Aegeus-Pictures/179.jpg'
                           ]
                         ],
             'maps' => [
@@ -18789,6 +18789,11 @@ Fay Pullen
             'day' => '29',
             'images' => [
                           [
+                            'Cascade_Mtn_Pictures/7.jpg',
+                            'Cascade_Mtn_Pictures/27.jpg',
+                            'Cascade_Mtn_Pictures/46.jpg',
+                            'Cascade_Mtn_Pictures/65.jpg',
+                            'Cascade_Mtn_Pictures/84.jpg',
                             'Cascade_Mtn_Pictures/103.jpg',
                             'Cascade_Mtn_Pictures/122.jpg',
                             'Cascade_Mtn_Pictures/141.jpg',
@@ -18798,15 +18803,10 @@ Fay Pullen
                             'Cascade_Mtn_Pictures/219.jpg',
                             'Cascade_Mtn_Pictures/238.jpg',
                             'Cascade_Mtn_Pictures/257.jpg',
-                            'Cascade_Mtn_Pictures/27.jpg',
                             'Cascade_Mtn_Pictures/276.jpg',
                             'Cascade_Mtn_Pictures/296.jpg',
                             'Cascade_Mtn_Pictures/315.jpg',
-                            'Cascade_Mtn_Pictures/334.jpg',
-                            'Cascade_Mtn_Pictures/46.jpg',
-                            'Cascade_Mtn_Pictures/65.jpg',
-                            'Cascade_Mtn_Pictures/7.jpg',
-                            'Cascade_Mtn_Pictures/84.jpg'
+                            'Cascade_Mtn_Pictures/334.jpg'
                           ]
                         ],
             'maps' => [
@@ -18956,6 +18956,11 @@ Fay Pullen
             'day' => '04',
             'images' => [
                           [
+                            'Sheep_Rock_Photos/7.jpg',
+                            'Sheep_Rock_Photos/27.jpg',
+                            'Sheep_Rock_Photos/46.jpg',
+                            'Sheep_Rock_Photos/65.jpg',
+                            'Sheep_Rock_Photos/84.jpg',
                             'Sheep_Rock_Photos/103.jpg',
                             'Sheep_Rock_Photos/122.jpg',
                             'Sheep_Rock_Photos/141.jpg',
@@ -18963,26 +18968,21 @@ Fay Pullen
                             'Sheep_Rock_Photos/179.jpg',
                             'Sheep_Rock_Photos/200.jpg',
                             'Sheep_Rock_Photos/219.jpg',
-                            'Sheep_Rock_Photos/238.jpg',
-                            'Sheep_Rock_Photos/27.jpg',
-                            'Sheep_Rock_Photos/46.jpg',
-                            'Sheep_Rock_Photos/65.jpg',
-                            'Sheep_Rock_Photos/7.jpg',
-                            'Sheep_Rock_Photos/84.jpg'
+                            'Sheep_Rock_Photos/238.jpg'
                           ],
                           [
+                            'Sheep_Rock_Pictures/7.jpg',
+                            'Sheep_Rock_Pictures/27.jpg',
+                            'Sheep_Rock_Pictures/46.jpg',
+                            'Sheep_Rock_Pictures/65.jpg',
+                            'Sheep_Rock_Pictures/84.jpg',
                             'Sheep_Rock_Pictures/103.jpg',
                             'Sheep_Rock_Pictures/122.jpg',
                             'Sheep_Rock_Pictures/141.jpg',
                             'Sheep_Rock_Pictures/160.jpg',
                             'Sheep_Rock_Pictures/179.jpg',
                             'Sheep_Rock_Pictures/200.jpg',
-                            'Sheep_Rock_Pictures/219.jpg',
-                            'Sheep_Rock_Pictures/27.jpg',
-                            'Sheep_Rock_Pictures/46.jpg',
-                            'Sheep_Rock_Pictures/65.jpg',
-                            'Sheep_Rock_Pictures/7.jpg',
-                            'Sheep_Rock_Pictures/84.jpg'
+                            'Sheep_Rock_Pictures/219.jpg'
                           ]
                         ],
             'maps' => [
@@ -19046,6 +19046,11 @@ Totals: Old Butte and Squaw Saddle- 4.2 miles, 1050 ft and 2:30 hr
             'day' => '09',
             'images' => [
                           [
+                            'Castle_Pictures/7.jpg',
+                            'Castle_Pictures/27.jpg',
+                            'Castle_Pictures/46.jpg',
+                            'Castle_Pictures/65.jpg',
+                            'Castle_Pictures/84.jpg',
                             'Castle_Pictures/103.jpg',
                             'Castle_Pictures/122.jpg',
                             'Castle_Pictures/141.jpg',
@@ -19055,7 +19060,6 @@ Totals: Old Butte and Squaw Saddle- 4.2 miles, 1050 ft and 2:30 hr
                             'Castle_Pictures/219.jpg',
                             'Castle_Pictures/238.jpg',
                             'Castle_Pictures/257.jpg',
-                            'Castle_Pictures/27.jpg',
                             'Castle_Pictures/276.jpg',
                             'Castle_Pictures/296.jpg',
                             'Castle_Pictures/315.jpg',
@@ -19066,17 +19070,13 @@ Totals: Old Butte and Squaw Saddle- 4.2 miles, 1050 ft and 2:30 hr
                             'Castle_Pictures/411.jpg',
                             'Castle_Pictures/430.jpg',
                             'Castle_Pictures/449.jpg',
-                            'Castle_Pictures/46.jpg',
                             'Castle_Pictures/468.jpg',
                             'Castle_Pictures/488.jpg',
                             'Castle_Pictures/507.jpg',
                             'Castle_Pictures/526.jpg',
                             'Castle_Pictures/545.jpg',
                             'Castle_Pictures/564.jpg',
-                            'Castle_Pictures/584.jpg',
-                            'Castle_Pictures/65.jpg',
-                            'Castle_Pictures/7.jpg',
-                            'Castle_Pictures/84.jpg'
+                            'Castle_Pictures/584.jpg'
                           ]
                         ],
             'maps' => [
@@ -19291,12 +19291,12 @@ Fay Pullen
             'day' => '17',
             'images' => [
                           [
-                            'Silver_Eagle_Pictures/103.jpg',
+                            'Silver_Eagle_Pictures/7.jpg',
                             'Silver_Eagle_Pictures/27.jpg',
                             'Silver_Eagle_Pictures/46.jpg',
                             'Silver_Eagle_Pictures/65.jpg',
-                            'Silver_Eagle_Pictures/7.jpg',
-                            'Silver_Eagle_Pictures/84.jpg'
+                            'Silver_Eagle_Pictures/84.jpg',
+                            'Silver_Eagle_Pictures/103.jpg'
                           ]
                         ],
             'maps' => [
@@ -19398,6 +19398,11 @@ Fay Pullen
             'day' => '24',
             'images' => [
                           [
+                            'Garfield_E_Pk_Pictures/7.jpg',
+                            'Garfield_E_Pk_Pictures/27.jpg',
+                            'Garfield_E_Pk_Pictures/46.jpg',
+                            'Garfield_E_Pk_Pictures/65.jpg',
+                            'Garfield_E_Pk_Pictures/84.jpg',
                             'Garfield_E_Pk_Pictures/103.jpg',
                             'Garfield_E_Pk_Pictures/122.jpg',
                             'Garfield_E_Pk_Pictures/141.jpg',
@@ -19407,15 +19412,10 @@ Fay Pullen
                             'Garfield_E_Pk_Pictures/219.jpg',
                             'Garfield_E_Pk_Pictures/238.jpg',
                             'Garfield_E_Pk_Pictures/257.jpg',
-                            'Garfield_E_Pk_Pictures/27.jpg',
                             'Garfield_E_Pk_Pictures/276.jpg',
                             'Garfield_E_Pk_Pictures/296.jpg',
                             'Garfield_E_Pk_Pictures/315.jpg',
-                            'Garfield_E_Pk_Pictures/334.jpg',
-                            'Garfield_E_Pk_Pictures/46.jpg',
-                            'Garfield_E_Pk_Pictures/65.jpg',
-                            'Garfield_E_Pk_Pictures/7.jpg',
-                            'Garfield_E_Pk_Pictures/84.jpg'
+                            'Garfield_E_Pk_Pictures/334.jpg'
                           ]
                         ],
             'maps' => [
@@ -19584,6 +19584,11 @@ Fay Pullen
             'day' => '01',
             'images' => [
                           [
+                            'Sherman_Pictures/7.jpg',
+                            'Sherman_Pictures/27.jpg',
+                            'Sherman_Pictures/46.jpg',
+                            'Sherman_Pictures/65.jpg',
+                            'Sherman_Pictures/84.jpg',
                             'Sherman_Pictures/103.jpg',
                             'Sherman_Pictures/122.jpg',
                             'Sherman_Pictures/141.jpg',
@@ -19593,7 +19598,6 @@ Fay Pullen
                             'Sherman_Pictures/219.jpg',
                             'Sherman_Pictures/238.jpg',
                             'Sherman_Pictures/257.jpg',
-                            'Sherman_Pictures/27.jpg',
                             'Sherman_Pictures/276.jpg',
                             'Sherman_Pictures/296.jpg',
                             'Sherman_Pictures/315.jpg',
@@ -19601,11 +19605,7 @@ Fay Pullen
                             'Sherman_Pictures/353.jpg',
                             'Sherman_Pictures/372.jpg',
                             'Sherman_Pictures/392.jpg',
-                            'Sherman_Pictures/411.jpg',
-                            'Sherman_Pictures/46.jpg',
-                            'Sherman_Pictures/65.jpg',
-                            'Sherman_Pictures/7.jpg',
-                            'Sherman_Pictures/84.jpg'
+                            'Sherman_Pictures/411.jpg'
                           ]
                         ],
             'maps' => [
@@ -19719,17 +19719,17 @@ Fay Pullen
             'day' => '17',
             'images' => [
                           [
+                            'Lincoln_Pk_Attempt/7.jpg',
+                            'Lincoln_Pk_Attempt/27.jpg',
+                            'Lincoln_Pk_Attempt/46.jpg',
+                            'Lincoln_Pk_Attempt/65.jpg',
+                            'Lincoln_Pk_Attempt/84.jpg',
                             'Lincoln_Pk_Attempt/103.jpg',
                             'Lincoln_Pk_Attempt/122.jpg',
                             'Lincoln_Pk_Attempt/141.jpg',
                             'Lincoln_Pk_Attempt/160.jpg',
                             'Lincoln_Pk_Attempt/179.jpg',
-                            'Lincoln_Pk_Attempt/200.jpg',
-                            'Lincoln_Pk_Attempt/27.jpg',
-                            'Lincoln_Pk_Attempt/46.jpg',
-                            'Lincoln_Pk_Attempt/65.jpg',
-                            'Lincoln_Pk_Attempt/7.jpg',
-                            'Lincoln_Pk_Attempt/84.jpg'
+                            'Lincoln_Pk_Attempt/200.jpg'
                           ]
                         ],
             'maps' => [],
@@ -19812,6 +19812,11 @@ Fay Pullen
             'day' => '26',
             'images' => [
                           [
+                            'Bacon-Pictures/7.jpg',
+                            'Bacon-Pictures/27.jpg',
+                            'Bacon-Pictures/46.jpg',
+                            'Bacon-Pictures/65.jpg',
+                            'Bacon-Pictures/84.jpg',
                             'Bacon-Pictures/103.jpg',
                             'Bacon-Pictures/122.jpg',
                             'Bacon-Pictures/141.jpg',
@@ -19821,15 +19826,10 @@ Fay Pullen
                             'Bacon-Pictures/219.jpg',
                             'Bacon-Pictures/238.jpg',
                             'Bacon-Pictures/257.jpg',
-                            'Bacon-Pictures/27.jpg',
                             'Bacon-Pictures/276.jpg',
                             'Bacon-Pictures/296.jpg',
                             'Bacon-Pictures/315.jpg',
-                            'Bacon-Pictures/334.jpg',
-                            'Bacon-Pictures/46.jpg',
-                            'Bacon-Pictures/65.jpg',
-                            'Bacon-Pictures/7.jpg',
-                            'Bacon-Pictures/84.jpg'
+                            'Bacon-Pictures/334.jpg'
                           ]
                         ],
             'maps' => [
@@ -19941,6 +19941,11 @@ Fay Pullen
             'day' => '02',
             'images' => [
                           [
+                            'Hozomeen_Pictures/7.jpg',
+                            'Hozomeen_Pictures/27.jpg',
+                            'Hozomeen_Pictures/46.jpg',
+                            'Hozomeen_Pictures/65.jpg',
+                            'Hozomeen_Pictures/84.jpg',
                             'Hozomeen_Pictures/103.jpg',
                             'Hozomeen_Pictures/122.jpg',
                             'Hozomeen_Pictures/141.jpg',
@@ -19950,13 +19955,8 @@ Fay Pullen
                             'Hozomeen_Pictures/219.jpg',
                             'Hozomeen_Pictures/238.jpg',
                             'Hozomeen_Pictures/257.jpg',
-                            'Hozomeen_Pictures/27.jpg',
                             'Hozomeen_Pictures/276.jpg',
-                            'Hozomeen_Pictures/296.jpg',
-                            'Hozomeen_Pictures/46.jpg',
-                            'Hozomeen_Pictures/65.jpg',
-                            'Hozomeen_Pictures/7.jpg',
-                            'Hozomeen_Pictures/84.jpg'
+                            'Hozomeen_Pictures/296.jpg'
                           ]
                         ],
             'maps' => [
@@ -20069,6 +20069,11 @@ Fay Pullen
             'day' => '04',
             'images' => [
                           [
+                            'Blum_Pictures/7.jpg',
+                            'Blum_Pictures/27.jpg',
+                            'Blum_Pictures/46.jpg',
+                            'Blum_Pictures/65.jpg',
+                            'Blum_Pictures/84.jpg',
                             'Blum_Pictures/103.jpg',
                             'Blum_Pictures/122.jpg',
                             'Blum_Pictures/141.jpg',
@@ -20078,7 +20083,6 @@ Fay Pullen
                             'Blum_Pictures/219.jpg',
                             'Blum_Pictures/238.jpg',
                             'Blum_Pictures/257.jpg',
-                            'Blum_Pictures/27.jpg',
                             'Blum_Pictures/276.jpg',
                             'Blum_Pictures/296.jpg',
                             'Blum_Pictures/315.jpg',
@@ -20086,11 +20090,7 @@ Fay Pullen
                             'Blum_Pictures/353.jpg',
                             'Blum_Pictures/372.jpg',
                             'Blum_Pictures/392.jpg',
-                            'Blum_Pictures/411.jpg',
-                            'Blum_Pictures/46.jpg',
-                            'Blum_Pictures/65.jpg',
-                            'Blum_Pictures/7.jpg',
-                            'Blum_Pictures/84.jpg'
+                            'Blum_Pictures/411.jpg'
                           ]
                         ],
             'maps' => [
@@ -20207,6 +20207,11 @@ it to Jim to tell that tale.
             'day' => '12',
             'images' => [
                           [
+                            'Spire_Mtn_Pictures/7.jpg',
+                            'Spire_Mtn_Pictures/27.jpg',
+                            'Spire_Mtn_Pictures/46.jpg',
+                            'Spire_Mtn_Pictures/65.jpg',
+                            'Spire_Mtn_Pictures/84.jpg',
                             'Spire_Mtn_Pictures/103.jpg',
                             'Spire_Mtn_Pictures/122.jpg',
                             'Spire_Mtn_Pictures/141.jpg',
@@ -20215,12 +20220,7 @@ it to Jim to tell that tale.
                             'Spire_Mtn_Pictures/200.jpg',
                             'Spire_Mtn_Pictures/219.jpg',
                             'Spire_Mtn_Pictures/238.jpg',
-                            'Spire_Mtn_Pictures/257.jpg',
-                            'Spire_Mtn_Pictures/27.jpg',
-                            'Spire_Mtn_Pictures/46.jpg',
-                            'Spire_Mtn_Pictures/65.jpg',
-                            'Spire_Mtn_Pictures/7.jpg',
-                            'Spire_Mtn_Pictures/84.jpg'
+                            'Spire_Mtn_Pictures/257.jpg'
                           ]
                         ],
             'maps' => [
@@ -20374,6 +20374,11 @@ Fay Pullen
             'day' => '25',
             'images' => [
                           [
+                            'Big_Devil_Pictures/7.jpg',
+                            'Big_Devil_Pictures/27.jpg',
+                            'Big_Devil_Pictures/46.jpg',
+                            'Big_Devil_Pictures/65.jpg',
+                            'Big_Devil_Pictures/84.jpg',
                             'Big_Devil_Pictures/103.jpg',
                             'Big_Devil_Pictures/122.jpg',
                             'Big_Devil_Pictures/141.jpg',
@@ -20383,17 +20388,12 @@ Fay Pullen
                             'Big_Devil_Pictures/219.jpg',
                             'Big_Devil_Pictures/238.jpg',
                             'Big_Devil_Pictures/257.jpg',
-                            'Big_Devil_Pictures/27.jpg',
                             'Big_Devil_Pictures/276.jpg',
                             'Big_Devil_Pictures/296.jpg',
                             'Big_Devil_Pictures/315.jpg',
                             'Big_Devil_Pictures/334.jpg',
                             'Big_Devil_Pictures/353.jpg',
-                            'Big_Devil_Pictures/372.jpg',
-                            'Big_Devil_Pictures/46.jpg',
-                            'Big_Devil_Pictures/65.jpg',
-                            'Big_Devil_Pictures/7.jpg',
-                            'Big_Devil_Pictures/84.jpg'
+                            'Big_Devil_Pictures/372.jpg'
                           ]
                         ],
             'maps' => [
@@ -20555,6 +20555,11 @@ Fay Pullen
             'day' => '04',
             'images' => [
                           [
+                            'Luna_Pictures/7.jpg',
+                            'Luna_Pictures/27.jpg',
+                            'Luna_Pictures/46.jpg',
+                            'Luna_Pictures/65.jpg',
+                            'Luna_Pictures/84.jpg',
                             'Luna_Pictures/103.jpg',
                             'Luna_Pictures/122.jpg',
                             'Luna_Pictures/141.jpg',
@@ -20564,7 +20569,6 @@ Fay Pullen
                             'Luna_Pictures/219.jpg',
                             'Luna_Pictures/238.jpg',
                             'Luna_Pictures/257.jpg',
-                            'Luna_Pictures/27.jpg',
                             'Luna_Pictures/276.jpg',
                             'Luna_Pictures/296.jpg',
                             'Luna_Pictures/315.jpg',
@@ -20574,11 +20578,7 @@ Fay Pullen
                             'Luna_Pictures/392.jpg',
                             'Luna_Pictures/411.jpg',
                             'Luna_Pictures/430.jpg',
-                            'Luna_Pictures/449.jpg',
-                            'Luna_Pictures/46.jpg',
-                            'Luna_Pictures/65.jpg',
-                            'Luna_Pictures/7.jpg',
-                            'Luna_Pictures/84.jpg'
+                            'Luna_Pictures/449.jpg'
                           ]
                         ],
             'maps' => [
@@ -20773,10 +20773,10 @@ Fay Pullen
             'day' => '15',
             'images' => [
                           [
+                            'Cascade_N_Pk_Pictures/7.jpg',
                             'Cascade_N_Pk_Pictures/27.jpg',
                             'Cascade_N_Pk_Pictures/46.jpg',
                             'Cascade_N_Pk_Pictures/65.jpg',
-                            'Cascade_N_Pk_Pictures/7.jpg',
                             'Cascade_N_Pk_Pictures/84.jpg'
                           ]
                         ],
@@ -20885,6 +20885,11 @@ Fay Pullen
             'day' => '28',
             'images' => [
                           [
+                            'Elephant_Butte_Pictures/7.jpg',
+                            'Elephant_Butte_Pictures/27.jpg',
+                            'Elephant_Butte_Pictures/46.jpg',
+                            'Elephant_Butte_Pictures/65.jpg',
+                            'Elephant_Butte_Pictures/84.jpg',
                             'Elephant_Butte_Pictures/103.jpg',
                             'Elephant_Butte_Pictures/122.jpg',
                             'Elephant_Butte_Pictures/141.jpg',
@@ -20894,7 +20899,6 @@ Fay Pullen
                             'Elephant_Butte_Pictures/219.jpg',
                             'Elephant_Butte_Pictures/238.jpg',
                             'Elephant_Butte_Pictures/257.jpg',
-                            'Elephant_Butte_Pictures/27.jpg',
                             'Elephant_Butte_Pictures/276.jpg',
                             'Elephant_Butte_Pictures/296.jpg',
                             'Elephant_Butte_Pictures/315.jpg',
@@ -20902,11 +20906,7 @@ Fay Pullen
                             'Elephant_Butte_Pictures/353.jpg',
                             'Elephant_Butte_Pictures/372.jpg',
                             'Elephant_Butte_Pictures/392.jpg',
-                            'Elephant_Butte_Pictures/411.jpg',
-                            'Elephant_Butte_Pictures/46.jpg',
-                            'Elephant_Butte_Pictures/65.jpg',
-                            'Elephant_Butte_Pictures/7.jpg',
-                            'Elephant_Butte_Pictures/84.jpg'
+                            'Elephant_Butte_Pictures/411.jpg'
                           ]
                         ],
             'maps' => [
@@ -21054,6 +21054,11 @@ Fay Pullen
             'day' => '12',
             'images' => [
                           [
+                            'Methow_Pinnacles_Pictures/7.jpg',
+                            'Methow_Pinnacles_Pictures/27.jpg',
+                            'Methow_Pinnacles_Pictures/46.jpg',
+                            'Methow_Pinnacles_Pictures/65.jpg',
+                            'Methow_Pinnacles_Pictures/84.jpg',
                             'Methow_Pinnacles_Pictures/103.jpg',
                             'Methow_Pinnacles_Pictures/122.jpg',
                             'Methow_Pinnacles_Pictures/141.jpg',
@@ -21063,7 +21068,6 @@ Fay Pullen
                             'Methow_Pinnacles_Pictures/219.jpg',
                             'Methow_Pinnacles_Pictures/238.jpg',
                             'Methow_Pinnacles_Pictures/257.jpg',
-                            'Methow_Pinnacles_Pictures/27.jpg',
                             'Methow_Pinnacles_Pictures/276.jpg',
                             'Methow_Pinnacles_Pictures/296.jpg',
                             'Methow_Pinnacles_Pictures/315.jpg',
@@ -21074,14 +21078,10 @@ Fay Pullen
                             'Methow_Pinnacles_Pictures/411.jpg',
                             'Methow_Pinnacles_Pictures/430.jpg',
                             'Methow_Pinnacles_Pictures/449.jpg',
-                            'Methow_Pinnacles_Pictures/46.jpg',
                             'Methow_Pinnacles_Pictures/468.jpg',
                             'Methow_Pinnacles_Pictures/488.jpg',
                             'Methow_Pinnacles_Pictures/507.jpg',
-                            'Methow_Pinnacles_Pictures/526.jpg',
-                            'Methow_Pinnacles_Pictures/65.jpg',
-                            'Methow_Pinnacles_Pictures/7.jpg',
-                            'Methow_Pinnacles_Pictures/84.jpg'
+                            'Methow_Pinnacles_Pictures/526.jpg'
                           ]
                         ],
             'maps' => [
@@ -21233,7 +21233,7 @@ P.S. Azurite1 and Azurite4 finishes up the Azurite Pk Quad for me.
                       ],
             'month' => '09',
             'subdir' => '2007-09-18-devils-slide',
-            'title' => undef,
+            'title' => 'Devils Slide 2',
             'tr' => undef,
             'year' => '2007'
           },
@@ -21241,6 +21241,11 @@ P.S. Azurite1 and Azurite4 finishes up the Azurite Pk Quad for me.
             'day' => '19',
             'images' => [
                           [
+                            'Stiletto_Pictures/7.jpg',
+                            'Stiletto_Pictures/27.jpg',
+                            'Stiletto_Pictures/46.jpg',
+                            'Stiletto_Pictures/65.jpg',
+                            'Stiletto_Pictures/84.jpg',
                             'Stiletto_Pictures/103.jpg',
                             'Stiletto_Pictures/122.jpg',
                             'Stiletto_Pictures/141.jpg',
@@ -21250,7 +21255,6 @@ P.S. Azurite1 and Azurite4 finishes up the Azurite Pk Quad for me.
                             'Stiletto_Pictures/219.jpg',
                             'Stiletto_Pictures/238.jpg',
                             'Stiletto_Pictures/257.jpg',
-                            'Stiletto_Pictures/27.jpg',
                             'Stiletto_Pictures/276.jpg',
                             'Stiletto_Pictures/296.jpg',
                             'Stiletto_Pictures/315.jpg',
@@ -21258,11 +21262,7 @@ P.S. Azurite1 and Azurite4 finishes up the Azurite Pk Quad for me.
                             'Stiletto_Pictures/353.jpg',
                             'Stiletto_Pictures/372.jpg',
                             'Stiletto_Pictures/392.jpg',
-                            'Stiletto_Pictures/411.jpg',
-                            'Stiletto_Pictures/46.jpg',
-                            'Stiletto_Pictures/65.jpg',
-                            'Stiletto_Pictures/7.jpg',
-                            'Stiletto_Pictures/84.jpg'
+                            'Stiletto_Pictures/411.jpg'
                           ]
                         ],
             'maps' => [
@@ -21414,18 +21414,18 @@ Fay Pullen
             'day' => '27',
             'images' => [
                           [
+                            'American_Ridge_Pictures/7.jpg',
+                            'American_Ridge_Pictures/27.jpg',
+                            'American_Ridge_Pictures/46.jpg',
+                            'American_Ridge_Pictures/65.jpg',
+                            'American_Ridge_Pictures/84.jpg',
                             'American_Ridge_Pictures/103.jpg',
                             'American_Ridge_Pictures/122.jpg',
                             'American_Ridge_Pictures/141.jpg',
                             'American_Ridge_Pictures/160.jpg',
                             'American_Ridge_Pictures/179.jpg',
                             'American_Ridge_Pictures/200.jpg',
-                            'American_Ridge_Pictures/219.jpg',
-                            'American_Ridge_Pictures/27.jpg',
-                            'American_Ridge_Pictures/46.jpg',
-                            'American_Ridge_Pictures/65.jpg',
-                            'American_Ridge_Pictures/7.jpg',
-                            'American_Ridge_Pictures/84.jpg'
+                            'American_Ridge_Pictures/219.jpg'
                           ]
                         ],
             'maps' => [
@@ -21531,6 +21531,11 @@ Oh yes, I still have American Ridge 1 left to do.
             'day' => '08',
             'images' => [
                           [
+                            'Nelson_Ridge_Pictures/7.jpg',
+                            'Nelson_Ridge_Pictures/27.jpg',
+                            'Nelson_Ridge_Pictures/46.jpg',
+                            'Nelson_Ridge_Pictures/65.jpg',
+                            'Nelson_Ridge_Pictures/84.jpg',
                             'Nelson_Ridge_Pictures/103.jpg',
                             'Nelson_Ridge_Pictures/122.jpg',
                             'Nelson_Ridge_Pictures/141.jpg',
@@ -21539,12 +21544,7 @@ Oh yes, I still have American Ridge 1 left to do.
                             'Nelson_Ridge_Pictures/200.jpg',
                             'Nelson_Ridge_Pictures/219.jpg',
                             'Nelson_Ridge_Pictures/238.jpg',
-                            'Nelson_Ridge_Pictures/257.jpg',
-                            'Nelson_Ridge_Pictures/27.jpg',
-                            'Nelson_Ridge_Pictures/46.jpg',
-                            'Nelson_Ridge_Pictures/65.jpg',
-                            'Nelson_Ridge_Pictures/7.jpg',
-                            'Nelson_Ridge_Pictures/84.jpg'
+                            'Nelson_Ridge_Pictures/257.jpg'
                           ]
                         ],
             'maps' => [
@@ -21641,13 +21641,14 @@ Fay Pullen
             'day' => '15',
             'images' => [
                           [
+                            'Cougar-3-Pictures/4.jpg',
+                            'Cougar-3-Pictures/9.jpg',
                             'Cougar-3-Pictures/14.jpg',
                             'Cougar-3-Pictures/19.jpg',
                             'Cougar-3-Pictures/24.jpg',
                             'Cougar-3-Pictures/29.jpg',
                             'Cougar-3-Pictures/34.jpg',
                             'Cougar-3-Pictures/39.jpg',
-                            'Cougar-3-Pictures/4.jpg',
                             'Cougar-3-Pictures/44.jpg',
                             'Cougar-3-Pictures/49.jpg',
                             'Cougar-3-Pictures/54.jpg',
@@ -21655,23 +21656,27 @@ Fay Pullen
                             'Cougar-3-Pictures/64.jpg',
                             'Cougar-3-Pictures/69.jpg',
                             'Cougar-3-Pictures/74.jpg',
-                            'Cougar-3-Pictures/89.jpg',
-                            'Cougar-3-Pictures/9.jpg'
+                            'Cougar-3-Pictures/89.jpg'
                           ],
                           [
+                            'Cougar-Lake-Pictures/7.jpg',
+                            'Cougar-Lake-Pictures/27.jpg',
+                            'Cougar-Lake-Pictures/46.jpg',
+                            'Cougar-Lake-Pictures/65.jpg',
+                            'Cougar-Lake-Pictures/84.jpg',
                             'Cougar-Lake-Pictures/103.jpg',
                             'Cougar-Lake-Pictures/122.jpg',
                             'Cougar-Lake-Pictures/141.jpg',
                             'Cougar-Lake-Pictures/160.jpg',
                             'Cougar-Lake-Pictures/179.jpg',
-                            'Cougar-Lake-Pictures/200.jpg',
-                            'Cougar-Lake-Pictures/27.jpg',
-                            'Cougar-Lake-Pictures/46.jpg',
-                            'Cougar-Lake-Pictures/65.jpg',
-                            'Cougar-Lake-Pictures/7.jpg',
-                            'Cougar-Lake-Pictures/84.jpg'
+                            'Cougar-Lake-Pictures/200.jpg'
                           ],
                           [
+                            'Cougar_Lake_Peaks_Pictures/7.jpg',
+                            'Cougar_Lake_Peaks_Pictures/27.jpg',
+                            'Cougar_Lake_Peaks_Pictures/46.jpg',
+                            'Cougar_Lake_Peaks_Pictures/65.jpg',
+                            'Cougar_Lake_Peaks_Pictures/84.jpg',
                             'Cougar_Lake_Peaks_Pictures/103.jpg',
                             'Cougar_Lake_Peaks_Pictures/122.jpg',
                             'Cougar_Lake_Peaks_Pictures/141.jpg',
@@ -21681,16 +21686,11 @@ Fay Pullen
                             'Cougar_Lake_Peaks_Pictures/219.jpg',
                             'Cougar_Lake_Peaks_Pictures/238.jpg',
                             'Cougar_Lake_Peaks_Pictures/257.jpg',
-                            'Cougar_Lake_Peaks_Pictures/27.jpg',
                             'Cougar_Lake_Peaks_Pictures/276.jpg',
                             'Cougar_Lake_Peaks_Pictures/296.jpg',
                             'Cougar_Lake_Peaks_Pictures/315.jpg',
                             'Cougar_Lake_Peaks_Pictures/334.jpg',
-                            'Cougar_Lake_Peaks_Pictures/353.jpg',
-                            'Cougar_Lake_Peaks_Pictures/46.jpg',
-                            'Cougar_Lake_Peaks_Pictures/65.jpg',
-                            'Cougar_Lake_Peaks_Pictures/7.jpg',
-                            'Cougar_Lake_Peaks_Pictures/84.jpg'
+                            'Cougar_Lake_Peaks_Pictures/353.jpg'
                           ]
                         ],
             'maps' => [
@@ -21699,7 +21699,7 @@ Fay Pullen
                       ],
             'month' => '10',
             'subdir' => '2007-10-15-cougar',
-            'title' => undef,
+            'title' => 'Cougar Lake Peaks',
             'tr' => undef,
             'year' => '2007'
           },
@@ -21707,15 +21707,15 @@ Fay Pullen
             'day' => '21',
             'images' => [
                           [
+                            'Tahtlum-Pk-Photos/4.jpg',
+                            'Tahtlum-Pk-Photos/9.jpg',
                             'Tahtlum-Pk-Photos/14.jpg',
                             'Tahtlum-Pk-Photos/19.jpg',
                             'Tahtlum-Pk-Photos/24.jpg',
                             'Tahtlum-Pk-Photos/29.jpg',
                             'Tahtlum-Pk-Photos/34.jpg',
                             'Tahtlum-Pk-Photos/39.jpg',
-                            'Tahtlum-Pk-Photos/4.jpg',
-                            'Tahtlum-Pk-Photos/51.jpg',
-                            'Tahtlum-Pk-Photos/9.jpg'
+                            'Tahtlum-Pk-Photos/51.jpg'
                           ]
                         ],
             'maps' => [
@@ -21742,23 +21742,14 @@ Fay Pullen
             'day' => '08',
             'images' => [
                           [
-                            'Fifes-Peaks-Pictures/104.jpg',
-                            'Fifes-Peaks-Pictures/109.jpg',
-                            'Fifes-Peaks-Pictures/114.jpg',
-                            'Fifes-Peaks-Pictures/119.jpg',
-                            'Fifes-Peaks-Pictures/124.jpg',
-                            'Fifes-Peaks-Pictures/129.jpg',
-                            'Fifes-Peaks-Pictures/134.jpg',
-                            'Fifes-Peaks-Pictures/139.jpg',
+                            'Fifes-Peaks-Pictures/4.jpg',
+                            'Fifes-Peaks-Pictures/9.jpg',
                             'Fifes-Peaks-Pictures/14.jpg',
-                            'Fifes-Peaks-Pictures/144.jpg',
-                            'Fifes-Peaks-Pictures/161.jpg',
                             'Fifes-Peaks-Pictures/19.jpg',
                             'Fifes-Peaks-Pictures/24.jpg',
                             'Fifes-Peaks-Pictures/29.jpg',
                             'Fifes-Peaks-Pictures/34.jpg',
                             'Fifes-Peaks-Pictures/39.jpg',
-                            'Fifes-Peaks-Pictures/4.jpg',
                             'Fifes-Peaks-Pictures/44.jpg',
                             'Fifes-Peaks-Pictures/49.jpg',
                             'Fifes-Peaks-Pictures/54.jpg',
@@ -21769,9 +21760,18 @@ Fay Pullen
                             'Fifes-Peaks-Pictures/79.jpg',
                             'Fifes-Peaks-Pictures/84.jpg',
                             'Fifes-Peaks-Pictures/89.jpg',
-                            'Fifes-Peaks-Pictures/9.jpg',
                             'Fifes-Peaks-Pictures/94.jpg',
-                            'Fifes-Peaks-Pictures/99.jpg'
+                            'Fifes-Peaks-Pictures/99.jpg',
+                            'Fifes-Peaks-Pictures/104.jpg',
+                            'Fifes-Peaks-Pictures/109.jpg',
+                            'Fifes-Peaks-Pictures/114.jpg',
+                            'Fifes-Peaks-Pictures/119.jpg',
+                            'Fifes-Peaks-Pictures/124.jpg',
+                            'Fifes-Peaks-Pictures/129.jpg',
+                            'Fifes-Peaks-Pictures/134.jpg',
+                            'Fifes-Peaks-Pictures/139.jpg',
+                            'Fifes-Peaks-Pictures/144.jpg',
+                            'Fifes-Peaks-Pictures/161.jpg'
                           ]
                         ],
             'maps' => [
@@ -21779,7 +21779,7 @@ Fay Pullen
                       ],
             'month' => '11',
             'subdir' => '2007-11-08-fifes',
-            'title' => undef,
+            'title' => 'Fifes Peaks',
             'tr' => undef,
             'year' => '2007'
           },
@@ -21787,16 +21787,16 @@ Fay Pullen
             'day' => '18',
             'images' => [
                           [
+                            'Birthday-Climbs/4.jpg',
+                            'Birthday-Climbs/9.jpg',
                             'Birthday-Climbs/14.jpg',
                             'Birthday-Climbs/19.jpg',
                             'Birthday-Climbs/24.jpg',
                             'Birthday-Climbs/29.jpg',
                             'Birthday-Climbs/34.jpg',
                             'Birthday-Climbs/39.jpg',
-                            'Birthday-Climbs/4.jpg',
                             'Birthday-Climbs/44.jpg',
-                            'Birthday-Climbs/56.jpg',
-                            'Birthday-Climbs/9.jpg'
+                            'Birthday-Climbs/56.jpg'
                           ]
                         ],
             'maps' => [
@@ -21873,17 +21873,17 @@ Fay Pullen
             'day' => '21',
             'images' => [
                           [
+                            'Raven-Roost-Pictures/4.jpg',
+                            'Raven-Roost-Pictures/9.jpg',
                             'Raven-Roost-Pictures/14.jpg',
                             'Raven-Roost-Pictures/19.jpg',
                             'Raven-Roost-Pictures/24.jpg',
                             'Raven-Roost-Pictures/29.jpg',
                             'Raven-Roost-Pictures/34.jpg',
                             'Raven-Roost-Pictures/39.jpg',
-                            'Raven-Roost-Pictures/4.jpg',
                             'Raven-Roost-Pictures/44.jpg',
                             'Raven-Roost-Pictures/49.jpg',
-                            'Raven-Roost-Pictures/63.jpg',
-                            'Raven-Roost-Pictures/9.jpg'
+                            'Raven-Roost-Pictures/63.jpg'
                           ]
                         ],
             'maps' => [
@@ -21964,20 +21964,20 @@ Total: 18.2 miles, 4100 ft and 7:45 hrs.
             'day' => '06',
             'images' => [
                           [
+                            'Skate-Mtn-Pictures/4.jpg',
+                            'Skate-Mtn-Pictures/9.jpg',
                             'Skate-Mtn-Pictures/14.jpg',
                             'Skate-Mtn-Pictures/19.jpg',
                             'Skate-Mtn-Pictures/24.jpg',
                             'Skate-Mtn-Pictures/29.jpg',
                             'Skate-Mtn-Pictures/34.jpg',
                             'Skate-Mtn-Pictures/39.jpg',
-                            'Skate-Mtn-Pictures/4.jpg',
                             'Skate-Mtn-Pictures/44.jpg',
                             'Skate-Mtn-Pictures/49.jpg',
                             'Skate-Mtn-Pictures/54.jpg',
                             'Skate-Mtn-Pictures/59.jpg',
                             'Skate-Mtn-Pictures/64.jpg',
-                            'Skate-Mtn-Pictures/78.jpg',
-                            'Skate-Mtn-Pictures/9.jpg'
+                            'Skate-Mtn-Pictures/78.jpg'
                           ]
                         ],
             'maps' => [
@@ -22113,12 +22113,12 @@ Fay Pullen
             'day' => '09',
             'images' => [
                           [
+                            'Taneum-Point-Pictures/4.jpg',
+                            'Taneum-Point-Pictures/9.jpg',
                             'Taneum-Point-Pictures/14.jpg',
                             'Taneum-Point-Pictures/19.jpg',
                             'Taneum-Point-Pictures/24.jpg',
-                            'Taneum-Point-Pictures/36.jpg',
-                            'Taneum-Point-Pictures/4.jpg',
-                            'Taneum-Point-Pictures/9.jpg'
+                            'Taneum-Point-Pictures/36.jpg'
                           ]
                         ],
             'maps' => [
@@ -22337,14 +22337,14 @@ hrs.
             'day' => '17',
             'images' => [
                           [
-                            'Randle-Ski-Tours/115.jpg',
+                            'Randle-Ski-Tours/4.jpg',
+                            'Randle-Ski-Tours/9.jpg',
                             'Randle-Ski-Tours/14.jpg',
                             'Randle-Ski-Tours/19.jpg',
                             'Randle-Ski-Tours/24.jpg',
                             'Randle-Ski-Tours/29.jpg',
                             'Randle-Ski-Tours/34.jpg',
                             'Randle-Ski-Tours/39.jpg',
-                            'Randle-Ski-Tours/4.jpg',
                             'Randle-Ski-Tours/44.jpg',
                             'Randle-Ski-Tours/49.jpg',
                             'Randle-Ski-Tours/54.jpg',
@@ -22355,9 +22355,9 @@ hrs.
                             'Randle-Ski-Tours/79.jpg',
                             'Randle-Ski-Tours/84.jpg',
                             'Randle-Ski-Tours/89.jpg',
-                            'Randle-Ski-Tours/9.jpg',
                             'Randle-Ski-Tours/94.jpg',
-                            'Randle-Ski-Tours/99.jpg'
+                            'Randle-Ski-Tours/99.jpg',
+                            'Randle-Ski-Tours/115.jpg'
                           ]
                         ],
             'maps' => [
@@ -22647,13 +22647,13 @@ Fay Pullen
             'day' => '24',
             'images' => [
                           [
+                            'Randle-Blobs-Pictures/4.jpg',
+                            'Randle-Blobs-Pictures/9.jpg',
                             'Randle-Blobs-Pictures/14.jpg',
                             'Randle-Blobs-Pictures/19.jpg',
                             'Randle-Blobs-Pictures/24.jpg',
                             'Randle-Blobs-Pictures/29.jpg',
-                            'Randle-Blobs-Pictures/4.jpg',
-                            'Randle-Blobs-Pictures/41.jpg',
-                            'Randle-Blobs-Pictures/9.jpg'
+                            'Randle-Blobs-Pictures/41.jpg'
                           ]
                         ],
             'maps' => [
@@ -22833,14 +22833,14 @@ Fay Pullen
             'day' => '31',
             'images' => [
                           [
+                            'Grass-Mtn-Pictures/4.jpg',
+                            'Grass-Mtn-Pictures/9.jpg',
                             'Grass-Mtn-Pictures/14.jpg',
                             'Grass-Mtn-Pictures/19.jpg',
                             'Grass-Mtn-Pictures/24.jpg',
                             'Grass-Mtn-Pictures/29.jpg',
                             'Grass-Mtn-Pictures/34.jpg',
-                            'Grass-Mtn-Pictures/4.jpg',
-                            'Grass-Mtn-Pictures/46.jpg',
-                            'Grass-Mtn-Pictures/9.jpg'
+                            'Grass-Mtn-Pictures/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -22958,7 +22958,7 @@ Fay Pullen
                       ],
             'month' => '02',
             'subdir' => '2008-02-24-naughty-hill',
-            'title' => undef,
+            'title' => 'Naughty Hill',
             'tr' => undef,
             'year' => '2008'
           },
@@ -23051,17 +23051,17 @@ Fay
             'day' => '04',
             'images' => [
                           [
+                            'Rampart-Ridge-Pictures/4.jpg',
+                            'Rampart-Ridge-Pictures/9.jpg',
                             'Rampart-Ridge-Pictures/14.jpg',
                             'Rampart-Ridge-Pictures/19.jpg',
                             'Rampart-Ridge-Pictures/24.jpg',
                             'Rampart-Ridge-Pictures/29.jpg',
                             'Rampart-Ridge-Pictures/34.jpg',
                             'Rampart-Ridge-Pictures/39.jpg',
-                            'Rampart-Ridge-Pictures/4.jpg',
                             'Rampart-Ridge-Pictures/44.jpg',
                             'Rampart-Ridge-Pictures/49.jpg',
-                            'Rampart-Ridge-Pictures/63.jpg',
-                            'Rampart-Ridge-Pictures/9.jpg'
+                            'Rampart-Ridge-Pictures/63.jpg'
                           ]
                         ],
             'maps' => [
@@ -23155,18 +23155,18 @@ Fay Pullen
             'day' => '06',
             'images' => [
                           [
+                            'McClure-Rock-Pictures/4.jpg',
+                            'McClure-Rock-Pictures/9.jpg',
                             'McClure-Rock-Pictures/14.jpg',
                             'McClure-Rock-Pictures/19.jpg',
                             'McClure-Rock-Pictures/24.jpg',
                             'McClure-Rock-Pictures/29.jpg',
                             'McClure-Rock-Pictures/34.jpg',
                             'McClure-Rock-Pictures/39.jpg',
-                            'McClure-Rock-Pictures/4.jpg',
                             'McClure-Rock-Pictures/44.jpg',
                             'McClure-Rock-Pictures/49.jpg',
                             'McClure-Rock-Pictures/54.jpg',
-                            'McClure-Rock-Pictures/68.jpg',
-                            'McClure-Rock-Pictures/9.jpg'
+                            'McClure-Rock-Pictures/68.jpg'
                           ]
                         ],
             'maps' => [
@@ -23308,13 +23308,14 @@ Fay Pullen
             'day' => '22',
             'images' => [
                           [
+                            'Divide-Ridge-Pictures/4.jpg',
+                            'Divide-Ridge-Pictures/9.jpg',
                             'Divide-Ridge-Pictures/14.jpg',
                             'Divide-Ridge-Pictures/19.jpg',
                             'Divide-Ridge-Pictures/24.jpg',
                             'Divide-Ridge-Pictures/29.jpg',
                             'Divide-Ridge-Pictures/34.jpg',
                             'Divide-Ridge-Pictures/39.jpg',
-                            'Divide-Ridge-Pictures/4.jpg',
                             'Divide-Ridge-Pictures/44.jpg',
                             'Divide-Ridge-Pictures/49.jpg',
                             'Divide-Ridge-Pictures/54.jpg',
@@ -23323,7 +23324,6 @@ Fay Pullen
                             'Divide-Ridge-Pictures/69.jpg',
                             'Divide-Ridge-Pictures/74.jpg',
                             'Divide-Ridge-Pictures/79.jpg',
-                            'Divide-Ridge-Pictures/9.jpg',
                             'Divide-Ridge-Pictures/94.jpg'
                           ]
                         ],
@@ -23356,20 +23356,20 @@ Total: 21 miles, 4900 ft and 11 hrs.      Fay Pullen
             'day' => '03',
             'images' => [
                           [
+                            'Osborne-Mtn-Pictures/4.jpg',
+                            'Osborne-Mtn-Pictures/9.jpg',
                             'Osborne-Mtn-Pictures/14.jpg',
                             'Osborne-Mtn-Pictures/19.jpg',
                             'Osborne-Mtn-Pictures/24.jpg',
                             'Osborne-Mtn-Pictures/29.jpg',
                             'Osborne-Mtn-Pictures/34.jpg',
                             'Osborne-Mtn-Pictures/39.jpg',
-                            'Osborne-Mtn-Pictures/4.jpg',
                             'Osborne-Mtn-Pictures/44.jpg',
                             'Osborne-Mtn-Pictures/49.jpg',
                             'Osborne-Mtn-Pictures/54.jpg',
                             'Osborne-Mtn-Pictures/59.jpg',
                             'Osborne-Mtn-Pictures/64.jpg',
-                            'Osborne-Mtn-Pictures/78.jpg',
-                            'Osborne-Mtn-Pictures/9.jpg'
+                            'Osborne-Mtn-Pictures/78.jpg'
                           ]
                         ],
             'maps' => [
@@ -23491,12 +23491,12 @@ this year, the Orr Cr  Sno-Park has been relocated to the junction of  Roads
             'day' => '26',
             'images' => [
                           [
+                            'Quartz-W-Pk-Pictures/4.jpg',
+                            'Quartz-W-Pk-Pictures/9.jpg',
                             'Quartz-W-Pk-Pictures/14.jpg',
                             'Quartz-W-Pk-Pictures/19.jpg',
                             'Quartz-W-Pk-Pictures/24.jpg',
-                            'Quartz-W-Pk-Pictures/36.jpg',
-                            'Quartz-W-Pk-Pictures/4.jpg',
-                            'Quartz-W-Pk-Pictures/9.jpg'
+                            'Quartz-W-Pk-Pictures/36.jpg'
                           ]
                         ],
             'maps' => [
@@ -23575,7 +23575,7 @@ Fay Pullen
                       ],
             'month' => '05',
             'subdir' => '2008-05-05-chinook-loop',
-            'title' => undef,
+            'title' => 'Chinook Pk Loop',
             'tr' => undef,
             'year' => '2008'
           },
@@ -23648,21 +23648,21 @@ Fay Pullen
             'day' => '18',
             'images' => [
                           [
+                            'Garfield-Pictures/4.jpg',
+                            'Garfield-Pictures/9.jpg',
                             'Garfield-Pictures/14.jpg',
                             'Garfield-Pictures/19.jpg',
                             'Garfield-Pictures/24.jpg',
                             'Garfield-Pictures/29.jpg',
                             'Garfield-Pictures/34.jpg',
                             'Garfield-Pictures/39.jpg',
-                            'Garfield-Pictures/4.jpg',
                             'Garfield-Pictures/44.jpg',
                             'Garfield-Pictures/49.jpg',
                             'Garfield-Pictures/54.jpg',
                             'Garfield-Pictures/59.jpg',
                             'Garfield-Pictures/64.jpg',
                             'Garfield-Pictures/69.jpg',
-                            'Garfield-Pictures/83.jpg',
-                            'Garfield-Pictures/9.jpg'
+                            'Garfield-Pictures/83.jpg'
                           ]
                         ],
             'maps' => [
@@ -23801,7 +23801,7 @@ Total: 6 miles, 5200 ft and 15:45 hrs             Fay Pullen
                       ],
             'month' => '06',
             'subdir' => '2008-06-06-yozoo-butte',
-            'title' => undef,
+            'title' => 'Yozoo Butte',
             'tr' => undef,
             'year' => '2008'
           },
@@ -23809,18 +23809,14 @@ Total: 6 miles, 5200 ft and 15:45 hrs             Fay Pullen
             'day' => '08',
             'images' => [
                           [
-                            'North-Craggy-Pictures/104.jpg',
-                            'North-Craggy-Pictures/109.jpg',
-                            'North-Craggy-Pictures/114.jpg',
-                            'North-Craggy-Pictures/119.jpg',
-                            'North-Craggy-Pictures/135.jpg',
+                            'North-Craggy-Pictures/4.jpg',
+                            'North-Craggy-Pictures/9.jpg',
                             'North-Craggy-Pictures/14.jpg',
                             'North-Craggy-Pictures/19.jpg',
                             'North-Craggy-Pictures/24.jpg',
                             'North-Craggy-Pictures/29.jpg',
                             'North-Craggy-Pictures/34.jpg',
                             'North-Craggy-Pictures/39.jpg',
-                            'North-Craggy-Pictures/4.jpg',
                             'North-Craggy-Pictures/44.jpg',
                             'North-Craggy-Pictures/49.jpg',
                             'North-Craggy-Pictures/54.jpg',
@@ -23831,9 +23827,13 @@ Total: 6 miles, 5200 ft and 15:45 hrs             Fay Pullen
                             'North-Craggy-Pictures/79.jpg',
                             'North-Craggy-Pictures/84.jpg',
                             'North-Craggy-Pictures/89.jpg',
-                            'North-Craggy-Pictures/9.jpg',
                             'North-Craggy-Pictures/94.jpg',
-                            'North-Craggy-Pictures/99.jpg'
+                            'North-Craggy-Pictures/99.jpg',
+                            'North-Craggy-Pictures/104.jpg',
+                            'North-Craggy-Pictures/109.jpg',
+                            'North-Craggy-Pictures/114.jpg',
+                            'North-Craggy-Pictures/119.jpg',
+                            'North-Craggy-Pictures/135.jpg'
                           ]
                         ],
             'maps' => [
@@ -23930,20 +23930,20 @@ Fay Pullen
             'day' => '09',
             'images' => [
                           [
+                            'Billy-Goat-Pictures/4.jpg',
+                            'Billy-Goat-Pictures/9.jpg',
                             'Billy-Goat-Pictures/14.jpg',
                             'Billy-Goat-Pictures/19.jpg',
                             'Billy-Goat-Pictures/24.jpg',
                             'Billy-Goat-Pictures/29.jpg',
                             'Billy-Goat-Pictures/34.jpg',
                             'Billy-Goat-Pictures/39.jpg',
-                            'Billy-Goat-Pictures/4.jpg',
                             'Billy-Goat-Pictures/44.jpg',
                             'Billy-Goat-Pictures/49.jpg',
                             'Billy-Goat-Pictures/54.jpg',
                             'Billy-Goat-Pictures/59.jpg',
                             'Billy-Goat-Pictures/64.jpg',
-                            'Billy-Goat-Pictures/78.jpg',
-                            'Billy-Goat-Pictures/9.jpg'
+                            'Billy-Goat-Pictures/78.jpg'
                           ]
                         ],
             'maps' => [],
@@ -24033,14 +24033,14 @@ Fay Pullen
             'day' => '14',
             'images' => [
                           [
-                            'Damfino-Pictures/115.jpg',
+                            'Damfino-Pictures/4.jpg',
+                            'Damfino-Pictures/9.jpg',
                             'Damfino-Pictures/14.jpg',
                             'Damfino-Pictures/19.jpg',
                             'Damfino-Pictures/24.jpg',
                             'Damfino-Pictures/29.jpg',
                             'Damfino-Pictures/34.jpg',
                             'Damfino-Pictures/39.jpg',
-                            'Damfino-Pictures/4.jpg',
                             'Damfino-Pictures/44.jpg',
                             'Damfino-Pictures/49.jpg',
                             'Damfino-Pictures/54.jpg',
@@ -24051,9 +24051,9 @@ Fay Pullen
                             'Damfino-Pictures/79.jpg',
                             'Damfino-Pictures/84.jpg',
                             'Damfino-Pictures/89.jpg',
-                            'Damfino-Pictures/9.jpg',
                             'Damfino-Pictures/94.jpg',
-                            'Damfino-Pictures/99.jpg'
+                            'Damfino-Pictures/99.jpg',
+                            'Damfino-Pictures/115.jpg'
                           ]
                         ],
             'maps' => [
@@ -24172,20 +24172,20 @@ Howbert\'s Master List gives it as 6145 ft.
             'day' => '20',
             'images' => [
                           [
+                            'South-Point-Pictures/4.jpg',
+                            'South-Point-Pictures/9.jpg',
                             'South-Point-Pictures/14.jpg',
                             'South-Point-Pictures/19.jpg',
                             'South-Point-Pictures/24.jpg',
                             'South-Point-Pictures/29.jpg',
                             'South-Point-Pictures/34.jpg',
                             'South-Point-Pictures/39.jpg',
-                            'South-Point-Pictures/4.jpg',
                             'South-Point-Pictures/44.jpg',
                             'South-Point-Pictures/49.jpg',
                             'South-Point-Pictures/54.jpg',
                             'South-Point-Pictures/59.jpg',
                             'South-Point-Pictures/64.jpg',
-                            'South-Point-Pictures/78.jpg',
-                            'South-Point-Pictures/9.jpg'
+                            'South-Point-Pictures/78.jpg'
                           ]
                         ],
             'maps' => [
@@ -24278,17 +24278,14 @@ Fay Pullen
             'day' => '27',
             'images' => [
                           [
-                            'Lincoln-Photos/104.jpg',
-                            'Lincoln-Photos/109.jpg',
-                            'Lincoln-Photos/114.jpg',
-                            'Lincoln-Photos/130.jpg',
+                            'Lincoln-Photos/4.jpg',
+                            'Lincoln-Photos/9.jpg',
                             'Lincoln-Photos/14.jpg',
                             'Lincoln-Photos/19.jpg',
                             'Lincoln-Photos/24.jpg',
                             'Lincoln-Photos/29.jpg',
                             'Lincoln-Photos/34.jpg',
                             'Lincoln-Photos/39.jpg',
-                            'Lincoln-Photos/4.jpg',
                             'Lincoln-Photos/44.jpg',
                             'Lincoln-Photos/49.jpg',
                             'Lincoln-Photos/54.jpg',
@@ -24299,9 +24296,12 @@ Fay Pullen
                             'Lincoln-Photos/79.jpg',
                             'Lincoln-Photos/84.jpg',
                             'Lincoln-Photos/89.jpg',
-                            'Lincoln-Photos/9.jpg',
                             'Lincoln-Photos/94.jpg',
-                            'Lincoln-Photos/99.jpg'
+                            'Lincoln-Photos/99.jpg',
+                            'Lincoln-Photos/104.jpg',
+                            'Lincoln-Photos/109.jpg',
+                            'Lincoln-Photos/114.jpg',
+                            'Lincoln-Photos/130.jpg'
                           ]
                         ],
             'maps' => [
@@ -24495,7 +24495,7 @@ Fay Pullen
                       ],
             'month' => '07',
             'subdir' => '2008-07-06-clear-west-1',
-            'title' => undef,
+            'title' => 'Clear West 1 3',
             'tr' => undef,
             'year' => '2008'
           },
@@ -24503,19 +24503,19 @@ Fay Pullen
             'day' => '08',
             'images' => [
                           [
+                            'Liberty-Cap-Pictures/4.jpg',
+                            'Liberty-Cap-Pictures/9.jpg',
                             'Liberty-Cap-Pictures/14.jpg',
                             'Liberty-Cap-Pictures/19.jpg',
                             'Liberty-Cap-Pictures/24.jpg',
                             'Liberty-Cap-Pictures/29.jpg',
                             'Liberty-Cap-Pictures/34.jpg',
                             'Liberty-Cap-Pictures/39.jpg',
-                            'Liberty-Cap-Pictures/4.jpg',
                             'Liberty-Cap-Pictures/44.jpg',
                             'Liberty-Cap-Pictures/49.jpg',
                             'Liberty-Cap-Pictures/54.jpg',
                             'Liberty-Cap-Pictures/59.jpg',
-                            'Liberty-Cap-Pictures/73.jpg',
-                            'Liberty-Cap-Pictures/9.jpg'
+                            'Liberty-Cap-Pictures/73.jpg'
                           ]
                         ],
             'maps' => [
@@ -24622,22 +24622,14 @@ Fay Pullen
             'day' => '23',
             'images' => [
                           [
-                            'Chimney-Rock-Pictures/104.jpg',
-                            'Chimney-Rock-Pictures/109.jpg',
-                            'Chimney-Rock-Pictures/114.jpg',
-                            'Chimney-Rock-Pictures/119.jpg',
-                            'Chimney-Rock-Pictures/124.jpg',
-                            'Chimney-Rock-Pictures/129.jpg',
-                            'Chimney-Rock-Pictures/134.jpg',
-                            'Chimney-Rock-Pictures/139.jpg',
+                            'Chimney-Rock-Pictures/4.jpg',
+                            'Chimney-Rock-Pictures/9.jpg',
                             'Chimney-Rock-Pictures/14.jpg',
-                            'Chimney-Rock-Pictures/156.jpg',
                             'Chimney-Rock-Pictures/19.jpg',
                             'Chimney-Rock-Pictures/24.jpg',
                             'Chimney-Rock-Pictures/29.jpg',
                             'Chimney-Rock-Pictures/34.jpg',
                             'Chimney-Rock-Pictures/39.jpg',
-                            'Chimney-Rock-Pictures/4.jpg',
                             'Chimney-Rock-Pictures/44.jpg',
                             'Chimney-Rock-Pictures/49.jpg',
                             'Chimney-Rock-Pictures/54.jpg',
@@ -24648,9 +24640,17 @@ Fay Pullen
                             'Chimney-Rock-Pictures/79.jpg',
                             'Chimney-Rock-Pictures/84.jpg',
                             'Chimney-Rock-Pictures/89.jpg',
-                            'Chimney-Rock-Pictures/9.jpg',
                             'Chimney-Rock-Pictures/94.jpg',
-                            'Chimney-Rock-Pictures/99.jpg'
+                            'Chimney-Rock-Pictures/99.jpg',
+                            'Chimney-Rock-Pictures/104.jpg',
+                            'Chimney-Rock-Pictures/109.jpg',
+                            'Chimney-Rock-Pictures/114.jpg',
+                            'Chimney-Rock-Pictures/119.jpg',
+                            'Chimney-Rock-Pictures/124.jpg',
+                            'Chimney-Rock-Pictures/129.jpg',
+                            'Chimney-Rock-Pictures/134.jpg',
+                            'Chimney-Rock-Pictures/139.jpg',
+                            'Chimney-Rock-Pictures/156.jpg'
                           ]
                         ],
             'maps' => [
@@ -24853,23 +24853,14 @@ Purcell Mtn Quad - July 31, 2008
             'day' => '07',
             'images' => [
                           [
-                            'Agnes-Pictures/104.jpg',
-                            'Agnes-Pictures/109.jpg',
-                            'Agnes-Pictures/114.jpg',
-                            'Agnes-Pictures/119.jpg',
-                            'Agnes-Pictures/124.jpg',
-                            'Agnes-Pictures/129.jpg',
-                            'Agnes-Pictures/134.jpg',
-                            'Agnes-Pictures/139.jpg',
+                            'Agnes-Pictures/4.jpg',
+                            'Agnes-Pictures/9.jpg',
                             'Agnes-Pictures/14.jpg',
-                            'Agnes-Pictures/144.jpg',
-                            'Agnes-Pictures/161.jpg',
                             'Agnes-Pictures/19.jpg',
                             'Agnes-Pictures/24.jpg',
                             'Agnes-Pictures/29.jpg',
                             'Agnes-Pictures/34.jpg',
                             'Agnes-Pictures/39.jpg',
-                            'Agnes-Pictures/4.jpg',
                             'Agnes-Pictures/44.jpg',
                             'Agnes-Pictures/49.jpg',
                             'Agnes-Pictures/54.jpg',
@@ -24880,9 +24871,18 @@ Purcell Mtn Quad - July 31, 2008
                             'Agnes-Pictures/79.jpg',
                             'Agnes-Pictures/84.jpg',
                             'Agnes-Pictures/89.jpg',
-                            'Agnes-Pictures/9.jpg',
                             'Agnes-Pictures/94.jpg',
-                            'Agnes-Pictures/99.jpg'
+                            'Agnes-Pictures/99.jpg',
+                            'Agnes-Pictures/104.jpg',
+                            'Agnes-Pictures/109.jpg',
+                            'Agnes-Pictures/114.jpg',
+                            'Agnes-Pictures/119.jpg',
+                            'Agnes-Pictures/124.jpg',
+                            'Agnes-Pictures/129.jpg',
+                            'Agnes-Pictures/134.jpg',
+                            'Agnes-Pictures/139.jpg',
+                            'Agnes-Pictures/144.jpg',
+                            'Agnes-Pictures/161.jpg'
                           ]
                         ],
             'maps' => [
@@ -25060,25 +25060,14 @@ Fay Pullen
             'day' => '22',
             'images' => [
                           [
-                            'Elija-Pictures/104.jpg',
-                            'Elija-Pictures/109.jpg',
-                            'Elija-Pictures/114.jpg',
-                            'Elija-Pictures/119.jpg',
-                            'Elija-Pictures/124.jpg',
-                            'Elija-Pictures/129.jpg',
-                            'Elija-Pictures/134.jpg',
-                            'Elija-Pictures/139.jpg',
+                            'Elija-Pictures/4.jpg',
+                            'Elija-Pictures/9.jpg',
                             'Elija-Pictures/14.jpg',
-                            'Elija-Pictures/144.jpg',
-                            'Elija-Pictures/149.jpg',
-                            'Elija-Pictures/154.jpg',
-                            'Elija-Pictures/172.jpg',
                             'Elija-Pictures/19.jpg',
                             'Elija-Pictures/24.jpg',
                             'Elija-Pictures/29.jpg',
                             'Elija-Pictures/34.jpg',
                             'Elija-Pictures/39.jpg',
-                            'Elija-Pictures/4.jpg',
                             'Elija-Pictures/44.jpg',
                             'Elija-Pictures/49.jpg',
                             'Elija-Pictures/54.jpg',
@@ -25089,9 +25078,20 @@ Fay Pullen
                             'Elija-Pictures/79.jpg',
                             'Elija-Pictures/84.jpg',
                             'Elija-Pictures/89.jpg',
-                            'Elija-Pictures/9.jpg',
                             'Elija-Pictures/94.jpg',
-                            'Elija-Pictures/99.jpg'
+                            'Elija-Pictures/99.jpg',
+                            'Elija-Pictures/104.jpg',
+                            'Elija-Pictures/109.jpg',
+                            'Elija-Pictures/114.jpg',
+                            'Elija-Pictures/119.jpg',
+                            'Elija-Pictures/124.jpg',
+                            'Elija-Pictures/129.jpg',
+                            'Elija-Pictures/134.jpg',
+                            'Elija-Pictures/139.jpg',
+                            'Elija-Pictures/144.jpg',
+                            'Elija-Pictures/149.jpg',
+                            'Elija-Pictures/154.jpg',
+                            'Elija-Pictures/172.jpg'
                           ]
                         ],
             'maps' => [
@@ -25256,18 +25256,14 @@ Fay Pullen
             'day' => '29',
             'images' => [
                           [
-                            'Arriva-Pictures/104.jpg',
-                            'Arriva-Pictures/109.jpg',
-                            'Arriva-Pictures/114.jpg',
-                            'Arriva-Pictures/119.jpg',
-                            'Arriva-Pictures/135.jpg',
+                            'Arriva-Pictures/4.jpg',
+                            'Arriva-Pictures/9.jpg',
                             'Arriva-Pictures/14.jpg',
                             'Arriva-Pictures/19.jpg',
                             'Arriva-Pictures/24.jpg',
                             'Arriva-Pictures/29.jpg',
                             'Arriva-Pictures/34.jpg',
                             'Arriva-Pictures/39.jpg',
-                            'Arriva-Pictures/4.jpg',
                             'Arriva-Pictures/44.jpg',
                             'Arriva-Pictures/49.jpg',
                             'Arriva-Pictures/54.jpg',
@@ -25278,9 +25274,13 @@ Fay Pullen
                             'Arriva-Pictures/79.jpg',
                             'Arriva-Pictures/84.jpg',
                             'Arriva-Pictures/89.jpg',
-                            'Arriva-Pictures/9.jpg',
                             'Arriva-Pictures/94.jpg',
-                            'Arriva-Pictures/99.jpg'
+                            'Arriva-Pictures/99.jpg',
+                            'Arriva-Pictures/104.jpg',
+                            'Arriva-Pictures/109.jpg',
+                            'Arriva-Pictures/114.jpg',
+                            'Arriva-Pictures/119.jpg',
+                            'Arriva-Pictures/135.jpg'
                           ]
                         ],
             'maps' => [
@@ -25392,18 +25392,18 @@ Fay Pullen
             'day' => '10',
             'images' => [
                           [
+                            'South-Twin-Pictures/4.jpg',
+                            'South-Twin-Pictures/9.jpg',
                             'South-Twin-Pictures/14.jpg',
                             'South-Twin-Pictures/19.jpg',
                             'South-Twin-Pictures/24.jpg',
                             'South-Twin-Pictures/29.jpg',
                             'South-Twin-Pictures/34.jpg',
                             'South-Twin-Pictures/39.jpg',
-                            'South-Twin-Pictures/4.jpg',
                             'South-Twin-Pictures/44.jpg',
                             'South-Twin-Pictures/49.jpg',
                             'South-Twin-Pictures/54.jpg',
-                            'South-Twin-Pictures/68.jpg',
-                            'South-Twin-Pictures/9.jpg'
+                            'South-Twin-Pictures/68.jpg'
                           ]
                         ],
             'maps' => [
@@ -25501,21 +25501,14 @@ Fay Pullen
             'day' => '13',
             'images' => [
                           [
-                            'American-Border-Peak-Pictures/104.jpg',
-                            'American-Border-Peak-Pictures/109.jpg',
-                            'American-Border-Peak-Pictures/114.jpg',
-                            'American-Border-Peak-Pictures/119.jpg',
-                            'American-Border-Peak-Pictures/124.jpg',
-                            'American-Border-Peak-Pictures/129.jpg',
-                            'American-Border-Peak-Pictures/134.jpg',
+                            'American-Border-Peak-Pictures/4.jpg',
+                            'American-Border-Peak-Pictures/9.jpg',
                             'American-Border-Peak-Pictures/14.jpg',
-                            'American-Border-Peak-Pictures/151.jpg',
                             'American-Border-Peak-Pictures/19.jpg',
                             'American-Border-Peak-Pictures/24.jpg',
                             'American-Border-Peak-Pictures/29.jpg',
                             'American-Border-Peak-Pictures/34.jpg',
                             'American-Border-Peak-Pictures/39.jpg',
-                            'American-Border-Peak-Pictures/4.jpg',
                             'American-Border-Peak-Pictures/44.jpg',
                             'American-Border-Peak-Pictures/49.jpg',
                             'American-Border-Peak-Pictures/54.jpg',
@@ -25526,9 +25519,16 @@ Fay Pullen
                             'American-Border-Peak-Pictures/79.jpg',
                             'American-Border-Peak-Pictures/84.jpg',
                             'American-Border-Peak-Pictures/89.jpg',
-                            'American-Border-Peak-Pictures/9.jpg',
                             'American-Border-Peak-Pictures/94.jpg',
-                            'American-Border-Peak-Pictures/99.jpg'
+                            'American-Border-Peak-Pictures/99.jpg',
+                            'American-Border-Peak-Pictures/104.jpg',
+                            'American-Border-Peak-Pictures/109.jpg',
+                            'American-Border-Peak-Pictures/114.jpg',
+                            'American-Border-Peak-Pictures/119.jpg',
+                            'American-Border-Peak-Pictures/124.jpg',
+                            'American-Border-Peak-Pictures/129.jpg',
+                            'American-Border-Peak-Pictures/134.jpg',
+                            'American-Border-Peak-Pictures/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -25652,21 +25652,21 @@ Fay Pullen
             'day' => '17',
             'images' => [
                           [
+                            'Canyon-Ridge-Pictures/4.jpg',
+                            'Canyon-Ridge-Pictures/9.jpg',
                             'Canyon-Ridge-Pictures/14.jpg',
                             'Canyon-Ridge-Pictures/19.jpg',
                             'Canyon-Ridge-Pictures/24.jpg',
                             'Canyon-Ridge-Pictures/29.jpg',
                             'Canyon-Ridge-Pictures/34.jpg',
                             'Canyon-Ridge-Pictures/39.jpg',
-                            'Canyon-Ridge-Pictures/4.jpg',
                             'Canyon-Ridge-Pictures/44.jpg',
                             'Canyon-Ridge-Pictures/49.jpg',
                             'Canyon-Ridge-Pictures/54.jpg',
                             'Canyon-Ridge-Pictures/59.jpg',
                             'Canyon-Ridge-Pictures/64.jpg',
                             'Canyon-Ridge-Pictures/69.jpg',
-                            'Canyon-Ridge-Pictures/83.jpg',
-                            'Canyon-Ridge-Pictures/9.jpg'
+                            'Canyon-Ridge-Pictures/83.jpg'
                           ]
                         ],
             'maps' => [
@@ -25786,21 +25786,14 @@ been a few days before (1450 ft, 1:30 ht).
             'day' => '26',
             'images' => [
                           [
-                            'Fool-Hen-Pictures/104.jpg',
-                            'Fool-Hen-Pictures/109.jpg',
-                            'Fool-Hen-Pictures/114.jpg',
-                            'Fool-Hen-Pictures/119.jpg',
-                            'Fool-Hen-Pictures/124.jpg',
-                            'Fool-Hen-Pictures/129.jpg',
-                            'Fool-Hen-Pictures/134.jpg',
+                            'Fool-Hen-Pictures/4.jpg',
+                            'Fool-Hen-Pictures/9.jpg',
                             'Fool-Hen-Pictures/14.jpg',
-                            'Fool-Hen-Pictures/151.jpg',
                             'Fool-Hen-Pictures/19.jpg',
                             'Fool-Hen-Pictures/24.jpg',
                             'Fool-Hen-Pictures/29.jpg',
                             'Fool-Hen-Pictures/34.jpg',
                             'Fool-Hen-Pictures/39.jpg',
-                            'Fool-Hen-Pictures/4.jpg',
                             'Fool-Hen-Pictures/44.jpg',
                             'Fool-Hen-Pictures/49.jpg',
                             'Fool-Hen-Pictures/54.jpg',
@@ -25811,9 +25804,16 @@ been a few days before (1450 ft, 1:30 ht).
                             'Fool-Hen-Pictures/79.jpg',
                             'Fool-Hen-Pictures/84.jpg',
                             'Fool-Hen-Pictures/89.jpg',
-                            'Fool-Hen-Pictures/9.jpg',
                             'Fool-Hen-Pictures/94.jpg',
-                            'Fool-Hen-Pictures/99.jpg'
+                            'Fool-Hen-Pictures/99.jpg',
+                            'Fool-Hen-Pictures/104.jpg',
+                            'Fool-Hen-Pictures/109.jpg',
+                            'Fool-Hen-Pictures/114.jpg',
+                            'Fool-Hen-Pictures/119.jpg',
+                            'Fool-Hen-Pictures/124.jpg',
+                            'Fool-Hen-Pictures/129.jpg',
+                            'Fool-Hen-Pictures/134.jpg',
+                            'Fool-Hen-Pictures/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -25958,21 +25958,14 @@ Fay Pullen
             'day' => '14',
             'images' => [
                           [
-                            'Tiffany-Pictures-2/104.jpg',
-                            'Tiffany-Pictures-2/109.jpg',
-                            'Tiffany-Pictures-2/114.jpg',
-                            'Tiffany-Pictures-2/119.jpg',
-                            'Tiffany-Pictures-2/124.jpg',
-                            'Tiffany-Pictures-2/129.jpg',
-                            'Tiffany-Pictures-2/134.jpg',
+                            'Tiffany-Pictures-2/4.jpg',
+                            'Tiffany-Pictures-2/9.jpg',
                             'Tiffany-Pictures-2/14.jpg',
-                            'Tiffany-Pictures-2/151.jpg',
                             'Tiffany-Pictures-2/19.jpg',
                             'Tiffany-Pictures-2/24.jpg',
                             'Tiffany-Pictures-2/29.jpg',
                             'Tiffany-Pictures-2/34.jpg',
                             'Tiffany-Pictures-2/39.jpg',
-                            'Tiffany-Pictures-2/4.jpg',
                             'Tiffany-Pictures-2/44.jpg',
                             'Tiffany-Pictures-2/49.jpg',
                             'Tiffany-Pictures-2/54.jpg',
@@ -25983,9 +25976,16 @@ Fay Pullen
                             'Tiffany-Pictures-2/79.jpg',
                             'Tiffany-Pictures-2/84.jpg',
                             'Tiffany-Pictures-2/89.jpg',
-                            'Tiffany-Pictures-2/9.jpg',
                             'Tiffany-Pictures-2/94.jpg',
-                            'Tiffany-Pictures-2/99.jpg'
+                            'Tiffany-Pictures-2/99.jpg',
+                            'Tiffany-Pictures-2/104.jpg',
+                            'Tiffany-Pictures-2/109.jpg',
+                            'Tiffany-Pictures-2/114.jpg',
+                            'Tiffany-Pictures-2/119.jpg',
+                            'Tiffany-Pictures-2/124.jpg',
+                            'Tiffany-Pictures-2/129.jpg',
+                            'Tiffany-Pictures-2/134.jpg',
+                            'Tiffany-Pictures-2/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -25993,7 +25993,7 @@ Fay Pullen
                       ],
             'month' => '10',
             'subdir' => '2008-10-14-tiffany',
-            'title' => undef,
+            'title' => 'Tiffany  2',
             'tr' => undef,
             'year' => '2008'
           },
@@ -26001,15 +26001,15 @@ Fay Pullen
             'day' => '24',
             'images' => [
                           [
+                            'Strawberry-Pictures/4.jpg',
+                            'Strawberry-Pictures/9.jpg',
                             'Strawberry-Pictures/14.jpg',
                             'Strawberry-Pictures/19.jpg',
                             'Strawberry-Pictures/24.jpg',
                             'Strawberry-Pictures/29.jpg',
                             'Strawberry-Pictures/34.jpg',
                             'Strawberry-Pictures/39.jpg',
-                            'Strawberry-Pictures/4.jpg',
-                            'Strawberry-Pictures/51.jpg',
-                            'Strawberry-Pictures/9.jpg'
+                            'Strawberry-Pictures/51.jpg'
                           ]
                         ],
             'maps' => [
@@ -26124,21 +26124,14 @@ Fay Pullen
             'day' => '25',
             'images' => [
                           [
-                            'Hardy-Pictures-2/104.jpg',
-                            'Hardy-Pictures-2/109.jpg',
-                            'Hardy-Pictures-2/114.jpg',
-                            'Hardy-Pictures-2/119.jpg',
-                            'Hardy-Pictures-2/124.jpg',
-                            'Hardy-Pictures-2/129.jpg',
-                            'Hardy-Pictures-2/134.jpg',
+                            'Hardy-Pictures-2/4.jpg',
+                            'Hardy-Pictures-2/9.jpg',
                             'Hardy-Pictures-2/14.jpg',
-                            'Hardy-Pictures-2/151.jpg',
                             'Hardy-Pictures-2/19.jpg',
                             'Hardy-Pictures-2/24.jpg',
                             'Hardy-Pictures-2/29.jpg',
                             'Hardy-Pictures-2/34.jpg',
                             'Hardy-Pictures-2/39.jpg',
-                            'Hardy-Pictures-2/4.jpg',
                             'Hardy-Pictures-2/44.jpg',
                             'Hardy-Pictures-2/49.jpg',
                             'Hardy-Pictures-2/54.jpg',
@@ -26149,9 +26142,16 @@ Fay Pullen
                             'Hardy-Pictures-2/79.jpg',
                             'Hardy-Pictures-2/84.jpg',
                             'Hardy-Pictures-2/89.jpg',
-                            'Hardy-Pictures-2/9.jpg',
                             'Hardy-Pictures-2/94.jpg',
-                            'Hardy-Pictures-2/99.jpg'
+                            'Hardy-Pictures-2/99.jpg',
+                            'Hardy-Pictures-2/104.jpg',
+                            'Hardy-Pictures-2/109.jpg',
+                            'Hardy-Pictures-2/114.jpg',
+                            'Hardy-Pictures-2/119.jpg',
+                            'Hardy-Pictures-2/124.jpg',
+                            'Hardy-Pictures-2/129.jpg',
+                            'Hardy-Pictures-2/134.jpg',
+                            'Hardy-Pictures-2/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -26298,7 +26298,7 @@ Fay Pullen
                       ],
             'month' => '11',
             'subdir' => '2008-11-05-ohanapecosh',
-            'title' => undef,
+            'title' => 'Ohanapecosh1',
             'tr' => undef,
             'year' => '2008'
           },
@@ -26335,14 +26335,14 @@ Fay
             'day' => '17',
             'images' => [
                           [
-                            'Silver-Star-Pictures/109.jpg',
+                            'Silver-Star-Pictures/4.jpg',
+                            'Silver-Star-Pictures/9.jpg',
                             'Silver-Star-Pictures/14.jpg',
                             'Silver-Star-Pictures/19.jpg',
                             'Silver-Star-Pictures/24.jpg',
                             'Silver-Star-Pictures/29.jpg',
                             'Silver-Star-Pictures/34.jpg',
                             'Silver-Star-Pictures/39.jpg',
-                            'Silver-Star-Pictures/4.jpg',
                             'Silver-Star-Pictures/44.jpg',
                             'Silver-Star-Pictures/49.jpg',
                             'Silver-Star-Pictures/54.jpg',
@@ -26353,8 +26353,8 @@ Fay
                             'Silver-Star-Pictures/79.jpg',
                             'Silver-Star-Pictures/84.jpg',
                             'Silver-Star-Pictures/89.jpg',
-                            'Silver-Star-Pictures/9.jpg',
-                            'Silver-Star-Pictures/94.jpg'
+                            'Silver-Star-Pictures/94.jpg',
+                            'Silver-Star-Pictures/109.jpg'
                           ]
                         ],
             'maps' => [
@@ -26459,7 +26459,7 @@ Fay Pullen
                       ],
             'month' => '11',
             'subdir' => '2008-11-24-stimson-hill',
-            'title' => undef,
+            'title' => 'Stimson Hill',
             'tr' => undef,
             'year' => '2008'
           },
@@ -26471,7 +26471,7 @@ Fay Pullen
                       ],
             'month' => '12',
             'subdir' => '2008-12-01-saddle-mtns',
-            'title' => undef,
+            'title' => 'Saddle Mtns',
             'tr' => undef,
             'year' => '2008'
           },
@@ -26479,18 +26479,18 @@ Fay Pullen
             'day' => '03',
             'images' => [
                           [
+                            'Gifford-Pk-Pictures-2/4.jpg',
+                            'Gifford-Pk-Pictures-2/9.jpg',
                             'Gifford-Pk-Pictures-2/14.jpg',
                             'Gifford-Pk-Pictures-2/19.jpg',
                             'Gifford-Pk-Pictures-2/24.jpg',
                             'Gifford-Pk-Pictures-2/29.jpg',
                             'Gifford-Pk-Pictures-2/34.jpg',
                             'Gifford-Pk-Pictures-2/39.jpg',
-                            'Gifford-Pk-Pictures-2/4.jpg',
                             'Gifford-Pk-Pictures-2/44.jpg',
                             'Gifford-Pk-Pictures-2/49.jpg',
                             'Gifford-Pk-Pictures-2/54.jpg',
-                            'Gifford-Pk-Pictures-2/68.jpg',
-                            'Gifford-Pk-Pictures-2/9.jpg'
+                            'Gifford-Pk-Pictures-2/68.jpg'
                           ]
                         ],
             'maps' => [
@@ -26626,7 +26626,7 @@ Fay Pullen
                       ],
             'month' => '01',
             'subdir' => '2009-01-18-crater',
-            'title' => undef,
+            'title' => 'Crater Lake Mtn',
             'tr' => undef,
             'year' => '2009'
           },
@@ -26638,7 +26638,7 @@ Fay Pullen
                       ],
             'month' => '01',
             'subdir' => '2009-01-18-rodger-bluff',
-            'title' => undef,
+            'title' => 'Rodger Bluff',
             'tr' => undef,
             'year' => '2009'
           },
@@ -26646,14 +26646,14 @@ Fay Pullen
             'day' => '23',
             'images' => [
                           [
+                            'Zekes-Pictures/4.jpg',
+                            'Zekes-Pictures/9.jpg',
                             'Zekes-Pictures/14.jpg',
                             'Zekes-Pictures/19.jpg',
                             'Zekes-Pictures/24.jpg',
                             'Zekes-Pictures/29.jpg',
                             'Zekes-Pictures/34.jpg',
-                            'Zekes-Pictures/4.jpg',
-                            'Zekes-Pictures/46.jpg',
-                            'Zekes-Pictures/9.jpg'
+                            'Zekes-Pictures/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -26777,18 +26777,18 @@ for forays to more remote peaks in the vicinity.
             'day' => '30',
             'images' => [
                           [
+                            'Bald-Mtn-(Silverton)-Pictures/4.jpg',
+                            'Bald-Mtn-(Silverton)-Pictures/9.jpg',
                             'Bald-Mtn-(Silverton)-Pictures/14.jpg',
                             'Bald-Mtn-(Silverton)-Pictures/19.jpg',
                             'Bald-Mtn-(Silverton)-Pictures/24.jpg',
                             'Bald-Mtn-(Silverton)-Pictures/29.jpg',
                             'Bald-Mtn-(Silverton)-Pictures/34.jpg',
                             'Bald-Mtn-(Silverton)-Pictures/39.jpg',
-                            'Bald-Mtn-(Silverton)-Pictures/4.jpg',
                             'Bald-Mtn-(Silverton)-Pictures/44.jpg',
                             'Bald-Mtn-(Silverton)-Pictures/49.jpg',
                             'Bald-Mtn-(Silverton)-Pictures/54.jpg',
-                            'Bald-Mtn-(Silverton)-Pictures/68.jpg',
-                            'Bald-Mtn-(Silverton)-Pictures/9.jpg'
+                            'Bald-Mtn-(Silverton)-Pictures/68.jpg'
                           ]
                         ],
             'maps' => [
@@ -26934,20 +26934,20 @@ Fay Pullen
             'day' => '06',
             'images' => [
                           [
+                            'Hurricane-Ridge-Pictures/4.jpg',
+                            'Hurricane-Ridge-Pictures/9.jpg',
                             'Hurricane-Ridge-Pictures/14.jpg',
                             'Hurricane-Ridge-Pictures/19.jpg',
                             'Hurricane-Ridge-Pictures/24.jpg',
                             'Hurricane-Ridge-Pictures/29.jpg',
                             'Hurricane-Ridge-Pictures/34.jpg',
                             'Hurricane-Ridge-Pictures/39.jpg',
-                            'Hurricane-Ridge-Pictures/4.jpg',
                             'Hurricane-Ridge-Pictures/44.jpg',
                             'Hurricane-Ridge-Pictures/49.jpg',
                             'Hurricane-Ridge-Pictures/54.jpg',
                             'Hurricane-Ridge-Pictures/59.jpg',
                             'Hurricane-Ridge-Pictures/64.jpg',
-                            'Hurricane-Ridge-Pictures/78.jpg',
-                            'Hurricane-Ridge-Pictures/9.jpg'
+                            'Hurricane-Ridge-Pictures/78.jpg'
                           ]
                         ],
             'maps' => [
@@ -27054,15 +27054,15 @@ Fay Pullen
             'day' => '10',
             'images' => [
                           [
+                            'Red-Rock-Mtn-Pictures/4.jpg',
+                            'Red-Rock-Mtn-Pictures/9.jpg',
                             'Red-Rock-Mtn-Pictures/14.jpg',
                             'Red-Rock-Mtn-Pictures/19.jpg',
                             'Red-Rock-Mtn-Pictures/24.jpg',
                             'Red-Rock-Mtn-Pictures/29.jpg',
                             'Red-Rock-Mtn-Pictures/34.jpg',
                             'Red-Rock-Mtn-Pictures/39.jpg',
-                            'Red-Rock-Mtn-Pictures/4.jpg',
-                            'Red-Rock-Mtn-Pictures/51.jpg',
-                            'Red-Rock-Mtn-Pictures/9.jpg'
+                            'Red-Rock-Mtn-Pictures/51.jpg'
                           ]
                         ],
             'maps' => [
@@ -27093,19 +27093,19 @@ P.S. It would be a very boring snow shoe trip.
             'day' => '12',
             'images' => [
                           [
+                            'Mt-Herman-Pictures/4.jpg',
+                            'Mt-Herman-Pictures/9.jpg',
                             'Mt-Herman-Pictures/14.jpg',
                             'Mt-Herman-Pictures/19.jpg',
                             'Mt-Herman-Pictures/24.jpg',
                             'Mt-Herman-Pictures/29.jpg',
                             'Mt-Herman-Pictures/34.jpg',
                             'Mt-Herman-Pictures/39.jpg',
-                            'Mt-Herman-Pictures/4.jpg',
                             'Mt-Herman-Pictures/44.jpg',
                             'Mt-Herman-Pictures/49.jpg',
                             'Mt-Herman-Pictures/54.jpg',
                             'Mt-Herman-Pictures/59.jpg',
-                            'Mt-Herman-Pictures/73.jpg',
-                            'Mt-Herman-Pictures/9.jpg'
+                            'Mt-Herman-Pictures/73.jpg'
                           ]
                         ],
             'maps' => [
@@ -27178,18 +27178,18 @@ Fay Pullen
             'day' => '17',
             'images' => [
                           [
+                            'Barometer-Pictures/4.jpg',
+                            'Barometer-Pictures/9.jpg',
                             'Barometer-Pictures/14.jpg',
                             'Barometer-Pictures/19.jpg',
                             'Barometer-Pictures/24.jpg',
                             'Barometer-Pictures/29.jpg',
                             'Barometer-Pictures/34.jpg',
                             'Barometer-Pictures/39.jpg',
-                            'Barometer-Pictures/4.jpg',
                             'Barometer-Pictures/44.jpg',
                             'Barometer-Pictures/49.jpg',
                             'Barometer-Pictures/54.jpg',
-                            'Barometer-Pictures/68.jpg',
-                            'Barometer-Pictures/9.jpg'
+                            'Barometer-Pictures/68.jpg'
                           ]
                         ],
             'maps' => [
@@ -27253,19 +27253,19 @@ Fay Pullen
             'day' => '21',
             'images' => [
                           [
+                            'Big-Four-Pictures/4.jpg',
+                            'Big-Four-Pictures/9.jpg',
                             'Big-Four-Pictures/14.jpg',
                             'Big-Four-Pictures/19.jpg',
                             'Big-Four-Pictures/24.jpg',
                             'Big-Four-Pictures/29.jpg',
                             'Big-Four-Pictures/34.jpg',
                             'Big-Four-Pictures/39.jpg',
-                            'Big-Four-Pictures/4.jpg',
                             'Big-Four-Pictures/44.jpg',
                             'Big-Four-Pictures/49.jpg',
                             'Big-Four-Pictures/54.jpg',
                             'Big-Four-Pictures/59.jpg',
-                            'Big-Four-Pictures/73.jpg',
-                            'Big-Four-Pictures/9.jpg'
+                            'Big-Four-Pictures/73.jpg'
                           ]
                         ],
             'maps' => [
@@ -27336,13 +27336,14 @@ Fay Pullen
             'day' => '27',
             'images' => [
                           [
+                            'Goat-Mtn-(Grandy-Lk)-Pictures/4.jpg',
+                            'Goat-Mtn-(Grandy-Lk)-Pictures/9.jpg',
                             'Goat-Mtn-(Grandy-Lk)-Pictures/14.jpg',
                             'Goat-Mtn-(Grandy-Lk)-Pictures/19.jpg',
                             'Goat-Mtn-(Grandy-Lk)-Pictures/24.jpg',
                             'Goat-Mtn-(Grandy-Lk)-Pictures/29.jpg',
                             'Goat-Mtn-(Grandy-Lk)-Pictures/34.jpg',
                             'Goat-Mtn-(Grandy-Lk)-Pictures/39.jpg',
-                            'Goat-Mtn-(Grandy-Lk)-Pictures/4.jpg',
                             'Goat-Mtn-(Grandy-Lk)-Pictures/44.jpg',
                             'Goat-Mtn-(Grandy-Lk)-Pictures/49.jpg',
                             'Goat-Mtn-(Grandy-Lk)-Pictures/54.jpg',
@@ -27350,8 +27351,7 @@ Fay Pullen
                             'Goat-Mtn-(Grandy-Lk)-Pictures/64.jpg',
                             'Goat-Mtn-(Grandy-Lk)-Pictures/69.jpg',
                             'Goat-Mtn-(Grandy-Lk)-Pictures/74.jpg',
-                            'Goat-Mtn-(Grandy-Lk)-Pictures/89.jpg',
-                            'Goat-Mtn-(Grandy-Lk)-Pictures/9.jpg'
+                            'Goat-Mtn-(Grandy-Lk)-Pictures/89.jpg'
                           ]
                         ],
             'maps' => [
@@ -27387,14 +27387,14 @@ Fay Pullen
             'day' => '28',
             'images' => [
                           [
+                            'Round-Mtn-Pictures/4.jpg',
+                            'Round-Mtn-Pictures/9.jpg',
                             'Round-Mtn-Pictures/14.jpg',
                             'Round-Mtn-Pictures/19.jpg',
                             'Round-Mtn-Pictures/24.jpg',
                             'Round-Mtn-Pictures/29.jpg',
                             'Round-Mtn-Pictures/34.jpg',
-                            'Round-Mtn-Pictures/4.jpg',
-                            'Round-Mtn-Pictures/46.jpg',
-                            'Round-Mtn-Pictures/9.jpg'
+                            'Round-Mtn-Pictures/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -27439,14 +27439,14 @@ Fay Pullen
             'day' => '06',
             'images' => [
                           [
-                            'Washington-Monument-Pictures/109.jpg',
+                            'Washington-Monument-Pictures/4.jpg',
+                            'Washington-Monument-Pictures/9.jpg',
                             'Washington-Monument-Pictures/14.jpg',
                             'Washington-Monument-Pictures/19.jpg',
                             'Washington-Monument-Pictures/24.jpg',
                             'Washington-Monument-Pictures/29.jpg',
                             'Washington-Monument-Pictures/34.jpg',
                             'Washington-Monument-Pictures/39.jpg',
-                            'Washington-Monument-Pictures/4.jpg',
                             'Washington-Monument-Pictures/44.jpg',
                             'Washington-Monument-Pictures/49.jpg',
                             'Washington-Monument-Pictures/54.jpg',
@@ -27457,8 +27457,8 @@ Fay Pullen
                             'Washington-Monument-Pictures/79.jpg',
                             'Washington-Monument-Pictures/84.jpg',
                             'Washington-Monument-Pictures/89.jpg',
-                            'Washington-Monument-Pictures/9.jpg',
-                            'Washington-Monument-Pictures/94.jpg'
+                            'Washington-Monument-Pictures/94.jpg',
+                            'Washington-Monument-Pictures/109.jpg'
                           ]
                         ],
             'maps' => [
@@ -27526,22 +27526,22 @@ Fay Pullen
             'day' => '10',
             'images' => [
                           [
+                            'Bruce-Hill-Pictures/4.jpg',
+                            'Bruce-Hill-Pictures/9.jpg',
                             'Bruce-Hill-Pictures/14.jpg',
                             'Bruce-Hill-Pictures/19.jpg',
                             'Bruce-Hill-Pictures/24.jpg',
                             'Bruce-Hill-Pictures/29.jpg',
                             'Bruce-Hill-Pictures/34.jpg',
                             'Bruce-Hill-Pictures/39.jpg',
-                            'Bruce-Hill-Pictures/4.jpg',
                             'Bruce-Hill-Pictures/44.jpg',
-                            'Bruce-Hill-Pictures/56.jpg',
-                            'Bruce-Hill-Pictures/9.jpg'
+                            'Bruce-Hill-Pictures/56.jpg'
                           ]
                         ],
             'maps' => [],
             'month' => '03',
             'subdir' => '2009-03-10-bruce-hill',
-            'title' => undef,
+            'title' => 'Bruce Hill',
             'tr' => undef,
             'year' => '2009'
           },
@@ -27549,15 +27549,14 @@ Fay Pullen
             'day' => '12',
             'images' => [
                           [
-                            'Stevens-Ridge-Pictures/104.jpg',
-                            'Stevens-Ridge-Pictures/120.jpg',
+                            'Stevens-Ridge-Pictures/4.jpg',
+                            'Stevens-Ridge-Pictures/9.jpg',
                             'Stevens-Ridge-Pictures/14.jpg',
                             'Stevens-Ridge-Pictures/19.jpg',
                             'Stevens-Ridge-Pictures/24.jpg',
                             'Stevens-Ridge-Pictures/29.jpg',
                             'Stevens-Ridge-Pictures/34.jpg',
                             'Stevens-Ridge-Pictures/39.jpg',
-                            'Stevens-Ridge-Pictures/4.jpg',
                             'Stevens-Ridge-Pictures/44.jpg',
                             'Stevens-Ridge-Pictures/49.jpg',
                             'Stevens-Ridge-Pictures/54.jpg',
@@ -27568,9 +27567,10 @@ Fay Pullen
                             'Stevens-Ridge-Pictures/79.jpg',
                             'Stevens-Ridge-Pictures/84.jpg',
                             'Stevens-Ridge-Pictures/89.jpg',
-                            'Stevens-Ridge-Pictures/9.jpg',
                             'Stevens-Ridge-Pictures/94.jpg',
-                            'Stevens-Ridge-Pictures/99.jpg'
+                            'Stevens-Ridge-Pictures/99.jpg',
+                            'Stevens-Ridge-Pictures/104.jpg',
+                            'Stevens-Ridge-Pictures/120.jpg'
                           ]
                         ],
             'maps' => [
@@ -27628,16 +27628,16 @@ Fay Pullen
             'day' => '26',
             'images' => [
                           [
+                            'Gold-Mtn-Pictures/4.jpg',
+                            'Gold-Mtn-Pictures/9.jpg',
                             'Gold-Mtn-Pictures/14.jpg',
                             'Gold-Mtn-Pictures/19.jpg',
                             'Gold-Mtn-Pictures/24.jpg',
                             'Gold-Mtn-Pictures/29.jpg',
                             'Gold-Mtn-Pictures/34.jpg',
                             'Gold-Mtn-Pictures/39.jpg',
-                            'Gold-Mtn-Pictures/4.jpg',
                             'Gold-Mtn-Pictures/44.jpg',
-                            'Gold-Mtn-Pictures/56.jpg',
-                            'Gold-Mtn-Pictures/9.jpg'
+                            'Gold-Mtn-Pictures/56.jpg'
                           ]
                         ],
             'maps' => [
@@ -27668,14 +27668,14 @@ Fay Pullen
             'day' => '29',
             'images' => [
                           [
+                            'Higgins2-Pictures/4.jpg',
+                            'Higgins2-Pictures/9.jpg',
                             'Higgins2-Pictures/14.jpg',
                             'Higgins2-Pictures/19.jpg',
                             'Higgins2-Pictures/24.jpg',
                             'Higgins2-Pictures/29.jpg',
                             'Higgins2-Pictures/34.jpg',
-                            'Higgins2-Pictures/4.jpg',
-                            'Higgins2-Pictures/46.jpg',
-                            'Higgins2-Pictures/9.jpg'
+                            'Higgins2-Pictures/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -27765,18 +27765,18 @@ No pictures, it was too foggy.
             'day' => '16',
             'images' => [
                           [
+                            'Pickhandle-Point-Pictures/4.jpg',
+                            'Pickhandle-Point-Pictures/9.jpg',
                             'Pickhandle-Point-Pictures/14.jpg',
                             'Pickhandle-Point-Pictures/19.jpg',
                             'Pickhandle-Point-Pictures/24.jpg',
                             'Pickhandle-Point-Pictures/29.jpg',
                             'Pickhandle-Point-Pictures/34.jpg',
                             'Pickhandle-Point-Pictures/39.jpg',
-                            'Pickhandle-Point-Pictures/4.jpg',
                             'Pickhandle-Point-Pictures/44.jpg',
                             'Pickhandle-Point-Pictures/49.jpg',
                             'Pickhandle-Point-Pictures/54.jpg',
-                            'Pickhandle-Point-Pictures/68.jpg',
-                            'Pickhandle-Point-Pictures/9.jpg'
+                            'Pickhandle-Point-Pictures/68.jpg'
                           ]
                         ],
             'maps' => [
@@ -27821,21 +27821,21 @@ Fay Pullen
             'day' => '21',
             'images' => [
                           [
+                            'Long-Mtn-East-Pk-Pictures/4.jpg',
+                            'Long-Mtn-East-Pk-Pictures/9.jpg',
                             'Long-Mtn-East-Pk-Pictures/14.jpg',
                             'Long-Mtn-East-Pk-Pictures/19.jpg',
                             'Long-Mtn-East-Pk-Pictures/24.jpg',
                             'Long-Mtn-East-Pk-Pictures/29.jpg',
                             'Long-Mtn-East-Pk-Pictures/34.jpg',
                             'Long-Mtn-East-Pk-Pictures/39.jpg',
-                            'Long-Mtn-East-Pk-Pictures/4.jpg',
                             'Long-Mtn-East-Pk-Pictures/44.jpg',
                             'Long-Mtn-East-Pk-Pictures/49.jpg',
                             'Long-Mtn-East-Pk-Pictures/54.jpg',
                             'Long-Mtn-East-Pk-Pictures/59.jpg',
                             'Long-Mtn-East-Pk-Pictures/64.jpg',
                             'Long-Mtn-East-Pk-Pictures/69.jpg',
-                            'Long-Mtn-East-Pk-Pictures/83.jpg',
-                            'Long-Mtn-East-Pk-Pictures/9.jpg'
+                            'Long-Mtn-East-Pk-Pictures/83.jpg'
                           ]
                         ],
             'maps' => [
@@ -27893,13 +27893,14 @@ Fay Pullen
             'day' => '24',
             'images' => [
                           [
+                            'Hurricane-Hill-Pictures/4.jpg',
+                            'Hurricane-Hill-Pictures/9.jpg',
                             'Hurricane-Hill-Pictures/14.jpg',
                             'Hurricane-Hill-Pictures/19.jpg',
                             'Hurricane-Hill-Pictures/24.jpg',
                             'Hurricane-Hill-Pictures/29.jpg',
                             'Hurricane-Hill-Pictures/34.jpg',
                             'Hurricane-Hill-Pictures/39.jpg',
-                            'Hurricane-Hill-Pictures/4.jpg',
                             'Hurricane-Hill-Pictures/44.jpg',
                             'Hurricane-Hill-Pictures/49.jpg',
                             'Hurricane-Hill-Pictures/54.jpg',
@@ -27909,7 +27910,6 @@ Fay Pullen
                             'Hurricane-Hill-Pictures/74.jpg',
                             'Hurricane-Hill-Pictures/79.jpg',
                             'Hurricane-Hill-Pictures/84.jpg',
-                            'Hurricane-Hill-Pictures/9.jpg',
                             'Hurricane-Hill-Pictures/99.jpg'
                           ]
                         ],
@@ -27982,14 +27982,14 @@ Fay Pullen
             'day' => '28',
             'images' => [
                           [
+                            'Wenatchee-Mtn-Pictures/4.jpg',
+                            'Wenatchee-Mtn-Pictures/9.jpg',
                             'Wenatchee-Mtn-Pictures/14.jpg',
                             'Wenatchee-Mtn-Pictures/19.jpg',
                             'Wenatchee-Mtn-Pictures/24.jpg',
                             'Wenatchee-Mtn-Pictures/29.jpg',
                             'Wenatchee-Mtn-Pictures/34.jpg',
-                            'Wenatchee-Mtn-Pictures/4.jpg',
-                            'Wenatchee-Mtn-Pictures/46.jpg',
-                            'Wenatchee-Mtn-Pictures/9.jpg'
+                            'Wenatchee-Mtn-Pictures/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -28026,13 +28026,14 @@ Fay Pullen
             'day' => '30',
             'images' => [
                           [
+                            'Klahane-Ridge-Pictures/4.jpg',
+                            'Klahane-Ridge-Pictures/9.jpg',
                             'Klahane-Ridge-Pictures/14.jpg',
                             'Klahane-Ridge-Pictures/19.jpg',
                             'Klahane-Ridge-Pictures/24.jpg',
                             'Klahane-Ridge-Pictures/29.jpg',
                             'Klahane-Ridge-Pictures/34.jpg',
                             'Klahane-Ridge-Pictures/39.jpg',
-                            'Klahane-Ridge-Pictures/4.jpg',
                             'Klahane-Ridge-Pictures/44.jpg',
                             'Klahane-Ridge-Pictures/49.jpg',
                             'Klahane-Ridge-Pictures/54.jpg',
@@ -28040,8 +28041,7 @@ Fay Pullen
                             'Klahane-Ridge-Pictures/64.jpg',
                             'Klahane-Ridge-Pictures/69.jpg',
                             'Klahane-Ridge-Pictures/74.jpg',
-                            'Klahane-Ridge-Pictures/89.jpg',
-                            'Klahane-Ridge-Pictures/9.jpg'
+                            'Klahane-Ridge-Pictures/89.jpg'
                           ]
                         ],
             'maps' => [
@@ -28104,21 +28104,21 @@ Fay
             'day' => '08',
             'images' => [
                           [
+                            'Grasshopper-Pictures/4.jpg',
+                            'Grasshopper-Pictures/9.jpg',
                             'Grasshopper-Pictures/14.jpg',
                             'Grasshopper-Pictures/19.jpg',
                             'Grasshopper-Pictures/24.jpg',
                             'Grasshopper-Pictures/29.jpg',
                             'Grasshopper-Pictures/34.jpg',
                             'Grasshopper-Pictures/39.jpg',
-                            'Grasshopper-Pictures/4.jpg',
-                            'Grasshopper-Pictures/51.jpg',
-                            'Grasshopper-Pictures/9.jpg'
+                            'Grasshopper-Pictures/51.jpg'
                           ]
                         ],
             'maps' => [],
             'month' => '05',
             'subdir' => '2009-05-08-grasshopper',
-            'title' => undef,
+            'title' => 'Grasshopper',
             'tr' => undef,
             'year' => '2009'
           },
@@ -28126,21 +28126,21 @@ Fay
             'day' => '10',
             'images' => [
                           [
+                            'Davis-Pictures/4.jpg',
+                            'Davis-Pictures/9.jpg',
                             'Davis-Pictures/14.jpg',
                             'Davis-Pictures/19.jpg',
                             'Davis-Pictures/24.jpg',
                             'Davis-Pictures/29.jpg',
                             'Davis-Pictures/34.jpg',
                             'Davis-Pictures/39.jpg',
-                            'Davis-Pictures/4.jpg',
                             'Davis-Pictures/44.jpg',
                             'Davis-Pictures/49.jpg',
                             'Davis-Pictures/54.jpg',
                             'Davis-Pictures/59.jpg',
                             'Davis-Pictures/64.jpg',
                             'Davis-Pictures/69.jpg',
-                            'Davis-Pictures/83.jpg',
-                            'Davis-Pictures/9.jpg'
+                            'Davis-Pictures/83.jpg'
                           ]
                         ],
             'maps' => [
@@ -28148,7 +28148,7 @@ Fay
                       ],
             'month' => '05',
             'subdir' => '2009-05-10-davis-diablo',
-            'title' => undef,
+            'title' => 'Davis',
             'tr' => '
 Davis Pk (7051 ft - 1771P - Diablo Dam Quad) - May 9, 2009
 
@@ -28217,14 +28217,14 @@ Total: 5 miles, 6400 ft and 12:15 hrs     Fay Pullen
             'day' => '22',
             'images' => [
                           [
-                            'Mt-Saul-Pictures/104.jpg',
+                            'Mt-Saul-Pictures/4.jpg',
+                            'Mt-Saul-Pictures/9.jpg',
                             'Mt-Saul-Pictures/14.jpg',
                             'Mt-Saul-Pictures/19.jpg',
                             'Mt-Saul-Pictures/24.jpg',
                             'Mt-Saul-Pictures/29.jpg',
                             'Mt-Saul-Pictures/34.jpg',
                             'Mt-Saul-Pictures/39.jpg',
-                            'Mt-Saul-Pictures/4.jpg',
                             'Mt-Saul-Pictures/44.jpg',
                             'Mt-Saul-Pictures/49.jpg',
                             'Mt-Saul-Pictures/54.jpg',
@@ -28235,7 +28235,7 @@ Total: 5 miles, 6400 ft and 12:15 hrs     Fay Pullen
                             'Mt-Saul-Pictures/79.jpg',
                             'Mt-Saul-Pictures/84.jpg',
                             'Mt-Saul-Pictures/89.jpg',
-                            'Mt-Saul-Pictures/9.jpg'
+                            'Mt-Saul-Pictures/104.jpg'
                           ]
                         ],
             'maps' => [
@@ -28347,13 +28347,14 @@ Fay Pullen
             'day' => '27',
             'images' => [
                           [
+                            'Chair-Peak-Loop/4.jpg',
+                            'Chair-Peak-Loop/9.jpg',
                             'Chair-Peak-Loop/14.jpg',
                             'Chair-Peak-Loop/19.jpg',
                             'Chair-Peak-Loop/24.jpg',
                             'Chair-Peak-Loop/29.jpg',
                             'Chair-Peak-Loop/34.jpg',
                             'Chair-Peak-Loop/39.jpg',
-                            'Chair-Peak-Loop/4.jpg',
                             'Chair-Peak-Loop/44.jpg',
                             'Chair-Peak-Loop/49.jpg',
                             'Chair-Peak-Loop/54.jpg',
@@ -28361,8 +28362,7 @@ Fay Pullen
                             'Chair-Peak-Loop/64.jpg',
                             'Chair-Peak-Loop/69.jpg',
                             'Chair-Peak-Loop/74.jpg',
-                            'Chair-Peak-Loop/89.jpg',
-                            'Chair-Peak-Loop/9.jpg'
+                            'Chair-Peak-Loop/89.jpg'
                           ]
                         ],
             'maps' => [
@@ -28370,7 +28370,7 @@ Fay Pullen
                       ],
             'month' => '05',
             'subdir' => '2009-05-27-chair-loop',
-            'title' => undef,
+            'title' => 'Chair Peak Loop',
             'tr' => undef,
             'year' => '2009'
           },
@@ -28382,7 +28382,7 @@ Fay Pullen
                       ],
             'month' => '05',
             'subdir' => '2009-05-28-dungeon',
-            'title' => undef,
+            'title' => 'Dungeon',
             'tr' => undef,
             'year' => '2009'
           },
@@ -28390,19 +28390,19 @@ Fay Pullen
             'day' => '28',
             'images' => [
                           [
+                            'Independence-Pk-Pictures/4.jpg',
+                            'Independence-Pk-Pictures/9.jpg',
                             'Independence-Pk-Pictures/14.jpg',
                             'Independence-Pk-Pictures/19.jpg',
                             'Independence-Pk-Pictures/24.jpg',
                             'Independence-Pk-Pictures/29.jpg',
                             'Independence-Pk-Pictures/34.jpg',
                             'Independence-Pk-Pictures/39.jpg',
-                            'Independence-Pk-Pictures/4.jpg',
                             'Independence-Pk-Pictures/44.jpg',
                             'Independence-Pk-Pictures/49.jpg',
                             'Independence-Pk-Pictures/54.jpg',
                             'Independence-Pk-Pictures/59.jpg',
-                            'Independence-Pk-Pictures/73.jpg',
-                            'Independence-Pk-Pictures/9.jpg'
+                            'Independence-Pk-Pictures/73.jpg'
                           ]
                         ],
             'maps' => [
@@ -28462,12 +28462,12 @@ Fay Pullen
             'day' => '30',
             'images' => [
                           [
+                            'Frozen-Pictures/4.jpg',
+                            'Frozen-Pictures/9.jpg',
                             'Frozen-Pictures/14.jpg',
                             'Frozen-Pictures/19.jpg',
                             'Frozen-Pictures/24.jpg',
-                            'Frozen-Pictures/36.jpg',
-                            'Frozen-Pictures/4.jpg',
-                            'Frozen-Pictures/9.jpg'
+                            'Frozen-Pictures/36.jpg'
                           ]
                         ],
             'maps' => [
@@ -28591,18 +28591,14 @@ Fay Pullen
             'day' => '02',
             'images' => [
                           [
-                            'Bullen-Pictures/104.jpg',
-                            'Bullen-Pictures/109.jpg',
-                            'Bullen-Pictures/114.jpg',
-                            'Bullen-Pictures/119.jpg',
-                            'Bullen-Pictures/135.jpg',
+                            'Bullen-Pictures/4.jpg',
+                            'Bullen-Pictures/9.jpg',
                             'Bullen-Pictures/14.jpg',
                             'Bullen-Pictures/19.jpg',
                             'Bullen-Pictures/24.jpg',
                             'Bullen-Pictures/29.jpg',
                             'Bullen-Pictures/34.jpg',
                             'Bullen-Pictures/39.jpg',
-                            'Bullen-Pictures/4.jpg',
                             'Bullen-Pictures/44.jpg',
                             'Bullen-Pictures/49.jpg',
                             'Bullen-Pictures/54.jpg',
@@ -28613,9 +28609,13 @@ Fay Pullen
                             'Bullen-Pictures/79.jpg',
                             'Bullen-Pictures/84.jpg',
                             'Bullen-Pictures/89.jpg',
-                            'Bullen-Pictures/9.jpg',
                             'Bullen-Pictures/94.jpg',
-                            'Bullen-Pictures/99.jpg'
+                            'Bullen-Pictures/99.jpg',
+                            'Bullen-Pictures/104.jpg',
+                            'Bullen-Pictures/109.jpg',
+                            'Bullen-Pictures/114.jpg',
+                            'Bullen-Pictures/119.jpg',
+                            'Bullen-Pictures/135.jpg'
                           ]
                         ],
             'maps' => [
@@ -28767,23 +28767,14 @@ Fay Pullen
             'day' => '10',
             'images' => [
                           [
-                            'Rocky-Peak-Pictures/104.jpg',
-                            'Rocky-Peak-Pictures/109.jpg',
-                            'Rocky-Peak-Pictures/114.jpg',
-                            'Rocky-Peak-Pictures/119.jpg',
-                            'Rocky-Peak-Pictures/124.jpg',
-                            'Rocky-Peak-Pictures/129.jpg',
-                            'Rocky-Peak-Pictures/134.jpg',
-                            'Rocky-Peak-Pictures/139.jpg',
+                            'Rocky-Peak-Pictures/4.jpg',
+                            'Rocky-Peak-Pictures/9.jpg',
                             'Rocky-Peak-Pictures/14.jpg',
-                            'Rocky-Peak-Pictures/144.jpg',
-                            'Rocky-Peak-Pictures/161.jpg',
                             'Rocky-Peak-Pictures/19.jpg',
                             'Rocky-Peak-Pictures/24.jpg',
                             'Rocky-Peak-Pictures/29.jpg',
                             'Rocky-Peak-Pictures/34.jpg',
                             'Rocky-Peak-Pictures/39.jpg',
-                            'Rocky-Peak-Pictures/4.jpg',
                             'Rocky-Peak-Pictures/44.jpg',
                             'Rocky-Peak-Pictures/49.jpg',
                             'Rocky-Peak-Pictures/54.jpg',
@@ -28794,9 +28785,18 @@ Fay Pullen
                             'Rocky-Peak-Pictures/79.jpg',
                             'Rocky-Peak-Pictures/84.jpg',
                             'Rocky-Peak-Pictures/89.jpg',
-                            'Rocky-Peak-Pictures/9.jpg',
                             'Rocky-Peak-Pictures/94.jpg',
-                            'Rocky-Peak-Pictures/99.jpg'
+                            'Rocky-Peak-Pictures/99.jpg',
+                            'Rocky-Peak-Pictures/104.jpg',
+                            'Rocky-Peak-Pictures/109.jpg',
+                            'Rocky-Peak-Pictures/114.jpg',
+                            'Rocky-Peak-Pictures/119.jpg',
+                            'Rocky-Peak-Pictures/124.jpg',
+                            'Rocky-Peak-Pictures/129.jpg',
+                            'Rocky-Peak-Pictures/134.jpg',
+                            'Rocky-Peak-Pictures/139.jpg',
+                            'Rocky-Peak-Pictures/144.jpg',
+                            'Rocky-Peak-Pictures/161.jpg'
                           ]
                         ],
             'maps' => [
@@ -28921,18 +28921,18 @@ Fay Pullen
             'day' => '16',
             'images' => [
                           [
+                            'Tailgunner-Pictures/4.jpg',
+                            'Tailgunner-Pictures/9.jpg',
                             'Tailgunner-Pictures/14.jpg',
                             'Tailgunner-Pictures/19.jpg',
                             'Tailgunner-Pictures/24.jpg',
                             'Tailgunner-Pictures/29.jpg',
                             'Tailgunner-Pictures/34.jpg',
                             'Tailgunner-Pictures/39.jpg',
-                            'Tailgunner-Pictures/4.jpg',
                             'Tailgunner-Pictures/44.jpg',
                             'Tailgunner-Pictures/49.jpg',
                             'Tailgunner-Pictures/54.jpg',
-                            'Tailgunner-Pictures/68.jpg',
-                            'Tailgunner-Pictures/9.jpg'
+                            'Tailgunner-Pictures/68.jpg'
                           ]
                         ],
             'maps' => [
@@ -29001,14 +29001,14 @@ Fay Pullen
             'day' => '19',
             'images' => [
                           [
-                            'Repulse-Pictures/109.jpg',
+                            'Repulse-Pictures/4.jpg',
+                            'Repulse-Pictures/9.jpg',
                             'Repulse-Pictures/14.jpg',
                             'Repulse-Pictures/19.jpg',
                             'Repulse-Pictures/24.jpg',
                             'Repulse-Pictures/29.jpg',
                             'Repulse-Pictures/34.jpg',
                             'Repulse-Pictures/39.jpg',
-                            'Repulse-Pictures/4.jpg',
                             'Repulse-Pictures/44.jpg',
                             'Repulse-Pictures/49.jpg',
                             'Repulse-Pictures/54.jpg',
@@ -29019,8 +29019,8 @@ Fay Pullen
                             'Repulse-Pictures/79.jpg',
                             'Repulse-Pictures/84.jpg',
                             'Repulse-Pictures/89.jpg',
-                            'Repulse-Pictures/9.jpg',
-                            'Repulse-Pictures/94.jpg'
+                            'Repulse-Pictures/94.jpg',
+                            'Repulse-Pictures/109.jpg'
                           ]
                         ],
             'maps' => [
@@ -29237,16 +29237,16 @@ Fay Pullen
             'day' => '20',
             'images' => [
                           [
+                            'Hinkhouse-Pictures/4.jpg',
+                            'Hinkhouse-Pictures/9.jpg',
                             'Hinkhouse-Pictures/14.jpg',
                             'Hinkhouse-Pictures/19.jpg',
                             'Hinkhouse-Pictures/24.jpg',
                             'Hinkhouse-Pictures/29.jpg',
                             'Hinkhouse-Pictures/34.jpg',
                             'Hinkhouse-Pictures/39.jpg',
-                            'Hinkhouse-Pictures/4.jpg',
                             'Hinkhouse-Pictures/44.jpg',
-                            'Hinkhouse-Pictures/56.jpg',
-                            'Hinkhouse-Pictures/9.jpg'
+                            'Hinkhouse-Pictures/56.jpg'
                           ]
                         ],
             'maps' => [
@@ -29313,14 +29313,14 @@ Fay Pullen
             'day' => '23',
             'images' => [
                           [
-                            'Beargrass-Butte-Pictures/109.jpg',
+                            'Beargrass-Butte-Pictures/4.jpg',
+                            'Beargrass-Butte-Pictures/9.jpg',
                             'Beargrass-Butte-Pictures/14.jpg',
                             'Beargrass-Butte-Pictures/19.jpg',
                             'Beargrass-Butte-Pictures/24.jpg',
                             'Beargrass-Butte-Pictures/29.jpg',
                             'Beargrass-Butte-Pictures/34.jpg',
                             'Beargrass-Butte-Pictures/39.jpg',
-                            'Beargrass-Butte-Pictures/4.jpg',
                             'Beargrass-Butte-Pictures/44.jpg',
                             'Beargrass-Butte-Pictures/49.jpg',
                             'Beargrass-Butte-Pictures/54.jpg',
@@ -29331,8 +29331,8 @@ Fay Pullen
                             'Beargrass-Butte-Pictures/79.jpg',
                             'Beargrass-Butte-Pictures/84.jpg',
                             'Beargrass-Butte-Pictures/89.jpg',
-                            'Beargrass-Butte-Pictures/9.jpg',
-                            'Beargrass-Butte-Pictures/94.jpg'
+                            'Beargrass-Butte-Pictures/94.jpg',
+                            'Beargrass-Butte-Pictures/109.jpg'
                           ]
                         ],
             'maps' => [
@@ -29426,35 +29426,14 @@ Fay Pullen
             'day' => '02',
             'images' => [
                           [
-                            'Enigma-Pictures/104.jpg',
-                            'Enigma-Pictures/109.jpg',
-                            'Enigma-Pictures/114.jpg',
-                            'Enigma-Pictures/119.jpg',
-                            'Enigma-Pictures/124.jpg',
-                            'Enigma-Pictures/129.jpg',
-                            'Enigma-Pictures/134.jpg',
-                            'Enigma-Pictures/139.jpg',
+                            'Enigma-Pictures/4.jpg',
+                            'Enigma-Pictures/9.jpg',
                             'Enigma-Pictures/14.jpg',
-                            'Enigma-Pictures/144.jpg',
-                            'Enigma-Pictures/149.jpg',
-                            'Enigma-Pictures/154.jpg',
-                            'Enigma-Pictures/159.jpg',
-                            'Enigma-Pictures/164.jpg',
-                            'Enigma-Pictures/169.jpg',
-                            'Enigma-Pictures/174.jpg',
-                            'Enigma-Pictures/179.jpg',
-                            'Enigma-Pictures/184.jpg',
-                            'Enigma-Pictures/189.jpg',
                             'Enigma-Pictures/19.jpg',
-                            'Enigma-Pictures/194.jpg',
-                            'Enigma-Pictures/199.jpg',
-                            'Enigma-Pictures/204.jpg',
-                            'Enigma-Pictures/224.jpg',
                             'Enigma-Pictures/24.jpg',
                             'Enigma-Pictures/29.jpg',
                             'Enigma-Pictures/34.jpg',
                             'Enigma-Pictures/39.jpg',
-                            'Enigma-Pictures/4.jpg',
                             'Enigma-Pictures/44.jpg',
                             'Enigma-Pictures/49.jpg',
                             'Enigma-Pictures/54.jpg',
@@ -29465,9 +29444,30 @@ Fay Pullen
                             'Enigma-Pictures/79.jpg',
                             'Enigma-Pictures/84.jpg',
                             'Enigma-Pictures/89.jpg',
-                            'Enigma-Pictures/9.jpg',
                             'Enigma-Pictures/94.jpg',
-                            'Enigma-Pictures/99.jpg'
+                            'Enigma-Pictures/99.jpg',
+                            'Enigma-Pictures/104.jpg',
+                            'Enigma-Pictures/109.jpg',
+                            'Enigma-Pictures/114.jpg',
+                            'Enigma-Pictures/119.jpg',
+                            'Enigma-Pictures/124.jpg',
+                            'Enigma-Pictures/129.jpg',
+                            'Enigma-Pictures/134.jpg',
+                            'Enigma-Pictures/139.jpg',
+                            'Enigma-Pictures/144.jpg',
+                            'Enigma-Pictures/149.jpg',
+                            'Enigma-Pictures/154.jpg',
+                            'Enigma-Pictures/159.jpg',
+                            'Enigma-Pictures/164.jpg',
+                            'Enigma-Pictures/169.jpg',
+                            'Enigma-Pictures/174.jpg',
+                            'Enigma-Pictures/179.jpg',
+                            'Enigma-Pictures/184.jpg',
+                            'Enigma-Pictures/189.jpg',
+                            'Enigma-Pictures/194.jpg',
+                            'Enigma-Pictures/199.jpg',
+                            'Enigma-Pictures/204.jpg',
+                            'Enigma-Pictures/224.jpg'
                           ]
                         ],
             'maps' => [
@@ -29661,39 +29661,14 @@ Grand Total: 46.5 miles and 22,150 ft in 6 days        Fay Pullen
             'day' => '14',
             'images' => [
                           [
-                            'Fury-Challenger-Pictures/104.jpg',
-                            'Fury-Challenger-Pictures/109.jpg',
-                            'Fury-Challenger-Pictures/114.jpg',
-                            'Fury-Challenger-Pictures/119.jpg',
-                            'Fury-Challenger-Pictures/124.jpg',
-                            'Fury-Challenger-Pictures/129.jpg',
-                            'Fury-Challenger-Pictures/134.jpg',
-                            'Fury-Challenger-Pictures/139.jpg',
+                            'Fury-Challenger-Pictures/4.jpg',
+                            'Fury-Challenger-Pictures/9.jpg',
                             'Fury-Challenger-Pictures/14.jpg',
-                            'Fury-Challenger-Pictures/144.jpg',
-                            'Fury-Challenger-Pictures/149.jpg',
-                            'Fury-Challenger-Pictures/154.jpg',
-                            'Fury-Challenger-Pictures/159.jpg',
-                            'Fury-Challenger-Pictures/164.jpg',
-                            'Fury-Challenger-Pictures/169.jpg',
-                            'Fury-Challenger-Pictures/174.jpg',
-                            'Fury-Challenger-Pictures/179.jpg',
-                            'Fury-Challenger-Pictures/184.jpg',
-                            'Fury-Challenger-Pictures/189.jpg',
                             'Fury-Challenger-Pictures/19.jpg',
-                            'Fury-Challenger-Pictures/194.jpg',
-                            'Fury-Challenger-Pictures/199.jpg',
-                            'Fury-Challenger-Pictures/204.jpg',
-                            'Fury-Challenger-Pictures/209.jpg',
-                            'Fury-Challenger-Pictures/214.jpg',
-                            'Fury-Challenger-Pictures/219.jpg',
-                            'Fury-Challenger-Pictures/224.jpg',
                             'Fury-Challenger-Pictures/24.jpg',
-                            'Fury-Challenger-Pictures/245.jpg',
                             'Fury-Challenger-Pictures/29.jpg',
                             'Fury-Challenger-Pictures/34.jpg',
                             'Fury-Challenger-Pictures/39.jpg',
-                            'Fury-Challenger-Pictures/4.jpg',
                             'Fury-Challenger-Pictures/44.jpg',
                             'Fury-Challenger-Pictures/49.jpg',
                             'Fury-Challenger-Pictures/54.jpg',
@@ -29704,9 +29679,34 @@ Grand Total: 46.5 miles and 22,150 ft in 6 days        Fay Pullen
                             'Fury-Challenger-Pictures/79.jpg',
                             'Fury-Challenger-Pictures/84.jpg',
                             'Fury-Challenger-Pictures/89.jpg',
-                            'Fury-Challenger-Pictures/9.jpg',
                             'Fury-Challenger-Pictures/94.jpg',
-                            'Fury-Challenger-Pictures/99.jpg'
+                            'Fury-Challenger-Pictures/99.jpg',
+                            'Fury-Challenger-Pictures/104.jpg',
+                            'Fury-Challenger-Pictures/109.jpg',
+                            'Fury-Challenger-Pictures/114.jpg',
+                            'Fury-Challenger-Pictures/119.jpg',
+                            'Fury-Challenger-Pictures/124.jpg',
+                            'Fury-Challenger-Pictures/129.jpg',
+                            'Fury-Challenger-Pictures/134.jpg',
+                            'Fury-Challenger-Pictures/139.jpg',
+                            'Fury-Challenger-Pictures/144.jpg',
+                            'Fury-Challenger-Pictures/149.jpg',
+                            'Fury-Challenger-Pictures/154.jpg',
+                            'Fury-Challenger-Pictures/159.jpg',
+                            'Fury-Challenger-Pictures/164.jpg',
+                            'Fury-Challenger-Pictures/169.jpg',
+                            'Fury-Challenger-Pictures/174.jpg',
+                            'Fury-Challenger-Pictures/179.jpg',
+                            'Fury-Challenger-Pictures/184.jpg',
+                            'Fury-Challenger-Pictures/189.jpg',
+                            'Fury-Challenger-Pictures/194.jpg',
+                            'Fury-Challenger-Pictures/199.jpg',
+                            'Fury-Challenger-Pictures/204.jpg',
+                            'Fury-Challenger-Pictures/209.jpg',
+                            'Fury-Challenger-Pictures/214.jpg',
+                            'Fury-Challenger-Pictures/219.jpg',
+                            'Fury-Challenger-Pictures/224.jpg',
+                            'Fury-Challenger-Pictures/245.jpg'
                           ]
                         ],
             'maps' => [
@@ -29861,21 +29861,14 @@ Fay Pullen
             'day' => '03',
             'images' => [
                           [
-                            'West-McMillan-Pictures/104.jpg',
-                            'West-McMillan-Pictures/109.jpg',
-                            'West-McMillan-Pictures/114.jpg',
-                            'West-McMillan-Pictures/119.jpg',
-                            'West-McMillan-Pictures/124.jpg',
-                            'West-McMillan-Pictures/129.jpg',
-                            'West-McMillan-Pictures/134.jpg',
+                            'West-McMillan-Pictures/4.jpg',
+                            'West-McMillan-Pictures/9.jpg',
                             'West-McMillan-Pictures/14.jpg',
-                            'West-McMillan-Pictures/151.jpg',
                             'West-McMillan-Pictures/19.jpg',
                             'West-McMillan-Pictures/24.jpg',
                             'West-McMillan-Pictures/29.jpg',
                             'West-McMillan-Pictures/34.jpg',
                             'West-McMillan-Pictures/39.jpg',
-                            'West-McMillan-Pictures/4.jpg',
                             'West-McMillan-Pictures/44.jpg',
                             'West-McMillan-Pictures/49.jpg',
                             'West-McMillan-Pictures/54.jpg',
@@ -29886,9 +29879,16 @@ Fay Pullen
                             'West-McMillan-Pictures/79.jpg',
                             'West-McMillan-Pictures/84.jpg',
                             'West-McMillan-Pictures/89.jpg',
-                            'West-McMillan-Pictures/9.jpg',
                             'West-McMillan-Pictures/94.jpg',
-                            'West-McMillan-Pictures/99.jpg'
+                            'West-McMillan-Pictures/99.jpg',
+                            'West-McMillan-Pictures/104.jpg',
+                            'West-McMillan-Pictures/109.jpg',
+                            'West-McMillan-Pictures/114.jpg',
+                            'West-McMillan-Pictures/119.jpg',
+                            'West-McMillan-Pictures/124.jpg',
+                            'West-McMillan-Pictures/129.jpg',
+                            'West-McMillan-Pictures/134.jpg',
+                            'West-McMillan-Pictures/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -30015,13 +30015,14 @@ Fay Pullen
             'day' => '15',
             'images' => [
                           [
+                            'Citadel-Pictures/4.jpg',
+                            'Citadel-Pictures/9.jpg',
                             'Citadel-Pictures/14.jpg',
                             'Citadel-Pictures/19.jpg',
                             'Citadel-Pictures/24.jpg',
                             'Citadel-Pictures/29.jpg',
                             'Citadel-Pictures/34.jpg',
                             'Citadel-Pictures/39.jpg',
-                            'Citadel-Pictures/4.jpg',
                             'Citadel-Pictures/44.jpg',
                             'Citadel-Pictures/49.jpg',
                             'Citadel-Pictures/54.jpg',
@@ -30030,7 +30031,6 @@ Fay Pullen
                             'Citadel-Pictures/69.jpg',
                             'Citadel-Pictures/74.jpg',
                             'Citadel-Pictures/79.jpg',
-                            'Citadel-Pictures/9.jpg',
                             'Citadel-Pictures/94.jpg'
                           ]
                         ],
@@ -30108,19 +30108,14 @@ Fay Pullen
             'day' => '21',
             'images' => [
                           [
-                            'Andrew-Pictures/104.jpg',
-                            'Andrew-Pictures/109.jpg',
-                            'Andrew-Pictures/114.jpg',
-                            'Andrew-Pictures/119.jpg',
-                            'Andrew-Pictures/124.jpg',
+                            'Andrew-Pictures/4.jpg',
+                            'Andrew-Pictures/9.jpg',
                             'Andrew-Pictures/14.jpg',
-                            'Andrew-Pictures/141.jpg',
                             'Andrew-Pictures/19.jpg',
                             'Andrew-Pictures/24.jpg',
                             'Andrew-Pictures/29.jpg',
                             'Andrew-Pictures/34.jpg',
                             'Andrew-Pictures/39.jpg',
-                            'Andrew-Pictures/4.jpg',
                             'Andrew-Pictures/44.jpg',
                             'Andrew-Pictures/49.jpg',
                             'Andrew-Pictures/54.jpg',
@@ -30131,9 +30126,14 @@ Fay Pullen
                             'Andrew-Pictures/79.jpg',
                             'Andrew-Pictures/84.jpg',
                             'Andrew-Pictures/89.jpg',
-                            'Andrew-Pictures/9.jpg',
                             'Andrew-Pictures/94.jpg',
-                            'Andrew-Pictures/99.jpg'
+                            'Andrew-Pictures/99.jpg',
+                            'Andrew-Pictures/104.jpg',
+                            'Andrew-Pictures/109.jpg',
+                            'Andrew-Pictures/114.jpg',
+                            'Andrew-Pictures/119.jpg',
+                            'Andrew-Pictures/124.jpg',
+                            'Andrew-Pictures/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -30228,21 +30228,14 @@ Fay Pullen
             'day' => '26',
             'images' => [
                           [
-                            'Horseshoe-Basin-Pictures/104.jpg',
-                            'Horseshoe-Basin-Pictures/109.jpg',
-                            'Horseshoe-Basin-Pictures/114.jpg',
-                            'Horseshoe-Basin-Pictures/119.jpg',
-                            'Horseshoe-Basin-Pictures/124.jpg',
-                            'Horseshoe-Basin-Pictures/129.jpg',
-                            'Horseshoe-Basin-Pictures/134.jpg',
+                            'Horseshoe-Basin-Pictures/4.jpg',
+                            'Horseshoe-Basin-Pictures/9.jpg',
                             'Horseshoe-Basin-Pictures/14.jpg',
-                            'Horseshoe-Basin-Pictures/151.jpg',
                             'Horseshoe-Basin-Pictures/19.jpg',
                             'Horseshoe-Basin-Pictures/24.jpg',
                             'Horseshoe-Basin-Pictures/29.jpg',
                             'Horseshoe-Basin-Pictures/34.jpg',
                             'Horseshoe-Basin-Pictures/39.jpg',
-                            'Horseshoe-Basin-Pictures/4.jpg',
                             'Horseshoe-Basin-Pictures/44.jpg',
                             'Horseshoe-Basin-Pictures/49.jpg',
                             'Horseshoe-Basin-Pictures/54.jpg',
@@ -30253,9 +30246,16 @@ Fay Pullen
                             'Horseshoe-Basin-Pictures/79.jpg',
                             'Horseshoe-Basin-Pictures/84.jpg',
                             'Horseshoe-Basin-Pictures/89.jpg',
-                            'Horseshoe-Basin-Pictures/9.jpg',
                             'Horseshoe-Basin-Pictures/94.jpg',
-                            'Horseshoe-Basin-Pictures/99.jpg'
+                            'Horseshoe-Basin-Pictures/99.jpg',
+                            'Horseshoe-Basin-Pictures/104.jpg',
+                            'Horseshoe-Basin-Pictures/109.jpg',
+                            'Horseshoe-Basin-Pictures/114.jpg',
+                            'Horseshoe-Basin-Pictures/119.jpg',
+                            'Horseshoe-Basin-Pictures/124.jpg',
+                            'Horseshoe-Basin-Pictures/129.jpg',
+                            'Horseshoe-Basin-Pictures/134.jpg',
+                            'Horseshoe-Basin-Pictures/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -30352,21 +30352,14 @@ Fay Pullen
             'day' => '11',
             'images' => [
                           [
-                            'Mt-Triumph-Pictures/104.jpg',
-                            'Mt-Triumph-Pictures/109.jpg',
-                            'Mt-Triumph-Pictures/114.jpg',
-                            'Mt-Triumph-Pictures/119.jpg',
-                            'Mt-Triumph-Pictures/124.jpg',
-                            'Mt-Triumph-Pictures/129.jpg',
-                            'Mt-Triumph-Pictures/134.jpg',
+                            'Mt-Triumph-Pictures/4.jpg',
+                            'Mt-Triumph-Pictures/9.jpg',
                             'Mt-Triumph-Pictures/14.jpg',
-                            'Mt-Triumph-Pictures/151.jpg',
                             'Mt-Triumph-Pictures/19.jpg',
                             'Mt-Triumph-Pictures/24.jpg',
                             'Mt-Triumph-Pictures/29.jpg',
                             'Mt-Triumph-Pictures/34.jpg',
                             'Mt-Triumph-Pictures/39.jpg',
-                            'Mt-Triumph-Pictures/4.jpg',
                             'Mt-Triumph-Pictures/44.jpg',
                             'Mt-Triumph-Pictures/49.jpg',
                             'Mt-Triumph-Pictures/54.jpg',
@@ -30377,25 +30370,32 @@ Fay Pullen
                             'Mt-Triumph-Pictures/79.jpg',
                             'Mt-Triumph-Pictures/84.jpg',
                             'Mt-Triumph-Pictures/89.jpg',
-                            'Mt-Triumph-Pictures/9.jpg',
                             'Mt-Triumph-Pictures/94.jpg',
-                            'Mt-Triumph-Pictures/99.jpg'
+                            'Mt-Triumph-Pictures/99.jpg',
+                            'Mt-Triumph-Pictures/104.jpg',
+                            'Mt-Triumph-Pictures/109.jpg',
+                            'Mt-Triumph-Pictures/114.jpg',
+                            'Mt-Triumph-Pictures/119.jpg',
+                            'Mt-Triumph-Pictures/124.jpg',
+                            'Mt-Triumph-Pictures/129.jpg',
+                            'Mt-Triumph-Pictures/134.jpg',
+                            'Mt-Triumph-Pictures/151.jpg'
                           ],
                           [
+                            'Thornton-Pictures/4.jpg',
+                            'Thornton-Pictures/9.jpg',
                             'Thornton-Pictures/14.jpg',
                             'Thornton-Pictures/19.jpg',
                             'Thornton-Pictures/24.jpg',
                             'Thornton-Pictures/29.jpg',
                             'Thornton-Pictures/34.jpg',
                             'Thornton-Pictures/39.jpg',
-                            'Thornton-Pictures/4.jpg',
                             'Thornton-Pictures/44.jpg',
                             'Thornton-Pictures/49.jpg',
                             'Thornton-Pictures/54.jpg',
                             'Thornton-Pictures/59.jpg',
                             'Thornton-Pictures/64.jpg',
-                            'Thornton-Pictures/78.jpg',
-                            'Thornton-Pictures/9.jpg'
+                            'Thornton-Pictures/78.jpg'
                           ]
                         ],
             'maps' => [
@@ -30510,19 +30510,14 @@ P.S. Garmin did replace the back cover free of charge under the warranty.
             'day' => '19',
             'images' => [
                           [
-                            'Finney-Peak-Pictures/104.jpg',
-                            'Finney-Peak-Pictures/109.jpg',
-                            'Finney-Peak-Pictures/114.jpg',
-                            'Finney-Peak-Pictures/119.jpg',
-                            'Finney-Peak-Pictures/124.jpg',
+                            'Finney-Peak-Pictures/4.jpg',
+                            'Finney-Peak-Pictures/9.jpg',
                             'Finney-Peak-Pictures/14.jpg',
-                            'Finney-Peak-Pictures/141.jpg',
                             'Finney-Peak-Pictures/19.jpg',
                             'Finney-Peak-Pictures/24.jpg',
                             'Finney-Peak-Pictures/29.jpg',
                             'Finney-Peak-Pictures/34.jpg',
                             'Finney-Peak-Pictures/39.jpg',
-                            'Finney-Peak-Pictures/4.jpg',
                             'Finney-Peak-Pictures/44.jpg',
                             'Finney-Peak-Pictures/49.jpg',
                             'Finney-Peak-Pictures/54.jpg',
@@ -30533,9 +30528,14 @@ P.S. Garmin did replace the back cover free of charge under the warranty.
                             'Finney-Peak-Pictures/79.jpg',
                             'Finney-Peak-Pictures/84.jpg',
                             'Finney-Peak-Pictures/89.jpg',
-                            'Finney-Peak-Pictures/9.jpg',
                             'Finney-Peak-Pictures/94.jpg',
-                            'Finney-Peak-Pictures/99.jpg'
+                            'Finney-Peak-Pictures/99.jpg',
+                            'Finney-Peak-Pictures/104.jpg',
+                            'Finney-Peak-Pictures/109.jpg',
+                            'Finney-Peak-Pictures/114.jpg',
+                            'Finney-Peak-Pictures/119.jpg',
+                            'Finney-Peak-Pictures/124.jpg',
+                            'Finney-Peak-Pictures/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -30654,15 +30654,14 @@ Fay Pullen
             'day' => '24',
             'images' => [
                           [
-                            'Three-Pinnacles-Pictures/104.jpg',
-                            'Three-Pinnacles-Pictures/120.jpg',
+                            'Three-Pinnacles-Pictures/4.jpg',
+                            'Three-Pinnacles-Pictures/9.jpg',
                             'Three-Pinnacles-Pictures/14.jpg',
                             'Three-Pinnacles-Pictures/19.jpg',
                             'Three-Pinnacles-Pictures/24.jpg',
                             'Three-Pinnacles-Pictures/29.jpg',
                             'Three-Pinnacles-Pictures/34.jpg',
                             'Three-Pinnacles-Pictures/39.jpg',
-                            'Three-Pinnacles-Pictures/4.jpg',
                             'Three-Pinnacles-Pictures/44.jpg',
                             'Three-Pinnacles-Pictures/49.jpg',
                             'Three-Pinnacles-Pictures/54.jpg',
@@ -30673,9 +30672,10 @@ Fay Pullen
                             'Three-Pinnacles-Pictures/79.jpg',
                             'Three-Pinnacles-Pictures/84.jpg',
                             'Three-Pinnacles-Pictures/89.jpg',
-                            'Three-Pinnacles-Pictures/9.jpg',
                             'Three-Pinnacles-Pictures/94.jpg',
-                            'Three-Pinnacles-Pictures/99.jpg'
+                            'Three-Pinnacles-Pictures/99.jpg',
+                            'Three-Pinnacles-Pictures/104.jpg',
+                            'Three-Pinnacles-Pictures/120.jpg'
                           ]
                         ],
             'maps' => [
@@ -30772,7 +30772,7 @@ Fay Pullen
                       ],
             'month' => '10',
             'subdir' => '2009-10-01-peak-5160',
-            'title' => undef,
+            'title' => 'Pk 5160',
             'tr' => undef,
             'year' => '2009'
           },
@@ -30780,20 +30780,14 @@ Fay Pullen
             'day' => '08',
             'images' => [
                           [
-                            'Camels-Hump-Pictures/104.jpg',
-                            'Camels-Hump-Pictures/109.jpg',
-                            'Camels-Hump-Pictures/114.jpg',
-                            'Camels-Hump-Pictures/119.jpg',
-                            'Camels-Hump-Pictures/124.jpg',
-                            'Camels-Hump-Pictures/129.jpg',
+                            'Camels-Hump-Pictures/4.jpg',
+                            'Camels-Hump-Pictures/9.jpg',
                             'Camels-Hump-Pictures/14.jpg',
-                            'Camels-Hump-Pictures/146.jpg',
                             'Camels-Hump-Pictures/19.jpg',
                             'Camels-Hump-Pictures/24.jpg',
                             'Camels-Hump-Pictures/29.jpg',
                             'Camels-Hump-Pictures/34.jpg',
                             'Camels-Hump-Pictures/39.jpg',
-                            'Camels-Hump-Pictures/4.jpg',
                             'Camels-Hump-Pictures/44.jpg',
                             'Camels-Hump-Pictures/49.jpg',
                             'Camels-Hump-Pictures/54.jpg',
@@ -30804,9 +30798,15 @@ Fay Pullen
                             'Camels-Hump-Pictures/79.jpg',
                             'Camels-Hump-Pictures/84.jpg',
                             'Camels-Hump-Pictures/89.jpg',
-                            'Camels-Hump-Pictures/9.jpg',
                             'Camels-Hump-Pictures/94.jpg',
-                            'Camels-Hump-Pictures/99.jpg'
+                            'Camels-Hump-Pictures/99.jpg',
+                            'Camels-Hump-Pictures/104.jpg',
+                            'Camels-Hump-Pictures/109.jpg',
+                            'Camels-Hump-Pictures/114.jpg',
+                            'Camels-Hump-Pictures/119.jpg',
+                            'Camels-Hump-Pictures/124.jpg',
+                            'Camels-Hump-Pictures/129.jpg',
+                            'Camels-Hump-Pictures/146.jpg'
                           ]
                         ],
             'maps' => [
@@ -30814,7 +30814,7 @@ Fay Pullen
                       ],
             'month' => '10',
             'subdir' => '2009-10-08-camels-hump',
-            'title' => undef,
+            'title' => 'Camels Hump',
             'tr' => '
 Louis Pk (7787 ft - 507P) & Mt Gibbs (8142 ft - 1262P) - Gilbert  Quad;  and
 Camels Hump (8015 ft - 655P) - Sun Mtn Quad - October 4-6, 2009
@@ -30911,18 +30911,14 @@ Fay Pullen
             'day' => '09',
             'images' => [
                           [
-                            'Horsethief-Pictures/104.jpg',
-                            'Horsethief-Pictures/109.jpg',
-                            'Horsethief-Pictures/114.jpg',
-                            'Horsethief-Pictures/119.jpg',
-                            'Horsethief-Pictures/135.jpg',
+                            'Horsethief-Pictures/4.jpg',
+                            'Horsethief-Pictures/9.jpg',
                             'Horsethief-Pictures/14.jpg',
                             'Horsethief-Pictures/19.jpg',
                             'Horsethief-Pictures/24.jpg',
                             'Horsethief-Pictures/29.jpg',
                             'Horsethief-Pictures/34.jpg',
                             'Horsethief-Pictures/39.jpg',
-                            'Horsethief-Pictures/4.jpg',
                             'Horsethief-Pictures/44.jpg',
                             'Horsethief-Pictures/49.jpg',
                             'Horsethief-Pictures/54.jpg',
@@ -30933,9 +30929,13 @@ Fay Pullen
                             'Horsethief-Pictures/79.jpg',
                             'Horsethief-Pictures/84.jpg',
                             'Horsethief-Pictures/89.jpg',
-                            'Horsethief-Pictures/9.jpg',
                             'Horsethief-Pictures/94.jpg',
-                            'Horsethief-Pictures/99.jpg'
+                            'Horsethief-Pictures/99.jpg',
+                            'Horsethief-Pictures/104.jpg',
+                            'Horsethief-Pictures/109.jpg',
+                            'Horsethief-Pictures/114.jpg',
+                            'Horsethief-Pictures/119.jpg',
+                            'Horsethief-Pictures/135.jpg'
                           ]
                         ],
             'maps' => [
@@ -31020,14 +31020,14 @@ Fay Pullen
             'day' => '20',
             'images' => [
                           [
-                            'McLeod-Pictures/104.jpg',
+                            'McLeod-Pictures/4.jpg',
+                            'McLeod-Pictures/9.jpg',
                             'McLeod-Pictures/14.jpg',
                             'McLeod-Pictures/19.jpg',
                             'McLeod-Pictures/24.jpg',
                             'McLeod-Pictures/29.jpg',
                             'McLeod-Pictures/34.jpg',
                             'McLeod-Pictures/39.jpg',
-                            'McLeod-Pictures/4.jpg',
                             'McLeod-Pictures/44.jpg',
                             'McLeod-Pictures/49.jpg',
                             'McLeod-Pictures/54.jpg',
@@ -31038,7 +31038,7 @@ Fay Pullen
                             'McLeod-Pictures/79.jpg',
                             'McLeod-Pictures/84.jpg',
                             'McLeod-Pictures/89.jpg',
-                            'McLeod-Pictures/9.jpg'
+                            'McLeod-Pictures/104.jpg'
                           ]
                         ],
             'maps' => [
@@ -31111,21 +31111,21 @@ Fay Pullen
             'day' => '27',
             'images' => [
                           [
+                            'Gray-Pictures/4.jpg',
+                            'Gray-Pictures/9.jpg',
                             'Gray-Pictures/14.jpg',
                             'Gray-Pictures/19.jpg',
                             'Gray-Pictures/24.jpg',
                             'Gray-Pictures/29.jpg',
                             'Gray-Pictures/34.jpg',
                             'Gray-Pictures/39.jpg',
-                            'Gray-Pictures/4.jpg',
                             'Gray-Pictures/44.jpg',
                             'Gray-Pictures/49.jpg',
                             'Gray-Pictures/54.jpg',
                             'Gray-Pictures/59.jpg',
                             'Gray-Pictures/64.jpg',
                             'Gray-Pictures/69.jpg',
-                            'Gray-Pictures/83.jpg',
-                            'Gray-Pictures/9.jpg'
+                            'Gray-Pictures/83.jpg'
                           ]
                         ],
             'maps' => [
@@ -31178,20 +31178,20 @@ Fay Pullen
             'day' => '05',
             'images' => [
                           [
+                            'Chilly-Pictures/4.jpg',
+                            'Chilly-Pictures/9.jpg',
                             'Chilly-Pictures/14.jpg',
                             'Chilly-Pictures/19.jpg',
                             'Chilly-Pictures/24.jpg',
                             'Chilly-Pictures/29.jpg',
                             'Chilly-Pictures/34.jpg',
                             'Chilly-Pictures/39.jpg',
-                            'Chilly-Pictures/4.jpg',
                             'Chilly-Pictures/44.jpg',
                             'Chilly-Pictures/49.jpg',
                             'Chilly-Pictures/54.jpg',
                             'Chilly-Pictures/59.jpg',
                             'Chilly-Pictures/64.jpg',
-                            'Chilly-Pictures/78.jpg',
-                            'Chilly-Pictures/9.jpg'
+                            'Chilly-Pictures/78.jpg'
                           ]
                         ],
             'maps' => [
@@ -31199,7 +31199,7 @@ Fay Pullen
                       ],
             'month' => '11',
             'subdir' => '2009-11-05-chilly',
-            'title' => undef,
+            'title' => 'Chilly',
             'tr' => undef,
             'year' => '2009'
           },
@@ -31211,7 +31211,7 @@ Fay Pullen
                       ],
             'month' => '11',
             'subdir' => '2009-11-08-baker-wilderness',
-            'title' => undef,
+            'title' => 'Mt Baker Wilderness',
             'tr' => undef,
             'year' => '2009'
           },
@@ -31219,20 +31219,20 @@ Fay Pullen
             'day' => '11',
             'images' => [
                           [
+                            'Crow-Hill-Pictures/4.jpg',
+                            'Crow-Hill-Pictures/9.jpg',
                             'Crow-Hill-Pictures/14.jpg',
                             'Crow-Hill-Pictures/19.jpg',
                             'Crow-Hill-Pictures/24.jpg',
                             'Crow-Hill-Pictures/29.jpg',
                             'Crow-Hill-Pictures/34.jpg',
                             'Crow-Hill-Pictures/39.jpg',
-                            'Crow-Hill-Pictures/4.jpg',
                             'Crow-Hill-Pictures/44.jpg',
                             'Crow-Hill-Pictures/49.jpg',
                             'Crow-Hill-Pictures/54.jpg',
                             'Crow-Hill-Pictures/59.jpg',
                             'Crow-Hill-Pictures/64.jpg',
-                            'Crow-Hill-Pictures/78.jpg',
-                            'Crow-Hill-Pictures/9.jpg'
+                            'Crow-Hill-Pictures/78.jpg'
                           ]
                         ],
             'maps' => [
@@ -31319,20 +31319,20 @@ Fay Pullen
             'day' => '01',
             'images' => [
                           [
+                            'Stormy-Mtn-Pictures/4.jpg',
+                            'Stormy-Mtn-Pictures/9.jpg',
                             'Stormy-Mtn-Pictures/14.jpg',
                             'Stormy-Mtn-Pictures/19.jpg',
                             'Stormy-Mtn-Pictures/24.jpg',
                             'Stormy-Mtn-Pictures/29.jpg',
                             'Stormy-Mtn-Pictures/34.jpg',
                             'Stormy-Mtn-Pictures/39.jpg',
-                            'Stormy-Mtn-Pictures/4.jpg',
                             'Stormy-Mtn-Pictures/44.jpg',
                             'Stormy-Mtn-Pictures/49.jpg',
                             'Stormy-Mtn-Pictures/54.jpg',
                             'Stormy-Mtn-Pictures/59.jpg',
                             'Stormy-Mtn-Pictures/64.jpg',
-                            'Stormy-Mtn-Pictures/78.jpg',
-                            'Stormy-Mtn-Pictures/9.jpg'
+                            'Stormy-Mtn-Pictures/78.jpg'
                           ]
                         ],
             'maps' => [
@@ -31412,19 +31412,19 @@ Pullen
             'day' => '27',
             'images' => [
                           [
+                            'Jumbo-Pictures/4.jpg',
+                            'Jumbo-Pictures/9.jpg',
                             'Jumbo-Pictures/14.jpg',
                             'Jumbo-Pictures/19.jpg',
                             'Jumbo-Pictures/24.jpg',
                             'Jumbo-Pictures/29.jpg',
                             'Jumbo-Pictures/34.jpg',
                             'Jumbo-Pictures/39.jpg',
-                            'Jumbo-Pictures/4.jpg',
                             'Jumbo-Pictures/44.jpg',
                             'Jumbo-Pictures/49.jpg',
                             'Jumbo-Pictures/54.jpg',
                             'Jumbo-Pictures/59.jpg',
-                            'Jumbo-Pictures/73.jpg',
-                            'Jumbo-Pictures/9.jpg'
+                            'Jumbo-Pictures/73.jpg'
                           ]
                         ],
             'maps' => [
@@ -31501,14 +31501,14 @@ Total: 6 miles, 5000 ft and 10:45 hours                Fay Pullen
             'day' => '03',
             'images' => [
                           [
-                            'Bald-(Glacier)-Pictures)/104.jpg',
+                            'Bald-(Glacier)-Pictures)/4.jpg',
+                            'Bald-(Glacier)-Pictures)/9.jpg',
                             'Bald-(Glacier)-Pictures)/14.jpg',
                             'Bald-(Glacier)-Pictures)/19.jpg',
                             'Bald-(Glacier)-Pictures)/24.jpg',
                             'Bald-(Glacier)-Pictures)/29.jpg',
                             'Bald-(Glacier)-Pictures)/34.jpg',
                             'Bald-(Glacier)-Pictures)/39.jpg',
-                            'Bald-(Glacier)-Pictures)/4.jpg',
                             'Bald-(Glacier)-Pictures)/44.jpg',
                             'Bald-(Glacier)-Pictures)/49.jpg',
                             'Bald-(Glacier)-Pictures)/54.jpg',
@@ -31519,7 +31519,7 @@ Total: 6 miles, 5000 ft and 10:45 hours                Fay Pullen
                             'Bald-(Glacier)-Pictures)/79.jpg',
                             'Bald-(Glacier)-Pictures)/84.jpg',
                             'Bald-(Glacier)-Pictures)/89.jpg',
-                            'Bald-(Glacier)-Pictures)/9.jpg'
+                            'Bald-(Glacier)-Pictures)/104.jpg'
                           ]
                         ],
             'maps' => [
@@ -31583,21 +31583,21 @@ Fay Pullen
             'day' => '06',
             'images' => [
                           [
+                            'Lookout-Mtn-(Clifty)-Pictures/4.jpg',
+                            'Lookout-Mtn-(Clifty)-Pictures/9.jpg',
                             'Lookout-Mtn-(Clifty)-Pictures/14.jpg',
                             'Lookout-Mtn-(Clifty)-Pictures/19.jpg',
                             'Lookout-Mtn-(Clifty)-Pictures/24.jpg',
                             'Lookout-Mtn-(Clifty)-Pictures/29.jpg',
                             'Lookout-Mtn-(Clifty)-Pictures/34.jpg',
                             'Lookout-Mtn-(Clifty)-Pictures/39.jpg',
-                            'Lookout-Mtn-(Clifty)-Pictures/4.jpg',
                             'Lookout-Mtn-(Clifty)-Pictures/44.jpg',
                             'Lookout-Mtn-(Clifty)-Pictures/49.jpg',
                             'Lookout-Mtn-(Clifty)-Pictures/54.jpg',
                             'Lookout-Mtn-(Clifty)-Pictures/59.jpg',
                             'Lookout-Mtn-(Clifty)-Pictures/64.jpg',
                             'Lookout-Mtn-(Clifty)-Pictures/69.jpg',
-                            'Lookout-Mtn-(Clifty)-Pictures/83.jpg',
-                            'Lookout-Mtn-(Clifty)-Pictures/9.jpg'
+                            'Lookout-Mtn-(Clifty)-Pictures/83.jpg'
                           ]
                         ],
             'maps' => [
@@ -31672,16 +31672,16 @@ Total: 28 miles and 6050 ft in 2 days       Fay Pullen
             'day' => '10',
             'images' => [
                           [
+                            'Pemmican-Pictures/4.jpg',
+                            'Pemmican-Pictures/9.jpg',
                             'Pemmican-Pictures/14.jpg',
                             'Pemmican-Pictures/19.jpg',
                             'Pemmican-Pictures/24.jpg',
                             'Pemmican-Pictures/29.jpg',
                             'Pemmican-Pictures/34.jpg',
                             'Pemmican-Pictures/39.jpg',
-                            'Pemmican-Pictures/4.jpg',
                             'Pemmican-Pictures/44.jpg',
-                            'Pemmican-Pictures/56.jpg',
-                            'Pemmican-Pictures/9.jpg'
+                            'Pemmican-Pictures/56.jpg'
                           ]
                         ],
             'maps' => [
@@ -31753,14 +31753,14 @@ Total: 8 miles, 4500 ft and 9:30 hrs
             'day' => '17',
             'images' => [
                           [
+                            'Loomis-Pictures/4.jpg',
+                            'Loomis-Pictures/9.jpg',
                             'Loomis-Pictures/14.jpg',
                             'Loomis-Pictures/19.jpg',
                             'Loomis-Pictures/24.jpg',
                             'Loomis-Pictures/29.jpg',
                             'Loomis-Pictures/34.jpg',
-                            'Loomis-Pictures/4.jpg',
-                            'Loomis-Pictures/46.jpg',
-                            'Loomis-Pictures/9.jpg'
+                            'Loomis-Pictures/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -31768,7 +31768,7 @@ Total: 8 miles, 4500 ft and 9:30 hrs
                       ],
             'month' => '01',
             'subdir' => '2010-01-17-loomis',
-            'title' => undef,
+            'title' => 'Loomis',
             'tr' => undef,
             'year' => '2010'
           },
@@ -31776,14 +31776,14 @@ Total: 8 miles, 4500 ft and 9:30 hrs
             'day' => '21',
             'images' => [
                           [
-                            'Breccia-Pictures/109.jpg',
+                            'Breccia-Pictures/4.jpg',
+                            'Breccia-Pictures/9.jpg',
                             'Breccia-Pictures/14.jpg',
                             'Breccia-Pictures/19.jpg',
                             'Breccia-Pictures/24.jpg',
                             'Breccia-Pictures/29.jpg',
                             'Breccia-Pictures/34.jpg',
                             'Breccia-Pictures/39.jpg',
-                            'Breccia-Pictures/4.jpg',
                             'Breccia-Pictures/44.jpg',
                             'Breccia-Pictures/49.jpg',
                             'Breccia-Pictures/54.jpg',
@@ -31794,8 +31794,8 @@ Total: 8 miles, 4500 ft and 9:30 hrs
                             'Breccia-Pictures/79.jpg',
                             'Breccia-Pictures/84.jpg',
                             'Breccia-Pictures/89.jpg',
-                            'Breccia-Pictures/9.jpg',
-                            'Breccia-Pictures/94.jpg'
+                            'Breccia-Pictures/94.jpg',
+                            'Breccia-Pictures/109.jpg'
                           ]
                         ],
             'maps' => [
@@ -31893,19 +31893,19 @@ Fay Pullen
             'day' => '26',
             'images' => [
                           [
+                            'Grouse-Ridge-Pictures/4.jpg',
+                            'Grouse-Ridge-Pictures/9.jpg',
                             'Grouse-Ridge-Pictures/14.jpg',
                             'Grouse-Ridge-Pictures/19.jpg',
                             'Grouse-Ridge-Pictures/24.jpg',
                             'Grouse-Ridge-Pictures/29.jpg',
                             'Grouse-Ridge-Pictures/34.jpg',
                             'Grouse-Ridge-Pictures/39.jpg',
-                            'Grouse-Ridge-Pictures/4.jpg',
                             'Grouse-Ridge-Pictures/44.jpg',
                             'Grouse-Ridge-Pictures/49.jpg',
                             'Grouse-Ridge-Pictures/54.jpg',
                             'Grouse-Ridge-Pictures/59.jpg',
-                            'Grouse-Ridge-Pictures/73.jpg',
-                            'Grouse-Ridge-Pictures/9.jpg'
+                            'Grouse-Ridge-Pictures/73.jpg'
                           ]
                         ],
             'maps' => [
@@ -32027,16 +32027,14 @@ Fay Pullen
             'day' => '03',
             'images' => [
                           [
-                            'Skyline-Divide-Pictures/104.jpg',
-                            'Skyline-Divide-Pictures/109.jpg',
-                            'Skyline-Divide-Pictures/125.jpg',
+                            'Skyline-Divide-Pictures/4.jpg',
+                            'Skyline-Divide-Pictures/9.jpg',
                             'Skyline-Divide-Pictures/14.jpg',
                             'Skyline-Divide-Pictures/19.jpg',
                             'Skyline-Divide-Pictures/24.jpg',
                             'Skyline-Divide-Pictures/29.jpg',
                             'Skyline-Divide-Pictures/34.jpg',
                             'Skyline-Divide-Pictures/39.jpg',
-                            'Skyline-Divide-Pictures/4.jpg',
                             'Skyline-Divide-Pictures/44.jpg',
                             'Skyline-Divide-Pictures/49.jpg',
                             'Skyline-Divide-Pictures/54.jpg',
@@ -32047,9 +32045,11 @@ Fay Pullen
                             'Skyline-Divide-Pictures/79.jpg',
                             'Skyline-Divide-Pictures/84.jpg',
                             'Skyline-Divide-Pictures/89.jpg',
-                            'Skyline-Divide-Pictures/9.jpg',
                             'Skyline-Divide-Pictures/94.jpg',
-                            'Skyline-Divide-Pictures/99.jpg'
+                            'Skyline-Divide-Pictures/99.jpg',
+                            'Skyline-Divide-Pictures/104.jpg',
+                            'Skyline-Divide-Pictures/109.jpg',
+                            'Skyline-Divide-Pictures/125.jpg'
                           ]
                         ],
             'maps' => [
@@ -32122,13 +32122,14 @@ Fay Pullen
             'day' => '10',
             'images' => [
                           [
+                            'Fourmile-Ridge-Pictures/4.jpg',
+                            'Fourmile-Ridge-Pictures/9.jpg',
                             'Fourmile-Ridge-Pictures/14.jpg',
                             'Fourmile-Ridge-Pictures/19.jpg',
                             'Fourmile-Ridge-Pictures/24.jpg',
                             'Fourmile-Ridge-Pictures/29.jpg',
                             'Fourmile-Ridge-Pictures/34.jpg',
                             'Fourmile-Ridge-Pictures/39.jpg',
-                            'Fourmile-Ridge-Pictures/4.jpg',
                             'Fourmile-Ridge-Pictures/44.jpg',
                             'Fourmile-Ridge-Pictures/49.jpg',
                             'Fourmile-Ridge-Pictures/54.jpg',
@@ -32137,7 +32138,6 @@ Fay Pullen
                             'Fourmile-Ridge-Pictures/69.jpg',
                             'Fourmile-Ridge-Pictures/74.jpg',
                             'Fourmile-Ridge-Pictures/79.jpg',
-                            'Fourmile-Ridge-Pictures/9.jpg',
                             'Fourmile-Ridge-Pictures/94.jpg'
                           ]
                         ],
@@ -32233,7 +32233,7 @@ Fay Pullen
                       ],
             'month' => '02',
             'subdir' => '2010-02-14-goblin',
-            'title' => "Goblin Mountain and Storm Ridge",
+            'title' => 'Goblin Mountain and Storm Ridge',
             'tr' => undef,
             'year' => '2010'
           },
@@ -32241,25 +32241,14 @@ Fay Pullen
             'day' => '18',
             'images' => [
                           [
-                            'Coleman-Pinnacle-Pictures/104.jpg',
-                            'Coleman-Pinnacle-Pictures/109.jpg',
-                            'Coleman-Pinnacle-Pictures/114.jpg',
-                            'Coleman-Pinnacle-Pictures/119.jpg',
-                            'Coleman-Pinnacle-Pictures/124.jpg',
-                            'Coleman-Pinnacle-Pictures/129.jpg',
-                            'Coleman-Pinnacle-Pictures/134.jpg',
-                            'Coleman-Pinnacle-Pictures/139.jpg',
+                            'Coleman-Pinnacle-Pictures/4.jpg',
+                            'Coleman-Pinnacle-Pictures/9.jpg',
                             'Coleman-Pinnacle-Pictures/14.jpg',
-                            'Coleman-Pinnacle-Pictures/144.jpg',
-                            'Coleman-Pinnacle-Pictures/149.jpg',
-                            'Coleman-Pinnacle-Pictures/154.jpg',
-                            'Coleman-Pinnacle-Pictures/172.jpg',
                             'Coleman-Pinnacle-Pictures/19.jpg',
                             'Coleman-Pinnacle-Pictures/24.jpg',
                             'Coleman-Pinnacle-Pictures/29.jpg',
                             'Coleman-Pinnacle-Pictures/34.jpg',
                             'Coleman-Pinnacle-Pictures/39.jpg',
-                            'Coleman-Pinnacle-Pictures/4.jpg',
                             'Coleman-Pinnacle-Pictures/44.jpg',
                             'Coleman-Pinnacle-Pictures/49.jpg',
                             'Coleman-Pinnacle-Pictures/54.jpg',
@@ -32270,9 +32259,20 @@ Fay Pullen
                             'Coleman-Pinnacle-Pictures/79.jpg',
                             'Coleman-Pinnacle-Pictures/84.jpg',
                             'Coleman-Pinnacle-Pictures/89.jpg',
-                            'Coleman-Pinnacle-Pictures/9.jpg',
                             'Coleman-Pinnacle-Pictures/94.jpg',
-                            'Coleman-Pinnacle-Pictures/99.jpg'
+                            'Coleman-Pinnacle-Pictures/99.jpg',
+                            'Coleman-Pinnacle-Pictures/104.jpg',
+                            'Coleman-Pinnacle-Pictures/109.jpg',
+                            'Coleman-Pinnacle-Pictures/114.jpg',
+                            'Coleman-Pinnacle-Pictures/119.jpg',
+                            'Coleman-Pinnacle-Pictures/124.jpg',
+                            'Coleman-Pinnacle-Pictures/129.jpg',
+                            'Coleman-Pinnacle-Pictures/134.jpg',
+                            'Coleman-Pinnacle-Pictures/139.jpg',
+                            'Coleman-Pinnacle-Pictures/144.jpg',
+                            'Coleman-Pinnacle-Pictures/149.jpg',
+                            'Coleman-Pinnacle-Pictures/154.jpg',
+                            'Coleman-Pinnacle-Pictures/172.jpg'
                           ]
                         ],
             'maps' => [
@@ -32415,18 +32415,18 @@ Fay Pullen
             'day' => '03',
             'images' => [
                           [
+                            'Hogback-Pictures/4.jpg',
+                            'Hogback-Pictures/9.jpg',
                             'Hogback-Pictures/14.jpg',
                             'Hogback-Pictures/19.jpg',
                             'Hogback-Pictures/24.jpg',
                             'Hogback-Pictures/29.jpg',
                             'Hogback-Pictures/34.jpg',
                             'Hogback-Pictures/39.jpg',
-                            'Hogback-Pictures/4.jpg',
                             'Hogback-Pictures/44.jpg',
                             'Hogback-Pictures/49.jpg',
                             'Hogback-Pictures/54.jpg',
-                            'Hogback-Pictures/68.jpg',
-                            'Hogback-Pictures/9.jpg'
+                            'Hogback-Pictures/68.jpg'
                           ]
                         ],
             'maps' => [
@@ -32482,13 +32482,14 @@ Fay Pullen
             'day' => '10',
             'images' => [
                           [
+                            'Blankenship-Pictures/4.jpg',
+                            'Blankenship-Pictures/9.jpg',
                             'Blankenship-Pictures/14.jpg',
                             'Blankenship-Pictures/19.jpg',
                             'Blankenship-Pictures/24.jpg',
                             'Blankenship-Pictures/29.jpg',
                             'Blankenship-Pictures/34.jpg',
                             'Blankenship-Pictures/39.jpg',
-                            'Blankenship-Pictures/4.jpg',
                             'Blankenship-Pictures/44.jpg',
                             'Blankenship-Pictures/49.jpg',
                             'Blankenship-Pictures/54.jpg',
@@ -32498,7 +32499,6 @@ Fay Pullen
                             'Blankenship-Pictures/74.jpg',
                             'Blankenship-Pictures/79.jpg',
                             'Blankenship-Pictures/84.jpg',
-                            'Blankenship-Pictures/9.jpg',
                             'Blankenship-Pictures/99.jpg'
                           ]
                         ],
@@ -32652,13 +32652,14 @@ Fay Pullen
             'day' => '17',
             'images' => [
                           [
+                            'Heliotrope-Ridge-Pictures/4.jpg',
+                            'Heliotrope-Ridge-Pictures/9.jpg',
                             'Heliotrope-Ridge-Pictures/14.jpg',
                             'Heliotrope-Ridge-Pictures/19.jpg',
                             'Heliotrope-Ridge-Pictures/24.jpg',
                             'Heliotrope-Ridge-Pictures/29.jpg',
                             'Heliotrope-Ridge-Pictures/34.jpg',
                             'Heliotrope-Ridge-Pictures/39.jpg',
-                            'Heliotrope-Ridge-Pictures/4.jpg',
                             'Heliotrope-Ridge-Pictures/44.jpg',
                             'Heliotrope-Ridge-Pictures/49.jpg',
                             'Heliotrope-Ridge-Pictures/54.jpg',
@@ -32668,7 +32669,6 @@ Fay Pullen
                             'Heliotrope-Ridge-Pictures/74.jpg',
                             'Heliotrope-Ridge-Pictures/79.jpg',
                             'Heliotrope-Ridge-Pictures/84.jpg',
-                            'Heliotrope-Ridge-Pictures/9.jpg',
                             'Heliotrope-Ridge-Pictures/99.jpg'
                           ]
                         ],
@@ -32723,21 +32723,14 @@ Fay Pullen
             'day' => '23',
             'images' => [
                           [
-                            'Portals-Photos/104.jpg',
-                            'Portals-Photos/109.jpg',
-                            'Portals-Photos/114.jpg',
-                            'Portals-Photos/119.jpg',
-                            'Portals-Photos/124.jpg',
-                            'Portals-Photos/129.jpg',
-                            'Portals-Photos/134.jpg',
+                            'Portals-Photos/4.jpg',
+                            'Portals-Photos/9.jpg',
                             'Portals-Photos/14.jpg',
-                            'Portals-Photos/151.jpg',
                             'Portals-Photos/19.jpg',
                             'Portals-Photos/24.jpg',
                             'Portals-Photos/29.jpg',
                             'Portals-Photos/34.jpg',
                             'Portals-Photos/39.jpg',
-                            'Portals-Photos/4.jpg',
                             'Portals-Photos/44.jpg',
                             'Portals-Photos/49.jpg',
                             'Portals-Photos/54.jpg',
@@ -32748,9 +32741,16 @@ Fay Pullen
                             'Portals-Photos/79.jpg',
                             'Portals-Photos/84.jpg',
                             'Portals-Photos/89.jpg',
-                            'Portals-Photos/9.jpg',
                             'Portals-Photos/94.jpg',
-                            'Portals-Photos/99.jpg'
+                            'Portals-Photos/99.jpg',
+                            'Portals-Photos/104.jpg',
+                            'Portals-Photos/109.jpg',
+                            'Portals-Photos/114.jpg',
+                            'Portals-Photos/119.jpg',
+                            'Portals-Photos/124.jpg',
+                            'Portals-Photos/129.jpg',
+                            'Portals-Photos/134.jpg',
+                            'Portals-Photos/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -32831,15 +32831,14 @@ Fay Pullen
             'day' => '01',
             'images' => [
                           [
-                            'Carlton-Ridge-Pictures/104.jpg',
-                            'Carlton-Ridge-Pictures/120.jpg',
+                            'Carlton-Ridge-Pictures/4.jpg',
+                            'Carlton-Ridge-Pictures/9.jpg',
                             'Carlton-Ridge-Pictures/14.jpg',
                             'Carlton-Ridge-Pictures/19.jpg',
                             'Carlton-Ridge-Pictures/24.jpg',
                             'Carlton-Ridge-Pictures/29.jpg',
                             'Carlton-Ridge-Pictures/34.jpg',
                             'Carlton-Ridge-Pictures/39.jpg',
-                            'Carlton-Ridge-Pictures/4.jpg',
                             'Carlton-Ridge-Pictures/44.jpg',
                             'Carlton-Ridge-Pictures/49.jpg',
                             'Carlton-Ridge-Pictures/54.jpg',
@@ -32850,9 +32849,10 @@ Fay Pullen
                             'Carlton-Ridge-Pictures/79.jpg',
                             'Carlton-Ridge-Pictures/84.jpg',
                             'Carlton-Ridge-Pictures/89.jpg',
-                            'Carlton-Ridge-Pictures/9.jpg',
                             'Carlton-Ridge-Pictures/94.jpg',
-                            'Carlton-Ridge-Pictures/99.jpg'
+                            'Carlton-Ridge-Pictures/99.jpg',
+                            'Carlton-Ridge-Pictures/104.jpg',
+                            'Carlton-Ridge-Pictures/120.jpg'
                           ]
                         ],
             'maps' => [
@@ -32944,13 +32944,14 @@ Carlton Ridge finished the White Pass Quad for me.
             'day' => '06',
             'images' => [
                           [
+                            'McNeil-Pictures/4.jpg',
+                            'McNeil-Pictures/9.jpg',
                             'McNeil-Pictures/14.jpg',
                             'McNeil-Pictures/19.jpg',
                             'McNeil-Pictures/24.jpg',
                             'McNeil-Pictures/29.jpg',
                             'McNeil-Pictures/34.jpg',
                             'McNeil-Pictures/39.jpg',
-                            'McNeil-Pictures/4.jpg',
                             'McNeil-Pictures/44.jpg',
                             'McNeil-Pictures/49.jpg',
                             'McNeil-Pictures/54.jpg',
@@ -32959,7 +32960,6 @@ Carlton Ridge finished the White Pass Quad for me.
                             'McNeil-Pictures/69.jpg',
                             'McNeil-Pictures/74.jpg',
                             'McNeil-Pictures/79.jpg',
-                            'McNeil-Pictures/9.jpg',
                             'McNeil-Pictures/94.jpg'
                           ]
                         ],
@@ -33048,19 +33048,19 @@ Fay Pullen
             'day' => '15',
             'images' => [
                           [
+                            'Cathedral-Rocks-Pictures/4.jpg',
+                            'Cathedral-Rocks-Pictures/9.jpg',
                             'Cathedral-Rocks-Pictures/14.jpg',
                             'Cathedral-Rocks-Pictures/19.jpg',
                             'Cathedral-Rocks-Pictures/24.jpg',
                             'Cathedral-Rocks-Pictures/29.jpg',
                             'Cathedral-Rocks-Pictures/34.jpg',
                             'Cathedral-Rocks-Pictures/39.jpg',
-                            'Cathedral-Rocks-Pictures/4.jpg',
                             'Cathedral-Rocks-Pictures/44.jpg',
                             'Cathedral-Rocks-Pictures/49.jpg',
                             'Cathedral-Rocks-Pictures/54.jpg',
                             'Cathedral-Rocks-Pictures/59.jpg',
-                            'Cathedral-Rocks-Pictures/73.jpg',
-                            'Cathedral-Rocks-Pictures/9.jpg'
+                            'Cathedral-Rocks-Pictures/73.jpg'
                           ]
                         ],
             'maps' => [
@@ -33068,7 +33068,7 @@ Fay Pullen
                       ],
             'month' => '04',
             'subdir' => '2010-04-15-cathedral-rocks',
-            'title' => undef,
+            'title' => 'Cathedral Rocks',
             'tr' => undef,
             'year' => '2010'
           },
@@ -33076,14 +33076,14 @@ Fay Pullen
             'day' => '29',
             'images' => [
                           [
+                            'Snyder-Mtn-Pictures/4.jpg',
+                            'Snyder-Mtn-Pictures/9.jpg',
                             'Snyder-Mtn-Pictures/14.jpg',
                             'Snyder-Mtn-Pictures/19.jpg',
                             'Snyder-Mtn-Pictures/24.jpg',
                             'Snyder-Mtn-Pictures/29.jpg',
                             'Snyder-Mtn-Pictures/34.jpg',
-                            'Snyder-Mtn-Pictures/4.jpg',
-                            'Snyder-Mtn-Pictures/46.jpg',
-                            'Snyder-Mtn-Pictures/9.jpg'
+                            'Snyder-Mtn-Pictures/46.jpg'
                           ]
                         ],
             'maps' => [
@@ -33122,13 +33122,14 @@ Fay Pullen
             'day' => '04',
             'images' => [
                           [
+                            'Slash-Pictures/4.jpg',
+                            'Slash-Pictures/9.jpg',
                             'Slash-Pictures/14.jpg',
                             'Slash-Pictures/19.jpg',
                             'Slash-Pictures/24.jpg',
                             'Slash-Pictures/29.jpg',
                             'Slash-Pictures/34.jpg',
                             'Slash-Pictures/39.jpg',
-                            'Slash-Pictures/4.jpg',
                             'Slash-Pictures/44.jpg',
                             'Slash-Pictures/49.jpg',
                             'Slash-Pictures/54.jpg',
@@ -33138,7 +33139,6 @@ Fay Pullen
                             'Slash-Pictures/74.jpg',
                             'Slash-Pictures/79.jpg',
                             'Slash-Pictures/84.jpg',
-                            'Slash-Pictures/9.jpg',
                             'Slash-Pictures/99.jpg'
                           ]
                         ],
@@ -33200,16 +33200,14 @@ Fay Pullen
             'day' => '07',
             'images' => [
                           [
-                            'Ulalach-Pictures/104.jpg',
-                            'Ulalach-Pictures/109.jpg',
-                            'Ulalach-Pictures/125.jpg',
+                            'Ulalach-Pictures/4.jpg',
+                            'Ulalach-Pictures/9.jpg',
                             'Ulalach-Pictures/14.jpg',
                             'Ulalach-Pictures/19.jpg',
                             'Ulalach-Pictures/24.jpg',
                             'Ulalach-Pictures/29.jpg',
                             'Ulalach-Pictures/34.jpg',
                             'Ulalach-Pictures/39.jpg',
-                            'Ulalach-Pictures/4.jpg',
                             'Ulalach-Pictures/44.jpg',
                             'Ulalach-Pictures/49.jpg',
                             'Ulalach-Pictures/54.jpg',
@@ -33220,9 +33218,11 @@ Fay Pullen
                             'Ulalach-Pictures/79.jpg',
                             'Ulalach-Pictures/84.jpg',
                             'Ulalach-Pictures/89.jpg',
-                            'Ulalach-Pictures/9.jpg',
                             'Ulalach-Pictures/94.jpg',
-                            'Ulalach-Pictures/99.jpg'
+                            'Ulalach-Pictures/99.jpg',
+                            'Ulalach-Pictures/104.jpg',
+                            'Ulalach-Pictures/109.jpg',
+                            'Ulalach-Pictures/125.jpg'
                           ]
                         ],
             'maps' => [
@@ -33302,21 +33302,14 @@ Fay Pullen
             'day' => '14',
             'images' => [
                           [
-                            'Slate-Mamie-Pictures/104.jpg',
-                            'Slate-Mamie-Pictures/109.jpg',
-                            'Slate-Mamie-Pictures/114.jpg',
-                            'Slate-Mamie-Pictures/119.jpg',
-                            'Slate-Mamie-Pictures/124.jpg',
-                            'Slate-Mamie-Pictures/129.jpg',
-                            'Slate-Mamie-Pictures/134.jpg',
+                            'Slate-Mamie-Pictures/4.jpg',
+                            'Slate-Mamie-Pictures/9.jpg',
                             'Slate-Mamie-Pictures/14.jpg',
-                            'Slate-Mamie-Pictures/151.jpg',
                             'Slate-Mamie-Pictures/19.jpg',
                             'Slate-Mamie-Pictures/24.jpg',
                             'Slate-Mamie-Pictures/29.jpg',
                             'Slate-Mamie-Pictures/34.jpg',
                             'Slate-Mamie-Pictures/39.jpg',
-                            'Slate-Mamie-Pictures/4.jpg',
                             'Slate-Mamie-Pictures/44.jpg',
                             'Slate-Mamie-Pictures/49.jpg',
                             'Slate-Mamie-Pictures/54.jpg',
@@ -33327,9 +33320,16 @@ Fay Pullen
                             'Slate-Mamie-Pictures/79.jpg',
                             'Slate-Mamie-Pictures/84.jpg',
                             'Slate-Mamie-Pictures/89.jpg',
-                            'Slate-Mamie-Pictures/9.jpg',
                             'Slate-Mamie-Pictures/94.jpg',
-                            'Slate-Mamie-Pictures/99.jpg'
+                            'Slate-Mamie-Pictures/99.jpg',
+                            'Slate-Mamie-Pictures/104.jpg',
+                            'Slate-Mamie-Pictures/109.jpg',
+                            'Slate-Mamie-Pictures/114.jpg',
+                            'Slate-Mamie-Pictures/119.jpg',
+                            'Slate-Mamie-Pictures/124.jpg',
+                            'Slate-Mamie-Pictures/129.jpg',
+                            'Slate-Mamie-Pictures/134.jpg',
+                            'Slate-Mamie-Pictures/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -33444,21 +33444,14 @@ Fay Pullen
             'day' => '29',
             'images' => [
                           [
-                            'Battle-Mtn-Pictures/104.jpg',
-                            'Battle-Mtn-Pictures/109.jpg',
-                            'Battle-Mtn-Pictures/114.jpg',
-                            'Battle-Mtn-Pictures/119.jpg',
-                            'Battle-Mtn-Pictures/124.jpg',
-                            'Battle-Mtn-Pictures/129.jpg',
-                            'Battle-Mtn-Pictures/134.jpg',
+                            'Battle-Mtn-Pictures/4.jpg',
+                            'Battle-Mtn-Pictures/9.jpg',
                             'Battle-Mtn-Pictures/14.jpg',
-                            'Battle-Mtn-Pictures/151.jpg',
                             'Battle-Mtn-Pictures/19.jpg',
                             'Battle-Mtn-Pictures/24.jpg',
                             'Battle-Mtn-Pictures/29.jpg',
                             'Battle-Mtn-Pictures/34.jpg',
                             'Battle-Mtn-Pictures/39.jpg',
-                            'Battle-Mtn-Pictures/4.jpg',
                             'Battle-Mtn-Pictures/44.jpg',
                             'Battle-Mtn-Pictures/49.jpg',
                             'Battle-Mtn-Pictures/54.jpg',
@@ -33469,9 +33462,16 @@ Fay Pullen
                             'Battle-Mtn-Pictures/79.jpg',
                             'Battle-Mtn-Pictures/84.jpg',
                             'Battle-Mtn-Pictures/89.jpg',
-                            'Battle-Mtn-Pictures/9.jpg',
                             'Battle-Mtn-Pictures/94.jpg',
-                            'Battle-Mtn-Pictures/99.jpg'
+                            'Battle-Mtn-Pictures/99.jpg',
+                            'Battle-Mtn-Pictures/104.jpg',
+                            'Battle-Mtn-Pictures/109.jpg',
+                            'Battle-Mtn-Pictures/114.jpg',
+                            'Battle-Mtn-Pictures/119.jpg',
+                            'Battle-Mtn-Pictures/124.jpg',
+                            'Battle-Mtn-Pictures/129.jpg',
+                            'Battle-Mtn-Pictures/134.jpg',
+                            'Battle-Mtn-Pictures/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -33603,11 +33603,11 @@ Fay Pullen
             'day' => '03',
             'images' => [
                           [
+                            'Tatoosh-Lakes1-Pictures/4.jpg',
+                            'Tatoosh-Lakes1-Pictures/9.jpg',
                             'Tatoosh-Lakes1-Pictures/14.jpg',
                             'Tatoosh-Lakes1-Pictures/19.jpg',
-                            'Tatoosh-Lakes1-Pictures/31.jpg',
-                            'Tatoosh-Lakes1-Pictures/4.jpg',
-                            'Tatoosh-Lakes1-Pictures/9.jpg'
+                            'Tatoosh-Lakes1-Pictures/31.jpg'
                           ]
                         ],
             'maps' => [
@@ -33657,14 +33657,14 @@ build a cairn and leave a register (but not a name).
             'day' => '07',
             'images' => [
                           [
-                            'War-Creek-Pictures/115.jpg',
+                            'War-Creek-Pictures/4.jpg',
+                            'War-Creek-Pictures/9.jpg',
                             'War-Creek-Pictures/14.jpg',
                             'War-Creek-Pictures/19.jpg',
                             'War-Creek-Pictures/24.jpg',
                             'War-Creek-Pictures/29.jpg',
                             'War-Creek-Pictures/34.jpg',
                             'War-Creek-Pictures/39.jpg',
-                            'War-Creek-Pictures/4.jpg',
                             'War-Creek-Pictures/44.jpg',
                             'War-Creek-Pictures/49.jpg',
                             'War-Creek-Pictures/54.jpg',
@@ -33675,9 +33675,9 @@ build a cairn and leave a register (but not a name).
                             'War-Creek-Pictures/79.jpg',
                             'War-Creek-Pictures/84.jpg',
                             'War-Creek-Pictures/89.jpg',
-                            'War-Creek-Pictures/9.jpg',
                             'War-Creek-Pictures/94.jpg',
-                            'War-Creek-Pictures/99.jpg'
+                            'War-Creek-Pictures/99.jpg',
+                            'War-Creek-Pictures/115.jpg'
                           ]
                         ],
             'maps' => [
@@ -33808,21 +33808,14 @@ Fay
             'day' => '12',
             'images' => [
                           [
-                            'Bears-Breast-Pictures/104.jpg',
-                            'Bears-Breast-Pictures/109.jpg',
-                            'Bears-Breast-Pictures/114.jpg',
-                            'Bears-Breast-Pictures/119.jpg',
-                            'Bears-Breast-Pictures/124.jpg',
-                            'Bears-Breast-Pictures/129.jpg',
-                            'Bears-Breast-Pictures/134.jpg',
+                            'Bears-Breast-Pictures/4.jpg',
+                            'Bears-Breast-Pictures/9.jpg',
                             'Bears-Breast-Pictures/14.jpg',
-                            'Bears-Breast-Pictures/151.jpg',
                             'Bears-Breast-Pictures/19.jpg',
                             'Bears-Breast-Pictures/24.jpg',
                             'Bears-Breast-Pictures/29.jpg',
                             'Bears-Breast-Pictures/34.jpg',
                             'Bears-Breast-Pictures/39.jpg',
-                            'Bears-Breast-Pictures/4.jpg',
                             'Bears-Breast-Pictures/44.jpg',
                             'Bears-Breast-Pictures/49.jpg',
                             'Bears-Breast-Pictures/54.jpg',
@@ -33833,9 +33826,16 @@ Fay
                             'Bears-Breast-Pictures/79.jpg',
                             'Bears-Breast-Pictures/84.jpg',
                             'Bears-Breast-Pictures/89.jpg',
-                            'Bears-Breast-Pictures/9.jpg',
                             'Bears-Breast-Pictures/94.jpg',
-                            'Bears-Breast-Pictures/99.jpg'
+                            'Bears-Breast-Pictures/99.jpg',
+                            'Bears-Breast-Pictures/104.jpg',
+                            'Bears-Breast-Pictures/109.jpg',
+                            'Bears-Breast-Pictures/114.jpg',
+                            'Bears-Breast-Pictures/119.jpg',
+                            'Bears-Breast-Pictures/124.jpg',
+                            'Bears-Breast-Pictures/129.jpg',
+                            'Bears-Breast-Pictures/134.jpg',
+                            'Bears-Breast-Pictures/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -33996,21 +33996,14 @@ Fay Pullen
             'day' => '22',
             'images' => [
                           [
-                            'McAlester-Pictures/104.jpg',
-                            'McAlester-Pictures/109.jpg',
-                            'McAlester-Pictures/114.jpg',
-                            'McAlester-Pictures/119.jpg',
-                            'McAlester-Pictures/124.jpg',
-                            'McAlester-Pictures/129.jpg',
-                            'McAlester-Pictures/134.jpg',
+                            'McAlester-Pictures/4.jpg',
+                            'McAlester-Pictures/9.jpg',
                             'McAlester-Pictures/14.jpg',
-                            'McAlester-Pictures/151.jpg',
                             'McAlester-Pictures/19.jpg',
                             'McAlester-Pictures/24.jpg',
                             'McAlester-Pictures/29.jpg',
                             'McAlester-Pictures/34.jpg',
                             'McAlester-Pictures/39.jpg',
-                            'McAlester-Pictures/4.jpg',
                             'McAlester-Pictures/44.jpg',
                             'McAlester-Pictures/49.jpg',
                             'McAlester-Pictures/54.jpg',
@@ -34021,9 +34014,16 @@ Fay Pullen
                             'McAlester-Pictures/79.jpg',
                             'McAlester-Pictures/84.jpg',
                             'McAlester-Pictures/89.jpg',
-                            'McAlester-Pictures/9.jpg',
                             'McAlester-Pictures/94.jpg',
-                            'McAlester-Pictures/99.jpg'
+                            'McAlester-Pictures/99.jpg',
+                            'McAlester-Pictures/104.jpg',
+                            'McAlester-Pictures/109.jpg',
+                            'McAlester-Pictures/114.jpg',
+                            'McAlester-Pictures/119.jpg',
+                            'McAlester-Pictures/124.jpg',
+                            'McAlester-Pictures/129.jpg',
+                            'McAlester-Pictures/134.jpg',
+                            'McAlester-Pictures/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -34134,33 +34134,14 @@ Fay Pullen
             'day' => '02',
             'images' => [
                           [
-                            'Riddle-Pictures/104.jpg',
-                            'Riddle-Pictures/109.jpg',
-                            'Riddle-Pictures/114.jpg',
-                            'Riddle-Pictures/119.jpg',
-                            'Riddle-Pictures/124.jpg',
-                            'Riddle-Pictures/129.jpg',
-                            'Riddle-Pictures/134.jpg',
-                            'Riddle-Pictures/139.jpg',
+                            'Riddle-Pictures/4.jpg',
+                            'Riddle-Pictures/9.jpg',
                             'Riddle-Pictures/14.jpg',
-                            'Riddle-Pictures/144.jpg',
-                            'Riddle-Pictures/149.jpg',
-                            'Riddle-Pictures/154.jpg',
-                            'Riddle-Pictures/159.jpg',
-                            'Riddle-Pictures/164.jpg',
-                            'Riddle-Pictures/169.jpg',
-                            'Riddle-Pictures/174.jpg',
-                            'Riddle-Pictures/179.jpg',
-                            'Riddle-Pictures/184.jpg',
-                            'Riddle-Pictures/189.jpg',
                             'Riddle-Pictures/19.jpg',
-                            'Riddle-Pictures/194.jpg',
-                            'Riddle-Pictures/213.jpg',
                             'Riddle-Pictures/24.jpg',
                             'Riddle-Pictures/29.jpg',
                             'Riddle-Pictures/34.jpg',
                             'Riddle-Pictures/39.jpg',
-                            'Riddle-Pictures/4.jpg',
                             'Riddle-Pictures/44.jpg',
                             'Riddle-Pictures/49.jpg',
                             'Riddle-Pictures/54.jpg',
@@ -34171,9 +34152,28 @@ Fay Pullen
                             'Riddle-Pictures/79.jpg',
                             'Riddle-Pictures/84.jpg',
                             'Riddle-Pictures/89.jpg',
-                            'Riddle-Pictures/9.jpg',
                             'Riddle-Pictures/94.jpg',
-                            'Riddle-Pictures/99.jpg'
+                            'Riddle-Pictures/99.jpg',
+                            'Riddle-Pictures/104.jpg',
+                            'Riddle-Pictures/109.jpg',
+                            'Riddle-Pictures/114.jpg',
+                            'Riddle-Pictures/119.jpg',
+                            'Riddle-Pictures/124.jpg',
+                            'Riddle-Pictures/129.jpg',
+                            'Riddle-Pictures/134.jpg',
+                            'Riddle-Pictures/139.jpg',
+                            'Riddle-Pictures/144.jpg',
+                            'Riddle-Pictures/149.jpg',
+                            'Riddle-Pictures/154.jpg',
+                            'Riddle-Pictures/159.jpg',
+                            'Riddle-Pictures/164.jpg',
+                            'Riddle-Pictures/169.jpg',
+                            'Riddle-Pictures/174.jpg',
+                            'Riddle-Pictures/179.jpg',
+                            'Riddle-Pictures/184.jpg',
+                            'Riddle-Pictures/189.jpg',
+                            'Riddle-Pictures/194.jpg',
+                            'Riddle-Pictures/213.jpg'
                           ]
                         ],
             'maps' => [
@@ -34366,15 +34366,14 @@ Fay Pullen
             'day' => '12',
             'images' => [
                           [
-                            'Devils-Peak-Pictures/104.jpg',
-                            'Devils-Peak-Pictures/120.jpg',
+                            'Devils-Peak-Pictures/4.jpg',
+                            'Devils-Peak-Pictures/9.jpg',
                             'Devils-Peak-Pictures/14.jpg',
                             'Devils-Peak-Pictures/19.jpg',
                             'Devils-Peak-Pictures/24.jpg',
                             'Devils-Peak-Pictures/29.jpg',
                             'Devils-Peak-Pictures/34.jpg',
                             'Devils-Peak-Pictures/39.jpg',
-                            'Devils-Peak-Pictures/4.jpg',
                             'Devils-Peak-Pictures/44.jpg',
                             'Devils-Peak-Pictures/49.jpg',
                             'Devils-Peak-Pictures/54.jpg',
@@ -34385,9 +34384,10 @@ Fay Pullen
                             'Devils-Peak-Pictures/79.jpg',
                             'Devils-Peak-Pictures/84.jpg',
                             'Devils-Peak-Pictures/89.jpg',
-                            'Devils-Peak-Pictures/9.jpg',
                             'Devils-Peak-Pictures/94.jpg',
-                            'Devils-Peak-Pictures/99.jpg'
+                            'Devils-Peak-Pictures/99.jpg',
+                            'Devils-Peak-Pictures/104.jpg',
+                            'Devils-Peak-Pictures/120.jpg'
                           ],
                           [
                             'DevilsPkRoute/11.jpg'
@@ -34519,14 +34519,14 @@ Fay Pullen
             'day' => '17',
             'images' => [
                           [
-                            'Stonesthrow-Pictures/104.jpg',
+                            'Stonesthrow-Pictures/4.jpg',
+                            'Stonesthrow-Pictures/9.jpg',
                             'Stonesthrow-Pictures/14.jpg',
                             'Stonesthrow-Pictures/19.jpg',
                             'Stonesthrow-Pictures/24.jpg',
                             'Stonesthrow-Pictures/29.jpg',
                             'Stonesthrow-Pictures/34.jpg',
                             'Stonesthrow-Pictures/39.jpg',
-                            'Stonesthrow-Pictures/4.jpg',
                             'Stonesthrow-Pictures/44.jpg',
                             'Stonesthrow-Pictures/49.jpg',
                             'Stonesthrow-Pictures/54.jpg',
@@ -34537,7 +34537,7 @@ Fay Pullen
                             'Stonesthrow-Pictures/79.jpg',
                             'Stonesthrow-Pictures/84.jpg',
                             'Stonesthrow-Pictures/89.jpg',
-                            'Stonesthrow-Pictures/9.jpg'
+                            'Stonesthrow-Pictures/104.jpg'
                           ]
                         ],
             'maps' => [
@@ -34610,27 +34610,14 @@ Fay Pullen
             'day' => '22',
             'images' => [
                           [
-                            'Terror-Pictures/104.jpg',
-                            'Terror-Pictures/109.jpg',
-                            'Terror-Pictures/114.jpg',
-                            'Terror-Pictures/119.jpg',
-                            'Terror-Pictures/124.jpg',
-                            'Terror-Pictures/129.jpg',
-                            'Terror-Pictures/134.jpg',
-                            'Terror-Pictures/139.jpg',
+                            'Terror-Pictures/4.jpg',
+                            'Terror-Pictures/9.jpg',
                             'Terror-Pictures/14.jpg',
-                            'Terror-Pictures/144.jpg',
-                            'Terror-Pictures/149.jpg',
-                            'Terror-Pictures/154.jpg',
-                            'Terror-Pictures/159.jpg',
-                            'Terror-Pictures/164.jpg',
-                            'Terror-Pictures/182.jpg',
                             'Terror-Pictures/19.jpg',
                             'Terror-Pictures/24.jpg',
                             'Terror-Pictures/29.jpg',
                             'Terror-Pictures/34.jpg',
                             'Terror-Pictures/39.jpg',
-                            'Terror-Pictures/4.jpg',
                             'Terror-Pictures/44.jpg',
                             'Terror-Pictures/49.jpg',
                             'Terror-Pictures/54.jpg',
@@ -34641,9 +34628,22 @@ Fay Pullen
                             'Terror-Pictures/79.jpg',
                             'Terror-Pictures/84.jpg',
                             'Terror-Pictures/89.jpg',
-                            'Terror-Pictures/9.jpg',
                             'Terror-Pictures/94.jpg',
-                            'Terror-Pictures/99.jpg'
+                            'Terror-Pictures/99.jpg',
+                            'Terror-Pictures/104.jpg',
+                            'Terror-Pictures/109.jpg',
+                            'Terror-Pictures/114.jpg',
+                            'Terror-Pictures/119.jpg',
+                            'Terror-Pictures/124.jpg',
+                            'Terror-Pictures/129.jpg',
+                            'Terror-Pictures/134.jpg',
+                            'Terror-Pictures/139.jpg',
+                            'Terror-Pictures/144.jpg',
+                            'Terror-Pictures/149.jpg',
+                            'Terror-Pictures/154.jpg',
+                            'Terror-Pictures/159.jpg',
+                            'Terror-Pictures/164.jpg',
+                            'Terror-Pictures/182.jpg'
                           ]
                         ],
             'maps' => [
@@ -34809,21 +34809,14 @@ Fay Pullen
             'day' => '06',
             'images' => [
                           [
-                            'Cloudcomb-Pictures/104.jpg',
-                            'Cloudcomb-Pictures/109.jpg',
-                            'Cloudcomb-Pictures/114.jpg',
-                            'Cloudcomb-Pictures/119.jpg',
-                            'Cloudcomb-Pictures/124.jpg',
-                            'Cloudcomb-Pictures/129.jpg',
-                            'Cloudcomb-Pictures/134.jpg',
+                            'Cloudcomb-Pictures/4.jpg',
+                            'Cloudcomb-Pictures/9.jpg',
                             'Cloudcomb-Pictures/14.jpg',
-                            'Cloudcomb-Pictures/151.jpg',
                             'Cloudcomb-Pictures/19.jpg',
                             'Cloudcomb-Pictures/24.jpg',
                             'Cloudcomb-Pictures/29.jpg',
                             'Cloudcomb-Pictures/34.jpg',
                             'Cloudcomb-Pictures/39.jpg',
-                            'Cloudcomb-Pictures/4.jpg',
                             'Cloudcomb-Pictures/44.jpg',
                             'Cloudcomb-Pictures/49.jpg',
                             'Cloudcomb-Pictures/54.jpg',
@@ -34834,9 +34827,16 @@ Fay Pullen
                             'Cloudcomb-Pictures/79.jpg',
                             'Cloudcomb-Pictures/84.jpg',
                             'Cloudcomb-Pictures/89.jpg',
-                            'Cloudcomb-Pictures/9.jpg',
                             'Cloudcomb-Pictures/94.jpg',
-                            'Cloudcomb-Pictures/99.jpg'
+                            'Cloudcomb-Pictures/99.jpg',
+                            'Cloudcomb-Pictures/104.jpg',
+                            'Cloudcomb-Pictures/109.jpg',
+                            'Cloudcomb-Pictures/114.jpg',
+                            'Cloudcomb-Pictures/119.jpg',
+                            'Cloudcomb-Pictures/124.jpg',
+                            'Cloudcomb-Pictures/129.jpg',
+                            'Cloudcomb-Pictures/134.jpg',
+                            'Cloudcomb-Pictures/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -34970,29 +34970,14 @@ Fay Pullen
             'day' => '13',
             'images' => [
                           [
-                            'Meany-Photos/104.jpg',
-                            'Meany-Photos/109.jpg',
-                            'Meany-Photos/114.jpg',
-                            'Meany-Photos/119.jpg',
-                            'Meany-Photos/124.jpg',
-                            'Meany-Photos/129.jpg',
-                            'Meany-Photos/134.jpg',
-                            'Meany-Photos/139.jpg',
+                            'Meany-Photos/4.jpg',
+                            'Meany-Photos/9.jpg',
                             'Meany-Photos/14.jpg',
-                            'Meany-Photos/144.jpg',
-                            'Meany-Photos/149.jpg',
-                            'Meany-Photos/154.jpg',
-                            'Meany-Photos/159.jpg',
-                            'Meany-Photos/164.jpg',
-                            'Meany-Photos/169.jpg',
-                            'Meany-Photos/174.jpg',
                             'Meany-Photos/19.jpg',
-                            'Meany-Photos/193.jpg',
                             'Meany-Photos/24.jpg',
                             'Meany-Photos/29.jpg',
                             'Meany-Photos/34.jpg',
                             'Meany-Photos/39.jpg',
-                            'Meany-Photos/4.jpg',
                             'Meany-Photos/44.jpg',
                             'Meany-Photos/49.jpg',
                             'Meany-Photos/54.jpg',
@@ -35003,9 +34988,24 @@ Fay Pullen
                             'Meany-Photos/79.jpg',
                             'Meany-Photos/84.jpg',
                             'Meany-Photos/89.jpg',
-                            'Meany-Photos/9.jpg',
                             'Meany-Photos/94.jpg',
-                            'Meany-Photos/99.jpg'
+                            'Meany-Photos/99.jpg',
+                            'Meany-Photos/104.jpg',
+                            'Meany-Photos/109.jpg',
+                            'Meany-Photos/114.jpg',
+                            'Meany-Photos/119.jpg',
+                            'Meany-Photos/124.jpg',
+                            'Meany-Photos/129.jpg',
+                            'Meany-Photos/134.jpg',
+                            'Meany-Photos/139.jpg',
+                            'Meany-Photos/144.jpg',
+                            'Meany-Photos/149.jpg',
+                            'Meany-Photos/154.jpg',
+                            'Meany-Photos/159.jpg',
+                            'Meany-Photos/164.jpg',
+                            'Meany-Photos/169.jpg',
+                            'Meany-Photos/174.jpg',
+                            'Meany-Photos/193.jpg'
                           ]
                         ],
             'maps' => [
@@ -35146,7 +35146,7 @@ recommend rodent proof (Kevlar) bags to hang food in.
                       ],
             'month' => '08',
             'subdir' => '2010-08-19-noyes',
-            'title' => undef,
+            'title' => 'Noyes',
             'tr' => undef,
             'year' => '2010'
           },
@@ -35154,30 +35154,23 @@ recommend rodent proof (Kevlar) bags to hang food in.
             'day' => '23',
             'images' => [
                           [
+                            'Despair-Attempt-Pictures/4.jpg',
+                            'Despair-Attempt-Pictures/9.jpg',
                             'Despair-Attempt-Pictures/14.jpg',
                             'Despair-Attempt-Pictures/19.jpg',
                             'Despair-Attempt-Pictures/24.jpg',
                             'Despair-Attempt-Pictures/29.jpg',
-                            'Despair-Attempt-Pictures/4.jpg',
-                            'Despair-Attempt-Pictures/41.jpg',
-                            'Despair-Attempt-Pictures/9.jpg'
+                            'Despair-Attempt-Pictures/41.jpg'
                           ],
                           [
-                            'Despair-Photos/104.jpg',
-                            'Despair-Photos/109.jpg',
-                            'Despair-Photos/114.jpg',
-                            'Despair-Photos/119.jpg',
-                            'Despair-Photos/124.jpg',
-                            'Despair-Photos/129.jpg',
-                            'Despair-Photos/134.jpg',
+                            'Despair-Photos/4.jpg',
+                            'Despair-Photos/9.jpg',
                             'Despair-Photos/14.jpg',
-                            'Despair-Photos/151.jpg',
                             'Despair-Photos/19.jpg',
                             'Despair-Photos/24.jpg',
                             'Despair-Photos/29.jpg',
                             'Despair-Photos/34.jpg',
                             'Despair-Photos/39.jpg',
-                            'Despair-Photos/4.jpg',
                             'Despair-Photos/44.jpg',
                             'Despair-Photos/49.jpg',
                             'Despair-Photos/54.jpg',
@@ -35188,9 +35181,16 @@ recommend rodent proof (Kevlar) bags to hang food in.
                             'Despair-Photos/79.jpg',
                             'Despair-Photos/84.jpg',
                             'Despair-Photos/89.jpg',
-                            'Despair-Photos/9.jpg',
                             'Despair-Photos/94.jpg',
-                            'Despair-Photos/99.jpg'
+                            'Despair-Photos/99.jpg',
+                            'Despair-Photos/104.jpg',
+                            'Despair-Photos/109.jpg',
+                            'Despair-Photos/114.jpg',
+                            'Despair-Photos/119.jpg',
+                            'Despair-Photos/124.jpg',
+                            'Despair-Photos/129.jpg',
+                            'Despair-Photos/134.jpg',
+                            'Despair-Photos/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -35322,20 +35322,14 @@ Fay Pullen
             'day' => '09',
             'images' => [
                           [
-                            'SilverMoon-Pictures/104.jpg',
-                            'SilverMoon-Pictures/109.jpg',
-                            'SilverMoon-Pictures/114.jpg',
-                            'SilverMoon-Pictures/119.jpg',
-                            'SilverMoon-Pictures/124.jpg',
-                            'SilverMoon-Pictures/129.jpg',
+                            'SilverMoon-Pictures/4.jpg',
+                            'SilverMoon-Pictures/9.jpg',
                             'SilverMoon-Pictures/14.jpg',
-                            'SilverMoon-Pictures/146.jpg',
                             'SilverMoon-Pictures/19.jpg',
                             'SilverMoon-Pictures/24.jpg',
                             'SilverMoon-Pictures/29.jpg',
                             'SilverMoon-Pictures/34.jpg',
                             'SilverMoon-Pictures/39.jpg',
-                            'SilverMoon-Pictures/4.jpg',
                             'SilverMoon-Pictures/44.jpg',
                             'SilverMoon-Pictures/49.jpg',
                             'SilverMoon-Pictures/54.jpg',
@@ -35346,9 +35340,15 @@ Fay Pullen
                             'SilverMoon-Pictures/79.jpg',
                             'SilverMoon-Pictures/84.jpg',
                             'SilverMoon-Pictures/89.jpg',
-                            'SilverMoon-Pictures/9.jpg',
                             'SilverMoon-Pictures/94.jpg',
-                            'SilverMoon-Pictures/99.jpg'
+                            'SilverMoon-Pictures/99.jpg',
+                            'SilverMoon-Pictures/104.jpg',
+                            'SilverMoon-Pictures/109.jpg',
+                            'SilverMoon-Pictures/114.jpg',
+                            'SilverMoon-Pictures/119.jpg',
+                            'SilverMoon-Pictures/124.jpg',
+                            'SilverMoon-Pictures/129.jpg',
+                            'SilverMoon-Pictures/146.jpg'
                           ]
                         ],
             'maps' => [
@@ -35476,13 +35476,14 @@ Fay Pullen
             'day' => '15',
             'images' => [
                           [
+                            'Midnight-Mtn-Pictures/4.jpg',
+                            'Midnight-Mtn-Pictures/9.jpg',
                             'Midnight-Mtn-Pictures/14.jpg',
                             'Midnight-Mtn-Pictures/19.jpg',
                             'Midnight-Mtn-Pictures/24.jpg',
                             'Midnight-Mtn-Pictures/29.jpg',
                             'Midnight-Mtn-Pictures/34.jpg',
                             'Midnight-Mtn-Pictures/39.jpg',
-                            'Midnight-Mtn-Pictures/4.jpg',
                             'Midnight-Mtn-Pictures/44.jpg',
                             'Midnight-Mtn-Pictures/49.jpg',
                             'Midnight-Mtn-Pictures/54.jpg',
@@ -35491,7 +35492,6 @@ Fay Pullen
                             'Midnight-Mtn-Pictures/69.jpg',
                             'Midnight-Mtn-Pictures/74.jpg',
                             'Midnight-Mtn-Pictures/79.jpg',
-                            'Midnight-Mtn-Pictures/9.jpg',
                             'Midnight-Mtn-Pictures/94.jpg'
                           ]
                         ],
@@ -35561,23 +35561,14 @@ Fay Pullen
             'day' => '22',
             'images' => [
                           [
-                            'Many-Trails-Pictures/104.jpg',
-                            'Many-Trails-Pictures/109.jpg',
-                            'Many-Trails-Pictures/114.jpg',
-                            'Many-Trails-Pictures/119.jpg',
-                            'Many-Trails-Pictures/124.jpg',
-                            'Many-Trails-Pictures/129.jpg',
-                            'Many-Trails-Pictures/134.jpg',
-                            'Many-Trails-Pictures/139.jpg',
+                            'Many-Trails-Pictures/4.jpg',
+                            'Many-Trails-Pictures/9.jpg',
                             'Many-Trails-Pictures/14.jpg',
-                            'Many-Trails-Pictures/144.jpg',
-                            'Many-Trails-Pictures/161.jpg',
                             'Many-Trails-Pictures/19.jpg',
                             'Many-Trails-Pictures/24.jpg',
                             'Many-Trails-Pictures/29.jpg',
                             'Many-Trails-Pictures/34.jpg',
                             'Many-Trails-Pictures/39.jpg',
-                            'Many-Trails-Pictures/4.jpg',
                             'Many-Trails-Pictures/44.jpg',
                             'Many-Trails-Pictures/49.jpg',
                             'Many-Trails-Pictures/54.jpg',
@@ -35588,9 +35579,18 @@ Fay Pullen
                             'Many-Trails-Pictures/79.jpg',
                             'Many-Trails-Pictures/84.jpg',
                             'Many-Trails-Pictures/89.jpg',
-                            'Many-Trails-Pictures/9.jpg',
                             'Many-Trails-Pictures/94.jpg',
-                            'Many-Trails-Pictures/99.jpg'
+                            'Many-Trails-Pictures/99.jpg',
+                            'Many-Trails-Pictures/104.jpg',
+                            'Many-Trails-Pictures/109.jpg',
+                            'Many-Trails-Pictures/114.jpg',
+                            'Many-Trails-Pictures/119.jpg',
+                            'Many-Trails-Pictures/124.jpg',
+                            'Many-Trails-Pictures/129.jpg',
+                            'Many-Trails-Pictures/134.jpg',
+                            'Many-Trails-Pictures/139.jpg',
+                            'Many-Trails-Pictures/144.jpg',
+                            'Many-Trails-Pictures/161.jpg'
                           ]
                         ],
             'maps' => [
@@ -35735,30 +35735,30 @@ Fay Pullen
             'day' => '30',
             'images' => [
                           [
+                            'Big-Kangaroo-Pictures/4.jpg',
+                            'Big-Kangaroo-Pictures/9.jpg',
                             'Big-Kangaroo-Pictures/14.jpg',
                             'Big-Kangaroo-Pictures/19.jpg',
                             'Big-Kangaroo-Pictures/24.jpg',
                             'Big-Kangaroo-Pictures/29.jpg',
                             'Big-Kangaroo-Pictures/34.jpg',
                             'Big-Kangaroo-Pictures/39.jpg',
-                            'Big-Kangaroo-Pictures/4.jpg',
                             'Big-Kangaroo-Pictures/44.jpg',
                             'Big-Kangaroo-Pictures/49.jpg',
                             'Big-Kangaroo-Pictures/54.jpg',
                             'Big-Kangaroo-Pictures/59.jpg',
                             'Big-Kangaroo-Pictures/64.jpg',
-                            'Big-Kangaroo-Pictures/78.jpg',
-                            'Big-Kangaroo-Pictures/9.jpg'
+                            'Big-Kangaroo-Pictures/78.jpg'
                           ],
                           [
-                            'Liberty-Bell-Pictures/109.jpg',
+                            'Liberty-Bell-Pictures/4.jpg',
+                            'Liberty-Bell-Pictures/9.jpg',
                             'Liberty-Bell-Pictures/14.jpg',
                             'Liberty-Bell-Pictures/19.jpg',
                             'Liberty-Bell-Pictures/24.jpg',
                             'Liberty-Bell-Pictures/29.jpg',
                             'Liberty-Bell-Pictures/34.jpg',
                             'Liberty-Bell-Pictures/39.jpg',
-                            'Liberty-Bell-Pictures/4.jpg',
                             'Liberty-Bell-Pictures/44.jpg',
                             'Liberty-Bell-Pictures/49.jpg',
                             'Liberty-Bell-Pictures/54.jpg',
@@ -35769,8 +35769,8 @@ Fay Pullen
                             'Liberty-Bell-Pictures/79.jpg',
                             'Liberty-Bell-Pictures/84.jpg',
                             'Liberty-Bell-Pictures/89.jpg',
-                            'Liberty-Bell-Pictures/9.jpg',
-                            'Liberty-Bell-Pictures/94.jpg'
+                            'Liberty-Bell-Pictures/94.jpg',
+                            'Liberty-Bell-Pictures/109.jpg'
                           ]
                         ],
             'maps' => [
@@ -35892,18 +35892,14 @@ Fay Pullen
             'day' => '05',
             'images' => [
                           [
-                            'Sheep-Mtn-Pictures/104.jpg',
-                            'Sheep-Mtn-Pictures/109.jpg',
-                            'Sheep-Mtn-Pictures/114.jpg',
-                            'Sheep-Mtn-Pictures/119.jpg',
-                            'Sheep-Mtn-Pictures/135.jpg',
+                            'Sheep-Mtn-Pictures/4.jpg',
+                            'Sheep-Mtn-Pictures/9.jpg',
                             'Sheep-Mtn-Pictures/14.jpg',
                             'Sheep-Mtn-Pictures/19.jpg',
                             'Sheep-Mtn-Pictures/24.jpg',
                             'Sheep-Mtn-Pictures/29.jpg',
                             'Sheep-Mtn-Pictures/34.jpg',
                             'Sheep-Mtn-Pictures/39.jpg',
-                            'Sheep-Mtn-Pictures/4.jpg',
                             'Sheep-Mtn-Pictures/44.jpg',
                             'Sheep-Mtn-Pictures/49.jpg',
                             'Sheep-Mtn-Pictures/54.jpg',
@@ -35914,9 +35910,13 @@ Fay Pullen
                             'Sheep-Mtn-Pictures/79.jpg',
                             'Sheep-Mtn-Pictures/84.jpg',
                             'Sheep-Mtn-Pictures/89.jpg',
-                            'Sheep-Mtn-Pictures/9.jpg',
                             'Sheep-Mtn-Pictures/94.jpg',
-                            'Sheep-Mtn-Pictures/99.jpg'
+                            'Sheep-Mtn-Pictures/99.jpg',
+                            'Sheep-Mtn-Pictures/104.jpg',
+                            'Sheep-Mtn-Pictures/109.jpg',
+                            'Sheep-Mtn-Pictures/114.jpg',
+                            'Sheep-Mtn-Pictures/119.jpg',
+                            'Sheep-Mtn-Pictures/135.jpg'
                           ]
                         ],
             'maps' => [
@@ -36004,19 +36004,14 @@ Fay Pullen
             'day' => '12',
             'images' => [
                           [
-                            'DollarWatch-Pictures/104.jpg',
-                            'DollarWatch-Pictures/109.jpg',
-                            'DollarWatch-Pictures/114.jpg',
-                            'DollarWatch-Pictures/119.jpg',
-                            'DollarWatch-Pictures/124.jpg',
+                            'DollarWatch-Pictures/4.jpg',
+                            'DollarWatch-Pictures/9.jpg',
                             'DollarWatch-Pictures/14.jpg',
-                            'DollarWatch-Pictures/141.jpg',
                             'DollarWatch-Pictures/19.jpg',
                             'DollarWatch-Pictures/24.jpg',
                             'DollarWatch-Pictures/29.jpg',
                             'DollarWatch-Pictures/34.jpg',
                             'DollarWatch-Pictures/39.jpg',
-                            'DollarWatch-Pictures/4.jpg',
                             'DollarWatch-Pictures/44.jpg',
                             'DollarWatch-Pictures/49.jpg',
                             'DollarWatch-Pictures/54.jpg',
@@ -36027,9 +36022,14 @@ Fay Pullen
                             'DollarWatch-Pictures/79.jpg',
                             'DollarWatch-Pictures/84.jpg',
                             'DollarWatch-Pictures/89.jpg',
-                            'DollarWatch-Pictures/9.jpg',
                             'DollarWatch-Pictures/94.jpg',
-                            'DollarWatch-Pictures/99.jpg'
+                            'DollarWatch-Pictures/99.jpg',
+                            'DollarWatch-Pictures/104.jpg',
+                            'DollarWatch-Pictures/109.jpg',
+                            'DollarWatch-Pictures/114.jpg',
+                            'DollarWatch-Pictures/119.jpg',
+                            'DollarWatch-Pictures/124.jpg',
+                            'DollarWatch-Pictures/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -36164,21 +36164,14 @@ Fay Pullen
             'day' => '19',
             'images' => [
                           [
-                            'Holliway-Pictures/104.jpg',
-                            'Holliway-Pictures/109.jpg',
-                            'Holliway-Pictures/114.jpg',
-                            'Holliway-Pictures/119.jpg',
-                            'Holliway-Pictures/124.jpg',
-                            'Holliway-Pictures/129.jpg',
-                            'Holliway-Pictures/134.jpg',
+                            'Holliway-Pictures/4.jpg',
+                            'Holliway-Pictures/9.jpg',
                             'Holliway-Pictures/14.jpg',
-                            'Holliway-Pictures/151.jpg',
                             'Holliway-Pictures/19.jpg',
                             'Holliway-Pictures/24.jpg',
                             'Holliway-Pictures/29.jpg',
                             'Holliway-Pictures/34.jpg',
                             'Holliway-Pictures/39.jpg',
-                            'Holliway-Pictures/4.jpg',
                             'Holliway-Pictures/44.jpg',
                             'Holliway-Pictures/49.jpg',
                             'Holliway-Pictures/54.jpg',
@@ -36189,9 +36182,16 @@ Fay Pullen
                             'Holliway-Pictures/79.jpg',
                             'Holliway-Pictures/84.jpg',
                             'Holliway-Pictures/89.jpg',
-                            'Holliway-Pictures/9.jpg',
                             'Holliway-Pictures/94.jpg',
-                            'Holliway-Pictures/99.jpg'
+                            'Holliway-Pictures/99.jpg',
+                            'Holliway-Pictures/104.jpg',
+                            'Holliway-Pictures/109.jpg',
+                            'Holliway-Pictures/114.jpg',
+                            'Holliway-Pictures/119.jpg',
+                            'Holliway-Pictures/124.jpg',
+                            'Holliway-Pictures/129.jpg',
+                            'Holliway-Pictures/134.jpg',
+                            'Holliway-Pictures/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -36323,19 +36323,19 @@ Fay Pullen
             'day' => '27',
             'images' => [
                           [
+                            'Sunrise-Pictures/4.jpg',
+                            'Sunrise-Pictures/9.jpg',
                             'Sunrise-Pictures/14.jpg',
                             'Sunrise-Pictures/19.jpg',
                             'Sunrise-Pictures/24.jpg',
                             'Sunrise-Pictures/29.jpg',
                             'Sunrise-Pictures/34.jpg',
                             'Sunrise-Pictures/39.jpg',
-                            'Sunrise-Pictures/4.jpg',
                             'Sunrise-Pictures/44.jpg',
                             'Sunrise-Pictures/49.jpg',
                             'Sunrise-Pictures/54.jpg',
                             'Sunrise-Pictures/59.jpg',
-                            'Sunrise-Pictures/73.jpg',
-                            'Sunrise-Pictures/9.jpg'
+                            'Sunrise-Pictures/73.jpg'
                           ]
                         ],
             'maps' => [
@@ -36399,13 +36399,13 @@ Fay Pullen
             'day' => '03',
             'images' => [
                           [
+                            'Finney-(Darrington)-Pictures/4.jpg',
+                            'Finney-(Darrington)-Pictures/9.jpg',
                             'Finney-(Darrington)-Pictures/14.jpg',
                             'Finney-(Darrington)-Pictures/19.jpg',
                             'Finney-(Darrington)-Pictures/24.jpg',
                             'Finney-(Darrington)-Pictures/29.jpg',
-                            'Finney-(Darrington)-Pictures/4.jpg',
-                            'Finney-(Darrington)-Pictures/41.jpg',
-                            'Finney-(Darrington)-Pictures/9.jpg'
+                            'Finney-(Darrington)-Pictures/41.jpg'
                           ]
                         ],
             'maps' => [
@@ -36459,20 +36459,20 @@ Fay
             'day' => '04',
             'images' => [
                           [
+                            'Klone-Pictures/4.jpg',
+                            'Klone-Pictures/9.jpg',
                             'Klone-Pictures/14.jpg',
                             'Klone-Pictures/19.jpg',
                             'Klone-Pictures/24.jpg',
                             'Klone-Pictures/29.jpg',
                             'Klone-Pictures/34.jpg',
                             'Klone-Pictures/39.jpg',
-                            'Klone-Pictures/4.jpg',
                             'Klone-Pictures/44.jpg',
                             'Klone-Pictures/49.jpg',
                             'Klone-Pictures/54.jpg',
                             'Klone-Pictures/59.jpg',
                             'Klone-Pictures/64.jpg',
-                            'Klone-Pictures/78.jpg',
-                            'Klone-Pictures/9.jpg'
+                            'Klone-Pictures/78.jpg'
                           ]
                         ],
             'maps' => [
@@ -36565,20 +36565,14 @@ Fay Pullen
             'day' => '10',
             'images' => [
                           [
-                            'Tyee-Ridge-Pictures/104.jpg',
-                            'Tyee-Ridge-Pictures/109.jpg',
-                            'Tyee-Ridge-Pictures/114.jpg',
-                            'Tyee-Ridge-Pictures/119.jpg',
-                            'Tyee-Ridge-Pictures/124.jpg',
-                            'Tyee-Ridge-Pictures/129.jpg',
+                            'Tyee-Ridge-Pictures/4.jpg',
+                            'Tyee-Ridge-Pictures/9.jpg',
                             'Tyee-Ridge-Pictures/14.jpg',
-                            'Tyee-Ridge-Pictures/146.jpg',
                             'Tyee-Ridge-Pictures/19.jpg',
                             'Tyee-Ridge-Pictures/24.jpg',
                             'Tyee-Ridge-Pictures/29.jpg',
                             'Tyee-Ridge-Pictures/34.jpg',
                             'Tyee-Ridge-Pictures/39.jpg',
-                            'Tyee-Ridge-Pictures/4.jpg',
                             'Tyee-Ridge-Pictures/44.jpg',
                             'Tyee-Ridge-Pictures/49.jpg',
                             'Tyee-Ridge-Pictures/54.jpg',
@@ -36589,9 +36583,15 @@ Fay Pullen
                             'Tyee-Ridge-Pictures/79.jpg',
                             'Tyee-Ridge-Pictures/84.jpg',
                             'Tyee-Ridge-Pictures/89.jpg',
-                            'Tyee-Ridge-Pictures/9.jpg',
                             'Tyee-Ridge-Pictures/94.jpg',
-                            'Tyee-Ridge-Pictures/99.jpg'
+                            'Tyee-Ridge-Pictures/99.jpg',
+                            'Tyee-Ridge-Pictures/104.jpg',
+                            'Tyee-Ridge-Pictures/109.jpg',
+                            'Tyee-Ridge-Pictures/114.jpg',
+                            'Tyee-Ridge-Pictures/119.jpg',
+                            'Tyee-Ridge-Pictures/124.jpg',
+                            'Tyee-Ridge-Pictures/129.jpg',
+                            'Tyee-Ridge-Pictures/146.jpg'
                           ]
                         ],
             'maps' => [
@@ -36789,12 +36789,12 @@ Yakima adding several hours to my drive time. I was not happy.      Fay
             'day' => '01',
             'images' => [
                           [
+                            'Finn-Pictures/4.jpg',
+                            'Finn-Pictures/9.jpg',
                             'Finn-Pictures/14.jpg',
                             'Finn-Pictures/19.jpg',
                             'Finn-Pictures/24.jpg',
-                            'Finn-Pictures/36.jpg',
-                            'Finn-Pictures/4.jpg',
-                            'Finn-Pictures/9.jpg'
+                            'Finn-Pictures/36.jpg'
                           ]
                         ],
             'maps' => [
@@ -36863,16 +36863,16 @@ Fay Pullen
             'day' => '04',
             'images' => [
                           [
+                            'Bethel-Ridge-Pictures/4.jpg',
+                            'Bethel-Ridge-Pictures/9.jpg',
                             'Bethel-Ridge-Pictures/14.jpg',
                             'Bethel-Ridge-Pictures/19.jpg',
                             'Bethel-Ridge-Pictures/24.jpg',
                             'Bethel-Ridge-Pictures/29.jpg',
                             'Bethel-Ridge-Pictures/34.jpg',
                             'Bethel-Ridge-Pictures/39.jpg',
-                            'Bethel-Ridge-Pictures/4.jpg',
                             'Bethel-Ridge-Pictures/44.jpg',
-                            'Bethel-Ridge-Pictures/56.jpg',
-                            'Bethel-Ridge-Pictures/9.jpg'
+                            'Bethel-Ridge-Pictures/56.jpg'
                           ]
                         ],
             'maps' => [
@@ -36948,12 +36948,12 @@ Fay Pullen
             'day' => '09',
             'images' => [
                           [
+                            'Round-Mtn-(Nason)-Pictures/4.jpg',
+                            'Round-Mtn-(Nason)-Pictures/9.jpg',
                             'Round-Mtn-(Nason)-Pictures/14.jpg',
                             'Round-Mtn-(Nason)-Pictures/19.jpg',
                             'Round-Mtn-(Nason)-Pictures/24.jpg',
-                            'Round-Mtn-(Nason)-Pictures/36.jpg',
-                            'Round-Mtn-(Nason)-Pictures/4.jpg',
-                            'Round-Mtn-(Nason)-Pictures/9.jpg'
+                            'Round-Mtn-(Nason)-Pictures/36.jpg'
                           ]
                         ],
             'maps' => [
@@ -37012,17 +37012,17 @@ Fay Pullen
             'day' => '19',
             'images' => [
                           [
+                            'Udono-Pictures/4.jpg',
+                            'Udono-Pictures/9.jpg',
                             'Udono-Pictures/14.jpg',
                             'Udono-Pictures/19.jpg',
                             'Udono-Pictures/24.jpg',
                             'Udono-Pictures/29.jpg',
                             'Udono-Pictures/34.jpg',
                             'Udono-Pictures/39.jpg',
-                            'Udono-Pictures/4.jpg',
                             'Udono-Pictures/44.jpg',
                             'Udono-Pictures/49.jpg',
-                            'Udono-Pictures/63.jpg',
-                            'Udono-Pictures/9.jpg'
+                            'Udono-Pictures/63.jpg'
                           ]
                         ],
             'maps' => [
@@ -37120,14 +37120,14 @@ Fay Pullen
             'day' => '31',
             'images' => [
                           [
-                            'West-Church-Pictures/115.jpg',
+                            'West-Church-Pictures/4.jpg',
+                            'West-Church-Pictures/9.jpg',
                             'West-Church-Pictures/14.jpg',
                             'West-Church-Pictures/19.jpg',
                             'West-Church-Pictures/24.jpg',
                             'West-Church-Pictures/29.jpg',
                             'West-Church-Pictures/34.jpg',
                             'West-Church-Pictures/39.jpg',
-                            'West-Church-Pictures/4.jpg',
                             'West-Church-Pictures/44.jpg',
                             'West-Church-Pictures/49.jpg',
                             'West-Church-Pictures/54.jpg',
@@ -37138,9 +37138,9 @@ Fay Pullen
                             'West-Church-Pictures/79.jpg',
                             'West-Church-Pictures/84.jpg',
                             'West-Church-Pictures/89.jpg',
-                            'West-Church-Pictures/9.jpg',
                             'West-Church-Pictures/94.jpg',
-                            'West-Church-Pictures/99.jpg'
+                            'West-Church-Pictures/99.jpg',
+                            'West-Church-Pictures/115.jpg'
                           ]
                         ],
             'maps' => [
@@ -37240,20 +37240,14 @@ Fay Pullen
             'day' => '13',
             'images' => [
                           [
-                            'Black-Mtn-Pictures/104.jpg',
-                            'Black-Mtn-Pictures/109.jpg',
-                            'Black-Mtn-Pictures/114.jpg',
-                            'Black-Mtn-Pictures/119.jpg',
-                            'Black-Mtn-Pictures/124.jpg',
-                            'Black-Mtn-Pictures/129.jpg',
+                            'Black-Mtn-Pictures/4.jpg',
+                            'Black-Mtn-Pictures/9.jpg',
                             'Black-Mtn-Pictures/14.jpg',
-                            'Black-Mtn-Pictures/146.jpg',
                             'Black-Mtn-Pictures/19.jpg',
                             'Black-Mtn-Pictures/24.jpg',
                             'Black-Mtn-Pictures/29.jpg',
                             'Black-Mtn-Pictures/34.jpg',
                             'Black-Mtn-Pictures/39.jpg',
-                            'Black-Mtn-Pictures/4.jpg',
                             'Black-Mtn-Pictures/44.jpg',
                             'Black-Mtn-Pictures/49.jpg',
                             'Black-Mtn-Pictures/54.jpg',
@@ -37264,9 +37258,15 @@ Fay Pullen
                             'Black-Mtn-Pictures/79.jpg',
                             'Black-Mtn-Pictures/84.jpg',
                             'Black-Mtn-Pictures/89.jpg',
-                            'Black-Mtn-Pictures/9.jpg',
                             'Black-Mtn-Pictures/94.jpg',
-                            'Black-Mtn-Pictures/99.jpg'
+                            'Black-Mtn-Pictures/99.jpg',
+                            'Black-Mtn-Pictures/104.jpg',
+                            'Black-Mtn-Pictures/109.jpg',
+                            'Black-Mtn-Pictures/114.jpg',
+                            'Black-Mtn-Pictures/119.jpg',
+                            'Black-Mtn-Pictures/124.jpg',
+                            'Black-Mtn-Pictures/129.jpg',
+                            'Black-Mtn-Pictures/146.jpg'
                           ]
                         ],
             'maps' => [
@@ -37274,7 +37274,7 @@ Fay Pullen
                       ],
             'month' => '01',
             'subdir' => '2011-01-13-black',
-            'title' => undef,
+            'title' => 'Black Mtn',
             'tr' => undef,
             'year' => '2011'
           },
@@ -37282,13 +37282,14 @@ Fay Pullen
             'day' => '20',
             'images' => [
                           [
+                            'Willickers-Point-Pictures/4.jpg',
+                            'Willickers-Point-Pictures/9.jpg',
                             'Willickers-Point-Pictures/14.jpg',
                             'Willickers-Point-Pictures/19.jpg',
                             'Willickers-Point-Pictures/24.jpg',
                             'Willickers-Point-Pictures/29.jpg',
                             'Willickers-Point-Pictures/34.jpg',
                             'Willickers-Point-Pictures/39.jpg',
-                            'Willickers-Point-Pictures/4.jpg',
                             'Willickers-Point-Pictures/44.jpg',
                             'Willickers-Point-Pictures/49.jpg',
                             'Willickers-Point-Pictures/54.jpg',
@@ -37297,7 +37298,6 @@ Fay Pullen
                             'Willickers-Point-Pictures/69.jpg',
                             'Willickers-Point-Pictures/74.jpg',
                             'Willickers-Point-Pictures/79.jpg',
-                            'Willickers-Point-Pictures/9.jpg',
                             'Willickers-Point-Pictures/94.jpg'
                           ]
                         ],
@@ -37306,7 +37306,7 @@ Fay Pullen
                       ],
             'month' => '01',
             'subdir' => '2011-01-20-willickers-pt',
-            'title' => undef,
+            'title' => 'Willickers Point',
             'tr' => undef,
             'year' => '2011'
           },
@@ -37314,20 +37314,20 @@ Fay Pullen
             'day' => '26',
             'images' => [
                           [
+                            'Damnation-Pictures/4.jpg',
+                            'Damnation-Pictures/9.jpg',
                             'Damnation-Pictures/14.jpg',
                             'Damnation-Pictures/19.jpg',
                             'Damnation-Pictures/24.jpg',
                             'Damnation-Pictures/29.jpg',
                             'Damnation-Pictures/34.jpg',
                             'Damnation-Pictures/39.jpg',
-                            'Damnation-Pictures/4.jpg',
                             'Damnation-Pictures/44.jpg',
                             'Damnation-Pictures/49.jpg',
                             'Damnation-Pictures/54.jpg',
                             'Damnation-Pictures/59.jpg',
                             'Damnation-Pictures/64.jpg',
-                            'Damnation-Pictures/78.jpg',
-                            'Damnation-Pictures/9.jpg'
+                            'Damnation-Pictures/78.jpg'
                           ]
                         ],
             'maps' => [
@@ -37395,13 +37395,14 @@ Fay Pullen
             'day' => '01',
             'images' => [
                           [
+                            'Groat-Pictures/4.jpg',
+                            'Groat-Pictures/9.jpg',
                             'Groat-Pictures/14.jpg',
                             'Groat-Pictures/19.jpg',
                             'Groat-Pictures/24.jpg',
                             'Groat-Pictures/29.jpg',
                             'Groat-Pictures/34.jpg',
                             'Groat-Pictures/39.jpg',
-                            'Groat-Pictures/4.jpg',
                             'Groat-Pictures/44.jpg',
                             'Groat-Pictures/49.jpg',
                             'Groat-Pictures/54.jpg',
@@ -37411,7 +37412,6 @@ Fay Pullen
                             'Groat-Pictures/74.jpg',
                             'Groat-Pictures/79.jpg',
                             'Groat-Pictures/84.jpg',
-                            'Groat-Pictures/9.jpg',
                             'Groat-Pictures/99.jpg'
                           ]
                         ],
@@ -37483,15 +37483,14 @@ Fay Pullen
             'day' => '08',
             'images' => [
                           [
-                            'Grouse-Butte-Pictures/104.jpg',
-                            'Grouse-Butte-Pictures/120.jpg',
+                            'Grouse-Butte-Pictures/4.jpg',
+                            'Grouse-Butte-Pictures/9.jpg',
                             'Grouse-Butte-Pictures/14.jpg',
                             'Grouse-Butte-Pictures/19.jpg',
                             'Grouse-Butte-Pictures/24.jpg',
                             'Grouse-Butte-Pictures/29.jpg',
                             'Grouse-Butte-Pictures/34.jpg',
                             'Grouse-Butte-Pictures/39.jpg',
-                            'Grouse-Butte-Pictures/4.jpg',
                             'Grouse-Butte-Pictures/44.jpg',
                             'Grouse-Butte-Pictures/49.jpg',
                             'Grouse-Butte-Pictures/54.jpg',
@@ -37502,9 +37501,10 @@ Fay Pullen
                             'Grouse-Butte-Pictures/79.jpg',
                             'Grouse-Butte-Pictures/84.jpg',
                             'Grouse-Butte-Pictures/89.jpg',
-                            'Grouse-Butte-Pictures/9.jpg',
                             'Grouse-Butte-Pictures/94.jpg',
-                            'Grouse-Butte-Pictures/99.jpg'
+                            'Grouse-Butte-Pictures/99.jpg',
+                            'Grouse-Butte-Pictures/104.jpg',
+                            'Grouse-Butte-Pictures/120.jpg'
                           ]
                         ],
             'maps' => [
@@ -37631,20 +37631,14 @@ Fay Pullen
             'day' => '13',
             'images' => [
                           [
-                            'Allen-Catt-East-Rock-Pictures/104.jpg',
-                            'Allen-Catt-East-Rock-Pictures/109.jpg',
-                            'Allen-Catt-East-Rock-Pictures/114.jpg',
-                            'Allen-Catt-East-Rock-Pictures/119.jpg',
-                            'Allen-Catt-East-Rock-Pictures/124.jpg',
-                            'Allen-Catt-East-Rock-Pictures/129.jpg',
+                            'Allen-Catt-East-Rock-Pictures/4.jpg',
+                            'Allen-Catt-East-Rock-Pictures/9.jpg',
                             'Allen-Catt-East-Rock-Pictures/14.jpg',
-                            'Allen-Catt-East-Rock-Pictures/146.jpg',
                             'Allen-Catt-East-Rock-Pictures/19.jpg',
                             'Allen-Catt-East-Rock-Pictures/24.jpg',
                             'Allen-Catt-East-Rock-Pictures/29.jpg',
                             'Allen-Catt-East-Rock-Pictures/34.jpg',
                             'Allen-Catt-East-Rock-Pictures/39.jpg',
-                            'Allen-Catt-East-Rock-Pictures/4.jpg',
                             'Allen-Catt-East-Rock-Pictures/44.jpg',
                             'Allen-Catt-East-Rock-Pictures/49.jpg',
                             'Allen-Catt-East-Rock-Pictures/54.jpg',
@@ -37655,9 +37649,15 @@ Fay Pullen
                             'Allen-Catt-East-Rock-Pictures/79.jpg',
                             'Allen-Catt-East-Rock-Pictures/84.jpg',
                             'Allen-Catt-East-Rock-Pictures/89.jpg',
-                            'Allen-Catt-East-Rock-Pictures/9.jpg',
                             'Allen-Catt-East-Rock-Pictures/94.jpg',
-                            'Allen-Catt-East-Rock-Pictures/99.jpg'
+                            'Allen-Catt-East-Rock-Pictures/99.jpg',
+                            'Allen-Catt-East-Rock-Pictures/104.jpg',
+                            'Allen-Catt-East-Rock-Pictures/109.jpg',
+                            'Allen-Catt-East-Rock-Pictures/114.jpg',
+                            'Allen-Catt-East-Rock-Pictures/119.jpg',
+                            'Allen-Catt-East-Rock-Pictures/124.jpg',
+                            'Allen-Catt-East-Rock-Pictures/129.jpg',
+                            'Allen-Catt-East-Rock-Pictures/146.jpg'
                           ]
                         ],
             'maps' => [
@@ -37770,14 +37770,14 @@ Fay Pullen
             'day' => '25',
             'images' => [
                           [
-                            'Uprising-Teneriffe-Pictures/104.jpg',
+                            'Uprising-Teneriffe-Pictures/4.jpg',
+                            'Uprising-Teneriffe-Pictures/9.jpg',
                             'Uprising-Teneriffe-Pictures/14.jpg',
                             'Uprising-Teneriffe-Pictures/19.jpg',
                             'Uprising-Teneriffe-Pictures/24.jpg',
                             'Uprising-Teneriffe-Pictures/29.jpg',
                             'Uprising-Teneriffe-Pictures/34.jpg',
                             'Uprising-Teneriffe-Pictures/39.jpg',
-                            'Uprising-Teneriffe-Pictures/4.jpg',
                             'Uprising-Teneriffe-Pictures/44.jpg',
                             'Uprising-Teneriffe-Pictures/49.jpg',
                             'Uprising-Teneriffe-Pictures/54.jpg',
@@ -37788,7 +37788,7 @@ Fay Pullen
                             'Uprising-Teneriffe-Pictures/79.jpg',
                             'Uprising-Teneriffe-Pictures/84.jpg',
                             'Uprising-Teneriffe-Pictures/89.jpg',
-                            'Uprising-Teneriffe-Pictures/9.jpg'
+                            'Uprising-Teneriffe-Pictures/104.jpg'
                           ]
                         ],
             'maps' => [
@@ -37813,20 +37813,20 @@ Fay Pullen
             'day' => '04',
             'images' => [
                           [
+                            'Yakso-Josephine-pictures/4.jpg',
+                            'Yakso-Josephine-pictures/9.jpg',
                             'Yakso-Josephine-pictures/14.jpg',
                             'Yakso-Josephine-pictures/19.jpg',
                             'Yakso-Josephine-pictures/24.jpg',
                             'Yakso-Josephine-pictures/29.jpg',
                             'Yakso-Josephine-pictures/34.jpg',
                             'Yakso-Josephine-pictures/39.jpg',
-                            'Yakso-Josephine-pictures/4.jpg',
                             'Yakso-Josephine-pictures/44.jpg',
                             'Yakso-Josephine-pictures/49.jpg',
                             'Yakso-Josephine-pictures/54.jpg',
                             'Yakso-Josephine-pictures/59.jpg',
                             'Yakso-Josephine-pictures/64.jpg',
-                            'Yakso-Josephine-pictures/78.jpg',
-                            'Yakso-Josephine-pictures/9.jpg'
+                            'Yakso-Josephine-pictures/78.jpg'
                           ]
                         ],
             'maps' => [
@@ -37896,14 +37896,14 @@ Fay Pullen
             'day' => '11',
             'images' => [
                           [
-                            'Cornell-Pictures/104.jpg',
+                            'Cornell-Pictures/4.jpg',
+                            'Cornell-Pictures/9.jpg',
                             'Cornell-Pictures/14.jpg',
                             'Cornell-Pictures/19.jpg',
                             'Cornell-Pictures/24.jpg',
                             'Cornell-Pictures/29.jpg',
                             'Cornell-Pictures/34.jpg',
                             'Cornell-Pictures/39.jpg',
-                            'Cornell-Pictures/4.jpg',
                             'Cornell-Pictures/44.jpg',
                             'Cornell-Pictures/49.jpg',
                             'Cornell-Pictures/54.jpg',
@@ -37914,7 +37914,7 @@ Fay Pullen
                             'Cornell-Pictures/79.jpg',
                             'Cornell-Pictures/84.jpg',
                             'Cornell-Pictures/89.jpg',
-                            'Cornell-Pictures/9.jpg'
+                            'Cornell-Pictures/104.jpg'
                           ]
                         ],
             'maps' => [
@@ -37982,17 +37982,14 @@ Fay Pullen
             'day' => '17',
             'images' => [
                           [
-                            'Slide-Mtn-Pictures/104.jpg',
-                            'Slide-Mtn-Pictures/109.jpg',
-                            'Slide-Mtn-Pictures/114.jpg',
-                            'Slide-Mtn-Pictures/130.jpg',
+                            'Slide-Mtn-Pictures/4.jpg',
+                            'Slide-Mtn-Pictures/9.jpg',
                             'Slide-Mtn-Pictures/14.jpg',
                             'Slide-Mtn-Pictures/19.jpg',
                             'Slide-Mtn-Pictures/24.jpg',
                             'Slide-Mtn-Pictures/29.jpg',
                             'Slide-Mtn-Pictures/34.jpg',
                             'Slide-Mtn-Pictures/39.jpg',
-                            'Slide-Mtn-Pictures/4.jpg',
                             'Slide-Mtn-Pictures/44.jpg',
                             'Slide-Mtn-Pictures/49.jpg',
                             'Slide-Mtn-Pictures/54.jpg',
@@ -38003,9 +38000,12 @@ Fay Pullen
                             'Slide-Mtn-Pictures/79.jpg',
                             'Slide-Mtn-Pictures/84.jpg',
                             'Slide-Mtn-Pictures/89.jpg',
-                            'Slide-Mtn-Pictures/9.jpg',
                             'Slide-Mtn-Pictures/94.jpg',
-                            'Slide-Mtn-Pictures/99.jpg'
+                            'Slide-Mtn-Pictures/99.jpg',
+                            'Slide-Mtn-Pictures/104.jpg',
+                            'Slide-Mtn-Pictures/109.jpg',
+                            'Slide-Mtn-Pictures/114.jpg',
+                            'Slide-Mtn-Pictures/130.jpg'
                           ]
                         ],
             'maps' => [
@@ -38067,13 +38067,14 @@ Fay Pullen
             'day' => '23',
             'images' => [
                           [
+                            'Toboggan-Pictures/4.jpg',
+                            'Toboggan-Pictures/9.jpg',
                             'Toboggan-Pictures/14.jpg',
                             'Toboggan-Pictures/19.jpg',
                             'Toboggan-Pictures/24.jpg',
                             'Toboggan-Pictures/29.jpg',
                             'Toboggan-Pictures/34.jpg',
                             'Toboggan-Pictures/39.jpg',
-                            'Toboggan-Pictures/4.jpg',
                             'Toboggan-Pictures/44.jpg',
                             'Toboggan-Pictures/49.jpg',
                             'Toboggan-Pictures/54.jpg',
@@ -38083,7 +38084,6 @@ Fay Pullen
                             'Toboggan-Pictures/74.jpg',
                             'Toboggan-Pictures/79.jpg',
                             'Toboggan-Pictures/84.jpg',
-                            'Toboggan-Pictures/9.jpg',
                             'Toboggan-Pictures/99.jpg'
                           ]
                         ],
@@ -38147,16 +38147,16 @@ Fay Pullen
             'day' => '08',
             'images' => [
                           [
+                            'Porter-Pictures/4.jpg',
+                            'Porter-Pictures/9.jpg',
                             'Porter-Pictures/14.jpg',
                             'Porter-Pictures/19.jpg',
                             'Porter-Pictures/24.jpg',
                             'Porter-Pictures/29.jpg',
                             'Porter-Pictures/34.jpg',
                             'Porter-Pictures/39.jpg',
-                            'Porter-Pictures/4.jpg',
                             'Porter-Pictures/44.jpg',
-                            'Porter-Pictures/56.jpg',
-                            'Porter-Pictures/9.jpg'
+                            'Porter-Pictures/56.jpg'
                           ]
                         ],
             'maps' => [
@@ -38220,13 +38220,13 @@ Fay Pullen
             'day' => '22',
             'images' => [
                           [
+                            'Skate-Berry-Pictures/4.jpg',
+                            'Skate-Berry-Pictures/9.jpg',
                             'Skate-Berry-Pictures/14.jpg',
                             'Skate-Berry-Pictures/19.jpg',
                             'Skate-Berry-Pictures/24.jpg',
                             'Skate-Berry-Pictures/29.jpg',
-                            'Skate-Berry-Pictures/4.jpg',
-                            'Skate-Berry-Pictures/41.jpg',
-                            'Skate-Berry-Pictures/9.jpg'
+                            'Skate-Berry-Pictures/41.jpg'
                           ]
                         ],
             'maps' => [
@@ -38275,21 +38275,14 @@ Fay Pullen
             'day' => '26',
             'images' => [
                           [
-                            'Timberwof-Pictures/104.jpg',
-                            'Timberwof-Pictures/109.jpg',
-                            'Timberwof-Pictures/114.jpg',
-                            'Timberwof-Pictures/119.jpg',
-                            'Timberwof-Pictures/124.jpg',
-                            'Timberwof-Pictures/129.jpg',
-                            'Timberwof-Pictures/134.jpg',
+                            'Timberwof-Pictures/4.jpg',
+                            'Timberwof-Pictures/9.jpg',
                             'Timberwof-Pictures/14.jpg',
-                            'Timberwof-Pictures/151.jpg',
                             'Timberwof-Pictures/19.jpg',
                             'Timberwof-Pictures/24.jpg',
                             'Timberwof-Pictures/29.jpg',
                             'Timberwof-Pictures/34.jpg',
                             'Timberwof-Pictures/39.jpg',
-                            'Timberwof-Pictures/4.jpg',
                             'Timberwof-Pictures/44.jpg',
                             'Timberwof-Pictures/49.jpg',
                             'Timberwof-Pictures/54.jpg',
@@ -38300,9 +38293,16 @@ Fay Pullen
                             'Timberwof-Pictures/79.jpg',
                             'Timberwof-Pictures/84.jpg',
                             'Timberwof-Pictures/89.jpg',
-                            'Timberwof-Pictures/9.jpg',
                             'Timberwof-Pictures/94.jpg',
-                            'Timberwof-Pictures/99.jpg'
+                            'Timberwof-Pictures/99.jpg',
+                            'Timberwof-Pictures/104.jpg',
+                            'Timberwof-Pictures/109.jpg',
+                            'Timberwof-Pictures/114.jpg',
+                            'Timberwof-Pictures/119.jpg',
+                            'Timberwof-Pictures/124.jpg',
+                            'Timberwof-Pictures/129.jpg',
+                            'Timberwof-Pictures/134.jpg',
+                            'Timberwof-Pictures/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -38404,21 +38404,14 @@ Fay Pullen
             'day' => '03',
             'images' => [
                           [
-                            'Divide-Ridge-(Rimrock)-Pictures/104.jpg',
-                            'Divide-Ridge-(Rimrock)-Pictures/109.jpg',
-                            'Divide-Ridge-(Rimrock)-Pictures/114.jpg',
-                            'Divide-Ridge-(Rimrock)-Pictures/119.jpg',
-                            'Divide-Ridge-(Rimrock)-Pictures/124.jpg',
-                            'Divide-Ridge-(Rimrock)-Pictures/129.jpg',
-                            'Divide-Ridge-(Rimrock)-Pictures/134.jpg',
+                            'Divide-Ridge-(Rimrock)-Pictures/4.jpg',
+                            'Divide-Ridge-(Rimrock)-Pictures/9.jpg',
                             'Divide-Ridge-(Rimrock)-Pictures/14.jpg',
-                            'Divide-Ridge-(Rimrock)-Pictures/151.jpg',
                             'Divide-Ridge-(Rimrock)-Pictures/19.jpg',
                             'Divide-Ridge-(Rimrock)-Pictures/24.jpg',
                             'Divide-Ridge-(Rimrock)-Pictures/29.jpg',
                             'Divide-Ridge-(Rimrock)-Pictures/34.jpg',
                             'Divide-Ridge-(Rimrock)-Pictures/39.jpg',
-                            'Divide-Ridge-(Rimrock)-Pictures/4.jpg',
                             'Divide-Ridge-(Rimrock)-Pictures/44.jpg',
                             'Divide-Ridge-(Rimrock)-Pictures/49.jpg',
                             'Divide-Ridge-(Rimrock)-Pictures/54.jpg',
@@ -38429,9 +38422,16 @@ Fay Pullen
                             'Divide-Ridge-(Rimrock)-Pictures/79.jpg',
                             'Divide-Ridge-(Rimrock)-Pictures/84.jpg',
                             'Divide-Ridge-(Rimrock)-Pictures/89.jpg',
-                            'Divide-Ridge-(Rimrock)-Pictures/9.jpg',
                             'Divide-Ridge-(Rimrock)-Pictures/94.jpg',
-                            'Divide-Ridge-(Rimrock)-Pictures/99.jpg'
+                            'Divide-Ridge-(Rimrock)-Pictures/99.jpg',
+                            'Divide-Ridge-(Rimrock)-Pictures/104.jpg',
+                            'Divide-Ridge-(Rimrock)-Pictures/109.jpg',
+                            'Divide-Ridge-(Rimrock)-Pictures/114.jpg',
+                            'Divide-Ridge-(Rimrock)-Pictures/119.jpg',
+                            'Divide-Ridge-(Rimrock)-Pictures/124.jpg',
+                            'Divide-Ridge-(Rimrock)-Pictures/129.jpg',
+                            'Divide-Ridge-(Rimrock)-Pictures/134.jpg',
+                            'Divide-Ridge-(Rimrock)-Pictures/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -38540,21 +38540,14 @@ Fay Pullen
             'day' => '09',
             'images' => [
                           [
-                            'Darland-Pictures/104.jpg',
-                            'Darland-Pictures/109.jpg',
-                            'Darland-Pictures/114.jpg',
-                            'Darland-Pictures/119.jpg',
-                            'Darland-Pictures/124.jpg',
-                            'Darland-Pictures/129.jpg',
-                            'Darland-Pictures/134.jpg',
+                            'Darland-Pictures/4.jpg',
+                            'Darland-Pictures/9.jpg',
                             'Darland-Pictures/14.jpg',
-                            'Darland-Pictures/151.jpg',
                             'Darland-Pictures/19.jpg',
                             'Darland-Pictures/24.jpg',
                             'Darland-Pictures/29.jpg',
                             'Darland-Pictures/34.jpg',
                             'Darland-Pictures/39.jpg',
-                            'Darland-Pictures/4.jpg',
                             'Darland-Pictures/44.jpg',
                             'Darland-Pictures/49.jpg',
                             'Darland-Pictures/54.jpg',
@@ -38565,9 +38558,16 @@ Fay Pullen
                             'Darland-Pictures/79.jpg',
                             'Darland-Pictures/84.jpg',
                             'Darland-Pictures/89.jpg',
-                            'Darland-Pictures/9.jpg',
                             'Darland-Pictures/94.jpg',
-                            'Darland-Pictures/99.jpg'
+                            'Darland-Pictures/99.jpg',
+                            'Darland-Pictures/104.jpg',
+                            'Darland-Pictures/109.jpg',
+                            'Darland-Pictures/114.jpg',
+                            'Darland-Pictures/119.jpg',
+                            'Darland-Pictures/124.jpg',
+                            'Darland-Pictures/129.jpg',
+                            'Darland-Pictures/134.jpg',
+                            'Darland-Pictures/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -38699,19 +38699,19 @@ Fay Pullen
             'day' => '11',
             'images' => [
                           [
+                            'Church-Pictures/4.jpg',
+                            'Church-Pictures/9.jpg',
                             'Church-Pictures/14.jpg',
                             'Church-Pictures/19.jpg',
                             'Church-Pictures/24.jpg',
                             'Church-Pictures/29.jpg',
                             'Church-Pictures/34.jpg',
                             'Church-Pictures/39.jpg',
-                            'Church-Pictures/4.jpg',
                             'Church-Pictures/44.jpg',
                             'Church-Pictures/49.jpg',
                             'Church-Pictures/54.jpg',
                             'Church-Pictures/59.jpg',
-                            'Church-Pictures/73.jpg',
-                            'Church-Pictures/9.jpg'
+                            'Church-Pictures/73.jpg'
                           ]
                         ],
             'maps' => [
@@ -38809,7 +38809,7 @@ Fay Pullen
                       ],
             'month' => '05',
             'subdir' => '2011-05-22-white-chick',
-            'title' => undef,
+            'title' => 'White Chick',
             'tr' => undef,
             'year' => '2011'
           },
@@ -38817,14 +38817,14 @@ Fay Pullen
             'day' => '24',
             'images' => [
                           [
-                            'Ironstone-Pictures/109.jpg',
+                            'Ironstone-Pictures/4.jpg',
+                            'Ironstone-Pictures/9.jpg',
                             'Ironstone-Pictures/14.jpg',
                             'Ironstone-Pictures/19.jpg',
                             'Ironstone-Pictures/24.jpg',
                             'Ironstone-Pictures/29.jpg',
                             'Ironstone-Pictures/34.jpg',
                             'Ironstone-Pictures/39.jpg',
-                            'Ironstone-Pictures/4.jpg',
                             'Ironstone-Pictures/44.jpg',
                             'Ironstone-Pictures/49.jpg',
                             'Ironstone-Pictures/54.jpg',
@@ -38835,8 +38835,8 @@ Fay Pullen
                             'Ironstone-Pictures/79.jpg',
                             'Ironstone-Pictures/84.jpg',
                             'Ironstone-Pictures/89.jpg',
-                            'Ironstone-Pictures/9.jpg',
-                            'Ironstone-Pictures/94.jpg'
+                            'Ironstone-Pictures/94.jpg',
+                            'Ironstone-Pictures/109.jpg'
                           ]
                         ],
             'maps' => [
@@ -39088,22 +39088,14 @@ equal him when I am that age. My hat is off to "Amazing Roy".
             'day' => '16',
             'images' => [
                           [
-                            'Crescent-Pictures/104.jpg',
-                            'Crescent-Pictures/109.jpg',
-                            'Crescent-Pictures/114.jpg',
-                            'Crescent-Pictures/119.jpg',
-                            'Crescent-Pictures/124.jpg',
-                            'Crescent-Pictures/129.jpg',
-                            'Crescent-Pictures/134.jpg',
-                            'Crescent-Pictures/139.jpg',
+                            'Crescent-Pictures/4.jpg',
+                            'Crescent-Pictures/9.jpg',
                             'Crescent-Pictures/14.jpg',
-                            'Crescent-Pictures/156.jpg',
                             'Crescent-Pictures/19.jpg',
                             'Crescent-Pictures/24.jpg',
                             'Crescent-Pictures/29.jpg',
                             'Crescent-Pictures/34.jpg',
                             'Crescent-Pictures/39.jpg',
-                            'Crescent-Pictures/4.jpg',
                             'Crescent-Pictures/44.jpg',
                             'Crescent-Pictures/49.jpg',
                             'Crescent-Pictures/54.jpg',
@@ -39114,9 +39106,17 @@ equal him when I am that age. My hat is off to "Amazing Roy".
                             'Crescent-Pictures/79.jpg',
                             'Crescent-Pictures/84.jpg',
                             'Crescent-Pictures/89.jpg',
-                            'Crescent-Pictures/9.jpg',
                             'Crescent-Pictures/94.jpg',
-                            'Crescent-Pictures/99.jpg'
+                            'Crescent-Pictures/99.jpg',
+                            'Crescent-Pictures/104.jpg',
+                            'Crescent-Pictures/109.jpg',
+                            'Crescent-Pictures/114.jpg',
+                            'Crescent-Pictures/119.jpg',
+                            'Crescent-Pictures/124.jpg',
+                            'Crescent-Pictures/129.jpg',
+                            'Crescent-Pictures/134.jpg',
+                            'Crescent-Pictures/139.jpg',
+                            'Crescent-Pictures/156.jpg'
                           ]
                         ],
             'maps' => [
@@ -39231,17 +39231,14 @@ Fay Pullen
             'day' => '21',
             'images' => [
                           [
-                            'Marsupial-Pictures/104.jpg',
-                            'Marsupial-Pictures/109.jpg',
-                            'Marsupial-Pictures/114.jpg',
-                            'Marsupial-Pictures/130.jpg',
+                            'Marsupial-Pictures/4.jpg',
+                            'Marsupial-Pictures/9.jpg',
                             'Marsupial-Pictures/14.jpg',
                             'Marsupial-Pictures/19.jpg',
                             'Marsupial-Pictures/24.jpg',
                             'Marsupial-Pictures/29.jpg',
                             'Marsupial-Pictures/34.jpg',
                             'Marsupial-Pictures/39.jpg',
-                            'Marsupial-Pictures/4.jpg',
                             'Marsupial-Pictures/44.jpg',
                             'Marsupial-Pictures/49.jpg',
                             'Marsupial-Pictures/54.jpg',
@@ -39252,9 +39249,12 @@ Fay Pullen
                             'Marsupial-Pictures/79.jpg',
                             'Marsupial-Pictures/84.jpg',
                             'Marsupial-Pictures/89.jpg',
-                            'Marsupial-Pictures/9.jpg',
                             'Marsupial-Pictures/94.jpg',
-                            'Marsupial-Pictures/99.jpg'
+                            'Marsupial-Pictures/99.jpg',
+                            'Marsupial-Pictures/104.jpg',
+                            'Marsupial-Pictures/109.jpg',
+                            'Marsupial-Pictures/114.jpg',
+                            'Marsupial-Pictures/130.jpg'
                           ]
                         ],
             'maps' => [
@@ -39345,29 +39345,14 @@ Fay Pullen
             'day' => '02',
             'images' => [
                           [
-                            'Sable-Ridge-Pictures/104.jpg',
-                            'Sable-Ridge-Pictures/109.jpg',
-                            'Sable-Ridge-Pictures/114.jpg',
-                            'Sable-Ridge-Pictures/119.jpg',
-                            'Sable-Ridge-Pictures/124.jpg',
-                            'Sable-Ridge-Pictures/129.jpg',
-                            'Sable-Ridge-Pictures/134.jpg',
-                            'Sable-Ridge-Pictures/139.jpg',
+                            'Sable-Ridge-Pictures/4.jpg',
+                            'Sable-Ridge-Pictures/9.jpg',
                             'Sable-Ridge-Pictures/14.jpg',
-                            'Sable-Ridge-Pictures/144.jpg',
-                            'Sable-Ridge-Pictures/149.jpg',
-                            'Sable-Ridge-Pictures/154.jpg',
-                            'Sable-Ridge-Pictures/159.jpg',
-                            'Sable-Ridge-Pictures/164.jpg',
-                            'Sable-Ridge-Pictures/169.jpg',
-                            'Sable-Ridge-Pictures/174.jpg',
                             'Sable-Ridge-Pictures/19.jpg',
-                            'Sable-Ridge-Pictures/193.jpg',
                             'Sable-Ridge-Pictures/24.jpg',
                             'Sable-Ridge-Pictures/29.jpg',
                             'Sable-Ridge-Pictures/34.jpg',
                             'Sable-Ridge-Pictures/39.jpg',
-                            'Sable-Ridge-Pictures/4.jpg',
                             'Sable-Ridge-Pictures/44.jpg',
                             'Sable-Ridge-Pictures/49.jpg',
                             'Sable-Ridge-Pictures/54.jpg',
@@ -39378,9 +39363,24 @@ Fay Pullen
                             'Sable-Ridge-Pictures/79.jpg',
                             'Sable-Ridge-Pictures/84.jpg',
                             'Sable-Ridge-Pictures/89.jpg',
-                            'Sable-Ridge-Pictures/9.jpg',
                             'Sable-Ridge-Pictures/94.jpg',
-                            'Sable-Ridge-Pictures/99.jpg'
+                            'Sable-Ridge-Pictures/99.jpg',
+                            'Sable-Ridge-Pictures/104.jpg',
+                            'Sable-Ridge-Pictures/109.jpg',
+                            'Sable-Ridge-Pictures/114.jpg',
+                            'Sable-Ridge-Pictures/119.jpg',
+                            'Sable-Ridge-Pictures/124.jpg',
+                            'Sable-Ridge-Pictures/129.jpg',
+                            'Sable-Ridge-Pictures/134.jpg',
+                            'Sable-Ridge-Pictures/139.jpg',
+                            'Sable-Ridge-Pictures/144.jpg',
+                            'Sable-Ridge-Pictures/149.jpg',
+                            'Sable-Ridge-Pictures/154.jpg',
+                            'Sable-Ridge-Pictures/159.jpg',
+                            'Sable-Ridge-Pictures/164.jpg',
+                            'Sable-Ridge-Pictures/169.jpg',
+                            'Sable-Ridge-Pictures/174.jpg',
+                            'Sable-Ridge-Pictures/193.jpg'
                           ]
                         ],
             'maps' => [
@@ -39545,25 +39545,14 @@ Fay Pullen
             'day' => '09',
             'images' => [
                           [
-                            'Napeequa-Pictures/104.jpg',
-                            'Napeequa-Pictures/109.jpg',
-                            'Napeequa-Pictures/114.jpg',
-                            'Napeequa-Pictures/119.jpg',
-                            'Napeequa-Pictures/124.jpg',
-                            'Napeequa-Pictures/129.jpg',
-                            'Napeequa-Pictures/134.jpg',
-                            'Napeequa-Pictures/139.jpg',
+                            'Napeequa-Pictures/4.jpg',
+                            'Napeequa-Pictures/9.jpg',
                             'Napeequa-Pictures/14.jpg',
-                            'Napeequa-Pictures/144.jpg',
-                            'Napeequa-Pictures/149.jpg',
-                            'Napeequa-Pictures/154.jpg',
-                            'Napeequa-Pictures/172.jpg',
                             'Napeequa-Pictures/19.jpg',
                             'Napeequa-Pictures/24.jpg',
                             'Napeequa-Pictures/29.jpg',
                             'Napeequa-Pictures/34.jpg',
                             'Napeequa-Pictures/39.jpg',
-                            'Napeequa-Pictures/4.jpg',
                             'Napeequa-Pictures/44.jpg',
                             'Napeequa-Pictures/49.jpg',
                             'Napeequa-Pictures/54.jpg',
@@ -39574,9 +39563,20 @@ Fay Pullen
                             'Napeequa-Pictures/79.jpg',
                             'Napeequa-Pictures/84.jpg',
                             'Napeequa-Pictures/89.jpg',
-                            'Napeequa-Pictures/9.jpg',
                             'Napeequa-Pictures/94.jpg',
-                            'Napeequa-Pictures/99.jpg'
+                            'Napeequa-Pictures/99.jpg',
+                            'Napeequa-Pictures/104.jpg',
+                            'Napeequa-Pictures/109.jpg',
+                            'Napeequa-Pictures/114.jpg',
+                            'Napeequa-Pictures/119.jpg',
+                            'Napeequa-Pictures/124.jpg',
+                            'Napeequa-Pictures/129.jpg',
+                            'Napeequa-Pictures/134.jpg',
+                            'Napeequa-Pictures/139.jpg',
+                            'Napeequa-Pictures/144.jpg',
+                            'Napeequa-Pictures/149.jpg',
+                            'Napeequa-Pictures/154.jpg',
+                            'Napeequa-Pictures/172.jpg'
                           ]
                         ],
             'maps' => [
@@ -39708,20 +39708,20 @@ Fay Pullen
             'day' => '19',
             'images' => [
                           [
+                            'Frisco-Pictures/4.jpg',
+                            'Frisco-Pictures/9.jpg',
                             'Frisco-Pictures/14.jpg',
                             'Frisco-Pictures/19.jpg',
                             'Frisco-Pictures/24.jpg',
                             'Frisco-Pictures/29.jpg',
                             'Frisco-Pictures/34.jpg',
                             'Frisco-Pictures/39.jpg',
-                            'Frisco-Pictures/4.jpg',
                             'Frisco-Pictures/44.jpg',
                             'Frisco-Pictures/49.jpg',
                             'Frisco-Pictures/54.jpg',
                             'Frisco-Pictures/59.jpg',
                             'Frisco-Pictures/64.jpg',
-                            'Frisco-Pictures/78.jpg',
-                            'Frisco-Pictures/9.jpg'
+                            'Frisco-Pictures/78.jpg'
                           ]
                         ],
             'maps' => [
@@ -39784,31 +39784,14 @@ Fay Pullen
             'day' => '22',
             'images' => [
                           [
-                            'Tenpeak-Pictures/104.jpg',
-                            'Tenpeak-Pictures/109.jpg',
-                            'Tenpeak-Pictures/114.jpg',
-                            'Tenpeak-Pictures/119.jpg',
-                            'Tenpeak-Pictures/124.jpg',
-                            'Tenpeak-Pictures/129.jpg',
-                            'Tenpeak-Pictures/134.jpg',
-                            'Tenpeak-Pictures/139.jpg',
+                            'Tenpeak-Pictures/4.jpg',
+                            'Tenpeak-Pictures/9.jpg',
                             'Tenpeak-Pictures/14.jpg',
-                            'Tenpeak-Pictures/144.jpg',
-                            'Tenpeak-Pictures/149.jpg',
-                            'Tenpeak-Pictures/154.jpg',
-                            'Tenpeak-Pictures/159.jpg',
-                            'Tenpeak-Pictures/164.jpg',
-                            'Tenpeak-Pictures/169.jpg',
-                            'Tenpeak-Pictures/174.jpg',
-                            'Tenpeak-Pictures/179.jpg',
-                            'Tenpeak-Pictures/184.jpg',
                             'Tenpeak-Pictures/19.jpg',
-                            'Tenpeak-Pictures/203.jpg',
                             'Tenpeak-Pictures/24.jpg',
                             'Tenpeak-Pictures/29.jpg',
                             'Tenpeak-Pictures/34.jpg',
                             'Tenpeak-Pictures/39.jpg',
-                            'Tenpeak-Pictures/4.jpg',
                             'Tenpeak-Pictures/44.jpg',
                             'Tenpeak-Pictures/49.jpg',
                             'Tenpeak-Pictures/54.jpg',
@@ -39819,9 +39802,26 @@ Fay Pullen
                             'Tenpeak-Pictures/79.jpg',
                             'Tenpeak-Pictures/84.jpg',
                             'Tenpeak-Pictures/89.jpg',
-                            'Tenpeak-Pictures/9.jpg',
                             'Tenpeak-Pictures/94.jpg',
-                            'Tenpeak-Pictures/99.jpg'
+                            'Tenpeak-Pictures/99.jpg',
+                            'Tenpeak-Pictures/104.jpg',
+                            'Tenpeak-Pictures/109.jpg',
+                            'Tenpeak-Pictures/114.jpg',
+                            'Tenpeak-Pictures/119.jpg',
+                            'Tenpeak-Pictures/124.jpg',
+                            'Tenpeak-Pictures/129.jpg',
+                            'Tenpeak-Pictures/134.jpg',
+                            'Tenpeak-Pictures/139.jpg',
+                            'Tenpeak-Pictures/144.jpg',
+                            'Tenpeak-Pictures/149.jpg',
+                            'Tenpeak-Pictures/154.jpg',
+                            'Tenpeak-Pictures/159.jpg',
+                            'Tenpeak-Pictures/164.jpg',
+                            'Tenpeak-Pictures/169.jpg',
+                            'Tenpeak-Pictures/174.jpg',
+                            'Tenpeak-Pictures/179.jpg',
+                            'Tenpeak-Pictures/184.jpg',
+                            'Tenpeak-Pictures/203.jpg'
                           ]
                         ],
             'maps' => [
@@ -39934,28 +39934,14 @@ Fay Pullen
             'day' => '29',
             'images' => [
                           [
-                            'Middle-Index-Pictures/104.jpg',
-                            'Middle-Index-Pictures/109.jpg',
-                            'Middle-Index-Pictures/114.jpg',
-                            'Middle-Index-Pictures/119.jpg',
-                            'Middle-Index-Pictures/124.jpg',
-                            'Middle-Index-Pictures/129.jpg',
-                            'Middle-Index-Pictures/134.jpg',
-                            'Middle-Index-Pictures/139.jpg',
+                            'Middle-Index-Pictures/4.jpg',
+                            'Middle-Index-Pictures/9.jpg',
                             'Middle-Index-Pictures/14.jpg',
-                            'Middle-Index-Pictures/144.jpg',
-                            'Middle-Index-Pictures/149.jpg',
-                            'Middle-Index-Pictures/154.jpg',
-                            'Middle-Index-Pictures/159.jpg',
-                            'Middle-Index-Pictures/164.jpg',
-                            'Middle-Index-Pictures/169.jpg',
-                            'Middle-Index-Pictures/187.jpg',
                             'Middle-Index-Pictures/19.jpg',
                             'Middle-Index-Pictures/24.jpg',
                             'Middle-Index-Pictures/29.jpg',
                             'Middle-Index-Pictures/34.jpg',
                             'Middle-Index-Pictures/39.jpg',
-                            'Middle-Index-Pictures/4.jpg',
                             'Middle-Index-Pictures/44.jpg',
                             'Middle-Index-Pictures/49.jpg',
                             'Middle-Index-Pictures/54.jpg',
@@ -39966,9 +39952,23 @@ Fay Pullen
                             'Middle-Index-Pictures/79.jpg',
                             'Middle-Index-Pictures/84.jpg',
                             'Middle-Index-Pictures/89.jpg',
-                            'Middle-Index-Pictures/9.jpg',
                             'Middle-Index-Pictures/94.jpg',
-                            'Middle-Index-Pictures/99.jpg'
+                            'Middle-Index-Pictures/99.jpg',
+                            'Middle-Index-Pictures/104.jpg',
+                            'Middle-Index-Pictures/109.jpg',
+                            'Middle-Index-Pictures/114.jpg',
+                            'Middle-Index-Pictures/119.jpg',
+                            'Middle-Index-Pictures/124.jpg',
+                            'Middle-Index-Pictures/129.jpg',
+                            'Middle-Index-Pictures/134.jpg',
+                            'Middle-Index-Pictures/139.jpg',
+                            'Middle-Index-Pictures/144.jpg',
+                            'Middle-Index-Pictures/149.jpg',
+                            'Middle-Index-Pictures/154.jpg',
+                            'Middle-Index-Pictures/159.jpg',
+                            'Middle-Index-Pictures/164.jpg',
+                            'Middle-Index-Pictures/169.jpg',
+                            'Middle-Index-Pictures/187.jpg'
                           ]
                         ],
             'maps' => [
@@ -40134,27 +40134,14 @@ Fay Pullen
             'day' => '06',
             'images' => [
                           [
-                            'Kololo-Pictures/104.jpg',
-                            'Kololo-Pictures/109.jpg',
-                            'Kololo-Pictures/114.jpg',
-                            'Kololo-Pictures/119.jpg',
-                            'Kololo-Pictures/124.jpg',
-                            'Kololo-Pictures/129.jpg',
-                            'Kololo-Pictures/134.jpg',
-                            'Kololo-Pictures/139.jpg',
+                            'Kololo-Pictures/4.jpg',
+                            'Kololo-Pictures/9.jpg',
                             'Kololo-Pictures/14.jpg',
-                            'Kololo-Pictures/144.jpg',
-                            'Kololo-Pictures/149.jpg',
-                            'Kololo-Pictures/154.jpg',
-                            'Kololo-Pictures/159.jpg',
-                            'Kololo-Pictures/164.jpg',
-                            'Kololo-Pictures/182.jpg',
                             'Kololo-Pictures/19.jpg',
                             'Kololo-Pictures/24.jpg',
                             'Kololo-Pictures/29.jpg',
                             'Kololo-Pictures/34.jpg',
                             'Kololo-Pictures/39.jpg',
-                            'Kololo-Pictures/4.jpg',
                             'Kololo-Pictures/44.jpg',
                             'Kololo-Pictures/49.jpg',
                             'Kololo-Pictures/54.jpg',
@@ -40165,9 +40152,22 @@ Fay Pullen
                             'Kololo-Pictures/79.jpg',
                             'Kololo-Pictures/84.jpg',
                             'Kololo-Pictures/89.jpg',
-                            'Kololo-Pictures/9.jpg',
                             'Kololo-Pictures/94.jpg',
-                            'Kololo-Pictures/99.jpg'
+                            'Kololo-Pictures/99.jpg',
+                            'Kololo-Pictures/104.jpg',
+                            'Kololo-Pictures/109.jpg',
+                            'Kololo-Pictures/114.jpg',
+                            'Kololo-Pictures/119.jpg',
+                            'Kololo-Pictures/124.jpg',
+                            'Kololo-Pictures/129.jpg',
+                            'Kololo-Pictures/134.jpg',
+                            'Kololo-Pictures/139.jpg',
+                            'Kololo-Pictures/144.jpg',
+                            'Kololo-Pictures/149.jpg',
+                            'Kololo-Pictures/154.jpg',
+                            'Kololo-Pictures/159.jpg',
+                            'Kololo-Pictures/164.jpg',
+                            'Kololo-Pictures/182.jpg'
                           ]
                         ],
             'maps' => [
@@ -40323,24 +40323,14 @@ Fay Pullen
             'day' => '12',
             'images' => [
                           [
-                            'Horsemans-Pack-Pictures/104.jpg',
-                            'Horsemans-Pack-Pictures/109.jpg',
-                            'Horsemans-Pack-Pictures/114.jpg',
-                            'Horsemans-Pack-Pictures/119.jpg',
-                            'Horsemans-Pack-Pictures/124.jpg',
-                            'Horsemans-Pack-Pictures/129.jpg',
-                            'Horsemans-Pack-Pictures/134.jpg',
-                            'Horsemans-Pack-Pictures/139.jpg',
+                            'Horsemans-Pack-Pictures/4.jpg',
+                            'Horsemans-Pack-Pictures/9.jpg',
                             'Horsemans-Pack-Pictures/14.jpg',
-                            'Horsemans-Pack-Pictures/144.jpg',
-                            'Horsemans-Pack-Pictures/149.jpg',
-                            'Horsemans-Pack-Pictures/167.jpg',
                             'Horsemans-Pack-Pictures/19.jpg',
                             'Horsemans-Pack-Pictures/24.jpg',
                             'Horsemans-Pack-Pictures/29.jpg',
                             'Horsemans-Pack-Pictures/34.jpg',
                             'Horsemans-Pack-Pictures/39.jpg',
-                            'Horsemans-Pack-Pictures/4.jpg',
                             'Horsemans-Pack-Pictures/44.jpg',
                             'Horsemans-Pack-Pictures/49.jpg',
                             'Horsemans-Pack-Pictures/54.jpg',
@@ -40351,9 +40341,19 @@ Fay Pullen
                             'Horsemans-Pack-Pictures/79.jpg',
                             'Horsemans-Pack-Pictures/84.jpg',
                             'Horsemans-Pack-Pictures/89.jpg',
-                            'Horsemans-Pack-Pictures/9.jpg',
                             'Horsemans-Pack-Pictures/94.jpg',
-                            'Horsemans-Pack-Pictures/99.jpg'
+                            'Horsemans-Pack-Pictures/99.jpg',
+                            'Horsemans-Pack-Pictures/104.jpg',
+                            'Horsemans-Pack-Pictures/109.jpg',
+                            'Horsemans-Pack-Pictures/114.jpg',
+                            'Horsemans-Pack-Pictures/119.jpg',
+                            'Horsemans-Pack-Pictures/124.jpg',
+                            'Horsemans-Pack-Pictures/129.jpg',
+                            'Horsemans-Pack-Pictures/134.jpg',
+                            'Horsemans-Pack-Pictures/139.jpg',
+                            'Horsemans-Pack-Pictures/144.jpg',
+                            'Horsemans-Pack-Pictures/149.jpg',
+                            'Horsemans-Pack-Pictures/167.jpg'
                           ]
                         ],
             'maps' => [
@@ -40485,31 +40485,14 @@ Fay Pullen
             'day' => '19',
             'images' => [
                           [
-                            'Spider-Pictures/104.jpg',
-                            'Spider-Pictures/109.jpg',
-                            'Spider-Pictures/114.jpg',
-                            'Spider-Pictures/119.jpg',
-                            'Spider-Pictures/124.jpg',
-                            'Spider-Pictures/129.jpg',
-                            'Spider-Pictures/134.jpg',
-                            'Spider-Pictures/139.jpg',
+                            'Spider-Pictures/4.jpg',
+                            'Spider-Pictures/9.jpg',
                             'Spider-Pictures/14.jpg',
-                            'Spider-Pictures/144.jpg',
-                            'Spider-Pictures/149.jpg',
-                            'Spider-Pictures/154.jpg',
-                            'Spider-Pictures/159.jpg',
-                            'Spider-Pictures/164.jpg',
-                            'Spider-Pictures/169.jpg',
-                            'Spider-Pictures/174.jpg',
-                            'Spider-Pictures/179.jpg',
-                            'Spider-Pictures/184.jpg',
                             'Spider-Pictures/19.jpg',
-                            'Spider-Pictures/203.jpg',
                             'Spider-Pictures/24.jpg',
                             'Spider-Pictures/29.jpg',
                             'Spider-Pictures/34.jpg',
                             'Spider-Pictures/39.jpg',
-                            'Spider-Pictures/4.jpg',
                             'Spider-Pictures/44.jpg',
                             'Spider-Pictures/49.jpg',
                             'Spider-Pictures/54.jpg',
@@ -40520,9 +40503,26 @@ Fay Pullen
                             'Spider-Pictures/79.jpg',
                             'Spider-Pictures/84.jpg',
                             'Spider-Pictures/89.jpg',
-                            'Spider-Pictures/9.jpg',
                             'Spider-Pictures/94.jpg',
-                            'Spider-Pictures/99.jpg'
+                            'Spider-Pictures/99.jpg',
+                            'Spider-Pictures/104.jpg',
+                            'Spider-Pictures/109.jpg',
+                            'Spider-Pictures/114.jpg',
+                            'Spider-Pictures/119.jpg',
+                            'Spider-Pictures/124.jpg',
+                            'Spider-Pictures/129.jpg',
+                            'Spider-Pictures/134.jpg',
+                            'Spider-Pictures/139.jpg',
+                            'Spider-Pictures/144.jpg',
+                            'Spider-Pictures/149.jpg',
+                            'Spider-Pictures/154.jpg',
+                            'Spider-Pictures/159.jpg',
+                            'Spider-Pictures/164.jpg',
+                            'Spider-Pictures/169.jpg',
+                            'Spider-Pictures/174.jpg',
+                            'Spider-Pictures/179.jpg',
+                            'Spider-Pictures/184.jpg',
+                            'Spider-Pictures/203.jpg'
                           ]
                         ],
             'maps' => [
@@ -40712,29 +40712,14 @@ Fay Pullen
             'day' => '26',
             'images' => [
                           [
-                            'McGregor-Pictures/104.jpg',
-                            'McGregor-Pictures/109.jpg',
-                            'McGregor-Pictures/114.jpg',
-                            'McGregor-Pictures/119.jpg',
-                            'McGregor-Pictures/124.jpg',
-                            'McGregor-Pictures/129.jpg',
-                            'McGregor-Pictures/134.jpg',
-                            'McGregor-Pictures/139.jpg',
+                            'McGregor-Pictures/4.jpg',
+                            'McGregor-Pictures/9.jpg',
                             'McGregor-Pictures/14.jpg',
-                            'McGregor-Pictures/144.jpg',
-                            'McGregor-Pictures/149.jpg',
-                            'McGregor-Pictures/154.jpg',
-                            'McGregor-Pictures/159.jpg',
-                            'McGregor-Pictures/164.jpg',
-                            'McGregor-Pictures/169.jpg',
-                            'McGregor-Pictures/174.jpg',
                             'McGregor-Pictures/19.jpg',
-                            'McGregor-Pictures/193.jpg',
                             'McGregor-Pictures/24.jpg',
                             'McGregor-Pictures/29.jpg',
                             'McGregor-Pictures/34.jpg',
                             'McGregor-Pictures/39.jpg',
-                            'McGregor-Pictures/4.jpg',
                             'McGregor-Pictures/44.jpg',
                             'McGregor-Pictures/49.jpg',
                             'McGregor-Pictures/54.jpg',
@@ -40745,9 +40730,24 @@ Fay Pullen
                             'McGregor-Pictures/79.jpg',
                             'McGregor-Pictures/84.jpg',
                             'McGregor-Pictures/89.jpg',
-                            'McGregor-Pictures/9.jpg',
                             'McGregor-Pictures/94.jpg',
-                            'McGregor-Pictures/99.jpg'
+                            'McGregor-Pictures/99.jpg',
+                            'McGregor-Pictures/104.jpg',
+                            'McGregor-Pictures/109.jpg',
+                            'McGregor-Pictures/114.jpg',
+                            'McGregor-Pictures/119.jpg',
+                            'McGregor-Pictures/124.jpg',
+                            'McGregor-Pictures/129.jpg',
+                            'McGregor-Pictures/134.jpg',
+                            'McGregor-Pictures/139.jpg',
+                            'McGregor-Pictures/144.jpg',
+                            'McGregor-Pictures/149.jpg',
+                            'McGregor-Pictures/154.jpg',
+                            'McGregor-Pictures/159.jpg',
+                            'McGregor-Pictures/164.jpg',
+                            'McGregor-Pictures/169.jpg',
+                            'McGregor-Pictures/174.jpg',
+                            'McGregor-Pictures/193.jpg'
                           ]
                         ],
             'maps' => [
@@ -40888,25 +40888,14 @@ Fay Pullen
             'day' => '09',
             'images' => [
                           [
-                            'Devils-Tongue-Pictures/104.jpg',
-                            'Devils-Tongue-Pictures/109.jpg',
-                            'Devils-Tongue-Pictures/114.jpg',
-                            'Devils-Tongue-Pictures/119.jpg',
-                            'Devils-Tongue-Pictures/124.jpg',
-                            'Devils-Tongue-Pictures/129.jpg',
-                            'Devils-Tongue-Pictures/134.jpg',
-                            'Devils-Tongue-Pictures/139.jpg',
+                            'Devils-Tongue-Pictures/4.jpg',
+                            'Devils-Tongue-Pictures/9.jpg',
                             'Devils-Tongue-Pictures/14.jpg',
-                            'Devils-Tongue-Pictures/144.jpg',
-                            'Devils-Tongue-Pictures/149.jpg',
-                            'Devils-Tongue-Pictures/154.jpg',
-                            'Devils-Tongue-Pictures/172.jpg',
                             'Devils-Tongue-Pictures/19.jpg',
                             'Devils-Tongue-Pictures/24.jpg',
                             'Devils-Tongue-Pictures/29.jpg',
                             'Devils-Tongue-Pictures/34.jpg',
                             'Devils-Tongue-Pictures/39.jpg',
-                            'Devils-Tongue-Pictures/4.jpg',
                             'Devils-Tongue-Pictures/44.jpg',
                             'Devils-Tongue-Pictures/49.jpg',
                             'Devils-Tongue-Pictures/54.jpg',
@@ -40917,9 +40906,20 @@ Fay Pullen
                             'Devils-Tongue-Pictures/79.jpg',
                             'Devils-Tongue-Pictures/84.jpg',
                             'Devils-Tongue-Pictures/89.jpg',
-                            'Devils-Tongue-Pictures/9.jpg',
                             'Devils-Tongue-Pictures/94.jpg',
-                            'Devils-Tongue-Pictures/99.jpg'
+                            'Devils-Tongue-Pictures/99.jpg',
+                            'Devils-Tongue-Pictures/104.jpg',
+                            'Devils-Tongue-Pictures/109.jpg',
+                            'Devils-Tongue-Pictures/114.jpg',
+                            'Devils-Tongue-Pictures/119.jpg',
+                            'Devils-Tongue-Pictures/124.jpg',
+                            'Devils-Tongue-Pictures/129.jpg',
+                            'Devils-Tongue-Pictures/134.jpg',
+                            'Devils-Tongue-Pictures/139.jpg',
+                            'Devils-Tongue-Pictures/144.jpg',
+                            'Devils-Tongue-Pictures/149.jpg',
+                            'Devils-Tongue-Pictures/154.jpg',
+                            'Devils-Tongue-Pictures/172.jpg'
                           ]
                         ],
             'maps' => [
@@ -41045,18 +41045,14 @@ Fay Pullen
             'day' => '19',
             'images' => [
                           [
-                            'Deer-Park-Pictures/104.jpg',
-                            'Deer-Park-Pictures/109.jpg',
-                            'Deer-Park-Pictures/114.jpg',
-                            'Deer-Park-Pictures/119.jpg',
-                            'Deer-Park-Pictures/135.jpg',
+                            'Deer-Park-Pictures/4.jpg',
+                            'Deer-Park-Pictures/9.jpg',
                             'Deer-Park-Pictures/14.jpg',
                             'Deer-Park-Pictures/19.jpg',
                             'Deer-Park-Pictures/24.jpg',
                             'Deer-Park-Pictures/29.jpg',
                             'Deer-Park-Pictures/34.jpg',
                             'Deer-Park-Pictures/39.jpg',
-                            'Deer-Park-Pictures/4.jpg',
                             'Deer-Park-Pictures/44.jpg',
                             'Deer-Park-Pictures/49.jpg',
                             'Deer-Park-Pictures/54.jpg',
@@ -41067,9 +41063,13 @@ Fay Pullen
                             'Deer-Park-Pictures/79.jpg',
                             'Deer-Park-Pictures/84.jpg',
                             'Deer-Park-Pictures/89.jpg',
-                            'Deer-Park-Pictures/9.jpg',
                             'Deer-Park-Pictures/94.jpg',
-                            'Deer-Park-Pictures/99.jpg'
+                            'Deer-Park-Pictures/99.jpg',
+                            'Deer-Park-Pictures/104.jpg',
+                            'Deer-Park-Pictures/109.jpg',
+                            'Deer-Park-Pictures/114.jpg',
+                            'Deer-Park-Pictures/119.jpg',
+                            'Deer-Park-Pictures/135.jpg'
                           ]
                         ],
             'maps' => [
@@ -41159,14 +41159,14 @@ Fay Pullen
             'day' => '29',
             'images' => [
                           [
-                            'Lakeview-Pictures/104.jpg',
+                            'Lakeview-Pictures/4.jpg',
+                            'Lakeview-Pictures/9.jpg',
                             'Lakeview-Pictures/14.jpg',
                             'Lakeview-Pictures/19.jpg',
                             'Lakeview-Pictures/24.jpg',
                             'Lakeview-Pictures/29.jpg',
                             'Lakeview-Pictures/34.jpg',
                             'Lakeview-Pictures/39.jpg',
-                            'Lakeview-Pictures/4.jpg',
                             'Lakeview-Pictures/44.jpg',
                             'Lakeview-Pictures/49.jpg',
                             'Lakeview-Pictures/54.jpg',
@@ -41177,7 +41177,7 @@ Fay Pullen
                             'Lakeview-Pictures/79.jpg',
                             'Lakeview-Pictures/84.jpg',
                             'Lakeview-Pictures/89.jpg',
-                            'Lakeview-Pictures/9.jpg'
+                            'Lakeview-Pictures/104.jpg'
                           ]
                         ],
             'maps' => [
@@ -41186,7 +41186,7 @@ Fay Pullen
                       ],
             'month' => '10',
             'subdir' => '2011-10-29-lakeview',
-            'title' => undef,
+            'title' => 'Lakeview Mtn',
             'tr' => undef,
             'year' => '2011'
           },
@@ -41194,17 +41194,14 @@ Fay Pullen
             'day' => '01',
             'images' => [
                           [
-                            'Nelson-Butte-Pictures/104.jpg',
-                            'Nelson-Butte-Pictures/109.jpg',
-                            'Nelson-Butte-Pictures/114.jpg',
-                            'Nelson-Butte-Pictures/130.jpg',
+                            'Nelson-Butte-Pictures/4.jpg',
+                            'Nelson-Butte-Pictures/9.jpg',
                             'Nelson-Butte-Pictures/14.jpg',
                             'Nelson-Butte-Pictures/19.jpg',
                             'Nelson-Butte-Pictures/24.jpg',
                             'Nelson-Butte-Pictures/29.jpg',
                             'Nelson-Butte-Pictures/34.jpg',
                             'Nelson-Butte-Pictures/39.jpg',
-                            'Nelson-Butte-Pictures/4.jpg',
                             'Nelson-Butte-Pictures/44.jpg',
                             'Nelson-Butte-Pictures/49.jpg',
                             'Nelson-Butte-Pictures/54.jpg',
@@ -41215,9 +41212,12 @@ Fay Pullen
                             'Nelson-Butte-Pictures/79.jpg',
                             'Nelson-Butte-Pictures/84.jpg',
                             'Nelson-Butte-Pictures/89.jpg',
-                            'Nelson-Butte-Pictures/9.jpg',
                             'Nelson-Butte-Pictures/94.jpg',
-                            'Nelson-Butte-Pictures/99.jpg'
+                            'Nelson-Butte-Pictures/99.jpg',
+                            'Nelson-Butte-Pictures/104.jpg',
+                            'Nelson-Butte-Pictures/109.jpg',
+                            'Nelson-Butte-Pictures/114.jpg',
+                            'Nelson-Butte-Pictures/130.jpg'
                           ]
                         ],
             'maps' => [
@@ -41344,14 +41344,14 @@ Fay Pullen
             'day' => '06',
             'images' => [
                           [
-                            'Tubal-Cain-Pictures/109.jpg',
+                            'Tubal-Cain-Pictures/4.jpg',
+                            'Tubal-Cain-Pictures/9.jpg',
                             'Tubal-Cain-Pictures/14.jpg',
                             'Tubal-Cain-Pictures/19.jpg',
                             'Tubal-Cain-Pictures/24.jpg',
                             'Tubal-Cain-Pictures/29.jpg',
                             'Tubal-Cain-Pictures/34.jpg',
                             'Tubal-Cain-Pictures/39.jpg',
-                            'Tubal-Cain-Pictures/4.jpg',
                             'Tubal-Cain-Pictures/44.jpg',
                             'Tubal-Cain-Pictures/49.jpg',
                             'Tubal-Cain-Pictures/54.jpg',
@@ -41362,8 +41362,8 @@ Fay Pullen
                             'Tubal-Cain-Pictures/79.jpg',
                             'Tubal-Cain-Pictures/84.jpg',
                             'Tubal-Cain-Pictures/89.jpg',
-                            'Tubal-Cain-Pictures/9.jpg',
-                            'Tubal-Cain-Pictures/94.jpg'
+                            'Tubal-Cain-Pictures/94.jpg',
+                            'Tubal-Cain-Pictures/109.jpg'
                           ]
                         ],
             'maps' => [
@@ -41432,15 +41432,14 @@ Fay Pullen
             'day' => '14',
             'images' => [
                           [
-                            'Siouxon-Pictures/104.jpg',
-                            'Siouxon-Pictures/120.jpg',
+                            'Siouxon-Pictures/4.jpg',
+                            'Siouxon-Pictures/9.jpg',
                             'Siouxon-Pictures/14.jpg',
                             'Siouxon-Pictures/19.jpg',
                             'Siouxon-Pictures/24.jpg',
                             'Siouxon-Pictures/29.jpg',
                             'Siouxon-Pictures/34.jpg',
                             'Siouxon-Pictures/39.jpg',
-                            'Siouxon-Pictures/4.jpg',
                             'Siouxon-Pictures/44.jpg',
                             'Siouxon-Pictures/49.jpg',
                             'Siouxon-Pictures/54.jpg',
@@ -41451,9 +41450,10 @@ Fay Pullen
                             'Siouxon-Pictures/79.jpg',
                             'Siouxon-Pictures/84.jpg',
                             'Siouxon-Pictures/89.jpg',
-                            'Siouxon-Pictures/9.jpg',
                             'Siouxon-Pictures/94.jpg',
-                            'Siouxon-Pictures/99.jpg'
+                            'Siouxon-Pictures/99.jpg',
+                            'Siouxon-Pictures/104.jpg',
+                            'Siouxon-Pictures/120.jpg'
                           ]
                         ],
             'maps' => [
@@ -41627,18 +41627,14 @@ Fay Pullen
             'day' => '05',
             'images' => [
                           [
-                            'April-Pk-Pictures/104.jpg',
-                            'April-Pk-Pictures/109.jpg',
-                            'April-Pk-Pictures/114.jpg',
-                            'April-Pk-Pictures/119.jpg',
-                            'April-Pk-Pictures/135.jpg',
+                            'April-Pk-Pictures/4.jpg',
+                            'April-Pk-Pictures/9.jpg',
                             'April-Pk-Pictures/14.jpg',
                             'April-Pk-Pictures/19.jpg',
                             'April-Pk-Pictures/24.jpg',
                             'April-Pk-Pictures/29.jpg',
                             'April-Pk-Pictures/34.jpg',
                             'April-Pk-Pictures/39.jpg',
-                            'April-Pk-Pictures/4.jpg',
                             'April-Pk-Pictures/44.jpg',
                             'April-Pk-Pictures/49.jpg',
                             'April-Pk-Pictures/54.jpg',
@@ -41649,9 +41645,13 @@ Fay Pullen
                             'April-Pk-Pictures/79.jpg',
                             'April-Pk-Pictures/84.jpg',
                             'April-Pk-Pictures/89.jpg',
-                            'April-Pk-Pictures/9.jpg',
                             'April-Pk-Pictures/94.jpg',
-                            'April-Pk-Pictures/99.jpg'
+                            'April-Pk-Pictures/99.jpg',
+                            'April-Pk-Pictures/104.jpg',
+                            'April-Pk-Pictures/109.jpg',
+                            'April-Pk-Pictures/114.jpg',
+                            'April-Pk-Pictures/119.jpg',
+                            'April-Pk-Pictures/135.jpg'
                           ]
                         ],
             'maps' => [
@@ -41784,13 +41784,14 @@ Fay Pullen
             'day' => '18',
             'images' => [
                           [
+                            'Cowlitz-Rocks-Pictures/4.jpg',
+                            'Cowlitz-Rocks-Pictures/9.jpg',
                             'Cowlitz-Rocks-Pictures/14.jpg',
                             'Cowlitz-Rocks-Pictures/19.jpg',
                             'Cowlitz-Rocks-Pictures/24.jpg',
                             'Cowlitz-Rocks-Pictures/29.jpg',
                             'Cowlitz-Rocks-Pictures/34.jpg',
                             'Cowlitz-Rocks-Pictures/39.jpg',
-                            'Cowlitz-Rocks-Pictures/4.jpg',
                             'Cowlitz-Rocks-Pictures/44.jpg',
                             'Cowlitz-Rocks-Pictures/49.jpg',
                             'Cowlitz-Rocks-Pictures/54.jpg',
@@ -41800,7 +41801,6 @@ Fay Pullen
                             'Cowlitz-Rocks-Pictures/74.jpg',
                             'Cowlitz-Rocks-Pictures/79.jpg',
                             'Cowlitz-Rocks-Pictures/84.jpg',
-                            'Cowlitz-Rocks-Pictures/9.jpg',
                             'Cowlitz-Rocks-Pictures/99.jpg'
                           ]
                         ],
@@ -41809,7 +41809,7 @@ Fay Pullen
                       ],
             'month' => '12',
             'subdir' => '2011-12-18-cowlitz-rocks',
-            'title' => undef,
+            'title' => 'Cowlitz Rocks',
             'tr' => undef,
             'year' => '2011'
           },
@@ -41817,13 +41817,14 @@ Fay Pullen
             'day' => '31',
             'images' => [
                           [
+                            'Puyallup-LO-Pictures/4.jpg',
+                            'Puyallup-LO-Pictures/9.jpg',
                             'Puyallup-LO-Pictures/14.jpg',
                             'Puyallup-LO-Pictures/19.jpg',
                             'Puyallup-LO-Pictures/24.jpg',
                             'Puyallup-LO-Pictures/29.jpg',
                             'Puyallup-LO-Pictures/34.jpg',
                             'Puyallup-LO-Pictures/39.jpg',
-                            'Puyallup-LO-Pictures/4.jpg',
                             'Puyallup-LO-Pictures/44.jpg',
                             'Puyallup-LO-Pictures/49.jpg',
                             'Puyallup-LO-Pictures/54.jpg',
@@ -41833,7 +41834,6 @@ Fay Pullen
                             'Puyallup-LO-Pictures/74.jpg',
                             'Puyallup-LO-Pictures/79.jpg',
                             'Puyallup-LO-Pictures/84.jpg',
-                            'Puyallup-LO-Pictures/9.jpg',
                             'Puyallup-LO-Pictures/99.jpg'
                           ]
                         ],
@@ -41950,7 +41950,7 @@ Fay Pullen
                       ],
             'month' => '01',
             'subdir' => '2012-01-09-green-quilcene',
-            'title' => undef,
+            'title' => 'Green Mtn Quilcene',
             'tr' => undef,
             'year' => '2012'
           },
@@ -41962,7 +41962,7 @@ Fay Pullen
                       ],
             'month' => '01',
             'subdir' => '2012-01-13-hoodsport',
-            'title' => undef,
+            'title' => 'Hoodsport s',
             'tr' => undef,
             'year' => '2012'
           },
@@ -41970,13 +41970,14 @@ Fay Pullen
             'day' => '28',
             'images' => [
                           [
+                            'Mt-Margaret-via-Rocky-Run-Pictures/4.jpg',
+                            'Mt-Margaret-via-Rocky-Run-Pictures/9.jpg',
                             'Mt-Margaret-via-Rocky-Run-Pictures/14.jpg',
                             'Mt-Margaret-via-Rocky-Run-Pictures/19.jpg',
                             'Mt-Margaret-via-Rocky-Run-Pictures/24.jpg',
                             'Mt-Margaret-via-Rocky-Run-Pictures/29.jpg',
                             'Mt-Margaret-via-Rocky-Run-Pictures/34.jpg',
                             'Mt-Margaret-via-Rocky-Run-Pictures/39.jpg',
-                            'Mt-Margaret-via-Rocky-Run-Pictures/4.jpg',
                             'Mt-Margaret-via-Rocky-Run-Pictures/44.jpg',
                             'Mt-Margaret-via-Rocky-Run-Pictures/49.jpg',
                             'Mt-Margaret-via-Rocky-Run-Pictures/54.jpg',
@@ -41985,7 +41986,6 @@ Fay Pullen
                             'Mt-Margaret-via-Rocky-Run-Pictures/69.jpg',
                             'Mt-Margaret-via-Rocky-Run-Pictures/74.jpg',
                             'Mt-Margaret-via-Rocky-Run-Pictures/79.jpg',
-                            'Mt-Margaret-via-Rocky-Run-Pictures/9.jpg',
                             'Mt-Margaret-via-Rocky-Run-Pictures/94.jpg'
                           ]
                         ],
@@ -42062,19 +42062,14 @@ Total:       8       miles,       3600       ft       and       9       hrs.
             'day' => '02',
             'images' => [
                           [
-                            'Dungeon-Pk-Loop-Pictures/104.jpg',
-                            'Dungeon-Pk-Loop-Pictures/109.jpg',
-                            'Dungeon-Pk-Loop-Pictures/114.jpg',
-                            'Dungeon-Pk-Loop-Pictures/119.jpg',
-                            'Dungeon-Pk-Loop-Pictures/124.jpg',
+                            'Dungeon-Pk-Loop-Pictures/4.jpg',
+                            'Dungeon-Pk-Loop-Pictures/9.jpg',
                             'Dungeon-Pk-Loop-Pictures/14.jpg',
-                            'Dungeon-Pk-Loop-Pictures/141.jpg',
                             'Dungeon-Pk-Loop-Pictures/19.jpg',
                             'Dungeon-Pk-Loop-Pictures/24.jpg',
                             'Dungeon-Pk-Loop-Pictures/29.jpg',
                             'Dungeon-Pk-Loop-Pictures/34.jpg',
                             'Dungeon-Pk-Loop-Pictures/39.jpg',
-                            'Dungeon-Pk-Loop-Pictures/4.jpg',
                             'Dungeon-Pk-Loop-Pictures/44.jpg',
                             'Dungeon-Pk-Loop-Pictures/49.jpg',
                             'Dungeon-Pk-Loop-Pictures/54.jpg',
@@ -42085,9 +42080,14 @@ Total:       8       miles,       3600       ft       and       9       hrs.
                             'Dungeon-Pk-Loop-Pictures/79.jpg',
                             'Dungeon-Pk-Loop-Pictures/84.jpg',
                             'Dungeon-Pk-Loop-Pictures/89.jpg',
-                            'Dungeon-Pk-Loop-Pictures/9.jpg',
                             'Dungeon-Pk-Loop-Pictures/94.jpg',
-                            'Dungeon-Pk-Loop-Pictures/99.jpg'
+                            'Dungeon-Pk-Loop-Pictures/99.jpg',
+                            'Dungeon-Pk-Loop-Pictures/104.jpg',
+                            'Dungeon-Pk-Loop-Pictures/109.jpg',
+                            'Dungeon-Pk-Loop-Pictures/114.jpg',
+                            'Dungeon-Pk-Loop-Pictures/119.jpg',
+                            'Dungeon-Pk-Loop-Pictures/124.jpg',
+                            'Dungeon-Pk-Loop-Pictures/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -42184,7 +42184,7 @@ Fay Pullen
                       ],
             'month' => '02',
             'subdir' => '2012-02-06-wildcat-peak-1320',
-            'title' => undef,
+            'title' => 'Wildcat Pk 1320',
             'tr' => undef,
             'year' => '2012'
           },
@@ -42439,20 +42439,20 @@ Fay Pullen
             'day' => '08',
             'images' => [
                           [
+                            'East-Rock-Pictures/4.jpg',
+                            'East-Rock-Pictures/9.jpg',
                             'East-Rock-Pictures/14.jpg',
                             'East-Rock-Pictures/19.jpg',
                             'East-Rock-Pictures/24.jpg',
                             'East-Rock-Pictures/29.jpg',
                             'East-Rock-Pictures/34.jpg',
                             'East-Rock-Pictures/39.jpg',
-                            'East-Rock-Pictures/4.jpg',
                             'East-Rock-Pictures/44.jpg',
                             'East-Rock-Pictures/49.jpg',
                             'East-Rock-Pictures/54.jpg',
                             'East-Rock-Pictures/59.jpg',
                             'East-Rock-Pictures/64.jpg',
-                            'East-Rock-Pictures/78.jpg',
-                            'East-Rock-Pictures/9.jpg'
+                            'East-Rock-Pictures/78.jpg'
                           ]
                         ],
             'maps' => [
@@ -42558,14 +42558,14 @@ Fay Pullen
             'day' => '21',
             'images' => [
                           [
-                            'Watch-Mtn-Pictures/104.jpg',
+                            'Watch-Mtn-Pictures/4.jpg',
+                            'Watch-Mtn-Pictures/9.jpg',
                             'Watch-Mtn-Pictures/14.jpg',
                             'Watch-Mtn-Pictures/19.jpg',
                             'Watch-Mtn-Pictures/24.jpg',
                             'Watch-Mtn-Pictures/29.jpg',
                             'Watch-Mtn-Pictures/34.jpg',
                             'Watch-Mtn-Pictures/39.jpg',
-                            'Watch-Mtn-Pictures/4.jpg',
                             'Watch-Mtn-Pictures/44.jpg',
                             'Watch-Mtn-Pictures/49.jpg',
                             'Watch-Mtn-Pictures/54.jpg',
@@ -42576,7 +42576,7 @@ Fay Pullen
                             'Watch-Mtn-Pictures/79.jpg',
                             'Watch-Mtn-Pictures/84.jpg',
                             'Watch-Mtn-Pictures/89.jpg',
-                            'Watch-Mtn-Pictures/9.jpg'
+                            'Watch-Mtn-Pictures/104.jpg'
                           ]
                         ],
             'maps' => [
@@ -42677,20 +42677,20 @@ Fay Pullen
             'day' => '04',
             'images' => [
                           [
+                            'Bergen-Mtn-Pictures/4.jpg',
+                            'Bergen-Mtn-Pictures/9.jpg',
                             'Bergen-Mtn-Pictures/14.jpg',
                             'Bergen-Mtn-Pictures/19.jpg',
                             'Bergen-Mtn-Pictures/24.jpg',
                             'Bergen-Mtn-Pictures/29.jpg',
                             'Bergen-Mtn-Pictures/34.jpg',
                             'Bergen-Mtn-Pictures/39.jpg',
-                            'Bergen-Mtn-Pictures/4.jpg',
                             'Bergen-Mtn-Pictures/44.jpg',
                             'Bergen-Mtn-Pictures/49.jpg',
                             'Bergen-Mtn-Pictures/54.jpg',
                             'Bergen-Mtn-Pictures/59.jpg',
                             'Bergen-Mtn-Pictures/64.jpg',
-                            'Bergen-Mtn-Pictures/78.jpg',
-                            'Bergen-Mtn-Pictures/9.jpg'
+                            'Bergen-Mtn-Pictures/78.jpg'
                           ]
                         ],
             'maps' => [
@@ -42751,17 +42751,17 @@ Fay Pullen
             'day' => '07',
             'images' => [
                           [
+                            'Salvation-Pictures/4.jpg',
+                            'Salvation-Pictures/9.jpg',
                             'Salvation-Pictures/14.jpg',
                             'Salvation-Pictures/19.jpg',
                             'Salvation-Pictures/24.jpg',
                             'Salvation-Pictures/29.jpg',
                             'Salvation-Pictures/34.jpg',
                             'Salvation-Pictures/39.jpg',
-                            'Salvation-Pictures/4.jpg',
                             'Salvation-Pictures/44.jpg',
                             'Salvation-Pictures/49.jpg',
-                            'Salvation-Pictures/63.jpg',
-                            'Salvation-Pictures/9.jpg'
+                            'Salvation-Pictures/63.jpg'
                           ]
                         ],
             'maps' => [
@@ -42824,21 +42824,21 @@ Fay Pullen
             'day' => '14',
             'images' => [
                           [
+                            'Davis-(Packwood)-Pictures/4.jpg',
+                            'Davis-(Packwood)-Pictures/9.jpg',
                             'Davis-(Packwood)-Pictures/14.jpg',
                             'Davis-(Packwood)-Pictures/19.jpg',
                             'Davis-(Packwood)-Pictures/24.jpg',
                             'Davis-(Packwood)-Pictures/29.jpg',
                             'Davis-(Packwood)-Pictures/34.jpg',
                             'Davis-(Packwood)-Pictures/39.jpg',
-                            'Davis-(Packwood)-Pictures/4.jpg',
                             'Davis-(Packwood)-Pictures/44.jpg',
                             'Davis-(Packwood)-Pictures/49.jpg',
                             'Davis-(Packwood)-Pictures/54.jpg',
                             'Davis-(Packwood)-Pictures/59.jpg',
                             'Davis-(Packwood)-Pictures/64.jpg',
                             'Davis-(Packwood)-Pictures/69.jpg',
-                            'Davis-(Packwood)-Pictures/83.jpg',
-                            'Davis-(Packwood)-Pictures/9.jpg'
+                            'Davis-(Packwood)-Pictures/83.jpg'
                           ]
                         ],
             'maps' => [
@@ -42846,7 +42846,7 @@ Fay Pullen
                       ],
             'month' => '04',
             'subdir' => '2012-04-14-davis-packwood',
-            'title' => undef,
+            'title' => 'Davis (Packwood)',
             'tr' => '
 Davis Mtn (4804 ft - P524) and Pk 4845 (P525) - Purcell  Mtn  Quad  -  April
 12, 2012
@@ -42911,13 +42911,14 @@ Fay Pullen
             'day' => '27',
             'images' => [
                           [
+                            'Kiona-Pictures/4.jpg',
+                            'Kiona-Pictures/9.jpg',
                             'Kiona-Pictures/14.jpg',
                             'Kiona-Pictures/19.jpg',
                             'Kiona-Pictures/24.jpg',
                             'Kiona-Pictures/29.jpg',
                             'Kiona-Pictures/34.jpg',
                             'Kiona-Pictures/39.jpg',
-                            'Kiona-Pictures/4.jpg',
                             'Kiona-Pictures/44.jpg',
                             'Kiona-Pictures/49.jpg',
                             'Kiona-Pictures/54.jpg',
@@ -42925,8 +42926,7 @@ Fay Pullen
                             'Kiona-Pictures/64.jpg',
                             'Kiona-Pictures/69.jpg',
                             'Kiona-Pictures/74.jpg',
-                            'Kiona-Pictures/89.jpg',
-                            'Kiona-Pictures/9.jpg'
+                            'Kiona-Pictures/89.jpg'
                           ]
                         ],
             'maps' => [
@@ -43004,15 +43004,14 @@ Fay Pullen
             'day' => '15',
             'images' => [
                           [
-                            'Gibson-Pictures/104.jpg',
-                            'Gibson-Pictures/120.jpg',
+                            'Gibson-Pictures/4.jpg',
+                            'Gibson-Pictures/9.jpg',
                             'Gibson-Pictures/14.jpg',
                             'Gibson-Pictures/19.jpg',
                             'Gibson-Pictures/24.jpg',
                             'Gibson-Pictures/29.jpg',
                             'Gibson-Pictures/34.jpg',
                             'Gibson-Pictures/39.jpg',
-                            'Gibson-Pictures/4.jpg',
                             'Gibson-Pictures/44.jpg',
                             'Gibson-Pictures/49.jpg',
                             'Gibson-Pictures/54.jpg',
@@ -43023,9 +43022,10 @@ Fay Pullen
                             'Gibson-Pictures/79.jpg',
                             'Gibson-Pictures/84.jpg',
                             'Gibson-Pictures/89.jpg',
-                            'Gibson-Pictures/9.jpg',
                             'Gibson-Pictures/94.jpg',
-                            'Gibson-Pictures/99.jpg'
+                            'Gibson-Pictures/99.jpg',
+                            'Gibson-Pictures/104.jpg',
+                            'Gibson-Pictures/120.jpg'
                           ]
                         ],
             'maps' => [
@@ -43145,15 +43145,14 @@ before heading home (3/4 mile, 370 ft, 1 hr RT).
             'day' => '26',
             'images' => [
                           [
-                            'Big-Methow-Needle-Pictures/104.jpg',
-                            'Big-Methow-Needle-Pictures/120.jpg',
+                            'Big-Methow-Needle-Pictures/4.jpg',
+                            'Big-Methow-Needle-Pictures/9.jpg',
                             'Big-Methow-Needle-Pictures/14.jpg',
                             'Big-Methow-Needle-Pictures/19.jpg',
                             'Big-Methow-Needle-Pictures/24.jpg',
                             'Big-Methow-Needle-Pictures/29.jpg',
                             'Big-Methow-Needle-Pictures/34.jpg',
                             'Big-Methow-Needle-Pictures/39.jpg',
-                            'Big-Methow-Needle-Pictures/4.jpg',
                             'Big-Methow-Needle-Pictures/44.jpg',
                             'Big-Methow-Needle-Pictures/49.jpg',
                             'Big-Methow-Needle-Pictures/54.jpg',
@@ -43164,9 +43163,10 @@ before heading home (3/4 mile, 370 ft, 1 hr RT).
                             'Big-Methow-Needle-Pictures/79.jpg',
                             'Big-Methow-Needle-Pictures/84.jpg',
                             'Big-Methow-Needle-Pictures/89.jpg',
-                            'Big-Methow-Needle-Pictures/9.jpg',
                             'Big-Methow-Needle-Pictures/94.jpg',
-                            'Big-Methow-Needle-Pictures/99.jpg'
+                            'Big-Methow-Needle-Pictures/99.jpg',
+                            'Big-Methow-Needle-Pictures/104.jpg',
+                            'Big-Methow-Needle-Pictures/120.jpg'
                           ]
                         ],
             'maps' => [
@@ -43246,19 +43246,14 @@ Total: 6 miles, 4600 ft and 12 hrs                    Fay Pullen
             'day' => '09',
             'images' => [
                           [
-                            'Columbia-Gorge-Pictures/104.jpg',
-                            'Columbia-Gorge-Pictures/109.jpg',
-                            'Columbia-Gorge-Pictures/114.jpg',
-                            'Columbia-Gorge-Pictures/119.jpg',
-                            'Columbia-Gorge-Pictures/124.jpg',
+                            'Columbia-Gorge-Pictures/4.jpg',
+                            'Columbia-Gorge-Pictures/9.jpg',
                             'Columbia-Gorge-Pictures/14.jpg',
-                            'Columbia-Gorge-Pictures/141.jpg',
                             'Columbia-Gorge-Pictures/19.jpg',
                             'Columbia-Gorge-Pictures/24.jpg',
                             'Columbia-Gorge-Pictures/29.jpg',
                             'Columbia-Gorge-Pictures/34.jpg',
                             'Columbia-Gorge-Pictures/39.jpg',
-                            'Columbia-Gorge-Pictures/4.jpg',
                             'Columbia-Gorge-Pictures/44.jpg',
                             'Columbia-Gorge-Pictures/49.jpg',
                             'Columbia-Gorge-Pictures/54.jpg',
@@ -43269,9 +43264,14 @@ Total: 6 miles, 4600 ft and 12 hrs                    Fay Pullen
                             'Columbia-Gorge-Pictures/79.jpg',
                             'Columbia-Gorge-Pictures/84.jpg',
                             'Columbia-Gorge-Pictures/89.jpg',
-                            'Columbia-Gorge-Pictures/9.jpg',
                             'Columbia-Gorge-Pictures/94.jpg',
-                            'Columbia-Gorge-Pictures/99.jpg'
+                            'Columbia-Gorge-Pictures/99.jpg',
+                            'Columbia-Gorge-Pictures/104.jpg',
+                            'Columbia-Gorge-Pictures/109.jpg',
+                            'Columbia-Gorge-Pictures/114.jpg',
+                            'Columbia-Gorge-Pictures/119.jpg',
+                            'Columbia-Gorge-Pictures/124.jpg',
+                            'Columbia-Gorge-Pictures/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -43427,7 +43427,7 @@ Fay Pullen
                       ],
             'month' => '06',
             'subdir' => '2012-06-11-three-sisters',
-            'title' => undef,
+            'title' => 'Three Sisters',
             'tr' => undef,
             'year' => '2012'
           },
@@ -43435,14 +43435,14 @@ Fay Pullen
             'day' => '14',
             'images' => [
                           [
-                            'TwinLks-BM-Pictures/109.jpg',
+                            'TwinLks-BM-Pictures/4.jpg',
+                            'TwinLks-BM-Pictures/9.jpg',
                             'TwinLks-BM-Pictures/14.jpg',
                             'TwinLks-BM-Pictures/19.jpg',
                             'TwinLks-BM-Pictures/24.jpg',
                             'TwinLks-BM-Pictures/29.jpg',
                             'TwinLks-BM-Pictures/34.jpg',
                             'TwinLks-BM-Pictures/39.jpg',
-                            'TwinLks-BM-Pictures/4.jpg',
                             'TwinLks-BM-Pictures/44.jpg',
                             'TwinLks-BM-Pictures/49.jpg',
                             'TwinLks-BM-Pictures/54.jpg',
@@ -43453,8 +43453,8 @@ Fay Pullen
                             'TwinLks-BM-Pictures/79.jpg',
                             'TwinLks-BM-Pictures/84.jpg',
                             'TwinLks-BM-Pictures/89.jpg',
-                            'TwinLks-BM-Pictures/9.jpg',
-                            'TwinLks-BM-Pictures/94.jpg'
+                            'TwinLks-BM-Pictures/94.jpg',
+                            'TwinLks-BM-Pictures/109.jpg'
                           ]
                         ],
             'maps' => [
@@ -43572,15 +43572,14 @@ Fay Pullen
             'day' => '20',
             'images' => [
                           [
-                            'Muncaster-Pictures/104.jpg',
-                            'Muncaster-Pictures/120.jpg',
+                            'Muncaster-Pictures/4.jpg',
+                            'Muncaster-Pictures/9.jpg',
                             'Muncaster-Pictures/14.jpg',
                             'Muncaster-Pictures/19.jpg',
                             'Muncaster-Pictures/24.jpg',
                             'Muncaster-Pictures/29.jpg',
                             'Muncaster-Pictures/34.jpg',
                             'Muncaster-Pictures/39.jpg',
-                            'Muncaster-Pictures/4.jpg',
                             'Muncaster-Pictures/44.jpg',
                             'Muncaster-Pictures/49.jpg',
                             'Muncaster-Pictures/54.jpg',
@@ -43591,9 +43590,10 @@ Fay Pullen
                             'Muncaster-Pictures/79.jpg',
                             'Muncaster-Pictures/84.jpg',
                             'Muncaster-Pictures/89.jpg',
-                            'Muncaster-Pictures/9.jpg',
                             'Muncaster-Pictures/94.jpg',
-                            'Muncaster-Pictures/99.jpg'
+                            'Muncaster-Pictures/99.jpg',
+                            'Muncaster-Pictures/104.jpg',
+                            'Muncaster-Pictures/120.jpg'
                           ]
                         ],
             'maps' => [
@@ -43715,21 +43715,21 @@ Fay Pullen
             'day' => '27',
             'images' => [
                           [
+                            'Hoquiam-Pictures/4.jpg',
+                            'Hoquiam-Pictures/9.jpg',
                             'Hoquiam-Pictures/14.jpg',
                             'Hoquiam-Pictures/19.jpg',
                             'Hoquiam-Pictures/24.jpg',
                             'Hoquiam-Pictures/29.jpg',
                             'Hoquiam-Pictures/34.jpg',
                             'Hoquiam-Pictures/39.jpg',
-                            'Hoquiam-Pictures/4.jpg',
                             'Hoquiam-Pictures/44.jpg',
                             'Hoquiam-Pictures/49.jpg',
                             'Hoquiam-Pictures/54.jpg',
                             'Hoquiam-Pictures/59.jpg',
                             'Hoquiam-Pictures/64.jpg',
                             'Hoquiam-Pictures/69.jpg',
-                            'Hoquiam-Pictures/83.jpg',
-                            'Hoquiam-Pictures/9.jpg'
+                            'Hoquiam-Pictures/83.jpg'
                           ]
                         ],
             'maps' => [
@@ -43808,14 +43808,14 @@ Pullen
             'day' => '05',
             'images' => [
                           [
-                            'Torment-Attempt-Pictures/104.jpg',
+                            'Torment-Attempt-Pictures/4.jpg',
+                            'Torment-Attempt-Pictures/9.jpg',
                             'Torment-Attempt-Pictures/14.jpg',
                             'Torment-Attempt-Pictures/19.jpg',
                             'Torment-Attempt-Pictures/24.jpg',
                             'Torment-Attempt-Pictures/29.jpg',
                             'Torment-Attempt-Pictures/34.jpg',
                             'Torment-Attempt-Pictures/39.jpg',
-                            'Torment-Attempt-Pictures/4.jpg',
                             'Torment-Attempt-Pictures/44.jpg',
                             'Torment-Attempt-Pictures/49.jpg',
                             'Torment-Attempt-Pictures/54.jpg',
@@ -43826,7 +43826,7 @@ Pullen
                             'Torment-Attempt-Pictures/79.jpg',
                             'Torment-Attempt-Pictures/84.jpg',
                             'Torment-Attempt-Pictures/89.jpg',
-                            'Torment-Attempt-Pictures/9.jpg'
+                            'Torment-Attempt-Pictures/104.jpg'
                           ]
                         ],
             'maps' => [
@@ -43946,17 +43946,14 @@ Fay Pullen
             'day' => '13',
             'images' => [
                           [
-                            'North-Brother-Pictures/104.jpg',
-                            'North-Brother-Pictures/109.jpg',
-                            'North-Brother-Pictures/114.jpg',
-                            'North-Brother-Pictures/130.jpg',
+                            'North-Brother-Pictures/4.jpg',
+                            'North-Brother-Pictures/9.jpg',
                             'North-Brother-Pictures/14.jpg',
                             'North-Brother-Pictures/19.jpg',
                             'North-Brother-Pictures/24.jpg',
                             'North-Brother-Pictures/29.jpg',
                             'North-Brother-Pictures/34.jpg',
                             'North-Brother-Pictures/39.jpg',
-                            'North-Brother-Pictures/4.jpg',
                             'North-Brother-Pictures/44.jpg',
                             'North-Brother-Pictures/49.jpg',
                             'North-Brother-Pictures/54.jpg',
@@ -43967,9 +43964,12 @@ Fay Pullen
                             'North-Brother-Pictures/79.jpg',
                             'North-Brother-Pictures/84.jpg',
                             'North-Brother-Pictures/89.jpg',
-                            'North-Brother-Pictures/9.jpg',
                             'North-Brother-Pictures/94.jpg',
-                            'North-Brother-Pictures/99.jpg'
+                            'North-Brother-Pictures/99.jpg',
+                            'North-Brother-Pictures/104.jpg',
+                            'North-Brother-Pictures/109.jpg',
+                            'North-Brother-Pictures/114.jpg',
+                            'North-Brother-Pictures/130.jpg'
                           ]
                         ],
             'maps' => [
@@ -44099,20 +44099,14 @@ Fay Pullen
             'day' => '21',
             'images' => [
                           [
-                            'West-Challenger-Pictures/104.jpg',
-                            'West-Challenger-Pictures/109.jpg',
-                            'West-Challenger-Pictures/114.jpg',
-                            'West-Challenger-Pictures/119.jpg',
-                            'West-Challenger-Pictures/124.jpg',
-                            'West-Challenger-Pictures/129.jpg',
+                            'West-Challenger-Pictures/4.jpg',
+                            'West-Challenger-Pictures/9.jpg',
                             'West-Challenger-Pictures/14.jpg',
-                            'West-Challenger-Pictures/146.jpg',
                             'West-Challenger-Pictures/19.jpg',
                             'West-Challenger-Pictures/24.jpg',
                             'West-Challenger-Pictures/29.jpg',
                             'West-Challenger-Pictures/34.jpg',
                             'West-Challenger-Pictures/39.jpg',
-                            'West-Challenger-Pictures/4.jpg',
                             'West-Challenger-Pictures/44.jpg',
                             'West-Challenger-Pictures/49.jpg',
                             'West-Challenger-Pictures/54.jpg',
@@ -44123,18 +44117,25 @@ Fay Pullen
                             'West-Challenger-Pictures/79.jpg',
                             'West-Challenger-Pictures/84.jpg',
                             'West-Challenger-Pictures/89.jpg',
-                            'West-Challenger-Pictures/9.jpg',
                             'West-Challenger-Pictures/94.jpg',
-                            'West-Challenger-Pictures/99.jpg'
+                            'West-Challenger-Pictures/99.jpg',
+                            'West-Challenger-Pictures/104.jpg',
+                            'West-Challenger-Pictures/109.jpg',
+                            'West-Challenger-Pictures/114.jpg',
+                            'West-Challenger-Pictures/119.jpg',
+                            'West-Challenger-Pictures/124.jpg',
+                            'West-Challenger-Pictures/129.jpg',
+                            'West-Challenger-Pictures/146.jpg'
                           ],
                           [
+                            'West-Challenger2-Pictures/4.jpg',
+                            'West-Challenger2-Pictures/9.jpg',
                             'West-Challenger2-Pictures/14.jpg',
                             'West-Challenger2-Pictures/19.jpg',
                             'West-Challenger2-Pictures/24.jpg',
                             'West-Challenger2-Pictures/29.jpg',
                             'West-Challenger2-Pictures/34.jpg',
                             'West-Challenger2-Pictures/39.jpg',
-                            'West-Challenger2-Pictures/4.jpg',
                             'West-Challenger2-Pictures/44.jpg',
                             'West-Challenger2-Pictures/49.jpg',
                             'West-Challenger2-Pictures/54.jpg',
@@ -44143,7 +44144,6 @@ Fay Pullen
                             'West-Challenger2-Pictures/69.jpg',
                             'West-Challenger2-Pictures/74.jpg',
                             'West-Challenger2-Pictures/79.jpg',
-                            'West-Challenger2-Pictures/9.jpg',
                             'West-Challenger2-Pictures/94.jpg'
                           ]
                         ],
@@ -44282,46 +44282,14 @@ Pullen
             'day' => '14',
             'images' => [
                           [
-                            'Ptarmigan-Traverse---long/104.jpg',
-                            'Ptarmigan-Traverse---long/109.jpg',
-                            'Ptarmigan-Traverse---long/114.jpg',
-                            'Ptarmigan-Traverse---long/119.jpg',
-                            'Ptarmigan-Traverse---long/124.jpg',
-                            'Ptarmigan-Traverse---long/129.jpg',
-                            'Ptarmigan-Traverse---long/134.jpg',
-                            'Ptarmigan-Traverse---long/139.jpg',
+                            'Ptarmigan-Traverse---long/4.jpg',
+                            'Ptarmigan-Traverse---long/9.jpg',
                             'Ptarmigan-Traverse---long/14.jpg',
-                            'Ptarmigan-Traverse---long/144.jpg',
-                            'Ptarmigan-Traverse---long/149.jpg',
-                            'Ptarmigan-Traverse---long/154.jpg',
-                            'Ptarmigan-Traverse---long/159.jpg',
-                            'Ptarmigan-Traverse---long/164.jpg',
-                            'Ptarmigan-Traverse---long/169.jpg',
-                            'Ptarmigan-Traverse---long/174.jpg',
-                            'Ptarmigan-Traverse---long/179.jpg',
-                            'Ptarmigan-Traverse---long/184.jpg',
-                            'Ptarmigan-Traverse---long/189.jpg',
                             'Ptarmigan-Traverse---long/19.jpg',
-                            'Ptarmigan-Traverse---long/194.jpg',
-                            'Ptarmigan-Traverse---long/199.jpg',
-                            'Ptarmigan-Traverse---long/204.jpg',
-                            'Ptarmigan-Traverse---long/209.jpg',
-                            'Ptarmigan-Traverse---long/214.jpg',
-                            'Ptarmigan-Traverse---long/219.jpg',
-                            'Ptarmigan-Traverse---long/224.jpg',
-                            'Ptarmigan-Traverse---long/229.jpg',
-                            'Ptarmigan-Traverse---long/234.jpg',
-                            'Ptarmigan-Traverse---long/239.jpg',
                             'Ptarmigan-Traverse---long/24.jpg',
-                            'Ptarmigan-Traverse---long/244.jpg',
-                            'Ptarmigan-Traverse---long/249.jpg',
-                            'Ptarmigan-Traverse---long/254.jpg',
-                            'Ptarmigan-Traverse---long/259.jpg',
-                            'Ptarmigan-Traverse---long/283.jpg',
                             'Ptarmigan-Traverse---long/29.jpg',
                             'Ptarmigan-Traverse---long/34.jpg',
                             'Ptarmigan-Traverse---long/39.jpg',
-                            'Ptarmigan-Traverse---long/4.jpg',
                             'Ptarmigan-Traverse---long/44.jpg',
                             'Ptarmigan-Traverse---long/49.jpg',
                             'Ptarmigan-Traverse---long/54.jpg',
@@ -44332,36 +44300,51 @@ Pullen
                             'Ptarmigan-Traverse---long/79.jpg',
                             'Ptarmigan-Traverse---long/84.jpg',
                             'Ptarmigan-Traverse---long/89.jpg',
-                            'Ptarmigan-Traverse---long/9.jpg',
                             'Ptarmigan-Traverse---long/94.jpg',
-                            'Ptarmigan-Traverse---long/99.jpg'
+                            'Ptarmigan-Traverse---long/99.jpg',
+                            'Ptarmigan-Traverse---long/104.jpg',
+                            'Ptarmigan-Traverse---long/109.jpg',
+                            'Ptarmigan-Traverse---long/114.jpg',
+                            'Ptarmigan-Traverse---long/119.jpg',
+                            'Ptarmigan-Traverse---long/124.jpg',
+                            'Ptarmigan-Traverse---long/129.jpg',
+                            'Ptarmigan-Traverse---long/134.jpg',
+                            'Ptarmigan-Traverse---long/139.jpg',
+                            'Ptarmigan-Traverse---long/144.jpg',
+                            'Ptarmigan-Traverse---long/149.jpg',
+                            'Ptarmigan-Traverse---long/154.jpg',
+                            'Ptarmigan-Traverse---long/159.jpg',
+                            'Ptarmigan-Traverse---long/164.jpg',
+                            'Ptarmigan-Traverse---long/169.jpg',
+                            'Ptarmigan-Traverse---long/174.jpg',
+                            'Ptarmigan-Traverse---long/179.jpg',
+                            'Ptarmigan-Traverse---long/184.jpg',
+                            'Ptarmigan-Traverse---long/189.jpg',
+                            'Ptarmigan-Traverse---long/194.jpg',
+                            'Ptarmigan-Traverse---long/199.jpg',
+                            'Ptarmigan-Traverse---long/204.jpg',
+                            'Ptarmigan-Traverse---long/209.jpg',
+                            'Ptarmigan-Traverse---long/214.jpg',
+                            'Ptarmigan-Traverse---long/219.jpg',
+                            'Ptarmigan-Traverse---long/224.jpg',
+                            'Ptarmigan-Traverse---long/229.jpg',
+                            'Ptarmigan-Traverse---long/234.jpg',
+                            'Ptarmigan-Traverse---long/239.jpg',
+                            'Ptarmigan-Traverse---long/244.jpg',
+                            'Ptarmigan-Traverse---long/249.jpg',
+                            'Ptarmigan-Traverse---long/254.jpg',
+                            'Ptarmigan-Traverse---long/259.jpg',
+                            'Ptarmigan-Traverse---long/283.jpg'
                           ],
                           [
-                            'Ptarmigan-Traverse-Pictures/104.jpg',
-                            'Ptarmigan-Traverse-Pictures/109.jpg',
-                            'Ptarmigan-Traverse-Pictures/114.jpg',
-                            'Ptarmigan-Traverse-Pictures/119.jpg',
-                            'Ptarmigan-Traverse-Pictures/124.jpg',
-                            'Ptarmigan-Traverse-Pictures/129.jpg',
-                            'Ptarmigan-Traverse-Pictures/134.jpg',
-                            'Ptarmigan-Traverse-Pictures/139.jpg',
+                            'Ptarmigan-Traverse-Pictures/4.jpg',
+                            'Ptarmigan-Traverse-Pictures/9.jpg',
                             'Ptarmigan-Traverse-Pictures/14.jpg',
-                            'Ptarmigan-Traverse-Pictures/144.jpg',
-                            'Ptarmigan-Traverse-Pictures/149.jpg',
-                            'Ptarmigan-Traverse-Pictures/154.jpg',
-                            'Ptarmigan-Traverse-Pictures/159.jpg',
-                            'Ptarmigan-Traverse-Pictures/164.jpg',
-                            'Ptarmigan-Traverse-Pictures/169.jpg',
-                            'Ptarmigan-Traverse-Pictures/174.jpg',
-                            'Ptarmigan-Traverse-Pictures/179.jpg',
-                            'Ptarmigan-Traverse-Pictures/184.jpg',
                             'Ptarmigan-Traverse-Pictures/19.jpg',
-                            'Ptarmigan-Traverse-Pictures/203.jpg',
                             'Ptarmigan-Traverse-Pictures/24.jpg',
                             'Ptarmigan-Traverse-Pictures/29.jpg',
                             'Ptarmigan-Traverse-Pictures/34.jpg',
                             'Ptarmigan-Traverse-Pictures/39.jpg',
-                            'Ptarmigan-Traverse-Pictures/4.jpg',
                             'Ptarmigan-Traverse-Pictures/44.jpg',
                             'Ptarmigan-Traverse-Pictures/49.jpg',
                             'Ptarmigan-Traverse-Pictures/54.jpg',
@@ -44372,9 +44355,26 @@ Pullen
                             'Ptarmigan-Traverse-Pictures/79.jpg',
                             'Ptarmigan-Traverse-Pictures/84.jpg',
                             'Ptarmigan-Traverse-Pictures/89.jpg',
-                            'Ptarmigan-Traverse-Pictures/9.jpg',
                             'Ptarmigan-Traverse-Pictures/94.jpg',
-                            'Ptarmigan-Traverse-Pictures/99.jpg'
+                            'Ptarmigan-Traverse-Pictures/99.jpg',
+                            'Ptarmigan-Traverse-Pictures/104.jpg',
+                            'Ptarmigan-Traverse-Pictures/109.jpg',
+                            'Ptarmigan-Traverse-Pictures/114.jpg',
+                            'Ptarmigan-Traverse-Pictures/119.jpg',
+                            'Ptarmigan-Traverse-Pictures/124.jpg',
+                            'Ptarmigan-Traverse-Pictures/129.jpg',
+                            'Ptarmigan-Traverse-Pictures/134.jpg',
+                            'Ptarmigan-Traverse-Pictures/139.jpg',
+                            'Ptarmigan-Traverse-Pictures/144.jpg',
+                            'Ptarmigan-Traverse-Pictures/149.jpg',
+                            'Ptarmigan-Traverse-Pictures/154.jpg',
+                            'Ptarmigan-Traverse-Pictures/159.jpg',
+                            'Ptarmigan-Traverse-Pictures/164.jpg',
+                            'Ptarmigan-Traverse-Pictures/169.jpg',
+                            'Ptarmigan-Traverse-Pictures/174.jpg',
+                            'Ptarmigan-Traverse-Pictures/179.jpg',
+                            'Ptarmigan-Traverse-Pictures/184.jpg',
+                            'Ptarmigan-Traverse-Pictures/203.jpg'
                           ]
                         ],
             'maps' => [
@@ -44558,25 +44558,14 @@ Fay Pullen
             'day' => '22',
             'images' => [
                           [
-                            'Painted-Traverse-Pictures/104.jpg',
-                            'Painted-Traverse-Pictures/109.jpg',
-                            'Painted-Traverse-Pictures/114.jpg',
-                            'Painted-Traverse-Pictures/119.jpg',
-                            'Painted-Traverse-Pictures/124.jpg',
-                            'Painted-Traverse-Pictures/129.jpg',
-                            'Painted-Traverse-Pictures/134.jpg',
-                            'Painted-Traverse-Pictures/139.jpg',
+                            'Painted-Traverse-Pictures/4.jpg',
+                            'Painted-Traverse-Pictures/9.jpg',
                             'Painted-Traverse-Pictures/14.jpg',
-                            'Painted-Traverse-Pictures/144.jpg',
-                            'Painted-Traverse-Pictures/149.jpg',
-                            'Painted-Traverse-Pictures/154.jpg',
-                            'Painted-Traverse-Pictures/172.jpg',
                             'Painted-Traverse-Pictures/19.jpg',
                             'Painted-Traverse-Pictures/24.jpg',
                             'Painted-Traverse-Pictures/29.jpg',
                             'Painted-Traverse-Pictures/34.jpg',
                             'Painted-Traverse-Pictures/39.jpg',
-                            'Painted-Traverse-Pictures/4.jpg',
                             'Painted-Traverse-Pictures/44.jpg',
                             'Painted-Traverse-Pictures/49.jpg',
                             'Painted-Traverse-Pictures/54.jpg',
@@ -44587,9 +44576,20 @@ Fay Pullen
                             'Painted-Traverse-Pictures/79.jpg',
                             'Painted-Traverse-Pictures/84.jpg',
                             'Painted-Traverse-Pictures/89.jpg',
-                            'Painted-Traverse-Pictures/9.jpg',
                             'Painted-Traverse-Pictures/94.jpg',
-                            'Painted-Traverse-Pictures/99.jpg'
+                            'Painted-Traverse-Pictures/99.jpg',
+                            'Painted-Traverse-Pictures/104.jpg',
+                            'Painted-Traverse-Pictures/109.jpg',
+                            'Painted-Traverse-Pictures/114.jpg',
+                            'Painted-Traverse-Pictures/119.jpg',
+                            'Painted-Traverse-Pictures/124.jpg',
+                            'Painted-Traverse-Pictures/129.jpg',
+                            'Painted-Traverse-Pictures/134.jpg',
+                            'Painted-Traverse-Pictures/139.jpg',
+                            'Painted-Traverse-Pictures/144.jpg',
+                            'Painted-Traverse-Pictures/149.jpg',
+                            'Painted-Traverse-Pictures/154.jpg',
+                            'Painted-Traverse-Pictures/172.jpg'
                           ]
                         ],
             'maps' => [
@@ -44741,14 +44741,14 @@ Fay Pullen
             'day' => '24',
             'images' => [
                           [
-                            'Skalabats-Pictures/115.jpg',
+                            'Skalabats-Pictures/4.jpg',
+                            'Skalabats-Pictures/9.jpg',
                             'Skalabats-Pictures/14.jpg',
                             'Skalabats-Pictures/19.jpg',
                             'Skalabats-Pictures/24.jpg',
                             'Skalabats-Pictures/29.jpg',
                             'Skalabats-Pictures/34.jpg',
                             'Skalabats-Pictures/39.jpg',
-                            'Skalabats-Pictures/4.jpg',
                             'Skalabats-Pictures/44.jpg',
                             'Skalabats-Pictures/49.jpg',
                             'Skalabats-Pictures/54.jpg',
@@ -44759,9 +44759,9 @@ Fay Pullen
                             'Skalabats-Pictures/79.jpg',
                             'Skalabats-Pictures/84.jpg',
                             'Skalabats-Pictures/89.jpg',
-                            'Skalabats-Pictures/9.jpg',
                             'Skalabats-Pictures/94.jpg',
-                            'Skalabats-Pictures/99.jpg'
+                            'Skalabats-Pictures/99.jpg',
+                            'Skalabats-Pictures/115.jpg'
                           ]
                         ],
             'maps' => [
@@ -44875,22 +44875,14 @@ BTW Skalabats is a shortening  of  an  Indian  name  (Skahala-bats)  meaning
             'day' => '07',
             'images' => [
                           [
-                            'Mad-Eagle-Pictures/104.jpg',
-                            'Mad-Eagle-Pictures/109.jpg',
-                            'Mad-Eagle-Pictures/114.jpg',
-                            'Mad-Eagle-Pictures/119.jpg',
-                            'Mad-Eagle-Pictures/124.jpg',
-                            'Mad-Eagle-Pictures/129.jpg',
-                            'Mad-Eagle-Pictures/134.jpg',
-                            'Mad-Eagle-Pictures/139.jpg',
+                            'Mad-Eagle-Pictures/4.jpg',
+                            'Mad-Eagle-Pictures/9.jpg',
                             'Mad-Eagle-Pictures/14.jpg',
-                            'Mad-Eagle-Pictures/156.jpg',
                             'Mad-Eagle-Pictures/19.jpg',
                             'Mad-Eagle-Pictures/24.jpg',
                             'Mad-Eagle-Pictures/29.jpg',
                             'Mad-Eagle-Pictures/34.jpg',
                             'Mad-Eagle-Pictures/39.jpg',
-                            'Mad-Eagle-Pictures/4.jpg',
                             'Mad-Eagle-Pictures/44.jpg',
                             'Mad-Eagle-Pictures/49.jpg',
                             'Mad-Eagle-Pictures/54.jpg',
@@ -44901,9 +44893,17 @@ BTW Skalabats is a shortening  of  an  Indian  name  (Skahala-bats)  meaning
                             'Mad-Eagle-Pictures/79.jpg',
                             'Mad-Eagle-Pictures/84.jpg',
                             'Mad-Eagle-Pictures/89.jpg',
-                            'Mad-Eagle-Pictures/9.jpg',
                             'Mad-Eagle-Pictures/94.jpg',
-                            'Mad-Eagle-Pictures/99.jpg'
+                            'Mad-Eagle-Pictures/99.jpg',
+                            'Mad-Eagle-Pictures/104.jpg',
+                            'Mad-Eagle-Pictures/109.jpg',
+                            'Mad-Eagle-Pictures/114.jpg',
+                            'Mad-Eagle-Pictures/119.jpg',
+                            'Mad-Eagle-Pictures/124.jpg',
+                            'Mad-Eagle-Pictures/129.jpg',
+                            'Mad-Eagle-Pictures/134.jpg',
+                            'Mad-Eagle-Pictures/139.jpg',
+                            'Mad-Eagle-Pictures/156.jpg'
                           ]
                         ],
             'maps' => [
@@ -45035,23 +45035,14 @@ Fay Pullen
             'day' => '28',
             'images' => [
                           [
-                            'Pasayten-Pk-Pictures/104.jpg',
-                            'Pasayten-Pk-Pictures/109.jpg',
-                            'Pasayten-Pk-Pictures/114.jpg',
-                            'Pasayten-Pk-Pictures/119.jpg',
-                            'Pasayten-Pk-Pictures/124.jpg',
-                            'Pasayten-Pk-Pictures/129.jpg',
-                            'Pasayten-Pk-Pictures/134.jpg',
-                            'Pasayten-Pk-Pictures/139.jpg',
+                            'Pasayten-Pk-Pictures/4.jpg',
+                            'Pasayten-Pk-Pictures/9.jpg',
                             'Pasayten-Pk-Pictures/14.jpg',
-                            'Pasayten-Pk-Pictures/144.jpg',
-                            'Pasayten-Pk-Pictures/161.jpg',
                             'Pasayten-Pk-Pictures/19.jpg',
                             'Pasayten-Pk-Pictures/24.jpg',
                             'Pasayten-Pk-Pictures/29.jpg',
                             'Pasayten-Pk-Pictures/34.jpg',
                             'Pasayten-Pk-Pictures/39.jpg',
-                            'Pasayten-Pk-Pictures/4.jpg',
                             'Pasayten-Pk-Pictures/44.jpg',
                             'Pasayten-Pk-Pictures/49.jpg',
                             'Pasayten-Pk-Pictures/54.jpg',
@@ -45062,9 +45053,18 @@ Fay Pullen
                             'Pasayten-Pk-Pictures/79.jpg',
                             'Pasayten-Pk-Pictures/84.jpg',
                             'Pasayten-Pk-Pictures/89.jpg',
-                            'Pasayten-Pk-Pictures/9.jpg',
                             'Pasayten-Pk-Pictures/94.jpg',
-                            'Pasayten-Pk-Pictures/99.jpg'
+                            'Pasayten-Pk-Pictures/99.jpg',
+                            'Pasayten-Pk-Pictures/104.jpg',
+                            'Pasayten-Pk-Pictures/109.jpg',
+                            'Pasayten-Pk-Pictures/114.jpg',
+                            'Pasayten-Pk-Pictures/119.jpg',
+                            'Pasayten-Pk-Pictures/124.jpg',
+                            'Pasayten-Pk-Pictures/129.jpg',
+                            'Pasayten-Pk-Pictures/134.jpg',
+                            'Pasayten-Pk-Pictures/139.jpg',
+                            'Pasayten-Pk-Pictures/144.jpg',
+                            'Pasayten-Pk-Pictures/161.jpg'
                           ]
                         ],
             'maps' => [
@@ -45191,23 +45191,14 @@ Fay Pullen
             'day' => '04',
             'images' => [
                           [
-                            'Mt-Winthrop-Pictures/104.jpg',
-                            'Mt-Winthrop-Pictures/109.jpg',
-                            'Mt-Winthrop-Pictures/114.jpg',
-                            'Mt-Winthrop-Pictures/119.jpg',
-                            'Mt-Winthrop-Pictures/124.jpg',
-                            'Mt-Winthrop-Pictures/129.jpg',
-                            'Mt-Winthrop-Pictures/134.jpg',
-                            'Mt-Winthrop-Pictures/139.jpg',
+                            'Mt-Winthrop-Pictures/4.jpg',
+                            'Mt-Winthrop-Pictures/9.jpg',
                             'Mt-Winthrop-Pictures/14.jpg',
-                            'Mt-Winthrop-Pictures/144.jpg',
-                            'Mt-Winthrop-Pictures/161.jpg',
                             'Mt-Winthrop-Pictures/19.jpg',
                             'Mt-Winthrop-Pictures/24.jpg',
                             'Mt-Winthrop-Pictures/29.jpg',
                             'Mt-Winthrop-Pictures/34.jpg',
                             'Mt-Winthrop-Pictures/39.jpg',
-                            'Mt-Winthrop-Pictures/4.jpg',
                             'Mt-Winthrop-Pictures/44.jpg',
                             'Mt-Winthrop-Pictures/49.jpg',
                             'Mt-Winthrop-Pictures/54.jpg',
@@ -45218,9 +45209,18 @@ Fay Pullen
                             'Mt-Winthrop-Pictures/79.jpg',
                             'Mt-Winthrop-Pictures/84.jpg',
                             'Mt-Winthrop-Pictures/89.jpg',
-                            'Mt-Winthrop-Pictures/9.jpg',
                             'Mt-Winthrop-Pictures/94.jpg',
-                            'Mt-Winthrop-Pictures/99.jpg'
+                            'Mt-Winthrop-Pictures/99.jpg',
+                            'Mt-Winthrop-Pictures/104.jpg',
+                            'Mt-Winthrop-Pictures/109.jpg',
+                            'Mt-Winthrop-Pictures/114.jpg',
+                            'Mt-Winthrop-Pictures/119.jpg',
+                            'Mt-Winthrop-Pictures/124.jpg',
+                            'Mt-Winthrop-Pictures/129.jpg',
+                            'Mt-Winthrop-Pictures/134.jpg',
+                            'Mt-Winthrop-Pictures/139.jpg',
+                            'Mt-Winthrop-Pictures/144.jpg',
+                            'Mt-Winthrop-Pictures/161.jpg'
                           ]
                         ],
             'maps' => [
@@ -45349,17 +45349,14 @@ Fay Pullen
             'day' => '17',
             'images' => [
                           [
-                            'Lemei-Pictures/104.jpg',
-                            'Lemei-Pictures/109.jpg',
-                            'Lemei-Pictures/114.jpg',
-                            'Lemei-Pictures/130.jpg',
+                            'Lemei-Pictures/4.jpg',
+                            'Lemei-Pictures/9.jpg',
                             'Lemei-Pictures/14.jpg',
                             'Lemei-Pictures/19.jpg',
                             'Lemei-Pictures/24.jpg',
                             'Lemei-Pictures/29.jpg',
                             'Lemei-Pictures/34.jpg',
                             'Lemei-Pictures/39.jpg',
-                            'Lemei-Pictures/4.jpg',
                             'Lemei-Pictures/44.jpg',
                             'Lemei-Pictures/49.jpg',
                             'Lemei-Pictures/54.jpg',
@@ -45370,9 +45367,12 @@ Fay Pullen
                             'Lemei-Pictures/79.jpg',
                             'Lemei-Pictures/84.jpg',
                             'Lemei-Pictures/89.jpg',
-                            'Lemei-Pictures/9.jpg',
                             'Lemei-Pictures/94.jpg',
-                            'Lemei-Pictures/99.jpg'
+                            'Lemei-Pictures/99.jpg',
+                            'Lemei-Pictures/104.jpg',
+                            'Lemei-Pictures/109.jpg',
+                            'Lemei-Pictures/114.jpg',
+                            'Lemei-Pictures/130.jpg'
                           ]
                         ],
             'maps' => [
@@ -45482,18 +45482,18 @@ Fay Pullen
             'day' => '01',
             'images' => [
                           [
+                            'Observation-Pictures/4.jpg',
+                            'Observation-Pictures/9.jpg',
                             'Observation-Pictures/14.jpg',
                             'Observation-Pictures/19.jpg',
                             'Observation-Pictures/24.jpg',
                             'Observation-Pictures/29.jpg',
                             'Observation-Pictures/34.jpg',
                             'Observation-Pictures/39.jpg',
-                            'Observation-Pictures/4.jpg',
                             'Observation-Pictures/44.jpg',
                             'Observation-Pictures/49.jpg',
                             'Observation-Pictures/54.jpg',
-                            'Observation-Pictures/68.jpg',
-                            'Observation-Pictures/9.jpg'
+                            'Observation-Pictures/68.jpg'
                           ]
                         ],
             'maps' => [
@@ -45582,13 +45582,14 @@ Fay Pullen
             'day' => '09',
             'images' => [
                           [
+                            'Three-Lakes-Pictures/4.jpg',
+                            'Three-Lakes-Pictures/9.jpg',
                             'Three-Lakes-Pictures/14.jpg',
                             'Three-Lakes-Pictures/19.jpg',
                             'Three-Lakes-Pictures/24.jpg',
                             'Three-Lakes-Pictures/29.jpg',
                             'Three-Lakes-Pictures/34.jpg',
                             'Three-Lakes-Pictures/39.jpg',
-                            'Three-Lakes-Pictures/4.jpg',
                             'Three-Lakes-Pictures/44.jpg',
                             'Three-Lakes-Pictures/49.jpg',
                             'Three-Lakes-Pictures/54.jpg',
@@ -45598,7 +45599,6 @@ Fay Pullen
                             'Three-Lakes-Pictures/74.jpg',
                             'Three-Lakes-Pictures/79.jpg',
                             'Three-Lakes-Pictures/84.jpg',
-                            'Three-Lakes-Pictures/9.jpg',
                             'Three-Lakes-Pictures/99.jpg'
                           ]
                         ],
@@ -45705,19 +45705,19 @@ Fay Pullen
             'day' => '31',
             'images' => [
                           [
+                            'Rinker-Ridge-Pictures/4.jpg',
+                            'Rinker-Ridge-Pictures/9.jpg',
                             'Rinker-Ridge-Pictures/14.jpg',
                             'Rinker-Ridge-Pictures/19.jpg',
                             'Rinker-Ridge-Pictures/24.jpg',
                             'Rinker-Ridge-Pictures/29.jpg',
                             'Rinker-Ridge-Pictures/34.jpg',
                             'Rinker-Ridge-Pictures/39.jpg',
-                            'Rinker-Ridge-Pictures/4.jpg',
                             'Rinker-Ridge-Pictures/44.jpg',
                             'Rinker-Ridge-Pictures/49.jpg',
                             'Rinker-Ridge-Pictures/54.jpg',
                             'Rinker-Ridge-Pictures/59.jpg',
-                            'Rinker-Ridge-Pictures/73.jpg',
-                            'Rinker-Ridge-Pictures/9.jpg'
+                            'Rinker-Ridge-Pictures/73.jpg'
                           ]
                         ],
             'maps' => [
@@ -45793,14 +45793,14 @@ Fay Pullen
             'day' => '12',
             'images' => [
                           [
-                            'Echo-Ridge-Photos/104.jpg',
+                            'Echo-Ridge-Photos/4.jpg',
+                            'Echo-Ridge-Photos/9.jpg',
                             'Echo-Ridge-Photos/14.jpg',
                             'Echo-Ridge-Photos/19.jpg',
                             'Echo-Ridge-Photos/24.jpg',
                             'Echo-Ridge-Photos/29.jpg',
                             'Echo-Ridge-Photos/34.jpg',
                             'Echo-Ridge-Photos/39.jpg',
-                            'Echo-Ridge-Photos/4.jpg',
                             'Echo-Ridge-Photos/44.jpg',
                             'Echo-Ridge-Photos/49.jpg',
                             'Echo-Ridge-Photos/54.jpg',
@@ -45811,7 +45811,7 @@ Fay Pullen
                             'Echo-Ridge-Photos/79.jpg',
                             'Echo-Ridge-Photos/84.jpg',
                             'Echo-Ridge-Photos/89.jpg',
-                            'Echo-Ridge-Photos/9.jpg'
+                            'Echo-Ridge-Photos/104.jpg'
                           ]
                         ],
             'maps' => [
@@ -45902,18 +45902,14 @@ Day total: 16.2 miles, 2755 ft and 8:20 hrs               Fay Pullen
             'day' => '16',
             'images' => [
                           [
-                            'Mt-Spokane-Ski-Trails-Pictures/104.jpg',
-                            'Mt-Spokane-Ski-Trails-Pictures/109.jpg',
-                            'Mt-Spokane-Ski-Trails-Pictures/114.jpg',
-                            'Mt-Spokane-Ski-Trails-Pictures/119.jpg',
-                            'Mt-Spokane-Ski-Trails-Pictures/135.jpg',
+                            'Mt-Spokane-Ski-Trails-Pictures/4.jpg',
+                            'Mt-Spokane-Ski-Trails-Pictures/9.jpg',
                             'Mt-Spokane-Ski-Trails-Pictures/14.jpg',
                             'Mt-Spokane-Ski-Trails-Pictures/19.jpg',
                             'Mt-Spokane-Ski-Trails-Pictures/24.jpg',
                             'Mt-Spokane-Ski-Trails-Pictures/29.jpg',
                             'Mt-Spokane-Ski-Trails-Pictures/34.jpg',
                             'Mt-Spokane-Ski-Trails-Pictures/39.jpg',
-                            'Mt-Spokane-Ski-Trails-Pictures/4.jpg',
                             'Mt-Spokane-Ski-Trails-Pictures/44.jpg',
                             'Mt-Spokane-Ski-Trails-Pictures/49.jpg',
                             'Mt-Spokane-Ski-Trails-Pictures/54.jpg',
@@ -45924,9 +45920,13 @@ Day total: 16.2 miles, 2755 ft and 8:20 hrs               Fay Pullen
                             'Mt-Spokane-Ski-Trails-Pictures/79.jpg',
                             'Mt-Spokane-Ski-Trails-Pictures/84.jpg',
                             'Mt-Spokane-Ski-Trails-Pictures/89.jpg',
-                            'Mt-Spokane-Ski-Trails-Pictures/9.jpg',
                             'Mt-Spokane-Ski-Trails-Pictures/94.jpg',
-                            'Mt-Spokane-Ski-Trails-Pictures/99.jpg'
+                            'Mt-Spokane-Ski-Trails-Pictures/99.jpg',
+                            'Mt-Spokane-Ski-Trails-Pictures/104.jpg',
+                            'Mt-Spokane-Ski-Trails-Pictures/109.jpg',
+                            'Mt-Spokane-Ski-Trails-Pictures/114.jpg',
+                            'Mt-Spokane-Ski-Trails-Pictures/119.jpg',
+                            'Mt-Spokane-Ski-Trails-Pictures/135.jpg'
                           ]
                         ],
             'maps' => [
@@ -46136,14 +46136,14 @@ Fay Pullen
             'day' => '07',
             'images' => [
                           [
-                            'Lone-Butte-Pictures/109.jpg',
+                            'Lone-Butte-Pictures/4.jpg',
+                            'Lone-Butte-Pictures/9.jpg',
                             'Lone-Butte-Pictures/14.jpg',
                             'Lone-Butte-Pictures/19.jpg',
                             'Lone-Butte-Pictures/24.jpg',
                             'Lone-Butte-Pictures/29.jpg',
                             'Lone-Butte-Pictures/34.jpg',
                             'Lone-Butte-Pictures/39.jpg',
-                            'Lone-Butte-Pictures/4.jpg',
                             'Lone-Butte-Pictures/44.jpg',
                             'Lone-Butte-Pictures/49.jpg',
                             'Lone-Butte-Pictures/54.jpg',
@@ -46154,8 +46154,8 @@ Fay Pullen
                             'Lone-Butte-Pictures/79.jpg',
                             'Lone-Butte-Pictures/84.jpg',
                             'Lone-Butte-Pictures/89.jpg',
-                            'Lone-Butte-Pictures/9.jpg',
-                            'Lone-Butte-Pictures/94.jpg'
+                            'Lone-Butte-Pictures/94.jpg',
+                            'Lone-Butte-Pictures/109.jpg'
                           ]
                         ],
             'maps' => [
@@ -46293,7 +46293,7 @@ Fay Pullen
                       ],
             'month' => '03',
             'subdir' => '2013-03-18-stonewall',
-            'title' => undef,
+            'title' => 'Stonewall',
             'tr' => undef,
             'year' => '2013'
           },
@@ -46301,13 +46301,14 @@ Fay Pullen
             'day' => '21',
             'images' => [
                           [
+                            'King-Mtn-Pictures/4.jpg',
+                            'King-Mtn-Pictures/9.jpg',
                             'King-Mtn-Pictures/14.jpg',
                             'King-Mtn-Pictures/19.jpg',
                             'King-Mtn-Pictures/24.jpg',
                             'King-Mtn-Pictures/29.jpg',
                             'King-Mtn-Pictures/34.jpg',
                             'King-Mtn-Pictures/39.jpg',
-                            'King-Mtn-Pictures/4.jpg',
                             'King-Mtn-Pictures/44.jpg',
                             'King-Mtn-Pictures/49.jpg',
                             'King-Mtn-Pictures/54.jpg',
@@ -46317,17 +46318,17 @@ Fay Pullen
                             'King-Mtn-Pictures/74.jpg',
                             'King-Mtn-Pictures/79.jpg',
                             'King-Mtn-Pictures/84.jpg',
-                            'King-Mtn-Pictures/9.jpg',
                             'King-Mtn-Pictures/99.jpg'
                           ],
                           [
+                            'Snowplow-Mtn-Pictures/4.jpg',
+                            'Snowplow-Mtn-Pictures/9.jpg',
                             'Snowplow-Mtn-Pictures/14.jpg',
                             'Snowplow-Mtn-Pictures/19.jpg',
                             'Snowplow-Mtn-Pictures/24.jpg',
                             'Snowplow-Mtn-Pictures/29.jpg',
                             'Snowplow-Mtn-Pictures/34.jpg',
                             'Snowplow-Mtn-Pictures/39.jpg',
-                            'Snowplow-Mtn-Pictures/4.jpg',
                             'Snowplow-Mtn-Pictures/44.jpg',
                             'Snowplow-Mtn-Pictures/49.jpg',
                             'Snowplow-Mtn-Pictures/54.jpg',
@@ -46337,7 +46338,6 @@ Fay Pullen
                             'Snowplow-Mtn-Pictures/74.jpg',
                             'Snowplow-Mtn-Pictures/79.jpg',
                             'Snowplow-Mtn-Pictures/84.jpg',
-                            'Snowplow-Mtn-Pictures/9.jpg',
                             'Snowplow-Mtn-Pictures/99.jpg'
                           ]
                         ],
@@ -46445,20 +46445,20 @@ Fay Pullen
             'day' => '30',
             'images' => [
                           [
+                            'Snowflea-Hill-Pictures/4.jpg',
+                            'Snowflea-Hill-Pictures/9.jpg',
                             'Snowflea-Hill-Pictures/14.jpg',
                             'Snowflea-Hill-Pictures/19.jpg',
                             'Snowflea-Hill-Pictures/24.jpg',
                             'Snowflea-Hill-Pictures/29.jpg',
                             'Snowflea-Hill-Pictures/34.jpg',
                             'Snowflea-Hill-Pictures/39.jpg',
-                            'Snowflea-Hill-Pictures/4.jpg',
                             'Snowflea-Hill-Pictures/44.jpg',
                             'Snowflea-Hill-Pictures/49.jpg',
                             'Snowflea-Hill-Pictures/54.jpg',
                             'Snowflea-Hill-Pictures/59.jpg',
                             'Snowflea-Hill-Pictures/64.jpg',
-                            'Snowflea-Hill-Pictures/78.jpg',
-                            'Snowflea-Hill-Pictures/9.jpg'
+                            'Snowflea-Hill-Pictures/78.jpg'
                           ]
                         ],
             'maps' => [
@@ -46570,13 +46570,14 @@ Fay Pullen
             'day' => '09',
             'images' => [
                           [
+                            'Burton-Mtn-Pictures/4.jpg',
+                            'Burton-Mtn-Pictures/9.jpg',
                             'Burton-Mtn-Pictures/14.jpg',
                             'Burton-Mtn-Pictures/19.jpg',
                             'Burton-Mtn-Pictures/24.jpg',
                             'Burton-Mtn-Pictures/29.jpg',
                             'Burton-Mtn-Pictures/34.jpg',
                             'Burton-Mtn-Pictures/39.jpg',
-                            'Burton-Mtn-Pictures/4.jpg',
                             'Burton-Mtn-Pictures/44.jpg',
                             'Burton-Mtn-Pictures/49.jpg',
                             'Burton-Mtn-Pictures/54.jpg',
@@ -46586,7 +46587,6 @@ Fay Pullen
                             'Burton-Mtn-Pictures/74.jpg',
                             'Burton-Mtn-Pictures/79.jpg',
                             'Burton-Mtn-Pictures/84.jpg',
-                            'Burton-Mtn-Pictures/9.jpg',
                             'Burton-Mtn-Pictures/99.jpg'
                           ]
                         ],
@@ -46668,14 +46668,14 @@ Fay Pullen
             'day' => '26',
             'images' => [
                           [
-                            'Big-Huckleberry-Pictures/109.jpg',
+                            'Big-Huckleberry-Pictures/4.jpg',
+                            'Big-Huckleberry-Pictures/9.jpg',
                             'Big-Huckleberry-Pictures/14.jpg',
                             'Big-Huckleberry-Pictures/19.jpg',
                             'Big-Huckleberry-Pictures/24.jpg',
                             'Big-Huckleberry-Pictures/29.jpg',
                             'Big-Huckleberry-Pictures/34.jpg',
                             'Big-Huckleberry-Pictures/39.jpg',
-                            'Big-Huckleberry-Pictures/4.jpg',
                             'Big-Huckleberry-Pictures/44.jpg',
                             'Big-Huckleberry-Pictures/49.jpg',
                             'Big-Huckleberry-Pictures/54.jpg',
@@ -46686,8 +46686,8 @@ Fay Pullen
                             'Big-Huckleberry-Pictures/79.jpg',
                             'Big-Huckleberry-Pictures/84.jpg',
                             'Big-Huckleberry-Pictures/89.jpg',
-                            'Big-Huckleberry-Pictures/9.jpg',
-                            'Big-Huckleberry-Pictures/94.jpg'
+                            'Big-Huckleberry-Pictures/94.jpg',
+                            'Big-Huckleberry-Pictures/109.jpg'
                           ]
                         ],
             'maps' => [
@@ -46815,17 +46815,14 @@ Fay Pullen
             'day' => '02',
             'images' => [
                           [
-                            'O\'Neil-Pictures/104.jpg',
-                            'O\'Neil-Pictures/109.jpg',
-                            'O\'Neil-Pictures/114.jpg',
-                            'O\'Neil-Pictures/130.jpg',
+                            'O\'Neil-Pictures/4.jpg',
+                            'O\'Neil-Pictures/9.jpg',
                             'O\'Neil-Pictures/14.jpg',
                             'O\'Neil-Pictures/19.jpg',
                             'O\'Neil-Pictures/24.jpg',
                             'O\'Neil-Pictures/29.jpg',
                             'O\'Neil-Pictures/34.jpg',
                             'O\'Neil-Pictures/39.jpg',
-                            'O\'Neil-Pictures/4.jpg',
                             'O\'Neil-Pictures/44.jpg',
                             'O\'Neil-Pictures/49.jpg',
                             'O\'Neil-Pictures/54.jpg',
@@ -46836,9 +46833,12 @@ Fay Pullen
                             'O\'Neil-Pictures/79.jpg',
                             'O\'Neil-Pictures/84.jpg',
                             'O\'Neil-Pictures/89.jpg',
-                            'O\'Neil-Pictures/9.jpg',
                             'O\'Neil-Pictures/94.jpg',
-                            'O\'Neil-Pictures/99.jpg'
+                            'O\'Neil-Pictures/99.jpg',
+                            'O\'Neil-Pictures/104.jpg',
+                            'O\'Neil-Pictures/109.jpg',
+                            'O\'Neil-Pictures/114.jpg',
+                            'O\'Neil-Pictures/130.jpg'
                           ]
                         ],
             'maps' => [
@@ -47029,17 +47029,14 @@ Fay Pullen
             'day' => '08',
             'images' => [
                           [
-                            'Capitol-Pk-Pictures/104.jpg',
-                            'Capitol-Pk-Pictures/109.jpg',
-                            'Capitol-Pk-Pictures/114.jpg',
-                            'Capitol-Pk-Pictures/130.jpg',
+                            'Capitol-Pk-Pictures/4.jpg',
+                            'Capitol-Pk-Pictures/9.jpg',
                             'Capitol-Pk-Pictures/14.jpg',
                             'Capitol-Pk-Pictures/19.jpg',
                             'Capitol-Pk-Pictures/24.jpg',
                             'Capitol-Pk-Pictures/29.jpg',
                             'Capitol-Pk-Pictures/34.jpg',
                             'Capitol-Pk-Pictures/39.jpg',
-                            'Capitol-Pk-Pictures/4.jpg',
                             'Capitol-Pk-Pictures/44.jpg',
                             'Capitol-Pk-Pictures/49.jpg',
                             'Capitol-Pk-Pictures/54.jpg',
@@ -47050,9 +47047,12 @@ Fay Pullen
                             'Capitol-Pk-Pictures/79.jpg',
                             'Capitol-Pk-Pictures/84.jpg',
                             'Capitol-Pk-Pictures/89.jpg',
-                            'Capitol-Pk-Pictures/9.jpg',
                             'Capitol-Pk-Pictures/94.jpg',
-                            'Capitol-Pk-Pictures/99.jpg'
+                            'Capitol-Pk-Pictures/99.jpg',
+                            'Capitol-Pk-Pictures/104.jpg',
+                            'Capitol-Pk-Pictures/109.jpg',
+                            'Capitol-Pk-Pictures/114.jpg',
+                            'Capitol-Pk-Pictures/130.jpg'
                           ]
                         ],
             'maps' => [
@@ -47169,12 +47169,12 @@ Fay Pullen
             'day' => '20',
             'images' => [
                           [
+                            'Lena-Lake-Peaks/4.jpg',
+                            'Lena-Lake-Peaks/9.jpg',
                             'Lena-Lake-Peaks/14.jpg',
                             'Lena-Lake-Peaks/19.jpg',
                             'Lena-Lake-Peaks/24.jpg',
-                            'Lena-Lake-Peaks/36.jpg',
-                            'Lena-Lake-Peaks/4.jpg',
-                            'Lena-Lake-Peaks/9.jpg'
+                            'Lena-Lake-Peaks/36.jpg'
                           ]
                         ],
             'maps' => [
@@ -47182,7 +47182,7 @@ Fay Pullen
                       ],
             'month' => '05',
             'subdir' => '2013-05-20-lena',
-            'title' => undef,
+            'title' => 'Lena Lake Peaks',
             'tr' => '
 Lena Lake Peaks: Pk 4110 (P550) and Pk 4325 (P405) - Mt  Washington  Quad  -
 May 15-17, 2013
@@ -47240,13 +47240,14 @@ Fay
             'day' => '26',
             'images' => [
                           [
+                            'Lakeshore-Trail-Pictures/4.jpg',
+                            'Lakeshore-Trail-Pictures/9.jpg',
                             'Lakeshore-Trail-Pictures/14.jpg',
                             'Lakeshore-Trail-Pictures/19.jpg',
                             'Lakeshore-Trail-Pictures/24.jpg',
                             'Lakeshore-Trail-Pictures/29.jpg',
                             'Lakeshore-Trail-Pictures/34.jpg',
                             'Lakeshore-Trail-Pictures/39.jpg',
-                            'Lakeshore-Trail-Pictures/4.jpg',
                             'Lakeshore-Trail-Pictures/44.jpg',
                             'Lakeshore-Trail-Pictures/49.jpg',
                             'Lakeshore-Trail-Pictures/54.jpg',
@@ -47256,7 +47257,6 @@ Fay
                             'Lakeshore-Trail-Pictures/74.jpg',
                             'Lakeshore-Trail-Pictures/79.jpg',
                             'Lakeshore-Trail-Pictures/84.jpg',
-                            'Lakeshore-Trail-Pictures/9.jpg',
                             'Lakeshore-Trail-Pictures/99.jpg'
                           ]
                         ],
@@ -47326,20 +47326,14 @@ Fay Pullen
             'day' => '02',
             'images' => [
                           [
-                            'Mt-Misery-Pictures/104.jpg',
-                            'Mt-Misery-Pictures/109.jpg',
-                            'Mt-Misery-Pictures/114.jpg',
-                            'Mt-Misery-Pictures/119.jpg',
-                            'Mt-Misery-Pictures/124.jpg',
-                            'Mt-Misery-Pictures/129.jpg',
+                            'Mt-Misery-Pictures/4.jpg',
+                            'Mt-Misery-Pictures/9.jpg',
                             'Mt-Misery-Pictures/14.jpg',
-                            'Mt-Misery-Pictures/146.jpg',
                             'Mt-Misery-Pictures/19.jpg',
                             'Mt-Misery-Pictures/24.jpg',
                             'Mt-Misery-Pictures/29.jpg',
                             'Mt-Misery-Pictures/34.jpg',
                             'Mt-Misery-Pictures/39.jpg',
-                            'Mt-Misery-Pictures/4.jpg',
                             'Mt-Misery-Pictures/44.jpg',
                             'Mt-Misery-Pictures/49.jpg',
                             'Mt-Misery-Pictures/54.jpg',
@@ -47350,9 +47344,15 @@ Fay Pullen
                             'Mt-Misery-Pictures/79.jpg',
                             'Mt-Misery-Pictures/84.jpg',
                             'Mt-Misery-Pictures/89.jpg',
-                            'Mt-Misery-Pictures/9.jpg',
                             'Mt-Misery-Pictures/94.jpg',
-                            'Mt-Misery-Pictures/99.jpg'
+                            'Mt-Misery-Pictures/99.jpg',
+                            'Mt-Misery-Pictures/104.jpg',
+                            'Mt-Misery-Pictures/109.jpg',
+                            'Mt-Misery-Pictures/114.jpg',
+                            'Mt-Misery-Pictures/119.jpg',
+                            'Mt-Misery-Pictures/124.jpg',
+                            'Mt-Misery-Pictures/129.jpg',
+                            'Mt-Misery-Pictures/146.jpg'
                           ]
                         ],
             'maps' => [
@@ -47466,21 +47466,14 @@ Fay Pullen
             'day' => '07',
             'images' => [
                           [
-                            'Kitling-Pass-Peaks/104.jpg',
-                            'Kitling-Pass-Peaks/109.jpg',
-                            'Kitling-Pass-Peaks/114.jpg',
-                            'Kitling-Pass-Peaks/119.jpg',
-                            'Kitling-Pass-Peaks/124.jpg',
-                            'Kitling-Pass-Peaks/129.jpg',
-                            'Kitling-Pass-Peaks/134.jpg',
+                            'Kitling-Pass-Peaks/4.jpg',
+                            'Kitling-Pass-Peaks/9.jpg',
                             'Kitling-Pass-Peaks/14.jpg',
-                            'Kitling-Pass-Peaks/151.jpg',
                             'Kitling-Pass-Peaks/19.jpg',
                             'Kitling-Pass-Peaks/24.jpg',
                             'Kitling-Pass-Peaks/29.jpg',
                             'Kitling-Pass-Peaks/34.jpg',
                             'Kitling-Pass-Peaks/39.jpg',
-                            'Kitling-Pass-Peaks/4.jpg',
                             'Kitling-Pass-Peaks/44.jpg',
                             'Kitling-Pass-Peaks/49.jpg',
                             'Kitling-Pass-Peaks/54.jpg',
@@ -47491,9 +47484,16 @@ Fay Pullen
                             'Kitling-Pass-Peaks/79.jpg',
                             'Kitling-Pass-Peaks/84.jpg',
                             'Kitling-Pass-Peaks/89.jpg',
-                            'Kitling-Pass-Peaks/9.jpg',
                             'Kitling-Pass-Peaks/94.jpg',
-                            'Kitling-Pass-Peaks/99.jpg'
+                            'Kitling-Pass-Peaks/99.jpg',
+                            'Kitling-Pass-Peaks/104.jpg',
+                            'Kitling-Pass-Peaks/109.jpg',
+                            'Kitling-Pass-Peaks/114.jpg',
+                            'Kitling-Pass-Peaks/119.jpg',
+                            'Kitling-Pass-Peaks/124.jpg',
+                            'Kitling-Pass-Peaks/129.jpg',
+                            'Kitling-Pass-Peaks/134.jpg',
+                            'Kitling-Pass-Peaks/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -47587,16 +47587,14 @@ Fay Pullen
             'day' => '14',
             'images' => [
                           [
-                            'Torment-Pictures/104.jpg',
-                            'Torment-Pictures/109.jpg',
-                            'Torment-Pictures/125.jpg',
+                            'Torment-Pictures/4.jpg',
+                            'Torment-Pictures/9.jpg',
                             'Torment-Pictures/14.jpg',
                             'Torment-Pictures/19.jpg',
                             'Torment-Pictures/24.jpg',
                             'Torment-Pictures/29.jpg',
                             'Torment-Pictures/34.jpg',
                             'Torment-Pictures/39.jpg',
-                            'Torment-Pictures/4.jpg',
                             'Torment-Pictures/44.jpg',
                             'Torment-Pictures/49.jpg',
                             'Torment-Pictures/54.jpg',
@@ -47607,9 +47605,11 @@ Fay Pullen
                             'Torment-Pictures/79.jpg',
                             'Torment-Pictures/84.jpg',
                             'Torment-Pictures/89.jpg',
-                            'Torment-Pictures/9.jpg',
                             'Torment-Pictures/94.jpg',
-                            'Torment-Pictures/99.jpg'
+                            'Torment-Pictures/99.jpg',
+                            'Torment-Pictures/104.jpg',
+                            'Torment-Pictures/109.jpg',
+                            'Torment-Pictures/125.jpg'
                           ]
                         ],
             'maps' => [
@@ -47755,16 +47755,14 @@ Fay Pullen
             'day' => '21',
             'images' => [
                           [
-                            'White-Mtns-Pictures/104.jpg',
-                            'White-Mtns-Pictures/109.jpg',
-                            'White-Mtns-Pictures/125.jpg',
+                            'White-Mtns-Pictures/4.jpg',
+                            'White-Mtns-Pictures/9.jpg',
                             'White-Mtns-Pictures/14.jpg',
                             'White-Mtns-Pictures/19.jpg',
                             'White-Mtns-Pictures/24.jpg',
                             'White-Mtns-Pictures/29.jpg',
                             'White-Mtns-Pictures/34.jpg',
                             'White-Mtns-Pictures/39.jpg',
-                            'White-Mtns-Pictures/4.jpg',
                             'White-Mtns-Pictures/44.jpg',
                             'White-Mtns-Pictures/49.jpg',
                             'White-Mtns-Pictures/54.jpg',
@@ -47775,9 +47773,11 @@ Fay Pullen
                             'White-Mtns-Pictures/79.jpg',
                             'White-Mtns-Pictures/84.jpg',
                             'White-Mtns-Pictures/89.jpg',
-                            'White-Mtns-Pictures/9.jpg',
                             'White-Mtns-Pictures/94.jpg',
-                            'White-Mtns-Pictures/99.jpg'
+                            'White-Mtns-Pictures/99.jpg',
+                            'White-Mtns-Pictures/104.jpg',
+                            'White-Mtns-Pictures/109.jpg',
+                            'White-Mtns-Pictures/125.jpg'
                           ]
                         ],
             'maps' => [
@@ -47868,15 +47868,14 @@ Fay Pullen
             'day' => '24',
             'images' => [
                           [
-                            'Whatcom-Pass-Pictures/104.jpg',
-                            'Whatcom-Pass-Pictures/120.jpg',
+                            'Whatcom-Pass-Pictures/4.jpg',
+                            'Whatcom-Pass-Pictures/9.jpg',
                             'Whatcom-Pass-Pictures/14.jpg',
                             'Whatcom-Pass-Pictures/19.jpg',
                             'Whatcom-Pass-Pictures/24.jpg',
                             'Whatcom-Pass-Pictures/29.jpg',
                             'Whatcom-Pass-Pictures/34.jpg',
                             'Whatcom-Pass-Pictures/39.jpg',
-                            'Whatcom-Pass-Pictures/4.jpg',
                             'Whatcom-Pass-Pictures/44.jpg',
                             'Whatcom-Pass-Pictures/49.jpg',
                             'Whatcom-Pass-Pictures/54.jpg',
@@ -47887,9 +47886,10 @@ Fay Pullen
                             'Whatcom-Pass-Pictures/79.jpg',
                             'Whatcom-Pass-Pictures/84.jpg',
                             'Whatcom-Pass-Pictures/89.jpg',
-                            'Whatcom-Pass-Pictures/9.jpg',
                             'Whatcom-Pass-Pictures/94.jpg',
-                            'Whatcom-Pass-Pictures/99.jpg'
+                            'Whatcom-Pass-Pictures/99.jpg',
+                            'Whatcom-Pass-Pictures/104.jpg',
+                            'Whatcom-Pass-Pictures/120.jpg'
                           ]
                         ],
             'maps' => [
@@ -47996,19 +47996,14 @@ Trip Total: 40 miles and 12,050 ft in 5 days
             'day' => '30',
             'images' => [
                           [
-                            'Crooked-Thumb-Pictures/104.jpg',
-                            'Crooked-Thumb-Pictures/109.jpg',
-                            'Crooked-Thumb-Pictures/114.jpg',
-                            'Crooked-Thumb-Pictures/119.jpg',
-                            'Crooked-Thumb-Pictures/124.jpg',
+                            'Crooked-Thumb-Pictures/4.jpg',
+                            'Crooked-Thumb-Pictures/9.jpg',
                             'Crooked-Thumb-Pictures/14.jpg',
-                            'Crooked-Thumb-Pictures/141.jpg',
                             'Crooked-Thumb-Pictures/19.jpg',
                             'Crooked-Thumb-Pictures/24.jpg',
                             'Crooked-Thumb-Pictures/29.jpg',
                             'Crooked-Thumb-Pictures/34.jpg',
                             'Crooked-Thumb-Pictures/39.jpg',
-                            'Crooked-Thumb-Pictures/4.jpg',
                             'Crooked-Thumb-Pictures/44.jpg',
                             'Crooked-Thumb-Pictures/49.jpg',
                             'Crooked-Thumb-Pictures/54.jpg',
@@ -48019,9 +48014,14 @@ Trip Total: 40 miles and 12,050 ft in 5 days
                             'Crooked-Thumb-Pictures/79.jpg',
                             'Crooked-Thumb-Pictures/84.jpg',
                             'Crooked-Thumb-Pictures/89.jpg',
-                            'Crooked-Thumb-Pictures/9.jpg',
                             'Crooked-Thumb-Pictures/94.jpg',
-                            'Crooked-Thumb-Pictures/99.jpg'
+                            'Crooked-Thumb-Pictures/99.jpg',
+                            'Crooked-Thumb-Pictures/104.jpg',
+                            'Crooked-Thumb-Pictures/109.jpg',
+                            'Crooked-Thumb-Pictures/114.jpg',
+                            'Crooked-Thumb-Pictures/119.jpg',
+                            'Crooked-Thumb-Pictures/124.jpg',
+                            'Crooked-Thumb-Pictures/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -48030,7 +48030,7 @@ Trip Total: 40 miles and 12,050 ft in 5 days
                       ],
             'month' => '07',
             'subdir' => '2013-07-30-crooked-thumb',
-            'title' => undef,
+            'title' => 'Crooked Thumb',
             'tr' => 'Even though we didn\'t make the summit of Crooked Thumb, Eileen and I had a grand adventure venturing into the remote and beautiful northern Pickets with just the two of us, one I will cherish always. We sure gave it our all and got darn close (to 170 ft of the top) and had great fun meeting the many challenges and problems thrown our way. We worked very well together as a team. If it weren\'t for the bad luck of having the only rain in the entire month of July coincide with our two summit days we probably would have made it. 
 
 Day 1 - We caught the boat for Big Beaver at 1:00 and hiked to Luna Camp.
@@ -48066,19 +48066,14 @@ Trip Total: 48 miles and 14,700 ft in 8 days
             'day' => '07',
             'images' => [
                           [
-                            'Baekos-Pictures/104.jpg',
-                            'Baekos-Pictures/109.jpg',
-                            'Baekos-Pictures/114.jpg',
-                            'Baekos-Pictures/119.jpg',
-                            'Baekos-Pictures/124.jpg',
+                            'Baekos-Pictures/4.jpg',
+                            'Baekos-Pictures/9.jpg',
                             'Baekos-Pictures/14.jpg',
-                            'Baekos-Pictures/141.jpg',
                             'Baekos-Pictures/19.jpg',
                             'Baekos-Pictures/24.jpg',
                             'Baekos-Pictures/29.jpg',
                             'Baekos-Pictures/34.jpg',
                             'Baekos-Pictures/39.jpg',
-                            'Baekos-Pictures/4.jpg',
                             'Baekos-Pictures/44.jpg',
                             'Baekos-Pictures/49.jpg',
                             'Baekos-Pictures/54.jpg',
@@ -48089,9 +48084,14 @@ Trip Total: 48 miles and 14,700 ft in 8 days
                             'Baekos-Pictures/79.jpg',
                             'Baekos-Pictures/84.jpg',
                             'Baekos-Pictures/89.jpg',
-                            'Baekos-Pictures/9.jpg',
                             'Baekos-Pictures/94.jpg',
-                            'Baekos-Pictures/99.jpg'
+                            'Baekos-Pictures/99.jpg',
+                            'Baekos-Pictures/104.jpg',
+                            'Baekos-Pictures/109.jpg',
+                            'Baekos-Pictures/114.jpg',
+                            'Baekos-Pictures/119.jpg',
+                            'Baekos-Pictures/124.jpg',
+                            'Baekos-Pictures/141.jpg'
                           ]
                         ],
             'maps' => [
@@ -48257,14 +48257,14 @@ in the tread.
             'day' => '13',
             'images' => [
                           [
-                            'June-10th-Pk-Pictures/104.jpg',
+                            'June-10th-Pk-Pictures/4.jpg',
+                            'June-10th-Pk-Pictures/9.jpg',
                             'June-10th-Pk-Pictures/14.jpg',
                             'June-10th-Pk-Pictures/19.jpg',
                             'June-10th-Pk-Pictures/24.jpg',
                             'June-10th-Pk-Pictures/29.jpg',
                             'June-10th-Pk-Pictures/34.jpg',
                             'June-10th-Pk-Pictures/39.jpg',
-                            'June-10th-Pk-Pictures/4.jpg',
                             'June-10th-Pk-Pictures/44.jpg',
                             'June-10th-Pk-Pictures/49.jpg',
                             'June-10th-Pk-Pictures/54.jpg',
@@ -48275,7 +48275,7 @@ in the tread.
                             'June-10th-Pk-Pictures/79.jpg',
                             'June-10th-Pk-Pictures/84.jpg',
                             'June-10th-Pk-Pictures/89.jpg',
-                            'June-10th-Pk-Pictures/9.jpg'
+                            'June-10th-Pk-Pictures/104.jpg'
                           ]
                         ],
             'maps' => [
@@ -48403,14 +48403,14 @@ Fay Pullen
             'day' => '21',
             'images' => [
                           [
-                            'Lawson-Pictures/115.jpg',
+                            'Lawson-Pictures/4.jpg',
+                            'Lawson-Pictures/9.jpg',
                             'Lawson-Pictures/14.jpg',
                             'Lawson-Pictures/19.jpg',
                             'Lawson-Pictures/24.jpg',
                             'Lawson-Pictures/29.jpg',
                             'Lawson-Pictures/34.jpg',
                             'Lawson-Pictures/39.jpg',
-                            'Lawson-Pictures/4.jpg',
                             'Lawson-Pictures/44.jpg',
                             'Lawson-Pictures/49.jpg',
                             'Lawson-Pictures/54.jpg',
@@ -48421,9 +48421,9 @@ Fay Pullen
                             'Lawson-Pictures/79.jpg',
                             'Lawson-Pictures/84.jpg',
                             'Lawson-Pictures/89.jpg',
-                            'Lawson-Pictures/9.jpg',
                             'Lawson-Pictures/94.jpg',
-                            'Lawson-Pictures/99.jpg'
+                            'Lawson-Pictures/99.jpg',
+                            'Lawson-Pictures/115.jpg'
                           ]
                         ],
             'maps' => [
@@ -48580,26 +48580,14 @@ Fay Pullen
             'day' => '06',
             'images' => [
                           [
-                            'Eagle-Cap-Pictures/104.jpg',
-                            'Eagle-Cap-Pictures/109.jpg',
-                            'Eagle-Cap-Pictures/114.jpg',
-                            'Eagle-Cap-Pictures/119.jpg',
-                            'Eagle-Cap-Pictures/124.jpg',
-                            'Eagle-Cap-Pictures/129.jpg',
-                            'Eagle-Cap-Pictures/134.jpg',
-                            'Eagle-Cap-Pictures/139.jpg',
+                            'Eagle-Cap-Pictures/4.jpg',
+                            'Eagle-Cap-Pictures/9.jpg',
                             'Eagle-Cap-Pictures/14.jpg',
-                            'Eagle-Cap-Pictures/144.jpg',
-                            'Eagle-Cap-Pictures/149.jpg',
-                            'Eagle-Cap-Pictures/154.jpg',
-                            'Eagle-Cap-Pictures/159.jpg',
-                            'Eagle-Cap-Pictures/177.jpg',
                             'Eagle-Cap-Pictures/19.jpg',
                             'Eagle-Cap-Pictures/24.jpg',
                             'Eagle-Cap-Pictures/29.jpg',
                             'Eagle-Cap-Pictures/34.jpg',
                             'Eagle-Cap-Pictures/39.jpg',
-                            'Eagle-Cap-Pictures/4.jpg',
                             'Eagle-Cap-Pictures/44.jpg',
                             'Eagle-Cap-Pictures/49.jpg',
                             'Eagle-Cap-Pictures/54.jpg',
@@ -48610,9 +48598,21 @@ Fay Pullen
                             'Eagle-Cap-Pictures/79.jpg',
                             'Eagle-Cap-Pictures/84.jpg',
                             'Eagle-Cap-Pictures/89.jpg',
-                            'Eagle-Cap-Pictures/9.jpg',
                             'Eagle-Cap-Pictures/94.jpg',
-                            'Eagle-Cap-Pictures/99.jpg'
+                            'Eagle-Cap-Pictures/99.jpg',
+                            'Eagle-Cap-Pictures/104.jpg',
+                            'Eagle-Cap-Pictures/109.jpg',
+                            'Eagle-Cap-Pictures/114.jpg',
+                            'Eagle-Cap-Pictures/119.jpg',
+                            'Eagle-Cap-Pictures/124.jpg',
+                            'Eagle-Cap-Pictures/129.jpg',
+                            'Eagle-Cap-Pictures/134.jpg',
+                            'Eagle-Cap-Pictures/139.jpg',
+                            'Eagle-Cap-Pictures/144.jpg',
+                            'Eagle-Cap-Pictures/149.jpg',
+                            'Eagle-Cap-Pictures/154.jpg',
+                            'Eagle-Cap-Pictures/159.jpg',
+                            'Eagle-Cap-Pictures/177.jpg'
                           ]
                         ],
             'maps' => [],
@@ -48796,21 +48796,14 @@ Fay Pullen
             'day' => '24',
             'images' => [
                           [
-                            'Copper-Mtn-Pictures/104.jpg',
-                            'Copper-Mtn-Pictures/109.jpg',
-                            'Copper-Mtn-Pictures/114.jpg',
-                            'Copper-Mtn-Pictures/119.jpg',
-                            'Copper-Mtn-Pictures/124.jpg',
-                            'Copper-Mtn-Pictures/129.jpg',
-                            'Copper-Mtn-Pictures/134.jpg',
+                            'Copper-Mtn-Pictures/4.jpg',
+                            'Copper-Mtn-Pictures/9.jpg',
                             'Copper-Mtn-Pictures/14.jpg',
-                            'Copper-Mtn-Pictures/151.jpg',
                             'Copper-Mtn-Pictures/19.jpg',
                             'Copper-Mtn-Pictures/24.jpg',
                             'Copper-Mtn-Pictures/29.jpg',
                             'Copper-Mtn-Pictures/34.jpg',
                             'Copper-Mtn-Pictures/39.jpg',
-                            'Copper-Mtn-Pictures/4.jpg',
                             'Copper-Mtn-Pictures/44.jpg',
                             'Copper-Mtn-Pictures/49.jpg',
                             'Copper-Mtn-Pictures/54.jpg',
@@ -48821,9 +48814,16 @@ Fay Pullen
                             'Copper-Mtn-Pictures/79.jpg',
                             'Copper-Mtn-Pictures/84.jpg',
                             'Copper-Mtn-Pictures/89.jpg',
-                            'Copper-Mtn-Pictures/9.jpg',
                             'Copper-Mtn-Pictures/94.jpg',
-                            'Copper-Mtn-Pictures/99.jpg'
+                            'Copper-Mtn-Pictures/99.jpg',
+                            'Copper-Mtn-Pictures/104.jpg',
+                            'Copper-Mtn-Pictures/109.jpg',
+                            'Copper-Mtn-Pictures/114.jpg',
+                            'Copper-Mtn-Pictures/119.jpg',
+                            'Copper-Mtn-Pictures/124.jpg',
+                            'Copper-Mtn-Pictures/129.jpg',
+                            'Copper-Mtn-Pictures/134.jpg',
+                            'Copper-Mtn-Pictures/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -48831,7 +48831,7 @@ Fay Pullen
                       ],
             'month' => '09',
             'subdir' => '2013-09-24-copper',
-            'title' => undef,
+            'title' => 'Copper Mtn',
             'tr' => undef,
             'year' => '2013'
           },
@@ -48839,13 +48839,14 @@ Fay Pullen
             'day' => '29',
             'images' => [
                           [
+                            'Rattlesnake-Peaks/4.jpg',
+                            'Rattlesnake-Peaks/9.jpg',
                             'Rattlesnake-Peaks/14.jpg',
                             'Rattlesnake-Peaks/19.jpg',
                             'Rattlesnake-Peaks/24.jpg',
                             'Rattlesnake-Peaks/29.jpg',
                             'Rattlesnake-Peaks/34.jpg',
                             'Rattlesnake-Peaks/39.jpg',
-                            'Rattlesnake-Peaks/4.jpg',
                             'Rattlesnake-Peaks/44.jpg',
                             'Rattlesnake-Peaks/49.jpg',
                             'Rattlesnake-Peaks/54.jpg',
@@ -48855,7 +48856,6 @@ Fay Pullen
                             'Rattlesnake-Peaks/74.jpg',
                             'Rattlesnake-Peaks/79.jpg',
                             'Rattlesnake-Peaks/84.jpg',
-                            'Rattlesnake-Peaks/9.jpg',
                             'Rattlesnake-Peaks/99.jpg'
                           ]
                         ],
@@ -48864,7 +48864,7 @@ Fay Pullen
                       ],
             'month' => '09',
             'subdir' => '2013-09-29-rattlesnake',
-            'title' => undef,
+            'title' => 'Rattlesnake Peaks',
             'tr' => undef,
             'year' => '2013'
           },
@@ -48872,21 +48872,14 @@ Fay Pullen
             'day' => '08',
             'images' => [
                           [
-                            'Nook-Pictures/104.jpg',
-                            'Nook-Pictures/109.jpg',
-                            'Nook-Pictures/114.jpg',
-                            'Nook-Pictures/119.jpg',
-                            'Nook-Pictures/124.jpg',
-                            'Nook-Pictures/129.jpg',
-                            'Nook-Pictures/134.jpg',
+                            'Nook-Pictures/4.jpg',
+                            'Nook-Pictures/9.jpg',
                             'Nook-Pictures/14.jpg',
-                            'Nook-Pictures/151.jpg',
                             'Nook-Pictures/19.jpg',
                             'Nook-Pictures/24.jpg',
                             'Nook-Pictures/29.jpg',
                             'Nook-Pictures/34.jpg',
                             'Nook-Pictures/39.jpg',
-                            'Nook-Pictures/4.jpg',
                             'Nook-Pictures/44.jpg',
                             'Nook-Pictures/49.jpg',
                             'Nook-Pictures/54.jpg',
@@ -48897,9 +48890,16 @@ Fay Pullen
                             'Nook-Pictures/79.jpg',
                             'Nook-Pictures/84.jpg',
                             'Nook-Pictures/89.jpg',
-                            'Nook-Pictures/9.jpg',
                             'Nook-Pictures/94.jpg',
-                            'Nook-Pictures/99.jpg'
+                            'Nook-Pictures/99.jpg',
+                            'Nook-Pictures/104.jpg',
+                            'Nook-Pictures/109.jpg',
+                            'Nook-Pictures/114.jpg',
+                            'Nook-Pictures/119.jpg',
+                            'Nook-Pictures/124.jpg',
+                            'Nook-Pictures/129.jpg',
+                            'Nook-Pictures/134.jpg',
+                            'Nook-Pictures/151.jpg'
                           ]
                         ],
             'maps' => [
@@ -49023,16 +49023,14 @@ Fay Pullen
             'day' => '16',
             'images' => [
                           [
-                            'Pomas-Peak-Pictures/104.jpg',
-                            'Pomas-Peak-Pictures/109.jpg',
-                            'Pomas-Peak-Pictures/125.jpg',
+                            'Pomas-Peak-Pictures/4.jpg',
+                            'Pomas-Peak-Pictures/9.jpg',
                             'Pomas-Peak-Pictures/14.jpg',
                             'Pomas-Peak-Pictures/19.jpg',
                             'Pomas-Peak-Pictures/24.jpg',
                             'Pomas-Peak-Pictures/29.jpg',
                             'Pomas-Peak-Pictures/34.jpg',
                             'Pomas-Peak-Pictures/39.jpg',
-                            'Pomas-Peak-Pictures/4.jpg',
                             'Pomas-Peak-Pictures/44.jpg',
                             'Pomas-Peak-Pictures/49.jpg',
                             'Pomas-Peak-Pictures/54.jpg',
@@ -49043,9 +49041,11 @@ Fay Pullen
                             'Pomas-Peak-Pictures/79.jpg',
                             'Pomas-Peak-Pictures/84.jpg',
                             'Pomas-Peak-Pictures/89.jpg',
-                            'Pomas-Peak-Pictures/9.jpg',
                             'Pomas-Peak-Pictures/94.jpg',
-                            'Pomas-Peak-Pictures/99.jpg'
+                            'Pomas-Peak-Pictures/99.jpg',
+                            'Pomas-Peak-Pictures/104.jpg',
+                            'Pomas-Peak-Pictures/109.jpg',
+                            'Pomas-Peak-Pictures/125.jpg'
                           ]
                         ],
             'maps' => [
@@ -49136,25 +49136,27 @@ Fay Pullen
           },
           {
             'day' => '29',
+            'maps' => [
+                        'Mt Storrm King Route.JPG'
+                      ],
             'images' => [
                           [
+                            'Storm-King-Pictures/4.jpg',
+                            'Storm-King-Pictures/9.jpg',
                             'Storm-King-Pictures/14.jpg',
                             'Storm-King-Pictures/19.jpg',
                             'Storm-King-Pictures/24.jpg',
                             'Storm-King-Pictures/29.jpg',
                             'Storm-King-Pictures/34.jpg',
                             'Storm-King-Pictures/39.jpg',
-                            'Storm-King-Pictures/4.jpg',
                             'Storm-King-Pictures/44.jpg',
                             'Storm-King-Pictures/49.jpg',
-                            'Storm-King-Pictures/63.jpg',
-                            'Storm-King-Pictures/9.jpg'
+                            'Storm-King-Pictures/63.jpg'
                           ]
                         ],
-            'maps' => [],
             'month' => '10',
             'subdir' => '2013-10-29-storm-king',
-            'title' => undef,
+            'title' => 'Storm King',
             'tr' => undef,
             'year' => '2013'
           },
@@ -49162,18 +49164,14 @@ Fay Pullen
             'day' => '30',
             'images' => [
                           [
-                            'Tamarack-Pictures/104.jpg',
-                            'Tamarack-Pictures/109.jpg',
-                            'Tamarack-Pictures/114.jpg',
-                            'Tamarack-Pictures/119.jpg',
-                            'Tamarack-Pictures/135.jpg',
+                            'Tamarack-Pictures/4.jpg',
+                            'Tamarack-Pictures/9.jpg',
                             'Tamarack-Pictures/14.jpg',
                             'Tamarack-Pictures/19.jpg',
                             'Tamarack-Pictures/24.jpg',
                             'Tamarack-Pictures/29.jpg',
                             'Tamarack-Pictures/34.jpg',
                             'Tamarack-Pictures/39.jpg',
-                            'Tamarack-Pictures/4.jpg',
                             'Tamarack-Pictures/44.jpg',
                             'Tamarack-Pictures/49.jpg',
                             'Tamarack-Pictures/54.jpg',
@@ -49184,15 +49182,21 @@ Fay Pullen
                             'Tamarack-Pictures/79.jpg',
                             'Tamarack-Pictures/84.jpg',
                             'Tamarack-Pictures/89.jpg',
-                            'Tamarack-Pictures/9.jpg',
                             'Tamarack-Pictures/94.jpg',
-                            'Tamarack-Pictures/99.jpg'
+                            'Tamarack-Pictures/99.jpg',
+                            'Tamarack-Pictures/104.jpg',
+                            'Tamarack-Pictures/109.jpg',
+                            'Tamarack-Pictures/114.jpg',
+                            'Tamarack-Pictures/119.jpg',
+                            'Tamarack-Pictures/135.jpg'
                           ]
                         ],
-            'maps' => ['Tamarack Route.JPG'],
+            'maps' => [
+                        'Tamarack Route.JPG'
+                      ],
             'month' => '10',
             'subdir' => '2013-10-30-tamarack',
-            'title' => undef,
+            'title' => 'Tamarack',
             'tr' => undef,
             'year' => '2013'
           },
@@ -49200,13 +49204,14 @@ Fay Pullen
             'day' => '01',
             'images' => [
                           [
+                            'Whalehead-Ridge-Pictures/4.jpg',
+                            'Whalehead-Ridge-Pictures/9.jpg',
                             'Whalehead-Ridge-Pictures/14.jpg',
                             'Whalehead-Ridge-Pictures/19.jpg',
                             'Whalehead-Ridge-Pictures/24.jpg',
                             'Whalehead-Ridge-Pictures/29.jpg',
                             'Whalehead-Ridge-Pictures/34.jpg',
                             'Whalehead-Ridge-Pictures/39.jpg',
-                            'Whalehead-Ridge-Pictures/4.jpg',
                             'Whalehead-Ridge-Pictures/44.jpg',
                             'Whalehead-Ridge-Pictures/49.jpg',
                             'Whalehead-Ridge-Pictures/54.jpg',
@@ -49215,11 +49220,12 @@ Fay Pullen
                             'Whalehead-Ridge-Pictures/69.jpg',
                             'Whalehead-Ridge-Pictures/74.jpg',
                             'Whalehead-Ridge-Pictures/79.jpg',
-                            'Whalehead-Ridge-Pictures/9.jpg',
                             'Whalehead-Ridge-Pictures/94.jpg'
                           ]
                         ],
-            'maps' => ['Whalehead Route.JPG'],
+            'maps' => [
+                        'Whalehead Route.JPG'
+                      ],
             'month' => '11',
             'subdir' => '2013-11-01-whalehead',
             'title' => 'Whalehead Ridge (5280+ ft - P720 - Purcell Mtn Quad) - November 1, 2013',
@@ -49288,13 +49294,14 @@ Fay Pullen
             'day' => '08',
             'images' => [
                           [
+                            'Lizard-Head-Pictures/4.jpg',
+                            'Lizard-Head-Pictures/9.jpg',
                             'Lizard-Head-Pictures/14.jpg',
                             'Lizard-Head-Pictures/19.jpg',
                             'Lizard-Head-Pictures/24.jpg',
                             'Lizard-Head-Pictures/29.jpg',
                             'Lizard-Head-Pictures/34.jpg',
                             'Lizard-Head-Pictures/39.jpg',
-                            'Lizard-Head-Pictures/4.jpg',
                             'Lizard-Head-Pictures/44.jpg',
                             'Lizard-Head-Pictures/49.jpg',
                             'Lizard-Head-Pictures/54.jpg',
@@ -49304,11 +49311,12 @@ Fay Pullen
                             'Lizard-Head-Pictures/74.jpg',
                             'Lizard-Head-Pictures/79.jpg',
                             'Lizard-Head-Pictures/84.jpg',
-                            'Lizard-Head-Pictures/9.jpg',
                             'Lizard-Head-Pictures/99.jpg'
                           ]
                         ],
-            'maps' => [ 'Lizard Head Route.JPG'],
+            'maps' => [
+                        'Lizard Head Route.JPG'
+                      ],
             'month' => '11',
             'subdir' => '2013-11-08-lizard-head',
             'title' => 'Lizard Head Peak (5350+ ft - P600) and Pk 5150+ (P450) - Lake Sutherland Quad - November 8-10, 2013',
@@ -49477,18 +49485,18 @@ Fay Pullen
             'day' => '19',
             'images' => [
                           [
+                            'Sweet-Peak-Pictures/4.jpg',
+                            'Sweet-Peak-Pictures/9.jpg',
                             'Sweet-Peak-Pictures/14.jpg',
                             'Sweet-Peak-Pictures/19.jpg',
                             'Sweet-Peak-Pictures/24.jpg',
                             'Sweet-Peak-Pictures/29.jpg',
                             'Sweet-Peak-Pictures/34.jpg',
                             'Sweet-Peak-Pictures/39.jpg',
-                            'Sweet-Peak-Pictures/4.jpg',
                             'Sweet-Peak-Pictures/44.jpg',
                             'Sweet-Peak-Pictures/49.jpg',
                             'Sweet-Peak-Pictures/54.jpg',
-                            'Sweet-Peak-Pictures/68.jpg',
-                            'Sweet-Peak-Pictures/9.jpg'
+                            'Sweet-Peak-Pictures/68.jpg'
                           ]
                         ],
             'maps' => [
@@ -49546,14 +49554,14 @@ Fay Pullen
             'day' => '21',
             'images' => [
                           [
-                            'Baldy-Ridge-Pictures/115.jpg',
+                            'Baldy-Ridge-Pictures/4.jpg',
+                            'Baldy-Ridge-Pictures/9.jpg',
                             'Baldy-Ridge-Pictures/14.jpg',
                             'Baldy-Ridge-Pictures/19.jpg',
                             'Baldy-Ridge-Pictures/24.jpg',
                             'Baldy-Ridge-Pictures/29.jpg',
                             'Baldy-Ridge-Pictures/34.jpg',
                             'Baldy-Ridge-Pictures/39.jpg',
-                            'Baldy-Ridge-Pictures/4.jpg',
                             'Baldy-Ridge-Pictures/44.jpg',
                             'Baldy-Ridge-Pictures/49.jpg',
                             'Baldy-Ridge-Pictures/54.jpg',
@@ -49564,9 +49572,9 @@ Fay Pullen
                             'Baldy-Ridge-Pictures/79.jpg',
                             'Baldy-Ridge-Pictures/84.jpg',
                             'Baldy-Ridge-Pictures/89.jpg',
-                            'Baldy-Ridge-Pictures/9.jpg',
                             'Baldy-Ridge-Pictures/94.jpg',
-                            'Baldy-Ridge-Pictures/99.jpg'
+                            'Baldy-Ridge-Pictures/99.jpg',
+                            'Baldy-Ridge-Pictures/115.jpg'
                           ]
                         ],
             'maps' => [
@@ -49697,14 +49705,14 @@ Fay Pullen
             'day' => '11',
             'images' => [
                           [
-                            'Anderson-Butte-and-LO-(Wynoochee)-Pictures/109.jpg',
+                            'Anderson-Butte-and-LO-(Wynoochee)-Pictures/4.jpg',
+                            'Anderson-Butte-and-LO-(Wynoochee)-Pictures/9.jpg',
                             'Anderson-Butte-and-LO-(Wynoochee)-Pictures/14.jpg',
                             'Anderson-Butte-and-LO-(Wynoochee)-Pictures/19.jpg',
                             'Anderson-Butte-and-LO-(Wynoochee)-Pictures/24.jpg',
                             'Anderson-Butte-and-LO-(Wynoochee)-Pictures/29.jpg',
                             'Anderson-Butte-and-LO-(Wynoochee)-Pictures/34.jpg',
                             'Anderson-Butte-and-LO-(Wynoochee)-Pictures/39.jpg',
-                            'Anderson-Butte-and-LO-(Wynoochee)-Pictures/4.jpg',
                             'Anderson-Butte-and-LO-(Wynoochee)-Pictures/44.jpg',
                             'Anderson-Butte-and-LO-(Wynoochee)-Pictures/49.jpg',
                             'Anderson-Butte-and-LO-(Wynoochee)-Pictures/54.jpg',
@@ -49715,8 +49723,8 @@ Fay Pullen
                             'Anderson-Butte-and-LO-(Wynoochee)-Pictures/79.jpg',
                             'Anderson-Butte-and-LO-(Wynoochee)-Pictures/84.jpg',
                             'Anderson-Butte-and-LO-(Wynoochee)-Pictures/89.jpg',
-                            'Anderson-Butte-and-LO-(Wynoochee)-Pictures/9.jpg',
-                            'Anderson-Butte-and-LO-(Wynoochee)-Pictures/94.jpg'
+                            'Anderson-Butte-and-LO-(Wynoochee)-Pictures/94.jpg',
+                            'Anderson-Butte-and-LO-(Wynoochee)-Pictures/109.jpg'
                           ]
                         ],
             'maps' => [
@@ -49836,14 +49844,14 @@ Fay Pullen
             'day' => '19',
             'images' => [
                           [
-                            'Langille-Pictures/109.jpg',
+                            'Langille-Pictures/4.jpg',
+                            'Langille-Pictures/9.jpg',
                             'Langille-Pictures/14.jpg',
                             'Langille-Pictures/19.jpg',
                             'Langille-Pictures/24.jpg',
                             'Langille-Pictures/29.jpg',
                             'Langille-Pictures/34.jpg',
                             'Langille-Pictures/39.jpg',
-                            'Langille-Pictures/4.jpg',
                             'Langille-Pictures/44.jpg',
                             'Langille-Pictures/49.jpg',
                             'Langille-Pictures/54.jpg',
@@ -49854,8 +49862,8 @@ Fay Pullen
                             'Langille-Pictures/79.jpg',
                             'Langille-Pictures/84.jpg',
                             'Langille-Pictures/89.jpg',
-                            'Langille-Pictures/9.jpg',
-                            'Langille-Pictures/94.jpg'
+                            'Langille-Pictures/94.jpg',
+                            'Langille-Pictures/109.jpg'
                           ]
                         ],
             'maps' => [
@@ -49958,16 +49966,16 @@ Fay Pullen
             'day' => '01',
             'images' => [
                           [
+                            'Wallace-Pk-Pictures/4.jpg',
+                            'Wallace-Pk-Pictures/9.jpg',
                             'Wallace-Pk-Pictures/14.jpg',
                             'Wallace-Pk-Pictures/19.jpg',
                             'Wallace-Pk-Pictures/24.jpg',
                             'Wallace-Pk-Pictures/29.jpg',
                             'Wallace-Pk-Pictures/34.jpg',
                             'Wallace-Pk-Pictures/39.jpg',
-                            'Wallace-Pk-Pictures/4.jpg',
                             'Wallace-Pk-Pictures/44.jpg',
-                            'Wallace-Pk-Pictures/56.jpg',
-                            'Wallace-Pk-Pictures/9.jpg'
+                            'Wallace-Pk-Pictures/56.jpg'
                           ]
                         ],
             'maps' => [
@@ -50027,15 +50035,14 @@ Fay Pullen
             'day' => '04',
             'images' => [
                           [
-                            'Tumwater-Mtn-Pictures/104.jpg',
-                            'Tumwater-Mtn-Pictures/120.jpg',
+                            'Tumwater-Mtn-Pictures/4.jpg',
+                            'Tumwater-Mtn-Pictures/9.jpg',
                             'Tumwater-Mtn-Pictures/14.jpg',
                             'Tumwater-Mtn-Pictures/19.jpg',
                             'Tumwater-Mtn-Pictures/24.jpg',
                             'Tumwater-Mtn-Pictures/29.jpg',
                             'Tumwater-Mtn-Pictures/34.jpg',
                             'Tumwater-Mtn-Pictures/39.jpg',
-                            'Tumwater-Mtn-Pictures/4.jpg',
                             'Tumwater-Mtn-Pictures/44.jpg',
                             'Tumwater-Mtn-Pictures/49.jpg',
                             'Tumwater-Mtn-Pictures/54.jpg',
@@ -50046,9 +50053,10 @@ Fay Pullen
                             'Tumwater-Mtn-Pictures/79.jpg',
                             'Tumwater-Mtn-Pictures/84.jpg',
                             'Tumwater-Mtn-Pictures/89.jpg',
-                            'Tumwater-Mtn-Pictures/9.jpg',
                             'Tumwater-Mtn-Pictures/94.jpg',
-                            'Tumwater-Mtn-Pictures/99.jpg'
+                            'Tumwater-Mtn-Pictures/99.jpg',
+                            'Tumwater-Mtn-Pictures/104.jpg',
+                            'Tumwater-Mtn-Pictures/120.jpg'
                           ]
                         ],
             'maps' => [
@@ -50186,13 +50194,14 @@ Pullen
             'day' => '26',
             'images' => [
                           [
+                            'Persindex-Pictures/4.jpg',
+                            'Persindex-Pictures/9.jpg',
                             'Persindex-Pictures/14.jpg',
                             'Persindex-Pictures/19.jpg',
                             'Persindex-Pictures/24.jpg',
                             'Persindex-Pictures/29.jpg',
                             'Persindex-Pictures/34.jpg',
                             'Persindex-Pictures/39.jpg',
-                            'Persindex-Pictures/4.jpg',
                             'Persindex-Pictures/44.jpg',
                             'Persindex-Pictures/49.jpg',
                             'Persindex-Pictures/54.jpg',
@@ -50202,7 +50211,6 @@ Pullen
                             'Persindex-Pictures/74.jpg',
                             'Persindex-Pictures/79.jpg',
                             'Persindex-Pictures/84.jpg',
-                            'Persindex-Pictures/9.jpg',
                             'Persindex-Pictures/99.jpg'
                           ]
                         ],
