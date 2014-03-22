@@ -202,11 +202,10 @@ sub make_resized_images {
   my $thumb_file = $file->{thumb_filename};
   my $enl_file = $file->{enl_filename};
 
-  # if (! should_copy($dir, $enl_file, $thumb_file)) {
-  #     return undef;
-  # }
-  #
-  # copy($dir, $enl_file, $thumb_file);
+  # This should only be used for route maps:
+  if (! -e "$dir/$thumb_file") {
+      copy($dir, $enl_file, $thumb_file);
+  }
 
   resize($dir, $thumb_file, $SMALL_IMAGE_SIZE);
   resize($dir, $enl_file, $LARGE_IMAGE_SIZE);
@@ -305,16 +304,6 @@ sub resize {
 	      "-quality", "80",
 	      "$dir/$file") == 0
       or die "Failed to convert $dir/$file";
-}
-
-sub should_copy {
-    my ($dir, $src_file, $dest_file) = @_;
-
-    return 1 unless -e "$dir/$dest_file";
-
-    my $src_file_mtime = (stat("$dir/$src_file"))[9];
-    my $dest_file_mtime = (stat("$dir/$dest_file"))[9];
-    return $src_file_mtime > $dest_file_mtime;
 }
 
 sub copy {
