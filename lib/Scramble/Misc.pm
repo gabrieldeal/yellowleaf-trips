@@ -22,7 +22,7 @@ my $g_bullet = '&#149;&nbsp;';
 my $g_amazon_associates_link = qq(<A HREF="http://www.amazon.com/exec/obidos/redirect?tag=yellowleaforg-20">In association with Amazon.</a>);
 
 my @g_links = ({'URL' => qq(../../g/m/home.html),
-		'name' => 'Trip reports',
+		'name' => 'Trips',
 	    },
 	       {'URL' => qq(../../g/r/planned.html),
 		'name' => 'Planned trips',

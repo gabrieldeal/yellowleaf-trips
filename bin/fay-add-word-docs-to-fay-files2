@@ -1,0 +1,75 @@
+#!/usr/bin/perl
+#-*-perl-*-
+
+use strict;
+use lib './lib';
+
+use Carp ();
+use Cwd ();
+use File::chdir;
+use Data::Dumper ();
+use File::Basename ();
+use IO::File ();
+use File::Path ();
+use Getopt::Long ();
+
+local $Data::Dumper::Maxdepth = 5;
+local $Data::Dumper::Sortkeys = 1;
+local $^W = 1;
+local $| = 1;
+local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
+local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
+
+my @g_options = qw(
+    directory=s
+    verbose
+    help
+);
+my %g_options = (
+    verbose => 1,
+);
+
+exit(main());
+
+######################################################################
+
+sub usage {
+    my ($prog) = ($0 =~ /([^\/]+)$/);
+    sprintf("Usage: $prog [ OPTIONS ]\nOptions:\n\t--"
+	    . join("\n\t--", @g_options)
+            . <<EOT);
+EOT
+}
+
+sub get_options {
+    local $SIG{__WARN__};
+    if (! Getopt::Long::GetOptions(\%g_options, @g_options)
+	|| $g_options{'help'})
+    {
+	print usage();
+        exit 1;
+    }
+
+    if (exists $g_options{'timezone'}) {
+	$ENV{'TZ'} = $g_options{'timezone'};
+    }
+
+    foreach my $required (qw(directory)) {
+	die "Missing --$required" unless exists $g_options{$required};
+    }
+}
+
+sub main {
+    get_options();
+    my $reports = require "bin/fay-files2.pl";
+
+    foreach my $report (@$reports) {
+	my @docs = glob("$g_options{directory}/$report->{subdir}/*{doc,docx,rtf}");
+	$report->{'tr-docs'} = \@docs;
+    }
+
+    print Data::Dumper::Dumper($reports);
+}
+
+
+1;

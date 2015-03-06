@@ -279,7 +279,7 @@ sub get_embedded_google_map_html {
     my @locations = $self->get_locations_visited();
     return '' unless @locations;
 
-    return '' if grep { ! defined $_->get_latitude() } @locations;
+    return '' if ! grep { defined $_->get_latitude() } @locations;
 
     return Scramble::Misc::get_multi_point_embedded_google_map_html(\@locations);
 }
@@ -388,6 +388,7 @@ sub get_map_summary_html {
 
     my @maps = keys %maps;
     return '' unless @maps;
+    return '' if @maps > 15;
 
     my $title = Scramble::Misc::pluralize(scalar(@maps), $type);
     return Scramble::Misc::make_colon_line($title, join(", ", @maps));
@@ -401,6 +402,7 @@ sub make_pager_html {
 	my $url = $image->get_enlarged_img_url() || $image->get_url();
         push @images, { 
 			description => $image->get_description(),
+			"report-link" => $self->link_if_should_show($self->get_start_date()),
 			id => $image->get_id(),
 			src => $url,
 	              };
@@ -475,6 +477,7 @@ function loadPage() {
     imgContainer.appendChild(newImg);
 
     document.getElementById('description').innerHTML = images[currentImageIndex]['description'];
+    document.getElementById('report-link').innerHTML = images[currentImageIndex]['report-link'];
     document.getElementById("left-pager-link").style.visibility = (currentImageIndex === 0 ? 'hidden' : 'visible');
     document.getElementById("right-pager-link").style.visibility = (currentImageIndex === images.length - 1 ? 'hidden' : 'visible');
 }
@@ -513,6 +516,8 @@ currentImageIndex</script>
 <div class="right-pager">
 	<a id="right-pager-link" href="#" onclick="nextPage()"><img class="right-pager-image" src="../../pics/pager-next.png" /></a>
 	<div class="image-description" id="description"></div>
+        <br />
+	<div class="report-link" id="report-link"></div>
 </div>
 
 <script type="text/javascript">
@@ -667,19 +672,27 @@ EOT
     }
 
     my $cells_html;
-    my $count = 1;
     my @map_objects = $self->get_map_objects();
+    my $start_days = Scramble::Time::get_days_since_1BC($self->get_start_date());
+    my $count = 1;
     foreach my $picture_objs (split_by_date($self->get_picture_objects())) {
-        if ($count != 1) {
-            $cells_html .= "<h1>Day $count</h1>";
-        }
-        $count++;
+	my $day = $count;
+	# Handle trips where I don't take a picture every day:
+	if (@$picture_objs && defined $picture_objs->[0]->get_capture_date()) {
+	    my $picture_days = Scramble::Time::get_days_since_1BC($picture_objs->[0]->get_capture_date());
+	    $day = $picture_days - $start_days + 1;
+	}
+	if ($day != 1) {
+	    $cells_html .= "<h1>Day $day</h1>";
+	}
+
         $cells_html .= Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
  							       'images' => [@map_objects, @$picture_objs ],
 							       'pager-links' => 1,
                                                                'no-float-first' => ($count != 1),
 							       'no-report-link' => 1);
         @htmls = @map_objects = ();
+        $count++;
     }	
 
     my $route = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("%s", $self->get_route()));

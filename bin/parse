@@ -141,6 +141,7 @@ sub get_party_stats {
       } else {
 	$name = $member;
       }
+      $name =~ s/\s*\([\w\s]*\)\s*$//;
       $name =~ s/^\s*(.*?)[\s\.]*$/$1/i;
       $name = "Brad (Mister Fox) White" if $name =~ /(mr\.?|mister)\s*fox/i;
       $name = "Courtney (Rocklocks) Braun" if $name =~ /rock\s*locks/i;
@@ -155,11 +156,12 @@ sub get_party_stats {
       $name = "Jiri Richter" if $name =~ /\bjiri\b/i;
       $name = "Lindsay Malone" if $name =~ /\bLindsay Malone\b/i;
       $name = "Brian Walkenhauer" if $name =~ /^(Brian|Bryan) Walk/;
-      $name = "Putz in boots" if $name =~ /\bputz\b/i;
+      $name = "Janet Putz" if $name =~ /\bputz\b/i;
       $name = "Tazz" if $name =~ /\btazz\b/i || $name eq 'Ann Arnoldy';
       $name = "Lynn Graff" if $name eq "Lynn Graf";
       $name = "Mike Helminger" if $name =~ /\biron\b/i || $name eq "Mike Hemlinger" || $name =~ /^Mike H$/;
       $name = "Tom Nanevicz" if $name =~ /\bTom N\b/i || $name =~ /\bGeoTom\b/i;
+      $name = "Bruno Reinys" if $name eq "Bruno R";
       $name = "Matt Burton" if $name =~ /\bmatt\b/i && $name =~ /\bburton\b/;
       $name = "David Suhr" if $name eq "David Sur";
       $name = "Atsuko Yamaguchi" if $name =~ /\batsuko\b/i;
@@ -269,12 +271,16 @@ sub main {
     if (should('template')) {
 	make_html_file("$g_options{'templates-directory'}/kloke.html",
                        "Kloke's Cascade winter climbs",
+		       'no-insert-links' => 1,
 		       'no-add-picture' => 1);
 	make_html_file("$g_options{'templates-directory'}/sfox.html",
                        "Steve Fox's winter scrambles",
+		       'no-insert-links' => 1,
 		       'no-add-picture' => 1);
 	make_html_file("$g_options{'templates-directory'}/missing.html", 
-                       "Missing Page");
+		       "Missing Page",
+		       'no-insert-links' => 1,
+                       'no-add-picture' => 1);
 	make_html_file("$g_options{'templates-directory'}/usgs.html", 
                        "USGS Map",
                        'enable-embedded-google-map' => 1,
@@ -410,10 +416,9 @@ sub make_html_file {
     my ($ofile) = ($filename =~ m,/([^/]+)$,);
 
     Scramble::Misc::create("m/$ofile",
-			   Scramble::Misc::make_2_column_page($title, 
-							      $html,
-							      undef,
-							      %options));
+			   Scramble::Misc::make_1_column_page(title => $title, 
+							      'include-header' => 1,
+							      html => $html));
 }
 
 1;

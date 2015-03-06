@@ -41,6 +41,9 @@ sub parse_date_and_time {
   if (! defined $day) {
     ($year, $mon, $day, $hour, $minute) = ($t =~ m,^(\d\d\d\d)/(\d\d)/(\d\d)\s+(\d\d?):(\d\d)$,);
   }
+  if (! defined $day) {
+    ($year, $mon, $day) = ($t =~ m,^(\d\d\d\d)/(\d\d)/(\d\d)$,);
+  }
 
   if (! defined $day) {
     die "Unable to parse date/time '$t'";

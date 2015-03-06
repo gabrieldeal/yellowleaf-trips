@@ -1,0 +1,175 @@
+#!/usr/bin/perl
+#-*-perl-*-
+
+use strict;
+use lib './lib';
+
+use Carp ();
+use Cwd ();
+use File::chdir;
+use Data::Dumper ();
+use File::Basename ();
+use IO::File ();
+use File::Path ();
+use Getopt::Long ();
+
+local $Data::Dumper::Maxdepth = 5;
+local $Data::Dumper::Sortkeys = 1;
+local $^W = 1;
+local $| = 1;
+local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
+local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
+
+my @g_options = qw(
+    output-directory=s
+    input-directory=s
+    verbose
+    help
+);
+my %g_options = (
+    verbose => 1,
+    "antiword-app" => "/cygdrive/c/Users/Gabriel/home/antiword-0_37-windows/antiword/antiword.exe",
+    "extractallimages-app" => "/usr/local/bin/extractallimages.pl",
+);
+
+exit(main());
+
+######################################################################
+
+sub usage {
+    my ($prog) = ($0 =~ /([^\/]+)$/);
+    sprintf("Usage: $prog [ OPTIONS ]\nOptions:\n\t--"
+	    . join("\n\t--", @g_options)
+            . <<EOT);
+EOT
+}
+
+sub get_options {
+    local $SIG{__WARN__};
+    if (! Getopt::Long::GetOptions(\%g_options, @g_options)
+	|| $g_options{'help'})
+    {
+	print usage();
+        exit 1;
+    }
+
+    if (exists $g_options{'timezone'}) {
+	$ENV{'TZ'} = $g_options{'timezone'};
+    }
+
+    foreach my $required (qw( output-directory input-directory)) {
+	die "Missing --$required" unless exists $g_options{$required};
+    }
+}
+
+sub main {
+    srand($$ ^ time());
+    get_options();
+
+    my $reports = require "bin/fay-files.pl";
+
+    convert_reports($reports);
+}
+sub mkpaths {
+    my ($paths) = @_;
+
+    File::Path::mkpath($paths, 0, 0755);
+}
+
+sub convert_reports {
+    my ($reports) = @_;
+
+    foreach my $name (sort keys %$reports) {
+	my $report = $reports->{$name};
+
+	next unless $report->{word_docs} && @{ $report->{word_docs} };
+
+	my $subdir = sprintf("%s-%s-%s-%s", $report->{year}, $report->{month}, $report->{day}, $name);
+	$subdir =~ s/\s+/-/g;
+	$subdir =~ s/[^-\w]//g;
+
+	my $output_dir = "$g_options{'output-directory'}/$subdir";
+
+	foreach my $word_doc (@{ $report->{word_docs} }) {
+	    my $src = "$g_options{'input-directory'}/$word_doc->{path}";
+	    die "Missing '$src'" unless -e $src;
+	    my_system("cp", "$src", "$output_dir");
+	}
+    }
+}
+
+sub get_paths {
+    my ($type, $report) = @_;
+
+    if (exists $report->{$type}) {
+	return [ map { $_->{path} } @{ $report->{$type} } ];
+    }
+    return [];
+}
+
+sub copy_maps {
+    my ($maps, $output_dir) = @_;
+
+    my @maps;
+    foreach my $map (@$maps) {
+	my_system("cp", $map, $output_dir);
+	push @maps, File::Basename::basename($map);
+    }
+
+    return \@maps;
+}
+
+sub extract_images_from_pdf {
+    my ($pdfs, $output_dir) = @_;
+
+    my @pdfs;
+    foreach my $pdf (@$pdfs) {
+	my $subdir = File::Basename::basename($pdf);
+	my $pdf_output_dir = "$output_dir/$subdir";
+	$pdf_output_dir =~ s/\s+/-/g;
+	$pdf_output_dir =~ s/\.pdf$//;
+	mkpaths([$pdf_output_dir]);
+
+	my $cwd = Cwd::cwd();
+	my $bin_dir = File::Basename::dirname($g_options{'extractallimages-app'});
+	local $CWD = $bin_dir;
+	my_system("cp", "$cwd/$pdf", $output_dir);
+	my_system($g_options{'extractallimages-app'},  "$cwd/$pdf", $pdf_output_dir);
+
+	push @pdfs, [ map { File::Basename::basename($_) } glob("$pdf_output_dir/*") ];
+    }
+
+    return \@pdfs;
+}
+
+sub extract_word_doc {
+    my ($word_docs, $output_dir) = @_;
+
+    return '' unless @$word_docs == 1;
+    my $word_doc = $word_docs->[0];
+
+    my $text = `$g_options{'antiword-app'} "$word_doc" 2>&1`;
+    if ($? != 0 || ! defined $text || length($text) == 0 || $text =~ /I can't open /) {
+	die "Unable to read $word_doc: $text";
+    }
+
+    mkpaths([$output_dir]);
+    my $output_file = "$output_dir/text.txt";
+    my $fh = IO::File->new($output_file, 'w') or die "Can't open '$output_file': $!";
+    $fh->print($text) or die;
+    $fh->close() or die;
+
+    return $text;
+}
+
+sub my_system {
+    my (@cmd) = @_;
+
+    print "@cmd\n";
+    system @cmd;
+    if ($? != 0) {
+	die "Failed to run @cmd";
+    }
+}
+
+1;
