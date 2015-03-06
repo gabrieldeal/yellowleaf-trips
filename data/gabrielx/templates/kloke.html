@@ -1,0 +1,52 @@
+<p>
+These peaks are all from Dallas Kloke's guide book <u>Winter Climbs: One Day Ascents</u>.
+<p/>
+<div id="map-canvas"></div>
+
+<style>
+html {
+    height: 100%;
+}
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#map-canvas {
+    width: 98%;
+    height: 80%;
+}
+</style>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script type="text/javascript">
+var map;
+var src = 'http://yellowleaf.org/scramble/g/kml/kloke.kml';
+var infoWindow;
+var marker;
+
+function initialize() {
+    map = new google.maps.Map(document.getElementById('map-canvas'), {
+	center: new google.maps.LatLng(-19.257753, 146.823688),
+	zoom: 2,
+	mapTypeId: google.maps.MapTypeId.TERRAIN
+    });
+
+    var kmlLayer = new google.maps.KmlLayer(src, {
+	suppressInfoWindows: true,
+	preserveViewport: false,
+	map: map
+    });
+
+    infoWindow = new google.maps.InfoWindow();
+
+    google.maps.event.addListener(kmlLayer, 'click', function(event) {
+	var content = event.featureData.infoWindowHtml;
+        infoWindow.setContent(content);
+        infoWindow.setPosition(event.latLng);
+        infoWindow.open(map);
+    });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
