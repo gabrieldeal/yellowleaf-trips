@@ -64,16 +64,27 @@ function getPoints() {
 }
 
 function initialize() {
-    var points = getPoints();
-    var pointsSummary = getPointsSummary(points);
-
     var defaultZoom = 11;
-    var map = new google.maps.Map(document.getElementById('map'), 
-				  {
-				      center: pointsSummary.center,
-				      zoom: defaultZoom,
-				      mapTypeId: google.maps.MapTypeId.TERRAIN
-				  });
+
+    var mapOptions = {
+	zoom: defaultZoom,
+	mapTypeId: google.maps.MapTypeId.TERRAIN
+    };
+
+    var points = getPoints();
+    var pointsSummary;
+    if (points.length > 0) {
+	pointsSummary = getPointsSummary(points);
+	mapOptions.center = pointsSummary.center; // will be ignored if we have a KML
+    }
+
+    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+    var kmlUrl = gup('kmlUrl');
+    if (kmlUrl) {
+	var kmlLayer = new google.maps.KmlLayer({ url: kmlUrl });
+        kmlLayer.setMap(map);
+    }
 
     if (points.length > 1) {
 	var bounds = new google.maps.LatLngBounds(pointsSummary.sw, pointsSummary.ne);

@@ -282,7 +282,7 @@ sub main {
 		       'no-insert-links' => 1,
                        'no-add-picture' => 1);
 	make_html_file("$g_options{'templates-directory'}/usgs.html", 
-                       "USGS Map",
+                       "Topo Map",
                        'enable-embedded-google-map' => 1,
                        'no-title' => 1,
                        'no-insert-links' => 1,

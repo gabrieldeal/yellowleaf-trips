@@ -1,5 +1,15 @@
 #!/bin/sh
 
+function fix_file_permissions() {
+    # Otherwise, Backblaze won't backup the files:
+
+    echo Fixing directory permissions...
+    find "$@" -type d -a \! -perm -a=r,a=x -exec chmod a+rx {} \;
+
+    echo Fixing file permissions...
+    find "$@" -type f -a \! -perm -a=r -exec chmod a+r {} \;
+}
+
 skip_perm="$1"
 
 dir=html
@@ -11,16 +21,7 @@ fi
 
 if [ -z "$skip_perm" ]
 then
-    echo fixing ownership of files...
-    find $dir -type f -exec chmod +r {} \;
-
-    # Otherwise, Backblaze won't backup the files:
-    find data -type f -exec chmod +r {} \;
-
-    echo fixing ownership of directories...
-    find $dir -type d -exec chmod +xr {} \;
-
-    find data -type d -exec chmod +xr {} \;
+    fix_file_permissions $dir bin lib dict data ~/pictures ~/Backups
 
     echo "Ready to rsync website ('n' to skip)?"
     read pauseme
@@ -33,3 +34,4 @@ then
     # rsync -aviPh --progress --delete-after -e ssh --rsync-path=/home/gabrielx1/bin/rsync html/ gabrielx1@192.186.234.160:~/public_html/scramble
     rsync --delete --size-only  -e ssh -avz --rsync-path=/home/gabrielx1/bin/rsync html/ gabrielx1@192.186.234.160:~/public_html/scramble
 fi
+

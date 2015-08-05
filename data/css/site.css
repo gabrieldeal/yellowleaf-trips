@@ -21,7 +21,7 @@
 }
 .report-thumbnail-title {
     display: block;
-    font-size: 150%;
+    font-size: 130%;
     margin-bottom: 2px;
 }
 .report-thumbnail-image {
@@ -31,7 +31,9 @@
 }
 .report-thumbnail-date {
     display: block;
-    font-size: 90%;
+}
+.report-thumbnail-type {
+    display: block;
 }
 
 a img {

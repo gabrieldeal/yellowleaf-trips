@@ -47,6 +47,9 @@ sub strip_word {
     # Strip decades like "1970s":
     $word =~ s/\b(18|19)\d\ds\b//;
 
+    # Strip trail names like 1009a:
+    $word =~ s/\b\d+[abc]\b//;
+
     $word =~ s/^[\W_]+//;
     $word =~ s/[\W\d_]+$//;
 

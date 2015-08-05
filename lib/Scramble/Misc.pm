@@ -363,15 +363,13 @@ $footer_html
 EOT
 }
 
-sub _get_point_data {
+sub _get_point_json {
     my (@locations) = @_;
 
     @locations or die "Missing locations";
 
-    my $map_type = 'usgs';
     my @points;
     foreach my $point (@locations) {
-        $map_type = 'satellite' unless $point->is_in_USA();
         my $lat = $point->get_latitude();
         my $lon = $point->get_longitude();
         my $name = $point->get_name();
@@ -381,32 +379,40 @@ sub _get_point_data {
         push @points, qq({"lat":$lat,"lon":$lon,"name":"$name"});
     }
 
-    return ('points-javascript' => sprintf("[%s]", join(",", @points)),
-            'map-type' => $map_type);
+    return sprintf("[%s]", join(",", @points));
 }
 sub get_multi_point_embedded_google_map_html {
     my ($locations, $options) = @_;
 
     return '' if $gDisableGoogleMaps;
 
+    my (%small_map_params, @large_map_params);
+
     @$locations = map { $_->get_latitude() ? ($_) : () } @$locations;
-    return '' unless @$locations;
+    if (@$locations) {
+	my $points_json = _get_point_json(@$locations);
+	my $encoded_points_json = URI::Encode::uri_encode($points_json);
+	$small_map_params{points} = $points_json;
+	push @large_map_params, "points=$encoded_points_json";
+    }
 
-    my $lat = $locations->[0]->get_latitude();
-    my $lon = $locations->[0]->get_longitude();
-    my $map_type = 'usgs';
+    if ($options->{'kml-url'}) {
+	my $kml_url = URI::Encode::uri_encode($options->{'kml-url'});
+	push @large_map_params, "kmlUrl=$kml_url";
+	$small_map_params{kmlUrl} = "'$kml_url'";
+    }
 
-    my %info = _get_point_data(@$locations);
+    my $large_map_params = join("&", @large_map_params);
+    my $small_map_javascript = join("\n", map { qq(setInput('$_', $small_map_params{$_});) } keys %small_map_params);
 
-    my $points = URI::Encode::uri_encode($info{'points-javascript'});
     my $script = <<EOT;
 <div id="mapContainer" style="position: relative">
     <div id="map" style="width: 333px; height: 250px"></div>
 </div>
-<a href="../m/usgs.html?points=$points">Larger map</a>
+<a href="../m/usgs.html?$large_map_params">Larger map</a>
 <script type="text/javascript" src="../js/map.js"></script>
 <script>
-    setInput('points', $info{'points-javascript'});
+    $small_map_javascript
 </script>
 <p>
 EOT

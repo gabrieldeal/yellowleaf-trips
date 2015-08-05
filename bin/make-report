@@ -111,6 +111,7 @@ EOT
 
     -d $dir or die "No such directory '$dir'";
     my @filenames = glob "$dir/*.gpx";
+    push @filenames, glob "$dir/*.kml";
     push @filenames, glob "$dir/*-enl\.{jpg,png}";
     @filenames = sort @filenames;
     die "No images found in $dir" unless @filenames;
@@ -120,12 +121,14 @@ EOT
 	$enl_filename =~ s,.*/,,;
 
 	my ($type, $caption, $rating, $timestamp);
-	if ($enl_filename =~ /\.gpx$/i) {
+	if ($enl_filename =~ /\.(gpx)$/i) {
 	    $type = "gps";
+	} elsif ($enl_filename =~ /\.(kml)$/i) {
+	    $type = "kml";
 	} elsif ($enl_filename =~ /\broute\b/ or $enl_filename =~ /\bmap\b/) {
 	    $type = "map" ;
 	} else {
-	    my ($orig_filename) = ($enl_filename =~ /^\d+-([\w-_]+)-enl.jpg$/) or die "Failed to parse '$enl_filename'";
+	    my ($orig_filename) = ($enl_filename =~ /^\d+-([\w-_\(\)]+)-enl.jpg$/) or die "Failed to parse '$enl_filename'";
 	    my @orig_filenames = glob("$dir/$orig_filename.*");
 	    @orig_filenames == 1 or die "Unable to get original filename for '$orig_filename'";
 	    my $metadata = get_image_metadata("$orig_filenames[0]");
@@ -137,7 +140,7 @@ EOT
 	}
 
 	my $thumb_filename = $enl_filename;
-	if ($type ne 'gps') {
+	if ($type ne 'gps' && $type ne 'kml') {
 	    $thumb_filename =~ s/-enl\././ or die "$enl_filename, $type";
 	}
 
@@ -153,15 +156,15 @@ EOT
 
     my ($first_timestamp, $last_timestamp);
     foreach my $file (@files) {
-        $last_timestamp = $file->{timestamp};
-        if (! defined $first_timestamp) {
-            $first_timestamp = $file->{timestamp};
-        }
-
 	print "$file->{thumb_filename}:\n";
 
-	if ($file->{type} ne 'gps') {
-	  make_resized_images($dir, $file);
+	if ($file->{type} ne 'gps' && $file->{type} ne 'kml') {
+  	    make_resized_images($dir, $file);
+
+	    $last_timestamp = $file->{timestamp};
+	    if (! defined $first_timestamp) {
+		$first_timestamp = $file->{timestamp};
+	    }
 	}
 
 	$xml .= <<EOT;
@@ -227,15 +230,16 @@ sub write_file {
 sub get_image_metadata {
   my ($file) = @_;
 
-  my @tags = qw(ImageDescription Rating DateCreated);
+  my @tags = qw(ImageDescription Rating DateCreated CreateDate);
   my $info = Image::ExifTool::ImageInfo($file, \@tags);
   die "Error opening $file: " . $info->{Error} if exists $info->{Error};
   print "Warning opening $file: " . $info->{Warning} if exists $info->{Warning};
 
-#  use Data::Dumper;  $| = 1; warn "\n$file:\n" . Data::Dumper::Dumper($info);
-
-  my $timestamp = $info->{DateCreated} or die "Missing date in '$file'";
-  $timestamp =~ s{^(\d{4}):(\d\d):(\d\d)}{$1/$2/$3};
+  my $timestamp = $info->{'DateCreated (1)'} || $info->{DateCreated} || $info->{CreateDate} or warn "Missing date in '$file': " . Data::Dumper::Dumper($info);
+  if (defined $timestamp) {
+      $timestamp =~ s{^(\d{4}):(\d\d):(\d\d)}{$1/$2/$3};
+      $timestamp =~ s/\.\d\d\d$//;
+  }
 
   my $caption = $info->{'ImageDescription'} || '';
   $caption = '' if $caption eq "OLYMPUS DIGITAL CAMERA";
@@ -254,7 +258,7 @@ sub get_image_metadata {
 sub get_image_attributes {
   my ($file) = @_;
 
-  my $command = qq(identify -verbose $file);
+  my $command = qq(identify -verbose "$file");
   my $data = `$command`;
 
   my ($height, $width) = ($data =~ /^\s*Geometry: (\d+)x(\d+)\+/m);

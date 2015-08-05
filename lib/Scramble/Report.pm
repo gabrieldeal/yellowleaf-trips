@@ -99,6 +99,10 @@ sub new {
 
     $self->{'map-objects'} = [ Scramble::Image::get_all_images_collection()->find(%args, 'type' => 'map') ];
 
+    my @kmls = Scramble::Image::get_all_images_collection()->find(%args, 'type' => 'kml');
+    die "Too many KMLs" if @kmls > 1;
+    $self->{'kml'} = $kmls[0] if @kmls;
+
     if ($self->should_show()) {
         foreach my $image (@$picture_objs, $self->get_map_objects()) {
             $image->set_report_url($self->get_report_page_url());
@@ -127,6 +131,7 @@ sub get_state { $_[0]->_get_optional('state') || "done" }
 sub is_planned { $_[0]->get_state() eq 'planned' }
 sub get_route { $_[0]->_get_optional_content('route') }
 sub get_rock_routes { @{ $_[0]->_get_optional('rock-routes', 'rock-route') || [] } }
+sub get_kml { $_[0]->{kml} }
 
 sub get_best_picture_object {
     my $self = shift;
@@ -260,11 +265,14 @@ sub get_link_html {
 	}
     }
 
+    my $type = $self->get_type();
+
     my $html = <<EOT;
 <div class="report-thumbnail">
     <div class="report-thumbnail-image">$image_html</div>
     <div class="report-thumbnail-title">$name</div>
     <div class="report-thumbnail-date">$date</div>
+    <div class="report-thumbnail-type">$type</div>
 </div>
 EOT
 
@@ -277,11 +285,11 @@ sub get_embedded_google_map_html {
     return '' if $self->get_map_objects();
 
     my @locations = $self->get_locations_visited();
-    return '' unless @locations;
+    my $kml_url = $self->get_kml() ? $self->get_kml()->get_full_url() : undef;
+    return '' unless $kml_url or grep { defined $_->get_latitude() } @locations;
 
-    return '' if ! grep { defined $_->get_latitude() } @locations;
-
-    return Scramble::Misc::get_multi_point_embedded_google_map_html(\@locations);
+    my %options = ('kml-url' => $kml_url);
+    return Scramble::Misc::get_multi_point_embedded_google_map_html(\@locations, \%options);
 }
 
 sub get_distances_html {
@@ -362,6 +370,8 @@ sub get_reference_html {
 
 sub get_map_summary_html {
     my $self = shift;
+
+    return '' if defined $self->_get_optional('maps') && ! defined $self->_get_optional('maps', 'map');
 
     my $type = $self->get_best_map_type();
     my %maps;
