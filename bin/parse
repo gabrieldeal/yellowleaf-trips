@@ -294,7 +294,11 @@ sub main {
     foreach my $file (@{ $g_options{'file'} }) {
 	if ($file =~ m,\breports/,) {
 	    my $report = Scramble::Report->new($file);
-	    $report->make_page_html();
+	    if (! defined $report) {
+		print "Skipping $file\n";
+	    } else {
+		$report->make_page_html();
+	    }
 	} elsif ($file =~ m,\blocations/,) {
 	    my @locations = Scramble::Location->new_objects($file);
 	    foreach(@locations) { $_->make_page_html() }

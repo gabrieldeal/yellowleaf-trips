@@ -1,0 +1,66 @@
+#!/usr/bin/perl
+#-*-perl-*-
+
+use strict;
+
+use Getopt::Long ();
+my @g_options = qw(
+		      input=s@
+		      output=s
+	      );
+my %g_options = ();
+
+local $ENV{PATH} .= ":/cygdrive/c/Program Files (x86)/GPSBabel";
+
+exit(main());
+
+sub usage {
+    my ($prog) = ($0 =~ /([^\/]+)$/);
+    sprintf("Usage: $prog [ OPTIONS ]\nOptions:\n\t--"
+	    . join("\n\t--", @g_options)
+            . <<EOT);
+EOT
+}
+
+sub get_options {
+    local $SIG{__WARN__};
+    if (! Getopt::Long::GetOptions(\%g_options, @g_options)
+	|| $g_options{'help'})
+    {
+	print usage();
+        exit 1;
+    }
+
+    foreach my $required (qw(input output)) {
+	die "Missing --$required" unless exists $g_options{$required};
+    }
+}
+
+sub main {
+    get_options();
+
+    my @command = qw(gpsbabel);
+    foreach my $input (@{ $g_options{input} }) {
+	my ($input_type) = ($input =~ /\.(\w+)$/);
+	if ($input_type eq 'crs') {
+	    $input_type = "gtrnctr";
+	}
+
+	push @command, ("-i", $input_type, "-f", $input);
+    }
+
+    my ($output_type) = ($g_options{output} =~ /\.(\w+)$/);
+    my $output_options = $output_type;
+    if ($output_type eq 'kml') {
+	$output_options .= ",points=0,trackdata=0,labels=0,line_color=ff0000e6";
+    }
+    push @command, ("-o", $output_options, "-F", $g_options{output});
+
+    print "Running this command: @command\n";
+    system(@command);
+    if ($? != 0) {
+	die "Failed: $!";
+    }
+}
+
+1;

@@ -146,7 +146,7 @@ sub insert_links {
     # http://xxxxxxxxxxxxxx 
     # into this:
     # <a href="http://xxxxxxxxxxxxxx">http://xxxxx...</a>
-    $html =~ s{\b(http://[^\s\)]+[^\s\.\)])}{_insert_links_pack(qq(<a href="$1">) . (length($1) > 30 ? substr($1, 0, 30) . "..." : $1) . qq(</a>))}ge;
+    $html =~ s{\b(https?://[^\s\)]+[^\s\.\)])}{_insert_links_pack(qq(<a href="$1">) . (length($1) > 30 ? substr($1, 0, 30) . "..." : $1) . qq(</a>))}ge;
 
     my $key = exists $options{'type'} ? $options{'type'} : 'all';
 

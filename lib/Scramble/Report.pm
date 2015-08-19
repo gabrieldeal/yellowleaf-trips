@@ -685,21 +685,30 @@ EOT
     my @map_objects = $self->get_map_objects();
     my $start_days = Scramble::Time::get_days_since_1BC($self->get_start_date());
     my $count = 1;
-    foreach my $picture_objs (split_by_date($self->get_picture_objects())) {
+    my @picture_objs = split_by_date($self->get_picture_objects());
+    foreach my $picture_objs (@picture_objs) {
 	my $day = $count;
 	# Handle trips where I don't take a picture every day:
 	if (@$picture_objs && defined $picture_objs->[0]->get_capture_date()) {
 	    my $picture_days = Scramble::Time::get_days_since_1BC($picture_objs->[0]->get_capture_date());
 	    $day = $picture_days - $start_days + 1;
 	}
-	if ($day != 1) {
+	if (@picture_objs > 1) {
+	    if ($count == 1) {
+		$cells_html .= Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
+								       'images' => [@map_objects ],
+								       'pager-links' => 1,
+								       'no-float-first' => 0,
+								       'no-report-link' => 1);
+		@htmls = @map_objects = ();
+	    }
 	    $cells_html .= "<h1>Day $day</h1>";
 	}
 
         $cells_html .= Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
  							       'images' => [@map_objects, @$picture_objs ],
 							       'pager-links' => 1,
-                                                               'no-float-first' => ($count != 1),
+                                                               'no-float-first' => 0,
 							       'no-report-link' => 1);
         @htmls = @map_objects = ();
         $count++;

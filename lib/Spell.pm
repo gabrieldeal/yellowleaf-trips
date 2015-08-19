@@ -87,7 +87,7 @@ sub possibilities {
 sub check {
     my ($text) = @_;
 
-    $text =~ s,\bhttp://\S+,,g;
+    $text =~ s,\bhttps?://\S+,,g;
 
     # Strip letters like "A" in "Plan A:":
     $text =~ s/\b[A-Z]://g;
