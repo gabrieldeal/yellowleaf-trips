@@ -87,6 +87,15 @@ sub make_waypoints_tag {
     return $self->make_waypoints1_tag() if ref($r->get_waypoints()) =~ /Scramble::Waypoints\b/;
     return $self->make_waypoints2_tag();
 }
+sub epoch_to_time {
+    my ($epoch) = @_;
+
+    my ($sec, $min, $hour, $mday, $mon, $year) = localtime($epoch);
+    $year += 1900;
+    $mon++;
+
+    return sprintf("%d/%02d/%02d %02d:%02d", $year, $mon, $mday, $hour, $min);
+}
 sub make_waypoints1_tag {
     my $self = shift;
 
@@ -95,20 +104,33 @@ sub make_waypoints1_tag {
 
     my @waypoint_tags;
     my ($last_end_location, $last_end_altimeter);
+    my $current_time = 0;
     foreach my $waypoint ($r->get_waypoints()->get_waypoints()) {
 	if ($waypoint->get_start_location()) {
+	    my $start_time = $waypoint->get_start_time();
+	    if (! defined $start_time && ($waypoint->_get_optional('hours') || $waypoint->_get_optional('minutes'))) {
+		$start_time = epoch_to_time($current_time);
+	    }
+
 	    push @waypoint_tags, $xg->waypoint({ type => $waypoint->get_type(),
 						 'location-description' => $waypoint->get_start_location() || $last_end_location,
 						 elevation => $waypoint->get_start_altimeter() || $last_end_altimeter,
-						 time => $waypoint->get_start_time() });
+						 time => $start_time
+					     });
 	}
 
+	my $end_time = $waypoint->get_end_time();
+	if (! defined $end_time && ($waypoint->_get_optional('hours') || $waypoint->_get_optional('minutes'))) {
+	    $current_time += 60 * 60 * ($waypoint->_get_optional('hours') || 0) + 60 * ($waypoint->_get_optional('minutes') || 0);
+	    $end_time = epoch_to_time($current_time);
+	}
 	my $last_end_location = $waypoint->get_end_location();
 	my $last_end_altimeter = $waypoint->get_end_altimeter();
 	push @waypoint_tags, $xg->waypoint({ type => 'break',
 					     'location-description' => $waypoint->get_end_location(),
 					     elevation => $waypoint->get_end_altimeter(),
-					     time => $waypoint->get_end_time() });
+					     time => $end_time
+					 });
     }
     
 
