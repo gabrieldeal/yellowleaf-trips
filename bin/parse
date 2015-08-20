@@ -12,7 +12,6 @@ use File::Path ();
 use Getopt::Long ();
 use IO::File ();
 use Scramble::Area ();
-use Scramble::Converter::Location ();
 use Scramble::Geekery ();
 use Scramble::List ();
 use Scramble::Location ();
@@ -261,30 +260,26 @@ sub main {
     Scramble::Area::Quad::init();
     Scramble::Reference::open();
     Scramble::Image::open($g_options{'images-directory'});
-    if (! $g_options{'no-copy-images'}) {
-        Scramble::Image::copy();
-    }
 
-    if (0 && should('convert')) {
-	convert_locations();
+    if (should('convert')) {
+	#convert_locations();
+	convert_reports();
 	exit 0;
     }
 
-    foreach my $file (@{ $g_options{'file'} }) {
-	my $report = Scramble::Report::open_specific($file);
-	if (! defined $report) {
-	    print "Skipping $file\n";
-	} else {
-	    $report->make_page_html();
+    if (! @{ $g_options{'file'} }) {
+	Scramble::Report::open_all($g_options{'reports-directory'});
+    } else {
+	foreach my $file (@{ $g_options{'file'} }) {
+	    my $report = Scramble::Report::open_specific($file);
+	    $report->make_page_html() if $report;
 	}
     }
-    if (@{ $g_options{'file'} } && ! @{ $g_options{'action'} }) {
-	spell_check();
+    spell_check();
+    Scramble::Image::copy();
+    if (@{ $g_options{'file'} }) {
         return 0;
     }
-
-    Scramble::Report::open_all($g_options{'reports-directory'});
-    spell_check();
 
     Scramble::List::open(glob("data/lists/*.xml"));
 
@@ -451,5 +446,46 @@ sub convert_locations {
     }
 }
 
+sub get_converted_report_path {
+    my ($report) = @_;
+
+
+    my %args = (
+                'trip-id' => $report->get_trip_id(),
+                'date' => $report->get_start_date(),
+               );
+    my @images = Scramble::Image::get_all_images_collection()->find(%args);
+    if (@images) {
+	return sprintf("%s/report.xml", $images[0]->get_source_directory());
+    }
+
+    my $subdir = File::Basename::basename($report->{path});
+    $subdir =~ s/\.xml$//;
+    $subdir = "data/gabrielx/images/$subdir";
+    File::Path::mkpath([ $subdir ], 0, 0755);
+
+    return "$subdir/report.xml";
+}
+sub convert_reports {
+    use Scramble::Converter::Report ();
+    my $converter = Scramble::Converter::Report->new();
+
+    my @files = @{ $g_options{'file'} };
+    @files = glob("data/gabrielx/reports/*.xml") unless @files;
+
+    foreach my $file (@files) {
+	my @reports;
+	my $report = Scramble::Report->new($file);
+	next unless $report;
+
+	my $path = get_converted_report_path($report);
+	
+	my $fh = IO::File->new($path, 'w') or die "Failed to create $path: $!";
+	$fh->print($converter->convert($report) . "\n") or die;
+	$fh->close() or die;
+
+	Scramble::XML::parse($path);
+    }
+}
 
 1;
