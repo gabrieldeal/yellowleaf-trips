@@ -34,15 +34,9 @@ sub make_xml {
     defined $date or die "Unable to get date from image subdirectory: $image_subdir";
 
     my %image_data = process_images($image_dir, $date);
-    my $image_xml_file = "$image_dir/images.xml";
-    if (-e $image_xml_file) {
-      print "$image_xml_file already exists\n";
-    } else {
-      write_file($image_xml_file, $image_data{xml});
-    }
 
-    my $report_xml = make_report_xml($date, $title, $trip_type, \%image_data);
-    my $report_xml_file = "$data_dir/reports/$image_subdir.xml";
+    my $report_xml = make_report_xml($date, $title, $trip_type, \%image_data, $image_subdir, $image_data{xml});
+    my $report_xml_file = "$data_dir/images/$image_subdir/report.xml";
     if (-e $report_xml_file) {
       print "$report_xml_file already exists\n";
     } else {
@@ -76,12 +70,12 @@ sub geotag {
 }
 
 sub make_report_xml {
-    my ($date, $title, $type, $image_data) = @_;
+    my ($date, $title, $type, $image_data, $filename, $files_xml) = @_;
 
     my $start = $image_data->{first_timestamp} || '';
     my $end = $image_data->{last_timestamp} || '';
     return <<EOT;
-<trip
+<trip filename="$filename"
     start-date="$date"
     name="$title"
     type="$type"
@@ -116,6 +110,8 @@ sub make_report_xml {
 
 -->
 
+$files_xml
+
 </trip>
 EOT
 }
@@ -124,7 +120,7 @@ sub process_images {
     my ($dir, $date) = @_;
 
     my $xml = <<EOT;
-<images date="$date"
+<files date="$date"
         in-chronological-order="true"
         trip-id="1"
 >
@@ -190,17 +186,17 @@ EOT
 	}
 
 	$xml .= <<EOT;
-<image filename="$file->{thumb_filename}"
-       enlarged-filename="$file->{enl_filename}"
+<file thumbnail-filename="$file->{thumb_filename}"
+       large-filename="$file->{enl_filename}"
         description="$file->{caption}"
-	rating3="$file->{rating}"
+	rating="$file->{rating}"
 	type="$file->{type}"
-	photographer="Gabriel Deal"
+	owner="Gabriel Deal"
         capture-timestamp="$file->{timestamp}"
 />
 EOT
     }
-    $xml .= "</images>\n";
+    $xml .= "</files>\n";
 
     return (xml => $xml,
 	    files => \@files,
