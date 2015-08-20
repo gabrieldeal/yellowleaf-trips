@@ -80,7 +80,6 @@ sub set {
 # shared between Scramble::Location and Scramble::Report
 ######################################################################
 
-sub get_map_objects { @{ $_[0]->{'map-objects'} } }
 sub get_picture_objects { @{ $_[0]->{'picture-objects'} } }
 sub set_picture_objects { $_[0]->{'picture-objects'} = $_[1] }
 

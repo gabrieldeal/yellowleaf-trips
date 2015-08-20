@@ -12,6 +12,7 @@ use File::Path ();
 use Getopt::Long ();
 use IO::File ();
 use Scramble::Area ();
+use Scramble::Converter::Location ();
 use Scramble::Geekery ();
 use Scramble::List ();
 use Scramble::Location ();
@@ -264,8 +265,32 @@ sub main {
         Scramble::Image::copy();
     }
 
-    Scramble::Location::open_all();
+    if (0 && should('convert')) {
+	convert_locations();
+	exit 0;
+    }
+
+    foreach my $file (@{ $g_options{'file'} }) {
+	if ($file =~ m,\breports/,) {
+	    my $report = Scramble::Report->new($file);
+	    if (! defined $report) {
+		print "Skipping $file\n";
+	    } else {
+		$report->make_page_html();
+	    }
+	} elsif ($file =~ m,\blocations/,) {
+	    my @locations = Scramble::Location->new_objects($file);
+	    foreach(@locations) { $_->make_page_html() }
+	}
+    }
+    if (@{ $g_options{'file'} } && ! @{ $g_options{'action'} }) {
+	spell_check();
+        return 0;
+    }
+
     Scramble::Report::open_all($g_options{'reports-directory'});
+    spell_check();
+
     Scramble::List::open(glob("data/lists/*.xml"));
 
     if (should('template')) {
@@ -287,25 +312,6 @@ sub main {
                        'no-title' => 1,
                        'no-insert-links' => 1,
                        'no-add-picture' => 1);
-    }
-
-    should('spell') && spell_check();
-
-    foreach my $file (@{ $g_options{'file'} }) {
-	if ($file =~ m,\breports/,) {
-	    my $report = Scramble::Report->new($file);
-	    if (! defined $report) {
-		print "Skipping $file\n";
-	    } else {
-		$report->make_page_html();
-	    }
-	} elsif ($file =~ m,\blocations/,) {
-	    my @locations = Scramble::Location->new_objects($file);
-	    foreach(@locations) { $_->make_page_html() }
-	}
-    }
-    if (@{ $g_options{'file'} } && ! @{ $g_options{'action'} }) {
-        return 0;
     }
 
     should('kml') && copy_kml();
@@ -334,9 +340,10 @@ sub main {
 sub should {
     my ($page_type) = @_;
 
+    return 0 if @{ $g_options{'file'} } && ! @{ $g_options{'action'} };
     return 0 if grep { $page_type eq $_ || "${page_type}s" eq $_ } @{ $g_options{'skip'} };
 
-    return 1 if ! exists $g_options{'action'} or ! @{ $g_options{'action'} };
+    return 1 if ! @{ $g_options{'action'} };
     return scalar(grep { $page_type eq $_ || "${page_type}s" eq $_ } @{ $g_options{'action'} });
 }
 
@@ -423,6 +430,30 @@ sub make_html_file {
 			   Scramble::Misc::make_1_column_page(title => $title, 
 							      'include-header' => 1,
 							      html => $html));
+}
+
+sub convert_locations {
+    my $converter = Scramble::Converter::Location->new();
+
+    my @files = @{ $g_options{'file'} } || glob("data/locations/*.xml");
+    foreach my $file (@files) {
+	my @locations;
+	foreach my $location (Scramble::Location->new_objects($file)) {
+	    if ($location->get_is_driving_location() or $location->get_is_road()) {
+		printf("Skipping %s\n", $location->get_name());
+		next;
+	    }
+	    push @locations, $location;
+	}
+	next unless @locations;
+
+	my $path = sprintf("data/locations/converted/%s.xml", Scramble::Misc::sanitize_for_filename($locations[0]->get_name()));
+
+	my $fh = IO::File->new($path, 'w') or die "Failed to create $path: $!";
+	$fh->print($converter->convert(@locations) . "\n") or die;
+	$fh->close() or die;
+	Scramble::XML::parse($path);
+    }
 }
 
 1;

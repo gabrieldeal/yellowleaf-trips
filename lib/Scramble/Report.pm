@@ -132,6 +132,7 @@ sub is_planned { $_[0]->get_state() eq 'planned' }
 sub get_route { $_[0]->_get_optional_content('route') }
 sub get_rock_routes { @{ $_[0]->_get_optional('rock-routes', 'rock-route') || [] } }
 sub get_kml { $_[0]->{kml} }
+sub get_map_objects { @{ $_[0]->{'map-objects'} } }
 
 sub get_best_picture_object {
     my $self = shift;

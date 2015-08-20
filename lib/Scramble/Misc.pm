@@ -823,4 +823,12 @@ sub render_images_into_flow {
   return Scramble::Misc::render_cells_into_flow(\@cells, 'no-float-first' => $args{'no-float-first'});
 }
 
+sub sanitize_for_filename {
+    my ($filename) = @_;
+
+    $filename =~ s/[^\w\.]//g;
+
+    return $filename;
+}
+
 1;

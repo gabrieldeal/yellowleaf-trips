@@ -7,6 +7,7 @@ use lib './lib';
 use IO::File;
 use Getopt::Long ();
 use Peaks::ListsOfJohn;
+use Scramble::Misc ();
 
 my @g_options = qw(
                    name=s
@@ -42,8 +43,7 @@ sub main {
 
   my $peak = $peaks[$choice];
 
-  my $filename = $peak->{name};
-  $filename =~ s/[^\w]+/-/g;
+  my $filename = Scramble::Misc::sanitize_for_filename($peak->{name});
   $filename = $g_options{'output-directory'} . "/$filename.xml";
   die "$filename already exists" if -e $filename;
 

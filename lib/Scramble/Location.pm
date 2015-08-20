@@ -16,6 +16,7 @@ my @g_locations;
 my $g_opened = 0;
 my $g_avvy_elev_threshold = 1500;
 my $g_miles_distance_threshold = 5;
+my %g_check_for_duplicate_ids;
 
 sub in_areas_transitive_closure {
     my $self = shift;
@@ -80,7 +81,6 @@ sub new {
     $self->{'country-object'} = $self->get_areas_collection()->find_one('type' => 'country');
 
     if (Scramble::Image::get_all_images_collection()) {
-	$self->{'map-objects'} = [];
 	$self->{'picture-objects'} = [];
 	foreach my $regex ($self->get_regex_keys()) {
 	    foreach my $image (Scramble::Image::get_all_images_collection()->get_all()) {
@@ -167,7 +167,7 @@ sub new_objects {
 	next if $location->{'incomplete'};
 	push @retval, Scramble::Location->new({ %$xml, 
 						%$location,
-						'has-twin' => 1 });
+						'has-twin' => @{ $xml->{location} } > 1 });
     }
 
     return @retval;
@@ -333,8 +333,6 @@ sub get_maps {
 
     my @maps;
 
-    push @maps, map { $_->get_map_reference() } $self->get_map_objects();
-
     if ($self->get_my_google_maps_url()) {
 	push @maps, { 'type' => sprintf("Online USGS map of %s",
                                         $self->get_name()),
@@ -419,15 +417,19 @@ sub set_have_visited {
 ######################################################################
 
 sub open_all {
-    my %check_for_duplicate_ids;
-    foreach my $path (sort glob("data/locations/*.xml")) {
-	foreach my $location (Scramble::Location->new_objects($path)) {
-	    push @g_hidden_locations, $location;
+    open_specific(sort glob("data/locations/converted/*.xml"));
+}
+sub open_specific {
+    my (@paths) = @_;
 
-	    if (exists $check_for_duplicate_ids{$location->get_id()}) {
+    foreach my $path (@paths) {
+	foreach my $location (Scramble::Location->new_objects($path)) {
+	    if (exists $g_check_for_duplicate_ids{$location->get_id()}) {
 		die "Duplicate location (add 'id' attr to new location): " . $location->get_id();
 	    }
-	    $check_for_duplicate_ids{$location->get_id()} = 1;
+	    $g_check_for_duplicate_ids{$location->get_id()} = 1;
+
+	    push @g_hidden_locations, $location;
 	}
     }
 
@@ -495,6 +497,25 @@ sub _contains_area {
 sub find_location {
     my (%args) = @_;
 
+    # This has two problems:
+    # 1. This does not cache negative results.
+    # 2. If we load an unvisited peak, try to look it up with include-unvisited false, then we will try to read in the location XML file again.
+
+    my $location = eval { find_cached_location(%args) };
+    return $location if $location;
+
+    # Lazily load the location:
+    my $name = $args{'name'} || die "Not given name";
+    my $path = sprintf("data/locations/converted/%s.xml", Scramble::Misc::sanitize_for_filename($name));
+    die "Unable to lazily load from $path" unless -f $path;
+    open_specific($path);
+
+    return find_cached_location(%args);
+}
+
+sub find_cached_location {
+    my (%args) = @_;
+
     my $name = $args{'name'} || die "Not given name";
     my @locations = grep({ $_->is(name => $name,
 				  quad => $args{quad},
@@ -504,7 +525,6 @@ sub find_location {
 				       quad => $args{quad},
 				       country => $args{country} ) } get_unvisited());
     }
-
     Carp::confess "No match for '$name'" if @locations == 0;
     if (@locations > 1) {
 	Carp::confess(sprintf("Too many matches for '%s': %s",
