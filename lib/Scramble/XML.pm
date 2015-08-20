@@ -21,8 +21,8 @@ sub _get_optional_content {
     return $self->{$name}[0] if ref $self->{$name} eq 'ARRAY';
     return undef if ref $self->{$name} eq 'HASH' && 0 == keys(%{ $self->{$name} });
     die Data::Dumper::Dumper($self->{$name}) if ref $self->{$name};
-
-    return $self->{$name};
+    return $self->{$name} if defined $self->{$name} && length($self->{$name});
+    return undef;
 }
 
 sub _set_required {
@@ -165,9 +165,6 @@ sub parse {
     }
 
     $xml->{'path'} = $path;
-
-    $xml->{'directory'} = $path;
-    $xml->{'directory'} =~ s,/[^/]+$,,;
 
     my ($ofilename) = ($path =~ m,/([^/]+).xml$,);
     $xml->{'filename'} = $ofilename . ".html";

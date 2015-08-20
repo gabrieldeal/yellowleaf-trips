@@ -87,11 +87,6 @@ sub get_elevation_gain {
 sub get_car_to_car_delta {
     my $self = shift;
 
-    my $car_to_car_hours = $self->_get_optional('car-to-car-hours');
-    if (defined $car_to_car_hours) {
-        return 60*$car_to_car_hours;
-    }
-
     my @waypoints = $self->get_on_trail_waypoints();
     return '' unless @waypoints;
 
