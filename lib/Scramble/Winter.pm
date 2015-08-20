@@ -9,7 +9,6 @@ sub get_winter_locations {
         next unless Scramble::Time::is_winter($report->get_start_date());
 
         foreach my $location ($report->get_locations_visited()) {
-            next if $location->get_is_driving_location();
             push @locations, $location;
         }
     }

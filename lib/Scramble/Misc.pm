@@ -577,15 +577,6 @@ sub get_images_for_locations {
     return sort { Scramble::Image::cmp($a, $b) } @images;
 }
 
-sub get_MSN_maps_url {
-    my ($lat, $lon, $datum) = @_;
-
-    # $datum not used 
-
-    return "http://maps.msn.com/map.aspx?L=USA&C=$lat%2c$lon&A=7.16667&P=|$lat%2c$lon|1||L1|";
-# "http://maps.msn.com/(lp0jjjnvyhderb45nqsxco55)/map.aspx?L=USA&C=$lat%2c$lon&A=7.16667&P=|$lat%2c$lon|1||L1|";
-}
-
 sub get_my_google_maps_url {
     my ($lat, $lon, $datum, %options) = @_;
 

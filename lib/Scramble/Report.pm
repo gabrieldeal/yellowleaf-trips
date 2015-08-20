@@ -17,7 +17,7 @@ our @ISA = qw(Scramble::XML);
 my $g_reports_on_index_page = 25;
 
 my %location_to_reports_mapping;
-my $g_report_collection;
+my $g_report_collection = Scramble::Collection->new();
 my $g_max_rating = 5;
 
 sub new {
@@ -71,11 +71,7 @@ sub new {
 
     {
 	my @areas;
-	# filter out locations that span a lot of areas:
-	my @locations = grep { (! $_->get_is_driving_location() 
-				&& $_->get_type() ne 'road' 
-				&& $_->get_type() ne 'trail') } $self->get_locations_visited();
-	push @areas, map { $_->get_areas_collection->get_all() } @locations;
+	push @areas, map { $_->get_areas_collection->get_all() } $self->get_locations_visited();
 	push @areas, $self->get_areas_from_xml();
 	@areas = Scramble::Misc::dedup(@areas);
 	$self->{'areas-object'} = Scramble::Collection->new('objects' => \@areas);
@@ -386,7 +382,6 @@ sub get_map_summary_html {
 
     if ($type eq 'USGS quad') {
         foreach my $location ($self->get_locations_visited()) {
-            next if $location->get_is_driving_location() || $location->get_is_road();
             foreach my $quad ($location->get_quad_objects()) {
                 $maps{$quad->get_short_name()} = 1;
             }
@@ -771,31 +766,22 @@ sub cmp {
     return $report1->get_trip_id() cmp $report2->get_trip_id();
 }
 
+sub open_specific {
+    my ($path) = @_;
+
+    my $report = Scramble::Report->new($path);
+    $g_report_collection->add($report) if defined $report;
+    return $report;
+}
+
 sub open_all {
     my ($directory) = @_;
 
     die "No such directory '$directory'" unless -d $directory;
 
-    my @reports;
-    my $die_immediately = 1;
-    my @failed;
-    foreach my $path (reverse(glob("$directory/*.xml"))) {
-	my $report = eval { Scramble::Report->new($path) };
-        die $@ if $@ && $die_immediately;
-	if ($@) {
-	  print STDERR "$@\n";
-	  push @failed, $path;
-	  next;
-	}
-	push @reports, $report if $report;
+    foreach my $path (glob("$directory/*.xml")) {
+	open_specific($path);
     }
-
-    if (@failed) {
-      die "Failed to parse these reports: @failed";
-    }
-
-    @reports = sort { $b->cmp($a) } @reports;
-    $g_report_collection = Scramble::Collection->new('objects' => \@reports);
 }
 
 

@@ -43,14 +43,7 @@ sub new {
     }
 
     {
-	my $quad_name = $self->_get_optional('quad');
-	my @quad_objs;
-	if ($quad_name) {
-	    @quad_objs = Scramble::Area->get_all()->find_one('id' => $quad_name,
-							     'type' => 'USGS quad');
-	} else {
-	    @quad_objs = $self->get_areas_collection()->find('type' => 'USGS quad');
-	}
+	my @quad_objs = $self->get_areas_collection()->find('type' => 'USGS quad');
 
 	$self->{'quad-objects'} = [ sort { $a->get_id() cmp $b->get_id() } @quad_objs ];
 	$self->get_areas_collection()->add(@quad_objs);
@@ -64,14 +57,9 @@ sub new {
 
     {
 	my @county_ids;
-	if (my $county_ids = ($self->_get_optional('county') 
-			      || $self->_get_optional('counties')))
-	{
-	    push @county_ids, split(/,\s+/, $county_ids);
-	} elsif (my @county_objs = $self->get_areas_collection()->find('type' => 'county')) {
+	if (my @county_objs = $self->get_areas_collection()->find('type' => 'county')) {
 	    push @county_ids, map { $_->get_id() } @county_objs;
 	}
-	$self->{'county-ids'} = \@county_ids;
 	$self->{'county-objects'} = [ map { Scramble::Area::get_all()->find_one('id' => $_) } @county_ids ];
 	$self->get_areas_collection()->add($self->get_county_objects());
     }
@@ -188,24 +176,15 @@ sub get_references { @{ $_[0]->_get_optional('references', 'reference') || [] } 
 sub get_description { $_[0]->_get_optional_content('description') }
 sub get_elevation { $_[0]->_get_optional('elevation') }
 sub get_prominence { $_[0]->_get_optional("prominence") }
-sub get_min_elevation { $_[0]->_get_optional('min-elevation') }
-sub get_max_elevation { $_[0]->_get_optional('max-elevation') }
 sub get_latitude { $_[0]->_get_optional('coordinates', 'latitude') }
 sub get_longitude { $_[0]->_get_optional('coordinates', 'longitude') }
 sub get_UTM_zone { $_[0]->_get_optional('coordinates', 'zone') }
 sub get_UTM_easting { $_[0]->_get_optional('coordinates', 'easting') }
 sub get_UTM_northing { $_[0]->_get_optional('coordinates', 'northing') }
-sub get_is_driving_location { $_[0]->_get_optional('is-driving-location') }
-sub get_is_road { $_[0]->_get_optional('is-road') }
 sub get_naming_origin { $_[0]->_get_optional('name', 'origin'); }
 
 sub get_is_unofficial_name {
     my $self = shift;
-
-    my $value = $self->_get_optional('unofficial-name');
-    if (defined $value) {
-	return $value;
-    }
 
     my $name_xml = $self->_get_optional('name');
     if (ref $name_xml) {
@@ -234,18 +213,6 @@ sub get_map_datum {
     return uc($datum);
 }
 
-sub get_next_nearest_peak { $_[0]->_get_optional("next-nearest") }
-sub get_next_nearest_peak_object { 
-    my $self = shift;
-
-    # This has to be done lazily.
-    if (! exists $self->{'next-nearest-peak-object'} && $self->get_next_nearest_peak()) {
-	$self->{'next-nearest-peak-object'} = eval { find_location('name' => $self->get_next_nearest_peak()) };
-    }
-
-    return $self->{'next-nearest-peak-object'};
-}
-
 sub get_formatted_elevation {
     my $self = shift;
     return $self->_get_formatted_elevation(\&Scramble::Misc::format_elevation);
@@ -258,12 +225,8 @@ sub _get_formatted_elevation {
     my $self = shift;
     my ($format_func) = @_;
 
-    if ($self->get_elevation()) {
+    if (defined $self->get_elevation()) {
 	return $format_func->($self->get_elevation());
-    } elsif ($self->get_min_elevation()) {
-	return sprintf("%s to %s",
-		       $format_func->($self->get_min_elevation()),
-		       $format_func->($self->get_max_elevation()));
     }
 
     return undef;
@@ -341,34 +304,9 @@ sub get_maps {
 		      'name' => "Google Maps",
 		  };
     }
-#     if ($self->get_topozone_url()) {
-# 	push @maps, { 'type' => sprintf("Online USGS map of %s", $self->get_name()),
-# 		      'URL' => $self->get_topozone_url(),
-# 		      'id' => "topozoneMap", # used by Scramble::Reference
-# 		      'name' => "TopoZone.com",
-# 		  };
-#     }
-#     if ($self->get_terraserver_url()) {
-# 	push @maps, { 'type' => sprintf("Online USGS map of %s", $self->get_name()),
-# 		      'URL' => $self->get_terraserver_url(),
-# 		      'id' => "terraserverMap", # used by Scramble::Reference
-# 		      'name' => "TerraServer",
-# 		  };
-#     }
-    if (($self->get_type() eq 'trailhead' 
-	 || $self->get_is_driving_location())
-	&& defined $self->get_latitude())
-    {
-	push @maps, { 'type' => sprintf("Online road map of %s", $self->get_name()),
-		      'URL' => Scramble::Misc::get_MSN_maps_url($self->get_latitude(), $self->get_longitude(), $self->get_map_datum()),
-		      'id' => "MSN Maps", # used by Scramble::Reference
-		      'name' => "maps.msn.com",
-		  };
-    }
 
     foreach my $quad ($self->get_quad_objects()) {
 	push @maps, { 'id' => 'USGS quad',
-		      'is-driving-location' => $self->get_is_driving_location(),
 		      'name' => $quad->get_id(),
 		  };
     }
@@ -594,8 +532,6 @@ sub make_page_html {
 							$self->get_prominence());
     my $lists_html = Scramble::Misc::make_optional_line("<h2>In These Peak Lists</h2> %s",
 							Scramble::List::make_lists_html($self));
-    my $directions_html = Scramble::Misc::make_optional_line("<h2>Driving Directions</h2> %s",
-							     $self->get_driving_directions_html());
     my $quad_links = $self->get_quads_html();
     my $county_html = Scramble::Misc::make_optional_line("<b>County:</b> %s<br>",
 							 $self->get_counties_html());
@@ -604,6 +540,7 @@ sub make_page_html {
 						   $self->get_UTM_coordinates_html());
     my $description = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("<h2>Description</h2>%s",
 										 $self->get_description()));
+
     my $reports_html = Scramble::Misc::make_optional_line("<h2>Trip Reports and References</h2> %s",
 							  get_reports_for_location_html($self));
     my $maps_html = $self->get_maps_html($self);
@@ -618,22 +555,10 @@ sub make_page_html {
                                                                                    $self->get_naming_origin()));
     my $locations_nearby_html = $self->make_nearby_locations_html();
 
-    my $next_higher_peak = '';
-    if ($self->get_next_nearest_peak()) {
-	my $peak = ($self->get_next_nearest_peak_object()
-		    ? $self->get_next_nearest_peak_object()->get_short_link_html()
-		    : $self->get_next_nearest_peak());
-	$next_higher_peak = Scramble::Misc::make_colon_line("Next Higher Peak", 
-							    $peak);
-    }
-
-#my $terraserver_html = $self->get_terraserver_html();
-
     my $text_html = <<EOT;
 $aka_html
 $elevation
 $prominence
-$next_higher_peak
 $state_html
 $county_html
 $recognizable_areas_html
@@ -643,7 +568,6 @@ $utm_html
 $reports_html
 $description
 $naming_origin
-$directions_html
 $maps_html
 $lists_html
 $locations_nearby_html

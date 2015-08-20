@@ -271,16 +271,11 @@ sub main {
     }
 
     foreach my $file (@{ $g_options{'file'} }) {
-	if ($file =~ m,\breports/,) {
-	    my $report = Scramble::Report->new($file);
-	    if (! defined $report) {
-		print "Skipping $file\n";
-	    } else {
-		$report->make_page_html();
-	    }
-	} elsif ($file =~ m,\blocations/,) {
-	    my @locations = Scramble::Location->new_objects($file);
-	    foreach(@locations) { $_->make_page_html() }
+	my $report = Scramble::Report::open_specific($file);
+	if (! defined $report) {
+	    print "Skipping $file\n";
+	} else {
+	    $report->make_page_html();
 	}
     }
     if (@{ $g_options{'file'} } && ! @{ $g_options{'action'} }) {
@@ -455,5 +450,6 @@ sub convert_locations {
 	Scramble::XML::parse($path);
     }
 }
+
 
 1;

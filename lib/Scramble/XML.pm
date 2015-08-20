@@ -18,7 +18,11 @@ sub _get_optional_content {
     my ($name) = @_;
 
     return undef unless exists $self->{$name};
-    return ref $self->{$name} eq 'ARRAY' ?  $self->{$name}[0] : $self->{$name};
+    return $self->{$name}[0] if ref $self->{$name} eq 'ARRAY';
+    return undef if ref $self->{$name} eq 'HASH' && 0 == keys(%{ $self->{$name} });
+    die Data::Dumper::Dumper($self->{$name}) if ref $self->{$name};
+
+    return $self->{$name};
 }
 
 sub _set_required {
@@ -107,36 +111,6 @@ sub get_recognizable_areas_html {
     return Scramble::Misc::make_colon_line("In", join(", ", map { $args{'no-link'} ? $_->get_short_name() : $_->get_short_link_html() } @areas));
 }
 
-sub get_driving_directions_html {
-    my $self = shift;
-
-    my $directions = $self->_get_optional('driving-directions', 'directions');
-    if (! $directions) {
-	my $d = $self->_get_optional_content('driving-directions');
-	if ($d) {
-	    die(sprintf("%s has old style driving-directions\n", $self->get_name()));
-	}
-	return undef;
-    }
-
-    my $html;
-    foreach my $direction (@$directions) {
-	if (! ref $direction) {
-	    $html .= Scramble::Misc::htmlify($direction) . "<p>";
-	} elsif (exists $direction->{'from-location'}) {
-	    my $location = Scramble::Location::find_location('name' => $direction->{'from-location'},
-							     quad => $direction->{quad},
-							     'include-unvisited' => 1,
-							     );
-	    $html .= $location->get_driving_directions_html();
-	} else {
-	    die "Got bad direction: " . Data::Dumper::Dumper($direction);
-	}
-    }
-
-    return $html;
-}
-
 ######################################################################
 # static methods
 ######################################################################
@@ -168,7 +142,6 @@ sub parse {
 				     'area',
                                      'attempted',
 				     'comments', 
-				     'description',
 				     'directions',
 				     'location', 
 				     'map', 
