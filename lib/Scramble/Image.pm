@@ -8,7 +8,7 @@ use Scramble::Collection ();
 my $g_pictures_by_year_threshold = 1;
 my $g_image_rating_threshold = 1;
 my $g_pics_dir = "pics";
-my $g_collection;
+my $g_collection = Scramble::Collection->new();
 
 sub _copy {
     my ($file1, $file2, $dir, $target_dir) = @_;
@@ -52,40 +52,14 @@ sub new_from_attrs {
     bless $self, ref($arg0) || $arg0;
 
     $self->{'type'} = 'picture' unless exists $self->{'type'};
-    $self->{'noroute'} = 0 unless exists $self->{'noroute'};
     $self->{'subdirectory'} = File::Basename::basename($self->{'source-directory'});
     $self->{'chronological-order'} = 0 unless exists $self->{'chronological-order'};
-
-    foreach my $key (qw(subdirectory filename noroute type source-directory))
-    {
+    foreach my $key (qw(subdirectory thumbnail-filename type source-directory)) {
         die "Missing '$key': ", Data::Dumper::Dumper($self)
             unless defined $self->{$key};
     }
 
-    if (! exists $self->{'enlarged-filename'}) {
-        my $glob = $self->{'source-directory'} . "/" . $self->{'filename'};
-        $glob =~ s/\.\w+$//;
-        $glob .= "-[Ee][Nn][Ll].*";
-        $glob =~ s/ /\\ /g;
-        my @match = glob($glob);
-        die "Too many matches for '$glob': @match" if @match > 1;
-        die "No match ($glob): " . Data::Dumper::Dumper($self) 
-	    if (@match == 0 
-		&& $glob !~ /200\d-\d\d-\d\d-/
-		&& $self->{'type'} eq 'picture');
-        if (@match) {
-            $self->{'enlarged-filename'} = $match[0];
-            $self->{'enlarged-filename'} =~ s(.*/)();
-        }
-    }
-
     $self->{'description'} = $self->{'description'} ? ucfirst($self->{'description'}) : '';
-    if ($self->get_of() && not $self->{'description'}) {
-	$self->{'description'} = ucfirst($self->get_of());
-	if ($self->{'from'}) {
-	    $self->{'description'} .= " from " . $self->{'from'};
-	}
-    }
 
     if (defined $self->{'date'}) {
 	$self->{'date'} = Scramble::Time::normalize_date_string($self->{'date'});
@@ -94,41 +68,12 @@ sub new_from_attrs {
     return $self;
 }
 
-sub new_from_path {
-    my $arg0 = shift;
-    my ($path) = @_;
-
-    my $self = {};
-
-    $self->{'source-directory'} = File::Basename::dirname($path);
-    $self->{'filename'} = File::Basename::basename($path);
-
-    $self->{'description'} = $self->{'filename'};
-    $self->{'noroute'} = ($self->{'description'} =~ s/-noroute-map/-map/);
-    $self->{'description'} =~ s/\..*$//; # filename extension
-    $self->{'description'} =~ s/^\d+n?-*//;
-    $self->{'description'} = Scramble::Misc::make_path_into_location($self->{'description'});
-
-    my ($yyyy, $mm, $dd) = ($path =~ m,/(\d\d\d\d)[/-](\d\d)[/-](\d\d)[/-],);
-    $self->{'date'} = "$yyyy/$mm/$dd" if defined $dd;
-
-    $self->{'type'} = ($self->{'filename'} =~ /-map\./
-		       ? "map"
-		       : "picture");
-
-    ($self->{'rating'}) = ($self->{'filename'} =~ /^(\d\d)/);
-
-    return $arg0->new_from_attrs($self);
-}
-
 sub get_id { $_[0]->get_source_directory() . "|" . $_[0]->get_filename() }
-sub get_trip_id { $_[0]->{'trip-id'} }
-sub get_areas { @{ $_[0]->{'areas'} || [] } }
 sub get_chronological_order { $_[0]->{'chronological-order'} }
 sub in_chronological_order { $_[0]->{'in-chronological-order'} }
 sub get_source_directory { $_[0]->{'source-directory'} }
-sub get_filename { $_[0]->{'filename'} }
-sub get_enlarged_filename { $_[0]->{'enlarged-filename'} }
+sub get_filename { $_[0]->{'thumbnail-filename'} }
+sub get_enlarged_filename { $_[0]->{'large-filename'} }
 sub get_subdirectory { $_[0]->{'subdirectory'} }
 
 # This should be "report id".
@@ -175,28 +120,9 @@ sub get_rating {
   # 1 best
   # 100 worst
 
-  if (defined $self->{rating3}) {
-    return $self->{rating3};
-  }
-
-  if (defined $self->{rating2}) {
-    if ($self->{rating2} <= 3) {
-      return 1;
-    } elsif ($self->{rating2} < 4) {
-      return 2;
-    } else {
-      return 3;
-    }
-  }
-
   if (defined $self->{rating}) {
-    if ($self->{rating} <= 45) {
-      return 2;
-    } else {
-      return 3;
-    }
+    return $self->{rating};
   }
-
   return 3;
 }
 
@@ -326,55 +252,30 @@ sub cmp {
 
 sub get_all_images_collection { $g_collection }
 
-sub open_images_in_xml {
-    my ($directory, $filename) = @_;
+sub read_images_from_report {
+    my ($directory, $report) = @_;
 
-    my $xml = Scramble::XML::parse("$directory/$filename");
-    $xml = Scramble::XML->new($xml);
-    my $date = $xml->_get_required('date');
+    my $date = $report->get_start_date();
     my ($year, $month, $day) = Scramble::Time::parse_date($date);
 
-    my $in_chronological_order = $xml->_get_optional('in-chronological-order');
+    my $in_chronological_order = $report->_get_optional('files', 'in-chronological-order');
     if (defined($in_chronological_order) && '' eq $in_chronological_order) {
 	die "images.in-chronological-order is empty";
     }
 
     my @images;
     my $chronological_order = 0;
-    foreach my $image_xml (@{ $xml->_get_optional("image") || [] }) {
+    foreach my $image_xml (@{ $report->_get_optional('files', "file") || [] }) {
         push @images, Scramble::Image->new_from_attrs({ 'date' => "$year/$month/$day",
-                                                        'areas' => [ $xml->get_areas_from_xml() ],
                                                         'source-directory' => $directory,
                                                         'chronological-order' => $chronological_order++,
                                                         'in-chronological-order' => $in_chronological_order,
-                                                        'trip-id' => $xml->_get_optional('trip-id'),
                                                         %$image_xml,
                                                     });
     }
 
+    $g_collection->add(@images);
     return @images;
-}
-
-sub open {
-    my ($directory) = @_;
-
-    if (! -d $directory) {
-	die "images directory '$directory' does not exist";
-    }
-
-    my @images;
-    foreach my $dir (glob "$directory/*") {
-        next unless -d $dir;
-        if (-e "$dir/images.xml") {
-            push @images, open_images_in_xml($dir, "images.xml");
-        } elsif (my @paths = glob "$dir/*.{jpg,JPG,jpeg,JPEG,gif,GIF}") {
-            push @images, map { Scramble::Image->new_from_path($_) } @paths;
-        } elsif ($dir !~ /CVS/) {
-            print "No images in '$dir'\n";
-        }
-    }
-
-    $g_collection = Scramble::Collection->new('objects' => \@images);
 }
 
 sub make_enl_picture_pages {

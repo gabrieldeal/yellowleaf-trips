@@ -68,26 +68,6 @@ sub new {
 
     $self->{'country-object'} = $self->get_areas_collection()->find_one('type' => 'country');
 
-    if (Scramble::Image::get_all_images_collection()) {
-	$self->{'picture-objects'} = [];
-	foreach my $regex ($self->get_regex_keys()) {
-	    foreach my $image (Scramble::Image::get_all_images_collection()->get_all()) {
-                # FIXME: Should get the USGS quads from the report or
-                # the images and get the location names from the
-                # image, then do real matching.  This is very broken
-                # for locations like Green Mountain that are on
-                # multiple quads.
-                if (! (($image->get_of() && $image->get_of() =~ $regex)
-                       || $image->get_description() =~ $regex))
-                {
-                    next;
-                }
-		my $key = $image->get_type() . "-objects";
-		push @{ $self->{$key} }, $image;
-	    }
-	}
-        $self->{'picture-objects'} = [ sort { $a->cmp($b) } @{ $self->{'picture-objects'} } ];
-    }
 
     $self->_get_longitude();
     $self->_get_latitude();
@@ -182,6 +162,32 @@ sub get_UTM_zone { $_[0]->_get_optional('coordinates', 'zone') }
 sub get_UTM_easting { $_[0]->_get_optional('coordinates', 'easting') }
 sub get_UTM_northing { $_[0]->_get_optional('coordinates', 'northing') }
 sub get_naming_origin { $_[0]->_get_optional('name', 'origin'); }
+
+sub get_picture_objects {
+    my $self = shift;
+
+    # Need to load lazily so this is done after all the reports are loaded.
+
+    return @{ $self->{'picture-objects'} } if $self->{'picture-objects'};
+
+    $self->{'picture-objects'} = [];
+    foreach my $regex ($self->get_regex_keys()) {
+	foreach my $image (Scramble::Image::get_all_images_collection()->get_all()) {
+	    # FIXME: Should get the USGS quads from the report or
+	    # the images and get the location names from the
+	    # image, then do real matching.  This is very broken
+	    # for locations like Green Mountain that are on
+	    # multiple quads.
+	    next unless $image->get_description() =~ $regex;
+	    
+	    my $key = $image->get_type() . "-objects";
+	    push @{ $self->{$key} }, $image;
+	}
+    }
+    $self->{'picture-objects'} = [ Scramble::Misc::dedup(sort { $a->cmp($b) } @{ $self->{'picture-objects'} }) ];
+
+    return @{ $self->{'picture-objects'} };
+}
 
 sub get_is_unofficial_name {
     my $self = shift;

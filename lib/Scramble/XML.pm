@@ -84,9 +84,6 @@ sub set {
 # shared between Scramble::Location and Scramble::Report
 ######################################################################
 
-sub get_picture_objects { @{ $_[0]->{'picture-objects'} } }
-sub set_picture_objects { $_[0]->{'picture-objects'} = $_[1] }
-
 sub get_areas_from_xml {
     my $self = shift;
 
@@ -143,6 +140,7 @@ sub parse {
                                      'attempted',
 				     'comments', 
 				     'directions',
+				     'file',
 				     'location', 
 				     'map', 
                                      'member',
@@ -165,10 +163,6 @@ sub parse {
     }
 
     $xml->{'path'} = $path;
-
-    my ($ofilename) = ($path =~ m,/([^/]+).xml$,);
-    $xml->{'filename'} = $ofilename . ".html";
-    $xml->{'pager-filename'} = $ofilename . "_pager.html";
 
     return $xml;
 }

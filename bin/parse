@@ -40,7 +40,6 @@ my @g_options = qw(
 		   action=s@
 		   skip=s@
 		   file=s@
-		   reports-directory=s
 		   images-directory=s
                    templates-directory=s
                    javascript-directory=s
@@ -56,7 +55,6 @@ my %g_options = (
                  "timezone" => "PDT",
                  "dictionary-directory=" => "dict/english.0",
 		 "images-directory" => "data/$ENV{USER}/images",
-		 "reports-directory" => "data/$ENV{USER}/reports",
                  "templates-directory" => "data/$ENV{USER}/templates",
                  "javascript-directory" => "data/javascript",
                  "css-directory" => "data/css",
@@ -76,14 +74,6 @@ sub usage {
 
 Reads XML from the data directory and writes HTML to the html/g
 directory.
-
-Example:
-\$ perl -w bin/parse \\
-        --verbose \\
-        --reports-directory data/$ENV{USER}/reports \\
-        --templates-directory data/$ENV{USER}/templates \\
-        --css-directory data/$ENV{USER}/css \\
-        --images-directory html/pictures
 EOT
 }
 
@@ -100,7 +90,7 @@ sub get_options {
 	$ENV{'TZ'} = $g_options{'timezone'};
     }
 
-    foreach my $required (qw(reports-directory
+    foreach my $required (qw(
                              images-directory
                              output-directory
                              javascript-directory
@@ -129,7 +119,7 @@ sub get_party_stats {
 
     my ($yyyy, $mm, $dd) = Scramble::Time::parse_date($report->get_start_date());
 
-    die "$yyyy/$mm/$dd" . Data::Dumper::Dumper($party) unless $party->{size};
+    die "$yyyy/$mm/$dd " . Data::Dumper::Dumper($party) unless $party->{size};
 
     $stats{$mm}{trip_count}++;
     $stats{$mm}{person_count} += $party->{size};
@@ -259,16 +249,19 @@ sub main {
     Scramble::Area::open();
     Scramble::Area::Quad::init();
     Scramble::Reference::open();
-    Scramble::Image::open($g_options{'images-directory'});
+    print "WHERE!\n";
 
-    if (should('convert')) {
+    if (0 && should('convert')) {
+    print "NONO HELP!\n";
 	#convert_locations();
 	convert_reports();
 	exit 0;
     }
+    print "HELP!\n";
 
     if (! @{ $g_options{'file'} }) {
-	Scramble::Report::open_all($g_options{'reports-directory'});
+print "Opening $g_options{'images-directory'}..............\n";
+	Scramble::Report::open_all($g_options{'images-directory'});
     } else {
 	foreach my $file (@{ $g_options{'file'} }) {
 	    my $report = Scramble::Report::open_specific($file);

@@ -82,20 +82,19 @@ sub new {
 	$self->set('end-date', Scramble::Time::normalize_date_string($self->get_end_date()));
     }
 
-    my %args = (
-                'trip-id' => $self->get_trip_id(),
-                'date' => $self->get_start_date(),
-               );
-    my $picture_objs = [ Scramble::Image::get_all_images_collection()->find(%args, 'type' => 'picture') ];
+    my @images = Scramble::Image::read_images_from_report(File::Basename::dirname($path), $self);
+    my $image_collection = Scramble::Collection->new(objects => \@images);
+
+    my $picture_objs = [ $image_collection->find('type' => 'picture') ];
 
     if (@$picture_objs && $picture_objs->[0]->in_chronological_order()) {
         $picture_objs = [ sort { $a->get_chronological_order() <=> $b->get_chronological_order() } @$picture_objs ];
     }
     $self->set_picture_objects([ grep { ! $_->get_should_skip_report() } @$picture_objs]);
 
-    $self->{'map-objects'} = [ Scramble::Image::get_all_images_collection()->find(%args, 'type' => 'map') ];
+    $self->{'map-objects'} = [ $image_collection->find('type' => 'map') ];
 
-    my @kmls = Scramble::Image::get_all_images_collection()->find(%args, 'type' => 'kml');
+    my @kmls = $image_collection->find('type' => 'kml');
     die "Too many KMLs" if @kmls > 1;
     $self->{'kml'} = $kmls[0] if @kmls;
 
@@ -120,8 +119,6 @@ sub get_type { $_[0]->_get_optional('type') || 'scramble' }
 sub get_end_date { $_[0]->_get_optional('end-date') }
 sub get_start_date { $_[0]->_get_required('start-date') }
 sub get_name { $_[0]->_get_required('name') }
-sub get_filename { $_[0]->_get_required('filename') }
-sub get_pager_filename { $_[0]->_get_required('pager-filename') }
 sub get_locations { @{ $_[0]->_get_optional('locations', 'location') || [] } }
 sub get_state { $_[0]->_get_optional('state') || "done" }
 sub is_planned { $_[0]->get_state() eq 'planned' }
@@ -129,6 +126,18 @@ sub get_route { $_[0]->_get_optional_content('route') }
 sub get_rock_routes { @{ $_[0]->_get_optional('rock-routes', 'rock-route') || [] } }
 sub get_kml { $_[0]->{kml} }
 sub get_map_objects { @{ $_[0]->{'map-objects'} } }
+sub get_picture_objects { @{ $_[0]->{'picture-objects'} } }
+sub set_picture_objects { $_[0]->{'picture-objects'} = $_[1] }
+
+
+sub get_filename {
+    my $self = shift;
+    return $self->_get_required('filename') . ".html";
+}
+sub get_pager_filename {
+    my $self = shift;
+    return $self->_get_required('filename') . "_pager.html";
+}
 
 sub get_best_picture_object {
     my $self = shift;
@@ -563,7 +572,7 @@ sub make_page_html {
     if ($@) {
 	local $SIG{__DIE__};
 	die sprintf("Error while parsing %s:\n%s",
-		    $self->get_filename(),
+		    $self->{'path'},
 		    $@);
     }
 }
@@ -779,7 +788,7 @@ sub open_all {
 
     die "No such directory '$directory'" unless -d $directory;
 
-    foreach my $path (glob("$directory/*.xml")) {
+    foreach my $path (reverse(sort(glob("$directory/*/report.xml")))) {
 	open_specific($path);
     }
 }
@@ -818,6 +827,8 @@ sub make_rss {
         next unless $report->should_show();
         my $best_image = $report->get_best_picture_object();
 	next unless $best_image;
+
+	die Data::Dumper::Dumper($best_image) . "\n\n\n\n" . Data::Dumper::Dumper($report) unless $best_image->get_enlarged_img_url();
 
 	my $image_url = sprintf(qq(http://yellowleaf.org/scramble/%s),
 				$best_image->get_enlarged_img_url());

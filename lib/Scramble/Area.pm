@@ -266,8 +266,7 @@ sub get_images {
 ## If a report spans quads, this puts pictures of one quad in
 ## another quad's page:
 #    push @images, map { $_->get_picture_objects() } $self->get_reports();
-
-    push @images, Scramble::Image::get_all_images_collection()->find('areas' => $self);
+#    push @images, Scramble::Image::get_all_images_collection()->find('areas' => $self);
 
     return @images;
 }
