@@ -45,7 +45,6 @@ my @g_options = qw(
                    javascript-directory=s
                    css-directory=s
                    output-directory=s
-                   no-copy-images
                    help
 		   );
 my %g_options = (
@@ -260,7 +259,6 @@ sub main {
     print "HELP!\n";
 
     if (! @{ $g_options{'file'} }) {
-print "Opening $g_options{'images-directory'}..............\n";
 	Scramble::Report::open_all($g_options{'images-directory'});
     } else {
 	foreach my $file (@{ $g_options{'file'} }) {
@@ -268,8 +266,8 @@ print "Opening $g_options{'images-directory'}..............\n";
 	    $report->make_page_html() if $report;
 	}
     }
-    spell_check();
     Scramble::Image::copy();
+    spell_check();
     if (@{ $g_options{'file'} }) {
         return 0;
     }

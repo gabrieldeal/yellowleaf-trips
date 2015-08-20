@@ -122,7 +122,7 @@ sub get_name { $_[0]->_get_required('name') }
 sub get_locations { @{ $_[0]->_get_optional('locations', 'location') || [] } }
 sub get_state { $_[0]->_get_optional('state') || "done" }
 sub is_planned { $_[0]->get_state() eq 'planned' }
-sub get_route { $_[0]->_get_optional_content('route') }
+sub get_route { $_[0]->_get_optional_content('description') }
 sub get_rock_routes { @{ $_[0]->_get_optional('rock-routes', 'rock-route') || [] } }
 sub get_kml { $_[0]->{kml} }
 sub get_map_objects { @{ $_[0]->{'map-objects'} } }
@@ -329,34 +329,10 @@ sub get_distances_html {
 		   (@parenthesis_htmls == 1 ? '' : " (" . join(", ", @parenthesis_htmls) . ")"));
 }
 
-
-sub have_empty_references {
-    my $self = shift;
-
-    if (! defined $self->_get_optional('references')) {
-      return 0; # No <references> tag.
-    }
-    if (! defined $self->_get_optional('references', 'reference')) {
-      return 1; # Have <references> but no <reference>.
-    }
-    return 0; # Have <references> and <reference>.
-}
-
 sub get_references {
     my $self = shift;
 
-    my @references;
-
-    if ($self->have_empty_references()) {
-      # Means I explicitly did not want any references on this report.
-      return @references;
-    }
-
-    @references = @{ $self->_get_optional('references', 'reference') || [] };
-    if (! @references) {
-        @references = map { $_->get_references() } $self->get_locations_visited();
-    }
-
+    my @references = @{ $self->_get_optional('references', 'reference') || [] };
     @references = sort { Scramble::Reference::cmp_references($a, $b) } @references;
 
     return @references;
