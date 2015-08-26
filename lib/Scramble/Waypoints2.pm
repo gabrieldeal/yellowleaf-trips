@@ -46,18 +46,6 @@ sub get_on_trail_waypoints {
     return @on_trail_waypoints;
 }
 
-sub get_locations_visited {
-    my $self = shift;
-
-    my @locations_visited;
-    foreach my $waypoint ($self->get_waypoints()) {
-	next unless $waypoint->get_location();
-	push @locations_visited, Scramble::Location::get_locations_referenced($waypoint->get_location());
-    }
-
-    return Scramble::Misc::dedup(@locations_visited);
-}
-
 sub get_elevation_gain {
     my $self = shift;
 

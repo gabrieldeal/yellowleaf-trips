@@ -8,7 +8,7 @@ sub get_winter_locations {
     foreach my $report (Scramble::Report::get_all()) {
         next unless Scramble::Time::is_winter($report->get_start_date());
 
-        foreach my $location ($report->get_locations_visited()) {
+        foreach my $location ($report->get_location_objects()) {
             push @locations, $location;
         }
     }

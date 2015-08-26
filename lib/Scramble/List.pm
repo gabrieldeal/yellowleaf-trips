@@ -311,9 +311,6 @@ EOT
 	if ($location_object) {
 	    push @location_objects, $location_object;
 	}
-	if ($list_location->{'description'}) {
-	    push @location_objects, Scramble::Location::get_locations_referenced($list_location->{'description'});
-	}
 
 	$locations_html .= qq(<tr class="list">);
 	foreach my $column_name (@column_names) {

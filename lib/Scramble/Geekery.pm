@@ -82,7 +82,7 @@ sub get_stats {
             $stats{$year}{'trail-run-trips'}++;
         }
 
-	my @locations = grep { $_->get_type() eq 'peak' } $report->get_locations_visited();
+	my @locations = grep { $_->get_type() eq 'peak' } $report->get_location_objects();
         $stats{$year}{'total-peaks'} += @locations;
 
 	if (! defined $stats{$year}{'max-peaks'} or $stats{$year}{'max-peaks'} < @locations) {

@@ -37,41 +37,22 @@ sub new {
 							 $self->_get_optional('waypoints'));
     }
 
-    my @locations_visited;
+    my @location_objects;
     foreach my $location_element ($self->get_locations()) {
-	push @locations_visited, Scramble::Location::find_location('name' => $location_element->{'name'},
+	push @location_objects, Scramble::Location::find_location('name' => $location_element->{'name'},
 								   'quad' => $location_element->{'quad'},
 								   'country' => $location_element->{country},
 								   'include-unvisited' => 1,
 								   );
     }
-    my @locations_not_visited;
-    foreach my $location_element (@{ $self->_get_optional('locations', 'not') || [] }) {
-        eval {
-            push @locations_not_visited, Scramble::Location::find_location('name' => $location_element->{'name'},
-                                                                           'quad' => $location_element->{'quad'},
-                                                                           'include-unvisited' => 1,
-                                                                           );
-        };
-    }
-
-    foreach my $l ($self->get_waypoints()->get_locations_visited()) {
-	printf("MISSING %s from %s\n", $l->get_name, $self->get_filename()) unless grep { $l->equals($_) } @locations_visited;
-    }
-
-    push @locations_visited, $self->get_waypoints()->get_locations_visited();
-    foreach my $location (@locations_not_visited) {
-        my @tmp = grep { ! $location->equals($_) } @locations_visited;
-        @locations_visited = @tmp;
-    }
-    $self->{'locations-visited'} = [ Scramble::Misc::dedup(@locations_visited) ];
-    foreach my $location ($self->get_locations_visited()) {
+    $self->{'location-objects'} = \@location_objects;
+    foreach my $location ($self->get_location_objects()) {
 	$location->set_have_visited();
     }
 
     {
 	my @areas;
-	push @areas, map { $_->get_areas_collection->get_all() } $self->get_locations_visited();
+	push @areas, map { $_->get_areas_collection->get_all() } $self->get_location_objects();
 	push @areas, $self->get_areas_from_xml();
 	@areas = Scramble::Misc::dedup(@areas);
 	$self->{'areas-object'} = Scramble::Collection->new('objects' => \@areas);
@@ -114,12 +95,12 @@ sub get_display_mode { $_[0]->_get_optional('display-mode') || 'normal' }
 sub get_trip_organizer { $_[0]->_get_optional('trip-organizer') || 'private' }
 sub get_areas_collection { $_[0]->{'areas-object'} }
 sub get_waypoints { $_[0]->{'waypoints'} }
-sub get_locations_visited { @{ $_[0]->{'locations-visited'} } }
 sub get_type { $_[0]->_get_optional('type') || 'scramble' }
 sub get_end_date { $_[0]->_get_optional('end-date') }
 sub get_start_date { $_[0]->_get_required('start-date') }
 sub get_name { $_[0]->_get_required('name') }
 sub get_locations { @{ $_[0]->_get_optional('locations', 'location') || [] } }
+sub get_location_objects { @{ $_[0]->{'location-objects'} } }
 sub get_state { $_[0]->_get_optional('state') || "done" }
 sub is_planned { $_[0]->get_state() eq 'planned' }
 sub get_route { $_[0]->_get_optional_content('description') }
@@ -290,7 +271,7 @@ sub get_embedded_google_map_html {
 
     return '' if $self->get_map_objects();
 
-    my @locations = $self->get_locations_visited();
+    my @locations = $self->get_location_objects();
     my $kml_url = $self->get_kml() ? $self->get_kml()->get_full_url() : undef;
     return '' unless $kml_url or grep { defined $_->get_latitude() } @locations;
 
@@ -366,7 +347,7 @@ sub get_map_summary_html {
     }
 
     if ($type eq 'USGS quad') {
-        foreach my $location ($self->get_locations_visited()) {
+        foreach my $location ($self->get_location_objects()) {
             foreach my $quad ($location->get_quad_objects()) {
                 $maps{$quad->get_short_name()} = 1;
             }
@@ -910,7 +891,7 @@ sub get_reports_for_location {
     my @retval;
     foreach my $report (get_all()) {
 	next if $report->is_planned();
-	push @retval, $report if grep { $location->equals($_) } $report->get_locations_visited();
+	push @retval, $report if grep { $location->equals($_) } $report->get_location_objects();
     }
     return @retval;
 }

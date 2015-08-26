@@ -677,19 +677,6 @@ sub dedup {
     return values %locations;
 }
 
-sub get_locations_referenced {
-    my ($text) = @_;
-
-    my @locations_visited;
-    foreach my $regex (get_all_regex_keys()) {
-	if ($text =~ s/\b$regex\b//) {
-            push @locations_visited, get_regex_value($regex);
-	}
-    }
-
-    return dedup(@locations_visited);
-}
-
 my %g_location_names_to_objects_mapping;
 sub _make_regex {
     my ($regex) = @_;
@@ -706,11 +693,6 @@ sub _make_regex {
     }
 
     return $regex;
-}
-sub get_regex_value {
-    my ($key) = @_;
-
-    return $g_location_names_to_objects_mapping{$key};
 }
 sub get_regex_keys {
     my $self = shift;

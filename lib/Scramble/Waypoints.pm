@@ -22,21 +22,6 @@ sub get_id { $_[0]->{'_id'} }
 sub get_waypoints { @{ $_[0]->{'waypoints'} }}
 sub get_waypoints_with_times { grep { $_->has_time() } $_[0]->get_waypoints() }
 
-sub get_locations_visited {
-    my $self = shift;
-
-    my @locations_visited;
-    foreach my $waypoint ($self->get_waypoints()) {
-	foreach my $location_method (qw(get_start_location get_end_location)) {
-	    my $location_description = $waypoint->$location_method();
-	    next unless defined $location_description;
-	    push @locations_visited, Scramble::Location::get_locations_referenced($location_description);
-	}
-    }
-
-    return Scramble::Misc::dedup(@locations_visited);
-}
-
 sub get_elevation_gain {
     my $self = shift;
     my ($time_type) = @_;
