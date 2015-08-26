@@ -7,7 +7,6 @@ use MIME::Types ();
 use DateTime ();
 use DateTime::Format::Mail ();
 use JSON ();
-use Scramble::Waypoints ();
 use Scramble::Waypoints2 ();
 use Scramble::Image ();
 use Scramble::Reference ();
@@ -29,13 +28,8 @@ sub new {
 	return undef;
     }
 
-    if ($self->_get_optional('times')) {
-	$self->{'waypoints'} = Scramble::Waypoints->new($self->get_filename(),
-							$self->_get_optional('times'));
-    } else {
-	$self->{'waypoints'} = Scramble::Waypoints2->new($self->get_filename(),
-							 $self->_get_optional('waypoints'));
-    }
+    $self->{'waypoints'} = Scramble::Waypoints2->new($self->get_filename(),
+						     $self->_get_optional('waypoints'));
 
     my @location_objects;
     foreach my $location_element ($self->get_locations()) {
@@ -91,7 +85,6 @@ sub new {
 
 sub get_id { $_[0]->get_start_date() . "|" . ($_[0]->get_trip_id() || "") }
 sub get_trip_id { $_[0]->_get_optional('trip-id') }
-sub get_display_mode { $_[0]->_get_optional('display-mode') || 'normal' }
 sub get_trip_organizer { $_[0]->_get_optional('trip-organizer') || 'private' }
 sub get_areas_collection { $_[0]->{'areas-object'} }
 sub get_waypoints { $_[0]->{'waypoints'} }
@@ -175,9 +168,6 @@ sub should_show {
     if ($self->_get_optional('should-not-show')) {
 	return 0;
     }
-    if ($self->get_display_mode() eq 'no-links-to') {
-	return 0;
-    }
     return 1;
 }
 
@@ -196,14 +186,6 @@ sub get_parsed_start_date {
     my @date = split('/', $self->get_start_date());
     @date == 3 or die sprintf("Bad start date '%s'", $self->get_start_date());
     return @date;
-}
-
-sub get_best_map_type {
-    my $self = shift;
-
-    my $maps_xml = $self->_get_optional('maps');
-    return 'USGS quad' unless $maps_xml && $maps_xml->{'best-map-type'};
-    return $maps_xml->{'best-map-type'};
 }
 
 sub get_maps { 
@@ -336,7 +318,7 @@ sub get_map_summary_html {
 
     return '' if defined $self->_get_optional('maps') && ! defined $self->_get_optional('maps', 'map');
 
-    my $type = $self->get_best_map_type();
+    my $type = 'USGS quad';
     my %maps;
 
     foreach my $map ($self->get_maps()) {
@@ -505,30 +487,17 @@ EOT
 							      'html' => $html));
 }
 
-sub _make_page_html {
-    my $self = shift;
-
-    if ($self->get_display_mode() eq 'normal'
-	|| $self->get_display_mode() eq 'no-links-to'
-	|| $self->get_display_mode() eq 'spare'
-	|| $self->get_display_mode() eq 'bare')
-    {
-        return $self->make_spare_page_html();
-    } else {
-        die "Bad display mode: " . $self->get_display_mode();
-    }
-}
 sub make_page_html {
     my $self = shift;
     my @args = @_;
 
     eval {
-	$self->_make_page_html(@args);
+	$self->make_spare_page_html(@args);
 	$self->make_pager_html(@args);
     };
     if ($@) {
 	local $SIG{__DIE__};
-	die sprintf("Error while parsing %s:\n%s",
+	die sprintf("Error while making HTML for %s:\n%s",
 		    $self->{'path'},
 		    $@);
     }
@@ -636,12 +605,10 @@ $long_route_references
 EOT
 
     my @htmls;
-    if ($self->get_display_mode() ne 'bare') {
-	push @htmls, $right_html;
+    push @htmls, $right_html;
 
-	my $map_html = $self->get_embedded_google_map_html();
-	push @htmls, $map_html if $map_html;
-    }
+    my $map_html = $self->get_embedded_google_map_html();
+    push @htmls, $map_html if $map_html;
 
     my $cells_html;
     my @map_objects = $self->get_map_objects();

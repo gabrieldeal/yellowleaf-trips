@@ -79,7 +79,6 @@ sub make_report_xml {
     start-date="$date"
     name="$title"
     type="$type"
-    display-mode="spare"
     trip-id="1"
 >
 
