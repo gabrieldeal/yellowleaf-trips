@@ -248,10 +248,8 @@ sub main {
     Scramble::Area::open();
     Scramble::Area::Quad::init();
     Scramble::Reference::open();
-    print "WHERE!\n";
 
     if (0 && should('convert')) {
-    print "NONO HELP!\n";
 	#convert_locations();
 	convert_reports();
 	exit 0;

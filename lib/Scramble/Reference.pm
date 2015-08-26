@@ -219,12 +219,12 @@ sub get_reference_attr {
 	return undef;
     }
 
-    my $reference = $g_references_xml->{'reference'}{ $reference->{'id'} };
-    if (! defined $reference) {
+    my $reference_xml = $g_references_xml->{'reference'}{ $reference->{'id'} };
+    if (! defined $reference_xml) {
 	return undef;
     }
 
-    return $reference->{$attr};
+    return $reference_xml->{$attr};
 }
 
 1;
