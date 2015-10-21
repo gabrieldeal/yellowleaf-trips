@@ -132,8 +132,11 @@ sub get_party_stats {
       }
       $name =~ s/\s*\([\w\s]*\)\s*$//;
       $name =~ s/^\s*(.*?)[\s\.]*$/$1/i;
+      $name = "Kate (DnR) Hoch" if $name =~ /DnR/ or $name =~ /drop.n.roll/i or $name =~ /Kate.*Hoch/;
+      $name = "Jacob (Daybreaker) Sperati" if $name =~ /jacob.*sperati/i or $name =~ /daybreaker/i;
       $name = "Brad (Mister Fox) White" if $name =~ /(mr\.?|mister)\s*fox/i;
       $name = "Courtney (Rocklocks) Braun" if $name =~ /rock\s*locks/i;
+      $name = "Deb (Topsy Turvy) Brown" if $name =~ /^deb\b.*\bbrown$/i or $name =~ /\btopsy\s*turvy\b/i;
       $name =~ s/^Mom$/Bonnie Deal/i;
       $name =~ s/^Boni Deal$/Bonnie Deal/i;
       $name = "Laurie Cullen" if $name =~ /^Laurie C$/;
@@ -156,12 +159,13 @@ sub get_party_stats {
       $name = "Atsuko Yamaguchi" if $name =~ /\batsuko\b/i;
       $name =~ s/^Brett D$/Brett Dyson/i;
       $name =~ s/^Bruno$/Bruno Reinys/i;
-      $people{$name}++;
+      $people{$name}{trips}++;
+      $people{$name}{days} += $report->get_num_days();
     }
   }
 
-  foreach my $name (sort { $people{$a} <=> $people{$b} } keys %people) {
-    printf("%d %s\n", $people{$name}, $name);
+  foreach my $name (sort { $people{$a}{trips} <=> $people{$b}{trips} } keys %people) {
+    printf("%d %d %s\n", $people{$name}{trips}, $people{$name}{days}, $name);
   }
 
   foreach my $mm (sort { $a <=> $b } keys %stats) {
@@ -192,13 +196,13 @@ sub spell_check {
         my @texts;
         push @texts, ($report->get_route(), $report->get_name());
         foreach my $text (@texts) {
-            push @misspelled,_spell_check($text, $report->get_filename(), $report->get_start_date());
+            push @misspelled, _spell_check($text, $report->get_filename(), $report->get_start_date());
         }
     }
 
     foreach my $image (Scramble::Image::get_all_images_collection()->get_all()) {
         foreach my $text ($image->get_description(), $image->get_of(), $image->get_from()) {
-            push @misspelled,_spell_check($text, $image->get_source_directory(), $image->get_date());
+            push @misspelled, _spell_check($text, $image->get_source_directory(), $image->get_date());
         }
     }
     if (@misspelled) {
@@ -254,7 +258,6 @@ sub main {
 	convert_reports();
 	exit 0;
     }
-    print "HELP!\n";
 
     if (! @{ $g_options{'file'} }) {
 	Scramble::Report::open_all($g_options{'images-directory'});
@@ -294,7 +297,7 @@ sub main {
     }
 
     should('kml') && copy_kml();
-    should('report-index') && Scramble::Report::make_reports_index_page();
+    should('report-index') && Scramble::Report::make_reports_index_page(); # This includes home.html
     should('link') && Scramble::Reference::make_references();
     should('list') && Scramble::List::make_lists();
     should('report') && Scramble::Report::make_all_report_pages();

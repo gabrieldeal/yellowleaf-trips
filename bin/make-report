@@ -82,6 +82,8 @@ sub make_report_xml {
     trip-id="1"
 >
 
+<description />
+
 <references />
 
 <locations>
@@ -92,9 +94,13 @@ sub make_report_xml {
 <member name="Gabriel Deal" type="author"/>
 </party>
 
-<!--
+<round-trip-distances>
+    <distance type="foot" miles=""/>
+    <distance type="bike" miles=""/>
+</round-trip-distances>
 
-<waypoints>
+
+<waypoints elevation-gain="">
 <waypoint type="ascending"
        location=""
        time="$start"
@@ -106,8 +112,6 @@ sub make_report_xml {
        elevation=""
 />
 </waypoints>
-
--->
 
 $files_xml
 
@@ -147,10 +151,12 @@ EOT
 	    my ($orig_filename) = ($enl_filename =~ /^\d+-([\w-_\(\)]+)-enl.jpg$/) or die "Failed to parse '$enl_filename'";
 	    my @orig_filenames = glob("$dir/$orig_filename.*");
 	    @orig_filenames == 1 or die "Unable to get original filename for '$orig_filename'";
+	    
 	    my $metadata = get_image_metadata("$orig_filenames[0]");
+	    die "Unable to find rating in $orig_filenames[0]" unless defined $metadata->{rating};
 
 	    $type = "picture";
-	    $rating = get_rating($metadata->{rating}, $enl_filename);
+	    $rating = get_rating($metadata->{rating});
 	    $caption = $metadata->{'caption'} || '';
 	    $timestamp = $metadata->{'timestamp'};
 	}
@@ -204,10 +210,10 @@ EOT
 }
 
 sub get_rating {
-  my ($rating, $file) = @_;
+  my ($rating) = @_;
 
   if (! defined $rating) {
-      die "Missing a rating on '$file'";
+      die "Missing rating";
   } elsif ($rating == 1) {
     return 3;
   } elsif ($rating == 2) {
@@ -263,8 +269,6 @@ sub get_image_metadata {
   $caption = '' if $caption eq "OLYMPUS DIGITAL CAMERA";
   $caption =~ s/&/&amp;/g;
   $caption =~ s/"/&quot;/g;
-
-  die "Missing rating in '$file'" unless $info->{Rating} =~ /^\d+$/;
 
   return {
 	  rating => $info->{Rating},

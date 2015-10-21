@@ -39,6 +39,8 @@ sub add_words {
 sub strip_word {
     my ($word) = @_;
 
+    return "" if $word =~ /^(\w\.)+$/; # skip acronyms
+
     # remove climb ratings like 5.10d:
     $word =~ s/\b(5\.)?1[0-5][abcd]\b//;
 

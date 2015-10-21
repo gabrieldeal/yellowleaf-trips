@@ -4,6 +4,7 @@ use strict;
 
 use File::Basename ();
 use Scramble::Collection ();
+use HTML::Entities ();
 
 my $g_pictures_by_year_threshold = 1;
 my $g_image_rating_threshold = 1;
@@ -191,7 +192,7 @@ sub get_img_tag {
     return sprintf(qq(<img %s src="%s" alt="Image of %s" border="$border" hspace="1" vspace="1">),
                    (exists $options{'image-attributes'} ? $options{'image-attributes'} : ''),
                    $enlarged ? $self->get_enlarged_img_url() : $self->get_url(),
-                   $self->get_description());
+                   HTML::Entities::encode_entities($self->get_description()));
 }
 
 sub get_html {
