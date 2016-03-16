@@ -1,4 +1,4 @@
 #!/usr/bin/bash
 umask 022
 debug="-d:NYTProf"
-cd ~/scramble && perl bin/parse --dictionary-dir dict --images data/gabrielx/images --tem data/gabrielx/templates --out html -v "$@"
+cd ~/projects/yellowleaf-trips && perl bin/parse --dictionary-dir dict --images data/gabrielx/images --tem data/gabrielx/templates --out html -v "$@"

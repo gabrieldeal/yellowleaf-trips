@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-umask 0022;cd ~/scramble && perl bin/make-report "$@" fuck-line-feeds
+umask 0022;cd ~/projects/yellowleaf-trips && perl bin/make-report "$@" fuck-line-feeds
