@@ -41,6 +41,8 @@ sub strip_word {
 
     return "" if $word =~ /^(\w\.)+$/; # skip acronyms
 
+    $word =~ s/\&[a-z]{3};//;
+
     # remove climb ratings like 5.10d:
     $word =~ s/\b(5\.)?1[0-5][abcd]\b//;
 
