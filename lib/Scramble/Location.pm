@@ -416,7 +416,8 @@ sub is {
 
     defined $args{name} or die "Need name";
 
-    return 0 unless $args{name} ~~ [$self->get_name(), $self->get_aka_names()]; # ~~ is smart match
+    return 0 unless grep { $args{name} eq $_ } ($self->get_name(),
+                                                $self->get_aka_names());
 
     if ($args{quad}) {
       return 0 unless _contains_area($args{quad}, $self->get_quad_objects());
