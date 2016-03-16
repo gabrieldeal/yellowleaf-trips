@@ -102,12 +102,12 @@ sub make_report_xml {
 
 <waypoints elevation-gain="">
 <waypoint type="ascending"
-       location=""
+       location-description=""
        time="$start"
        elevation=""
 />
 <waypoint type="break"
-       location=""
+       location-description=""
        time="$end"
        elevation=""
 />
