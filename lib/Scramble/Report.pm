@@ -782,7 +782,7 @@ sub make_reports_index_page {
     my %report_htmls;
     my $count = 0;
     my $latest_year = 0;
-    foreach my $report (get_all()) {
+    foreach my $report (sort { Scramble::Report::cmp($b, $a) } get_all()) {
 	my ($yyyy) = $report->get_parsed_start_date();
         $latest_year = $yyyy if $yyyy > $latest_year;
 
