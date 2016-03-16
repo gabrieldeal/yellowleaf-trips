@@ -161,9 +161,7 @@ sub get_num_days {
   return 1 + $end - $start;
 }
 
-
-
-sub should_show { 
+sub should_show {
     my $self = shift;
     if ($self->_get_optional('should-not-show')) {
 	return 0;
@@ -300,7 +298,6 @@ sub get_references {
 
     return @references;
 }
-
 
 sub get_reference_html {
     my $self = shift;
@@ -583,8 +580,6 @@ sub make_spare_page_html {
     my $long_times_html = '';
     my $short_times_html = '';
     if ($self->get_waypoints()->get_waypoints_with_times() > 2) {
-#        $long_times_html = Scramble::Misc::make_optional_line("<h2>Travel Times</h2> %s",
-#                                                         $self->get_waypoints()->get_detailed_time_html());
       $long_times_html = $self->get_waypoints()->get_detailed_time_html();
     } else {
         # Some reports have zero waypoints but still have a car-to-car time.
@@ -717,8 +712,7 @@ sub open_all {
     }
 }
 
-
-sub get_all { 
+sub get_all {
     return $g_report_collection->get_all();
 }
 
@@ -848,7 +842,6 @@ sub make_reports_index_page {
                                                 'no-add-picture' => 1,
                                                 'copyright-year' => $copyright_year,
 						'image-size' => '50%'));
-	
     }
 }
 
