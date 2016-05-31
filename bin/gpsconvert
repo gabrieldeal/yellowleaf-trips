@@ -54,7 +54,7 @@ sub main {
     if ($output_type eq 'kml') {
 	$output_options .= ",points=0,trackdata=0,labels=0,line_color=ff0000e6";
     }
-    push @command, ("-o", $output_options, "-F", $g_options{output});
+    push @command, ("-x", "nuketypes,waypoints", "-o", $output_options, "-F", $g_options{output});
 
     print "Running this command: @command\n";
     system(@command);
