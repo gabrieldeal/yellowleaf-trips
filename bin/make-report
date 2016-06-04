@@ -150,7 +150,7 @@ EOT
 	} elsif ($enl_filename =~ /\broute\b/ or $enl_filename =~ /\bmap\b/) {
 	    $type = "map" ;
 	} else {
-	    my ($orig_filename) = ($enl_filename =~ /^\d+-([\w-_\(\)]+)-enl.jpg$/) or die "Failed to parse '$enl_filename'";
+            my ($orig_filename) = ($enl_filename =~ /^\d+-([-\w_\(\)]+)-enl.jpg$/) or die "Failed to parse '$enl_filename'";
             my $orig_filename_glob = "$dir/$orig_filename.*";
             my @orig_filenames = glob($orig_filename_glob);
             @orig_filenames == 1 or die(sprintf("Got %s matches for '$orig_filename_glob': @orig_filenames", scalar(@orig_filenames)));
