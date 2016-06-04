@@ -72,6 +72,8 @@ sub geotag {
 sub make_report_xml {
     my ($date, $title, $type, $image_data, $filename, $files_xml) = @_;
 
+    $title =~ s/&/&amp;/g; # It is still the dark ages here.
+
     my $start = $image_data->{first_timestamp} || '';
     my $end = $image_data->{last_timestamp} || '';
     return <<EOT;
