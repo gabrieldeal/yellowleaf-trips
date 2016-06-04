@@ -151,8 +151,9 @@ EOT
 	    $type = "map" ;
 	} else {
 	    my ($orig_filename) = ($enl_filename =~ /^\d+-([\w-_\(\)]+)-enl.jpg$/) or die "Failed to parse '$enl_filename'";
-	    my @orig_filenames = glob("$dir/$orig_filename.*");
-	    @orig_filenames == 1 or die "Unable to get original filename for '$orig_filename'";
+            my $orig_filename_glob = "$dir/$orig_filename.*";
+            my @orig_filenames = glob($orig_filename_glob);
+            @orig_filenames == 1 or die(sprintf("Got %s matches for '$orig_filename_glob': @orig_filenames", scalar(@orig_filenames)));
 	    
 	    my $metadata = get_image_metadata("$orig_filenames[0]");
 	    die "Unable to find rating in $orig_filenames[0]" unless defined $metadata->{rating};
