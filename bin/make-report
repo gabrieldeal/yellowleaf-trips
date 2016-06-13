@@ -136,7 +136,6 @@ EOT
     push @filenames, glob "$dir/*.kml";
     push @filenames, glob "$dir/*-enl\.{jpg,png}";
     @filenames = sort @filenames;
-    die "No images found in $dir" unless @filenames;
 
     my @files;
     foreach my $enl_filename (@filenames) {
