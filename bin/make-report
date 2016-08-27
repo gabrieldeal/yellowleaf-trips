@@ -43,7 +43,7 @@ sub make_xml {
       write_file($report_xml_file, $report_xml);
     }
 
-    geotag($image_data{files});
+    # geotag($image_data{files});
 
     chmod(0744, glob("$image_dir/*")) || die "Failed to chmod: $!";
 
@@ -62,6 +62,10 @@ sub geotag {
     return unless @image_files;
     my @image_filenames = map { ("$gpx_files[0]{dir}/$_->{thumb_filename}", "$gpx_files[0]{dir}/$_->{enl_filename}") } @image_files;
 
+    # For example, the following command compensates for image times which
+    # are 1 minute and 20 seconds behind GPS:
+    # exiftool -geosync=+1:20 -geotag a.log DIR
+    warn "Is camera and GPS synced????";
     my @command = ('exiftool',
 		   '-verbose',
 		   '-geotag', $gpx_file,
