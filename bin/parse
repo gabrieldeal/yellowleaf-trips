@@ -53,7 +53,7 @@ my %g_options = (
                  "skip" => [],
                  "timezone" => "PDT",
                  "dictionary-directory=" => "dict/english.0",
-		 "images-directory" => "data/$ENV{USER}/images",
+                 "images-directory" => "data/$ENV{USER}/reports",
                  "templates-directory" => "data/$ENV{USER}/templates",
                  "javascript-directory" => "data/javascript",
                  "css-directory" => "data/css",
@@ -429,7 +429,7 @@ sub convert_locations {
 	}
 	next unless @locations;
 
-	my $path = sprintf("data/locations/converted/%s.xml", Scramble::Misc::sanitize_for_filename($locations[0]->get_name()));
+        my $path = sprintf("data/locations/%s.xml", Scramble::Misc::sanitize_for_filename($locations[0]->get_name()));
 
 	my $fh = IO::File->new($path, 'w') or die "Failed to create $path: $!";
 	$fh->print($converter->convert(@locations) . "\n") or die;
@@ -453,7 +453,7 @@ sub get_converted_report_path {
 
     my $subdir = File::Basename::basename($report->{path});
     $subdir =~ s/\.xml$//;
-    $subdir = "data/gabrielx/images/$subdir";
+    $subdir = "data/gabrielx/reports/$subdir";
     File::Path::mkpath([ $subdir ], 0, 0755);
 
     return "$subdir/report.xml";

@@ -361,7 +361,7 @@ sub set_have_visited {
 ######################################################################
 
 sub open_all {
-    open_specific(sort glob("data/locations/converted/*.xml"));
+    open_specific(sort glob("data/locations/*.xml"));
 }
 sub open_specific {
     my (@paths) = @_;
@@ -451,7 +451,7 @@ sub find_location {
 
     # Lazily load the location:
     my $name = $args{'name'} || die "Not given name";
-    my $path = sprintf("data/locations/converted/%s.xml", Scramble::Misc::sanitize_for_filename($name));
+    my $path = sprintf("data/locations/%s.xml", Scramble::Misc::sanitize_for_filename($name));
     die "Unable to lazily load from $path" unless -f $path;
     open_specific($path);
 
