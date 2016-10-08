@@ -27,7 +27,7 @@ sub make_xml {
     defined $title or die "Missing arguments: image-dir trip-type title";
     -d $image_dir or die "Non-existant image dir: $image_dir";
 
-    my ($data_dir, $image_subdir) = ($image_dir =~ m{^(.*)/images/+([^/]+)/*$});
+    my ($data_dir, $image_subdir) = ($image_dir =~ m{^(.*)/reports/+([^/]+)/*$});
     defined $image_subdir or die "Bad images dir: $image_dir";
 
     my ($date) = ($image_subdir =~ /^(\d{4}-\d\d-\d\d)/);
@@ -36,7 +36,7 @@ sub make_xml {
     my %image_data = process_images($image_dir, $date);
 
     my $report_xml = make_report_xml($date, $title, $trip_type, \%image_data, $image_subdir, $image_data{xml});
-    my $report_xml_file = "$data_dir/images/$image_subdir/report.xml";
+    my $report_xml_file = "$data_dir/reports/$image_subdir/report.xml";
     if (-e $report_xml_file) {
       print "$report_xml_file already exists\n";
     } else {
