@@ -268,7 +268,7 @@ sub main {
 	}
     }
     Scramble::Image::copy();
-    spell_check();
+    should('spell') && spell_check();
     if (@{ $g_options{'file'} }) {
         return 0;
     }
