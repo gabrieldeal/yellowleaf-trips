@@ -697,6 +697,8 @@ sub cmp {
 sub open_specific {
     my ($path) = @_;
 
+    $path = "$path/report.xml" if !-f $path && -f "$path/report.xml";
+
     my $report = Scramble::Report->new($path);
     $g_report_collection->add($report) if defined $report;
     return $report;
