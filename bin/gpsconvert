@@ -59,8 +59,10 @@ sub main {
     print "Running this command: @command\n";
     system(@command);
     if ($? != 0) {
-	die "Failed: $!";
+        die "gpsconvert failed!";
     }
+
+    return 0;
 }
 
 1;
