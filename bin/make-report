@@ -7,6 +7,7 @@ use IO::File ();
 #use Image::IPTCInfo ();
 use Data::Dumper ();
 use Image::ExifTool ();
+use File::Spec ();
 
 my $SMALL_IMAGE_SIZE = 333;
 my $LARGE_IMAGE_SIZE = 1075;
@@ -70,7 +71,7 @@ sub geotag {
 		   '-verbose',
 		   '-geotag', $gpx_file,
 		   @image_filenames);
-    my_system(@command) == 0 or die "Failed to geotag ($!): @command";
+    my_system(@command) or die "Failed to geotag ($!): @command";
 }
 
 sub make_report_xml {
@@ -125,6 +126,23 @@ $files_xml
 EOT
 }
 
+sub make_kml {
+    my ($gpx_path) = @_;
+
+    my $kml_path = $gpx_path;
+    $kml_path =~ s/\.gpx$/.kml/;
+
+    return if -e $kml_path;
+
+    # gpsconvert chokes on cygwin-style paths.
+    $kml_path = File::Spec->abs2rel($kml_path);
+    $gpx_path = File::Spec->abs2rel($gpx_path);
+
+    my_system('gpsconvert',
+              '-i', $gpx_path,
+              '-o', $kml_path) or die "Failed to create $kml_path";
+}
+
 sub process_images {
     my ($dir, $date) = @_;
 
@@ -136,7 +154,13 @@ sub process_images {
 EOT
 
     -d $dir or die "No such directory '$dir'";
-    my @filenames = glob "$dir/*.gpx";
+    $dir =~ s{/*$}{};
+    my @gpx_filenames = glob "$dir/*.gpx";
+    foreach my $gpx_filename (@gpx_filenames) {
+        make_kml($gpx_filename);
+    }
+
+    my @filenames = @gpx_filenames;
     push @filenames, glob "$dir/*.kml";
     push @filenames, glob "$dir/*-enl\.{jpg,png}";
     @filenames = sort @filenames;
@@ -148,7 +172,7 @@ EOT
 	my ($type, $caption, $rating, $timestamp);
 	if ($enl_filename =~ /\.(gpx)$/i) {
 	    $type = "gps";
-	} elsif ($enl_filename =~ /\.(kml)$/i) {
+        } elsif ($enl_filename =~ /\.(kml)$/i) {
 	    $type = "kml";
 	} elsif ($enl_filename =~ /\broute\b/ or $enl_filename =~ /\bmap\b/) {
 	    $type = "map" ;
@@ -336,7 +360,7 @@ sub resize {
 	      "-resize", "$resize_pct%",
 	      "-unsharp", "2x0.5+0.7+0",
 	      "-quality", "80",
-	      "$dir/$file") == 0
+              "$dir/$file")
       or die "Failed to convert $dir/$file";
 }
 
@@ -346,11 +370,11 @@ sub copy {
     my $dest_path = "$dir/$dest_file";
 
     print "\tCopying $src_file to $dest_file\n";
-    my_system("cp", "$dir/$src_file", "$dest_path") == 0
+    my_system("cp", "$dir/$src_file", "$dest_path")
         or die "Failed to copy $dir/$src_file to $dest_path";
 }
 
 sub my_system {
     my (@command) = @_;
-    return system @command;
+    return 0 == system @command;
 }
