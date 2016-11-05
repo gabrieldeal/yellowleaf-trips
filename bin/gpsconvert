@@ -3,6 +3,7 @@
 
 use strict;
 
+use File::Spec ();
 use Getopt::Long ();
 my @g_options = qw(
 		      input=s@
@@ -46,7 +47,8 @@ sub main {
 	    $input_type = "gtrnctr";
 	}
 
-	push @command, ("-i", $input_type, "-f", $input);
+        my $relative_input = File::Spec->abs2rel($input); # gpsbabel doesn't like cygwin-style paths.
+        push @command, ("-i", $input_type, "-f", $relative_input);
     }
 
     my ($output_type) = ($g_options{output} =~ /\.(\w+)$/);
@@ -54,7 +56,8 @@ sub main {
     if ($output_type eq 'kml') {
 	$output_options .= ",points=0,trackdata=0,labels=0,line_color=ff0000e6";
     }
-    push @command, ("-x", "nuketypes,waypoints", "-o", $output_options, "-F", $g_options{output});
+    my $relative_output = File::Spec->abs2rel($g_options{output});
+    push @command, ("-x", "nuketypes,waypoints", "-o", $output_options, "-F", $relative_output);
 
     print "Running this command: @command\n";
     system(@command);
