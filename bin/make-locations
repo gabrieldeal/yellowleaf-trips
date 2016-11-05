@@ -9,9 +9,6 @@ use Carp ();
 use Data::Dumper ();
 use Scramble::Misc ();
 use Scramble::Logger ();
-use Date::Manip ();
-use File::Find ();
-use File::Path ();
 use Getopt::Long ();
 use IO::File ();
 
