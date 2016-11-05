@@ -71,7 +71,7 @@ sub geotag {
 		   '-verbose',
 		   '-geotag', $gpx_file,
 		   @image_filenames);
-    my_system(@command) or die "Failed to geotag ($!): @command";
+    my_system(@command);
 }
 
 sub make_report_xml {
@@ -127,20 +127,20 @@ EOT
 }
 
 sub make_kml {
-    my ($gpx_path) = @_;
-
-    my $kml_path = $gpx_path;
-    $kml_path =~ s/\.gpx$/.kml/;
-
-    return if -e $kml_path;
+    my ($output_dir, @gpx_paths) = @_;
 
     # gpsconvert chokes on cygwin-style paths.
-    $kml_path = File::Spec->abs2rel($kml_path);
-    $gpx_path = File::Spec->abs2rel($gpx_path);
+    my $kml_path = File::Spec->abs2rel("$output_dir/route.kml");
+    return if -e $kml_path;
+
+    my @gpx_args;
+    foreach my $gpx_path (@gpx_paths) {
+        push @gpx_args, ('-i', File::Spec->abs2rel($gpx_path));
+    }
 
     my_system('gpsconvert',
-              '-i', $gpx_path,
-              '-o', $kml_path) or die "Failed to create $kml_path";
+              @gpx_args,
+              '-o', $kml_path);
 }
 
 sub process_images {
@@ -156,9 +156,7 @@ EOT
     -d $dir or die "No such directory '$dir'";
     $dir =~ s{/*$}{};
     my @gpx_filenames = glob "$dir/*.gpx";
-    foreach my $gpx_filename (@gpx_filenames) {
-        make_kml($gpx_filename);
-    }
+    make_kml($dir, @gpx_filenames) if @gpx_filenames;
 
     my @filenames = @gpx_filenames;
     push @filenames, glob "$dir/*.kml";
@@ -360,8 +358,7 @@ sub resize {
 	      "-resize", "$resize_pct%",
 	      "-unsharp", "2x0.5+0.7+0",
 	      "-quality", "80",
-              "$dir/$file")
-      or die "Failed to convert $dir/$file";
+              "$dir/$file");
 }
 
 sub copy {
@@ -370,11 +367,12 @@ sub copy {
     my $dest_path = "$dir/$dest_file";
 
     print "\tCopying $src_file to $dest_file\n";
-    my_system("cp", "$dir/$src_file", "$dest_path")
-        or die "Failed to copy $dir/$src_file to $dest_path";
+    my_system("cp", "$dir/$src_file", "$dest_path");
 }
 
 sub my_system {
     my (@command) = @_;
-    return 0 == system @command;
+    return if 0 == system @command;
+
+    die "Command exited with failure code ($?): @command";
 }
