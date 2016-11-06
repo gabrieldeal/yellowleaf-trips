@@ -40,7 +40,7 @@ sub make_xml {
     my ($date) = ($image_subdir =~ /^(\d{4}-\d\d-\d\d)/);
     defined $date or die "Unable to get date from image subdirectory: $image_subdir";
 
-    my %image_data = process_images($image_dir, $date);
+    my %image_data = process_images($image_dir);
 
     my $report_xml = make_report_xml($date, $title, $trip_type, \%image_data, $image_subdir, $image_data{xml});
     my $report_xml_file = "$data_dir/reports/$image_subdir/report.xml";
@@ -81,9 +81,11 @@ sub geotag {
 }
 
 sub make_report_xml {
-    my ($date, $title, $type, $image_data, $filename, $files_xml) = @_;
+    my ($date, $title, $type, $image_data, $filename) = @_;
 
     $title =~ s/&/&amp;/g; # It is still the dark ages here.
+
+    my $files_xml = make_files_xml($image_data->{files}, $date);
 
     my $start = $image_data->{first_timestamp} || '';
     my $end = $image_data->{last_timestamp} || '';
@@ -132,6 +134,27 @@ $files_xml
 EOT
 }
 
+sub make_files_xml {
+    my ($files, $date) = @_;
+
+    my @file_xmls;
+    foreach my $file (@$files) {
+        push @file_xmls, $xg->file({ 'thumbnail-filename' => $file->{thumb_filename},
+                                     'large-filename' => $file->{enl_filename},
+                                     'description' => $file->{caption},
+                                      rating => $file->{rating},
+                                      type => $file->{type},
+                                      owner => "Gabriel Deal",
+                                      'capture-timestamp' => $file->{timestamp},
+                                   });
+    }
+    return $xg->files({ date => $date,
+                        'in-chronological-order' => "true",
+                        'trip-id' => 1,
+                      },
+                      @file_xmls);
+}
+
 sub make_kml {
     my ($output_dir, @gpx_paths) = @_;
 
@@ -150,7 +173,7 @@ sub make_kml {
 }
 
 sub process_images {
-    my ($dir, $date) = @_;
+    my ($dir) = @_;
 
     -d $dir or die "No such directory '$dir'";
     $dir =~ s{/*$}{};
@@ -217,25 +240,9 @@ sub process_images {
 	    }
 	}
 
-
-        push @file_xmls, $xg->file({ 'thumbnail-filename' => $file->{thumb_filename},
-                                     'large-filename' => $file->{enl_filename},
-                                     'description' => $file->{caption},
-                                     rating => $file->{rating},
-                                     type => $file->{type},
-                                     owner => "Gabriel Deal",
-                                     'capture-timestamp' => $file->{timestamp},
-                                   });
     }
 
-    my $xml = $xg->files({ date => $date,
-                           'in-chronological-order' => "true",
-                           'trip-id' => 1,
-                         },
-                         @file_xmls);
-
-    return (xml => $xml,
-	    files => \@files,
+    return (files => \@files,
 	    first_timestamp => $first_timestamp,
 	    last_timestamp => $last_timestamp);
 }
