@@ -8,6 +8,7 @@ use IO::File ();
 use Data::Dumper ();
 use Image::ExifTool ();
 use File::Spec ();
+use XML::Generator ();
 
 my $SMALL_IMAGE_SIZE = 333;
 my $LARGE_IMAGE_SIZE = 1075;
@@ -17,6 +18,11 @@ my $dir = shift @ARGV;
 if ($ARGV[-1] =~ /fuck-line-feeds/) {
   pop @ARGV;
 }
+
+my $xg = XML::Generator->new(escape => 'always',
+                             conformance => 'strict',
+                             pretty => 4);
+
 
 exit(make_xml($dir, @ARGV));
 
@@ -146,13 +152,6 @@ sub make_kml {
 sub process_images {
     my ($dir, $date) = @_;
 
-    my $xml = <<EOT;
-<files date="$date"
-        in-chronological-order="true"
-        trip-id="1"
->
-EOT
-
     -d $dir or die "No such directory '$dir'";
     $dir =~ s{/*$}{};
     my @gpx_filenames = glob "$dir/*.gpx";
@@ -205,7 +204,7 @@ EOT
         };
     }
 
-    my ($first_timestamp, $last_timestamp);
+    my (@file_xmls, $first_timestamp, $last_timestamp);
     foreach my $file (@files) {
 	print "$file->{thumb_filename}:\n";
 
@@ -218,18 +217,22 @@ EOT
 	    }
 	}
 
-	$xml .= <<EOT;
-<file thumbnail-filename="$file->{thumb_filename}"
-       large-filename="$file->{enl_filename}"
-        description="$file->{caption}"
-	rating="$file->{rating}"
-	type="$file->{type}"
-	owner="Gabriel Deal"
-        capture-timestamp="$file->{timestamp}"
-/>
-EOT
+
+        push @file_xmls, $xg->file({ 'thumbnail-filename' => $file->{thumb_filename},
+                                     'large-filename' => $file->{enl_filename},
+                                     'description' => $file->{caption},
+                                     rating => $file->{rating},
+                                     type => $file->{type},
+                                     owner => "Gabriel Deal",
+                                     'capture-timestamp' => $file->{timestamp},
+                                   });
     }
-    $xml .= "</files>\n";
+
+    my $xml = $xg->files({ date => $date,
+                           'in-chronological-order' => "true",
+                           'trip-id' => 1,
+                         },
+                         @file_xmls);
 
     return (xml => $xml,
 	    files => \@files,
