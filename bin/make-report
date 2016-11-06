@@ -197,7 +197,7 @@ sub process_images {
 
     -d $dir or die "No such directory '$dir'";
     $dir =~ s{/*$}{};
-    my @gpx_filenames = glob "$dir/*.gpx";
+    my @gpx_filenames = sort(glob "$dir/*.gpx");
     make_kml($dir, @gpx_filenames) if @gpx_filenames;
 
     my @filenames = @gpx_filenames;
