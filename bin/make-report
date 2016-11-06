@@ -42,12 +42,12 @@ sub make_xml {
 
     my %image_data = process_images($image_dir);
 
-    my $report_xml = make_report_xml($date, $title, $trip_type, \%image_data, $image_subdir, $image_data{xml});
     my $report_xml_file = "$data_dir/reports/$image_subdir/report.xml";
     if (-e $report_xml_file) {
       print "$report_xml_file already exists\n";
     } else {
-      write_file($report_xml_file, $report_xml);
+        my $report_xml = make_report_xml($date, $title, $trip_type, \%image_data, $image_subdir, $image_data{xml});
+        write_file($report_xml_file, $report_xml);
     }
 
     # geotag($image_data{files});
@@ -134,14 +134,34 @@ $files_xml
 EOT
 }
 
+sub prompt_yes_or_no {
+    my ($prompt) = @_;
+    while (1) {
+        print "$prompt\ny/n (y)? ";
+        my $answer = <STDIN>;
+        chomp $answer;
+        return 1 if lc($answer) eq 'y' || $answer eq '';
+        return 0 if lc($answer) eq 'n';
+    }
+}
+
 sub make_files_xml {
     my ($files, $date) = @_;
 
     my @file_xmls;
     foreach my $file (@$files) {
-        push @file_xmls, $xg->file({ 'thumbnail-filename' => $file->{thumb_filename},
-                                     'large-filename' => $file->{enl_filename},
+        my %optional_attrs;
+        if ($file->{caption} =~ /^(.+)\s+(from|over)\s+(.+)/) {
+            my ($of, $term, $from) = ($1, $2, $3);
+            $from = '' if $term eq 'over';
+            my $question = "\n$file->{caption}\nSet the 'of' and 'from' attributes to the below? ('n' sets it to nothing)\nof: $of\nfrom: $from";
+            @optional_attrs{'of', 'from'} = prompt_yes_or_no($question) ? ($of, $from) : ('', '');
+        }
+
+        push @file_xmls, $xg->file({ %optional_attrs,
                                      'description' => $file->{caption},
+                                     'thumbnail-filename' => $file->{thumb_filename},
+                                     'large-filename' => $file->{enl_filename},
                                       rating => $file->{rating},
                                       type => $file->{type},
                                       owner => "Gabriel Deal",

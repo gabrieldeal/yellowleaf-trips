@@ -178,7 +178,11 @@ sub get_picture_objects {
 	    # image, then do real matching.  This is very broken
 	    # for locations like Green Mountain that are on
 	    # multiple quads.
-	    next unless $image->get_description() =~ $regex;
+            if (defined $image->get_of()) {
+                next unless $image->get_of() =~ $regex;
+            } else {
+                next unless $image->get_description() =~ $regex;
+            }
 	    
 	    my $key = $image->get_type() . "-objects";
 	    push @{ $self->{$key} }, $image;
