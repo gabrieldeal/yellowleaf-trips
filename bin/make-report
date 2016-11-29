@@ -46,7 +46,11 @@ sub make_xml {
     if (-e $report_xml_file) {
       print "$report_xml_file already exists\n";
     } else {
-        my $report_xml = make_report_xml($date, $title, $trip_type, \%image_data, $image_subdir, $image_data{xml});
+        my $report_xml = make_report_xml(date => $date,
+                                         title => $title,
+                                         trip_type => $trip_type,
+                                         image_data => \%image_data,
+                                         image_subdir => $image_subdir);
         write_file($report_xml_file, $report_xml);
     }
 
@@ -81,19 +85,19 @@ sub geotag {
 }
 
 sub make_report_xml {
-    my ($date, $title, $type, $image_data, $filename) = @_;
+    my %args = @_;
 
-    $title =~ s/&/&amp;/g; # It is still the dark ages here.
+    $args{title} =~ s/&/&amp;/g; # It is still the dark ages here.
 
-    my $files_xml = make_files_xml($image_data->{files}, $date);
+    my $files_xml = make_files_xml($args{image_data}{files}, $args{date});
 
-    my $start = $image_data->{first_timestamp} || '';
-    my $end = $image_data->{last_timestamp} || '';
+    my $start = $args{image_data}{first_timestamp} || '';
+    my $end = $args{image_data}{last_timestamp} || '';
     return <<EOT;
-<trip filename="$filename"
-    start-date="$date"
-    name="$title"
-    type="$type"
+<trip filename="$args{image_subdir}"
+    start-date="$args{date}"
+    name="$args{title}"
+    type="$args{type}"
     trip-id="1"
 >
 
