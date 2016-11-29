@@ -822,4 +822,22 @@ sub sanitize_for_filename {
     return $filename;
 }
 
+sub choose_interactive {
+    my @choices = @_;
+
+    die "No choices given" unless @choices;
+
+    foreach my $i (0 .. $#choices) {
+        print qq[$i) $choices[$i]{name}\n];
+    }
+
+    my $chosen_index;
+    do {
+        print "Which? ";
+        chomp($chosen_index = <STDIN>);
+    } while ($chosen_index !~ /^\d+$/ || $chosen_index < 0 || $chosen_index > $#choices);
+
+    return $choices[$chosen_index]{value}
+}
+
 1;

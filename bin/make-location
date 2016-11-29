@@ -30,18 +30,14 @@ sub main {
     return 1;
   }
 
-  foreach my $i (0 .. $#peaks) {
-    my $peak = $peaks[$i];
-    print qq[$i) $peak->{name} ($peak->{quad})\n];
-  }
+  my @choices = map {
+      {
+          name => "$_->{name} ($_->{quad})",
+          value => $_,
 
-  my $choice;
-  do {
-    print "Which? ";
-    chomp($choice = <STDIN>);
-  } while ($choice !~ /^\d+$/ || $choice < 0 || $choice > $#peaks);
-
-  my $peak = $peaks[$choice];
+      }
+  } @peaks;
+  my $peak = Scramble::Misc::choose_interactive(@choices);
 
   my $filename = Scramble::Misc::sanitize_for_filename($peak->{name});
   $filename = $g_options{'output-directory'} . "/$filename.xml";
