@@ -23,7 +23,7 @@ sub main {
   my @peaks;
   foreach my $name (keys %Peaks::ListsOfJohn::Peaks) {
       next unless $name =~ /$g_options{name}/i;
-      push @peaks, values $Peaks::ListsOfJohn::Peaks{$name};
+      push @peaks, values %{ $Peaks::ListsOfJohn::Peaks{$name} };
   }
   if (! @peaks) {
     printf("Lists of John has no such peak '%s'", $g_options{name});
