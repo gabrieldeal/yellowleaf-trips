@@ -371,6 +371,7 @@ sub open_all {
 sub open_specific {
     my (@paths) = @_;
 
+    my @locations;
     foreach my $path (@paths) {
 	foreach my $location (Scramble::Location->new_objects($path)) {
 	    if (exists $g_check_for_duplicate_ids{$location->get_id()}) {
@@ -378,11 +379,14 @@ sub open_specific {
 	    }
 	    $g_check_for_duplicate_ids{$location->get_id()} = 1;
 
-	    push @g_hidden_locations, $location;
+            push @locations, $location;
+            push @g_hidden_locations, $location;
 	}
     }
 
     $g_opened = 1;
+
+    return @locations;
 }
 
 my $g_collection;

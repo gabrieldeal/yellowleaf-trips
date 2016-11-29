@@ -588,10 +588,10 @@ sub make_spare_page_html {
 
     my $right_html = <<EOT;
 $date
-$trip_type
-$elevation_html
-$miles_html
 $short_times_html
+$miles_html
+$elevation_html
+$trip_type
 $quads_html
 $recognizable_areas_html
 $short_route_references
