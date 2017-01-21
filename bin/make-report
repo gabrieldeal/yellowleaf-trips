@@ -65,6 +65,17 @@ sub make_xml {
     return 0;
 }
 
+sub get_first_quad_name {
+    my ($location) = @_;
+
+    my @quads = $location->get_quad_objects();
+    if (! @quads) {
+        die sprintf("No quad found for %s", $location->get_name());
+    }
+
+    return $quads[0]{name};
+}
+
 sub prompt_for_locations {
     my @locations;
 
@@ -80,9 +91,14 @@ sub prompt_for_locations {
             }
 
         }
+        if (!@location_matches) {
+            print "No matches\n\n";
+            print $prompt;
+            next;
+        }
 
         my @location_choices = map {
-            { name => sprintf("%s (%s)", $_->get_name(), ($_->get_quad_objects())[0]{name}),
+            { name => sprintf("%s (%s)", $_->get_name(), get_first_quad_name($_)),
               value => $_
             }
         } @location_matches;
@@ -92,6 +108,7 @@ sub prompt_for_locations {
 
         print $prompt;
     }
+    print "\n";
 
     return @locations;
 }
@@ -368,6 +385,7 @@ sub write_file {
 
     die "$filename already exists" if -e $filename;
 
+    print "Creating $filename\n";
     my $fh = IO::File->new($filename, "w");
     $fh || die "Can't open '$filename': $!";
     $fh->print($content);
