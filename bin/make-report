@@ -253,6 +253,7 @@ sub make_kml {
     }
 
     my_system('gpsconvert',
+              '--no-waypoints',
               @gpx_args,
               '-o', $kml_path);
 }

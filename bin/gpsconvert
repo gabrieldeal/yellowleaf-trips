@@ -7,7 +7,8 @@ use File::Spec ();
 use Getopt::Long ();
 my @g_options = qw(
 		      input=s@
-		      output=s
+                      no-waypoints
+                      output=s
 	      );
 my %g_options = ();
 
@@ -40,12 +41,15 @@ sub get_options {
 sub main {
     get_options();
 
-    my @command = qw(gpsbabel);
+    my @command = qw(gpsbabel -r -w -t);
     foreach my $input (@{ $g_options{input} }) {
 	my ($input_type) = ($input =~ /\.(\w+)$/);
 	if ($input_type eq 'crs') {
 	    $input_type = "gtrnctr";
-	}
+        }
+        if ($input_type eq 'tpo') {
+            $input_type = 'tpo3';
+        }
 
         my $relative_input = File::Spec->abs2rel($input); # gpsbabel doesn't like cygwin-style paths.
         push @command, ("-i", $input_type, "-f", $relative_input);
@@ -57,7 +61,8 @@ sub main {
 	$output_options .= ",points=0,trackdata=0,labels=0,line_color=ff0000e6";
     }
     my $relative_output = File::Spec->abs2rel($g_options{output});
-    push @command, ("-x", "nuketypes,waypoints", "-o", $output_options, "-F", $relative_output);
+    push @command, ("-x", "nuketypes,waypoints") if $g_options{'no-waypoints'};
+    push @command, ("-o", $output_options, "-F", $relative_output);
 
     print "Running this command: @command\n";
     system(@command);
