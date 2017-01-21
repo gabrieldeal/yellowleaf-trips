@@ -42,14 +42,13 @@ sub make_xml {
     my ($date) = ($image_subdir =~ /^(\d{4}-\d\d-\d\d)/);
     defined $date or die "Unable to get date from image subdirectory: $image_subdir";
 
-    my @locations = prompt_for_locations();
-
     my %image_data = process_images($image_dir);
 
     my $report_xml_file = "$data_dir/reports/$image_subdir/report.xml";
     if (-e $report_xml_file) {
       print "$report_xml_file already exists\n";
     } else {
+        my @locations = prompt_for_locations();
         my $report_xml = make_report_xml(date => $date,
                                          title => $title,
                                          trip_type => $trip_type,
