@@ -45,7 +45,7 @@ sub main {
 
   my $xml = make_location_xml($peak);
 
-  my $fh = IO::File->new($filename, "w");
+  my $fh = IO::File->new($filename, "w") or die "Can't open $filename: $!";
   $fh->print($xml);
   $fh->close();
 
