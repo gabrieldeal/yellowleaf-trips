@@ -267,6 +267,7 @@ sub read_images_from_report {
     my @images;
     my $chronological_order = 0;
     foreach my $image_xml (@{ $report->_get_optional('files', "file") || [] }) {
+        next if $image_xml->{skip};
         push @images, Scramble::Image->new_from_attrs({ 'date' => "$year/$month/$day",
                                                         'source-directory' => $directory,
                                                         'chronological-order' => $chronological_order++,
