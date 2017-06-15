@@ -183,6 +183,16 @@ sub get_map_reference {
 	 };
 }
 
+sub get_video_tag {
+    my $self = shift;
+    my (%options) = @_;
+
+    return sprintf(qq(<video width="320" height="240" controls>
+                   <source src="%s" type="video/mp4">
+                   </video>),
+                   $self->get_enlarged_img_url());
+}
+
 sub get_img_tag {
     my $self = shift;
     my (%options) = @_;
@@ -199,15 +209,20 @@ sub get_html {
     my $self = shift;
     my (%options) = @_;
 
-    my $img_html = $self->get_img_tag(%options);
-    if ($self->get_enlarged_html_url()) {
-	my $url;
-	if ($options{'pager-links'} && $self->get_pager_url()) {
-	    $url = $self->get_pager_url();
-        } else {
-            $url = $self->get_enlarged_html_url();
+    my $img_html;
+    if ($self->get_type() eq 'movie') {
+        $img_html = $self->get_video_tag(%options);
+    } else {
+        $img_html = $self->get_img_tag(%options);
+        if ($self->get_enlarged_html_url()) {
+            my $url;
+            if ($options{'pager-links'} && $self->get_pager_url()) {
+                $url = $self->get_pager_url();
+            } else {
+                $url = $self->get_enlarged_html_url();
+            }
+            $img_html = sprintf(qq(<a href="%s">$img_html</a>), $url);
         }
-	$img_html = sprintf(qq(<a href="%s">$img_html</a>), $url);
     }
 
     my $description = Scramble::Misc::htmlify($self->get_description());

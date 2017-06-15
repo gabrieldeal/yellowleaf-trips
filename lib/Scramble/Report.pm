@@ -60,7 +60,10 @@ sub new {
     my @images = Scramble::Image::read_images_from_report(File::Basename::dirname($path), $self);
     my $image_collection = Scramble::Collection->new(objects => \@images);
 
-    my $picture_objs = [ $image_collection->find('type' => 'picture') ];
+    my $picture_objs = [
+        $image_collection->find('type' => 'picture'),
+        $image_collection->find('type' => 'movie'),
+    ];
 
     if (@$picture_objs && $picture_objs->[0]->in_chronological_order()) {
         $picture_objs = [ sort { $a->get_chronological_order() <=> $b->get_chronological_order() } @$picture_objs ];
