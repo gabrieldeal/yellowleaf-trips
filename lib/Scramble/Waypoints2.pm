@@ -77,7 +77,7 @@ sub get_car_to_car_delta {
     my $self = shift;
 
     my @waypoints = $self->get_on_trail_waypoints();
-    return '' unless @waypoints;
+    return undef unless @waypoints;
 
     my $minutes = Scramble::Time::delta_dates($waypoints[0]->get_time(), 
                  	                      $waypoints[$#waypoints]->get_time());

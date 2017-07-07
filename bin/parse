@@ -106,6 +106,18 @@ sub get_options {
     Scramble::Logger::set_verbose($g_options{'verbose'});
 }
 
+sub get_short_trips {
+    my $max_hours = 4;
+    print "Trips shorter than $max_hours hours:\n";
+    my $short_reports = Scramble::Report::get_shorter_than($max_hours);
+    foreach my $report (sort { Scramble::Report::cmp_by_duration($a, $b) } @$short_reports) {
+        my $minutes = $report->get_waypoints()->get_car_to_car_delta();
+        my $hours = $minutes / 60;
+        printf("    %2.3f hours, %s, %s\n", $hours, $report->get_start_date(), $report->get_name());
+    }
+    print "\n";
+}
+
 sub get_party_stats {
   my %stats;
   my %people;
@@ -313,6 +325,7 @@ sub main {
     should('quad') && Scramble::Location::make_quads();
     should('location') && Scramble::Location::make_locations();
     should('area') && Scramble::Area::make_pages();
+    should('short-trips') && get_short_trips();
     should('party-stats') && get_party_stats();
     should('test') && Scramble::Tests::run();
 

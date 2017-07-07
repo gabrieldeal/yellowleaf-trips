@@ -683,6 +683,12 @@ sub equals {
     return $report->get_id() eq $self->get_id();
 }
 
+sub cmp_by_duration {
+    my ($report1, $report2) = @_;
+
+    return $report1->get_waypoints()->get_car_to_car_delta() <=> $report2->get_waypoints()->get_car_to_car_delta();
+}
+
 sub cmp {
     my ($report1, $report2) = @_;
 
@@ -859,6 +865,20 @@ sub get_reports_for_location {
 	push @retval, $report if grep { $location->equals($_) } $report->get_location_objects();
     }
     return @retval;
+}
+
+sub get_shorter_than {
+    my ($hours) = @_;
+
+    my @reports;
+    foreach my $report (get_all()) {
+        my $minutes = $report->get_waypoints()->get_car_to_car_delta();
+        next unless defined $minutes;
+        next unless $minutes < $hours * 60;
+        push @reports, $report;
+    }
+
+    return \@reports;
 }
 
 ######################################################################
