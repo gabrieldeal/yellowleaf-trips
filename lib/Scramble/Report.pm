@@ -536,13 +536,48 @@ sub get_elevation_gain_html {
                                               $self->get_waypoints()->get_elevation_gain("ascending|descending"));
 }
 
-sub split_by_date {
+sub split_pictures_into_sections {
+    my $self = shift;
+
+    my @picture_objs = $self->get_picture_objects();
+    return ({ name => '', pictures => []}) unless @picture_objs;
+
+    my @sections;
+    if (!@picture_objs[0]->get_section_name()) {
+        my $split_picture_objs = $self->split_by_date(@picture_objs);
+        return $self->add_section_names($split_picture_objs);
+    }
+
+    return $self->split_by_section_name(@picture_objs);
+}
+
+sub split_by_section_name {
+    my $self = shift;
     my @picture_objs = @_;
 
-    return ([]) if !@picture_objs;
+    my @sections;
+    my %current_section;
+    foreach my $picture_obj (@picture_objs) {
+        if ($picture_obj->get_section_name()) {
+            push @sections, { %current_section } if %current_section;
+            %current_section = ( name => $picture_obj->get_section_name(),
+                                 pictures => [] );
+        }
+        push @{ $current_section{pictures} }, $picture_obj;
+    }
+    push @sections, \%current_section if %current_section;
+
+    return @sections;
+}
+
+sub split_by_date {
+    my $self = shift;
+    my @picture_objs = @_;
+
+    return [] if !@picture_objs;
 
     my $curr_date = $picture_objs[0]->get_capture_date();
-    return (\@picture_objs) unless defined $curr_date;
+    return [\@picture_objs] unless defined $curr_date;
 
     my @splits;
     my $split = [];
@@ -557,7 +592,29 @@ sub split_by_date {
     }
     push @splits, $split;
 
-    return @splits;
+    return \@splits;
+}
+
+# Return: an array of hashes. Each hash is { name => "", pictures => [] }
+sub add_section_names {
+    my $self = shift;
+    my ($split_picture_objs) = @_; # each element is an array of picture objects
+
+    my $start_days = Scramble::Time::get_days_since_1BC($self->get_start_date());
+    my @sections;
+    foreach my $picture_objs (@$split_picture_objs) {
+        my $section_name = '';
+        # Handle trips where I don't take a picture every day:
+        if (@$picture_objs && defined $picture_objs->[0]->get_capture_date()) {
+            my $picture_days = Scramble::Time::get_days_since_1BC($picture_objs->[0]->get_capture_date());
+            my $day = $picture_days - $start_days + 1;
+            $section_name = "Day $day";
+        }
+        push @sections, { name => $section_name,
+                          pictures => $picture_objs };
+    }
+
+    return @sections;
 }
 
 sub make_spare_page_html {
@@ -608,19 +665,12 @@ EOT
     my $map_html = $self->get_embedded_google_map_html();
     push @htmls, $map_html if $map_html;
 
+    my $count = 1;
     my $cells_html;
     my @map_objects = $self->get_map_objects();
-    my $start_days = Scramble::Time::get_days_since_1BC($self->get_start_date());
-    my $count = 1;
-    my @picture_objs = split_by_date($self->get_picture_objects());
-    foreach my $picture_objs (@picture_objs) {
-	my $day = $count;
-	# Handle trips where I don't take a picture every day:
-	if (@$picture_objs && defined $picture_objs->[0]->get_capture_date()) {
-	    my $picture_days = Scramble::Time::get_days_since_1BC($picture_objs->[0]->get_capture_date());
-	    $day = $picture_days - $start_days + 1;
-	}
-	if (@picture_objs > 1) {
+    my @sections = $self->split_pictures_into_sections();
+    foreach my $section (@sections) {
+        if (@sections > 1) {
 	    if ($count == 1) {
 		$cells_html .= Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
 								       'images' => [@map_objects ],
@@ -629,17 +679,17 @@ EOT
 								       'no-report-link' => 1);
 		@htmls = @map_objects = ();
 	    }
-	    $cells_html .= "<h1>Day $day</h1>";
+            $cells_html .= "<h1>$section->{name}</h1>";
 	}
 
         $cells_html .= Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
- 							       'images' => [@map_objects, @$picture_objs ],
+                                                               'images' => [@map_objects, @{ $section->{pictures} } ],
 							       'pager-links' => 1,
                                                                'no-float-first' => 0,
 							       'no-report-link' => 1);
         @htmls = @map_objects = ();
         $count++;
-    }	
+    }
 
     my $route = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("%s", $self->get_route()));
     if ($route) {

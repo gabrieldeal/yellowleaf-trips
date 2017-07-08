@@ -76,6 +76,7 @@ sub get_source_directory { $_[0]->{'source-directory'} }
 sub get_filename { $_[0]->{'thumbnail-filename'} }
 sub get_enlarged_filename { $_[0]->{'large-filename'} }
 sub get_subdirectory { $_[0]->{'subdirectory'} }
+sub get_section_name { $_[0]->{'section-name'} }
 
 # This should be "report id".
 sub get_date { $_[0]->{'date'} } # optional for maps that are not for a particular trip
