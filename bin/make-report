@@ -317,6 +317,7 @@ sub process_images {
     my @filenames = @gpx_filenames;
     push @filenames, glob "$dir/*.kml";
     push @filenames, glob "$dir/*-enl\.{jpg,png}";
+    push @filenames, glob "$dir/*.{mp4,MP4}";
     @filenames = sort @filenames;
 
     my @files;
@@ -328,6 +329,8 @@ sub process_images {
 	    $type = "gps";
         } elsif ($enl_filename =~ /\.(kml)$/i) {
 	    $type = "kml";
+        } elsif ($enl_filename =~ /\.(mp4)$/i) {
+            $type = "movie";
 	} elsif ($enl_filename =~ /\broute\b/ or $enl_filename =~ /\bmap\b/) {
 	    $type = "map" ;
 	} else {
@@ -346,7 +349,7 @@ sub process_images {
 	}
 
 	my $thumb_filename = $enl_filename;
-	if ($type ne 'gps' && $type ne 'kml') {
+        if ($type ne 'gps' && $type ne 'kml' && $type ne 'movie') {
 	    $thumb_filename =~ s/-enl\././ or die "$enl_filename, $type";
 	}
 
