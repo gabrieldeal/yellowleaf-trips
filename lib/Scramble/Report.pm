@@ -556,10 +556,10 @@ sub split_by_section_name {
     my @picture_objs = @_;
 
     my @sections;
-    my %current_section;
+    my %current_section = (name => '', pictures => []);
     foreach my $picture_obj (@picture_objs) {
-        if ($picture_obj->get_section_name()) {
-            push @sections, { %current_section } if %current_section;
+        if ($picture_obj->get_section_name() && $picture_obj->get_section_name() ne $current_section{name}) {
+            push @sections, { %current_section } if @{ $current_section{pictures} };
             %current_section = ( name => $picture_obj->get_section_name(),
                                  pictures => [] );
         }
@@ -679,7 +679,7 @@ EOT
 								       'no-report-link' => 1);
 		@htmls = @map_objects = ();
 	    }
-            $cells_html .= "<h1>$section->{name}</h1>";
+            $cells_html .= "<h2>$section->{name}</h2>";
 	}
 
         $cells_html .= Scramble::Misc::render_images_into_flow('htmls' => \@htmls,

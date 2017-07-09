@@ -10,6 +10,8 @@ use Image::ExifTool ();
 use File::Spec ();
 use Scramble::Area ();
 use Scramble::Location ();
+use Scramble::Time ();
+use Spreadsheet::Read ();
 use XML::Generator ();
 
 my $SMALL_IMAGE_SIZE = 333;
@@ -31,10 +33,12 @@ exit(make_xml($dir, @ARGV));
 ######################################################################
 
 sub make_xml {
-    my ($image_dir, $trip_type, $title) = @_;
+    my ($image_dir, $trip_type, $title, $spreadsheet_filename) = @_;
 
     defined $title or die "Missing arguments: image-dir trip-type title";
     -d $image_dir or die "Non-existant image dir: $image_dir";
+
+    my $sections = read_trip_sections($spreadsheet_filename);
 
     my ($data_dir, $image_subdir) = ($image_dir =~ m{^(.*)/reports/+([^/]+)/*$});
     defined $image_subdir or die "Bad images dir: $image_dir";
@@ -53,6 +57,7 @@ sub make_xml {
                                          title => $title,
                                          trip_type => $trip_type,
                                          locations => \@locations,
+                                         sections => $sections,
                                          image_data => \%image_data,
                                          image_subdir => $image_subdir);
         write_file($report_xml_file, $report_xml);
@@ -63,6 +68,26 @@ sub make_xml {
     chmod(0744, glob("$image_dir/*")) || die "Failed to chmod: $!";
 
     return 0;
+}
+
+sub read_trip_sections {
+    my ($spreadsheet_filename) = @_;
+
+    my $book = Spreadsheet::Read->new($spreadsheet_filename);
+    my $sheet = $book->sheet(1);
+    my @rows = $sheet->rows();
+
+    my $header = shift @rows;
+    my $index = 0;
+    my %column_index = map { ($_, $index++) } @$header;
+
+    my %sections;
+    for my $row (@rows) {
+        next unless $row->[$column_index{Date}] && $row->[$column_index{Name}] && $row->[$column_index{Day}] ;
+        $sections{$row->[$column_index{Date}]} = "Day $row->[$column_index{Day}]: to $row->[$column_index{Name}]";
+    }
+
+    return \%sections;
 }
 
 sub get_first_quad_name {
@@ -167,7 +192,7 @@ sub make_report_xml {
 
     $args{title} =~ s/&/&amp;/g; # It is still the dark ages here.
 
-    my $files_xml = make_files_xml($args{image_data}{files}, $args{date});
+    my $files_xml = make_files_xml($args{image_data}{files}, $args{date}, $args{sections});
     my $locations_xml = make_locations_xml($args{locations});
 
     my $start = $args{image_data}{first_timestamp} || '';
@@ -227,7 +252,7 @@ sub prompt_yes_or_no {
 }
 
 sub make_files_xml {
-    my ($files, $date) = @_;
+    my ($files, $date, $sections) = @_;
 
     my @file_xmls;
     foreach my $file (@$files) {
@@ -239,6 +264,12 @@ sub make_files_xml {
             @optional_attrs{'of', 'from'} = prompt_yes_or_no($question) ? ($of, $from) : ('', '');
         }
 
+        my $section_name;
+        if ($file->{timestamp}) {
+            my ($year, $mm, $dd) = Scramble::Time::parse_date_and_time($file->{timestamp});
+            $section_name = $sections->{"$year/$mm/$dd"};
+        }
+
         push @file_xmls, $xg->file({ %optional_attrs,
                                      'description' => $file->{caption},
                                      'thumbnail-filename' => $file->{thumb_filename},
@@ -247,6 +278,7 @@ sub make_files_xml {
                                       type => $file->{type},
                                       owner => "Gabriel Deal",
                                       'capture-timestamp' => $file->{timestamp},
+                                      'section-name' => $section_name,
                                    });
     }
     return $xg->files({ date => $date,
