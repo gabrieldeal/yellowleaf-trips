@@ -431,6 +431,7 @@ sub write_file {
 sub get_image_metadata {
   my ($file) = @_;
 
+  print "Reading metadata in $file...\n";
   my @tags = qw(ImageDescription Rating DateCreated CreateDate);
   my $info = Image::ExifTool::ImageInfo($file, \@tags);
   die "Error opening $file: " . $info->{Error} if exists $info->{Error};
