@@ -73,6 +73,7 @@ sub make_xml {
 sub read_trip_sections {
     my ($spreadsheet_filename) = @_;
 
+    return {} unless $spreadsheet_filename;
     my $book = Spreadsheet::Read->new($spreadsheet_filename);
     my $sheet = $book->sheet(1);
     my @rows = $sheet->rows();
