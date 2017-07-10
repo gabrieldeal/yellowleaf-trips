@@ -277,7 +277,7 @@ sub make_files_xml {
                                      'large-filename' => $file->{enl_filename},
                                       rating => $file->{rating},
                                       type => $file->{type},
-                                      owner => "Gabriel Deal",
+                                      owner => $file->{owner},
                                       'capture-timestamp' => $file->{timestamp},
                                       'section-name' => $section_name,
                                    });
@@ -325,28 +325,32 @@ sub process_images {
     foreach my $enl_filename (@filenames) {
 	$enl_filename =~ s,.*/,,;
 
-	my ($type, $caption, $rating, $timestamp);
+        my ($type, $caption, $owner, $rating, $timestamp);
 	if ($enl_filename =~ /\.(gpx)$/i) {
 	    $type = "gps";
         } elsif ($enl_filename =~ /\.(kml)$/i) {
 	    $type = "kml";
-        } elsif ($enl_filename =~ /\.(mp4)$/i) {
-            $type = "movie";
-	} elsif ($enl_filename =~ /\broute\b/ or $enl_filename =~ /\bmap\b/) {
+        } elsif ($enl_filename =~ /\broute\b/ or $enl_filename =~ /\bmap\b/) {
 	    $type = "map" ;
 	} else {
-            my ($orig_filename) = ($enl_filename =~ /^\d+-([-\w_\(\)]+)-enl.jpg$/) or die "Failed to parse '$enl_filename'";
-            my $orig_filename_glob = "$dir/$orig_filename.*";
-            my @orig_filenames = glob($orig_filename_glob);
-            @orig_filenames == 1 or die(sprintf("Got %s matches for '$orig_filename_glob': @orig_filenames", scalar(@orig_filenames)));
-	    
-	    my $metadata = get_image_metadata("$orig_filenames[0]");
-	    die "Unable to find rating in $orig_filenames[0]" unless defined $metadata->{rating};
+            $type = $enl_filename =~ /\.(mp4)$/i ? 'movie' : 'picture';
 
-	    $type = "picture";
-	    $rating = get_rating($metadata->{rating});
-	    $caption = $metadata->{'caption'} || '';
-	    $timestamp = $metadata->{'timestamp'};
+            my $metadata;
+            if ($type eq 'movie') {
+                $metadata = get_image_metadata("$dir/$enl_filename");
+            } else {
+                my ($orig_filename) = ($enl_filename =~ /^\d+-([-\w_\(\)]+)-enl.jpg$/) or die "Failed to parse '$enl_filename'";
+                my $orig_filename_glob = "$dir/$orig_filename.*";
+                my @orig_filenames = glob($orig_filename_glob);
+                @orig_filenames == 1 or die(sprintf("Got %s matches for '$orig_filename_glob': @orig_filenames", scalar(@orig_filenames)));
+	    
+                $metadata = get_image_metadata("$orig_filenames[0]");
+                $rating = get_rating($metadata->{rating});
+            }
+
+            $caption = $metadata->{'caption'} || '';
+            $owner = $metadata->{creator} || $metadata->{copyright} || 'Gabriel Deal';
+            $timestamp = $metadata->{'timestamp'};
 	}
 
 	my $thumb_filename = $enl_filename;
@@ -360,7 +364,8 @@ sub process_images {
 	    enl_filename => $enl_filename,
 	    type => $type,
 	    caption => $caption,
-	    rating => $rating,
+            owner => $owner,
+            rating => $rating,
             timestamp => $timestamp,
         };
     }
@@ -369,8 +374,8 @@ sub process_images {
     foreach my $file (@files) {
 	print "$file->{thumb_filename}:\n";
 
-	if ($file->{type} ne 'gps' && $file->{type} ne 'kml') {
-  	    make_resized_images($dir, $file);
+        if ($file->{type} ne 'gps' && $file->{type} ne 'kml' && $file->{type} ne 'movie') {
+            make_resized_images($dir, $file);
 
 	    $last_timestamp = $file->{timestamp};
 	    if (! defined $first_timestamp) {
@@ -432,7 +437,8 @@ sub get_image_metadata {
   my ($file) = @_;
 
   print "Reading metadata in $file...\n";
-  my @tags = qw(ImageDescription Rating DateCreated CreateDate);
+  my @tags = qw(ImageDescription Rating DateCreated CreateDate Creator Copyright);
+  # perl -mImage::ExifTool -mData::Dumper -e "print Data::Dumper::Dumper(Image::ExifTool::ImageInfo('XXXXX.MP4'))"
   my $info = Image::ExifTool::ImageInfo($file, \@tags);
   die "Error opening $file: " . $info->{Error} if exists $info->{Error};
   print "Warning opening $file: " . $info->{Warning} if exists $info->{Warning};
@@ -452,7 +458,9 @@ sub get_image_metadata {
 	  rating => $info->{Rating},
 	  timestamp => $timestamp,
 	  caption => $caption,
-	 };
+          creator => $info->{Creator},
+          copyright => $info->{Copyright},
+         };
 }
 
 sub get_image_attributes {
