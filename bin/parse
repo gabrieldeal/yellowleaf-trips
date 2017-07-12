@@ -213,7 +213,7 @@ sub spell_check {
     }
 
     foreach my $image (Scramble::Image::get_all_images_collection()->get_all()) {
-        foreach my $text ($image->get_description(), $image->get_of(), $image->get_from()) {
+        foreach my $text ($image->get_description(), $image->get_of(), $image->get_from(), $image->get_section_name()) {
             push @misspelled, _spell_check($text, $image->get_source_directory(), $image->get_date());
         }
     }
