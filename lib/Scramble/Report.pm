@@ -363,13 +363,17 @@ sub make_pager_html {
     }
     my $images_js = JSON::encode_json(\@images);
 
+    my $top_margin = 10;
     my $html = <<EOT;
 <style>
 body {
-    width: 98%;
+    width: 100%;
     height: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0;
+}
+
+.pager {
+    margin-top: ${top_margin}px;
 }
 
 .left-pager-image, .right-pager-image {
@@ -419,6 +423,11 @@ body {
     var currentImageIndex = 0;
     var images = $images_js;
 
+function resizeImage(img) {
+    var navbarHeight = document.getElementById('navbar').clientHeight
+    img.height = window.innerHeight - navbarHeight - $top_margin;
+}
+
 function loadPage() {
     var img = document.getElementById('page-image');
     var imgContainer = img.parentNode;
@@ -428,7 +437,10 @@ function loadPage() {
     newImg.className = 'image';
     newImg.id = 'page-image';
     newImg.src = images[currentImageIndex]['src'];
+    resizeImage(newImg);
     imgContainer.appendChild(newImg);
+
+    window.onresize = function() { resizeImage(newImg) };
 
     document.getElementById('description').innerHTML = images[currentImageIndex]['description'];
     document.getElementById('report-link').innerHTML = images[currentImageIndex]['report-link'];
@@ -460,7 +472,7 @@ function previousPage() {
     loadPage();
 }
 currentImageIndex</script>
-<br />
+<div class="pager">
 <div class="left-pager">
 	<a id="left-pager-link" href="#" onclick="previousPage()"><img class="left-pager-image" src="../../pics/pager-previous.png" /></a>
 </div>
@@ -473,7 +485,7 @@ currentImageIndex</script>
         <br />
 	<div class="report-link" id="report-link"></div>
 </div>
-
+</div>
 <script type="text/javascript">
 	firstPage();
 </script>

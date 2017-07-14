@@ -234,7 +234,7 @@ sub get_horizontal_nav_links {
         curobj.q.value="site:www.yellowleaf.org "+curobj.qfront.value
     }
 </script>
-<form action="http://www.google.com/search" method="get" onSubmit="Gsitesearch(this)">
+<form id="navbar" action="http://www.google.com/search" method="get" onSubmit="Gsitesearch(this)">
     <table width="100%" bgcolor="DFF2FD" border=0 cellspacing=5 cellpadding=0><tr><td>
         $html_links
         &nbsp;&nbsp;
@@ -441,7 +441,7 @@ sub make_footer {
 sub get_header {
   my (%options) = @_;
 
-  my $body = qq(<body bgcolor="white">);
+  my $body = qq(<body style="width: 100%; margin: 0" bgcolor="white">);
 
   my $js_includes = '';
   foreach my $js (@{ $options{'js-includes'} || [] }) {
@@ -450,7 +450,7 @@ sub get_header {
 
   my $maps_script = '';
   if ($options{'enable-embedded-google-map'}) {
-    $body = qq(<body bgcolor="white">);
+    $body = qq(<body style="width: 100%; margin: 0" bgcolor="white">);
 
     $maps_script = <<EOT;
 <script type="text/javascript"
