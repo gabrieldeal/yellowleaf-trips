@@ -479,7 +479,7 @@ sub find_cached_location {
 				       quad => $args{quad},
 				       country => $args{country} ) } get_unvisited());
     }
-    Carp::confess "No match for '$name'" if @locations == 0;
+    Carp::confess "No match for '$name' in '$args{quad}'" if @locations == 0;
     if (@locations > 1) {
 	Carp::confess(sprintf("Too many matches for '%s': %s",
 			      Data::Dumper::Dumper(\%args),
