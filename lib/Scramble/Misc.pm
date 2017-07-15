@@ -441,7 +441,7 @@ sub make_footer {
 sub get_header {
   my (%options) = @_;
 
-  my $body = qq(<body style="width: 100%; margin: 0" bgcolor="white">);
+  my $body = qq(<body style="width: 100%; margin: 0" bgcolor="#f6f6f6">);
 
   my $js_includes = '';
   foreach my $js (@{ $options{'js-includes'} || [] }) {
@@ -450,7 +450,7 @@ sub get_header {
 
   my $maps_script = '';
   if ($options{'enable-embedded-google-map'}) {
-    $body = qq(<body style="width: 100%; margin: 0" bgcolor="white">);
+    $body = qq(<body style="width: 100%; margin: 0" bgcolor="#f6f6f6">);
 
     $maps_script = <<EOT;
 <script type="text/javascript"
