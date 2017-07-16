@@ -430,7 +430,8 @@ sub make_footer {
         $year = '2004';
     }
 
-    my @footer_html = "Copyright &copy; $year Gabriel Deal.";
+    my $copyright = $args{copyright} || 'Gabriel Deal';
+    my @footer_html = "Copyright &copy; $year $copyright.";
     if ($args{'add-amazon-associates-html'}) {
 	push @footer_html, $g_amazon_associates_link;
     }

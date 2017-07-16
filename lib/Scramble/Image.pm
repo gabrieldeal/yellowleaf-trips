@@ -84,6 +84,7 @@ sub get_date { $_[0]->{'date'} } # optional for maps that are not for a particul
 sub get_description { $_[0]->{'description'} }
 sub get_of { $_[0]->{'of'} } # undefined means we don't know. Empty string means it is not of any known location.
 sub get_from { $_[0]->{'from'} || '' }
+sub get_owner { $_[0]->{'owner'} }
 sub get_url { sprintf("../../$g_pics_dir/%s/%s", $_[0]->get_subdirectory(), $_[0]->get_filename()) }
 sub get_full_url { sprintf("http://yellowleaf.org/scramble/$g_pics_dir/%s/%s", $_[0]->get_subdirectory(), $_[0]->get_filename()) }
 sub get_report_url { $_[0]->{'report-url'} }
@@ -358,6 +359,7 @@ EOT
         = Scramble::Misc::make_1_column_page('title' => $description,
                                              'date' => $self->get_date(),
                                              'html' => $html,
+                                             copyright => $self->get_owner(),
                                              'no-add-picture' => 1,
                                              'no-links-box' => 1);
     Scramble::Misc::create($output_filename, $page_html);
