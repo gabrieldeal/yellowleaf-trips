@@ -189,7 +189,7 @@ sub get_video_tag {
     my $self = shift;
     my (%options) = @_;
 
-    return sprintf(qq(<video width="320" height="240" controls>
+    return sprintf(qq(<video width="320" height="180" controls>
                    <source src="%s" type="video/mp4">
                    </video>),
                    $self->get_enlarged_img_url());
