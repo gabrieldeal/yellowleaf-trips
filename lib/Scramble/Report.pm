@@ -10,6 +10,7 @@ use JSON ();
 use Scramble::Waypoints2 ();
 use Scramble::Image ();
 use Scramble::Reference ();
+use Scramble::Time ();
 
 our @ISA = qw(Scramble::XML);
 
