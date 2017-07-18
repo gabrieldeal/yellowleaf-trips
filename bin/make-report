@@ -8,6 +8,7 @@ use IO::File ();
 use Data::Dumper ();
 use Image::ExifTool ();
 use File::Spec ();
+use Filesys::CygwinPaths qw(win32path);
 use Scramble::Area ();
 use Scramble::Location ();
 use Scramble::Time ();
@@ -323,9 +324,10 @@ sub process_images {
 
     my @files;
     foreach my $enl_filename (@filenames) {
-	$enl_filename =~ s,.*/,,;
+        next if $enl_filename =~ /-renc.mp4/i;
+        $enl_filename =~ s,.*/,,;
 
-        my ($type, $caption, $owner, $rating, $timestamp);
+        my ($type, $caption, $owner, $rating, $timestamp, $orig_filename);
 	if ($enl_filename =~ /\.(gpx)$/i) {
 	    $type = "gps";
         } elsif ($enl_filename =~ /\.(kml)$/i) {
@@ -337,9 +339,13 @@ sub process_images {
 
             my $metadata;
             if ($type eq 'movie') {
-                $metadata = get_image_metadata("$dir/$enl_filename");
+                $orig_filename = $enl_filename;
+                ($enl_filename) = ($orig_filename =~ /^([-\w_\(\)]+).mp4$/i) or die "Failed to parse movie '$enl_filename'";
+                $enl_filename .= '-renc.mp4';
+                $metadata = get_image_metadata("$dir/$orig_filename");
+
             } else {
-                my ($orig_filename) = ($enl_filename =~ /^\d+-([-\w_\(\)]+)-enl.jpg$/) or die "Failed to parse '$enl_filename'";
+                ($orig_filename) = ($enl_filename =~ /^\d+-([-\w_\(\)]+)-enl.jpg$/) or die "Failed to parse '$enl_filename'";
                 my $orig_filename_glob = "$dir/$orig_filename.*";
                 my @orig_filenames = glob($orig_filename_glob);
                 @orig_filenames == 1 or die(sprintf("Got %s matches for '$orig_filename_glob': @orig_filenames", scalar(@orig_filenames)));
@@ -360,7 +366,8 @@ sub process_images {
 
         push @files, {
 	    dir => $dir,
-	    thumb_filename => $thumb_filename,
+            orig_filename => $orig_filename,
+            thumb_filename => $thumb_filename,
 	    enl_filename => $enl_filename,
 	    type => $type,
 	    caption => $caption,
@@ -372,9 +379,11 @@ sub process_images {
 
     my (@file_xmls, $first_timestamp, $last_timestamp);
     foreach my $file (@files) {
-	print "$file->{thumb_filename}:\n";
+        print "$file->{type} $file->{thumb_filename}:\n";
 
-        if ($file->{type} ne 'gps' && $file->{type} ne 'kml' && $file->{type} ne 'movie') {
+        if ($file->{type} eq 'movie') {
+            reencode_video($dir, $file);
+        } elsif ($file->{type} eq 'picture') {
             make_resized_images($dir, $file);
 
 	    $last_timestamp = $file->{timestamp};
@@ -404,6 +413,24 @@ sub get_rating {
   } else {
     die "Out-of-bounds rating '$rating'.  Must be 1, 2, or 3.";
   }
+}
+
+# Chrome will not display videos from Lindsay's PowerShot without this
+# reencoding.
+sub reencode_video {
+    my ($dir, $file) = @_;
+
+    my $reencoded_video = "$dir/$file->{enl_filename}";
+    my @command = ('ffmpeg',
+                   '-i', win32path("$dir/$file->{orig_filename}"),
+                   '-vcodec', 'h264',
+                   win32path($reencoded_video));
+    if (-e $reencoded_video) {
+        print "Reencoded video already exists. Not running @command\n";
+        return;
+    }
+
+    my_system(@command);
 }
 
 sub make_resized_images {
@@ -530,6 +557,8 @@ sub copy {
 
 sub my_system {
     my (@command) = @_;
+
+    print "Running @command\n";
     return if 0 == system @command;
 
     die "Command exited with failure code ($?): @command";
