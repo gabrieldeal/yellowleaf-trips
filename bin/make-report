@@ -213,8 +213,9 @@ sub make_report_xml {
 
 $locations_xml
 
-<party size="1">
+<party size="">
 <member name="Gabriel Deal" type="author"/>
+Lindsay Malone
 </party>
 
 <round-trip-distances>
@@ -227,12 +228,10 @@ $locations_xml
 <waypoint type="ascending"
        location-description=""
        time="$start"
-       elevation=""
 />
 <waypoint type="break"
        location-description=""
        time="$end"
-       elevation=""
 />
 </waypoints>
 
