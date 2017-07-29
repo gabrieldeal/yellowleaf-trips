@@ -24,7 +24,7 @@ sub _copy {
             next;
         }
         Scramble::Logger::verbose("cp $source $target_dir\n");
-        system("cp \"$source\" \"$target_dir\"") == 0 or die "Can't copy '$source' to '$target_dir': $!";
+        system("cp", $source, $target_dir) == 0 or die "Can't copy '$source' to '$target_dir': $!";
     }
 }
 sub copy {
@@ -32,7 +32,7 @@ sub copy {
 
     File::Path::mkpath([$output_image_dir], 0, 0755);
     foreach my $image (glob "data/common-images/*.{gif,ico,png}") {
-        system("cp \"$image\" \"$output_image_dir\"") == 0 or die "Can't copy '$image' to '$output_image_dir': $!";
+        system("cp", $image, $output_image_dir) == 0 or die "Can't copy '$image' to '$output_image_dir': $!";
     }
 
     foreach my $image (get_all_images_collection()->get_all()) {
