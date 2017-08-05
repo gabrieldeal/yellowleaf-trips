@@ -113,12 +113,18 @@ sub prompt_for_locations {
     my $prompt = "Location (^D to quit): ";
     print $prompt;
     Scramble::Area::open();
+    my %opened_locations;
     while (my $location_name = <STDIN>) {
         my @location_matches;
         my $location_regex = "\Q". join('\E.*\Q', split(/\s+/, $location_name)) . "\E";
         foreach my $location_filename (glob("$Scramble::Location::DIRECTORY/*.xml")) {
             if ($location_filename =~ /$location_regex/i) {
-                push @location_matches, Scramble::Location::open_specific($location_filename);
+                if ($opened_locations{$location_filename}) {
+                    @location_matches = @{ $opened_locations{$location_filename} };
+                } else {
+                    push @location_matches, Scramble::Location::open_specific($location_filename);
+                    $opened_locations{$location_filename} = \@location_matches;
+                }
             }
 
         }
