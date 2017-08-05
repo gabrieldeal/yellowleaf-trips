@@ -491,7 +491,7 @@ sub get_image_metadata {
   $caption =~ s/"/&quot;/g;
 
   return {
-	  rating => $info->{Rating},
+          rating => $info->{'Rating (1)'} || $info->{Rating},
 	  timestamp => $timestamp,
 	  caption => $caption,
           creator => $info->{Creator},
