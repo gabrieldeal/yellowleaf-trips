@@ -5,6 +5,7 @@ use strict;
 use lib './lib';
 use IO::File ();
 #use Image::IPTCInfo ();
+use Carp ();
 use Data::Dumper ();
 use Image::ExifTool ();
 use File::Spec ();
@@ -14,6 +15,9 @@ use Scramble::Location ();
 use Scramble::Time ();
 use Spreadsheet::Read ();
 use XML::Generator ();
+
+local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
+local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
 
 my $SMALL_IMAGE_SIZE = 333;
 my $LARGE_IMAGE_SIZE = 1075;
