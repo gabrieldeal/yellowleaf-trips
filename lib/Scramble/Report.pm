@@ -27,6 +27,7 @@ sub new {
     bless($self, ref($arg0) || $arg0);
     if ($self->{'skip'}) {
 	return undef;
+        print "Skipping $path because 'skip=true'\n";
     }
 
     $self->{'waypoints'} = Scramble::Waypoints2->new($self->get_filename(),
