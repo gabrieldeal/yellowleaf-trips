@@ -427,7 +427,19 @@ body {
 
 function resizeImage(img) {
     var navbarHeight = document.getElementById('navbar').clientHeight
-    img.height = window.innerHeight - navbarHeight - $top_margin;
+    var availableHeight = window.innerHeight - navbarHeight - 2 * $top_margin;
+
+    var pagerPercentage = 10;
+    var availableWidth = window.innerWidth * (100 - 2 * pagerPercentage) / 100;
+
+    var originalHeight = img.getAttribute('data-originalHeight');
+    var originalWidth = img.getAttribute('data-originalWidth');
+
+    var heightFactor = availableHeight / originalHeight;
+    var widthFactor = availableWidth / originalWidth;
+    var factor = heightFactor < widthFactor ? heightFactor : widthFactor;
+
+    img.height = originalHeight * factor;
 }
 
 function loadPage() {
@@ -439,7 +451,11 @@ function loadPage() {
     newImg.className = 'image';
     newImg.id = 'page-image';
     newImg.src = images[currentImageIndex]['src'];
-    resizeImage(newImg);
+    newImg.onload = function() {
+        newImg.setAttribute('data-originalHeight', newImg.clientHeight);
+        newImg.setAttribute('data-originalWidth', newImg.clientWidth);
+        resizeImage(newImg);
+    }
     imgContainer.appendChild(newImg);
 
     window.onresize = function() { resizeImage(newImg) };
