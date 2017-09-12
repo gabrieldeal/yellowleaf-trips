@@ -355,7 +355,9 @@ sub make_1_column_page {
 $header
 $links
 
-$html
+<div style="margin: 5px">
+    $html
+</div>
 
 $footer_html
 </body>
