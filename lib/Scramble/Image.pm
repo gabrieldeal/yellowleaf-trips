@@ -79,6 +79,7 @@ sub get_subdirectory { $_[0]->{'subdirectory'} }
 sub get_section_name { $_[0]->{'section-name'} }
 
 sub get_date { $_[0]->{'date'} } # optional for maps that are not for a particular trip
+sub get_datetime { $_[0]{'capture-timestamp'} }
 
 sub get_description { $_[0]->{'description'} }
 sub get_of { $_[0]->{'of'} } # undefined means we don't know. Empty string means it is not of any known location.
@@ -305,18 +306,25 @@ sub make_enl_picture_pages {
 sub cmp_date {
   my ($image_a, $image_b) = @_;
 
-  if (! defined $image_a->get_date()) {
-    if (! defined $image_a->get_date()) {
+  my $date_a = $image_a->get_date();
+  my $date_b = $image_b->get_date();
+  if ($image_a->get_datetime() && $image_b->get_datetime()) {
+      $date_a = $image_a->get_datetime();
+      $date_b = $image_b->get_datetime();
+  }
+
+  if (! defined $date_a) {
+    if (! defined $date_b) {
       return 0;
     } else {
       return -1;
     }
   }
-  if (! defined $image_b->get_date()) {
+  if (! defined $date_b) {
     return 1;
   }
 
-  return $image_a->get_date() cmp $image_b->get_date();
+  return $date_a cmp $date_b;
 }
 
 sub get_enl_html_filename {
