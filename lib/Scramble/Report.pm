@@ -379,6 +379,7 @@ body {
 }
 
 .left-pager-image, .right-pager-image {
+    width: 100%;
     height: 500px;
     border: none;
 }
@@ -430,7 +431,8 @@ function resizeImage(img) {
     var availableHeight = window.innerHeight - navbarHeight - 2 * $top_margin;
 
     var pagerPercentage = 10;
-    var availableWidth = window.innerWidth * (100 - 2 * pagerPercentage) / 100;
+    var margin = 5;
+    var availableWidth = (window.innerWidth * (100 - 2 * pagerPercentage) / 100) - 2 * margin;
 
     var originalHeight = img.getAttribute('data-originalHeight');
     var originalWidth = img.getAttribute('data-originalWidth');
