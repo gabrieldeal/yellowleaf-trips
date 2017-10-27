@@ -218,7 +218,10 @@ sub get_link_html {
 
     my $date = $self->get_start_date();
     if (defined $self->get_end_date()) {
-	$date .= " to " . $self->get_end_date();
+        my $start_day = Scramble::Time::get_days_since_1BC($self->get_start_date());
+        my $end_day = Scramble::Time::get_days_since_1BC($self->get_end_date());
+        my $num_days = 1 + $end_day - $start_day;
+        $date .= " ($num_days days)";
     }
 
     my $name = $self->link_if_should_show($self->get_name());
