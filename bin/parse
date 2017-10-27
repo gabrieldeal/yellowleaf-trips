@@ -144,6 +144,8 @@ sub get_party_stats {
       }
       $name =~ s/\s*\([\w\s]*\)\s*$//;
       $name =~ s/^\s*(.*?)[\s\.]*$/$1/i;
+      $name = "Hilary Clark" if $name =~ /seahorse/i or $name =~ /hilary s/i;
+      $name = "Chris Clark" if $name =~ /chilidog/i;
       $name = "Kate (DnR) Hoch" if $name =~ /DnR/ or $name =~ /drop.n.roll/i or $name =~ /Kate.*Hoch/;
       $name = "Jacob (Daybreaker) Sperati" if $name =~ /jacob.*sperati/i or $name =~ /daybreaker/i;
       $name = "Brad (Mister Fox) White" if $name =~ /(mr\.?|mister)\s*fox/i;
