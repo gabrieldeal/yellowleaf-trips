@@ -354,7 +354,8 @@ sub process_images {
                 $metadata = get_image_metadata("$dir/$orig_filename");
 
             } else {
-                ($orig_filename) = ($enl_filename =~ /^\d+-([-\w_\(\)]+)-enl.jpg$/) or die "Failed to parse '$enl_filename'";
+                # Older processed files start with "<NNNNN>-"
+                ($orig_filename) = ($enl_filename =~ /^(?:\d+-)?([-\w_\(\)]+)-enl.jpg$/) or die "Failed to parse '$enl_filename'";
                 my $orig_filename_glob = "$dir/$orig_filename.*";
                 my @orig_filenames = glob($orig_filename_glob);
                 @orig_filenames == 1 or die(sprintf("Got %s matches for '$orig_filename_glob': @orig_filenames", scalar(@orig_filenames)));
@@ -370,8 +371,15 @@ sub process_images {
 
 	my $thumb_filename = $enl_filename;
         if ($type ne 'gps' && $type ne 'kml' && $type ne 'movie') {
-	    $thumb_filename =~ s/-enl\././ or die "$enl_filename, $type";
-	}
+            my ($base, $ext) = ($enl_filename =~ /^(.*)-enl\.(\w+)$/) or die "$enl_filename, $type";
+            $thumb_filename = "$base-small.$ext";
+            if (! -e "$dir/$thumb_filename") {
+                $thumb_filename = "$base.$ext"; # Old thumbnail filename format
+            }
+            if (! -e "$dir/$thumb_filename") {
+                die "Unable to find thumb file for '$enl_filename'";
+            }
+        }
 
         push @files, {
 	    dir => $dir,
@@ -393,7 +401,7 @@ sub process_images {
         if ($file->{type} eq 'movie') {
             reencode_video($dir, $file);
         } elsif ($file->{type} eq 'picture') {
-            make_resized_images($dir, $file);
+            interlace_images($dir, $file);
 
 	    $last_timestamp = $file->{timestamp};
 	    if (! defined $first_timestamp) {
@@ -442,19 +450,14 @@ sub reencode_video {
     my_system(@command);
 }
 
-sub make_resized_images {
+sub interlace_images {
   my ($dir, $file) = @_;
 
   my $thumb_file = $file->{thumb_filename};
   my $enl_file = $file->{enl_filename};
 
-  # This should only be used for route maps:
-  if (! -e "$dir/$thumb_file") {
-      copy($dir, $enl_file, $thumb_file);
-  }
-
-  resize($dir, $thumb_file, $SMALL_IMAGE_SIZE);
-  resize($dir, $enl_file, $LARGE_IMAGE_SIZE);
+  interlace($dir, $thumb_file, $SMALL_IMAGE_SIZE);
+  interlace($dir, $enl_file, $LARGE_IMAGE_SIZE);
 }
 
 sub write_file {
@@ -519,49 +522,32 @@ sub get_image_attributes {
 
 sub min { $_[0] < $_[1] ? $_[0] : $_[1] }
 
-sub resize {
+sub interlace {
     my ($dir, $file, $target_height) = @_;
 
     my $image_attrs = get_image_attributes("$dir/$file");
 
-    my $resize_pct;
+    my $interlace_pct;
     if ($image_attrs->{width} > $image_attrs->{height}) {
       # Landscape orientation
-      $resize_pct = min(100, 100 * $target_height / $image_attrs->{width});
+      $interlace_pct = min(100, 100 * $target_height / $image_attrs->{width});
     } else {
       # Portrait orientation
-      $resize_pct = min(100, 100 * $target_height / $image_attrs->{height});
+      $interlace_pct = min(100, 100 * $target_height / $image_attrs->{height});
     }
 
     my $delta = 0.1;
-    if (abs($resize_pct - 100.0) < $delta) {
-	if (! $image_attrs->{interlaced}) {
-	    print "\tInterlacing $file\n";
-	    my_system("mogrify",
-		      #"-strip", breaks geotagging
-		      "-interlace", "Line",
-		      "$dir/$file");
-	}
-	return;
+    if (abs($interlace_pct - 100.0) > $delta) {
+        die "Image is the wrong size: $dir/$file";
     }
 
-    printf("\tResizing $file to %.2f%%...\n", $resize_pct);
-    my_system("mogrify",
-	      # "-strip", breaks geotagging
-	      "-interlace", "Line",
-	      "-resize", "$resize_pct%",
-	      "-unsharp", "2x0.5+0.7+0",
-	      "-quality", "80",
-              "$dir/$file");
-}
-
-sub copy {
-    my ($dir, $src_file, $dest_file) = @_;
-
-    my $dest_path = "$dir/$dest_file";
-
-    print "\tCopying $src_file to $dest_file\n";
-    my_system("cp", "$dir/$src_file", "$dest_path");
+    if (! $image_attrs->{interlaced}) {
+        print "\tInterlacing $file\n";
+        my_system("mogrify",
+                  #"-strip", breaks geotagging
+                  "-interlace", "Line",
+                  "$dir/$file");
+    }
 }
 
 sub my_system {
