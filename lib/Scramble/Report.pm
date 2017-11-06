@@ -714,7 +714,7 @@ EOT
 								       'no-report-link' => 1);
 		@htmls = @map_objects = ();
 	    }
-            $cells_html .= qq(<br clear="all" /><h2>$section->{name}</h2>);
+            $cells_html .= qq(<h2>$section->{name}</h2>);
 	}
 
         $cells_html .= Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
