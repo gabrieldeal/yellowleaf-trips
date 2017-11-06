@@ -1,7 +1,9 @@
 <p>
 These peaks are all from Dallas Kloke's guide book <u>Winter Climbs: One Day Ascents</u>.
 <p/>
-<div id="map-canvas"></div>
+<div id="mapContainer" style="position: relative">
+    <div id="map-canvas"></div>
+</div>
 
 <style>
 html {
@@ -15,10 +17,9 @@ body {
 
 #map-canvas {
     width: 98%;
-    height: 80%;
+    height: 700px;
 }
 </style>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
 <script type="text/javascript">
 var map;
 var src = 'http://yellowleaf.org/scramble/g/kml/kloke.kml';

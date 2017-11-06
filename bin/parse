@@ -293,7 +293,8 @@ sub main {
 	make_html_file("$g_options{'templates-directory'}/kloke.html",
                        "Kloke's Cascade winter climbs",
 		       'no-insert-links' => 1,
-		       'no-add-picture' => 1);
+                       'enable-embedded-google-map' => 1,
+                       'no-add-picture' => 1);
 	make_html_file("$g_options{'templates-directory'}/sfox.html",
                        "Steve Fox's winter scrambles",
 		       'no-insert-links' => 1,
@@ -426,7 +427,8 @@ sub make_html_file {
     Scramble::Misc::create("m/$ofile",
 			   Scramble::Misc::make_1_column_page(title => $title, 
 							      'include-header' => 1,
-							      html => $html));
+                                                              %options,
+                                                              html => $html));
 }
 
 sub convert_locations {
