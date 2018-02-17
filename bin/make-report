@@ -8,9 +8,9 @@ use IO::File ();
 #use Image::IPTCInfo ();
 use Carp ();
 use Data::Dumper ();
+use File::Basename ();
 use Image::ExifTool ();
 use File::Spec ();
-use Filesys::CygwinPaths qw(win32path);
 use Scramble::Area ();
 use Scramble::Location ();
 use Scramble::Time ();
@@ -32,6 +32,7 @@ if ($ARGV[-1] =~ /fuck-line-feeds/) {
 my $xg = XML::Generator->new(escape => 'always',
                              conformance => 'strict',
                              pretty => 4);
+my $data_dir;
 
 
 exit(make_xml($dir, @ARGV));
@@ -40,6 +41,8 @@ exit(make_xml($dir, @ARGV));
 
 sub make_xml {
     my ($image_dir, $trip_type, $title, $spreadsheet_filename) = @_;
+
+    $data_dir = "$image_dir/../../..";
 
     defined $title or die "Missing arguments: image-dir trip-type title";
     -d $image_dir or die "Non-existant image dir: $image_dir";
@@ -113,17 +116,19 @@ sub prompt_for_locations {
 
     my $prompt = "Location (^D to quit): ";
     print $prompt;
-    Scramble::Area::open();
+    Scramble::Area::open($data_dir);
+    Scramble::Location::set_data_directory($data_dir);
     my %opened_locations;
     while (my $location_name = <STDIN>) {
         my @location_matches;
         my $location_regex = "\Q". join('\E.*\Q', split(/\s+/, $location_name)) . "\E";
-        foreach my $location_filename (glob("$Scramble::Location::DIRECTORY/*.xml")) {
+        foreach my $location_path (glob("$Scramble::Location::HACK_DIRECTORY/*.xml")) {
+            my $location_filename = File::Basename::basename($location_path);
             if ($location_filename =~ /$location_regex/i) {
                 if ($opened_locations{$location_filename}) {
                     @location_matches = @{ $opened_locations{$location_filename} };
                 } else {
-                    push @location_matches, Scramble::Location::open_specific($location_filename);
+                    push @location_matches, Scramble::Location::open_specific($location_path);
                     $opened_locations{$location_filename} = \@location_matches;
                 }
             }
