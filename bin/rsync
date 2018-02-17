@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 function fix_file_permissions() {
     # Otherwise, Backblaze won't backup the files:
@@ -12,16 +12,19 @@ function fix_file_permissions() {
 
 skip_perm="$1"
 
-dir=html
-if [ ! -d $dir ]
+home_dir="/vagrant_gabriel_home/"
+output_dir="$home_dir/projects/yellowleaf-trips"
+html_dir="$output_dir/html"
+
+if [ ! -d $html_dir ]
 then
-	echo "Missing '$dir'" 1>&2
+	echo "Missing '$html_dir'" 1>&2
 	exit 1
 fi
 
 if [ -z "$skip_perm" ]
 then
-    fix_file_permissions $dir bin lib dict data ~/pictures ~/Backups
+    fix_file_permissions "$output_dir" "$home_dir/pictures" "$home_dir/Backups"
 
     echo "Ready to rsync website ('n' to skip)?"
     read pauseme
@@ -34,7 +37,7 @@ then
     # rsync -aviPh --progress --delete-after -e ssh --rsync-path=/home/gabrielx1/bin/rsync html/ gabrielx1@192.186.234.160:~/public_html/scramble
 
     # Do images first, then HTML.  This avoids broken images while in the middle of an update.
-    rsync          --size-only  -e ssh -avz --rsync-path=/home/gabrielx1/bin/rsync html/ gabrielx1@192.186.234.160:~/public_html/scramble --exclude '*.html'
-    rsync --delete --size-only  -e ssh -avz --rsync-path=/home/gabrielx1/bin/rsync html/ gabrielx1@192.186.234.160:~/public_html/scramble
+    rsync          --size-only  -e ssh -avz --rsync-path=/home/gabrielx1/bin/rsync "$html_dir/" gabrielx1@192.186.234.160:~/public_html/scramble --exclude '*.html'
+    rsync --delete --size-only  -e ssh -avz --rsync-path=/home/gabrielx1/bin/rsync "$html_dir/" gabrielx1@192.186.234.160:~/public_html/scramble
 fi
 
