@@ -317,7 +317,9 @@ sub make_kml {
         push @gpx_args, ('-i', File::Spec->abs2rel($gpx_path));
     }
 
-    my_system('gpsconvert',
+    my $gpsconvert = File::Basename::dirname($0) . "/gpsconvert";
+
+    my_system($gpsconvert,
               '--no-waypoints',
               @gpx_args,
               '-o', $kml_path);
