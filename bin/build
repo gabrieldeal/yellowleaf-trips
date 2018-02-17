@@ -1,11 +1,14 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 umask 022
 debug="-d:NYTProf"
-cd ~/projects/yellowleaf-trips \
+
+output_dir="/vagrant_gabriel_home/projects/yellowleaf-trips/"
+dir="$(dirname "$0")/.."
+cd "$dir" \
     && perl bin/parse \
 	    --dictionary-dir dict \
-	    --images data/gabrielx/reports \
-	    --tem data/gabrielx/templates \
-	    --out html \
+	    --data-directory "$output_dir/data/" \
+	    --images-directory "$output_dir/data/gabrielx/reports/" \
+	    --out "$output_dir/html" \
 	    -v \
 	    "$@"

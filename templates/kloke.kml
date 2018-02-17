@@ -1,0 +1,1192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Kloke&apos;s Cascade Winter Climbs</name>
+	<description>These peaks are from Dallas Kloke&apos;s guide book
+		Winter Climbs: One Day Ascents.</description>
+	<gx:balloonVisibility>1</gx:balloonVisibility>
+	<Style id="hl0">
+		<IconStyle>
+			<scale>1.2</scale>
+		</IconStyle>
+	</Style>
+	<StyleMap id="default2">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#default10</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#hl00</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="default3">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#default11</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#hl1</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="default11">
+	</Style>
+	<Style id="default00">
+	</Style>
+	<StyleMap id="default">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#default1</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#hl0</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="hl">
+		<IconStyle>
+			<scale>1.2</scale>
+		</IconStyle>
+	</Style>
+	<Style id="hl00">
+		<IconStyle>
+			<scale>1.2</scale>
+		</IconStyle>
+	</Style>
+	<StyleMap id="default0">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#default00</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#hl</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="default1">
+	</Style>
+	<Style id="default10">
+	</Style>
+	<Style id="hl1">
+		<IconStyle>
+			<scale>1.2</scale>
+		</IconStyle>
+	</Style>
+	<Placemark>
+		<name>Abiel Peak</name>
+		<Point>
+			<coordinates>-121.4692,47.352,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Acorn Peak</name>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.3773267350278,48.63692396223301,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Anaconda Peak</name>
+		<Point>
+			<coordinates>-121.6315,48.0959,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Anderson Butte</name>
+		<Point>
+			<coordinates>-121.5937,48.67160000000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Arrowhead Mountain</name>
+		<Point>
+			<coordinates>-120.9658,47.7577,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Avalanche Mountain</name>
+		<Point>
+			<coordinates>-121.4304,47.4693,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Awe Peak</name>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.8393,48.4404,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Bald Mountain</name>
+		<Point>
+			<coordinates>-121.9611,48.9672,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Bald Mountain</name>
+		<Point>
+			<coordinates>-121.6023,48.106,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Bald Mountain</name>
+		<Point>
+			<coordinates>-121.5854,48.5304,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Bald Mountain</name>
+		<Point>
+			<coordinates>-122.0261,48.65039999999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Bandera Mountain</name>
+		<Point>
+			<coordinates>-121.5378,47.4154,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Baring Mountain</name>
+		<Point>
+			<coordinates>-121.4357,47.7793,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Barometer Mountain</name>
+		<Point>
+			<coordinates>-121.7421,48.86680000000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Bearscout Peak</name>
+		<Point>
+			<coordinates>-121.4994,47.349,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Beaver Peak</name>
+		<Point>
+			<coordinates>-121.5082,48.0984,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Beckler Peak</name>
+		<Point>
+			<coordinates>-121.2816,47.73569999999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Bessemer Mountain</name>
+		<Point>
+			<coordinates>-121.6083,47.56039999999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Big Chief Mountain</name>
+		<Point>
+			<coordinates>-121.0669,47.7463,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Big Deer Peak</name>
+		<Point>
+			<coordinates>-121.916,48.3798,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Bryant Peak</name>
+		<Point>
+			<coordinates>-121.4607,47.4512,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Canoe Peak</name>
+		<Point>
+			<coordinates>-121.4799,47.6512,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Cascade Mountain, North</name>
+		<Point>
+			<coordinates>-121.4172,47.6295,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Cathedral Crag</name>
+		<Point>
+			<coordinates>-121.8456,48.72389999999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Chair Peak</name>
+		<Point>
+			<coordinates>-121.4668,47.45960000000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Change Peak</name>
+		<Point>
+			<coordinates>-121.6833,47.4278,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Church Mountain</name>
+		<Point>
+			<coordinates>-121.8828,48.92829999999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Cleveland Mountain</name>
+		<Point>
+			<coordinates>-121.4245,47.68089999999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Conglomerate Point</name>
+		<Point>
+			<coordinates>-121.4079,47.8464,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Cousins Peak</name>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.1102178537171,48.66265048315704,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Cowboy Mountain</name>
+		<Point>
+			<coordinates>-121.102,47.73220000000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Crosby Mountain</name>
+		<Point>
+			<coordinates>-121.4935,47.7195,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Damnation Peak</name>
+		<Point>
+			<coordinates>-121.3853,48.6708,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Del Campo Peak</name>
+		<Point>
+			<coordinates>-121.4704,47.9909,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Denny Mountain</name>
+		<Point>
+			<coordinates>-121.4439,47.439,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Devils Peak</name>
+		<Point>
+			<coordinates>-121.5614,48.1204,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Diobsud Buttes South</name>
+		<Point>
+			<coordinates>-121.4703,48.6131,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Dock Butte</name>
+		<Point>
+			<coordinates>-121.8064,48.6393,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Double Toil Peak</name>
+		<Point>
+			<coordinates>-121.344,47.912,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Duchess of Kent</name>
+		<styleUrl>#default0</styleUrl>
+		<Point>
+			<coordinates>-121.5965565933059,47.38833407206862,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Duke of Kent</name>
+		<Point>
+			<coordinates>-121.601,47.38490000000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Eagle Rock</name>
+		<Point>
+			<coordinates>-121.3554,47.7759,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Eagle&apos;s Perch</name>
+		<styleUrl>#default</styleUrl>
+		<Point>
+			<coordinates>-121.7675157321682,48.05508617492947,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Eagle&apos;s Perch Towers?</name>
+		<description>I&apos;m not sure exactly where these are.  Here are the names and elevations that Kloke gives for them:
+Talon Tower, 4800&apos;
+Beak Crag, 4700&apos;
+Carrion Crag 4600&apos;
+The Eaglet 4400&apos;</description>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.7777888901021,48.059664576886,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Englebright Peak</name>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.8638456325425,48.67634920987472,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Evergreen Mountain</name>
+		<Point>
+			<coordinates>-121.264,47.8365,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Excelsior Mountain</name>
+		<Point>
+			<coordinates>-121.29,47.9109,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Exclamation Point</name>
+		<description>Not positive about the location of this peak.</description>
+		<styleUrl>#default3</styleUrl>
+		<Point>
+			<coordinates>-121.8007884004246,48.45339182232401,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Finney Peak</name>
+		<Point>
+			<coordinates>-121.7457,48.3807,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Floating Rock</name>
+		<Point>
+			<coordinates>-121.4498,47.5473,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Frog Mountain</name>
+		<Point>
+			<coordinates>-121.2971,47.88329999999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Gee Peak</name>
+		<Point>
+			<coordinates>-121.8245,48.434,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Gee Point</name>
+		<Point>
+			<coordinates>-121.8265,48.4289,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Goat Mountain</name>
+		<Point>
+			<coordinates>-121.8415,48.5998,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Golly Peak</name>
+		<Point>
+			<coordinates>-121.8179,48.4425,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Gosh Peak</name>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.8197841115101,48.4406974813131,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Granite Mountain</name>
+		<Point>
+			<coordinates>-121.4814,47.4177,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Green Mountain</name>
+		<Point>
+			<coordinates>-121.6735,47.5175,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Green Mountain</name>
+		<Point>
+			<coordinates>-121.2386,48.2916,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Greider Peak</name>
+		<Point>
+			<coordinates>-121.5978,47.95330000000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Groat Mountain</name>
+		<Point>
+			<coordinates>-121.967,48.78489999999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Guye Peak</name>
+		<Point>
+			<coordinates>-121.4086,47.4419,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Hall Peak</name>
+		<Point>
+			<coordinates>-121.5404,48.0598,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Helen Buttes North</name>
+		<Point>
+			<coordinates>-121.4954,48.5706,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Helena Peak</name>
+		<Point>
+			<coordinates>-121.5791,48.13179999999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Humpback Mountain</name>
+		<Point>
+			<coordinates>-121.4956,47.3733,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Iron Mountain</name>
+		<Point>
+			<coordinates>-121.942,48.4786,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Iron Mountain</name>
+		<Point>
+			<coordinates>-121.4311,47.8584,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Jackman Peak</name>
+		<Point>
+			<coordinates>-121.5995,48.59089999999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Jim Hill Mountain</name>
+		<Point>
+			<coordinates>-121.0096,47.7379,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>K9</name>
+		<Point>
+			<coordinates>-121.1141,47.6871,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Kayak Peak</name>
+		<styleUrl>#default0</styleUrl>
+		<Point>
+			<coordinates>-121.4751201299915,47.63742634674371,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Kendall Peak</name>
+		<Point>
+			<coordinates>-121.3847,47.443,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Klinger Ridge</name>
+		<Point>
+			<coordinates>-121.4206,47.7632,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Lewis Peak</name>
+		<Point>
+			<coordinates>-121.4626,48.0054,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Lichtenberg Mountain</name>
+		<Point>
+			<coordinates>-121.0912,47.7881,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Little Deer Peak</name>
+		<Point>
+			<coordinates>-121.9062,48.3952,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Little Saint Helens</name>
+		<Point>
+			<coordinates>-121.5403,47.367,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Long Mountain</name>
+		<Point>
+			<coordinates>-121.5935,48.0913,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Long Mountain - East Peak</name>
+		<styleUrl>#default0</styleUrl>
+		<Point>
+			<coordinates>-121.5753762135287,48.09651703930573,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Lookout Mountain</name>
+		<Point>
+			<coordinates>-121.3293,48.5521,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Loomis Mountain</name>
+		<Point>
+			<coordinates>-121.8456,48.68,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Lundin Peak</name>
+		<Point>
+			<coordinates>-121.4002,47.4629,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mailbox Peak</name>
+		<Point>
+			<coordinates>-121.6393,47.4624,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Marble Peak</name>
+		<Point>
+			<coordinates>-121.5674,48.0564,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mazama Dome</name>
+		<Point>
+			<coordinates>-121.7133,48.86,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>McClellan Butte</name>
+		<Point>
+			<coordinates>-121.6223,47.4068,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mineral Butte</name>
+		<Point>
+			<coordinates>-121.469,47.9265,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mount Catherine</name>
+		<Point>
+			<coordinates>-121.4268,47.37239999999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mount Defiance</name>
+		<Point>
+			<coordinates>-121.5642,47.43520000000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mount Dickerman</name>
+		<Point>
+			<coordinates>-121.4708,48.0688,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mount Fernow</name>
+		<Point>
+			<coordinates>-121.2307,47.75510000000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mount Gardner</name>
+		<Point>
+			<coordinates>-121.569,47.36800000000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mount Herman</name>
+		<Point>
+			<coordinates>-121.7024,48.8662,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mount Higgins</name>
+		<Point>
+			<coordinates>-121.7622,48.315,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mount Josephine</name>
+		<Point>
+			<coordinates>-121.9617,48.58850000000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mount Kent</name>
+		<Point>
+			<coordinates>-121.6179,47.3904,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mount Persis</name>
+		<Point>
+			<coordinates>-121.6118,47.7904,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mount Phelps</name>
+		<Point>
+			<coordinates>-121.5789,47.6784,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mount Pilchuck</name>
+		<Point>
+			<coordinates>-121.7976,48.0579,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mount Ross</name>
+		<Point>
+			<coordinates>-121.2449,48.7094,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mount Sawyer</name>
+		<Point>
+			<coordinates>-121.2243,47.6669,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mount Si</name>
+		<Point>
+			<coordinates>-121.7399,47.5078,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Mount Washington</name>
+		<Point>
+			<coordinates>-121.7001,47.42619999999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>National Peak</name>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.4314178076222,47.97150766051556,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Nina</name>
+		<Point>
+			<coordinates>-121.6214,47.8782,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Oakes Peak</name>
+		<Point>
+			<coordinates>-121.3919,48.6528,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Palmer Mountain</name>
+		<Point>
+			<coordinates>-121.4843,47.7348,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Park Butte</name>
+		<Point>
+			<coordinates>-121.8564,48.7167,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Pinta</name>
+		<styleUrl>#default0</styleUrl>
+		<Point>
+			<coordinates>-121.6153557919968,47.87486126056804,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Point 4962</name>
+		<styleUrl>#default0</styleUrl>
+		<Point>
+			<coordinates>-121.4721737134164,47.54678069005925,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Point 5598</name>
+		<styleUrl>#default0</styleUrl>
+		<Point>
+			<coordinates>-121.3400400901251,47.52470403607213,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Point 6131</name>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-120.9899156936785,47.74333066702206,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Poweroutage Peak</name>
+		<styleUrl>#default0</styleUrl>
+		<Point>
+			<coordinates>-121.0837064520676,47.72289369093876,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Prairie Mountain</name>
+		<Point>
+			<coordinates>-121.4713,48.2753,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Pratt Mountain</name>
+		<Point>
+			<coordinates>-121.5264,47.4269,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Quartz Mountain</name>
+		<Point>
+			<coordinates>-121.5753,47.56309999999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Razorback Mountain</name>
+		<Point>
+			<coordinates>-121.3174,48.4805,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Red Mountain</name>
+		<Point>
+			<coordinates>-121.389,47.456,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Red Rock Mountain</name>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.805072565568,48.59818781177827,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Revolution Peak</name>
+		<Point>
+			<coordinates>-121.5852,47.4722,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Round Mountain</name>
+		<Point>
+			<coordinates>-121.7506,48.3264,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Sauk Mountain</name>
+		<Point>
+			<coordinates>-121.6009,48.5229,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Sexagenarian Peak</name>
+		<Point>
+			<coordinates>-121.7953,48.3152,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Silver Eagle Peak</name>
+		<Point>
+			<coordinates>-121.2714,47.6168,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Silver Peak</name>
+		<Point>
+			<coordinates>-121.4613,47.36150000000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Skadulgwas Peak</name>
+		<Point>
+			<coordinates>-121.7776,48.31210000000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Sky Mountain</name>
+		<Point>
+			<coordinates>-121.1103,47.7592,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Slate Mountain</name>
+		<Point>
+			<coordinates>-121.7039,48.87130000000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Snoqualmie Mountain</name>
+		<Point>
+			<coordinates>-121.4165,47.4587,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Sorcery Mountain</name>
+		<Point>
+			<coordinates>-121.4102,47.5353,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Sourdough Mountain</name>
+		<Point>
+			<coordinates>-121.1283,48.7517,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Spring Mountain</name>
+		<Point>
+			<coordinates>-121.3502,48.11070000000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Static Peak</name>
+		<Point>
+			<coordinates>-121.5888,47.9437,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Table Mountain</name>
+		<Point>
+			<coordinates>-121.7137,48.8479,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>The Pulpit</name>
+		<Point>
+			<coordinates>-121.5518,47.5214,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>The Tooth</name>
+		<Point>
+			<coordinates>-121.4545,47.446,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Tinkham Peak</name>
+		<Point>
+			<coordinates>-121.4499,47.34799999999999,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Toil Peak</name>
+		<Point>
+			<coordinates>-121.3419,47.9207,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Townsend Mountain</name>
+		<Point>
+			<coordinates>-121.3926,47.7987,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Trappers Peak</name>
+		<Point>
+			<coordinates>-121.3225,48.68830000000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Troublesome Mountain</name>
+		<Point>
+			<coordinates>-121.365,47.90950000000001,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Twin Peaks South</name>
+		<Point>
+			<coordinates>-121.6036,47.6127,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Tye Peak</name>
+		<Point>
+			<coordinates>-121.1075,47.7667,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Viking Horn #2</name>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.5864159897539,48.09323811748941,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Washington Monument</name>
+		<Point>
+			<coordinates>-121.8315,48.6285,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Web Mountain</name>
+		<Point>
+			<coordinates>-121.5911,47.4421,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Welker Peak</name>
+		<Point>
+			<coordinates>-121.6338,48.6381,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Wellman &amp; Huntoon Crags</name>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.8519270891973,48.6760461799015,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>West Cady Ridge</name>
+		<Point>
+			<coordinates>-121.2214,47.9096,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>West Church Benchmark</name>
+		<Point>
+			<coordinates>-121.9094,48.9267,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Whim Peak</name>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.804866827805,48.42386360844692,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Whiz Peak</name>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.8134593976393,48.44987747279386,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Widgit Peak</name>
+		<styleUrl>#default0</styleUrl>
+		<Point>
+			<coordinates>-121.6285617304257,48.64499185630126,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Windy Mountain</name>
+		<Point>
+			<coordinates>-121.1665,47.7306,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Wobegon Peak</name>
+		<Point>
+			<coordinates>-121.6237,48.6503,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Zekes Peak</name>
+		<Point>
+			<coordinates>-121.6126,47.8721,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Rhode Point</name>
+		<LookAt>
+			<longitude>-121.0937193634426</longitude>
+			<latitude>48.66602926701191</latitude>
+			<altitude>0</altitude>
+			<heading>0.04032581979601828</heading>
+			<tilt>0.0331988492030118</tilt>
+			<range>1011.098332246883</range>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</LookAt>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.0947283201682,48.66692339759813,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Viking Horn #1</name>
+		<LookAt>
+			<longitude>-121.5828049354461</longitude>
+			<latitude>48.09219184309809</latitude>
+			<altitude>0</altitude>
+			<heading>-4.446490706115006</heading>
+			<tilt>2.186373551351253</tilt>
+			<range>1642.918966869029</range>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</LookAt>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.5887923741079,48.09150427234813,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Baring Mountain, South</name>
+		<LookAt>
+			<longitude>-121.4354816586283</longitude>
+			<latitude>47.77689191621908</latitude>
+			<altitude>0</altitude>
+			<heading>0.0001616720664302066</heading>
+			<tilt>0</tilt>
+			<range>1000.9999999988</range>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</LookAt>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.4371448642206,47.77551524134829,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Hemlock Peak</name>
+		<LookAt>
+			<longitude>-121.4567812735424</longitude>
+			<latitude>47.44839453402054</latitude>
+			<altitude>0</altitude>
+			<heading>0.002886932229412365</heading>
+			<tilt>0</tilt>
+			<range>1000.999999996894</range>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</LookAt>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.4588680408797,47.44858015539647,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Earl of Kent #1</name>
+		<LookAt>
+			<longitude>-121.5973215062866</longitude>
+			<latitude>47.38751410458993</latitude>
+			<altitude>0</altitude>
+			<heading>-0.0005630002994707211</heading>
+			<tilt>0</tilt>
+			<range>1000.999999998468</range>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</LookAt>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.5990998141225,47.38545554817086,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Earl of Kent #2</name>
+		<LookAt>
+			<longitude>-121.5973215062866</longitude>
+			<latitude>47.38751410458993</latitude>
+			<altitude>0</altitude>
+			<heading>-0.0005630002994707211</heading>
+			<tilt>0</tilt>
+			<range>1000.999999998468</range>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</LookAt>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.598424198441,47.38627552532573,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Earl of Kent #3</name>
+		<LookAt>
+			<longitude>-121.5973215062866</longitude>
+			<latitude>47.38751410458993</latitude>
+			<altitude>0</altitude>
+			<heading>-0.0005630002994707211</heading>
+			<tilt>0</tilt>
+			<range>1000.999999998468</range>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</LookAt>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.597863298597,47.38696602407018,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Tadpole Mountain</name>
+		<LookAt>
+			<longitude>-121.2807914991791</longitude>
+			<latitude>47.87793579939775</latitude>
+			<altitude>0</altitude>
+			<heading>0.01209702390342186</heading>
+			<tilt>0</tilt>
+			<range>2583.993913868321</range>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</LookAt>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-121.2834333578336,47.8744269516475,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>Toboggan Mountain</name>
+		<LookAt>
+			<longitude>-122.0509444940333</longitude>
+			<latitude>48.83589993474634</latitude>
+			<altitude>0</altitude>
+			<heading>0.01534033217002426</heading>
+			<tilt>0</tilt>
+			<range>5050.329956511524</range>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</LookAt>
+		<styleUrl>#default2</styleUrl>
+		<Point>
+			<coordinates>-122.0350974206861,48.83848712482718,0</coordinates>
+		</Point>
+	</Placemark>
+</Document>
+</kml>

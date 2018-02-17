@@ -360,10 +360,12 @@ sub make_pages {
 }
 
 sub open {
+    my ($data_dir) = @_;
+
     return if $g_all;
 
     my @areas;
-    my $areas_xml = Scramble::XML::parse("./data/areas.xml");
+    my $areas_xml = Scramble::XML::parse("$data_dir/areas.xml");
     foreach my $area_xml (@{ $areas_xml->{'area'} }) {
 	my $area = Scramble::Area->new($area_xml);
 	push @areas, $area;

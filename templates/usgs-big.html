@@ -1,0 +1,23 @@
+latitude: <span id="lat"></span>
+<br>
+longitude: <span id="lon"></span>
+<br>
+datum: WGS84 
+<br>
+<span id="url"></span>
+<br>
+<form action="#" onsubmit="showAddress(this.address.value); return false" name="geocoder_form">
+
+        <p>
+        <input type="text" size="60" name="address" onFocus="document.geocoder_form.address.value = '';" />
+        <input type="submit" value="Map new location" />
+        </p>
+</form>
+<br>
+<div id="mapContainer" style="position: relative">
+    <div id="map" style="width: 5000px; height: 6666px"></div>
+</div>
+
+<script type="text/javascript" src="../js/map.js"></script>
+
+

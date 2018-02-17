@@ -1,0 +1,29 @@
+<!-- -*-mode: javascript-*- -->
+<div id="latlon"></div>
+<div id="map1" style="width: 1350px; height: 800px"></div>
+
+<script type="text/javascript" src="../js/src.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+init();
+function init()
+{
+  var lat = parseFloat(getParameter("lat"));
+  var lon = parseFloat(getParameter("lon"));
+  var height = getParameter("h");
+  var width = getParameter("w");
+  var type = getParameter("type");
+
+  var points = [ { lat: lat, lon: lon, name: "" } ];
+
+  var options = {};
+  if (height && width) {
+    options = {size:new GSize(height, width) };
+  }
+
+  var map = renderMap(points, options, type);
+  map.addControl(new GLargeMapControl());
+  map.setZoom(getRecommendedZoom(map, type, points));
+}
+//]]>
+</script>

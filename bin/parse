@@ -34,8 +34,9 @@ local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
 local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
 
 my @g_options = qw(
+                   data-directory=s
                    dictionary-directory=s
-		   timezone=s
+                   timezone=s
 		   verbose
 		   action=s@
 		   skip=s@
@@ -52,11 +53,10 @@ my %g_options = (
                  "action" => [],
                  "skip" => [],
                  "timezone" => "PDT",
-                 "dictionary-directory=" => "dict/english.0",
-                 "images-directory" => "data/$ENV{USER}/reports",
-                 "templates-directory" => "data/$ENV{USER}/templates",
-                 "javascript-directory" => "data/javascript",
-                 "css-directory" => "data/css",
+                 "dictionary-directory=" => "dict",
+                 "templates-directory" => "templates",
+                 "javascript-directory" => "javascript",
+                 "css-directory" => "css",
                  "output-directory" => "html",
 		 );
 
@@ -97,9 +97,6 @@ sub get_options {
                              templates-directory)) 
     {
 	die "Missing --$required" unless exists $g_options{$required};
-        if ($g_options{$required} =~ m,^/, || $g_options{$required} =~ m,\.\.,) {
-            die "--$required must be a relative path and contain no '..'";
-        }
     }
 
     Scramble::Misc::set_output_directory($g_options{'output-directory'});
@@ -263,9 +260,10 @@ sub main {
     should('javascript') && copy_javascript();
     should('css') && copy_css();
 
-    Scramble::Area::open();
+    Scramble::Location::set_data_directory($g_options{'data-directory'});
+    Scramble::Area::open($g_options{'data-directory'});
     Scramble::Area::Quad::init();
-    Scramble::Reference::open();
+    Scramble::Reference::open($g_options{'data-directory'});
 
     if (0 && should('convert')) {
 	#convert_locations();
@@ -287,7 +285,7 @@ sub main {
         return 0;
     }
 
-    Scramble::List::open(glob("data/lists/*.xml"));
+    Scramble::List::open(glob("$g_options{'data-directory'}/lists/*.xml"));
 
     if (should('template')) {
 	make_html_file("$g_options{'templates-directory'}/kloke.html",
@@ -434,7 +432,7 @@ sub make_html_file {
 sub convert_locations {
     my $converter = Scramble::Converter::Location->new();
 
-    my @files = @{ $g_options{'file'} } || glob("data/locations/*.xml");
+    my @files = @{ $g_options{'file'} } || glob("$g_options{'data-directory'}/locations/*.xml");
     foreach my $file (@files) {
 	my @locations;
 	foreach my $location (Scramble::Location->new_objects($file)) {
@@ -446,7 +444,7 @@ sub convert_locations {
 	}
 	next unless @locations;
 
-        my $path = sprintf("data/locations/%s.xml", Scramble::Misc::sanitize_for_filename($locations[0]->get_name()));
+        my $path = sprintf("$g_options{'data-directory'}/locations/%s.xml", Scramble::Misc::sanitize_for_filename($locations[0]->get_name()));
 
 	my $fh = IO::File->new($path, 'w') or die "Failed to create $path: $!";
 	$fh->print($converter->convert(@locations) . "\n") or die;
@@ -470,7 +468,7 @@ sub get_converted_report_path {
 
     my $subdir = File::Basename::basename($report->{path});
     $subdir =~ s/\.xml$//;
-    $subdir = "data/gabrielx/reports/$subdir";
+    $subdir = "$g_options{'data-directory'}/gabrielx/reports/$subdir";
     File::Path::mkpath([ $subdir ], 0, 0755);
 
     return "$subdir/report.xml";
@@ -480,7 +478,7 @@ sub convert_reports {
     my $converter = Scramble::Converter::Report->new();
 
     my @files = @{ $g_options{'file'} };
-    @files = glob("data/gabrielx/reports/*.xml") unless @files;
+    @files = glob("$g_options{'data-directory'}/gabrielx/reports/*.xml") unless @files;
 
     foreach my $file (@files) {
 	my @reports;

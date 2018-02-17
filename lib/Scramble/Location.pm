@@ -10,7 +10,7 @@ use Scramble::Area ();
 use Geo::Coordinates::UTM ();
 
 our @ISA = qw(Scramble::XML);
-our $DIRECTORY = 'data/locations';
+our $HACK_DIRECTORY;
 
 my @g_hidden_locations;
 my @g_locations;
@@ -365,8 +365,16 @@ sub set_have_visited {
 # static methods
 ######################################################################
 
+sub set_data_directory {
+    my ($data_dir) = @_;
+
+    $HACK_DIRECTORY = "$data_dir/locations";
+}
+
 sub open_all {
-    open_specific(sort glob("$DIRECTORY/*.xml"));
+    my ($data_dir) = @_;
+
+    open_specific(sort glob("$data_dir/*.xml"));
 }
 sub open_specific {
     my (@paths) = @_;
@@ -460,7 +468,7 @@ sub find_location {
 
     # Lazily load the location:
     my $name = $args{'name'} || die "Not given name";
-    my $path = sprintf("$DIRECTORY/%s.xml", Scramble::Misc::sanitize_for_filename($name));
+    my $path = sprintf("$HACK_DIRECTORY/%s.xml", Scramble::Misc::sanitize_for_filename($name));
     die "Unable to lazily load from $path" unless -f $path;
     open_specific($path);
 
