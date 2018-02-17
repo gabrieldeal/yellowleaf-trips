@@ -1,4 +1,5 @@
-#!c:/Perl64/bin/perl
+#!/usr/bin/env perl
+
 #-*-perl-*-
 
 use strict;
