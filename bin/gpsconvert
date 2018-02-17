@@ -12,8 +12,6 @@ my @g_options = qw(
 	      );
 my %g_options = ();
 
-local $ENV{PATH} .= ":/cygdrive/c/Program Files (x86)/GPSBabel";
-
 exit(main());
 
 sub usage {
