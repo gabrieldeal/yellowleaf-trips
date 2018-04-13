@@ -447,9 +447,9 @@ sub reencode_video {
 
     my $reencoded_video = "$dir/$file->{enl_filename}";
     my @command = ('ffmpeg',
-                   '-i', win32path("$dir/$file->{orig_filename}"),
+                   '-i', "$dir/$file->{orig_filename}",
                    '-vcodec', 'h264',
-                   win32path($reencoded_video));
+                   $reencoded_video);
     if (-e $reencoded_video) {
         print "Reencoded video already exists. Not running @command\n";
         return;
