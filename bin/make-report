@@ -93,7 +93,7 @@ sub read_trip_sections {
 
     my %sections;
     for my $row (@rows) {
-        next unless $row->[$column_index{Date}] && $row->[$column_index{Name}] && $row->[$column_index{Day}] ;
+        next unless $row->[$column_index{Date}] && $row->[$column_index{Name}] && defined $row->[$column_index{Day}];
         $sections{$row->[$column_index{Date}]} = "Day $row->[$column_index{Day}]: to $row->[$column_index{Name}]";
     }
 
