@@ -23,6 +23,7 @@ WriteMakefile(
         'List::Util' => 0,
         'MIME::Types' => 0,
         'Spreadsheet::Read' => 0,
+        'Text::CSV' => 0,
         'URI::Encode' => 0,
         'XML::Generator' => 0,
         'XML::RSS' => 0,
