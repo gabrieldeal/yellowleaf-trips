@@ -272,7 +272,7 @@ sub make_files_xml {
     my ($files, $date, $sections) = @_;
 
     my @file_xmls;
-    foreach my $file (@$files) {
+    foreach my $file (sort { $a->{timestamp} cmp $b->{timestamp} } @$files) {
         my %optional_attrs;
         if ($file->{caption} =~ /^(.+)\s+(from|over)\s+(.+)/) {
             my ($of, $term, $from) = ($1, $2, $3);
