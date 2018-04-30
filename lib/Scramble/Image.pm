@@ -379,7 +379,7 @@ sub n_per_date {
 
     my %trips;
     foreach my $image (@images) {
-        my $key = $image->get_date();
+        my $key = $image->get_capture_date() || $image->get_date();
         if (@{ $trips{$key} || [] } < $n) {
             push @{ $trips{$key} }, $image;
         }
