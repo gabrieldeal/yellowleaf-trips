@@ -553,7 +553,7 @@ sub interlace {
     if (! $image_attrs->{interlaced}) {
         print "\tInterlacing $file\n";
         my_system("mogrify",
-                  #"-strip", breaks geotagging
+                  "-strip", # breaks geotagging
                   "-interlace", "Line",
                   "$dir/$file");
     }
