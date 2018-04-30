@@ -337,7 +337,7 @@ sub process_images {
     my @filenames = @gpx_filenames;
     push @filenames, glob "$dir/*.kml";
     push @filenames, glob "$dir/*-enl\.{jpg,png}";
-    push @filenames, glob "$dir/*.{mp4,MP4}";
+    push @filenames, glob "$dir/*.{mp4,MP4,MOV,mov}";
     @filenames = sort @filenames;
 
     my @files;
@@ -353,12 +353,12 @@ sub process_images {
         } elsif ($enl_filename =~ /\broute\b/ or $enl_filename =~ /\bmap\b/) {
 	    $type = "map" ;
 	} else {
-            $type = $enl_filename =~ /\.(mp4)$/i ? 'movie' : 'picture';
+            $type = $enl_filename =~ /\.(mp4|mov)$/i ? 'movie' : 'picture';
 
             my $metadata;
             if ($type eq 'movie') {
                 $orig_filename = $enl_filename;
-                ($enl_filename) = ($orig_filename =~ /^([-\w_\(\)]+).mp4$/i) or die "Failed to parse movie '$enl_filename'";
+                ($enl_filename) = ($orig_filename =~ /^([-\w_\(\)]+).(mp4|mov)$/i) or die "Failed to parse movie '$enl_filename'";
                 $enl_filename .= '-renc.mp4';
                 $metadata = get_image_metadata("$dir/$orig_filename");
 
