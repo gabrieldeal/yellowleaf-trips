@@ -359,6 +359,7 @@ sub make_pager_html {
     my @images;
     foreach my $image ($self->get_map_objects(), $self->get_picture_objects()) {
 	my $url = $image->get_enlarged_img_url() || $image->get_url();
+        next if $image->get_type() eq 'movie'; # The JS below assumes everything goes in an <img>.
         push @images, { 
 			description => $image->get_description(),
 			"report-link" => $self->link_if_should_show($self->get_start_date()),
