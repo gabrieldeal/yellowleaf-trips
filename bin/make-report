@@ -11,6 +11,7 @@ use Data::Dumper ();
 use File::Basename ();
 use Image::ExifTool ();
 use File::Spec ();
+use Geo::Gpx ();
 use Scramble::Area ();
 use Scramble::Location ();
 use Scramble::Time ();
@@ -42,6 +43,8 @@ exit(make_xml($dir, @ARGV));
 sub make_xml {
     my ($image_dir, $trip_type, $title, $spreadsheet_filename) = @_;
 
+    $ENV{TZ} || die "Set Timezone.  E.g., export TZ='America/Los_Angeles'";
+
     $data_dir = "$image_dir/../../..";
 
     defined $title or die "Missing arguments: image-dir trip-type title";
@@ -56,6 +59,7 @@ sub make_xml {
     defined $date or die "Unable to get date from image subdirectory: $image_subdir";
 
     my %image_data = process_images($image_dir);
+    my %gps_data = process_gpx(\%image_data);
 
     my $report_xml_file = "$data_dir/reports/$image_subdir/report.xml";
     if (-e $report_xml_file) {
@@ -67,6 +71,7 @@ sub make_xml {
                                          trip_type => $trip_type,
                                          locations => \@locations,
                                          sections => $sections,
+                                         gps_data => \%gps_data,
                                          image_data => \%image_data,
                                          image_subdir => $image_subdir);
         write_file($report_xml_file, $report_xml);
@@ -77,6 +82,36 @@ sub make_xml {
     chmod(0744, glob("$image_dir/*")) || die "Failed to chmod: $!";
 
     return 0;
+}
+
+sub process_gpx {
+    my ($images) = @_;
+
+    my @gpx_files = grep { $_->{type} eq 'gps' } @{ $images->{files} };
+
+    return {} unless @gpx_files;
+
+    my $path = $gpx_files[0]{'dir'} . '/' . $gpx_files[0]{enl_filename};
+    my $xml = Scramble::Misc::slurp($path);
+    my $gpx = Geo::Gpx->new(xml => $xml);
+    my $points = $gpx->tracks()->[0]{segments}[0]{points};
+    my $start = $points->[0]{time};
+    my $end = $points->[-1]{time};
+
+    return (
+        start => convert_date_time($start),
+        end => convert_date_time($end)
+    );
+}
+
+sub convert_date_time {
+    my ($epoch_time) = @_;
+
+    my (undef, $minute, $hour, $day, $mon, $year) = localtime($epoch_time);
+    $year += 1900;
+    $mon += 1;
+
+    return sprintf("$year/%02d/%02d %02d:%02d", $mon, $day, $hour, $minute);
 }
 
 sub read_trip_sections {
@@ -213,8 +248,8 @@ sub make_report_xml {
     my $files_xml = make_files_xml($args{image_data}{files}, $args{date}, $args{sections});
     my $locations_xml = make_locations_xml($args{locations});
 
-    my $start = $args{image_data}{first_timestamp} || '';
-    my $end = $args{image_data}{last_timestamp} || '';
+    my $start = $args{gps_data}{start} || $args{image_data}{first_timestamp} || '';
+    my $end = $args{gps_data}{end} || $args{image_data}{last_timestamp} || '';
     return <<EOT;
 <trip filename="$args{image_subdir}"
     start-date="$args{date}"

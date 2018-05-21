@@ -16,6 +16,7 @@ WriteMakefile(
         'Date::Manip' => 0,
         'DateTime' => 0,
         'Geo::Coordinates::UTM' => 0,
+        'Geo::Gpx' => 0,
         'Getopt::Long' => 0,
         'HTML::Entities' => 0,
         'Image::ExifTool' => 0,

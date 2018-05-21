@@ -617,6 +617,16 @@ sub abbreviate_name {
     return $name;
 }
 
+sub slurp {
+    my ($path) = @_;
+
+    return do {
+        open(my $fh, $path) or die "Can't open $path: $!";
+        local $/ = undef;
+        <$fh>;
+    };
+}
+
 sub create {
     my ($path, $html) = @_;
 
