@@ -540,6 +540,8 @@ sub get_quads_html {
 sub get_embedded_google_map_html {
     my $self = shift;
 
+    return '' unless $self->get_longitude();
+
     return Scramble::Misc::get_multi_point_embedded_google_map_html([ $self ]);
 }
 
