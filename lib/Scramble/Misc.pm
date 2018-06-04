@@ -404,6 +404,8 @@ sub get_multi_point_embedded_google_map_html {
 	$small_map_params{kmlUrl} = "'$kml_url'";
     }
 
+    die "Missing map data" unless @large_map_params;
+
     my $large_map_params = join("&", @large_map_params);
     my $small_map_javascript = join("\n", map { qq(setInput('$_', $small_map_params{$_});) } keys %small_map_params);
 
