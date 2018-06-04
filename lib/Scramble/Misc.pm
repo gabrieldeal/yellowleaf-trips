@@ -404,18 +404,19 @@ sub get_multi_point_embedded_google_map_html {
 	$small_map_params{kmlUrl} = "'$kml_url'";
     }
 
-    die "Missing map data" unless @large_map_params;
+    return '' unless @large_map_params;
 
     my $large_map_params = join("&", @large_map_params);
-    my $small_map_javascript = join("\n", map { qq(setInput('$_', $small_map_params{$_});) } keys %small_map_params);
+    my $small_map_javascript = join("\n", map { qq(Yellowleaf.Map.setInput('$_', $small_map_params{$_});) } keys %small_map_params);
 
     my $script = <<EOT;
 <div id="mapContainer" style="position: relative">
     <div id="map" style="width: 333px; height: 250px"></div>
 </div>
 <a href="../m/usgs.html?$large_map_params">Larger map</a>
-<script type="text/javascript" src="../js/map.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
 <script>
+    Yellowleaf.Map.initializeOnLoad();
     $small_map_javascript
 </script>
 <p>

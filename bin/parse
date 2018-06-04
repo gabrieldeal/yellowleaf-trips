@@ -55,7 +55,7 @@ my %g_options = (
                  "timezone" => "PDT",
                  "dictionary-directory=" => "dict",
                  "templates-directory" => "templates",
-                 "javascript-directory" => "javascript",
+                 "javascript-directory" => "javascript/dist",
                  "css-directory" => "css",
                  "output-directory" => "html",
 		 );
@@ -257,7 +257,7 @@ sub main {
 		       0755);
 
     should('htaccess') && make_htaccess();
-    should('javascript') && copy_javascript();
+    should('javascript') && make_javascript();
     should('template') && make_templates();
     should('css') && copy_css();
 
@@ -354,10 +354,13 @@ sub copy_kml {
     }
 }
 
-sub copy_javascript {
+sub make_javascript {
+    system('cd javascript && npm run build');
+
     my $command = sprintf("cp %s/*.js %s/g/js/",
                    $g_options{'javascript-directory'},
                    $g_options{'output-directory'});
+    print "$command\n";
     system($command);
     if ($?) {
         die "Error running $command: $!, $?";

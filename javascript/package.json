@@ -1,0 +1,17 @@
+{
+  "name": "javascript",
+  "version": "1.0.0",
+  "description": "",
+  "private": "true",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.10.2",
+    "webpack-cli": "^3.0.0"
+  },
+  "scripts": {
+    "build-dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "author": "Gabriel Deal",
+  "license": "ISC"
+}

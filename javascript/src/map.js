@@ -1,5 +1,5 @@
 var gInput = {};
-function setInput(name, value) {
+export function setInput(name, value) {
     gInput[name] = value;
 }
 
@@ -108,4 +108,7 @@ function initialize() {
     }
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+export function initializeOnLoad() {
+  google.maps.event.addDomListener(window, 'load', initialize);
+}
+

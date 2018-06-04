@@ -234,7 +234,7 @@ sub get_link_html {
 	my $image_obj = $self->get_best_picture_object();
 	if ($image_obj) {
 	    my $size = 125;
-	    $image_html = sprintf(qq(<img width="$size" onload="resizeThumbnail(this, $size)" src="%s">),
+            $image_html = sprintf(qq(<img width="$size" onload="Yellowleaf.resizeThumbnail(this, $size)" src="%s">),
 				  $image_obj->get_url());
             $image_html = $self->link_if_should_show($image_html);
 	}
@@ -935,7 +935,7 @@ sub make_reports_index_page {
 	     Scramble::Misc::make_2_column_page($report_htmls{$id}{'title'},
 						$report_links . $report_htmls{$id}{'html'} . $report_links,
 						undef,
-						'js-includes' => [ "report.js" ],
+                                                'js-includes' => [ "main.js" ], # For resizeThumbnail().
                                                 'no-add-picture' => 1,
                                                 'copyright-year' => $copyright_year,
 						'image-size' => '50%'));

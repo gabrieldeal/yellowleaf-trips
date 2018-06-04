@@ -2,6 +2,7 @@
     <div id="map" style="width: 1250px; height: 700px"></div>
 </div>
 
+<script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript">
   function resizeMap() {
       var map = document.getElementById('map');
@@ -11,8 +12,8 @@
 
   window.addEventListener('resize', resizeMap);
   resizeMap();
+  Yellowleaf.Map.initializeOnLoad();
 </script>
 
-<script type="text/javascript" src="../js/map.js"></script>
 
 
