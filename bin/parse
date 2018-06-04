@@ -356,6 +356,9 @@ sub copy_kml {
 
 sub make_javascript {
     system('cd javascript && npm run build');
+    if ($?) {
+        die "Error running webpack";
+    }
 
     my $command = sprintf("cp %s/*.js %s/g/js/",
                    $g_options{'javascript-directory'},
