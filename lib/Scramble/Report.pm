@@ -81,7 +81,6 @@ sub new {
     if ($self->should_show()) {
         foreach my $image (@$picture_objs, $self->get_map_objects()) {
             $image->set_report_url($self->get_report_page_url());
-            $image->set_pager_url(sprintf("%s?%s#", $self->get_pager_url(), $image->get_id()));
         }
     }
 
@@ -112,10 +111,6 @@ sub set_picture_objects { $_[0]->{'picture-objects'} = $_[1] }
 sub get_filename {
     my $self = shift;
     return $self->_get_required('filename') . ".html";
-}
-sub get_pager_filename {
-    my $self = shift;
-    return $self->_get_required('filename') . "_pager.html";
 }
 
 sub get_best_picture_object {
@@ -205,12 +200,6 @@ sub get_report_page_url {
     my $self = shift;
 
     return sprintf("../../g/r/%s", $self->get_filename());
-}
-
-sub get_pager_url {
-    my $self = shift;
-
-    return sprintf("../../g/r/%s", $self->get_pager_filename());
 }
 
 sub get_link_html {
@@ -353,183 +342,12 @@ sub get_map_summary_html {
     return Scramble::Misc::make_colon_line($title, join(", ", @maps));
 }
 
-sub make_pager_html {
-    my $self = shift;
-
-    my @images;
-    foreach my $image ($self->get_map_objects(), $self->get_picture_objects()) {
-	my $url = $image->get_enlarged_img_url() || $image->get_url();
-        next if $image->get_type() eq 'movie'; # The JS below assumes everything goes in an <img>.
-        push @images, { 
-			description => $image->get_description(),
-			"report-link" => $self->link_if_should_show($self->get_start_date()),
-			id => $image->get_id(),
-			src => $url,
-	              };
-    }
-    my $images_js = JSON::encode_json(\@images);
-
-    my $top_margin = 10;
-    my $html = <<EOT;
-<style>
-body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-}
-
-.pager {
-    margin-top: ${top_margin}px;
-}
-
-.left-pager-image, .right-pager-image {
-    width: 100%;
-    height: 500px;
-    border: none;
-}
-.left-pager-image {
-    margin-right: auto;
-    margin-left: 0;
-}
-.right-pager-image {
-    margin-left: auto;
-    margin-right: 0;
-}
-
-.left-pager, .right-pager {
-    position: relative;
-    z-index: 2;
-    display: block;
-    float: left;
-    width: 10%;
-    vertical-align: top;
-}
-.left-pager {
-    text-align: left;
-}
-.right-pager {
-    text-align: right;
-}
-
-.image-container {
-    position: relative;
-    z-index: -1;
-    display: block;
-    float: left;
-    width: 80%;
-    height: 100%;
-    min-height: 100px;
-}
-.image {
-    margin-left: auto;
-    margin-right: auto;
-    display:block;
-}
-</style>
-<script type="text/javascript">
-    var currentImageIndex = 0;
-    var images = $images_js;
-
-function resizeImage(img) {
-    var navbarHeight = document.getElementById('navbar').clientHeight
-    var availableHeight = window.innerHeight - navbarHeight - 2 * $top_margin;
-
-    var pagerPercentage = 10;
-    var margin = 5;
-    var availableWidth = (window.innerWidth * (100 - 2 * pagerPercentage) / 100) - 2 * margin;
-
-    var originalHeight = img.getAttribute('data-originalHeight');
-    var originalWidth = img.getAttribute('data-originalWidth');
-
-    var heightFactor = availableHeight / originalHeight;
-    var widthFactor = availableWidth / originalWidth;
-    var factor = heightFactor < widthFactor ? heightFactor : widthFactor;
-
-    img.height = originalHeight * factor;
-}
-
-function loadPage() {
-    var img = document.getElementById('page-image');
-    var imgContainer = img.parentNode;
-    imgContainer.removeChild(img);
-
-    var newImg = document.createElement('img');
-    newImg.className = 'image';
-    newImg.id = 'page-image';
-    newImg.src = images[currentImageIndex]['src'];
-    newImg.onload = function() {
-        newImg.setAttribute('data-originalHeight', newImg.clientHeight);
-        newImg.setAttribute('data-originalWidth', newImg.clientWidth);
-        resizeImage(newImg);
-    }
-    imgContainer.appendChild(newImg);
-
-    window.onresize = function() { resizeImage(newImg) };
-
-    document.getElementById('description').innerHTML = images[currentImageIndex]['description'];
-    document.getElementById('report-link').innerHTML = images[currentImageIndex]['report-link'];
-    document.getElementById("left-pager-link").style.visibility = (currentImageIndex === 0 ? 'hidden' : 'visible');
-    document.getElementById("right-pager-link").style.visibility = (currentImageIndex === images.length - 1 ? 'hidden' : 'visible');
-}
-function firstPage() {
-    var matches = /\\?(.+)#\$/.exec(window.location);
-    currentImageIndex = null;
-    if (matches !== null) {
-        var imageId = matches[1];
-        for (var i = 0; i < images.length; ++i) {
-            if (imageId === images[i].id) {
-                currentImageIndex = i;
-            }
-        }
-    }
-    if (currentImageIndex === null || currentImageIndex < 0 || currentImageIndex >= images.length) {
-        currentImageIndex = 0;
-    }
-    loadPage();
-}
-function nextPage() {
-    currentImageIndex++;
-    loadPage();
-}
-function previousPage() {
-    currentImageIndex--;
-    loadPage();
-}
-currentImageIndex</script>
-<div class="pager">
-<div class="left-pager">
-	<a id="left-pager-link" href="#" onclick="previousPage()"><img class="left-pager-image" src="../../pics/pager-previous.png" /></a>
-</div>
-<div class="image-container">
-	<img class="image" id="page-image"/>
-</div>
-<div class="right-pager">
-	<a id="right-pager-link" href="#" onclick="nextPage()"><img class="right-pager-image" src="../../pics/pager-next.png" /></a>
-	<div class="image-description" id="description"></div>
-        <br />
-	<div class="report-link" id="report-link"></div>
-</div>
-</div>
-<script type="text/javascript">
-	firstPage();
-</script>
-EOT
-
-    my $title = sprintf("%s (pictures)", $self->get_title_html());
-    Scramble::Misc::create(sprintf("r/%s", $self->get_pager_filename()),
-			   Scramble::Misc::make_1_column_page('include-header' => 1,
-							      'skip-footer' => 1,
-							      'title' => $title,
-							      'html' => $html));
-}
-
 sub make_page_html {
     my $self = shift;
     my @args = @_;
 
     eval {
 	$self->make_spare_page_html(@args);
-	$self->make_pager_html(@args);
     };
     if ($@) {
 	local $SIG{__DIE__};
@@ -710,8 +528,7 @@ EOT
 	    if ($count == 1) {
 		$cells_html .= Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
 								       'images' => [@map_objects ],
-								       'pager-links' => 1,
-								       'no-float-first' => 0,
+                                                                       'no-float-first' => 0,
 								       'no-report-link' => 1);
 		@htmls = @map_objects = ();
 	    }
@@ -720,7 +537,6 @@ EOT
 
         $cells_html .= Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
                                                                'images' => [@map_objects, @{ $section->{pictures} } ],
-							       'pager-links' => 1,
                                                                'no-float-first' => 0,
 							       'no-report-link' => 1);
         @htmls = @map_objects = ();
@@ -747,7 +563,7 @@ EOT
     Scramble::Misc::create(sprintf("r/%s", $self->get_filename()),
 			   Scramble::Misc::make_1_column_page('title' => $title, 
 							      'include-header' => 1,
-							      'html' => $html,
+                                                              'html' => $html,
                                                               'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap,
 							      'copyright-year' => $copyright_year));
 }
@@ -935,7 +751,6 @@ sub make_reports_index_page {
 	     Scramble::Misc::make_2_column_page($report_htmls{$id}{'title'},
 						$report_links . $report_htmls{$id}{'html'} . $report_links,
 						undef,
-                                                'js-includes' => [ "main.js" ], # For resizeThumbnail().
                                                 'no-add-picture' => 1,
                                                 'copyright-year' => $copyright_year,
 						'image-size' => '50%'));

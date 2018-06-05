@@ -89,8 +89,6 @@ sub get_url { sprintf("../../$g_pics_dir/%s/%s", $_[0]->get_subdirectory(), $_[0
 sub get_full_url { sprintf("http://yellowleaf.org/scramble/$g_pics_dir/%s/%s", $_[0]->get_subdirectory(), $_[0]->get_filename()) }
 sub get_report_url { $_[0]->{'report-url'} }
 sub set_report_url { $_[0]->{'report-url'} = $_[1] }
-sub get_pager_url { $_[0]->{'pager-url'} }
-sub set_pager_url { $_[0]->{'pager-url'} = $_[1] }
 sub get_should_skip_report { $_[0]->{'skip-report'} }
 sub get_type { $_[0]->{'type'} }
 
@@ -143,14 +141,6 @@ sub get_best_images {
     return @images;
 }
 
-sub get_enlarged_html_url {
-    my $self = shift;
-
-    return undef unless defined $self->get_enlarged_filename();
-
-    return "../../g/" . $self->get_enl_html_filename();
-}
-
 sub get_enlarged_img_url {
     my $self = shift;
 
@@ -201,8 +191,9 @@ sub get_img_tag {
     
     my $enlarged = $options{'enlarged'};
     my $border = (! $enlarged && $self->get_enlarged_filename()) ? 2 : 0;
-    return sprintf(qq(<img %s src="%s" alt="Image of %s" border="$border" hspace="1" vspace="1">),
+    return sprintf(qq(<img %s data-lightbox="%s" src="%s" alt="Image of %s" border="$border" hspace="1" vspace="1">),
                    (exists $options{'image-attributes'} ? $options{'image-attributes'} : ''),
+                   $self->get_enlarged_filename() || $self->get_filename(), # data-lightbox
                    $enlarged ? $self->get_enlarged_img_url() : $self->get_url(),
                    HTML::Entities::encode_entities($self->get_description()));
 }
@@ -216,14 +207,10 @@ sub get_html {
         $img_html = $self->get_video_tag(%options);
     } else {
         $img_html = $self->get_img_tag(%options);
-        if ($self->get_enlarged_html_url()) {
-            my $url;
-            if ($options{'pager-links'} && $self->get_pager_url()) {
-                $url = $self->get_pager_url();
-            } else {
-                $url = $self->get_enlarged_html_url();
-            }
-            $img_html = sprintf(qq(<a href="%s">$img_html</a>), $url);
+        if ($self->get_enlarged_img_url()) {
+            my $url = $self->get_enlarged_img_url();
+            my $title = HTML::Entities::encode_entities($self->get_description());
+            $img_html = sprintf(qq(<a data-title="$title" data-lightbox="image-group" href="%s">$img_html</a>), $url);
         }
     }
 
@@ -297,12 +284,6 @@ sub read_images_from_report {
     return @images;
 }
 
-sub make_enl_picture_pages {
-    foreach my $image (sort { cmp_date($a, $b) } $g_collection->get_all()) {
-        $image->make_enl_page();
-    }
-}
-
 sub cmp_date {
   my ($image_a, $image_b) = @_;
 
@@ -325,51 +306,6 @@ sub cmp_date {
   }
 
   return $date_a cmp $date_b;
-}
-
-sub get_enl_html_filename {
-    my $self = shift;
-
-    my $date = $self->get_date();
-    $date =~ s,/,-,g;
-    my $file = $self->get_filename();
-    $file =~ s/\.[^\.]*$//;
-
-    return "enl/$date-$file.html";
-}
-
-sub make_enl_page {
-    my $self = shift;
-
-    if (! $self->get_enlarged_filename()) {
-        return;
-    }
-
-    my $output_filename = $self->get_enl_html_filename();
-
-    my $image_html = $self->get_img_tag('enlarged' => 1);
-
-    my $description = $self->get_description() || "Untitled";
-
-    my $description_html = $description;
-    my $link_html = '';
-    if ($self->get_report_url()) {
-        $link_html = $self->get_report_link_html();
-    }
-
-    my $html = <<EOT;
-<h1>$description_html <div class="report-link">$link_html</div></h1>
-$image_html
-EOT
-
-    my $page_html
-        = Scramble::Misc::make_1_column_page('title' => $description,
-                                             'date' => $self->get_date(),
-                                             'html' => $html,
-                                             copyright => $self->get_owner(),
-                                             'no-add-picture' => 1,
-                                             'no-links-box' => 1);
-    Scramble::Misc::create($output_filename, $page_html);
 }
 
 sub n_per_date {

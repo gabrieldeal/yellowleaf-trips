@@ -293,7 +293,6 @@ sub main {
     should('link') && Scramble::Reference::make_references();
     should('list') && Scramble::List::make_lists();
     should('report') && Scramble::Report::make_all_report_pages();
-    should('picture') && Scramble::Image::make_enl_picture_pages();
     should('winter') && Scramble::Winter::make_winter_page();
     should('resume') && Scramble::Resume::make_resume_page();
     should('rss') && Scramble::Report::make_rss();
@@ -360,7 +359,7 @@ sub make_javascript {
         die "Error running webpack";
     }
 
-    my $command = sprintf("cp %s/*.js %s/g/js/",
+    my $command = sprintf("cp %s/* %s/g/js/",
                    $g_options{'javascript-directory'},
                    $g_options{'output-directory'});
     print "$command\n";

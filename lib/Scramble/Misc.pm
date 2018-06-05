@@ -414,7 +414,6 @@ sub get_multi_point_embedded_google_map_html {
     <div id="map" style="width: 333px; height: 250px"></div>
 </div>
 <a href="../m/usgs.html?$large_map_params">Larger map</a>
-<script type="text/javascript" src="../js/main.js"></script>
 <script>
     Yellowleaf.Map.initializeOnLoad();
     $small_map_javascript
@@ -449,11 +448,6 @@ sub get_header {
 
   my $body = qq(<body style="width: 100%; margin: 0" bgcolor="#f6f6f6">);
 
-  my $js_includes = '';
-  foreach my $js (@{ $options{'js-includes'} || [] }) {
-      $js_includes .= qq(<script type="text/javascript" src="../js/$js"></script>\n);
-  }  
-
   my $maps_script = '';
   if ($options{'enable-embedded-google-map'}) {
     $body = qq(<body style="width: 100%; margin: 0" bgcolor="#f6f6f6">);
@@ -479,6 +473,12 @@ EOT
 </script>
 EOM
 
+  my $gallery_script = << 'EOT';
+<script type="text/javascript">
+    Yellowleaf.Gallery.initialize();
+</script>
+EOT
+
   return <<EOT;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -487,9 +487,10 @@ EOM
     <link rel="SHORTCUT ICON" href="../../pics/favicon.ico">
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" type="text/css" href="../css/site.css" />
-    $js_includes
     $maps_script
     $google_analytics_script
+    <script type="text/javascript" src="../js/main.js"></script>
+    $gallery_script
   </head>
 $body
 EOT
@@ -823,8 +824,7 @@ sub render_images_into_flow {
 
   my @cells;
   push @cells, map { make_cell_html(content => $_) } @{ $args{'htmls'} || [] };
-  push @cells, map { $_->get_html('no-report-link' => $args{'no-report-link'},
-				  'pager-links' => $args{'pager-links'})
+  push @cells, map { $_->get_html('no-report-link' => $args{'no-report-link'})
 		 } @{ $args{'images'} };
 
   return Scramble::Misc::render_cells_into_flow(\@cells, 'no-float-first' => $args{'no-float-first'});
