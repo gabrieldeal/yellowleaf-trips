@@ -4,8 +4,8 @@
   "description": "",
   "private": "true",
   "dependencies": {
-    "jquery": "^3.3.1",
-    "lightbox2": "^2.10.0"
+    "blueimp-gallery": "^2.33.0",
+    "jquery": "^3.3.1"
   },
   "devDependencies": {
     "css-loader": "^0.28.11",

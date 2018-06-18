@@ -191,9 +191,8 @@ sub get_img_tag {
     
     my $enlarged = $options{'enlarged'};
     my $border = (! $enlarged && $self->get_enlarged_filename()) ? 2 : 0;
-    return sprintf(qq(<img %s data-lightbox="%s" src="%s" alt="Image of %s" border="$border" hspace="1" vspace="1">),
+    return sprintf(qq(<img %s src="%s" alt="Image of %s" border="$border" hspace="1" vspace="1">),
                    (exists $options{'image-attributes'} ? $options{'image-attributes'} : ''),
-                   $self->get_enlarged_filename() || $self->get_filename(), # data-lightbox
                    $enlarged ? $self->get_enlarged_img_url() : $self->get_url(),
                    HTML::Entities::encode_entities($self->get_description()));
 }
@@ -210,7 +209,7 @@ sub get_html {
         if ($self->get_enlarged_img_url()) {
             my $url = $self->get_enlarged_img_url();
             my $title = HTML::Entities::encode_entities($self->get_description());
-            $img_html = sprintf(qq(<a data-title="$title" data-lightbox="image-group" href="%s">$img_html</a>), $url);
+            $img_html = sprintf(qq(<a class="lightbox-image" title="$title" href="%s">$img_html</a>), $url);
         }
     }
 

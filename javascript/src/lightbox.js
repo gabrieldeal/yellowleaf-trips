@@ -1,13 +1,23 @@
-import Lightbox from 'lightbox2';
-import jquery from 'jquery';
-import 'lightbox2/dist/css/lightbox.min.css';
+import Blueimp from 'blueimp-gallery';
+import 'blueimp-gallery/css/blueimp-gallery.min.css';
+import './lightbox.css';
 
 export function initialize() {
-  Lightbox.option({
-    disableScrolling: true,
-    fadeDuration: 250,
-    imageFadeDuration: 250,
-    positionFromTop: 10,
-    resizeDuration: 250,
-  });
+  var imageLinks = document.getElementsByClassName('lightbox-image');
+  for (var i = 0; i < imageLinks.length; i++) {
+    var imageLink = imageLinks[i];
+
+    imageLink.onclick = function (event) {
+      event = event || window.event;
+
+      var target = event.target || event.srcElement;
+      var link = target.src ? target.parentNode : target;
+      var options = {
+        continuous: false,
+        index: link,
+        event: event,
+      };
+      Blueimp(imageLinks, options);
+    };
+  };
 }

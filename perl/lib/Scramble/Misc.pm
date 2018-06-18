@@ -422,6 +422,24 @@ sub get_multi_point_embedded_google_map_html {
 EOT
 }
 
+sub make_lightbox_html {
+    return <<EOT;
+    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+      <div class="slides"></div>
+      <h3 class="title"></h3>
+      <a class="prev">‹</a>
+      <a class="next">›</a>
+      <a class="close">×</a>
+      <a class="play-pause"></a>
+      <ol class="indicator"></ol>
+    </div>
+
+    <script type="text/javascript">
+      Yellowleaf.Lightbox.initialize();
+    </script>
+EOT
+}
+
 sub make_footer {
     my (%args) = @_;
 
@@ -439,6 +457,9 @@ sub make_footer {
     if ($args{'add-amazon-associates-html'}) {
 	push @footer_html, $g_amazon_associates_link;
     }
+
+    push @footer_html, make_lightbox_html();
+
     return sprintf(qq(<br clear="all"/><hr align=left color="black" width="90%%">%s),
                    join("<br>", @footer_html));
 }
@@ -473,12 +494,6 @@ EOT
 </script>
 EOM
 
-  my $gallery_script = << 'EOT';
-<script type="text/javascript">
-    Yellowleaf.Gallery.initialize();
-</script>
-EOT
-
   return <<EOT;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -490,7 +505,6 @@ EOT
     $maps_script
     $google_analytics_script
     <script type="text/javascript" src="../js/main.js"></script>
-    $gallery_script
   </head>
 $body
 EOT
