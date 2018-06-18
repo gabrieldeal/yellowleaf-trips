@@ -3,7 +3,7 @@
 #-*-perl-*-
 
 use strict;
-use lib './lib';
+use lib './perl/lib';
 use IO::File ();
 #use Image::IPTCInfo ();
 use Carp ();

@@ -2,7 +2,7 @@
 #-*-perl-*-
 
 use strict;
-use lib './lib';
+use lib './perl/lib';
 
 use Carp ();
 use Data::Dumper ();
