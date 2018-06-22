@@ -91,6 +91,7 @@ sub get_report_url { $_[0]->{'report-url'} }
 sub set_report_url { $_[0]->{'report-url'} = $_[1] }
 sub get_should_skip_report { $_[0]->{'skip-report'} }
 sub get_type { $_[0]->{'type'} }
+sub get_poster_time { $_[0]->{'poster-time'} }
 
 sub get_capture_date {
     my $self = shift;
@@ -179,10 +180,17 @@ sub get_video_tag {
     my $self = shift;
     my (%options) = @_;
 
+    my $poster_time = $self->get_poster_time() || "";
+    if ($poster_time) {
+        $poster_time = "#t=$poster_time";
+    }
+
     return sprintf(qq(<video width="320" height="180" controls>
-                   <source src="%s" type="video/mp4">
+                   <source src="%s%s" type="video/mp4">
                    </video>),
-                   $self->get_enlarged_img_url());
+                   $self->get_enlarged_img_url(),
+                   $poster_time);
+
 }
 
 sub get_img_tag {
