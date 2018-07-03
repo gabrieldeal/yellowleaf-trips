@@ -328,10 +328,6 @@ sub make_files_xml {
             @optional_attrs{'of', 'from'} = prompt_yes_or_no($question) ? ($of, $from) : ('', '');
         }
 
-        if ($file->{type} eq 'movie') {
-            $optional_attrs{'poster-time'} = 0;
-        }
-
         my $section_name;
         if ($file->{timestamp}) {
             my ($year, $mm, $dd) = Scramble::Time::parse_date_and_time($file->{timestamp});

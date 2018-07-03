@@ -12,9 +12,9 @@ my $g_pics_dir = "pics";
 my $g_collection = Scramble::Collection->new();
 
 sub _copy {
-    my ($file1, $file2, $dir, $target_dir) = @_;
+    my ($file1, $file2, $file3, $dir, $target_dir) = @_;
 
-    foreach my $file ($file1, $file2) {
+    foreach my $file ($file1, $file2, $file3) {
         next unless defined $file;
         my $source = "$dir/$file";
         my $target = "$target_dir/$file";
@@ -40,6 +40,7 @@ sub copy {
         File::Path::mkpath([$target_dir], 0, 0755);
         _copy($image->get_filename(),
               $image->get_enlarged_filename(),
+              $image->get_poster(),
               $image->get_source_directory(),
               $target_dir);
     }
@@ -91,7 +92,8 @@ sub get_report_url { $_[0]->{'report-url'} }
 sub set_report_url { $_[0]->{'report-url'} = $_[1] }
 sub get_should_skip_report { $_[0]->{'skip-report'} }
 sub get_type { $_[0]->{'type'} }
-sub get_poster_time { $_[0]->{'poster-time'} }
+sub get_poster { $_[0]->{'poster'} }
+sub get_poster_url { sprintf("../../$g_pics_dir/%s/%s", $_[0]->get_subdirectory(), $_[0]->get_poster()) }
 
 sub get_capture_date {
     my $self = shift;
@@ -180,16 +182,15 @@ sub get_video_tag {
     my $self = shift;
     my (%options) = @_;
 
-    my $poster_time = $self->get_poster_time() || "";
-    if ($poster_time) {
-        $poster_time = "#t=$poster_time";
+    my $poster = '';
+    if ($self->get_poster()) {
+        $poster = sprintf(qq(poster="%s" preload="none"), $self->get_poster_url());
     }
 
-    return sprintf(qq(<video width="320" height="180" controls>
-                   <source src="%s%s" type="video/mp4">
+    return sprintf(qq(<video $poster width="320" height="180" controls>
+                   <source src="%s" type="video/mp4">
                    </video>),
-                   $self->get_enlarged_img_url(),
-                   $poster_time);
+                   $self->get_enlarged_img_url());
 
 }
 
