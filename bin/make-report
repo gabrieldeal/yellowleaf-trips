@@ -361,7 +361,7 @@ sub make_kml {
 
     my @gpx_args;
     foreach my $gpx_path (@gpx_paths) {
-        push @gpx_args, ('-i', File::Spec->abs2rel($gpx_path));
+        push @gpx_args, File::Spec->abs2rel($gpx_path);
     }
 
     my $gpsconvert = File::Basename::dirname($0) . "/gpsconvert";

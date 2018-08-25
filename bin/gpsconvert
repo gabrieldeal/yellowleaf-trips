@@ -6,7 +6,6 @@ use strict;
 use File::Spec ();
 use Getopt::Long ();
 my @g_options = qw(
-		      input=s@
                       simplify
                       no-waypoints
                       output=s
@@ -32,9 +31,12 @@ sub get_options {
         exit 1;
     }
 
-    foreach my $required (qw(input output)) {
+    foreach my $required (qw(output)) {
 	die "Missing --$required" unless exists $g_options{$required};
     }
+
+    @ARGV || die "Missing input files";
+    $g_options{input} = [ @ARGV ];
 }
 
 sub main {
