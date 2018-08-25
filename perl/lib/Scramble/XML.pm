@@ -102,6 +102,8 @@ sub get_recognizable_areas_html {
     my $self = shift;
     my (%args) = @_;
 
+    return '' if defined $self->_get_optional('areas') && ! @{ $self->_get_optional('areas', 'area') };
+
     my @areas = $self->get_areas_collection()->find('is-recognizable-area' => 'true');
     return '' unless @areas;
 
