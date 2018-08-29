@@ -636,7 +636,7 @@ sub make_rss {
     my $rss = XML::RSS->new(version => '1.0');
     my $now = DateTime::Format::Mail->format_datetime(DateTime->now());
     $rss->channel(title => 'yellowleaf.org',
-		  link => 'http://yellowleaf.org/scramble/g/m/home.html',
+		  link => 'https://yellowleaf.org/scramble/g/m/home.html',
 		  language => 'en',
 		  description => 'Mountains and pictures. Pictures and mountains.',
 		  copyright => 'Copyright 2013, Gabriel Deal',
@@ -644,8 +644,8 @@ sub make_rss {
 		  lastBuildDate => $now,
 	      );
     $rss->image(title => 'yellowleaf.org',
-		url => 'http://yellowleaf.org/scramble/pics/favicon.jpg',
-		link => 'http://yellowleaf.org/scramble/g/m/home.html',
+		url => 'https://yellowleaf.org/scramble/pics/favicon.jpg',
+		link => 'https://yellowleaf.org/scramble/g/m/home.html',
 		width => 16,
 		height => 16,
 		description => "It's a snowy mountain and the sun!"
@@ -661,13 +661,13 @@ sub make_rss {
 
 	die Data::Dumper::Dumper($best_image) . "\n\n\n\n" . Data::Dumper::Dumper($report) unless $best_image->get_enlarged_img_url();
 
-	my $image_url = sprintf(qq(http://yellowleaf.org/scramble/%s),
+	my $image_url = sprintf(qq(https://yellowleaf.org/scramble/%s),
 				$best_image->get_enlarged_img_url());
 	# The "../.." in the URL was stopping Feedly from displaying
 	# an image in the feed preview.
 	$image_url =~ s{\.\./\.\./}{};
 
-        my $report_url = sprintf("http://yellowleaf.org/scramble/%s",
+        my $report_url = sprintf("https://yellowleaf.org/scramble/%s",
 				 $report->get_report_page_url());
 	$report_url =~ s{\.\./\.\./}{};
 

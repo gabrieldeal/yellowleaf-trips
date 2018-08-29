@@ -19,7 +19,7 @@ our $gSiteName = 'yellowleaf.org';
 #my $gEnableTerraserver = 0;
 
 my $g_bullet = '&#149;&nbsp;';
-my $g_amazon_associates_link = qq(<A HREF="http://www.amazon.com/exec/obidos/redirect?tag=yellowleaforg-20">In association with Amazon.</a>);
+my $g_amazon_associates_link = qq(<A HREF="https://www.amazon.com/exec/obidos/redirect?tag=yellowleaforg-20">In association with Amazon.</a>);
 
 my @g_links = ({'URL' => qq(../../g/m/home.html),
 		'name' => 'Trips',
@@ -234,7 +234,7 @@ sub get_horizontal_nav_links {
         curobj.q.value="site:www.yellowleaf.org "+curobj.qfront.value
     }
 </script>
-<form id="navbar" action="http://www.google.com/search" method="get" onSubmit="Gsitesearch(this)">
+<form id="navbar" action="https://www.google.com/search" method="get" onSubmit="Gsitesearch(this)">
     <table width="100%" bgcolor="DFF2FD" border=0 cellspacing=5 cellpadding=0><tr><td>
         $html_links
         &nbsp;&nbsp;
@@ -295,7 +295,7 @@ sub pluralize {
 sub get_target {
     my ($url) = @_;
 
-    return ($url =~ /http:/ ? q( target="_top" ) : '');
+    return ($url =~ /https?:/ ? q( target="_top" ) : '');
 }
 
 sub make_all_internal_links_page {

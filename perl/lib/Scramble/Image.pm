@@ -87,7 +87,7 @@ sub get_of { $_[0]->{'of'} } # undefined means we don't know. Empty string means
 sub get_from { $_[0]->{'from'} || '' }
 sub get_owner { $_[0]->{'owner'} }
 sub get_url { sprintf("../../$g_pics_dir/%s/%s", $_[0]->get_subdirectory(), $_[0]->get_filename()) }
-sub get_full_url { sprintf("http://yellowleaf.org/scramble/$g_pics_dir/%s/%s", $_[0]->get_subdirectory(), $_[0]->get_filename()) }
+sub get_full_url { sprintf("https://yellowleaf.org/scramble/$g_pics_dir/%s/%s", $_[0]->get_subdirectory(), $_[0]->get_filename()) }
 sub get_report_url { $_[0]->{'report-url'} }
 sub set_report_url { $_[0]->{'report-url'} = $_[1] }
 sub get_should_skip_report { $_[0]->{'skip-report'} }
