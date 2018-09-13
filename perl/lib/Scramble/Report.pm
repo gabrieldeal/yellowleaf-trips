@@ -531,6 +531,7 @@ EOT
                                                                        'no-float-first' => 0,
 								       'no-report-link' => 1);
 		@htmls = @map_objects = ();
+                $cells_html .= '<br clear="all" />';
 	    }
             $cells_html .= qq(<h2>$section->{name}</h2>);
 	}
@@ -539,6 +540,7 @@ EOT
                                                                'images' => [@map_objects, @{ $section->{pictures} } ],
                                                                'no-float-first' => 0,
 							       'no-report-link' => 1);
+        $cells_html .= '<br clear="all" />';
         @htmls = @map_objects = ();
         $count++;
     }
