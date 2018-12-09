@@ -1,6 +1,8 @@
-import resizeThumbnail from './resizeThumbnail.js';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Lightbox from './lightbox.js';
 import * as Map from './map.js';
+import resizeThumbnail from './resizeThumbnail.js';
 
 export {
   Lightbox,
