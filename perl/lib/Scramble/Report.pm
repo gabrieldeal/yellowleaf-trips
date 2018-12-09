@@ -201,7 +201,7 @@ sub get_report_page_url {
     return sprintf("../../g/r/%s", $self->get_filename());
 }
 
-sub get_link_html {
+sub get_summary_date {
     my $self = shift;
 
     my $date = $self->get_start_date();
@@ -212,25 +212,57 @@ sub get_link_html {
         $date .= " ($num_days days)";
     }
 
-    my $name = $self->link_if_should_show($self->get_name());
+    return $date;
+}
+
+sub get_summary_name {
+    my $self = shift;
+    my ($name) = @_;
+
+    $name = $self->get_name() unless $name;
+    $name = $self->link_if_should_show($name);
     if ($self->get_state() ne 'done') {
 	$name .= sprintf(" (%s)", $self->get_state());
     }
 
-    my $image_html = '';
-    if ($self->should_show()) {
-	my $image_obj = $self->get_best_picture_object();
-	if ($image_obj) {
-	    my $size = 125;
-            $image_html = sprintf(qq(<img width="$size" onload="Yellowleaf.resizeThumbnail(this, $size)" src="%s">),
-				  $image_obj->get_url());
+    return $name;
+}
+
+sub get_sorted_images {
+    my $self = shift;
+
+    return () unless $self->should_show();
+    return sort { $a->get_rating() <=> $b->get_rating() } $self->get_picture_objects();
+}
+
+sub get_summary_images {
+    my $self = shift;
+    my %options = @_;
+
+    my $size = $options{size} || 125;
+
+    my @image_htmls;
+    foreach my $image_obj ($self->get_sorted_images()) {
+        if ($image_obj) {
+            my $image_html = sprintf(qq(<img width="$size" onload="Yellowleaf.resizeThumbnail(this, $size)" src="%s">),
+                                     $image_obj->get_url());
             $image_html = $self->link_if_should_show($image_html);
-	}
+            push @image_htmls, $image_html;
+        }
     }
 
+    return @image_htmls;
+}
+
+sub get_link_html {
+    my $self = shift;
+
+    my $date = $self->get_summary_date();
+    my $name = $self->get_summary_name();
+    my $image_html = ($self->get_summary_images())[0] || '';
     my $type = $self->get_type();
 
-    my $html = <<EOT;
+    return <<EOT;
 <div class="report-thumbnail">
     <div class="report-thumbnail-image">$image_html</div>
     <div class="report-thumbnail-title">$name</div>
@@ -238,8 +270,6 @@ sub get_link_html {
     <div class="report-thumbnail-type">$type</div>
 </div>
 EOT
-
-    return $html;
 }
 
 sub get_embedded_google_map_html {
@@ -555,7 +585,6 @@ EOT
     }
 
     my $html = <<EOT;
-<h1>$title</h1>
 $route
 $cells_html
 EOT
@@ -692,6 +721,31 @@ sub make_rss {
     Scramble::Misc::create("r/rss.xml", $rss->as_string());
 }
 
+sub get_summary_card {
+    my $self = shift;
+
+    my $type = $self->get_type();
+    my $name = $self->get_name();
+    $name .= " $type" unless $name =~ /${type}$/;
+    $name = $self->get_summary_name($name);
+    my $date = $self->get_summary_date();
+
+    my $count = 0;
+    my @images = ($self->get_sorted_images())[0..2];
+    @images = grep { $_ } @images;
+    my $image_htmls = Scramble::Misc::render_images_into_flow(images => \@images,
+                                                              'no-description' => 1,
+                                                              'no-lightbox' => 1,
+                                                              'no-report-link' => 1);
+
+    return <<EOT;
+        <h2 class="report-summary-name">$name</h2>
+        <div class="report-summary-date">$date</div>
+        $image_htmls
+EOT
+}
+
+# home.html
 sub make_reports_index_page {
     my %report_htmls;
     my $count = 0;
@@ -700,14 +754,11 @@ sub make_reports_index_page {
 	my ($yyyy) = $report->get_parsed_start_date();
         $latest_year = $yyyy if $yyyy > $latest_year;
 
-	my $html = $report->get_link_html();
+        my $html = $report->get_summary_card();
         $report_htmls{$yyyy} .= $html;
         if ($count++ < $g_reports_on_index_page) {
             $report_htmls{'index'} .= $html;
         }
-    }
-    foreach my $id (keys %report_htmls) {
-	$report_htmls{$id} = sprintf(qq(<div class="report-thumbnails">%s</div>), $report_htmls{$id});
     }
 
     my @link_htmls;
@@ -716,7 +767,7 @@ sub make_reports_index_page {
         if ($id eq 'index') {
 	    $title = "Most Recent Trips";
         } else {
-	    push @link_htmls, qq(<a href="../../g/r/$id.html">$id</a>);
+            push @link_htmls, qq(<a class="dropdown-item" href="../../g/r/$id.html">$id</a>);
 	    $title = "$id Trips";
 	}
 	$report_htmls{$id} = { 'title' => $title,
@@ -724,9 +775,8 @@ sub make_reports_index_page {
 			       'subdirectory' => "r",
 			   };
     }
-    @link_htmls = sort @link_htmls;
-    my $report_links = sprintf("%s<br>",
-			       join(", ", @link_htmls));
+    @link_htmls = reverse sort @link_htmls;
+    my $report_links = Scramble::Misc::make_dropdown(@link_htmls);
 
     # The home page slowly became almost exactly the same as the
     # reports index page.
@@ -738,14 +788,18 @@ sub make_reports_index_page {
         if ($id !~ /^\d+$/) {
             $copyright_year = $latest_year;
         }
-	Scramble::Misc::create
+        my $html = <<EOT;
+$report_links
+$report_htmls{$id}{'html'}
+<br />
+$report_links
+EOT
+        Scramble::Misc::create
 	    ("$report_htmls{$id}{subdirectory}/$id.html", 
-	     Scramble::Misc::make_2_column_page($report_htmls{$id}{'title'},
-						$report_links . $report_htmls{$id}{'html'} . $report_links,
-						undef,
-                                                'no-add-picture' => 1,
-                                                'copyright-year' => $copyright_year,
-						'image-size' => '50%'));
+             Scramble::Misc::make_1_column_page(html => $html,
+                                                title => $report_htmls{$id}{'title'},
+                                                'include-header' => 1,
+                                                'copyright-year' => $copyright_year));
     }
 }
 

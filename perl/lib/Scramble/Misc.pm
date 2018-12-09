@@ -34,7 +34,7 @@ my @g_links = ({'URL' => qq(../../g/m/home.html),
 		 'name' => 'References',
 	     },
 	       { 'URL' => qq(mailto:scramble\@yellowleaf.org),
-		 'name' => 'Mail me',
+                 'name' => 'Contact',
 	     },
                );
 
@@ -174,11 +174,10 @@ sub get_horizontal_nav_links {
         } else {
             $name = $link->{'html'};
         }
-	push @html_links, sprintf(qq(<a href="%s">%s</a>),
+        push @html_links, sprintf(qq(<a class="nav-link nav-item text-dark" href="%s">%s</a>),
                                   $link->{'URL'},
                                   $name);
     }
-    my $html_links = join(" | ", @html_links);
 
     my $html = <<EOT;
 <script type="text/javascript">
@@ -186,17 +185,31 @@ sub get_horizontal_nav_links {
         curobj.q.value="site:www.yellowleaf.org "+curobj.qfront.value
     }
 </script>
-<form id="navbar" action="https://www.google.com/search" method="get" onSubmit="Gsitesearch(this)">
-    <table width="100%" bgcolor="DFF2FD" border=0 cellspacing=5 cellpadding=0><tr><td>
-        $html_links
-        &nbsp;&nbsp;
-        <div style="display: inline-block">
-            <input name="q" type="hidden">
-            <input name="qfront" type="text" style="width: 180px">
-            <input type="submit" value="Search">
-        </div>
-    </td></tr></table>
-</form>
+<nav class="navbar navbar-expand-lg navbar-light custom-navbar" style="background-color: #DFF2FD;">
+  <button class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="navbar-nav mr-auto">
+        @html_links
+    </div>
+    <form class="form-inline my-2 my-lg-0"
+          id="navbar"
+          action="https://www.google.com/search"
+          method="get"
+          onSubmit="Gsitesearch(this)">
+        <input name="q" type="hidden">
+        <input name="qfront" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</nav>
 EOT
 
     return $html;
@@ -286,14 +299,16 @@ sub make_1_column_page {
     my $html = $args{'html'};
     my $header = get_header(%args);
 
-    my $footer_html = '';
-    if (! $args{'skip-footer'}) {
-        $footer_html = make_footer(%args);
-    }
+    my $footer_html = make_footer(%args);
 
     my $links = '';
     if ($args{'include-header'}) {
         $links = get_horizontal_nav_links();
+    }
+
+    my $title = '';
+    if ($args{title}) {
+        $title = qq(<h1>$args{title}</h1>);
     }
 
     return <<EOT;
@@ -301,6 +316,7 @@ $header
 $links
 
 <div style="margin: 5px">
+    $title
     $html
 </div>
 
@@ -405,8 +421,22 @@ sub make_footer {
 
     push @footer_html, make_lightbox_html();
 
-    return sprintf(qq(<br clear="all"/><hr align=left color="black" width="90%%">%s),
-                   join("<br>", @footer_html));
+    my $footer_html = join("<br>", @footer_html);
+
+    return <<EOT;
+        <br clear="all" />
+        <hr align=left color="black" width="90%%" />
+        $footer_html
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+                crossorigin="anonymous"></script>
+EOT
 }
 
 sub get_header {
@@ -441,14 +471,17 @@ EOM
 
   return <<EOT;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="en">
 <head>
     <title>$options{title}</title>
     <link rel="SHORTCUT ICON" href="../../pics/favicon.ico">
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="../css/site.css" />
     $maps_script
     $google_analytics_script
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script type="text/javascript" src="../js/main.js"></script>
   </head>
 $body
@@ -684,6 +717,25 @@ sub format_elevation_short {
     return join ", ", @formatted_elevations;
 }
 
+sub make_dropdown {
+    my @items = @_;
+
+    return <<EOT;
+<div class="dropright">
+    <button class="btn btn-secondary btn-sm dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false">
+        Change Year
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        @items
+    </div>
+</div>
+EOT
+}
 
 ######################################################################
 # Config
@@ -753,40 +805,40 @@ sub make_cell_html {
   my $link = $args{link} || '';
 
   return <<EOT;
-<table border="0" style="display: inline-block; vertical-align: text-top;">
-    <caption align="bottom" style="text-align: left">
+<figure style="display: table;">
+    $contents_html
+    <figcaption style="display: table-caption; caption-side: bottom ;">
         <div class="cell-description">$description</div>
         <div class="report-link">$link</div>
-    </caption>
-    <tr>
-        <td>$contents_html</td>
-    </tr>
-</table>
+    </figcaption>
+</figure>
 EOT
 }
 sub render_cells_into_flow {
   my ($htmls, %opts) = @_;
 
-  my $ul_style = $opts{'no-float-first'} ? '' : 'float: left;';
+  return '' unless @$htmls;
 
-  # The first one needs to float left because it is likely to be a large table.
-  # Floating all the rest left causes odd display in IE.
-  return (qq(<ul style="padding: 0; margin: 0;">\n)
-	  . qq(    <li style="$ul_style display: inline-block; padding: 5px;">)
-	  . join(qq(</li>\n    <li style="display: inline-block; padding: 5px;">), @$htmls)
-	  . "</li>\n"
+  my $floated_class = $opts{'no-float-first'} ? '' : 'flow-floated-list-item';
+
+  return (qq(<ul class="flow-list">)
+          . qq(<li class="$floated_class flow-list-item">)
+          . join(qq(</li><li class="flow-list-item">), @$htmls)
+          . "</li>\n"
 	  . "</ul>");
 }
 
 sub render_images_into_flow {
   my (%args) = @_;
 
+  my $no_float_first = delete $args{'no-float-first'};
+
   my @cells;
   push @cells, map { make_cell_html(content => $_) } @{ $args{'htmls'} || [] };
-  push @cells, map { $_->get_html('no-report-link' => $args{'no-report-link'})
+  push @cells, map { $_->get_html(%args)
 		 } @{ $args{'images'} };
 
-  return Scramble::Misc::render_cells_into_flow(\@cells, 'no-float-first' => $args{'no-float-first'});
+  return Scramble::Misc::render_cells_into_flow(\@cells, 'no-float-first' => $no_float_first);
 }
 
 sub sanitize_for_filename {

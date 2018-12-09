@@ -337,7 +337,6 @@ $max_images = 100;
     my $title = $list_xml->{'name'};
 
     my $html = <<EOT;
-<h1>$title</h1>
 $note
 $images_html
 EOT
@@ -374,8 +373,9 @@ $index_html
 EOT
 
     Scramble::Misc::create("li/index.html", 
-			   Scramble::Misc::make_2_column_page("Peak Lists",
-							      $index_html));
+                           Scramble::Misc::make_1_column_page(title => "Peak Lists",
+                                                              html => $index_html,
+                                                              'include-header' => 1));
 }
 
 sub make_lists_html {

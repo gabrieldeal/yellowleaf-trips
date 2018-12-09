@@ -319,15 +319,11 @@ EOT
 							     images => [ Scramble::Image::get_best_images($self->get_images) ]);
 
     my $title = $self->get_name();
-    my $html = <<EOT;
-<h1>$title</h1>
-$cells_html
-EOT
 
     Scramble::Misc::create($self->get_relative_path(),
 			   Scramble::Misc::make_1_column_page(title => $title,
 							      'include-header' => 1,
-							      'html' => $html,
+                                                              'html' => $cells_html,
                                                               'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap));
 }
 

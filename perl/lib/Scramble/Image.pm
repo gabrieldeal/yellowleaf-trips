@@ -216,13 +216,24 @@ sub get_html {
     } else {
         $img_html = $self->get_img_tag(%options);
         if ($self->get_enlarged_img_url()) {
+            my $css_class = 'lightbox-image';
             my $url = $self->get_enlarged_img_url();
+            if ($options{'no-lightbox'}) {
+                $css_class = '';
+                $url = $self->get_report_url();
+            }
+
             my $title = HTML::Entities::encode_entities($self->get_description());
-            $img_html = sprintf(qq(<a class="lightbox-image" title="$title" href="%s">$img_html</a>), $url);
+
+            $img_html = sprintf(qq(<a class="$css_class" title="$title" href="%s">$img_html</a>), $url);
         }
     }
 
-    my $description = Scramble::Misc::htmlify($self->get_description());
+    my $description = '';
+    if (! $options{'no-description'}) {
+        $description = Scramble::Misc::htmlify($self->get_description());
+    }
+
     my $report_link = '';
     if ($self->get_report_url() && ! $options{'no-report-link'}) {
 	$report_link = $self->get_report_link_html();
@@ -362,23 +373,23 @@ sub make_images_by_year_page {
     my $filename_format = "m/p%s.html";
 
     my @header;
-    foreach my $year (sort keys %pictures) {
-        push @header, sprintf(qq(<a href="../$filename_format">$year</a>),
+    foreach my $year (reverse sort keys %pictures) {
+        push @header, sprintf(qq(<a class="dropdown-item" href="../$filename_format">$year</a>),
                               $pictures{$year}{name});
     }
-    my $header = join(", ", @header) . "<p>";
+    my $header = Scramble::Misc::make_dropdown(@header);
 
     foreach my $year (sort keys %pictures) {
 	my $images_html = Scramble::Misc::render_images_into_flow(images => $pictures{$year}{images});
 	my $title = "My Favorite Photos of $year";
 
 	my $html = <<EOT;
-<h1>$title</h1>
 $header
+<br />
+
 $images_html
 
 <br clear="both">
-<br>
 $header
 EOT
 

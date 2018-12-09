@@ -32,6 +32,7 @@ local $^W = 1;
 local $| = 1;
 local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
 local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
+local $ENV{NODE_ENV} ||= 'production';
 
 my @g_options = qw(
                    data-directory=s
@@ -353,7 +354,10 @@ sub copy_kml {
 }
 
 sub make_javascript {
-    system('cd javascript && npm run build');
+    my $target = $ENV{'NODE_ENV'} eq 'development' ? 'build-dev' : 'build';
+
+
+    system("cd javascript && npm run $target");
     if ($?) {
         die "Error running webpack";
     }

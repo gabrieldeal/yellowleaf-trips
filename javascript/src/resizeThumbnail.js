@@ -1,7 +1,7 @@
 "use strict";
 
 export default function resizeThumbnail(img, size) {
-    if (img.clientWidth > img.clientHeight) {
+    if (img.width > img.height) {
 	img.width = size;
 	img.removeAttribute("height");
     } else {

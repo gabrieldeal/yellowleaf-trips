@@ -606,15 +606,10 @@ EOT
     my $cells_html = Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
 							     'images' => [ $self->get_picture_objects() ]);
 
-    my $html = <<EOT;
-<h1>$title$location_name_note</h1>
-$cells_html
-EOT
-
     Scramble::Misc::create(sprintf("l/%s", $self->get_filename()),
-			   Scramble::Misc::make_1_column_page(title => $title,
+                           Scramble::Misc::make_1_column_page(title => "$title$location_name_note",
 							      'include-header' => 1,
-							      html => $html,
+                                                              html => $cells_html,
 							      'no-add-picture' => 1,
                                                               'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap));
 }

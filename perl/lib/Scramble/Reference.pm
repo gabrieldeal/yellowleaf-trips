@@ -74,8 +74,9 @@ sub make_references {
     }
 
     Scramble::Misc::create("m/references.html",
-			   Scramble::Misc::make_2_column_page("Links",
-							      qq(<ul>$references_html</ul>)));
+                           Scramble::Misc::make_1_column_page(title => "Links",
+                                                              html => qq(<ul>$references_html</ul>),
+                                                              'include-header' => 1));
 }
 
 sub get_map_htmls {
