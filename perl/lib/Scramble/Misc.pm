@@ -36,10 +36,7 @@ my @g_links = ({'URL' => qq(../../g/m/home.html),
 	       { 'URL' => qq(mailto:scramble\@yellowleaf.org),
 		 'name' => 'Mail me',
 	     },
-             { 'URL' => qq(../../g/r/rss.xml),
-		 'html' => 'RSS&nbsp;<img border=0 alt="" src=../../pics/rss.png>',
-	     },
-	       );
+               );
 
 =head1 Inserting links into text
 
