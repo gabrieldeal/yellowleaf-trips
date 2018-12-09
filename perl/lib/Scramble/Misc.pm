@@ -819,13 +819,9 @@ sub render_cells_into_flow {
 
   return '' unless @$htmls;
 
-  my $floated_class = $opts{'no-float-first'} ? '' : 'flow-floated-list-item';
-
   return (qq(<ul class="flow-list">)
-          . qq(<li class="$floated_class flow-list-item">)
-          . join(qq(</li><li class="flow-list-item">), @$htmls)
-          . "</li>\n"
-	  . "</ul>");
+          . join("", map { qq(<li class="flow-list-item">$_</li>) } @$htmls)
+          . "</ul>");
 }
 
 sub render_images_into_flow {
