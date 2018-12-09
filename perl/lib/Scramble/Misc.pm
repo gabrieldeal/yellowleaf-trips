@@ -385,7 +385,7 @@ EOT
 
 sub make_lightbox_html {
     return <<EOT;
-    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+    <div id="blueimp-gallery" class="custom-blueimp blueimp-gallery blueimp-gallery-controls">
       <div class="slides"></div>
       <h3 class="title"></h3>
       <a class="prev">‹</a>
