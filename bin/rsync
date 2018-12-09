@@ -40,6 +40,7 @@ rsync --size-only \
       "$html_dir/" \
       gabrielx1@192.186.234.160:~/public_html/scramble
 
+echo
 echo "Ready to sync everything else? (ctrl-c to abort)"
 read pauseme
 rsync --delete \
