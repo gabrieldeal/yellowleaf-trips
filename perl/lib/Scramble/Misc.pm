@@ -24,15 +24,7 @@ my $g_amazon_associates_link = qq(<A HREF="https://www.amazon.com/exec/obidos/re
 my @g_links = ({'URL' => qq(../../g/m/home.html),
 		'name' => 'Trips',
 	    },
-	       {'URL' => qq(../../g/r/planned.html),
-		'name' => 'Planned trips',
-		'no-display' => 1,
-	    },
-	       {'URL' => qq(../../g/r/all.html),
-		'name' => 'All trip reports',
-		'no-display' => 1,
-	    },
-	       {'URL' => qq(../../g/m/geekery.html),
+               {'URL' => qq(../../g/m/geekery.html),
 		'name' => 'Geekery',
 		'no-display' => 1,
 	    },
@@ -189,28 +181,6 @@ sub dedup {
     return @deduped;
 }
 
-sub get_links_html {
-    my ($only_get_displayable) = @_;
-
-    my @links = ($only_get_displayable
-		 ? grep { ! $_->{'no-display'} } @g_links
-		 : @g_links);
-
-    my $first = shift @links;
-    my $html = sprintf(qq(<a href="%s">%s</a>),
-		       $first->{'URL'},
-		       $first->{'name'} || $first->{'html'});
-    foreach my $link (@links) {
-	my $name = $link->{'name'} || $link->{'html'};
-	$name =~ s/ /&nbsp;/g;
-	$html .= sprintf(qq($g_bullet<a href="%s">%s</a><br>),
-			 $link->{'URL'},
-			 $name);
-    }
-
-    return "$html";
-}
-
 sub get_horizontal_nav_links {
     my @links = grep { ! $_->{'no-display'} } @g_links;
 
@@ -296,13 +266,6 @@ sub get_target {
     my ($url) = @_;
 
     return ($url =~ /https?:/ ? q( target="_top" ) : '');
-}
-
-sub make_all_internal_links_page {
-    create("m/private.html", 
-	   make_2_column_page("Private",
-			      get_links_html()));
-			      
 }
 
 sub make_usgs_quad_link {

@@ -50,7 +50,6 @@ sub nlvl {
 sub get_stats {
     my %stats;
     foreach my $report (Scramble::Report::get_all()) {
-	next if $report->is_planned();
 	my $date = $report->get_start_date();
 	my ($year) = ($date =~ /^(\d\d\d\d)\//);
 	my $gain = $report->get_waypoints()->get_elevation_gain("ascending|descending");

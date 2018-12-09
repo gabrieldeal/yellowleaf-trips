@@ -99,7 +99,6 @@ sub get_name { $_[0]->_get_required('name') }
 sub get_locations { @{ $_[0]->_get_optional('locations', 'location') || [] } }
 sub get_location_objects { @{ $_[0]->{'location-objects'} } }
 sub get_state { $_[0]->_get_optional('state') || "done" }
-sub is_planned { $_[0]->get_state() eq 'planned' }
 sub get_route { $_[0]->_get_optional_content('description') }
 sub get_rock_routes { @{ $_[0]->_get_optional('rock-routes', 'rock-route') || [] } }
 sub get_kml { $_[0]->{kml} }
@@ -702,15 +701,10 @@ sub make_reports_index_page {
         $latest_year = $yyyy if $yyyy > $latest_year;
 
 	my $html = $report->get_link_html();
-	if ($report->get_state() eq 'planned') {
-	    $report_htmls{'planned'} .= $html;
-	} else {
-	    $report_htmls{'all'} .= $html;
-	    $report_htmls{$yyyy} .= $html;
-	    if ($count++ < $g_reports_on_index_page) {
-		$report_htmls{'index'} .= $html;
-	    }
-	}
+        $report_htmls{$yyyy} .= $html;
+        if ($count++ < $g_reports_on_index_page) {
+            $report_htmls{'index'} .= $html;
+        }
     }
     foreach my $id (keys %report_htmls) {
 	$report_htmls{$id} = sprintf(qq(<div class="report-thumbnails">%s</div>), $report_htmls{$id});
@@ -719,13 +713,9 @@ sub make_reports_index_page {
     my @link_htmls;
     foreach my $id (keys %report_htmls) {
 	my $title;
-	if ($id eq 'planned') {
-	    $title = "Planned Trips";
-	} elsif ($id eq 'index') {
+        if ($id eq 'index') {
 	    $title = "Most Recent Trips";
-	} elsif ($id eq 'all') {
-	    $title = "All Trips";
-	} else {
+        } else {
 	    push @link_htmls, qq(<a href="../../g/r/$id.html">$id</a>);
 	    $title = "$id Trips";
 	}
@@ -764,7 +754,6 @@ sub get_reports_for_location {
 
     my @retval;
     foreach my $report (get_all()) {
-	next if $report->is_planned();
 	push @retval, $report if grep { $location->equals($_) } $report->get_location_objects();
     }
     return @retval;

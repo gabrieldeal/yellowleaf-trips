@@ -180,7 +180,6 @@ sub get_reports {
 
     if (! %g_area_id_to_reports) {
 	foreach my $report (Scramble::Report::get_all()) {
-	    next if $report->get_state() eq 'planned';
 	    foreach my $area ($report->get_areas_collection()->get_all()) {
 		push @{ $g_area_id_to_reports{$area->get_id()} }, $report;
 	    }

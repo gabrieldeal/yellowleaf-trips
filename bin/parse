@@ -300,7 +300,6 @@ sub main {
     should('locations-index') && Scramble::Location::make_locations_index();
     should('picture-by-year') && Scramble::Image::make_images_by_year_page(); # Favorites
     (should('quad-layout') || should('area')) && Scramble::Area::Quad::make_quad_layout();
-    should('private') && Scramble::Misc::make_all_internal_links_page();
     should('quad') && Scramble::Location::make_quads();
     should('location') && Scramble::Location::make_locations();
     should('area') && Scramble::Area::make_pages();

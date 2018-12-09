@@ -11,8 +11,6 @@ sub make_resume_page {
 EOT
 
     foreach my $report (Scramble::Report::get_all()) {
-        next if $report->get_state() eq 'planned';
-
         next if $in_scramble_mode && $report->get_type() !~ /scramble/i;
         next if $in_scramble_mode && $report->get_state() eq 'attempted';
 
