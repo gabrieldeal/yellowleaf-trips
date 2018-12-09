@@ -24,30 +24,17 @@ my $g_amazon_associates_link = qq(<A HREF="https://www.amazon.com/exec/obidos/re
 my @g_links = ({'URL' => qq(../../g/m/home.html),
 		'name' => 'Trips',
 	    },
-               {'URL' => qq(../../g/m/geekery.html),
-		'name' => 'Geekery',
-		'no-display' => 1,
-	    },
-	       { URL => qq(../../g/m/pcurrent.html),
+               { URL => qq(../../g/m/pcurrent.html),
 		 'name' => 'Favorite photos',
-                 'no-display' => 0,
-	     },
+             },
                { 'URL' => qq(../../g/li/index.html),
 		 'name' => 'Peak lists',
 	     },
-	       { 'URL' => qq(../../g/m/quad-layout.html),
-		 'name' => 'USGS quads',
-		 'no-display' => 1,
-	     },
-	       { 'URL' => qq(../../g/m/references.html),
+               { 'URL' => qq(../../g/m/references.html),
 		 'name' => 'References',
 	     },
 	       { 'URL' => qq(mailto:scramble\@yellowleaf.org),
 		 'name' => 'Mail me',
-	     },
-	       { 'URL' => qq(../../g/a/area-index.html),
-		 'name' => 'Areas',
-		 'no-display' => 1,
 	     },
              { 'URL' => qq(../../g/r/rss.xml),
 		 'html' => 'RSS&nbsp;<img border=0 alt="" src=../../pics/rss.png>',
@@ -182,10 +169,8 @@ sub dedup {
 }
 
 sub get_horizontal_nav_links {
-    my @links = grep { ! $_->{'no-display'} } @g_links;
-
     my @html_links;
-    foreach my $link (@links) {
+    foreach my $link (@g_links) {
 	my $name = $link->{'name'};
         if (defined $name) {
             $name =~ s/ /&nbsp;/g;
