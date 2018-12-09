@@ -473,6 +473,7 @@ EOM
     $maps_script
     $google_analytics_script
     <script type="text/javascript" src="../js/main.js"></script>
+    <script type="text/javascript" src="../js/async.js" async></script>
   </head>
 $body
 EOT

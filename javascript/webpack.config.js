@@ -18,7 +18,12 @@ module.exports = {
       }
     ],
   },
+  entry: {
+    main: './src/index.js',
+    async: './src/async.js'
+  },
   output: {
+    filename: '[name].js',
     library: 'Yellowleaf',
     libraryTarget: 'window'
   },
