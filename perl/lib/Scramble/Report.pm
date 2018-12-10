@@ -792,7 +792,7 @@ sub make_reports_index_page {
             $copyright_year = $latest_year;
         }
 
-        my $template = HTML::Template->new(filename => 'perl/template/report/index.html');
+        my $template = Scramble::Template::create('report/index');
         $template->param(change_year_dropdown_items => \@reports_by_year_dropdown_items,
                          body_html => $report_htmls{$id}{'html'},
                          title => $report_htmls{$id}{'title'});
