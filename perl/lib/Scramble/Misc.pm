@@ -786,7 +786,7 @@ sub make_cell_html {
 EOT
 }
 sub render_cells_into_flow {
-  my ($htmls, %opts) = @_;
+  my ($htmls) = @_;
 
   return '' unless @$htmls;
 
@@ -798,14 +798,12 @@ sub render_cells_into_flow {
 sub render_images_into_flow {
   my (%args) = @_;
 
-  my $no_float_first = delete $args{'no-float-first'};
-
   my @cells;
   push @cells, map { make_cell_html(content => $_) } @{ $args{'htmls'} || [] };
   push @cells, map { $_->get_html(%args)
 		 } @{ $args{'images'} };
 
-  return Scramble::Misc::render_cells_into_flow(\@cells, 'no-float-first' => $no_float_first);
+  return Scramble::Misc::render_cells_into_flow(\@cells);
 }
 
 sub sanitize_for_filename {

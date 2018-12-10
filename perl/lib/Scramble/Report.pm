@@ -558,8 +558,7 @@ EOT
 	    if ($count == 1) {
 		$cells_html .= Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
 								       'images' => [@map_objects ],
-                                                                       'no-float-first' => 0,
-								       'no-report-link' => 1);
+                                                                       'no-report-link' => 1);
 		@htmls = @map_objects = ();
                 $cells_html .= '<br clear="all" />';
 	    }
@@ -568,8 +567,7 @@ EOT
 
         $cells_html .= Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
                                                                'images' => [@map_objects, @{ $section->{pictures} } ],
-                                                               'no-float-first' => 0,
-							       'no-report-link' => 1);
+                                                               'no-report-link' => 1);
         $cells_html .= '<br clear="all" />';
         @htmls = @map_objects = ();
         $count++;
