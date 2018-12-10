@@ -780,7 +780,6 @@ sub make_reports_index_page {
 			   };
     }
     @reports_by_year_dropdown_items = reverse @reports_by_year_dropdown_items;
-    my $report_links = Scramble::Template::dropdown_button(@reports_by_year_dropdown_items);
 
     # The home page slowly became almost exactly the same as the
     # reports index page.
@@ -792,15 +791,14 @@ sub make_reports_index_page {
         if ($id !~ /^\d+$/) {
             $copyright_year = $latest_year;
         }
-        my $html = <<EOT;
-$report_links
-$report_htmls{$id}{'html'}
-<br />
-$report_links
-EOT
+
+        my $template = HTML::Template->new(filename => 'perl/template/report/index.html');
+        $template->param(change_year_dropdown_items => \@reports_by_year_dropdown_items,
+                         body_html => $report_htmls{$id}{'html'});
+        
         Scramble::Misc::create
 	    ("$report_htmls{$id}{subdirectory}/$id.html", 
-             Scramble::Misc::make_1_column_page(html => $html,
+             Scramble::Misc::make_1_column_page(html => $template->output(),
                                                 title => $report_htmls{$id}{'title'},
                                                 'include-header' => 1,
                                                 'copyright-year' => $copyright_year));

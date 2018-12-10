@@ -380,28 +380,21 @@ sub make_images_by_year_page {
             text => $year
         };
     }
-    my $change_year_dropdown_items = Scramble::Template::dropdown_button(@change_year_dropdown_items);
 
     foreach my $year (sort keys %pictures) {
 	my $images_html = Scramble::Misc::render_images_into_flow(images => $pictures{$year}{images});
 	my $title = "My Favorite Photos of $year";
 
-	my $html = <<EOT;
-$change_year_dropdown_items
-<br />
-
-$images_html
-
-<br clear="both">
-$change_year_dropdown_items
-EOT
+        my $template = HTML::Template->new(filename => 'perl/template/image/favorites.html');
+        $template->param(change_year_dropdown_items => \@change_year_dropdown_items,
+                         images_html => $images_html);
 
 	my $name = $pictures{$year}{name};
         my $filename = sprintf($filename_format, $name);
 	Scramble::Misc::create($filename,
 			       Scramble::Misc::make_1_column_page(title => $title,
 								  'include-header' => 1,
-								  html => $html));
+                                                                  html => $template->output()));
     }
 }
 
