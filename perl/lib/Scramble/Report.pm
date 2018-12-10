@@ -794,13 +794,15 @@ sub make_reports_index_page {
 
         my $template = HTML::Template->new(filename => 'perl/template/report/index.html');
         $template->param(change_year_dropdown_items => \@reports_by_year_dropdown_items,
-                         body_html => $report_htmls{$id}{'html'});
+                         body_html => $report_htmls{$id}{'html'},
+                         title => $report_htmls{$id}{'title'});
         
         Scramble::Misc::create
 	    ("$report_htmls{$id}{subdirectory}/$id.html", 
              Scramble::Misc::make_1_column_page(html => $template->output(),
                                                 title => $report_htmls{$id}{'title'},
                                                 'include-header' => 1,
+                                                'no-title' => 1,
                                                 'copyright-year' => $copyright_year));
     }
 }

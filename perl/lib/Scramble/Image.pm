@@ -387,13 +387,15 @@ sub make_images_by_year_page {
 
         my $template = HTML::Template->new(filename => 'perl/template/image/favorites.html');
         $template->param(change_year_dropdown_items => \@change_year_dropdown_items,
-                         images_html => $images_html);
+                         images_html => $images_html,
+                         title => $title);
 
 	my $name = $pictures{$year}{name};
         my $filename = sprintf($filename_format, $name);
 	Scramble::Misc::create($filename,
 			       Scramble::Misc::make_1_column_page(title => $title,
 								  'include-header' => 1,
+                                                                  'no-title' => 1,
                                                                   html => $template->output()));
     }
 }

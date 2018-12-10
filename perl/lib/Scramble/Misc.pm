@@ -307,7 +307,7 @@ sub make_1_column_page {
     }
 
     my $title = '';
-    if ($args{title}) {
+    if ($args{title} && ! $args{'no-title'}) {
         $title = qq(<h1>$args{title}</h1>);
     }
 
