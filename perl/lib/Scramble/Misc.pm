@@ -708,26 +708,6 @@ sub format_elevation_short {
     return join ", ", @formatted_elevations;
 }
 
-sub make_dropdown {
-    my @items = @_;
-
-    return <<EOT;
-<div class="dropright">
-    <button class="btn btn-secondary btn-sm dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false">
-        Change Year
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        @items
-    </div>
-</div>
-EOT
-}
-
 ######################################################################
 # Config
 

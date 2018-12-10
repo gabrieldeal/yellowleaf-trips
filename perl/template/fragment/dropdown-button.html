@@ -1,0 +1,15 @@
+<div class="dropright">
+  <button class="btn btn-secondary btn-sm dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">
+    Change Year
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <TMPL_LOOP NAME="items">
+          <a class="dropdown-item" href="<TMPL_VAR NAME=url>"><TMPL_VAR NAME=text></a>
+      </TMPL_LOOP>
+  </div>
+</div>

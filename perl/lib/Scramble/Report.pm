@@ -10,6 +10,7 @@ use JSON ();
 use Scramble::Waypoints2 ();
 use Scramble::Image ();
 use Scramble::Reference ();
+use Scramble::Template ();
 use Scramble::Time ();
 
 our @ISA = qw(Scramble::XML);
@@ -761,13 +762,16 @@ sub make_reports_index_page {
         }
     }
 
-    my @link_htmls;
-    foreach my $id (keys %report_htmls) {
+    my @reports_by_year_dropdown_items;
+    foreach my $id (sort keys %report_htmls) {
 	my $title;
         if ($id eq 'index') {
 	    $title = "Most Recent Trips";
         } else {
-            push @link_htmls, qq(<a class="dropdown-item" href="../../g/r/$id.html">$id</a>);
+            push @reports_by_year_dropdown_items, {
+                url => "../../g/r/$id.html",
+                text => $id
+            };
 	    $title = "$id Trips";
 	}
 	$report_htmls{$id} = { 'title' => $title,
@@ -775,8 +779,8 @@ sub make_reports_index_page {
 			       'subdirectory' => "r",
 			   };
     }
-    @link_htmls = reverse sort @link_htmls;
-    my $report_links = Scramble::Misc::make_dropdown(@link_htmls);
+    @reports_by_year_dropdown_items = reverse @reports_by_year_dropdown_items;
+    my $report_links = Scramble::Template::dropdown_button(@reports_by_year_dropdown_items);
 
     # The home page slowly became almost exactly the same as the
     # reports index page.

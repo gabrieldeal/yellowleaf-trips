@@ -4,6 +4,7 @@ use strict;
 
 use File::Basename ();
 use Scramble::Collection ();
+use Scramble::Template ();
 use HTML::Entities ();
 
 my $g_pictures_by_year_threshold = 1;
@@ -372,25 +373,27 @@ sub make_images_by_year_page {
 
     my $filename_format = "m/p%s.html";
 
-    my @header;
+    my @change_year_dropdown_items;
     foreach my $year (reverse sort keys %pictures) {
-        push @header, sprintf(qq(<a class="dropdown-item" href="../$filename_format">$year</a>),
-                              $pictures{$year}{name});
+        push @change_year_dropdown_items, {
+            url => sprintf("../$filename_format", $pictures{$year}{name}),
+            text => $year
+        };
     }
-    my $header = Scramble::Misc::make_dropdown(@header);
+    my $change_year_dropdown_items = Scramble::Template::dropdown_button(@change_year_dropdown_items);
 
     foreach my $year (sort keys %pictures) {
 	my $images_html = Scramble::Misc::render_images_into_flow(images => $pictures{$year}{images});
 	my $title = "My Favorite Photos of $year";
 
 	my $html = <<EOT;
-$header
+$change_year_dropdown_items
 <br />
 
 $images_html
 
 <br clear="both">
-$header
+$change_year_dropdown_items
 EOT
 
 	my $name = $pictures{$year}{name};

@@ -19,6 +19,7 @@ WriteMakefile(
         'Geo::Gpx' => 0,
         'Getopt::Long' => 0,
         'HTML::Entities' => 0,
+        'HTML::Template' => 0,
         'Image::ExifTool' => 0,
         'JSON' => 0,
         'List::Util' => 0,
