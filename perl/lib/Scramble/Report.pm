@@ -291,14 +291,7 @@ sub get_distances_html {
 
     my $distances = $self->_get_optional('round-trip-distances', 'distance');
     if (! $distances) {
-	# <times miles=""> is deprecated 
-	my $miles = $self->_get_optional('times', 'miles');
-	if (! $miles) {
-	    return '';
-	}
-	return sprintf("<b>Round-trip distance:</b> approx. %s %s<br>",
-		       $miles,
-		       Scramble::Misc::pluralize($miles, "mile"));
+        return '';
     }
 
     my @parenthesis_htmls;
