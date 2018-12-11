@@ -271,31 +271,5 @@ sub make_layout_array {
 	make_layout_array($neighbor, $x, $y-1, $array);
     }
 }
-sub make_quad_layout {
-    my $html = '';
-    foreach my $layout (@gLayouts) {
-	$html .= '<table cellspacing=0 cellpadding=10 border=1>';
-	for (my $x = 0; $x < @$layout; ++$x) {
-	    $html .= "<tr>";
-	    for (my $y = 0; $y < @{ $layout->[$x] }; ++$y) {
-		my $q = $layout->[$x][$y];
-		my $text = '';
-		if ($q) {
-		    $text = $q->get_locations() ? $q->get_short_link_html() : $q->get_short_name();
-		}
-		$html .= "<td>$text</td>";
-	    }
-	    $html .= "</tr>\n";
-	}
-	$html .= "</table> <p>";
-    }
-
-    Scramble::Misc::create("m/quad-layout.html",
-			   Scramble::Misc::make_2_column_page("USGS Quadrangle Layout",
-							      $html,
-							      undef,
-							      'no-add-picture' => 1));
-
-}
 
 1;
