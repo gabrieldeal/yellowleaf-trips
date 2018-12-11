@@ -245,7 +245,7 @@ sub get_summary_images {
     my @image_htmls;
     foreach my $image_obj ($self->get_sorted_images()) {
         if ($image_obj) {
-            my $image_html = sprintf(qq(<img width="$size" onload="Yellowleaf.resizeThumbnail(this, $size)" src="%s">),
+            my $image_html = sprintf(qq(<img width="$size" onload="Yellowleaf_main.resizeThumbnail(this, $size)" src="%s">),
                                      $image_obj->get_url());
             $image_html = $self->link_if_should_show($image_html);
             push @image_htmls, $image_html;

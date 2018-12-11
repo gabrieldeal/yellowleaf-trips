@@ -24,7 +24,7 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    library: 'Yellowleaf',
+    library: 'Yellowleaf_[name]',
     libraryTarget: 'window'
   },
 }

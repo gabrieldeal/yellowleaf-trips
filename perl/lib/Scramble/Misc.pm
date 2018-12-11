@@ -368,7 +368,7 @@ sub get_multi_point_embedded_google_map_html {
     return '' unless @large_map_params;
 
     my $large_map_params = join("&", @large_map_params);
-    my $small_map_javascript = join("\n", map { qq(Yellowleaf.Map.setInput('$_', $small_map_params{$_});) } keys %small_map_params);
+    my $small_map_javascript = join("\n", map { qq(Yellowleaf_main.Map.setInput('$_', $small_map_params{$_});) } keys %small_map_params);
 
     my $script = <<EOT;
 <div id="mapContainer" style="position: relative">
@@ -376,7 +376,7 @@ sub get_multi_point_embedded_google_map_html {
 </div>
 <a href="../m/usgs.html?$large_map_params">Larger map</a>
 <script>
-    Yellowleaf.Map.initializeOnLoad();
+    Yellowleaf_main.Map.initializeOnLoad();
     $small_map_javascript
 </script>
 <p>
@@ -396,7 +396,7 @@ sub make_lightbox_html {
     </div>
 
     <script type="text/javascript">
-      Yellowleaf.Lightbox.initialize();
+      Yellowleaf_main.Lightbox.initialize();
     </script>
 EOT
 }
