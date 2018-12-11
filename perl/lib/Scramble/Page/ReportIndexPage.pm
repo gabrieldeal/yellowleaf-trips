@@ -18,12 +18,11 @@ sub new {
 sub create {
     my $self = shift;
 
-    my @body_html = map { $_->get_summary_card() } @{ $self->{reports} };
-    my $body_html = join('', @body_html);
+    my @report_params = map { $self->get_report_params($_) } @{ $self->{reports} };
 
     my $template = Scramble::Template::create('report/index');
     $template->param(change_year_dropdown_items => $self->{change_year_dropdown_items},
-                     body_html => $body_html,
+                     reports => \@report_params,
                      title => $self->{title});
     my $html = $template->output();
 
@@ -36,6 +35,29 @@ sub create {
                                             'copyright-year' => $self->{copyright_year}));
 }
 
+sub get_report_params {
+    my $self = shift;
+    my ($report) = @_;
+
+    my $type = $report->get_type();
+    my $name_html = $report->get_name();
+    $name_html .= " $type" unless $name_html =~ /${type}$/;
+    $name_html = $report->get_summary_name($name_html);
+    my $date = $report->get_summary_date();
+
+    my $count = 0;
+    my @images = ($report->get_sorted_images())[0..2];
+    @images = grep { $_ } @images;
+    my $image_htmls = Scramble::Misc::render_images_into_flow(images => \@images,
+                                                              'no-description' => 1,
+                                                              'no-lightbox' => 1,
+                                                              'no-report-link' => 1);
+    return {
+        name_html => $name_html,
+        date => $date,
+        image_htmls => $image_htmls,
+    };
+}
 
 ######################################################################
 # Static

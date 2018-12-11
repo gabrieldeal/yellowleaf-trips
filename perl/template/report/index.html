@@ -1,6 +1,15 @@
 <TMPL_INCLUDE NAME="../fragment/heading-with-dropdown.html" />
 
-<TMPL_VAR ESCAPE="none" NAME="body_html" />
+<TMPL_LOOP NAME="reports">
+  <h2 class="report-summary-name">
+    <TMPL_VAR ESCAPE="none" NAME="name_html" />
+  </h2>
+  <div class="report-summary-date">
+    <TMPL_VAR NAME="date" />
+  </div>
+  <TMPL_VAR ESCAPE="none" NAME="image_htmls" />
+</TMPL_LOOP>
+
 <br />
 
 <TMPL_INCLUDE NAME="../fragment/dropdown-button.html" />

@@ -599,31 +599,6 @@ sub make_rss {
     Scramble::Misc::create("r/rss.xml", $rss->as_string());
 }
 
-sub get_summary_card {
-    my $self = shift;
-
-    my $type = $self->get_type();
-    my $name = $self->get_name();
-    $name .= " $type" unless $name =~ /${type}$/;
-    $name = $self->get_summary_name($name);
-    my $date = $self->get_summary_date();
-
-    my $count = 0;
-    my @images = ($self->get_sorted_images())[0..2];
-    @images = grep { $_ } @images;
-    my $image_htmls = Scramble::Misc::render_images_into_flow(images => \@images,
-                                                              'no-description' => 1,
-                                                              'no-lightbox' => 1,
-                                                              'no-report-link' => 1);
-
-    return <<EOT;
-        <h2 class="report-summary-name">$name</h2>
-        <div class="report-summary-date">$date</div>
-        $image_htmls
-EOT
-}
-
-
 sub get_reports_for_location {
     my ($location) = @_;
 
