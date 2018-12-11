@@ -162,13 +162,6 @@ sub dedup {
     return @deduped;
 }
 
-sub get_horizontal_nav_links {
-    my $template = Scramble::Template::create('fragment/navbar');
-    $template->param(navbar_links => \@g_links);
-
-    return $template->output();
-}
-
 sub make_colon_line {
     my ($title, $text) = @_;
 
@@ -338,14 +331,6 @@ sub footer_params {
         copyright_year => $year,
     };
 }
-sub make_footer {
-    my %args = @_;
-
-    my $template = Scramble::Template::create('fragment/foot');
-    $template->param(footer_params(%args));
-
-    return $template->output();
-}
 
 sub header_params {
     my %options = @_;
@@ -354,93 +339,6 @@ sub header_params {
         title => $options{title},
         enable_embedded_google_map => $options{'enable-embedded-google-map'},
     };
-}
-sub get_header {
-    my %options = @_;
-
-    my $template = Scramble::Template::create('fragment/head');
-    $template->param(header_params(%options));
-
-    return $template->output();
-}
-
-sub make_2_column_page {
-    my ($title, $middle_html, $right_html, %options) = @_;
-
-    defined $middle_html or die "Middle HTML is not defined";
-
-    my $left_column_content = ($options{'left-column-content'} 
-			       ? $options{'left-column-content'}
-			       : '');
-
-    my $top_text = $options{'top-text'} || '';
-
-    my $h1_title = '';
-    if (! $options{'no-title'}) {
-	$h1_title = exists $options{'h1-title'} ? $options{'h1-title'} : $title;
-	if ($h1_title) {
-	    $h1_title = "<h1>$h1_title</h1>";
-	}
-    }
-
-    my $footer_html = make_footer(%options);
-
-    my ($in_table_footer_html, $after_table_footer_html, $after_table_html) = ('') x 3;
-    if (exists $options{'after-table-html'}) {
-	$after_table_html = $options{'after-table-html'};
-	$after_table_footer_html = $footer_html;
-    } else {
-	$in_table_footer_html = qq(<tr valign="top" align="left"><td colspan="2">$footer_html</td></tr>);
-    }
-
-    my $bottom_two_cell_row = $options{'two-cell-row'} || $options{'bottom-two-cell-row'};
-    $bottom_two_cell_row = (defined $bottom_two_cell_row
-                            ? qq(<tr valign="top" align="left"><td colspan="2">$bottom_two_cell_row</td></tr>)
-                            : '');
-
-    my $top_two_cell_row = (defined $options{'top-two-cell-row'}
-                            ? qq(<tr valign="top" align="left"><td colspan="2">$options{'top-two-cell-row'}</td></tr>)
-                            : '');
-
-
-    $right_html = '' unless defined $right_html;
-
-    my $links = '';
-    if (! $options{'no-links-box'}) {
-        $links = get_horizontal_nav_links();
-    }
-
-    my $middle_column_alignment = $options{'center-middle-column'} ? 'center' : 'left';
-
-    my $header = get_header(title => $title, %options);
-
-    return <<EOT;
-$header
-
-$links
-
-$h1_title
-$top_text
-<table width="100%" border=0 cellpadding="5">
-$top_two_cell_row
-<tr valign="top" align="left">
-<td valign="top" align="$middle_column_alignment">
-    $middle_html
-</td>
-<td valign="top" align="left" >
-    $right_html
-</td>
-</tr>
-
-$bottom_two_cell_row
-$in_table_footer_html
-</table>
-
-$after_table_html
-$after_table_footer_html
-</body>
-</html>
-EOT
 }
 
 sub get_images_for_locations {
