@@ -68,7 +68,7 @@ a img {
     padding: 0;
     margin: 0
 }
-ul.flow-list > li:first-of-type {
+ul.floated-flow-list > li:first-of-type {
     float: left;
 }
 .flow-list-item {

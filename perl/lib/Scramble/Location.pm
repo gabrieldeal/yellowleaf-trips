@@ -604,7 +604,8 @@ EOT
     push @htmls, $map_html if $map_html;
 
     my $cells_html = Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
-							     'images' => [ $self->get_picture_objects() ]);
+                                                             'float-first' => 1,
+                                                             'images' => [ $self->get_picture_objects() ]);
 
     Scramble::Misc::create(sprintf("l/%s", $self->get_filename()),
                            Scramble::Misc::make_1_column_page(title => "$title$location_name_note",

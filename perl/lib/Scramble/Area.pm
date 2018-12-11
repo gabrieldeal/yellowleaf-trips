@@ -316,7 +316,8 @@ EOT
     push @htmls, $map_html if $map_html;
 
     my $cells_html = Scramble::Misc::render_images_into_flow(htmls => \@htmls,
-							     images => [ Scramble::Image::get_best_images($self->get_images) ]);
+                                                             'float-first' => 1,
+                                                             images => [ Scramble::Image::get_best_images($self->get_images) ]);
 
     my $title = $self->get_name();
 

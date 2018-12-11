@@ -552,11 +552,15 @@ sub make_cell_html {
 EOT
 }
 sub render_cells_into_flow {
-  my ($htmls) = @_;
+  my ($htmls, %args) = @_;
 
   return '' unless @$htmls;
 
-  return (qq(<ul class="flow-list">)
+  # `float: left` breaks the favorite photos page.  Not having `float: left` breaks
+  # photos in quad, list & location pages.
+  my $float_class = $args{'float-first'} ? 'floated-flow-list' : '';
+
+  return (qq(<ul class="flow-list $float_class">)
           . join("", map { qq(<li class="flow-list-item">$_</li>) } @$htmls)
           . "</ul>");
 }
@@ -569,7 +573,7 @@ sub render_images_into_flow {
   push @cells, map { $_->get_html(%args)
 		 } @{ $args{'images'} };
 
-  return Scramble::Misc::render_cells_into_flow(\@cells);
+  return Scramble::Misc::render_cells_into_flow(\@cells, %args);
 }
 
 sub sanitize_for_filename {

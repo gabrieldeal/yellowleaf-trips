@@ -332,7 +332,8 @@ $max_images = 100;
     my @images = get_images_to_display_for_locations('locations' => \@location_objects,
 						     'max-images' => $max_images);
     my @image_htmls = map { Scramble::Misc::make_cell_html(content => $_->get_html()) } @images;
-    my $images_html = Scramble::Misc::render_cells_into_flow([ $locations_html, @image_htmls ]);
+    my $images_html = Scramble::Misc::render_cells_into_flow([ $locations_html, @image_htmls ],
+                                                             'float-first' => 1);
 
     my $title = $list_xml->{'name'};
 
