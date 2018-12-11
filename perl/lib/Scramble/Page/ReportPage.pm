@@ -4,6 +4,8 @@ package Scramble::Page::ReportPage;
 
 use strict;
 
+use Scramble::Misc ();
+
 sub new {
     my ($arg0, $report) = @_;
 
