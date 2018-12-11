@@ -155,18 +155,6 @@ sub get_enlarged_img_url {
                    $self->get_enlarged_filename());
 }
 
-sub get_description_html { 
-    my $self = shift;
-
-    # have to calculate lazily b/c of circular dependencies with Scramble::Location
-
-    if (! $self->{'description-html'}) {
-	$self->{'description-html'} = Scramble::Misc::htmlify($self->get_description());
-    }
-
-    return $self->{'description-html'};
-}
-
 sub get_map_reference {
     my $self = shift;
 

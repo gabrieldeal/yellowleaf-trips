@@ -182,16 +182,6 @@ sub make_location_into_path {
     return $name;
 }
 
-sub make_path_into_location {
-    my ($path) = @_;
-
-    $path =~ s/--/HACKHACKHACK/g;
-    $path =~ s/-/ /g;
-    $path =~ s/HACKHACKHACK/-/g;
-
-    return $path;
-}
-
 sub pluralize {
     my ($number, $word) = @_;
 

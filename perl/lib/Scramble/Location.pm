@@ -144,7 +144,6 @@ sub new_objects {
 
 sub name_is_unique { return ! $_[0]->{'has-twin'} }
 
-sub is_in_USA() { $_[0]->get_country_object()->get_name() eq 'USA'; }
 sub get_country_object { $_[0]->{'country-object'} }
 
 sub is_high_point {
@@ -371,11 +370,6 @@ sub set_data_directory {
     $HACK_DIRECTORY = "$data_dir/locations";
 }
 
-sub open_all {
-    my ($data_dir) = @_;
-
-    open_specific(sort glob("$data_dir/*.xml"));
-}
 sub open_specific {
     my (@paths) = @_;
 
@@ -706,24 +700,6 @@ sub get_regex_keys {
 
     return @retval;
 }
-sub get_all_regex_keys {
-    if (! keys %g_location_names_to_objects_mapping) {
-	foreach my $location (get_visited(), get_unvisited()) {
-
-            # Need a better criteria.
-            next unless $location->get_latitude();
-
-	    foreach my $key ($location->get_regex_keys()) {
-		$g_location_names_to_objects_mapping{$key} = $location;
-	    }
-	}
-    }
-
-    # Sort by length so "green ridge lake" in the trip report will not
-    # be matched to "green ridge".
-    return sort { length($b) <=> length($a) } keys %g_location_names_to_objects_mapping;
-}
-
 
 sub get_location_in_radians {
     my $self = shift;
