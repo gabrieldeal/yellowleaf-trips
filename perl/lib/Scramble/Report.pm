@@ -16,8 +16,6 @@ use Scramble::Time ();
 
 our @ISA = qw(Scramble::XML);
 
-my $g_reports_on_index_page = 25;
-
 my %location_to_reports_mapping;
 my $g_report_collection = Scramble::Collection->new();
 my $g_max_rating = 5;
@@ -625,66 +623,6 @@ sub get_summary_card {
 EOT
 }
 
-# home.html
-sub make_reports_index_page {
-    my %report_htmls;
-    my $count = 0;
-    my $latest_year = 0;
-    foreach my $report (sort { Scramble::Report::cmp($b, $a) } get_all()) {
-	my ($yyyy) = $report->get_parsed_start_date();
-        $latest_year = $yyyy if $yyyy > $latest_year;
-
-        my $html = $report->get_summary_card();
-        $report_htmls{$yyyy} .= $html;
-        if ($count++ < $g_reports_on_index_page) {
-            $report_htmls{'index'} .= $html;
-        }
-    }
-
-    my @reports_by_year_dropdown_items;
-    foreach my $id (sort keys %report_htmls) {
-	my $title;
-        if ($id eq 'index') {
-	    $title = "Most Recent Trips";
-        } else {
-            push @reports_by_year_dropdown_items, {
-                url => "../../g/r/$id.html",
-                text => $id
-            };
-	    $title = "$id Trips";
-	}
-	$report_htmls{$id} = { 'title' => $title,
-			       'html' => $report_htmls{$id},
-			       'subdirectory' => "r",
-			   };
-    }
-    @reports_by_year_dropdown_items = reverse @reports_by_year_dropdown_items;
-
-    # The home page slowly became almost exactly the same as the
-    # reports index page.
-    $report_htmls{home} = { %{ $report_htmls{index} } };
-    $report_htmls{home}{subdirectory} = "m";
-
-    foreach my $id (keys %report_htmls) {
-        my $copyright_year = $id;
-        if ($id !~ /^\d+$/) {
-            $copyright_year = $latest_year;
-        }
-
-        my $template = Scramble::Template::create('report/index');
-        $template->param(change_year_dropdown_items => \@reports_by_year_dropdown_items,
-                         body_html => $report_htmls{$id}{'html'},
-                         title => $report_htmls{$id}{'title'});
-        
-        Scramble::Misc::create
-	    ("$report_htmls{$id}{subdirectory}/$id.html", 
-             Scramble::Misc::make_1_column_page(html => $template->output(),
-                                                title => $report_htmls{$id}{'title'},
-                                                'include-header' => 1,
-                                                'no-title' => 1,
-                                                'copyright-year' => $copyright_year));
-    }
-}
 
 sub get_reports_for_location {
     my ($location) = @_;

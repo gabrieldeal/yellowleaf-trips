@@ -18,6 +18,7 @@ use Scramble::Location ();
 use Scramble::Logger ();
 use Scramble::Misc ();
 use Scramble::Image ();
+use Scramble::Page::ReportIndexPage ();
 use Scramble::Reference ();
 use Scramble::Report ();
 use Scramble::Tests ();
@@ -289,7 +290,7 @@ sub main {
     Scramble::List::open(glob("$g_options{'data-directory'}/lists/*.xml"));
 
     should('kml') && copy_kml();
-    should('report-index') && Scramble::Report::make_reports_index_page(); # This includes home.html
+    should('report-index') && Scramble::Page::ReportIndexPage::create_all(); # This includes home.html
     should('link') && Scramble::Reference::make_references();
     should('list') && Scramble::List::make_lists();
     should('report') && Scramble::Report::make_all_report_pages();
