@@ -1,0 +1,44 @@
+<script type="text/javascript">
+ function Gsitesearch(curobj){
+   curobj.q.value="site:www.yellowleaf.org "+curobj.qfront.value
+ }
+</script>
+
+<nav class="navbar navbar-expand-lg navbar-light custom-navbar"
+     style="background-color: #DFF2FD;">
+  <button class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="navbar-nav mr-auto">
+      <TMPL_LOOP NAME="navbar_links">
+        <a class="nav-link nav-item text-dark"
+           href="<TMPL_VAR ESCAPE='none' NAME='url' />">
+          <TMPL_VAR NAME='text' />
+        </a>
+      </TMPL_LOOP>
+    </div>
+    <form class="form-inline my-2 my-lg-0"
+          id="navbar"
+          action="https://www.google.com/search"
+          method="get"
+          onSubmit="Gsitesearch(this)">
+      <input name="q" type="hidden" />
+      <input name="qfront"
+             class="form-control mr-sm-2"
+             type="search"
+             placeholder="Search"
+             aria-label="Search" />
+      <button class="btn btn-outline-success my-2 my-sm-0"
+              type="submit">
+        Search
+      </button>
+    </form>
+</nav>

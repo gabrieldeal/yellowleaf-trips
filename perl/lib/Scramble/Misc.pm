@@ -18,23 +18,20 @@ our $gSiteName = 'yellowleaf.org';
 #my $gDisableTerraServerEmbedded = 1;
 #my $gEnableTerraserver = 0;
 
-my $g_bullet = '&#149;&nbsp;';
-my $g_amazon_associates_link = qq(<A HREF="https://www.amazon.com/exec/obidos/redirect?tag=yellowleaforg-20">In association with Amazon.</a>);
-
-my @g_links = ({'URL' => qq(../../g/m/home.html),
-		'name' => 'Trips',
+my @g_links = ({'url' => qq(../../g/m/home.html),
+		'text' => 'Trips',
 	    },
-               { URL => qq(../../g/m/pcurrent.html),
-		 'name' => 'Favorite photos',
+               { url => qq(../../g/m/pcurrent.html),
+		 'text' => 'Favorite photos',
              },
-               { 'URL' => qq(../../g/li/index.html),
-		 'name' => 'Peak lists',
+               { 'url' => qq(../../g/li/index.html),
+		 'text' => 'Peak lists',
 	     },
-               { 'URL' => qq(../../g/m/references.html),
-		 'name' => 'References',
+               { 'url' => qq(../../g/m/references.html),
+		 'text' => 'References',
 	     },
-	       { 'URL' => qq(mailto:scramble\@yellowleaf.org),
-                 'name' => 'Contact',
+	       { 'url' => qq(mailto:scramble\@yellowleaf.org),
+                 'text' => 'Contact',
 	     },
                );
 
@@ -166,53 +163,10 @@ sub dedup {
 }
 
 sub get_horizontal_nav_links {
-    my @html_links;
-    foreach my $link (@g_links) {
-	my $name = $link->{'name'};
-        if (defined $name) {
-            $name =~ s/ /&nbsp;/g;
-        } else {
-            $name = $link->{'html'};
-        }
-        push @html_links, sprintf(qq(<a class="nav-link nav-item text-dark" href="%s">%s</a>),
-                                  $link->{'URL'},
-                                  $name);
-    }
+    my $template = Scramble::Template::create('fragment/navbar');
+    $template->param(navbar_links => \@g_links);
 
-    my $html = <<EOT;
-<script type="text/javascript">
-    function Gsitesearch(curobj){
-        curobj.q.value="site:www.yellowleaf.org "+curobj.qfront.value
-    }
-</script>
-<nav class="navbar navbar-expand-lg navbar-light custom-navbar" style="background-color: #DFF2FD;">
-  <button class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <div class="navbar-nav mr-auto">
-        @html_links
-    </div>
-    <form class="form-inline my-2 my-lg-0"
-          id="navbar"
-          action="https://www.google.com/search"
-          method="get"
-          onSubmit="Gsitesearch(this)">
-        <input name="q" type="hidden">
-        <input name="qfront" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-</nav>
-EOT
-
-    return $html;
+    return $template->output();
 }
 
 sub make_colon_line {
@@ -296,35 +250,17 @@ sub make_optional_line {
 sub make_1_column_page {
     my (%args) = @_;
 
-    my $html = $args{'html'};
-    my $header = get_header(%args);
+    my $template = Scramble::Template::create('page');
+    $template->param(%{ header_params(%args) },
+                     %{ footer_params(%args) },
+                     html => $args{'html'},
+                     include_header => $args{'include-header'},
+                     no_title => $args{'no-title'},
+                     navbar_links => \@g_links);
 
-    my $footer_html = make_footer(%args);
-
-    my $links = '';
-    if ($args{'include-header'}) {
-        $links = get_horizontal_nav_links();
-    }
-
-    my $title = '';
-    if ($args{title} && ! $args{'no-title'}) {
-        $title = qq(<h1>$args{title}</h1>);
-    }
-
-    return <<EOT;
-$header
-$links
-
-<div style="margin: 5px">
-    $title
-    $html
-</div>
-
-$footer_html
-</body>
-</html>
-EOT
+    return $template->output();
 }
+
 
 sub _get_point_json {
     my (@locations) = @_;
@@ -383,26 +319,8 @@ sub get_multi_point_embedded_google_map_html {
 EOT
 }
 
-sub make_lightbox_html {
-    return <<EOT;
-    <div id="blueimp-gallery" class="custom-blueimp blueimp-gallery blueimp-gallery-controls">
-      <div class="slides"></div>
-      <h3 class="title"></h3>
-      <a class="prev">‹</a>
-      <a class="next">›</a>
-      <a class="close">×</a>
-      <a class="play-pause"></a>
-      <ol class="indicator"></ol>
-    </div>
-
-    <script type="text/javascript">
-      Yellowleaf_main.Lightbox.initialize();
-    </script>
-EOT
-}
-
-sub make_footer {
-    my (%args) = @_;
+sub footer_params {
+    my %args = @_;
 
     my $year;
     if (exists $args{'copyright-year'}) {
@@ -414,69 +332,36 @@ sub make_footer {
     }
 
     my $copyright = $args{copyright} || 'Gabriel Deal';
-    my @footer_html = "Copyright &copy; $year $copyright.";
-    if ($args{'add-amazon-associates-html'}) {
-	push @footer_html, $g_amazon_associates_link;
-    }
 
-    push @footer_html, make_lightbox_html();
+    return {
+        copyright_holder => $copyright,
+        copyright_year => $year,
+    };
+}
+sub make_footer {
+    my %args = @_;
 
-    my $footer_html = join("<br>", @footer_html);
+    my $template = Scramble::Template::create('fragment/foot');
+    $template->param(footer_params(%args));
 
-    return <<EOT;
-        <br clear="all" />
-        <hr align=left color="black" width="90%%" />
-        $footer_html
-EOT
+    return $template->output();
 }
 
+sub header_params {
+    my %options = @_;
+
+    return {
+        title => $options{title},
+        enable_embedded_google_map => $options{'enable-embedded-google-map'},
+    };
+}
 sub get_header {
-  my (%options) = @_;
+    my %options = @_;
 
-  my $body = qq(<body style="width: 100%; margin: 0" bgcolor="#f6f6f6">);
+    my $template = Scramble::Template::create('fragment/head');
+    $template->param(header_params(%options));
 
-  my $maps_script = '';
-  if ($options{'enable-embedded-google-map'}) {
-    $body = qq(<body style="width: 100%; margin: 0" bgcolor="#f6f6f6">);
-
-    $maps_script = <<EOT;
-<script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAL-uATrgEqPxb9sGCq4QFKnBOSwSaKC5g&sensor=false">
-</script>
-EOT
-    }
-
-    my $google_analytics_script = <<'EOM';
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-30591814-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-EOM
-
-  return <<EOT;
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
-<head>
-    <title>$options{title}</title>
-    <link rel="SHORTCUT ICON" href="../../pics/favicon.ico">
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="../css/site.css" />
-    $maps_script
-    $google_analytics_script
-    <script type="text/javascript" src="../js/main.js"></script>
-    <script type="text/javascript" src="../js/async.js" async></script>
-  </head>
-$body
-EOT
+    return $template->output();
 }
 
 sub make_2_column_page {

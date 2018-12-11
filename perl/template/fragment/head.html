@@ -1,0 +1,33 @@
+<html lang="en">
+  <head>
+    <title><TMPL_VAR NAME="title"></title>
+      <link rel="SHORTCUT ICON" href="../../pics/favicon.ico">
+      <link rel="stylesheet" type="text/css" href="../css/site.css" />
+
+      <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <TMPL_IF NAME="enable_embedded_google_map">
+        <script type="text/javascript"
+          src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAL-uATrgEqPxb9sGCq4QFKnBOSwSaKC5g&sensor=false">
+        </script>
+      </TMPL_IF>
+
+      <script type="text/javascript">
+       var _gaq = _gaq || [];
+       _gaq.push(['_setAccount', 'UA-30591814-1']);
+       _gaq.push(['_trackPageview']);
+
+       (function() {
+         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+      </script>
+
+      <script type="text/javascript" src="../js/main.js"></script>
+      <script type="text/javascript" src="../js/async.js" async></script>
+  </head>
+
+  <body style="width: 100%; margin: 0" bgcolor="#f6f6f6">
