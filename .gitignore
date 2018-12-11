@@ -12,6 +12,7 @@ MYMETA.yml
 Makefile
 blib/
 pm_to_blib
+cover_db
 
 javascript/node_modules
 javascript/dist
