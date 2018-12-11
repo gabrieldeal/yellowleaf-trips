@@ -13,7 +13,6 @@ lib/Scramble/Logger.pm
 lib/Scramble/Misc.pm
 lib/Scramble/Reference.pm
 lib/Scramble/Report.pm
-lib/Scramble/Resume.pm
 lib/Scramble/Template.pm
 lib/Scramble/Tests.pm
 lib/Scramble/Time.pm

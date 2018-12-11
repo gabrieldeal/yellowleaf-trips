@@ -20,7 +20,6 @@ use Scramble::Misc ();
 use Scramble::Image ();
 use Scramble::Reference ();
 use Scramble::Report ();
-use Scramble::Resume ();
 use Scramble::Tests ();
 use Scramble::Winter ();
 use Scramble::XML ();
@@ -295,7 +294,6 @@ sub main {
     should('list') && Scramble::List::make_lists();
     should('report') && Scramble::Report::make_all_report_pages();
     should('winter') && Scramble::Winter::make_winter_page();
-    should('resume') && Scramble::Resume::make_resume_page();
     should('rss') && Scramble::Report::make_rss();
     should('geekery') && Scramble::Geekery::make_page();
     should('locations-index') && Scramble::Location::make_locations_index();
