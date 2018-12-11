@@ -1,18 +1,22 @@
-<TMPL_IF NAME="include_header">
-  <TMPL_INCLUDE NAME="fragment/head.html" />
-</TMPL_IF>
+<!doctype html>
+<html lang="en">
+  <head>
+    <TMPL_IF NAME="include_header">
+      <TMPL_INCLUDE NAME="fragment/head.html" />
+    </TMPL_IF>
+  </head>
+  <body style="width: 100%; margin: 0" bgcolor="#f6f6f6">
+    <TMPL_INCLUDE NAME="fragment/navbar.html" />
 
-<TMPL_INCLUDE NAME="fragment/navbar.html" />
+    <div style="margin: 5px">
+      <TMPL_UNLESS NAME="no_title">
+        <h1><TMPL_VAR NAME="title" /></h1>
+      </TMPL_UNLESS>
 
-<div style="margin: 5px">
-  <TMPL_UNLESS NAME="no_title">
-    <h1><TMPL_VAR NAME="title" /></h1>
-  </TMPL_UNLESS>
+      <TMPL_VAR ESCAPE="none" NAME="html" />
 
-  <TMPL_VAR ESCAPE="none" NAME="html" />
+      <TMPL_INCLUDE NAME="fragment/foot.html" />
+    </div>
 
-  <TMPL_INCLUDE NAME="fragment/foot.html" />
-</div>
-
-</body>
+  </body>
 </html>
