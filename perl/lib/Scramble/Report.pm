@@ -364,21 +364,6 @@ sub get_map_summary_html {
     return Scramble::Misc::make_colon_line($title, join(", ", @maps));
 }
 
-sub make_page_html {
-    my $self = shift;
-
-    eval {
-        my $page = Scramble::Page::ReportPage->new($self);
-        $page->create();
-    };
-    if ($@) {
-	local $SIG{__DIE__};
-	die sprintf("Error while making HTML for %s:\n%s",
-		    $self->{'path'},
-		    $@);
-    }
-}
-
 sub get_copyright_html {
     my $self = shift;
 
@@ -479,12 +464,6 @@ sub add_section_names {
 ######################################################################
 # statics
 ######################################################################
-
-sub make_all_report_pages {
-    foreach my $report_xml (get_all()) {
-	$report_xml->make_page_html();
-    }
-}
 
 sub equals {
     my $self = shift;

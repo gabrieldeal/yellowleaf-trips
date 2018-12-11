@@ -130,4 +130,23 @@ EOT
 							      'copyright-year' => $copyright_year));
 }
 
+######################################################################
+# Statics
+
+sub create_all {
+    foreach my $report (Scramble::Report::get_all()) {
+        eval {
+            my $page = Scramble::Page::ReportPage->new($report);
+            $page->create();
+        };
+        if ($@) {
+            local $SIG{__DIE__};
+            die sprintf("Error while making HTML for %s:\n%s",
+                        $report->{'path'},
+                        $@);
+        }
+    }
+}
+
+
 1;

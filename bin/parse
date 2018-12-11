@@ -19,6 +19,7 @@ use Scramble::Logger ();
 use Scramble::Misc ();
 use Scramble::Image ();
 use Scramble::Page::ReportIndexPage ();
+use Scramble::Page::ReportPage ();
 use Scramble::Reference ();
 use Scramble::Report ();
 use Scramble::Tests ();
@@ -278,8 +279,9 @@ sub main {
     } else {
 	foreach my $file (@{ $g_options{'file'} }) {
 	    my $report = Scramble::Report::open_specific($file);
-	    $report->make_page_html() if $report;
-	}
+            my $page = Scramble::Page::ReportPage->new($report);
+            $page->create();
+        }
     }
     Scramble::Image::copy();
     should('spell') && spell_check();
@@ -293,7 +295,7 @@ sub main {
     should('report-index') && Scramble::Page::ReportIndexPage::create_all(); # This includes home.html
     should('link') && Scramble::Reference::make_references();
     should('list') && Scramble::List::make_lists();
-    should('report') && Scramble::Report::make_all_report_pages();
+    should('report') && Scramble::Page::ReportPage::create_all();
     should('winter') && Scramble::Winter::make_winter_page();
     should('rss') && Scramble::Report::make_rss();
     should('geekery') && Scramble::Geekery::make_page();
