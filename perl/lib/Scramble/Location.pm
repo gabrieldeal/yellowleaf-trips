@@ -659,28 +659,6 @@ sub get_reports_for_location_html {
     return '<ul><li>' . join('</li><li>', @references_html) . '</li></ul>';
 }
 
-sub make_locations_index {
-    my $html = <<EOT;
-This is an old page.  You may find what you want on the 
-<a href="../../g/r/index.html">trip reports page</a>
-or on the <a href="../../g/m/quad-layout.html">USGS quad layout page</a>
-EOT
-    Scramble::Misc::create("l/index.html", 
-			   Scramble::Misc::make_2_column_page("Old Page",
-							      $html));
-							      
-}
-sub make_quads {
-    my $html = <<EOT;
-This is an old page.  You may find what you want on the 
-<a href="../../g/r/index.html">trip reports page</a>
-or on the <a href="../../g/m/quad-layout.html">USGS quad layout page</a>
-EOT
-    Scramble::Misc::create("m/quads-by-location.html",
-			   Scramble::Misc::make_2_column_page("Old Page", 
-							      $html));
-}
-
 sub dedup {
     my (@locations) = @_;
 

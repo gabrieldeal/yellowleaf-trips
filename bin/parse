@@ -296,9 +296,7 @@ sub main {
     should('winter') && Scramble::Winter::make_winter_page();
     should('rss') && Scramble::Report::make_rss();
     should('geekery') && Scramble::Geekery::make_page();
-    should('locations-index') && Scramble::Location::make_locations_index();
     should('picture-by-year') && Scramble::Image::make_images_by_year_page(); # Favorites
-    should('quad') && Scramble::Location::make_quads();
     should('location') && Scramble::Location::make_locations();
     should('area') && Scramble::Area::make_pages();
     should('short-trips') && get_short_trips();
