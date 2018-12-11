@@ -89,7 +89,6 @@ sub new {
 
 sub get_id { $_[0]->get_start_date() . "|" . ($_[0]->get_trip_id() || "") }
 sub get_trip_id { $_[0]->_get_optional('trip-id') }
-sub get_trip_organizer { $_[0]->_get_optional('trip-organizer') || 'private' }
 sub get_areas_collection { $_[0]->{'areas-object'} }
 sub get_waypoints { $_[0]->{'waypoints'} }
 sub get_type { $_[0]->_get_optional('type') || 'scramble' }
@@ -100,7 +99,6 @@ sub get_locations { @{ $_[0]->_get_optional('locations', 'location') || [] } }
 sub get_location_objects { @{ $_[0]->{'location-objects'} } }
 sub get_state { $_[0]->_get_optional('state') || "done" }
 sub get_route { $_[0]->_get_optional_content('description') }
-sub get_rock_routes { @{ $_[0]->_get_optional('rock-routes', 'rock-route') || [] } }
 sub get_kml { $_[0]->{kml} }
 sub get_map_objects { @{ $_[0]->{'map-objects'} } }
 sub get_picture_objects { @{ $_[0]->{'picture-objects'} } }
@@ -121,23 +119,6 @@ sub get_best_picture_object {
         $best_image = $image if $best_image->get_rating() >= $image->get_rating();
     }
     return $best_image;
-}
-
-sub get_leaders {
-    my $self = shift;
-
-    my $party_xml = $self->_get_optional_content('party');
-    return () unless $party_xml;
-
-    my @leaders;
-    foreach my $member (@{ $party_xml->{'member'} }) {
-        next unless defined $member->{'type'};
-        if ($member->{'type'} =~ /leader/i && $member->{'type'} !~ /assistant/) {
-            push @leaders, $member->{'name'};
-        }
-    }
-
-    return @leaders;
 }
 
 sub get_num_days {
