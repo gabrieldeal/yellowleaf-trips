@@ -243,13 +243,25 @@ sub make_optional_line {
 sub make_1_column_page {
     my (%args) = @_;
 
+    my $year;
+    if (exists $args{'copyright-year'}) {
+        $year = $args{'copyright-year'};
+    } elsif (exists $args{'date'}) {
+        ($year) = Scramble::Time::parse_date($args{'date'});
+    } else {
+        $year = '2004';
+    }
+
+    my $copyright = $args{copyright} || 'Gabriel Deal';
     my $template = Scramble::Template::create('page');
-    $template->param(%{ header_params(%args) },
-                     %{ footer_params(%args) },
+    $template->param(copyright_holder => $copyright,
+                     copyright_year => $year,
+                     enable_embedded_google_map => $args{'enable-embedded-google-map'},
                      html => $args{'html'},
                      include_header => $args{'include-header'},
+                     navbar_links => \@g_links,
                      no_title => $args{'no-title'},
-                     navbar_links => \@g_links);
+                     title => $args{title});
 
     return $template->output();
 }
@@ -310,35 +322,6 @@ sub get_multi_point_embedded_google_map_html {
 </script>
 <p>
 EOT
-}
-
-sub footer_params {
-    my %args = @_;
-
-    my $year;
-    if (exists $args{'copyright-year'}) {
-        $year = $args{'copyright-year'};
-    } elsif (exists $args{'date'}) {
-        ($year) = Scramble::Time::parse_date($args{'date'});
-    } else {
-        $year = '2004';
-    }
-
-    my $copyright = $args{copyright} || 'Gabriel Deal';
-
-    return {
-        copyright_holder => $copyright,
-        copyright_year => $year,
-    };
-}
-
-sub header_params {
-    my %options = @_;
-
-    return {
-        title => $options{title},
-        enable_embedded_google_map => $options{'enable-embedded-google-map'},
-    };
 }
 
 sub get_images_for_locations {
