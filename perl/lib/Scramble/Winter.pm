@@ -93,7 +93,6 @@ sub make_winter_page {
     my $title = "Winter Destinations";
 
     my $html = <<EOT;
-<h1>$title</h1>
 These are destinations that I have visited between Dec 22 and March 22 or destinations in ski or snowshoe guide books.
 <br/>
 $cells_html
