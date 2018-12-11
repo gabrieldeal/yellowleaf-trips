@@ -340,18 +340,9 @@ sub area_sort {
 sub get_all { $g_all }
 
 sub make_pages {
-    my @links;
     foreach my $area (sort { area_sort($a, $b) } $g_all->get_all()) {
 	$area->make_page();
-	push @links, $area->get_link();
     }
-
-    
-    my $html = sprintf("<ul><li>%s</li></ul>",
-		       join("</li><li>", @links));
-    Scramble::Misc::create("a/area-index.html",
-			 Scramble::Misc::make_2_column_page("Areas",
-							    $html));
 }
 
 sub open {
