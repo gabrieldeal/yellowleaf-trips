@@ -6,7 +6,6 @@ use strict;
 
 my $g_reports_on_index_page = 25;
 
-
 sub new {
     my ($arg0, %args) = @_;
 
@@ -68,7 +67,6 @@ sub create_all {
     my $count = 0;
     my $latest_year = 0;
     my @reports = sort { Scramble::Report::cmp($b, $a) } Scramble::Report::get_all();
-
     foreach my $report (@reports) {
 	my ($yyyy) = $report->get_parsed_start_date();
         $latest_year = $yyyy if $yyyy > $latest_year;
@@ -79,30 +77,29 @@ sub create_all {
         }
     }
 
-    my @change_year_dropdown_items;
-    foreach my $id (sort keys %reports) {
-	my $title;
-        if ($id eq 'index') {
-	    $title = "Most Recent Trips";
-        } else {
-            push @change_year_dropdown_items, {
-                url => "../../g/r/$id.html",
-                text => $id
-            };
-	    $title = "$id Trips";
-	}
+    foreach my $id (keys %reports) {
+        my $title = $id eq 'index' ? "Most Recent Trips" : "$id Trips";
         $reports{$id} = {
             title => $title,
             reports => $reports{$id},
             subdirectory => "r",
         };
     }
-    @change_year_dropdown_items = reverse @change_year_dropdown_items;
-
     # The home page slowly became almost exactly the same as the
     # reports index page.
+    #
+    # FIXME: delete r/index.html?
     $reports{home} = { %{ $reports{index} } };
     $reports{home}{subdirectory} = "m";
+
+    my @change_year_dropdown_items;
+    foreach my $year (reverse sort keys %reports) {
+        next unless $year =~ /^\d{4}$/;
+        push @change_year_dropdown_items, {
+            url => "../../g/r/$year.html",
+            text => $year
+        };
+    }
 
     foreach my $id (keys %reports) {
         my $copyright_year = $id;
