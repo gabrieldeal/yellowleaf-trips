@@ -1,3 +1,5 @@
+/* FIXME: Move this to javascript/css, import it in javascript/src/index.js, and delete the CSS code in bin/parse. */
+
 .dropdown-header-title {
     display: inline-block;
 }
