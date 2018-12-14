@@ -87,13 +87,6 @@ sub open {
     }
 }
 
-sub find_location_in_list {
-    my ($list_xml, $location_xml) = @_;
-
-    return grep { $location_xml->is(name => $_->{'name'},
-				    quad => $_->{'quad'}) } @{ $list_xml->{'location'} };
-}
-
 sub sort_list {
     my ($by, $l1, $l2) = @_;
 
@@ -377,23 +370,5 @@ EOT
                                                               html => $index_html,
                                                               'include-header' => 1));
 }
-
-sub make_lists_html {
-    my ($location_xml) = @_;
-
-    my $html;
-    foreach my $list_xml (get_all_lists()) {
-	my (@hits) = find_location_in_list($list_xml, $location_xml);
-	next unless @hits;
-	$html .= sprintf(qq(<li>#%s in the <a %s href="%s">%s</a> list</li>),
-			 $hits[0]->{'order'},
-			 Scramble::Misc::get_target($list_xml->{'URL'}),
-			 $list_xml->{'URL'},
-			 $list_xml->{'name'});
-    }
-
-    return defined $html ? "<ul>$html</ul>" : undef;
-}
-
 
 1;

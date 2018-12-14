@@ -16,7 +16,6 @@ my @g_hidden_locations;
 my @g_locations;
 my $g_opened = 0;
 my $g_avvy_elev_threshold = 1500;
-my $g_miles_distance_threshold = 5;
 my %g_check_for_duplicate_ids;
 
 sub in_areas_transitive_closure {
@@ -146,11 +145,6 @@ sub name_is_unique { return ! $_[0]->{'has-twin'} }
 
 sub get_country_object { $_[0]->{'country-object'} }
 
-sub is_high_point {
-    return ($_[0]->get_type() eq 'peak'
-            || $_[0]->get_type() eq 'ridge');
-}
-
 sub get_type { $_[0]->_get_required('type') }
 sub get_references { @{ $_[0]->_get_optional('references', 'reference') || [] } }
 sub get_description { $_[0]->_get_optional_content('description') }
@@ -242,18 +236,6 @@ sub _get_formatted_elevation {
     return undef;
 }
 
-sub get_UTM_coordinates_html {
-    my $self = shift;
-
-    return unless defined $self->get_UTM_easting();
-
-    return sprintf("%s %sE %sN (%s)",
-		   $self->get_UTM_zone(),
-		   $self->get_UTM_easting(),
-		   $self->get_UTM_northing(),
-		   $self->get_map_datum());
-}
-
 sub get_aka_names {
     my $self = shift;
 
@@ -300,48 +282,6 @@ sub get_filename {
     return sprintf("%s.html", Scramble::Misc::make_location_into_path($self->get_id()));
 }
 
-
-sub get_maps { 
-    my $self = shift;
-
-    my @maps;
-
-    if ($self->get_my_google_maps_url()) {
-	push @maps, { 'type' => sprintf("Online USGS map of %s",
-                                        $self->get_name()),
-		      'URL' => $self->get_my_google_maps_url(),
-		      'id' => "myGoogleMaps", # used by Scramble::Reference
-		      'name' => "Google Maps",
-		  };
-    }
-
-    foreach my $quad ($self->get_quad_objects()) {
-	push @maps, { 'id' => 'USGS quad',
-		      'name' => $quad->get_id(),
-		  };
-    }
-    push @maps, @{ $self->_get_optional('maps', 'map') || [] };
-
-    return @maps;
-}
-
-sub get_maps_html {
-    my $self = shift;
-
-    my @map_htmls = Scramble::Reference::get_map_htmls([ $self->get_maps() ]);
-    return Scramble::Misc::make_optional_line("<h2>Maps</h2> <ul><li>%s</li></ul>",
-					      @map_htmls ? join("</li>\n<li>", @map_htmls) : undef);
-
-}
-
-sub get_my_google_maps_url {
-    my $self = shift;
-
-    return undef unless $self->get_latitude();
-    return Scramble::Misc::get_my_google_maps_url($self->get_latitude(),
-                                                  $self->get_longitude(),
-                                                  $self->get_map_datum());
-}
 
 sub get_county_objects { @{ $_[0]->{'county-objects'} } }
 
@@ -508,19 +448,6 @@ sub get_state_html {
     return $self->get_state_object()->get_short_name();
 }
 
-sub make_nearby_locations_html {
-    my $self = shift;
-
-    my @nearby = $self->find_nearby_peaks($g_miles_distance_threshold);
-    return '' unless @nearby;
-
-    @nearby = sort { $a->{'miles'} <=> $b->{'miles'} } @nearby;
-
-    my @link_htmls = map { $_->{'location'}->get_link_html() } @nearby;
-    return sprintf("<h2>Nearby Peaks</h2> <ul><li>%s</li></ul>",
-		   join("</li><li>", @link_htmls));
-}
-
 sub get_quads_html {
     my $self = shift;
 
@@ -550,20 +477,15 @@ sub make_page_html {
     my $prominence = Scramble::Misc::make_optional_line(qq(<b><a href="http://www.peaklist.org/theory/theory.html">Clean Prominence</a>:</b> %s<br>),
 							\&Scramble::Misc::format_elevation,
 							$self->get_prominence());
-    my $lists_html = Scramble::Misc::make_optional_line("<h2>In These Peak Lists</h2> %s",
-							Scramble::List::make_lists_html($self));
     my $quad_links = $self->get_quads_html();
     my $county_html = Scramble::Misc::make_optional_line("<b>County:</b> %s<br>",
 							 $self->get_counties_html());
     my $elevation = Scramble::Misc::make_colon_line("Elevation", $self->get_formatted_elevation());
-    my $utm_html = Scramble::Misc::make_colon_line("UTM",
-						   $self->get_UTM_coordinates_html());
     my $description = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("<h2>Description</h2>%s",
 										 $self->get_description()));
 
     my $reports_html = Scramble::Misc::make_optional_line("<h2>Trip Reports and References</h2> %s",
 							  get_reports_for_location_html($self));
-    my $maps_html = $self->get_maps_html($self);
     my $recognizable_areas_html = $self->get_recognizable_areas_html();
 
     my $state_html = Scramble::Misc::make_colon_line("State", $self->get_state_html());
@@ -573,8 +495,6 @@ sub make_page_html {
     my $title = sprintf("Location: %s", $self->get_name());
     my $naming_origin = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("<h2>Name origin</h2> %s",
                                                                                    $self->get_naming_origin()));
-    my $locations_nearby_html = $self->make_nearby_locations_html();
-
     my $text_html = <<EOT;
 $aka_html
 $elevation
@@ -583,14 +503,10 @@ $state_html
 $county_html
 $recognizable_areas_html
 $quad_links
-$utm_html
 
 $reports_html
 $description
 $naming_origin
-$maps_html
-$lists_html
-$locations_nearby_html
 EOT
 
     my @htmls = ($text_html);
@@ -614,18 +530,6 @@ sub make_locations {
     foreach my $location_xml (sort { lc($a->get_filename()) cmp lc($b->get_filename()) } (get_visited(), get_unvisited())) {
 	$location_xml->make_page_html();
     }
-}
-
-sub get_link_html {
-    my $self = shift;
-
-    my $elevation = "";
-    if ($self->get_short_formatted_elevation()) {
-        $elevation = "(" . $self->get_short_formatted_elevation() . ")";
-    }
-    return sprintf("%s %s",
-		   $self->get_short_link_html(),
-                   $elevation);
 }
 
 sub get_short_link_html {
@@ -652,17 +556,6 @@ sub get_reports_for_location_html {
     }
 
     return '<ul><li>' . join('</li><li>', @references_html) . '</li></ul>';
-}
-
-sub dedup {
-    my (@locations) = @_;
-
-    my %locations;
-    foreach my $location (@locations) {
-        $locations{$location->get_id()} = $location;
-    }
-
-    return values %locations;
 }
 
 my %g_location_names_to_objects_mapping;
@@ -699,48 +592,6 @@ sub get_regex_keys {
     }
 
     return @retval;
-}
-
-sub get_location_in_radians {
-    my $self = shift;
-
-    die "No location" unless defined $self->get_latitude();
-
-    return (Math::Trig::deg2rad($self->get_longitude()), 
-	    Math::Trig::deg2rad(90 - $self->get_latitude()));
-}
-sub get_miles_from {
-    my $self = shift;
-    my ($location) = @_;
-
-    # This seems to be within a mile or two of correct.
-    my $kilometers = Math::Trig::great_circle_distance($self->get_location_in_radians(), 
-						       $location->get_location_in_radians(), 
-						       6378);
-    return $kilometers / 1.609344;
-}
-sub find_nearby_peaks {
-    my $self = shift;
-    my ($distance_threshold) = @_;
-
-    return () unless defined $self->get_latitude();
-
-    my @this_radians = $self->get_location_in_radians();
-
-    my @locations;
-    foreach my $location (get_visited()) {
-	next unless $location->is_high_point();
-	next if $location eq $self;
-	next unless defined $location->get_latitude();
-	my $miles = $self->get_miles_from($location);
-	next unless defined $miles;
-	next unless $miles <= $distance_threshold;
-	push @locations, { 'location' => $location,
-			   'miles' => $miles,
-		       };
-    }
-
-    return @locations;
 }
 
 1;

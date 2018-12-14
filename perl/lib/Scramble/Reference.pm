@@ -79,37 +79,6 @@ sub make_references {
                                                               'include-header' => 1));
 }
 
-sub get_map_htmls {
-    my ($maps) = @_;
-    @_ == 1 or die "old-style arguments";
-
-    my @maps;
-    if (defined $maps) {
-	push @maps, @$maps;
-    }
-
-#    die "No maps" unless @maps;
-
-    my @retval;
-    my %remove_duplicates;
-    foreach my $map (@maps) {
-	my $dedup_key = hu($map->{'id'}) . "|" . hu($map->{'name'}) . "|" . hu($map->{'URL'});;
-	next if exists $remove_duplicates{$dedup_key};
-	$remove_duplicates{$dedup_key} = 1;
-
-	push @retval, get_reference_html($map);
-    }
-
-    return @retval;
-}
-
-sub get_reference_for_id {
-    my ($id) = @_;
-
-    return ($g_references_xml->{'reference'}{$id}
-	    || die "Unable to find reference for ID '$id'");
-}
-
 sub get_map_type { $_[0]->{'id'} }
 sub get_map_name { $_[0]->{'name'} }
 
@@ -118,12 +87,7 @@ sub get_reference_html {
 
     my $retval = eval { get_reference_html_with_name_only($reference) };
     if (! defined $retval) {
-	my $error = $@;
-	if ('USGS quad' ne get_reference_attr('type', $reference)) {
-	    die $error;
-	} elsif(! defined($retval = get_reference_attr('name', $reference))) {
-            die "no name for " . Data::Dumper::Dumper($reference);
-	}
+        die "Can not find " . Data::Dumper::Dumper($reference);
     }
 
     my $type = get_reference_attr('type', $reference)

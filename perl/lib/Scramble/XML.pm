@@ -6,13 +6,6 @@ use XML::Simple ();
 use Scramble::Logger;
 use List::Util ();
 
-sub new {
-    my $arg0 = shift;
-    my ($parsed_xml) = @_;
-
-    return bless { %$parsed_xml }, ref($arg0) || $arg0;
-}
-
 sub _get_optional_content {
     my $self = shift;
     my ($name) = @_;

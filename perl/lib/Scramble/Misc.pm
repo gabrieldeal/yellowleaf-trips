@@ -287,23 +287,6 @@ sub get_multi_point_embedded_google_map_html {
 EOT
 }
 
-sub get_images_for_locations {
-    my (@locations) = @_;
-
-    my @images = map { $_->get_picture_objects() } @locations;
-    @images = Scramble::Misc::dedup(@images);
-
-    return sort { Scramble::Image::cmp($a, $b) } @images;
-}
-
-sub get_my_google_maps_url {
-    my ($lat, $lon, $datum, %options) = @_;
-
-    return sprintf("../../g/m/usgs.html?lon=%s&lat=%s&zoom=2&type=usgs",
-                   $lon,
-                   $lat);
-}
-
 sub slurp {
     my ($path) = @_;
 
