@@ -22,9 +22,10 @@ use Scramble::Page::ReportIndexPage ();
 use Scramble::Page::ReportPage ();
 use Scramble::Reference ();
 use Scramble::Report ();
+use Scramble::SpellCheck ();
+use Scramble::Stats ();
 use Scramble::Tests ();
 use Scramble::XML ();
-use Spell ();
 
 my $gRoot = "yellowleaf.org/scramble";
 local $Data::Dumper::Maxdepth = 5;
@@ -104,141 +105,6 @@ sub get_options {
     Scramble::Logger::set_verbose($g_options{'verbose'});
 }
 
-sub get_short_trips {
-    my $max_hours = 4;
-    print "Trips shorter than $max_hours hours:\n";
-    my $short_reports = Scramble::Report::get_shorter_than($max_hours);
-    foreach my $report (sort { Scramble::Report::cmp_by_duration($a, $b) } @$short_reports) {
-        my $minutes = $report->get_waypoints()->get_car_to_car_delta();
-        my $hours = $minutes / 60;
-        printf("    %2.3f hours, %s, %s\n", $hours, $report->get_start_date(), $report->get_name());
-    }
-    print "\n";
-}
-
-sub get_party_stats {
-  my %stats;
-  my %people;
-  foreach my $report (Scramble::Report::get_all()) {
-    my $party = $report->_get_optional_content('party');
-    next unless $party;
-
-    my @members = map { $_->{name} } @{ $party->{member} || [] };
-    push @members, grep /\S/, split(/\n/, $party->{content}) if $party->{content};
-
-    my ($yyyy, $mm, $dd) = Scramble::Time::parse_date($report->get_start_date());
-
-    die "$yyyy/$mm/$dd " . Data::Dumper::Dumper($party) unless $party->{size};
-
-    $stats{$mm}{trip_count}++;
-    $stats{$mm}{person_count} += $party->{size};
-
-    foreach my $member (@members) {
-      my $name;
-      if (ref $member) {
-	$name = $member->{name};
-      } else {
-	$name = $member;
-      }
-      $name =~ s/\s*\([\w\s]*\)\s*$//;
-      $name =~ s/^\s*(.*?)[\s\.]*$/$1/i;
-      $name = "Hilary Clark" if $name =~ /seahorse/i or $name =~ /hilary s/i;
-      $name = "Chris Clark" if $name =~ /chilidog/i;
-      $name = "Kate (DnR) Hoch" if $name =~ /DnR/ or $name =~ /drop.n.roll/i or $name =~ /Kate.*Hoch/;
-      $name = "Jacob (Daybreaker) Sperati" if $name =~ /jacob.*sperati/i or $name =~ /daybreaker/i;
-      $name = "Brad (Mister Fox) White" if $name =~ /(mr\.?|mister)\s*fox/i;
-      $name = "Courtney (Rocklocks) Braun" if $name =~ /rock\s*locks/i;
-      $name = "Deb (Topsy Turvy) Brown" if $name =~ /^deb\b.*\bbrown$/i or $name =~ /\btopsy\s*turvy\b/i;
-      $name =~ s/^Mom$/Bonnie Deal/i;
-      $name =~ s/^Boni Deal$/Bonnie Deal/i;
-      $name = "Laurie Cullen" if $name =~ /^Laurie C$/;
-      $name =~ s/^Carla S$/Carla Schauble/i;
-      $name =~ s/^Carla Shauble$/Carla Schauble/i;
-      $name =~ s/^David Deal$/Dave Deal/i;
-      $name =~ s/^Matt B$/Matt Burton/i;
-      $name = "Yana Radenska" if $name =~ /\byana\b/i;
-      $name = "Jiri Richter" if $name =~ /\bjiri\b/i;
-      $name = "Lindsay Malone" if $name =~ /\bLindsay Malone\b/i;
-      $name = "Brian Walkenhauer" if $name =~ /^(Brian|Bryan) Walk/;
-      $name = "Janet Putz" if $name =~ /\bputz\b/i;
-      $name = "Tazz" if $name =~ /\btazz\b/i || $name eq 'Ann Arnoldy';
-      $name = "Lynn Graff" if $name eq "Lynn Graf";
-      $name = "Mike Helminger" if $name =~ /\biron\b/i || $name eq "Mike Hemlinger" || $name =~ /^Mike H$/;
-      $name = "Tom Nanevicz" if $name =~ /\bTom N\b/i || $name =~ /\bGeoTom\b/i;
-      $name = "Bruno Reinys" if $name eq "Bruno R";
-      $name = "Matt Burton" if $name =~ /\bmatt\b/i && $name =~ /\bburton\b/;
-      $name = "David Suhr" if $name eq "David Sur";
-      $name = "Atsuko Yamaguchi" if $name =~ /\batsuko\b/i;
-      $name =~ s/^Brett D$/Brett Dyson/i;
-      $name =~ s/^Bruno$/Bruno Reinys/i;
-      $people{$name}{trips}++;
-      $people{$name}{days} += $report->get_num_days();
-    }
-  }
-
-  foreach my $name (sort { $people{$a}{trips} <=> $people{$b}{trips} } keys %people) {
-    printf("%d %d %s\n", $people{$name}{trips}, $people{$name}{days}, $name);
-  }
-
-  foreach my $mm (sort { $a <=> $b } keys %stats) {
-    printf("$mm: %.2f people on average in %d trips\n",
-	   $stats{$mm}{person_count} / $stats{$mm}{trip_count},
-	   $stats{$mm}{trip_count});
-  }
-}
-
-sub spell_check {
-    Spell::initialize($g_options{'dictionary-directory'});
-
-    my $location_collection = Scramble::Location::get_all();
-    foreach my $location ($location_collection->get_all()) {
-        Spell::add_words($location->get_name());
-        foreach my $aka ($location->get_aka_names()) {
-            Spell::add_words($aka);
-        }
-    }
-
-    foreach my $id (Scramble::Reference::get_ids()) {
-        Spell::add_words($id);
-    }
-
-    my @misspelled;
-    foreach my $report (Scramble::Report::get_all()) {
-        next unless defined $report->get_route();
-        my @texts;
-        push @texts, ($report->get_route(), $report->get_name());
-        foreach my $text (@texts) {
-            push @misspelled, _spell_check($text, $report->get_filename(), $report->get_start_date());
-        }
-    }
-
-    foreach my $image (Scramble::Image::get_all_images_collection()->get_all()) {
-        foreach my $text ($image->get_description(), $image->get_of(), $image->get_from(), $image->get_section_name()) {
-            push @misspelled, _spell_check($text, $image->get_source_directory(), $image->get_date());
-        }
-    }
-    if (@misspelled) {
-        die join("\n", @misspelled) . "\n";
-    }
-}
-
-sub _spell_check {
-    my ($text, $name, $date) = @_;
-
-    return unless defined $text;
-
-    my @misspelled = Spell::check($text);
-    return unless @misspelled;
-
-    my $message = "Misspelled in " . $name . ": @misspelled.";
-    if (defined $date && $date gt '2007/07/01') {
-        return ($message);
-    } else {
-        print "$message\n";
-        return ();
-    }
-}
-
 sub main {
     srand($$ ^ time());
     get_options();
@@ -285,7 +151,7 @@ sub main {
         }
     }
     Scramble::Image::copy();
-    should('spell') && spell_check();
+    should('spell') && Scramble::SpellCheck::check_spelling($g_options{'dictionary-directory'});
     if (@{ $g_options{'file'} }) {
         return 0;
     }
@@ -301,8 +167,8 @@ sub main {
     should('geekery') && Scramble::Geekery::make_page();
     should('picture-by-year') && Scramble::Image::make_images_by_year_page(); # Favorites
     should('location') && Scramble::Location::make_locations();
-    should('short-trips') && get_short_trips();
-    should('party-stats') && get_party_stats();
+    should('short-trips') && Scramble::Stats::display_short_trips();
+    should('party-stats') && Scramble::Stats::display_party_stats();
     should('test') && Scramble::Tests::run();
 
     return 0;
