@@ -75,15 +75,6 @@ sub set_upper_left_latitude {
     $self->{'ul-lat'} = $lat;
 }
 
-sub get_download_id { 
-    my $self = shift;
-
-    my $id = $self->_get_optional('download-id');
-    return $id if defined $id;
-
-    return $self->in_washington() ? 'WAUWUSGSQuads' : undef;
-}
-
 sub get_neighboring_quad_object {
     my $self = shift;
     my ($dir) = @_;
@@ -103,84 +94,6 @@ sub add_neighboring_quad_id {
     }
 
     $self->{$dir} = $quad_id;
-}
-sub has_neighbors {
-    my $self = shift;
-
-    foreach my $dir (qw(east west south north)) {
-	return 1 if $self->get_neighboring_quad_id($dir);
-    }
-
-    return 0;
-}
-
-sub get_quad_link {
-    my $self = shift;
-    my ($dir1, $dir2) = @_;
-
-    my $link = $self->_get_quad_link($dir1, $dir2);
-    if (! $link && $dir2) {
-	$link = $self->_get_quad_link($dir2, $dir1);
-    }
-    return $link;
-}
-sub _get_quad_link {
-    my $self = shift;
-    my ($direction, $direction2) = @_;
-
-    my $quad_id = $self->get_neighboring_quad_id($direction);
-    return undef unless $quad_id;
-    my $quad = eval { Scramble::Area::get_all()->find_one('id' => $quad_id) };
-    if (! $quad) {
-	return $direction2 ? undef : $quad_id;
-    }
-    if (! $direction2) {
-	return $quad->get_short_link_html($quad->get_short_name());
-    }
-
-    return $quad->_get_quad_link($direction2);
-}
-
-sub get_misc_html {
-    my $self = shift;
-
-    my $download_at = '';
-    if ($self->get_download_id()) {
-	my $reference = Scramble::Reference::get_reference_for_id($self->get_download_id());
-	$download_at
-	    = Scramble::Misc::make_colon_line("Download at",
-					      Scramble::Reference::get_reference_html_with_name_only($reference));
-    }
-
-    my $neighbor_quads = '';
-    if ($self->has_neighbors()) {
-	$neighbor_quads = sprintf("<h2>Neighboring Quads</h2> <table cellspacing=0 cellpadding=10 border=1>"
-				  . "<tr><td>%s</td> <td>%s</td> <td>%s</td></tr>"
-				  . "<tr><td>%s</td> <td>%s</td> <td>%s</td></tr>"
-				  . "<tr><td>%s</td> <td>%s</td> <td>%s</td></tr></table>",
-				  $self->get_quad_link('north', 'west') || '&nbsp;',
-				  $self->get_quad_link('north') || '&nbsp;',
-				 $self->get_quad_link('north', 'east') || '&nbsp;',
-				  $self->get_quad_link('west') || '&nbsp;',
-				  $self->get_short_name(),
-				  $self->get_quad_link('east') || '&nbsp;',
-				  $self->get_quad_link('south', 'west') || '&nbsp;',
-				  $self->get_quad_link('south') || '&nbsp;',
-				  $self->get_quad_link('south', 'east') || '&nbsp;');
-    }
-    my $peakbagger_html = '';
-    if ($self->in_washington()) {
-        my $url = Scramble::Misc::get_peakbagger_quad_url($self);
-	$peakbagger_html = Scramble::Misc::make_colon_line("See the peaks on this quad at",
-							   qq(<a href="$url">Northwest Peakbagger\'s Asylum</a>));
-    }
-
-    return <<EOT;
-$download_at
-$peakbagger_html
-
-$neighbor_quads
-EOT
 }
 
 ######################################################################

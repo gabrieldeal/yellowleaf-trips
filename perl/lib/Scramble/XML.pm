@@ -107,7 +107,7 @@ sub get_recognizable_areas_html {
     my @areas = $self->get_areas_collection()->find('is-recognizable-area' => 'true');
     return '' unless @areas;
 
-    return Scramble::Misc::make_colon_line("In", join(", ", map { $args{'no-link'} ? $_->get_short_name() : $_->get_short_link_html() } @areas));
+    return Scramble::Misc::make_colon_line("In", join(", ", map { $_->get_short_name() } @areas));
 }
 
 ######################################################################

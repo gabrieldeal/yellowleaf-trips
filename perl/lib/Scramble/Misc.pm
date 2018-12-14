@@ -37,13 +37,6 @@ my @g_links = ({'url' => qq(../../g/m/home.html),
 
 =head1 Inserting links into text
 
-"XXX quad" or "XXX quadrangle" turns into link named "XXX" to quad
-page.  "XXX USGS quad" or "XXX USGS quadrangle" turns into link named
-"XXX USGS quad" to quad page.
-
-Location names are turned into links to the location page for that
-location.
-
 The 'id' from references.xml turns into a link named by the 'name' for
 the given 'id' to the 'URL' for the 'id'.
 
@@ -58,18 +51,6 @@ sub make_link_transformations {
 
 	my $link = Scramble::List::make_list_link($list_xml);
 	$g_transformations{'list'}{sprintf('\b%s\b', $id)} = _insert_links_pack($link);
-    }
-    foreach my $quad (Scramble::Area::get_all()->find('type' => 'USGS quad')) {
-        next unless $quad->get_locations();
- 	my $link = $quad->get_short_link_html();
-	my $regex = sprintf('\b%s(\s+USGS)?\s+quad(rangle)?\b', $quad->get_id());
- 	$g_transformations{'quad'}{$regex} = _insert_links_pack($link);
-    }
-    foreach my $area (Scramble::Area::get_all()->get_all()) {
-	next if $area->get_type() eq 'USGS quad';
-	my $regex = sprintf('\b%s\b', $area->get_id());
-	my $link = _insert_links_pack($area->get_short_link_html());
-	$g_transformations{'area'}{$regex} = $link;
     }
     foreach my $id (Scramble::Reference::get_ids()) {
 	my $html = eval { Scramble::Reference::get_reference_html_with_name_only({ 'id' => $id }) };
@@ -200,14 +181,6 @@ sub get_target {
     return ($url =~ /https?:/ ? q( target="_top" ) : '');
 }
 
-sub make_usgs_quad_link {
-    my ($quad, $extra) = @_;
-
-    my $area = Scramble::Area::get_all()->find_one('id' => $quad,
-						    'type' => 'USGS quad');
-    return $area->get_short_link_html();
-}
-
 sub make_optional_line {
     my ($format, $arg2, $arg3) = @_;
 
@@ -329,35 +302,6 @@ sub get_my_google_maps_url {
     return sprintf("../../g/m/usgs.html?lon=%s&lat=%s&zoom=2&type=usgs",
                    $lon,
                    $lat);
-}
-
-sub get_peakbagger_quad_url {
-    my ($quad_obj) = @_;
-
-    my $quad = $quad_obj->get_short_name();
-
-    $quad =~ s/Benchmark Mountain/Bench Mark Mountain/;
-    $quad =~ s/ /+/g;
-    $quad = Scramble::Misc::abbreviate_name($quad);
-
-    return "http://howbert.com/cgi-bin/peaklist.pl?quadname=$quad";
-}
-
-sub abbreviate_name {
-    my ($name) = @_;
-
-    $name =~ s/\'//g;
-    $name =~ s/Lake\b/Lk./;
-    $name =~ s/Peak\b/Pk./;
-    $name =~ s/Mountains$/Mtns./;
-    $name =~ s/Mountain$/Mtn./;
-    $name =~ s/^Mount\b/Mt./;
-
-    $name =~ s/Road$/Rd./;
-    $name =~ s/Avenue$/Ave./;
-    $name =~ s/Street$/St./;
-
-    return $name;
 }
 
 sub slurp {

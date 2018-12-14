@@ -494,7 +494,7 @@ sub find_cached_location {
 sub get_counties_html {
     my $self = shift;
 
-    my @htmls = map { $_->get_short_link_html() } $self->get_county_objects();
+    my @htmls = map { $_->get_short_name() } $self->get_county_objects();
 
     return @htmls ? join(", ", @htmls) : undef;
 }
@@ -505,7 +505,7 @@ sub get_state_html {
     if (! $self->get_state_object()) {
       return undef;
     }
-    return $self->get_state_object()->get_short_link_html();
+    return $self->get_state_object()->get_short_name();
 }
 
 sub make_nearby_locations_html {
@@ -525,7 +525,7 @@ sub get_quads_html {
     my $self = shift;
 
     return '' unless $self->get_quad_objects();
-    my $links = join(", ", map { $_->get_short_link_html } $self->get_quad_objects());
+    my $links = join(", ", map { $_->get_short_name() } $self->get_quad_objects());
     my $title = sprintf("USGS %s", Scramble::Misc::pluralize(scalar($self->get_quad_objects()),
 							     "quad"));
     return Scramble::Misc::make_colon_line($title, $links);

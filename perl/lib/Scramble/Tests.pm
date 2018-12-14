@@ -45,8 +45,7 @@ sub test_assert {
 
 sub test_files_exist {
     my @files = qw(
-		   a/midForkSnoqualmieDrainage.html
-		   m/quad-layout.html
+                   m/quad-layout.html
 		   li/middleforkpeakselevation.html
 		   .htaccess
 		   );
@@ -61,17 +60,10 @@ sub test_files_exist {
 sub test_insert_links {
     my %tests = ("Mount Teneriffe" => "Mount Teneriffe", #qq(<a href="../../g/l/Mount-Teneriffe.html">Mount Teneriffe</a>),
 		 "Mount Teneriffe Trailhead" => "Mount Teneriffe Trailhead", #qq(<a href="../../g/l/Mount-Teneriffe-Trailhead.html">Mount Teneriffe Trailhead</a>),
-		 "ColumbiaRiverGorge" => qq(<a href="../../g/a/ColumbiaRiverGorge.html">Columbia River Gorge</a>),
-		 "OR" => qq(<a href="../../g/a/OR.html">Oregon State</a>),
-		 "middleforkpeaks" => qq(<a  href="../li/middleforkpeakselevation.html">Middle Fork Snoqualmie River peaks</a>),
+                 "middleforkpeaks" => qq(<a  href="../li/middleforkpeakselevation.html">Middle Fork Snoqualmie River peaks</a>),
 		 "http://www.amazon.com/o/asin/B00000ASIN" => qq(<a href="http://www.amazon.com/o/asin/B00000ASIN">http://www.amazon.com/o/asin/B...</a>),
 		 "http://www.wta.org/" => qq(<a href="http://www.wta.org/">http://www.wta.org/</a>),
-		 "Lake Philippa quad" => qq(<a href="../../g/a/Lake-Philippa.html">Lake Philippa</a>),
-		 "Lake Philippa USGS quad" => qq(<a href="../../g/a/Lake-Philippa.html">Lake Philippa</a>),
-		 "Lake Philippa USGS quadrangle" => qq(<a href="../../g/a/Lake-Philippa.html">Lake Philippa</a>),
-
-
-		 "mountaineersScramblingClass" => qq(<a href="http://www.mountaineers.org/">Mountaineer\'s scrambling course</a>),
+                 "mountaineersScramblingClass" => qq(<a href="http://www.mountaineers.org/">Mountaineer\'s scrambling course</a>),
 		 
 		 "wta" => qq(<a href="http://www.wta.org/~wta/cgi-bin/wtaweb.pl?7+tr">Washington Trails Association</a>),
 		 );

@@ -180,7 +180,7 @@ sub get_reference_html_with_name_only {
 
     if ($url) {
         if ($id && $id eq 'USGS quad') {
-	    $retval .= Scramble::Misc::make_usgs_quad_link($name);
+            die "Is this dead code?"
 	} else {
 	    $retval .= qq(<a href="$url">$name</a>);
 	}

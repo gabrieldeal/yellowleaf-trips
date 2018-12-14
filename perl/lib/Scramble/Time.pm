@@ -4,15 +4,6 @@ use strict;
 
 use Date::Manip ();
 
-sub is_winter {
-    my ($date) = @_;
-
-    my ($year, $month, $day) = parse_date($date);
-    return (($month == 12 && $day >= 21)
-            || $month <= 2
-            || ($month == 3 && $day <= 21));
-}
-
 sub normalize_date_string {
     my ($date_string) = @_;
 

@@ -201,8 +201,7 @@ sub get_cell_value {
         my $quad = eval { Scramble::Area::get_all()->find_one('id' => $list_location->{'quad'},
                                                               'type' => 'USGS quad') };
         return $list_location->{'quad'} unless $quad;
-        return $quad->get_name() unless $quad->get_locations();
-        return $quad->get_short_link_html();
+        return $quad->get_short_name();
     } elsif ($name eq 'description') {
 	return Scramble::Misc::insert_links($list_location->{$name});
     } elsif ($list_location->{$name}) {
