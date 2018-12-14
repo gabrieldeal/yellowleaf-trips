@@ -1,5 +1,0 @@
-http://www-stud.rbi.informatik.uni-frankfurt.de/~markus/antiword/
- ~/../Downloads/antiword-0_37-windows/antiword/antiword.exe ./x.doc
-
-cd /use/local/bin
-./extractallimages.pl ~/../Downloads/fay.pdf ~/tmp/fay -v -v -v
