@@ -235,6 +235,7 @@ sub make_javascript {
     }
 }
 
+# FIXME: Move this CSS into the webpack-built bundle.
 sub copy_css {
     my $command = sprintf("cp %s/*.css %s/g/css/",
                    $g_options{'css-directory'},
