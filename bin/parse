@@ -267,11 +267,13 @@ sub main {
     Scramble::Area::Quad::init();
     Scramble::Reference::open($g_options{'data-directory'});
 
-    if (0 && should('convert')) {
-	#convert_locations();
-	convert_reports();
-	exit 0;
-    }
+    # if (0 && should('convert')) {
+    #     my @files = @{ $g_options{'file'} } || glob("$g_options{'data-directory'}/locations/*.xml");
+    #     Scramble::Converter::convert_locations($g_options{'data-directory'}, @files);
+    #     @files = ...
+    #     Scramble::Converter::convert_reports($g_options{'data-directory'}, @files);
+    #     exit 0;
+    # }
 
     if (! @{ $g_options{'file'} }) {
 	Scramble::Report::open_all($g_options{'images-directory'});
@@ -431,72 +433,6 @@ sub make_html_file {
 							      'include-header' => 1,
                                                               %options,
                                                               html => $html));
-}
-
-sub convert_locations {
-    my $converter = Scramble::Converter::Location->new();
-
-    my @files = @{ $g_options{'file'} } || glob("$g_options{'data-directory'}/locations/*.xml");
-    foreach my $file (@files) {
-	my @locations;
-	foreach my $location (Scramble::Location->new_objects($file)) {
-	    if ($location->get_is_driving_location() or $location->get_is_road()) {
-		printf("Skipping %s\n", $location->get_name());
-		next;
-	    }
-	    push @locations, $location;
-	}
-	next unless @locations;
-
-        my $path = sprintf("$g_options{'data-directory'}/locations/%s.xml", Scramble::Misc::sanitize_for_filename($locations[0]->get_name()));
-
-	my $fh = IO::File->new($path, 'w') or die "Failed to create $path: $!";
-	$fh->print($converter->convert(@locations) . "\n") or die;
-	$fh->close() or die;
-	Scramble::XML::parse($path);
-    }
-}
-
-sub get_converted_report_path {
-    my ($report) = @_;
-
-
-    my %args = (
-                'trip-id' => $report->get_trip_id(),
-                'date' => $report->get_start_date(),
-               );
-    my @images = Scramble::Image::get_all_images_collection()->find(%args);
-    if (@images) {
-	return sprintf("%s/report.xml", $images[0]->get_source_directory());
-    }
-
-    my $subdir = File::Basename::basename($report->{path});
-    $subdir =~ s/\.xml$//;
-    $subdir = "$g_options{'data-directory'}/gabrielx/reports/$subdir";
-    File::Path::mkpath([ $subdir ], 0, 0755);
-
-    return "$subdir/report.xml";
-}
-sub convert_reports {
-    use Scramble::Converter::Report ();
-    my $converter = Scramble::Converter::Report->new();
-
-    my @files = @{ $g_options{'file'} };
-    @files = glob("$g_options{'data-directory'}/gabrielx/reports/*.xml") unless @files;
-
-    foreach my $file (@files) {
-	my @reports;
-	my $report = Scramble::Report->new($file);
-	next unless $report;
-
-	my $path = get_converted_report_path($report);
-	
-	my $fh = IO::File->new($path, 'w') or die "Failed to create $path: $!";
-	$fh->print($converter->convert($report) . "\n") or die;
-	$fh->close() or die;
-
-	Scramble::XML::parse($path);
-    }
 }
 
 1;
