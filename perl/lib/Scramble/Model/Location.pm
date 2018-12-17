@@ -1,15 +1,15 @@
-package Scramble::Location;
+package Scramble::Model::Location;
 
 use strict;
 
 use Math::Trig ();
-use Scramble::Image ();
+use Scramble::Model::Image ();
 use Scramble::Misc ();
-use Scramble::XML ();
-use Scramble::Area ();
+use Scramble::Model ();
+use Scramble::Model::Area ();
 use Geo::Coordinates::UTM ();
 
-our @ISA = qw(Scramble::XML);
+our @ISA = qw(Scramble::Model);
 our $HACK_DIRECTORY;
 
 my @g_hidden_locations;
@@ -50,7 +50,7 @@ sub new {
     }
 
     $self->{'state-object'} = (eval { $self->get_areas_collection()->find_one('type' => 'state') } 
-			       || eval { Scramble::Area::get_all()->find_one('id' => $self->_get_required('state')) } );
+			       || eval { Scramble::Model::Area::get_all()->find_one('id' => $self->_get_required('state')) } );
     if ($self->get_state_object()) {
       $self->get_areas_collection()->add($self->get_state_object());
     }
@@ -60,7 +60,7 @@ sub new {
 	if (my @county_objs = $self->get_areas_collection()->find('type' => 'county')) {
 	    push @county_ids, map { $_->get_id() } @county_objs;
 	}
-	$self->{'county-objects'} = [ map { Scramble::Area::get_all()->find_one('id' => $_) } @county_ids ];
+	$self->{'county-objects'} = [ map { Scramble::Model::Area::get_all()->find_one('id' => $_) } @county_ids ];
 	$self->get_areas_collection()->add($self->get_county_objects());
     }
 
@@ -123,19 +123,19 @@ sub _get_UTM_from_lat_lon {
 sub new_objects {
     my ($arg0, $path) = @_;
 
-    my $xml = Scramble::XML::parse($path);
+    my $xml = Scramble::Model::parse($path);
 
     if (! $xml->{'location'}) {
 	return () if $xml->{'incomplete'} || $xml->{'skip'};
-	return (Scramble::Location->new($xml));
+	return (Scramble::Model::Location->new($xml));
     }
 
     my @retval;
     foreach my $location (@{ $xml->{'location'} }) {
 	next if $location->{'incomplete'};
-	push @retval, Scramble::Location->new({ %$xml, 
-						%$location,
-						'has-twin' => @{ $xml->{location} } > 1 });
+	push @retval, Scramble::Model::Location->new({ %$xml, 
+                                                       %$location,
+                                                       'has-twin' => @{ $xml->{location} } > 1 });
     }
 
     return @retval;
@@ -166,7 +166,7 @@ sub get_picture_objects {
 
     $self->{'picture-objects'} = [];
     foreach my $regex ($self->get_regex_keys()) {
-	foreach my $image (Scramble::Image::get_all_images_collection()->get_all()) {
+	foreach my $image (Scramble::Model::Image::get_all_images_collection()->get_all()) {
 	    # FIXME: Should get the USGS quads from the report or
 	    # the images and get the location names from the
 	    # image, then do real matching.  This is very broken
@@ -315,7 +315,7 @@ sub open_specific {
 
     my @locations;
     foreach my $path (@paths) {
-	foreach my $location (Scramble::Location->new_objects($path)) {
+	foreach my $location (Scramble::Model::Location->new_objects($path)) {
 	    if (exists $g_check_for_duplicate_ids{$location->get_id()}) {
 		die "Duplicate location (add 'id' attr to new location): " . $location->get_id();
 	    }
@@ -546,9 +546,9 @@ sub get_short_link_html {
 sub get_reports_for_location_html {
     my ($location_xml) = @_;
 
-    my @references_html = Scramble::Reference::get_page_references_html($location_xml->get_references());
+    my @references_html = Scramble::Model::Reference::get_page_references_html($location_xml->get_references());
 
-    my @reports = Scramble::Report::get_reports_for_location($location_xml);
+    my @reports = Scramble::Model::Report::get_reports_for_location($location_xml);
     return undef unless @reports || @references_html;
 
     foreach my $report (@reports) {

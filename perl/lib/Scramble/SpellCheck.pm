@@ -20,7 +20,7 @@ sub check_spelling {
 
 sub _add_words {
     Scramble::Logger::verbose("Adding words to the dictionary...");
-    my $location_collection = Scramble::Location::get_all();
+    my $location_collection = Scramble::Model::Location::get_all();
     foreach my $location ($location_collection->get_all()) {
         Spell::add_words($location->get_name());
         foreach my $aka ($location->get_aka_names()) {
@@ -28,7 +28,7 @@ sub _add_words {
         }
     }
 
-    foreach my $id (Scramble::Reference::get_ids()) {
+    foreach my $id (Scramble::Model::Reference::get_ids()) {
         Spell::add_words($id);
     }
 }
@@ -38,7 +38,7 @@ sub _check_spelling_in_all_documents {
 
     my @misspelled;
 
-    foreach my $report (Scramble::Report::get_all()) {
+    foreach my $report (Scramble::Model::Report::get_all()) {
         next unless defined $report->get_route();
         my @texts;
         push @texts, ($report->get_route(), $report->get_name());
@@ -47,7 +47,7 @@ sub _check_spelling_in_all_documents {
         }
     }
 
-    foreach my $image (Scramble::Image::get_all_images_collection()->get_all()) {
+    foreach my $image (Scramble::Model::Image::get_all_images_collection()->get_all()) {
         foreach my $text ($image->get_description(), $image->get_of(), $image->get_from(), $image->get_section_name()) {
             push @misspelled, _check_spelling_in_text($text, $image->get_source_directory(), $image->get_date());
         }

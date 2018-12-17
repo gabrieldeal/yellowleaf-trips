@@ -1,4 +1,4 @@
-package Scramble::XML;
+package Scramble::Model;
 
 use strict;
 
@@ -74,7 +74,7 @@ sub set {
 }
 
 ######################################################################
-# shared between Scramble::Location and Scramble::Report
+# shared between Scramble::Model::Location and Scramble::Model::Report
 ######################################################################
 
 sub get_areas_from_xml {
@@ -85,7 +85,7 @@ sub get_areas_from_xml {
 
     my @areas;
     foreach my $area_tag (@{ $areas_xml->{'area'} }) {
-	push @areas, Scramble::Area::get_all()->find_one('id' => $area_tag->{'id'})
+	push @areas, Scramble::Model::Area::get_all()->find_one('id' => $area_tag->{'id'})
     }
 
     return @areas;

@@ -1,10 +1,10 @@
-package Scramble::Waypoints2;
+package Scramble::Model::Waypoints2;
 
 use strict;
 
-use Scramble::Waypoint2 ();
+use Scramble::Model::Waypoint2 ();
 
-our @ISA = qw(Scramble::XML);
+our @ISA = qw(Scramble::Model);
 
 my $gOnTrailTypeRegexes = 'ascending|descending|traversing|hiking|jogging';
 
@@ -19,7 +19,7 @@ sub new {
 
     my @waypoints;
     foreach my $point_xml (@$waypoints) {
-	push @waypoints, Scramble::Waypoint2->new($point_xml);
+	push @waypoints, Scramble::Model::Waypoint2->new($point_xml);
     }
     $self->{'waypoints'} = \@waypoints;
 

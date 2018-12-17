@@ -1,4 +1,4 @@
-package Scramble::Image;
+package Scramble::Model::Image;
 
 use strict;
 
@@ -137,7 +137,7 @@ sub get_best_images {
     my @images = @_;
 
     @images = Scramble::Misc::dedup(@images);
-    @images = sort { Scramble::Image::cmp($a, $b) } @images;
+    @images = sort { Scramble::Model::Image::cmp($a, $b) } @images;
 
     my $max = 50;
     if (@images > $max) {
@@ -162,7 +162,7 @@ sub get_map_reference {
 
     return { 'name' => $self->get_description(),
 	     'URL' => $self->get_url(),
-	     'id' => 'routeMap', # used by Scramble::Reference
+	     'id' => 'routeMap', # used by Scramble::Model::Reference
 	     'type' => ($self->{'noroute'} 
 			? "Online map"
 			: "Online map with route drawn on it"),
@@ -282,12 +282,12 @@ sub read_images_from_report {
     my $chronological_order = 0;
     foreach my $image_xml (@{ $report->_get_optional('files', "file") || [] }) {
         next if $image_xml->{skip};
-        push @images, Scramble::Image->new_from_attrs({ 'date' => "$year/$month/$day",
-                                                        'source-directory' => $directory,
-                                                        'chronological-order' => $chronological_order++,
-                                                        'in-chronological-order' => $in_chronological_order,
-                                                        %$image_xml,
-                                                    });
+        push @images, Scramble::Model::Image->new_from_attrs({ 'date' => "$year/$month/$day",
+                                                                   'source-directory' => $directory,
+                                                                   'chronological-order' => $chronological_order++,
+                                                                   'in-chronological-order' => $in_chronological_order,
+                                                                   %$image_xml,
+                                                             });
     }
 
     $g_collection->add(@images);
@@ -321,7 +321,7 @@ sub cmp_date {
 sub n_per_date {
     my ($n, @images) = @_;
 
-    @images = sort { Scramble::Image::cmp($a, $b) } @images;
+    @images = sort { Scramble::Model::Image::cmp($a, $b) } @images;
 
     my %trips;
     foreach my $image (@images) {
@@ -336,7 +336,7 @@ sub make_images_by_year_page {
     my $n_pictures_per_year = 50;
     my $n_per_date = 4;
 
-    my @images = Scramble::Image::get_all_images_collection()->find('type' => 'picture');
+    my @images = Scramble::Model::Image::get_all_images_collection()->find('type' => 'picture');
 
     my %pictures;
     foreach my $image (@images) {
@@ -350,7 +350,7 @@ sub make_images_by_year_page {
         my @images = @{ $pictures{$year}{images} };
         @images = n_per_date($n_per_date, @images);
         if (@images > $n_pictures_per_year) {
-            @images = sort { Scramble::Image::cmp($a, $b) } @images;
+            @images = sort { Scramble::Model::Image::cmp($a, $b) } @images;
             @images = @images[0..$n_pictures_per_year-1];
         }
         @images = sort { $b->get_date() cmp $a->get_date() } @images;

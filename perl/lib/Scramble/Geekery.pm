@@ -4,10 +4,10 @@ use strict;
 
 sub get_list_html {
     my @htmls;
-    foreach my $list_xml (Scramble::List::get_all_lists()) {
+    foreach my $list_xml (Scramble::Model::List::get_all_lists()) {
 	my $climbed_count = 0;
 	foreach my $list_location (@{ $list_xml->{'location'} }) {
-	    my $location_object = Scramble::List::get_location_object($list_location);
+	    my $location_object = Scramble::Model::List::get_location_object($list_location);
 	    next unless $location_object && $location_object->have_visited();
 	    $climbed_count++;
 	}
@@ -49,7 +49,7 @@ sub nlvl {
 
 sub get_stats {
     my %stats;
-    foreach my $report (Scramble::Report::get_all()) {
+    foreach my $report (Scramble::Model::Report::get_all()) {
 	my $date = $report->get_start_date();
 	my ($year) = ($date =~ /^(\d\d\d\d)\//);
 	my $gain = $report->get_waypoints()->get_elevation_gain("ascending|descending");
@@ -189,11 +189,11 @@ sub get_total_climbed {
     my $unique_count = 0;
     my $summit_count = 0;
     my %climbed;
-    foreach my $location (Scramble::Location::get_visited()) {
+    foreach my $location (Scramble::Model::Location::get_visited()) {
 	next if ! ($location->get_type() eq 'peak'
                    || (defined $location->get_prominence()
                        && $location->get_prominence() > 400));
-        my $count = scalar(grep { $_->get_state() eq 'done' } Scramble::Report::get_reports_for_location($location));
+        my $count = scalar(grep { $_->get_state() eq 'done' } Scramble::Model::Report::get_reports_for_location($location));
         next unless $count;
 	$unique_count++;
         $summit_count += $count;

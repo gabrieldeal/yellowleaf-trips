@@ -12,8 +12,8 @@ use File::Basename ();
 use Image::ExifTool ();
 use File::Spec ();
 use Geo::Gpx ();
-use Scramble::Area ();
-use Scramble::Location ();
+use Scramble::Model::Area ();
+use Scramble::Model::Location ();
 use Scramble::Time ();
 use Spreadsheet::Read ();
 use XML::Generator ();
@@ -163,19 +163,19 @@ sub prompt_for_locations {
 
     my $prompt = "Location (^D to quit): ";
     print $prompt;
-    Scramble::Area::open($data_dir);
-    Scramble::Location::set_data_directory($data_dir);
+    Scramble::Model::Area::open($data_dir);
+    Scramble::Model::Location::set_data_directory($data_dir);
     my %opened_locations;
     while (my $location_name = <STDIN>) {
         my @location_matches;
         my $location_regex = "\Q". join('\E.*\Q', split(/\s+/, $location_name)) . "\E";
-        foreach my $location_path (glob("$Scramble::Location::HACK_DIRECTORY/*.xml")) {
+        foreach my $location_path (glob("$Scramble::Model::Location::HACK_DIRECTORY/*.xml")) {
             my $location_filename = File::Basename::basename($location_path);
             if ($location_filename =~ /$location_regex/i) {
                 if ($opened_locations{$location_filename}) {
                     @location_matches = @{ $opened_locations{$location_filename} };
                 } else {
-                    push @location_matches, Scramble::Location::open_specific($location_path);
+                    push @location_matches, Scramble::Model::Location::open_specific($location_path);
                     $opened_locations{$location_filename} = \@location_matches;
                 }
             }

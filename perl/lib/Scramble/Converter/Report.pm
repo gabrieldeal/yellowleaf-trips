@@ -54,8 +54,8 @@ sub make_files_tag {
     my $xg = $self->xg();
     my $r = $self->r();
 
-    my @images = Scramble::Image::get_all_images_collection()->find('trip-id' => $r->get_trip_id(),
-								    'date' => $r->get_start_date());
+    my @images = Scramble::Model::Image::get_all_images_collection()->find('trip-id' => $r->get_trip_id(),
+                                                                           'date' => $r->get_start_date());
 
     return () unless @images;
 
@@ -84,7 +84,7 @@ sub make_waypoints_tag {
     my $r = $self->r();
 
     return () unless $r->get_waypoints();
-    return $self->make_waypoints1_tag() if ref($r->get_waypoints()) =~ /Scramble::Waypoints\b/;
+    return $self->make_waypoints1_tag() if ref($r->get_waypoints()) =~ /Scramble::Model::Waypoints\b/;
     return $self->make_waypoints2_tag();
 }
 sub epoch_to_time {

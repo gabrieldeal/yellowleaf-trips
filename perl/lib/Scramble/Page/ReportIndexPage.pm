@@ -64,7 +64,7 @@ sub create_all {
     my %reports;
     my $count = 0;
     my $latest_year = 0;
-    my @reports = sort { Scramble::Report::cmp($b, $a) } Scramble::Report::get_all();
+    my @reports = sort { Scramble::Model::Report::cmp($b, $a) } Scramble::Model::Report::get_all();
     foreach my $report (@reports) {
 	my ($yyyy) = $report->get_parsed_start_date();
         $latest_year = $yyyy if $yyyy > $latest_year;

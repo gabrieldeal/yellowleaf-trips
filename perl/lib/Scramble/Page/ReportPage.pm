@@ -49,8 +49,8 @@ sub create {
     my $long_route_references = '';
     if ($self->report()->get_references() == 1) {
       $short_route_references = Scramble::Misc::make_colon_line("Reference", 
-								Scramble::Reference::get_reference_html_with_name_only($self->report()->get_references(),
-														      'name-ids' => [qw(page-name name)]));
+								Scramble::Model::Reference::get_reference_html_with_name_only($self->report()->get_references(),
+                                                                                                                              'name-ids' => [qw(page-name name)]));
     } else {
       $long_route_references = Scramble::Misc::make_optional_line("<h2>References</h2>%s",
 							     $self->report()->get_reference_html());
@@ -136,7 +136,7 @@ EOT
 # Statics
 
 sub create_all {
-    foreach my $report (Scramble::Report::get_all()) {
+    foreach my $report (Scramble::Model::Report::get_all()) {
         eval {
             my $page = Scramble::Page::ReportPage->new($report);
             $page->create();

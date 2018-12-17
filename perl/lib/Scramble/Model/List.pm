@@ -1,9 +1,9 @@
-package Scramble::List;
+package Scramble::Model::List;
 
 use strict;
 
 use Scramble::Misc;
-use Scramble::XML;
+use Scramble::Model;
 use Scramble::Logger;
 
 my @g_lists;
@@ -68,7 +68,7 @@ sub new_sorted_list {
 sub open {
     my (@paths) = @_;
     
-    @g_lists = Scramble::XML::open_documents(@paths);
+    @g_lists = Scramble::Model::open_documents(@paths);
     @g_lists or die "No lists";
 
     for (my $i = 0; $i < @g_lists; ++$i) {
@@ -109,9 +109,9 @@ sub get_location_object {
 
     if (! exists $list_location->{'object'}) {
 	$list_location->{'object'} =  eval { 
-	    Scramble::Location::find_location('name' => $name,
-					      'quad' => $list_location->{'quad'},
-					      'include-unvisited' => 1);
+	    Scramble::Model::Location::find_location('name' => $name,
+                                                     'quad' => $list_location->{'quad'},
+                                                     'include-unvisited' => 1);
 	  };
     }
     return $list_location->{'object'};
@@ -173,7 +173,7 @@ sub get_location_link_html {
     my (%args) = @_;
 
     return eval { 
-	my $location = Scramble::Location::find_location(%args);
+	my $location = Scramble::Model::Location::find_location(%args);
 	return $location->get_short_link_html();
     } || $args{'name'};
 }
@@ -191,8 +191,8 @@ sub get_cell_value {
 	return Scramble::Misc::format_elevation_short(get_elevation($list_location));
     } elsif ($name eq 'quad') {
         return '' unless $list_location->{'quad'};
-        my $quad = eval { Scramble::Area::get_all()->find_one('id' => $list_location->{'quad'},
-                                                              'type' => 'USGS quad') };
+        my $quad = eval { Scramble::Model::Area::get_all()->find_one('id' => $list_location->{'quad'},
+                                                                     'type' => 'USGS quad') };
         return $list_location->{'quad'} unless $quad;
         return $quad->get_short_name();
     } elsif ($name eq 'description') {
@@ -254,12 +254,12 @@ sub get_images_to_display_for_locations {
     my @images;
     foreach my $location (@$locations) {
       my @location_images = $location->get_picture_objects();
-      @location_images = sort { Scramble::Image::cmp($a, $b) } @location_images;
+      @location_images = sort { Scramble::Model::Image::cmp($a, $b) } @location_images;
       push @images, $location_images[0] if @location_images;
     }
 
     @images = Scramble::Misc::dedup(@images);
-    @images = sort { Scramble::Image::cmp($a, $b) } @images;
+    @images = sort { Scramble::Model::Image::cmp($a, $b) } @images;
     if (@images > $max_images) {
 	@images = @images[0..$max_images-1];
     }

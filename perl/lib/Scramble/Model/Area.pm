@@ -1,12 +1,12 @@
-package Scramble::Area;
+package Scramble::Model::Area;
 
 use strict;
 
-use Scramble::XML ();
+use Scramble::Model ();
 use Scramble::Collection ();
-use Scramble::Area::Quad ();
+use Scramble::Model::Area::Quad ();
 
-our @ISA = qw(Scramble::XML);
+our @ISA = qw(Scramble::Model);
 
 my $g_all;
 
@@ -23,7 +23,7 @@ sub new {
     $self->_set_optional(qw(weather-id URL));
 
     if ($self->get_type() eq 'USGS quad') {
-      $self = Scramble::Area::Quad->new($self);
+      $self = Scramble::Model::Area::Quad->new($self);
     }
 
 
@@ -65,7 +65,7 @@ sub get_in_areas_collection {
 
     if (! $self->{'in-areas-object'}) {
 	# Need to do this lazily because it needs to happen after all area objects have been opened.
-	my @areas = map { Scramble::Area::get_all()->find_one('id' => $_) } $self->in_area_ids();
+	my @areas = map { Scramble::Model::Area::get_all()->find_one('id' => $_) } $self->in_area_ids();
 	$self->{'in-areas-object'} = Scramble::Collection->new('objects' => \@areas);
 	$self->{'in-areas-object'}->add($self->in_areas_transitive_closure());
     }
@@ -100,9 +100,9 @@ sub open {
     return if $g_all;
 
     my @areas;
-    my $areas_xml = Scramble::XML::parse("$data_dir/areas.xml");
+    my $areas_xml = Scramble::Model::parse("$data_dir/areas.xml");
     foreach my $area_xml (@{ $areas_xml->{'area'} }) {
-	my $area = Scramble::Area->new($area_xml);
+	my $area = Scramble::Model::Area->new($area_xml);
 	push @areas, $area;
     }
 
@@ -113,13 +113,13 @@ sub open {
 	    my $neighbor_id = $quad->get_neighboring_quad_id($dirs->[0]);
 	    next unless $neighbor_id;
 
-	    my $neighbor = eval { Scramble::Area::get_all()->find_one('id' => $neighbor_id) };
+	    my $neighbor = eval { Scramble::Model::Area::get_all()->find_one('id' => $neighbor_id) };
 	    if (! $neighbor) {
-		$neighbor = Scramble::Area->new({ 'id' => $neighbor_id,
-						  name => $neighbor_id,
-						  $dirs->[1] => $quad->get_id(),
-						  'type' => $quad->get_type(),
-						});
+		$neighbor = Scramble::Model::Area->new({ 'id' => $neighbor_id,
+                                                             name => $neighbor_id,
+                                                             $dirs->[1] => $quad->get_id(),
+                                                             'type' => $quad->get_type(),
+                                                       });
 		get_all()->add($neighbor);
 	    }
 	    $neighbor->add_neighboring_quad_id($dirs->[1], $quad->get_id());

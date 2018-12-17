@@ -5,8 +5,8 @@ use strict;
 use IO::File ();
 use Scramble::Logger ();
 use Scramble::Reference ();
-use Scramble::List ();
-use Scramble::Area ();
+use Scramble::Model::List ();
+use Scramble::Model::Area ();
 use URI::Encode ();
 
 our $gEnableEmbeddedGoogleMap = 1;
@@ -28,15 +28,15 @@ The 'id' from list names turns into a link with the 'name' from that list.
 =cut
 my %g_transformations;
 sub make_link_transformations {
-    foreach my $list_xml (Scramble::List::get_all_lists()) {
+    foreach my $list_xml (Scramble::Model::List::get_all_lists()) {
 	next unless $list_xml->{'id'};
 	my $id = $list_xml->{'id'};
 
-	my $link = Scramble::List::make_list_link($list_xml);
+	my $link = Scramble::Model::List::make_list_link($list_xml);
 	$g_transformations{'list'}{sprintf('\b%s\b', $id)} = _insert_links_pack($link);
     }
-    foreach my $id (Scramble::Reference::get_ids()) {
-	my $html = eval { Scramble::Reference::get_reference_html_with_name_only({ 'id' => $id }) };
+    foreach my $id (Scramble::Model::Reference::get_ids()) {
+	my $html = eval { Scramble::Model::Reference::get_reference_html_with_name_only({ 'id' => $id }) };
 	next unless $html;
 	$id =~ s/\s+/\\s+/g;
 	$g_transformations{'reference'}{$id} = _insert_links_pack($html);

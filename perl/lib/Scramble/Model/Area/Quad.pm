@@ -1,10 +1,10 @@
-package Scramble::Area::Quad;
+package Scramble::Model::Area::Quad;
 
 use strict;
 
-use Scramble::Area ();
+use Scramble::Model::Area ();
 
-our @ISA = qw(Scramble::Area);
+our @ISA = qw(Scramble::Model::Area);
 my @gLayouts;
 
 sub new {
@@ -81,7 +81,7 @@ sub get_neighboring_quad_object {
 
     my $id = $self->get_neighboring_quad_id($dir);
     return undef unless defined $id;
-    return eval { Scramble::Area::get_all()->find_one('id' => $id) };
+    return eval { Scramble::Model::Area::get_all()->find_one('id' => $id) };
 }
 sub get_neighboring_quad_id { $_[0]->_get_optional($_[1]) }
 sub add_neighboring_quad_id {
@@ -102,9 +102,9 @@ sub add_neighboring_quad_id {
 
 sub init {
     for (my $i = 1; 
-	 my $corner = eval { Scramble::Area::get_all()->find_one('isa' => __PACKAGE__,
-								 'type' => 'USGS quad',
-								 'corner-id' => $i) }; 
+	 my $corner = eval { Scramble::Model::Area::get_all()->find_one('isa' => __PACKAGE__,
+                                                                        'type' => 'USGS quad',
+                                                                        'corner-id' => $i) };
 	 ++$i) 
     {
 	my $array = [];

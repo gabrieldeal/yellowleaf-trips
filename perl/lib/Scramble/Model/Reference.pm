@@ -1,8 +1,8 @@
-package Scramble::Reference;
+package Scramble::Model::Reference;
 
 use strict;
 
-use Scramble::XML;
+use Scramble::Model;
 
 my $g_references_xml;
 
@@ -10,8 +10,7 @@ sub open {
     my ($data_dir) = @_;
 
     my $file = "$data_dir/references.xml";
-    $g_references_xml = Scramble::XML::parse($file,
-					     "keyattr" => ["id"]);
+    $g_references_xml = Scramble::Model::parse($file, "keyattr" => ["id"]);
     if ("HASH" ne ref($g_references_xml->{'reference'})) {
         die "$file is malformed.  Is there a missing 'id' attribute?";
     }

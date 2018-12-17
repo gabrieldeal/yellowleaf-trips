@@ -1,4 +1,4 @@
-package Scramble::Report;
+package Scramble::Model::Report;
 
 use strict;
 
@@ -7,14 +7,14 @@ use MIME::Types ();
 use DateTime ();
 use DateTime::Format::Mail ();
 use JSON ();
-use Scramble::Waypoints2 ();
-use Scramble::Image ();
-use Scramble::Reference ();
+use Scramble::Model::Waypoints2 ();
+use Scramble::Model::Image ();
+use Scramble::Model::Reference ();
 use Scramble::Page::ReportPage ();
 use Scramble::Template ();
 use Scramble::Time ();
 
-our @ISA = qw(Scramble::XML);
+our @ISA = qw(Scramble::Model);
 
 my %location_to_reports_mapping;
 my $g_report_collection = Scramble::Collection->new();
@@ -23,23 +23,23 @@ my $g_max_rating = 5;
 sub new {
     my ($arg0, $path) = @_;
 
-    my $self = Scramble::XML::parse($path);
+    my $self = Scramble::Model::parse($path);
     bless($self, ref($arg0) || $arg0);
     if ($self->{'skip'}) {
 	return undef;
         print "Skipping $path because 'skip=true'\n";
     }
 
-    $self->{'waypoints'} = Scramble::Waypoints2->new($self->get_filename(),
+    $self->{'waypoints'} = Scramble::Model::Waypoints2->new($self->get_filename(),
 						     $self->_get_optional('waypoints'));
 
     my @location_objects;
     foreach my $location_element ($self->get_locations()) {
-	push @location_objects, Scramble::Location::find_location('name' => $location_element->{'name'},
-								   'quad' => $location_element->{'quad'},
-								   'country' => $location_element->{country},
-								   'include-unvisited' => 1,
-								   );
+	push @location_objects, Scramble::Model::Location::find_location('name' => $location_element->{'name'},
+                                                                         'quad' => $location_element->{'quad'},
+                                                                         'country' => $location_element->{country},
+                                                                         'include-unvisited' => 1,
+            );
     }
     $self->{'location-objects'} = \@location_objects;
     foreach my $location ($self->get_location_objects()) {
@@ -59,7 +59,7 @@ sub new {
 	$self->set('end-date', Scramble::Time::normalize_date_string($self->get_end_date()));
     }
 
-    my @images = Scramble::Image::read_images_from_report(File::Basename::dirname($path), $self);
+    my @images = Scramble::Model::Image::read_images_from_report(File::Basename::dirname($path), $self);
     my $image_collection = Scramble::Collection->new(objects => \@images);
 
     my $picture_objs = [
@@ -294,7 +294,7 @@ sub get_references {
     my $self = shift;
 
     my @references = @{ $self->_get_optional('references', 'reference') || [] };
-    @references = sort { Scramble::Reference::cmp_references($a, $b) } @references;
+    @references = sort { Scramble::Model::Reference::cmp_references($a, $b) } @references;
 
     return @references;
 }
@@ -302,7 +302,7 @@ sub get_references {
 sub get_reference_html {
     my $self = shift;
 
-    my @references = map { Scramble::Reference::get_page_reference_html($_) } $self->get_references();
+    my @references = map { Scramble::Model::Reference::get_page_reference_html($_) } $self->get_references();
     @references = Scramble::Misc::dedup(@references);
 
     return '' unless @references;
@@ -319,9 +319,9 @@ sub get_map_summary_html {
     my %maps;
 
     foreach my $map ($self->get_maps()) {
-        my $map_type = Scramble::Reference::get_map_type($map);
+        my $map_type = Scramble::Model::Reference::get_map_type($map);
         next unless defined $map_type && $type eq $map_type;
-        my $name = Scramble::Reference::get_map_name($map);
+        my $name = Scramble::Model::Reference::get_map_name($map);
         $maps{$name} = 1;
     }
 
@@ -478,7 +478,7 @@ sub open_specific {
 
     $path = "$path/report.xml" if !-f $path && -f "$path/report.xml";
 
-    my $report = Scramble::Report->new($path);
+    my $report = Scramble::Model::Report->new($path);
     $g_report_collection->add($report) if defined $report;
     return $report;
 }

@@ -10,7 +10,7 @@ sub convert_locations {
 
     foreach my $file (@files) {
 	my @locations;
-	foreach my $location (Scramble::Location->new_objects($file)) {
+	foreach my $location (Scramble::Model::Location->new_objects($file)) {
 	    if ($location->get_is_driving_location() or $location->get_is_road()) {
 		printf("Skipping %s\n", $location->get_name());
 		next;
@@ -24,7 +24,7 @@ sub convert_locations {
 	my $fh = IO::File->new($path, 'w') or die "Failed to create $path: $!";
 	$fh->print($converter->convert(@locations) . "\n") or die;
 	$fh->close() or die;
-	Scramble::XML::parse($path);
+        Scramble::Model::parse($path);
     }
 }
 
@@ -36,7 +36,7 @@ sub get_converted_report_path {
                 'trip-id' => $report->get_trip_id(),
                 'date' => $report->get_start_date(),
                );
-    my @images = Scramble::Image::get_all_images_collection()->find(%args);
+    my @images = Scramble::Model::Image::get_all_images_collection()->find(%args);
     if (@images) {
 	return sprintf("%s/report.xml", $images[0]->get_source_directory());
     }
@@ -59,7 +59,7 @@ sub convert_reports {
 
     foreach my $file (@files) {
 	my @reports;
-	my $report = Scramble::Report->new($file);
+	my $report = Scramble::Model::Report->new($file);
 	next unless $report;
 
         my $path = get_converted_report_path($data_directory, $report);
