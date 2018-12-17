@@ -55,7 +55,7 @@ my %g_options = (
                  "skip" => [],
                  "timezone" => "PDT",
                  "dictionary-directory=" => "dict",
-                 "templates-directory" => "templates",
+                 "templates-directory" => "perl/template",
                  "javascript-directory" => "javascript/dist",
                  "output-directory" => "html",
 		 );
