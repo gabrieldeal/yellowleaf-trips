@@ -44,6 +44,7 @@ my @g_options = qw(
 		   skip=s@
 		   file=s@
 		   images-directory=s
+                   kml-directory=s
                    templates-directory=s
                    javascript-directory=s
                    output-directory=s
@@ -55,6 +56,7 @@ my %g_options = (
                  "skip" => [],
                  "timezone" => "PDT",
                  "dictionary-directory=" => "dict",
+                 "kml-directory" => "kml",
                  "templates-directory" => "perl/template",
                  "javascript-directory" => "javascript/dist",
                  "output-directory" => "html",
@@ -203,7 +205,7 @@ sub make_templates() {
 
 sub copy_kml {
     my $command = sprintf("cp %s/*.kml %s/g/kml/",
-                   $g_options{'templates-directory'},
+                   $g_options{'kml-directory'},
                    $g_options{'output-directory'});
     system($command);
     if ($?) {
