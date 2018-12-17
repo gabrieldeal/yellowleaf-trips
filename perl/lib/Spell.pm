@@ -55,10 +55,14 @@ sub strip_word {
     $word =~ s/\b\d+[abc]\b//;
 
     $word =~ s/^[\W_]+//;
-    $word =~ s/[\W\d_]+$//;
+
+    # Strip punctuation like "tarn.":
+    $word =~ s/[:;,\.!\?\)'"+]+$//;
+
+    return '' if $word =~ /^\d+$/;
+    return '' if $word =~ /^\s+$/;
 
     return $word;
-
 }
 
 sub possibilities {
@@ -102,6 +106,7 @@ sub check {
     my @misspelled;
     for my $word (grep {/[^\W\d_]/} split_words($text)) {
         $word = strip_word($word);
+        next if $word eq '';
 
         if (! grep { exists $gWords{$_} } possibilities($word)) {
             push @misspelled, $word;
