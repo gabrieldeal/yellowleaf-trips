@@ -34,7 +34,7 @@ sub copy {
     my $output_image_dir = Scramble::Misc::get_output_directory() . "/$g_pics_dir/";
 
     File::Path::mkpath([$output_image_dir], 0, 0755);
-    foreach my $image (glob "common-images/*.{gif,ico,png}") {
+    foreach my $image (glob "images/*.{gif,ico,png}") {
         system("cp", $image, $output_image_dir) == 0 or die "Can't copy '$image' to '$output_image_dir': $!";
     }
 
