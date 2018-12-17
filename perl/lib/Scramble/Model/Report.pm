@@ -7,7 +7,7 @@ use MIME::Types ();
 use DateTime ();
 use DateTime::Format::Mail ();
 use JSON ();
-use Scramble::Model::Waypoints2 ();
+use Scramble::Model::Waypoints ();
 use Scramble::Model::Image ();
 use Scramble::Model::Reference ();
 use Scramble::Page::ReportPage ();
@@ -30,8 +30,8 @@ sub new {
         print "Skipping $path because 'skip=true'\n";
     }
 
-    $self->{'waypoints'} = Scramble::Model::Waypoints2->new($self->get_filename(),
-						     $self->_get_optional('waypoints'));
+    $self->{'waypoints'} = Scramble::Model::Waypoints->new($self->get_filename(),
+                                                           $self->_get_optional('waypoints'));
 
     my @location_objects;
     foreach my $location_element ($self->get_locations()) {

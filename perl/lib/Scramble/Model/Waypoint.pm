@@ -1,4 +1,4 @@
-package Scramble::Model::Waypoint2;
+package Scramble::Model::Waypoint;
 
 use strict;
 

@@ -1,8 +1,8 @@
-package Scramble::Model::Waypoints2;
+package Scramble::Model::Waypoints;
 
 use strict;
 
-use Scramble::Model::Waypoint2 ();
+use Scramble::Model::Waypoint ();
 
 our @ISA = qw(Scramble::Model);
 
@@ -19,7 +19,7 @@ sub new {
 
     my @waypoints;
     foreach my $point_xml (@$waypoints) {
-	push @waypoints, Scramble::Model::Waypoint2->new($point_xml);
+	push @waypoints, Scramble::Model::Waypoint->new($point_xml);
     }
     $self->{'waypoints'} = \@waypoints;
 
