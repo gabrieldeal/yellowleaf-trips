@@ -1,15 +1,57 @@
-<TMPL_INCLUDE NAME="../fragment/heading-with-dropdown.html" />
+<!doctype html>
+<html lang="en">
+  <head>
+    <TMPL_INCLUDE NAME="../fragment/head.html" />
+  </head>
+  <body style="width: 100%; margin: 0" bgcolor="#f6f6f6">
+    <TMPL_INCLUDE NAME="../fragment/navbar.html" />
 
-<TMPL_LOOP NAME="reports">
-  <h2 class="report-summary-name">
-    <TMPL_VAR ESCAPE="none" NAME="name_html" />
-  </h2>
-  <div class="report-summary-date">
-    <TMPL_VAR NAME="date" />
-  </div>
-  <TMPL_VAR ESCAPE="none" NAME="image_htmls" />
-</TMPL_LOOP>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <TMPL_INCLUDE NAME="../fragment/heading-with-dropdown.html" />
+        </div>
+      </div>
 
-<br />
+      <TMPL_LOOP NAME="reports">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="report-summary-name">
+              <TMPL_VAR ESCAPE="none" NAME="name_html" />
+            </h2>
+            <div class="report-summary-date">
+              <TMPL_VAR NAME="date" />
+            </div>
+          </div>
+        </div>
 
-<TMPL_INCLUDE NAME="../fragment/dropdown-button.html" />
+        <div class="row">
+          <TMPL_IF NAME="image_html_1">
+            <div class="col-lg-6 col-xl-4">
+              <TMPL_VAR ESCAPE="none" NAME="image_html_1" />
+            </div>
+          </TMPL_IF>
+          <TMPL_IF NAME="image_html_2">
+            <div class="d-none d-lg-block col-lg-6 col-xl-4">
+              <TMPL_VAR ESCAPE="none" NAME="image_html_2" />
+            </div>
+          </TMPL_IF>
+          <TMPL_IF NAME="image_html_3">
+            <div class="d-none d-xl-block col-xl-4">
+              <TMPL_VAR ESCAPE="none" NAME="image_html_3" />
+            </div>
+          </TMPL_IF>
+        </div>
+      </TMPL_LOOP>
+
+      <div class="row">
+        <div class="col-12">
+          <br />
+          <TMPL_INCLUDE NAME="../fragment/dropdown-button.html" />
+          <br />
+          <TMPL_INCLUDE NAME="../fragment/foot.html" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

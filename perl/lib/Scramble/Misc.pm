@@ -18,23 +18,6 @@ our $gSiteName = 'yellowleaf.org';
 #my $gDisableTerraServerEmbedded = 1;
 #my $gEnableTerraserver = 0;
 
-my @g_links = ({'url' => qq(../../g/m/home.html),
-		'text' => 'Trips',
-	    },
-               { url => qq(../../g/m/pcurrent.html),
-		 'text' => 'Favorite photos',
-             },
-               { 'url' => qq(../../g/li/index.html),
-		 'text' => 'Peak lists',
-	     },
-               { 'url' => qq(../../g/m/references.html),
-		 'text' => 'References',
-	     },
-	       { 'url' => qq(mailto:scramble\@yellowleaf.org),
-                 'text' => 'Contact',
-	     },
-               );
-
 =head1 Inserting links into text
 
 The 'id' from references.xml turns into a link named by the 'name' for
@@ -206,23 +189,11 @@ sub make_optional_line {
 sub make_1_column_page {
     my (%args) = @_;
 
-    my $year;
-    if (exists $args{'copyright-year'}) {
-        $year = $args{'copyright-year'};
-    } elsif (exists $args{'date'}) {
-        ($year) = Scramble::Time::parse_date($args{'date'});
-    } else {
-        $year = '2004';
-    }
-
-    my $copyright = $args{copyright} || 'Gabriel Deal';
     my $template = Scramble::Template::create('page');
-    $template->param(copyright_holder => $copyright,
-                     copyright_year => $year,
+    $template->param(Scramble::Template::common_params(),
                      enable_embedded_google_map => $args{'enable-embedded-google-map'},
                      html => $args{'html'},
                      include_header => $args{'include-header'},
-                     navbar_links => \@g_links,
                      no_title => $args{'no-title'},
                      title => $args{title});
 

@@ -20,18 +20,13 @@ sub create {
     my @report_params = map { $self->get_report_params($_) } @{ $self->{reports} };
 
     my $template = Scramble::Template::create('report/index');
-    $template->param(change_year_dropdown_items => $self->{change_year_dropdown_items},
+    $template->param(Scramble::Template::common_params(),
+                     change_year_dropdown_items => $self->{change_year_dropdown_items},
                      reports => \@report_params,
                      title => $self->{title});
     my $html = $template->output();
 
-    Scramble::Misc::create
-        ("$self->{subdirectory}/$self->{id}.html",
-         Scramble::Misc::make_1_column_page(html => $html,
-                                            title => $self->{title},
-                                            'include-header' => 1,
-                                            'no-title' => 1,
-                                            'copyright-year' => $self->{copyright_year}));
+    Scramble::Misc::create("$self->{subdirectory}/$self->{id}.html", $html);
 }
 
 sub get_report_params {
@@ -44,17 +39,20 @@ sub get_report_params {
     $name_html = $report->get_summary_name($name_html);
     my $date = $report->get_summary_date();
 
-    my $count = 0;
-    my @images = ($report->get_sorted_images())[0..2];
-    @images = grep { $_ } @images;
-    my $image_htmls = Scramble::Misc::render_images_into_flow(images => \@images,
-                                                              'no-description' => 1,
-                                                              'no-lightbox' => 1,
-                                                              'no-report-link' => 1);
+    my @images = $report->get_sorted_images();
+
+    my @image_htmls = map {
+        $_->get_html('no-description' => 1,
+                     'no-lightbox' => 1,
+                     'no-report-link' => 1)
+    } @images;
+
     return {
         name_html => $name_html,
         date => $date,
-        image_htmls => $image_htmls,
+        image_html_1 => $image_htmls[0],
+        image_html_2 => $image_htmls[1],
+        image_html_3 => $image_htmls[2]
     };
 }
 
