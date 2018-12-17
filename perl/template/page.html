@@ -5,10 +5,10 @@
       <TMPL_INCLUDE NAME="fragment/head.html" />
     </TMPL_IF>
   </head>
-  <body style="width: 100%; margin: 0" bgcolor="#f6f6f6">
+  <body>
     <TMPL_INCLUDE NAME="fragment/navbar.html" />
 
-    <div style="margin: 15px">
+    <div class="non-bootstrap-content">
       <TMPL_UNLESS NAME="no_title">
         <h1><TMPL_VAR NAME="title" /></h1>
       </TMPL_UNLESS>
