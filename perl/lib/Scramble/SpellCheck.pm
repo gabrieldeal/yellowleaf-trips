@@ -39,9 +39,9 @@ sub _check_spelling_in_all_documents {
     my @misspelled;
 
     foreach my $report (Scramble::Model::Report::get_all()) {
-        next unless defined $report->get_route();
         my @texts;
-        push @texts, ($report->get_route(), $report->get_name());
+        push @texts, $report->get_route() if defined $report->get_route();
+        push @texts, $report->get_name();
         foreach my $text (@texts) {
             push @misspelled, _check_spelling_in_text($text, $report->get_filename(), $report->get_start_date());
         }
