@@ -20,7 +20,7 @@ sub split_words {
     my ($text) = @_;
 
     my @words;
-    foreach my $word (split /[\s-\/]+/, $text) {
+    foreach my $word (split /[\s\/-]+/, $text) {
         $word =~ s/'s$//;
         push @words, $word;
     }
