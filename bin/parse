@@ -147,7 +147,7 @@ sub main {
             $page->create();
         }
     }
-    Scramble::Model::Image::copy();
+    should('copy-images') && Scramble::Model::Image::copy();
     should('spell') && Scramble::SpellCheck::check_spelling($g_options{'dictionary-directory'});
     if (@{ $g_options{'file'} }) {
         return 0;
