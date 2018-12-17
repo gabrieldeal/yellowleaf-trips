@@ -2,6 +2,7 @@ package Scramble::SpellCheck;
 
 use strict;
 
+use Scramble::Logger ();
 use Spell ();
 
 sub check_spelling {
@@ -18,6 +19,7 @@ sub check_spelling {
 }
 
 sub _add_words {
+    Scramble::Logger::verbose("Adding words to the dictionary...");
     my $location_collection = Scramble::Location::get_all();
     foreach my $location ($location_collection->get_all()) {
         Spell::add_words($location->get_name());
@@ -32,6 +34,8 @@ sub _add_words {
 }
 
 sub _check_spelling_in_all_documents {
+    Scramble::Logger::verbose("Checking spelling...");
+
     my @misspelled;
 
     foreach my $report (Scramble::Report::get_all()) {

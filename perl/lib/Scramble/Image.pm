@@ -29,6 +29,8 @@ sub _copy {
     }
 }
 sub copy {
+    Scramble::Logger::verbose("Copying new images...");
+
     my $output_image_dir = Scramble::Misc::get_output_directory() . "/$g_pics_dir/";
 
     File::Path::mkpath([$output_image_dir], 0, 0755);
