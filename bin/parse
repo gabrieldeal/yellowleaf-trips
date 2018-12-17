@@ -46,7 +46,6 @@ my @g_options = qw(
 		   images-directory=s
                    templates-directory=s
                    javascript-directory=s
-                   css-directory=s
                    output-directory=s
                    help
 		   );
@@ -58,7 +57,6 @@ my %g_options = (
                  "dictionary-directory=" => "dict",
                  "templates-directory" => "templates",
                  "javascript-directory" => "javascript/dist",
-                 "css-directory" => "css",
                  "output-directory" => "html",
 		 );
 
@@ -95,8 +93,7 @@ sub get_options {
                              images-directory
                              output-directory
                              javascript-directory
-                             css-directory
-                             templates-directory)) 
+                             templates-directory))
     {
 	die "Missing --$required" unless exists $g_options{$required};
     }
@@ -113,8 +110,7 @@ sub main {
 			"$g_options{'output-directory'}/g/li",
 			"$g_options{'output-directory'}/g/a", 
 			"$g_options{'output-directory'}/g/js",
-			"$g_options{'output-directory'}/g/css",
-			"$g_options{'output-directory'}/g/r", 
+                        "$g_options{'output-directory'}/g/r",
 			"$g_options{'output-directory'}/g/l", 
 			"$g_options{'output-directory'}/g/enl", 
 			"$g_options{'output-directory'}/g/kml", 
@@ -126,7 +122,6 @@ sub main {
     should('htaccess') && make_htaccess();
     should('javascript') && make_javascript();
     should('template') && make_templates();
-    should('css') && copy_css();
 
     Scramble::Model::Location::set_data_directory($g_options{'data-directory'});
     Scramble::Model::Area::open($g_options{'data-directory'});
@@ -229,17 +224,6 @@ sub make_javascript {
                    $g_options{'javascript-directory'},
                    $g_options{'output-directory'});
     print "$command\n";
-    system($command);
-    if ($?) {
-        die "Error running $command: $!, $?";
-    }
-}
-
-# FIXME: Move this CSS into the webpack-built bundle.
-sub copy_css {
-    my $command = sprintf("cp %s/*.css %s/g/css/",
-                   $g_options{'css-directory'},
-                   $g_options{'output-directory'});
     system($command);
     if ($?) {
         die "Error running $command: $!, $?";
