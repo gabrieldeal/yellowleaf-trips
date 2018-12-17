@@ -1,12 +1,11 @@
 /* FIXME: Move this to javascript/css, import it in javascript/src/index.js, and delete the CSS code in bin/parse. */
 
 .dropdown-header-title {
-    display: inline-block;
+    display: inline;
 }
 .dropdown-header-button {
     display: inline-block;
-    padding-left: 1em;
-    vertical-align: text-bottom;
+    vertical-align: text-top;
 }
 
 .custom-blueimp {
