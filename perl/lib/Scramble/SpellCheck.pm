@@ -42,6 +42,7 @@ sub _check_spelling_in_all_documents {
         my @texts;
         push @texts, $report->get_route() if defined $report->get_route();
         push @texts, $report->get_name();
+        push @texts, $report->get_type();
         foreach my $text (@texts) {
             push @misspelled, _check_spelling_in_text($text, $report->get_filename(), $report->get_start_date());
         }
