@@ -14,7 +14,7 @@ sub check_spelling {
     my @misspelled = _check_spelling_in_all_documents();
 
     if (@misspelled) {
-        die join("\n", @misspelled) . "\n";
+        die "Misspelled:\n\t" . join("\n\t", @misspelled) . "\n";
     }
 }
 
@@ -65,11 +65,11 @@ sub _check_spelling_in_text {
     my @misspelled = Spell::check($text);
     return unless @misspelled;
 
-    my $message = "Misspelled in " . $name . ": @misspelled.";
+    my $message = $name . ": @misspelled.";
     if (defined $date && $date gt '2007/07/01') {
         return ($message);
     } else {
-        print "$message\n";
+        print "Ignoring misspelled words from $message\n";
         return ();
     }
 }
