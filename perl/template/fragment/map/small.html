@@ -1,0 +1,17 @@
+<div id="mapContainer" style="position: relative">
+  <div id="map" style="width: 333px; height: 250px"></div>
+  <div id="mapSpinner" class="centered-spinner spinner-border" role="status">
+    <span class="sr-only">Loading map...</span>
+  </div>
+</div>
+<a href="../m/usgs.html?<TMPL_LOOP NAME='large_map_params'><TMPL_VAR ESCAPE='url' NAME='name'/>=<TMPL_VAR ESCAPE='none' NAME='value'/>&</TMPL_LOOP>">Larger map</a>
+
+<script>
+  Yellowleaf_main.Map.initializeOnLoad();
+  <TMPL_LOOP name="small_map_params">
+    Yellowleaf_main.Map.setInput('<TMPL_VAR ESCAPE="js" NAME="name" />',
+                                 <TMPL_VAR ESCAPE="none" NAME="value" />);
+  </TMPL_LOOP>
+</script>
+
+<p>

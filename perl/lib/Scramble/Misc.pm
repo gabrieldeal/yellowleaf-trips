@@ -224,41 +224,40 @@ sub get_multi_point_embedded_google_map_html {
 
     return '' if $gDisableGoogleMaps;
 
-    my (%small_map_params, @large_map_params);
+    my (@small_map_params, @large_map_params);
 
     @$locations = map { $_->get_latitude() ? ($_) : () } @$locations;
     if (@$locations) {
 	my $points_json = _get_point_json(@$locations);
 	my $encoded_points_json = URI::Encode::uri_encode($points_json);
-	$small_map_params{points} = $points_json;
-	push @large_map_params, "points=$encoded_points_json";
+        push @small_map_params, {
+            name => 'points',
+            value => $points_json
+        };
+        push @large_map_params, {
+            name => 'points',
+            value => $encoded_points_json
+        }
     }
 
     if ($options->{'kml-url'}) {
-	my $kml_url = URI::Encode::uri_encode($options->{'kml-url'});
-	push @large_map_params, "kmlUrl=$kml_url";
-	$small_map_params{kmlUrl} = "'$kml_url'";
+        push @large_map_params, {
+            name => 'kmlUrl',
+            value => $options->{'kml-url'}
+        };
+        my $escaped_kml_url = URI::Encode::uri_encode($options->{'kml-url'});
+        push @small_map_params, {
+            name => 'kmlUrl',
+            value => "'$escaped_kml_url'"
+        };
     }
 
     return '' unless @large_map_params;
 
-    my $large_map_params = join("&", @large_map_params);
-    my $small_map_javascript = join("\n", map { qq(Yellowleaf_main.Map.setInput('$_', $small_map_params{$_});) } keys %small_map_params);
-
-    my $script = <<EOT;
-<div id="mapContainer" style="position: relative">
-    <div id="map" style="width: 333px; height: 250px"></div>
-    <div id="mapSpinner" class="centered-spinner spinner-border" role="status">
-        <span class="sr-only">Loading map...</span>
-    </div>
-</div>
-<a href="../m/usgs.html?$large_map_params">Larger map</a>
-<script>
-    Yellowleaf_main.Map.initializeOnLoad();
-    $small_map_javascript
-</script>
-<p>
-EOT
+    my $template = Scramble::Template::create('fragment/map/small');
+    $template->param(large_map_params => \@large_map_params,
+                     small_map_params => \@small_map_params);
+    return $template->output();
 }
 
 sub slurp {
