@@ -68,7 +68,7 @@ sub convert_reports {
 	$fh->print($converter->convert($report) . "\n") or die;
 	$fh->close() or die;
 
-	Scramble::XML::parse($path);
+        Scramble::Model::parse($path);
     }
 }
 

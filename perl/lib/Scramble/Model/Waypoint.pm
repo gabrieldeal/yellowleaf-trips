@@ -2,7 +2,7 @@ package Scramble::Model::Waypoint;
 
 use strict;
 
-our @ISA = qw(Scramble::XML);
+our @ISA = qw(Scramble::Model);
 
 sub new {
     my $arg0 = shift;

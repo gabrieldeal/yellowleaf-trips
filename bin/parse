@@ -25,7 +25,6 @@ use Scramble::Model::Report ();
 use Scramble::SpellCheck ();
 use Scramble::Stats ();
 use Scramble::Tests ();
-use Scramble::Model::XML ();
 
 my $gRoot = "yellowleaf.org/scramble";
 local $Data::Dumper::Maxdepth = 5;

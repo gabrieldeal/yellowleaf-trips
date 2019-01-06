@@ -4,7 +4,7 @@ use strict;
 
 use IO::File ();
 use Scramble::Logger ();
-use Scramble::Reference ();
+use Scramble::Model::Reference ();
 use Scramble::Model::List ();
 use Scramble::Model::Area ();
 use URI::Encode ();
