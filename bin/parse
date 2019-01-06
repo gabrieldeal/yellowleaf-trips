@@ -42,7 +42,7 @@ my @g_options = qw(
 		   action=s@
 		   skip=s@
 		   file=s@
-		   images-directory=s
+		   reports-directory=s
                    kml-directory=s
                    templates-directory=s
                    javascript-directory=s
@@ -54,7 +54,6 @@ my %g_options = (
                  "action" => [],
                  "skip" => [],
                  "timezone" => "PDT",
-                 "dictionary-directory=" => "dict",
                  "kml-directory" => "kml",
                  "templates-directory" => "perl/template",
                  "javascript-directory" => "javascript/dist",
@@ -91,7 +90,7 @@ sub get_options {
     }
 
     foreach my $required (qw(
-                             images-directory
+                             reports-directory
                              output-directory
                              javascript-directory
                              templates-directory))
@@ -138,7 +137,7 @@ sub main {
     # }
 
     if (! @{ $g_options{'file'} }) {
-	Scramble::Model::Report::open_all($g_options{'images-directory'});
+	Scramble::Model::Report::open_all($g_options{'reports-directory'});
     } else {
 	foreach my $file (@{ $g_options{'file'} }) {
 	    my $report = Scramble::Model::Report::open_specific($file);
@@ -147,7 +146,7 @@ sub main {
         }
     }
     should('copy-images') && Scramble::Model::Image::copy();
-    should('spell') && Scramble::SpellCheck::check_spelling($g_options{'dictionary-directory'});
+    should('spell') && Scramble::SpellCheck::check_spelling("$g_options{'data-directory'}/dict");
     if (@{ $g_options{'file'} }) {
         return 0;
     }
