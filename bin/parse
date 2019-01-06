@@ -36,7 +36,6 @@ local $ENV{NODE_ENV} ||= 'production';
 
 my @g_options = qw(
                    data-directory=s
-                   dictionary-directory=s
                    timezone=s
 		   verbose
 		   action=s@
@@ -146,7 +145,7 @@ sub main {
         }
     }
     should('copy-images') && Scramble::Model::Image::copy();
-    should('spell') && Scramble::SpellCheck::check_spelling("$g_options{'data-directory'}/dict");
+    should('spell') && Scramble::SpellCheck::check_spelling("$g_options{'data-directory'}/dictionary");
     if (@{ $g_options{'file'} }) {
         return 0;
     }
