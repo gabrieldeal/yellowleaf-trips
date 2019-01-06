@@ -19,8 +19,7 @@ module.exports = {
     ],
   },
   entry: {
-    main: './src/index.js',
-    async: './src/async.js'
+    main: './src/index.js'
   },
   output: {
     filename: '[name].js',
