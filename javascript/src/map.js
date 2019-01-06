@@ -78,7 +78,12 @@ function initialize() {
 	mapOptions.center = pointsSummary.center; // will be ignored if we have a KML
     }
 
-    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    var mapDiv = document.getElementById('map');
+    var map = new google.maps.Map(mapDiv, mapOptions);
+    google.maps.event.addListenerOnce(map, 'idle', function(){
+      var spinner = document.getElementById('mapSpinner');
+      spinner.style.display = 'none';
+    });
 
     var kmlUrl = gup('kmlUrl');
     if (kmlUrl) {

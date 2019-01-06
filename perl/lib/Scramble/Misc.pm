@@ -248,6 +248,9 @@ sub get_multi_point_embedded_google_map_html {
     my $script = <<EOT;
 <div id="mapContainer" style="position: relative">
     <div id="map" style="width: 333px; height: 250px"></div>
+    <div id="mapSpinner" class="centered-spinner spinner-border" role="status">
+        <span class="sr-only">Loading map...</span>
+    </div>
 </div>
 <a href="../m/usgs.html?$large_map_params">Larger map</a>
 <script>
