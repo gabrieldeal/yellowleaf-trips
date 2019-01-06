@@ -216,7 +216,7 @@ sub make_javascript {
     my $target = $ENV{'NODE_ENV'} eq 'development' ? 'build-dev' : 'build';
 
 
-    system("cd javascript && npm run $target");
+    system("cd javascript && npm install && npm run $target");
     if ($?) {
         die "Error running webpack";
     }
