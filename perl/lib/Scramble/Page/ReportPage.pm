@@ -5,6 +5,7 @@ package Scramble::Page::ReportPage;
 use strict;
 
 use Scramble::Misc ();
+use Scramble::Page::WaypointsFragment ();
 
 sub new {
     my ($arg0, $report) = @_;
@@ -56,13 +57,14 @@ sub create {
                                                              $self->get_reference_html());
     }
 
+    my $waypoints = $self->report()->get_waypoints();
     my $long_times_html = '';
     my $short_times_html = '';
-    if ($self->report()->get_waypoints()->get_waypoints_with_times() > 2) {
-      $long_times_html = $self->report()->get_waypoints()->get_detailed_time_html();
+    if ($waypoints->get_waypoints_with_times() > 2) {
+        $long_times_html = Scramble::Page::WaypointsFragment::get_detailed($waypoints);
     } else {
         # Some reports have zero waypoints but still have a car-to-car time.
-        $short_times_html = $self->report()->get_waypoints()->get_car_to_car_html();
+        $short_times_html = Scramble::Page::WaypointsFragment::get_short($waypoints);
     }
 
     my $right_html = <<EOT;
