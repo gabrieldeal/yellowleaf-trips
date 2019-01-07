@@ -7,7 +7,7 @@
 
 <script>
   Yellowleaf_main.Map.initializeOnLoad();
-  <TMPL_LOOP name="small_map_params">
+  <TMPL_LOOP name="inputs">
     Yellowleaf_main.Map.setInput('<TMPL_VAR ESCAPE="js" NAME="name" />',
                                  <TMPL_VAR ESCAPE="none" NAME="value" />);
   </TMPL_LOOP>

@@ -226,13 +226,13 @@ sub get_multi_point_embedded_google_map_html {
 
     return '' if $gDisableGoogleMaps;
 
-    my (@small_map_params);
+    my (@inputs);
 
     @$locations = map { $_->get_latitude() ? ($_) : () } @$locations;
     if (@$locations) {
 	my $points_json = _get_point_json(@$locations);
 	my $encoded_points_json = URI::Encode::uri_encode($points_json);
-        push @small_map_params, {
+        push @inputs, {
             name => 'points',
             value => $points_json
         };
@@ -240,16 +240,16 @@ sub get_multi_point_embedded_google_map_html {
 
     if ($options->{'kml-url'}) {
         my $escaped_kml_url = URI::Encode::uri_encode($options->{'kml-url'});
-        push @small_map_params, {
+        push @inputs, {
             name => 'kmlUrl',
             value => "'$escaped_kml_url'"
         };
     }
 
-    return '' unless @small_map_params;
+    return '' unless @inputs;
 
     my $template = Scramble::Template::create('fragment/map/small');
-    $template->param(small_map_params => \@small_map_params);
+    $template->param(inputs => \@inputs);
     return $template->output();
 }
 
