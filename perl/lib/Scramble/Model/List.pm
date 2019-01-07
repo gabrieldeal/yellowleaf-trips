@@ -5,6 +5,7 @@ use strict;
 use Scramble::Misc;
 use Scramble::Model;
 use Scramble::Page::ImageFragment ();
+use Scramble::Page::ListKml ();
 use Scramble::Logger;
 
 my @g_lists;
@@ -211,41 +212,6 @@ my %gCellTitles = ('name' => 'Location Name',
 		   );
 sub get_cell_title { return $gCellTitles{$_[0]} || ucfirst($_[0]) }
 
-sub make_google_kml {
-    my ($list_xml) = @_;
-
-    my $xml = <<EOT;
-<?xml version="1.0" encoding="UTF-8"?>
-<kml xmlns="http://earth.google.com/kml/2.1">
-EOT
-    foreach my $list_location (@{ $list_xml->{'location'} }) {
-        my $location = get_location_object($list_location);
-        if (! $location) {
-            next;
-        }
-        my $name = $location->get_name();
-        my $lat = $location->get_latitude();
-        if (! defined $lat) {
-            next;
-        }
-        my $lon = $location->get_longitude();
-        $xml .= <<EOT;
-  <Placemark>
-    <name>$name</name>
-    <description>$name</description>
-    <Point>
-      <coordinates>$lon,$lat</coordinates>
-    </Point>
-  </Placemark>
-EOT
-    }
-
-    $xml .= "</kml>";
-
-    my $file = Scramble::Misc::make_location_into_path(get_id($list_xml, ''));
-    Scramble::Misc::create("li/$file.xml", $xml);
-}
-
 sub get_images_to_display_for_locations {
     my (%args) = @_;
 
@@ -358,7 +324,7 @@ sub make_lists {
 			
         Scramble::Logger::verbose("Making $list_xml->{name} list\n");
 	make_list_page($list_xml);
-        make_google_kml($list_xml);
+        Scramble::Page::ImageKml->new($list_xml)->create();
     }
 
     $index_html = <<EOT;
