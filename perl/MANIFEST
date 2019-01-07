@@ -20,6 +20,7 @@ lib/Scramble/Model/Waypoint2.pm
 lib/Scramble/Model/Waypoints2.pm
 lib/Scramble/Model.pm
 lib/Scramble/Page/ImageFragment.pm
+lib/Scramble/Page/ImageIndex.pm
 lib/Scramble/Page/ReportPage.pm
 lib/Scramble/Page/ListIndex.pm
 lib/Scramble/Page/ListKml.pm

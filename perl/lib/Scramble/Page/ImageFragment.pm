@@ -48,7 +48,7 @@ sub create {
 
     my $report_link = '';
     if ($image->get_report_url() && ! $options{'no-report-link'}) {
-	$report_link = $image->get_report_link_html();
+        $report_link = $self->get_report_link_html();
     }
 
     return Scramble::Misc::make_cell_html(content => $img_html,
@@ -81,6 +81,14 @@ sub get_img_tag {
                    (exists $options{'image-attributes'} ? $options{'image-attributes'} : ''),
                    $enlarged ? $self->{image}->get_enlarged_img_url() : $self->{image}->get_url(),
                    HTML::Entities::encode_entities($self->{image}->get_description()));
+}
+
+sub get_report_link_html {
+    my $self = shift;
+
+    return sprintf(qq(<a href="%s">%s</a>),
+                   $self->{image}->get_report_url(),
+                   $self->{image}->get_capture_date() || $self->{image}->get_date());
 }
 
 1;

@@ -18,6 +18,7 @@ use Scramble::Model::Location ();
 use Scramble::Logger ();
 use Scramble::Misc ();
 use Scramble::Model::Image ();
+use Scramble::Page::ImageIndex ();
 use Scramble::Page::ListIndex ();
 use Scramble::Page::ListKml ();
 use Scramble::Page::ListPage ();
@@ -173,7 +174,7 @@ sub main {
     should('report') && Scramble::Page::ReportPage::create_all();
     should('rss') && Scramble::Page::ReportRss::create();
     should('geekery') && Scramble::Geekery::make_page();
-    should('picture-by-year') && Scramble::Model::Image::make_images_by_year_page(); # Favorites
+    should('picture-by-year') && Scramble::Page::ImageIndex::create_all(); # Favorites
     should('location') && Scramble::Page::LocationPage::create_all();
     should('short-trips') && Scramble::Stats::display_short_trips();
     should('party-stats') && Scramble::Stats::display_party_stats();
