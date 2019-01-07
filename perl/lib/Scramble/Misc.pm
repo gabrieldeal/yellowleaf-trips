@@ -209,11 +209,11 @@ sub _get_point_json {
     @locations or die "Missing locations";
 
     my @points;
-    foreach my $point (@locations) {
-        my $lat = $point->get_latitude();
-        my $lon = $point->get_longitude();
-        my $name = $point->get_name();
-        my $link = $point->get_short_link_html();
+    foreach my $location (@locations) {
+        my $lat = $location->get_latitude();
+        my $lon = $location->get_longitude();
+        my $name = $location->get_name();
+        my $link = $location->get_short_link_html();
         $link =~ s/\"/\\\"/g;
         $link =~ s/\'/\\'/g;
         push @points, qq({"lat":$lat,"lon":$lon,"name":"$name"});
