@@ -48,8 +48,8 @@ EOT
 
     $kml .= "</kml>";
 
-    my $file = Scramble::Misc::make_location_into_path(Scramble::Model::List::get_id($list_xml, ''));
-    Scramble::Misc::create("li/$file.kml", $kml);
+    my $path = Scramble::Model::List::get_kml_path($list_xml);
+    Scramble::Misc::create($path, $kml);
 }
 
 1;

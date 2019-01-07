@@ -292,8 +292,12 @@ $max_images = 100;
 						     'max-images' => $max_images);
     my @image_fragments = map { Scramble::Page::ImageFragment->new($_) } @images;
     my @image_htmls = map { Scramble::Misc::make_cell_html(content => $_->create()) } @image_fragments;
-    my $images_html = Scramble::Misc::render_cells_into_flow([ $locations_html, @image_htmls ],
-                                                             'float-first' => 1);
+
+    my @cells = ($locations_html);
+    push @cells, get_map_html($list_xml, \@location_objects) if @location_objects;
+    push @cells, @image_htmls;
+
+    my $images_html = Scramble::Misc::render_cells_into_flow(\@cells, 'float-first' => 1);
 
     my $title = $list_xml->{'name'};
 
@@ -305,7 +309,31 @@ EOT
     Scramble::Misc::create(get_list_path($list_xml), 
 			   Scramble::Misc::make_1_column_page(title => $title,
 							      html => $html,
-							      'include-header' => 1));
+                                                              'enable-embedded-google-map' => 1,
+                                                              'include-header' => 1));
+}
+
+sub get_kml_path {
+    my ($list_xml) = @_;
+
+    my $list_id = Scramble::Misc::make_location_into_path(Scramble::Model::List::get_id($list_xml, ''));
+
+    return "li/$list_id.kml"
+}
+
+sub get_kml_url {
+    my ($list_xml) = @_;
+
+    my $path = get_kml_path($list_xml);
+
+    return "../$path";
+}
+
+sub get_map_html {
+    my ($list_xml, $locations) = @_;
+
+    my %options = ('kml-url' => get_kml_url($list_xml));
+    Scramble::Misc::get_multi_point_embedded_google_map_html($locations, \%options);
 }
 
 sub make_lists {
