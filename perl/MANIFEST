@@ -21,6 +21,9 @@ lib/Scramble/Model/Waypoints2.pm
 lib/Scramble/Model.pm
 lib/Scramble/Page/ImageFragment.pm
 lib/Scramble/Page/ReportPage.pm
+lib/Scramble/Page/ListIndex.pm
+lib/Scramble/Page/ListKml.pm
+lib/Scramble/Page/ListPage.pm
 lib/Scramble/Page/LocationPage.pm
 lib/Scramble/Page/ReportIndexPage.pm
 lib/Spell.pm

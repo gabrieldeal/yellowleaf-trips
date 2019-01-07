@@ -1,4 +1,4 @@
-package Scramble::Page::ImageKml;
+package Scramble::Page::ListKml;
 
 use strict;
 
@@ -13,6 +13,17 @@ sub new {
     };
 
     return bless($self, ref($arg0) || $arg0);
+}
+
+sub create_all {
+    foreach my $list_xml (Scramble::Model::List::get_all_lists()) {
+        if ($list_xml->{'skip'}) {
+            next;
+        }
+
+        Scramble::Logger::verbose("Making list KML for $list_xml->{name}\n");
+        Scramble::Page::ListKml->new($list_xml)->create();
+    }
 }
 
 sub create {

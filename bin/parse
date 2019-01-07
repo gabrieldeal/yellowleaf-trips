@@ -18,6 +18,9 @@ use Scramble::Model::Location ();
 use Scramble::Logger ();
 use Scramble::Misc ();
 use Scramble::Model::Image ();
+use Scramble::Page::ListIndex ();
+use Scramble::Page::ListKml ();
+use Scramble::Page::ListPage ();
 use Scramble::Page::LocationPage ();
 use Scramble::Page::ReportIndexPage ();
 use Scramble::Page::ReportPage ();
@@ -163,7 +166,9 @@ sub main {
     should('kml') && copy_kml();
     should('report-index') && Scramble::Page::ReportIndexPage::create_all(); # This includes home.html
     should('link') && Scramble::Model::Reference::make_references();
-    should('list') && Scramble::Model::List::make_lists();
+    should('list') && Scramble::Page::ListIndex::create();
+    should('list') && Scramble::Page::ListKml::create_all();
+    should('list') && Scramble::Page::ListPage::create_all();
     should('report') && Scramble::Page::ReportPage::create_all();
     should('rss') && Scramble::Model::Report::make_rss();
     should('geekery') && Scramble::Geekery::make_page();

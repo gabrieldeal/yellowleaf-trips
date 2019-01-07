@@ -159,6 +159,7 @@ sub pluralize {
     return $number != 1 ? "$word$suffix" : $word;
 }
 
+# FIXME: Do I need this?
 sub get_target {
     my ($url) = @_;
 
