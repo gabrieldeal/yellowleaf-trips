@@ -24,6 +24,7 @@ use Scramble::Page::ListPage ();
 use Scramble::Page::LocationPage ();
 use Scramble::Page::ReportIndexPage ();
 use Scramble::Page::ReportPage ();
+use Scramble::Page::ReportRss ();
 use Scramble::Model::Reference ();
 use Scramble::Model::Report ();
 use Scramble::SpellCheck ();
@@ -170,7 +171,7 @@ sub main {
     should('list') && Scramble::Page::ListKml::create_all();
     should('list') && Scramble::Page::ListPage::create_all();
     should('report') && Scramble::Page::ReportPage::create_all();
-    should('rss') && Scramble::Model::Report::make_rss();
+    should('rss') && Scramble::Page::ReportRss::create();
     should('geekery') && Scramble::Geekery::make_page();
     should('picture-by-year') && Scramble::Model::Image::make_images_by_year_page(); # Favorites
     should('location') && Scramble::Page::LocationPage::create_all();
