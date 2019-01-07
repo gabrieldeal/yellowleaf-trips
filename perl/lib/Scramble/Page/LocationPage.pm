@@ -149,7 +149,8 @@ sub get_reports_for_location_html {
     return undef unless @reports || @references_html;
 
     foreach my $report (@reports) {
-	push @references_html, sprintf("$Scramble::Misc::gSiteName: %s", $report->get_link_html());
+        next unless $report->should_show();
+        push @references_html, sprintf("$Scramble::Misc::gSiteName: %s", $report->get_link_html());
     }
 
     return '<ul><li>' . join('</li><li>', @references_html) . '</li></ul>';
