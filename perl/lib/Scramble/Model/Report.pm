@@ -102,7 +102,7 @@ sub get_kml { $_[0]->{kml} }
 sub get_map_objects { @{ $_[0]->{'map-objects'} } }
 sub get_picture_objects { @{ $_[0]->{'picture-objects'} } }
 sub set_picture_objects { $_[0]->{'picture-objects'} = $_[1] }
-
+sub get_round_trip_distances { $_[0]->_get_optional('round-trip-distances', 'distance') }
 
 sub get_filename {
     my $self = shift;
@@ -165,7 +165,14 @@ sub get_parsed_start_date {
     return @date;
 }
 
-sub get_maps { 
+sub no_maps {
+    my $self = shift;
+
+    return defined $self->_get_optional('maps')
+        && ! defined $self->_get_optional('maps', 'map');
+}
+
+sub get_maps {
     my $self = shift;
 
     my @maps;
@@ -215,80 +222,6 @@ sub get_sorted_images {
     return sort { $a->get_rating() <=> $b->get_rating() } $self->get_picture_objects();
 }
 
-sub get_summary_images {
-    my $self = shift;
-    my %options = @_;
-
-    my $size = $options{size} || 125;
-
-    my @image_htmls;
-    foreach my $image_obj ($self->get_sorted_images()) {
-        if ($image_obj) {
-            my $image_html = sprintf(qq(<img width="$size" onload="Yellowleaf_main.resizeThumbnail(this, $size)" src="%s">),
-                                     $image_obj->get_url());
-            $image_html = $self->link_if_should_show($image_html);
-            push @image_htmls, $image_html;
-        }
-    }
-
-    return @image_htmls;
-}
-
-sub get_link_html {
-    my $self = shift;
-
-    my $date = $self->get_summary_date();
-    my $name = $self->get_summary_name();
-    my $image_html = ($self->get_summary_images())[0] || '';
-    my $type = $self->get_type();
-
-    return <<EOT;
-<div class="report-thumbnail">
-    <div class="report-thumbnail-image">$image_html</div>
-    <div class="report-thumbnail-title">$name</div>
-    <div class="report-thumbnail-date">$date</div>
-    <div class="report-thumbnail-type">$type</div>
-</div>
-EOT
-}
-
-sub get_embedded_google_map_html {
-    my $self = shift;
-
-    return '' if $self->get_map_objects();
-
-    my @locations = $self->get_location_objects();
-    my $kml_url = $self->get_kml() ? $self->get_kml()->get_full_url() : undef;
-    return '' unless $kml_url or grep { defined $_->get_latitude() } @locations;
-
-    my %options = ('kml-url' => $kml_url);
-    return Scramble::Misc::get_multi_point_embedded_google_map_html(\@locations, \%options);
-}
-
-sub get_distances_html {
-    my $self = shift;
-
-    my $distances = $self->_get_optional('round-trip-distances', 'distance');
-    if (! $distances) {
-        return '';
-    }
-
-    my @parenthesis_htmls;
-    my $total_miles = 0;
-    foreach my $distance (@$distances) {
-	$total_miles += $distance->{'miles'};
-	push @parenthesis_htmls, sprintf("%s %s on %s",
-					 $distance->{'miles'},
-					 Scramble::Misc::pluralize($distance->{'miles'}, "mile"),
-					 $distance->{'type'});
-    }
-
-    return sprintf("<b>Round-trip distance:</b> approx. %s %s%s<br>",
-		   $total_miles,
-		   Scramble::Misc::pluralize($total_miles, 'mile'),
-		   (@parenthesis_htmls == 1 ? '' : " (" . join(", ", @parenthesis_htmls) . ")"));
-}
-
 sub get_references {
     my $self = shift;
 
@@ -297,149 +230,6 @@ sub get_references {
 
     return @references;
 }
-
-sub get_reference_html {
-    my $self = shift;
-
-    my @references = map { Scramble::Model::Reference::get_page_reference_html($_) } $self->get_references();
-    @references = Scramble::Misc::dedup(@references);
-
-    return '' unless @references;
-
-    return '<ul><li>' . join('</li><li>', @references) . '</li></ul>';
-}
-
-sub get_map_summary_html {
-    my $self = shift;
-
-    return '' if defined $self->_get_optional('maps') && ! defined $self->_get_optional('maps', 'map');
-
-    my $type = 'USGS quad';
-    my %maps;
-
-    foreach my $map ($self->get_maps()) {
-        my $map_type = Scramble::Model::Reference::get_map_type($map);
-        next unless defined $map_type && $type eq $map_type;
-        my $name = Scramble::Model::Reference::get_map_name($map);
-        $maps{$name} = 1;
-    }
-
-    if ($type eq 'USGS quad') {
-        foreach my $location ($self->get_location_objects()) {
-            foreach my $quad ($location->get_quad_objects()) {
-                $maps{$quad->get_short_name()} = 1;
-            }
-        }
-
-        foreach my $area ($self->get_areas_collection()->find('type' => 'USGS quad')) {
-            $maps{$area->get_short_name()} = 1;
-        }
-    }
-
-    my @maps = keys %maps;
-    return '' unless @maps;
-    return '' if @maps > 15;
-
-    my $title = Scramble::Misc::pluralize(scalar(@maps), $type);
-    return Scramble::Misc::make_colon_line($title, join(", ", @maps));
-}
-
-sub get_copyright_html {
-    my $self = shift;
-
-    my $copyright_year = $self->get_end_date() ? $self->get_end_date() : $self->get_start_date();
-    ($copyright_year) = Scramble::Time::parse_date($copyright_year);
-
-    return $copyright_year;
-}
-
-sub get_title_html {
-    my $self = shift;
-
-    return $self->get_name();
-}
-
-sub split_pictures_into_sections {
-    my $self = shift;
-
-    my @picture_objs = $self->get_picture_objects();
-    return ({ name => '', pictures => []}) unless @picture_objs;
-
-    my @sections;
-    if (!@picture_objs[0]->get_section_name()) {
-        my $split_picture_objs = $self->split_by_date(@picture_objs);
-        return $self->add_section_names($split_picture_objs);
-    }
-
-    return $self->split_by_section_name(@picture_objs);
-}
-
-sub split_by_section_name {
-    my $self = shift;
-    my @picture_objs = @_;
-
-    my @sections;
-    my %current_section = (name => '', pictures => []);
-    foreach my $picture_obj (@picture_objs) {
-        if ($picture_obj->get_section_name() && $picture_obj->get_section_name() ne $current_section{name}) {
-            push @sections, { %current_section } if @{ $current_section{pictures} };
-            %current_section = ( name => $picture_obj->get_section_name(),
-                                 pictures => [] );
-        }
-        push @{ $current_section{pictures} }, $picture_obj;
-    }
-    push @sections, \%current_section if %current_section;
-
-    return @sections;
-}
-
-sub split_by_date {
-    my $self = shift;
-    my @picture_objs = @_;
-
-    return [] if !@picture_objs;
-
-    my $curr_date = $picture_objs[0]->get_capture_date();
-    return [\@picture_objs] unless defined $curr_date;
-
-    my @splits;
-    my $split = [];
-    foreach my $picture_obj (@picture_objs) {
-        if ($curr_date eq $picture_obj->get_capture_date()) {
-            push @$split, $picture_obj;
-        } else {
-            push @splits, $split;
-            $split = [ $picture_obj ];
-            $curr_date = $picture_obj->get_capture_date();
-        }
-    }
-    push @splits, $split;
-
-    return \@splits;
-}
-
-# Return: an array of hashes. Each hash is { name => "", pictures => [] }
-sub add_section_names {
-    my $self = shift;
-    my ($split_picture_objs) = @_; # each element is an array of picture objects
-
-    my $start_days = Scramble::Time::get_days_since_1BC($self->get_start_date());
-    my @sections;
-    foreach my $picture_objs (@$split_picture_objs) {
-        my $section_name = '';
-        # Handle trips where I don't take a picture every day:
-        if (@$picture_objs && defined $picture_objs->[0]->get_capture_date()) {
-            my $picture_days = Scramble::Time::get_days_since_1BC($picture_objs->[0]->get_capture_date());
-            my $day = $picture_days - $start_days + 1;
-            $section_name = "Day $day";
-        }
-        push @sections, { name => $section_name,
-                          pictures => $picture_objs };
-    }
-
-    return @sections;
-}
-
 
 ######################################################################
 # statics

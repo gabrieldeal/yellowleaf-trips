@@ -150,10 +150,49 @@ sub get_reports_for_location_html {
 
     foreach my $report (@reports) {
         next unless $report->should_show();
-        push @references_html, sprintf("$Scramble::Misc::gSiteName: %s", $report->get_link_html());
+        push @references_html, sprintf("$Scramble::Misc::gSiteName: %s",
+                                       $self->get_report_link_html($report));
     }
 
     return '<ul><li>' . join('</li><li>', @references_html) . '</li></ul>';
+}
+
+sub get_report_link_html {
+    my $self = shift;
+    my ($report) = @_;
+
+    my $date = $report->get_summary_date();
+    my $name = $report->get_summary_name();
+    my $image_html = $self->get_summary_image_html($report) || '';
+    my $type = $report->get_type();
+
+    return <<EOT;
+<div class="report-thumbnail">
+    <div class="report-thumbnail-image">$image_html</div>
+    <div class="report-thumbnail-title">$name</div>
+    <div class="report-thumbnail-date">$date</div>
+    <div class="report-thumbnail-type">$type</div>
+</div>
+EOT
+}
+
+sub get_summary_image_html {
+    my $self = shift;
+    my ($report) = @_;
+
+    my $size = 125;
+
+    my @image_htmls;
+    foreach my $image_obj ($report->get_sorted_images()) {
+        if ($image_obj) {
+            my $image_html = sprintf(qq(<img width="$size" onload="Yellowleaf_main.resizeThumbnail(this, $size)" src="%s">),
+                                     $image_obj->get_url());
+            $image_html = $report->link_if_should_show($image_html);
+            push @image_htmls, $image_html;
+        }
+    }
+
+    return $image_htmls[0];
 }
 
 sub get_formatted_elevation {
