@@ -18,6 +18,7 @@ use Scramble::Model::Location ();
 use Scramble::Logger ();
 use Scramble::Misc ();
 use Scramble::Model::Image ();
+use Scramble::Page::LocationPage ();
 use Scramble::Page::ReportIndexPage ();
 use Scramble::Page::ReportPage ();
 use Scramble::Model::Reference ();
@@ -139,9 +140,16 @@ sub main {
 	Scramble::Model::Report::open_all($g_options{'reports-directory'});
     } else {
 	foreach my $file (@{ $g_options{'file'} }) {
-	    my $report = Scramble::Model::Report::open_specific($file);
-            my $page = Scramble::Page::ReportPage->new($report);
-            $page->create();
+            if ($file =~ m{/reports/}) {
+                my $report = Scramble::Model::Report::open_specific($file);
+                my $page = Scramble::Page::ReportPage->new($report);
+                $page->create();
+            } else {
+                foreach my $location (Scramble::Model::Location::open_specific($file)) {
+                    my $page = Scramble::Page::LocationPage->new($location);
+                    $page->create();
+                }
+            }
         }
     }
     should('copy-images') && Scramble::Model::Image::copy();
@@ -160,7 +168,7 @@ sub main {
     should('rss') && Scramble::Model::Report::make_rss();
     should('geekery') && Scramble::Geekery::make_page();
     should('picture-by-year') && Scramble::Model::Image::make_images_by_year_page(); # Favorites
-    should('location') && Scramble::Model::Location::make_locations();
+    should('location') && Scramble::Page::LocationPage::create_all();
     should('short-trips') && Scramble::Stats::display_short_trips();
     should('party-stats') && Scramble::Stats::display_party_stats();
     should('test') && Scramble::Tests::run();

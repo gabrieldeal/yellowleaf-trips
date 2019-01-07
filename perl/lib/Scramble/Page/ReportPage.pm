@@ -44,7 +44,7 @@ sub create {
     my $elevation_html = $self->get_elevation_gain_html();
     my $miles_html = $self->report()->get_distances_html();
     my $quads_html = $self->report()->get_map_summary_html();
-    my $recognizable_areas_html = $self->report()->get_recognizable_areas_html('no-link' => 1);
+    my $recognizable_areas_html = $self->get_recognizable_areas_html();
     my $short_route_references = '';
     my $long_route_references = '';
     if ($self->report()->get_references() == 1) {
@@ -53,7 +53,7 @@ sub create {
                                                                                                                               'name-ids' => [qw(page-name name)]));
     } else {
       $long_route_references = Scramble::Misc::make_optional_line("<h2>References</h2>%s",
-							     $self->report()->get_reference_html());
+                                                             $self->report()->get_reference_html());
     }
 
     my $long_times_html = '';
@@ -130,6 +130,15 @@ EOT
                                                               'html' => $html,
                                                               'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap,
 							      'copyright-year' => $copyright_year));
+}
+
+sub get_recognizable_areas_html {
+    my $self = shift;
+
+    my @areas = $self->{report}->get_recognizable_areas();
+    my @names = map { $_->get_short_name() } @areas;
+
+    return Scramble::Misc::make_colon_line("In", join(", ", @names));
 }
 
 ######################################################################

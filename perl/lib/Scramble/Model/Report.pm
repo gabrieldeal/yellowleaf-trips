@@ -10,7 +10,6 @@ use JSON ();
 use Scramble::Model::Waypoints ();
 use Scramble::Model::Image ();
 use Scramble::Model::Reference ();
-use Scramble::Page::ReportPage ();
 use Scramble::Template ();
 use Scramble::Time ();
 

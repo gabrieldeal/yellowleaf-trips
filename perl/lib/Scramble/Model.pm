@@ -91,16 +91,13 @@ sub get_areas_from_xml {
     return @areas;
 }
 
-sub get_recognizable_areas_html {
+sub get_recognizable_areas {
     my $self = shift;
     my (%args) = @_;
 
-    return '' if defined $self->_get_optional('areas') && ! @{ $self->_get_optional('areas', 'area') };
+    return () if defined $self->_get_optional('areas') && ! @{ $self->_get_optional('areas', 'area') };
 
-    my @areas = $self->get_areas_collection()->find('is-recognizable-area' => 'true');
-    return '' unless @areas;
-
-    return Scramble::Misc::make_colon_line("In", join(", ", map { $_->get_short_name() } @areas));
+    return $self->get_areas_collection()->find('is-recognizable-area' => 'true');
 }
 
 ######################################################################
