@@ -45,8 +45,7 @@ sub test_assert {
 
 sub test_files_exist {
     my @files = qw(
-                   m/quad-layout.html
-		   li/middleforkpeakselevation.html
+                   li/middleforkpeakselevation.html
 		   .htaccess
 		   );
 
