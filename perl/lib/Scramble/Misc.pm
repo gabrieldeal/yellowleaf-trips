@@ -7,6 +7,7 @@ use Scramble::Logger ();
 use Scramble::Model::Reference ();
 use Scramble::Model::List ();
 use Scramble::Model::Area ();
+use Scramble::Page::ImageFragment ();
 use URI::Encode ();
 
 our $gEnableEmbeddedGoogleMap = 1;
@@ -460,8 +461,10 @@ sub render_images_into_flow {
 
   my @cells;
   push @cells, map { make_cell_html(content => $_) } @{ $args{'htmls'} || [] };
-  push @cells, map { $_->get_html(%args)
-		 } @{ $args{'images'} };
+  push @cells, map {
+      my $fragment = Scramble::Page::ImageFragment->new($_);
+      $fragment->create(%args)
+  } @{ $args{'images'} };
 
   return Scramble::Misc::render_cells_into_flow(\@cells, %args);
 }

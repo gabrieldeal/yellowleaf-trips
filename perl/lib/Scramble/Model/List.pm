@@ -4,6 +4,7 @@ use strict;
 
 use Scramble::Misc;
 use Scramble::Model;
+use Scramble::Page::ImageFragment ();
 use Scramble::Logger;
 
 my @g_lists;
@@ -323,7 +324,8 @@ $max_images = 100;
 
     my @images = get_images_to_display_for_locations('locations' => \@location_objects,
 						     'max-images' => $max_images);
-    my @image_htmls = map { Scramble::Misc::make_cell_html(content => $_->get_html()) } @images;
+    my @image_fragments = map { Scramble::Page::ImageFragment->new($_) } @images;
+    my @image_htmls = map { Scramble::Misc::make_cell_html(content => $_->create()) } @image_fragments;
     my $images_html = Scramble::Misc::render_cells_into_flow([ $locations_html, @image_htmls ],
                                                              'float-first' => 1);
 

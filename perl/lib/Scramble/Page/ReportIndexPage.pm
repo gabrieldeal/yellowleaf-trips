@@ -4,6 +4,8 @@ package Scramble::Page::ReportIndexPage;
 
 use strict;
 
+use Scramble::Page::ImageFragment ();
+
 my $g_reports_on_index_page = 25;
 
 sub new {
@@ -42,9 +44,10 @@ sub get_report_params {
     my @images = $report->get_sorted_images();
 
     my @image_htmls = map {
-        $_->get_html('no-description' => 1,
-                     'no-lightbox' => 1,
-                     'no-report-link' => 1)
+        my $fragment = Scramble::Page::ImageFragment->new($_);
+        $fragment->create('no-description' => 1,
+                          'no-lightbox' => 1,
+                          'no-report-link' => 1)
     } @images;
 
     return {

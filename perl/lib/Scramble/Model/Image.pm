@@ -5,7 +5,6 @@ use strict;
 use File::Basename ();
 use Scramble::Collection ();
 use Scramble::Template ();
-use HTML::Entities ();
 
 my $g_pictures_by_year_threshold = 1;
 my $g_image_rating_threshold = 1;
@@ -167,72 +166,6 @@ sub get_map_reference {
 			? "Online map"
 			: "Online map with route drawn on it"),
 	 };
-}
-
-sub get_video_tag {
-    my $self = shift;
-    my (%options) = @_;
-
-    my $poster = '';
-    if ($self->get_poster()) {
-        $poster = sprintf(qq(poster="%s" preload="none"), $self->get_poster_url());
-    }
-
-    return sprintf(qq(<video $poster width="320" height="180" controls>
-                   <source src="%s" type="video/mp4">
-                   </video>),
-                   $self->get_enlarged_img_url());
-
-}
-
-sub get_img_tag {
-    my $self = shift;
-    my (%options) = @_;
-    
-    my $enlarged = $options{'enlarged'};
-    my $border = (! $enlarged && $self->get_enlarged_filename()) ? 2 : 0;
-    return sprintf(qq(<img %s src="%s" alt="Image of %s" border="$border" hspace="1" vspace="1">),
-                   (exists $options{'image-attributes'} ? $options{'image-attributes'} : ''),
-                   $enlarged ? $self->get_enlarged_img_url() : $self->get_url(),
-                   HTML::Entities::encode_entities($self->get_description()));
-}
-
-sub get_html {
-    my $self = shift;
-    my (%options) = @_;
-
-    my $img_html;
-    if ($self->get_type() eq 'movie') {
-        $img_html = $self->get_video_tag(%options);
-    } else {
-        $img_html = $self->get_img_tag(%options);
-        if ($self->get_enlarged_img_url()) {
-            my $css_class = 'lightbox-image';
-            my $url = $self->get_enlarged_img_url();
-            if ($options{'no-lightbox'}) {
-                $css_class = '';
-                $url = $self->get_report_url();
-            }
-
-            my $title = HTML::Entities::encode_entities($self->get_description());
-
-            $img_html = sprintf(qq(<a class="$css_class" title="$title" href="%s">$img_html</a>), $url);
-        }
-    }
-
-    my $description = '';
-    if (! $options{'no-description'}) {
-        $description = Scramble::Misc::htmlify($self->get_description());
-    }
-
-    my $report_link = '';
-    if ($self->get_report_url() && ! $options{'no-report-link'}) {
-	$report_link = $self->get_report_link_html();
-    }
-
-    return Scramble::Misc::make_cell_html(content => $img_html,
-					  description => $description,
-					  link => $report_link);
 }
 
 sub get_report_link_html {

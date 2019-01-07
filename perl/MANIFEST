@@ -19,4 +19,8 @@ lib/Scramble/Time.pm
 lib/Scramble/Model/Waypoint2.pm
 lib/Scramble/Model/Waypoints2.pm
 lib/Scramble/Model.pm
+lib/Scramble/Page/ImageFragment.pm
+lib/Scramble/Page/ReportPage.pm
+lib/Scramble/Page/LocationPage.pm
+lib/Scramble/Page/ReportIndexPage.pm
 lib/Spell.pm
