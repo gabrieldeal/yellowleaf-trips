@@ -37,7 +37,7 @@ sub make_link_transformations {
 	$g_transformations{'list'}{sprintf('\b%s\b', $id)} = _insert_links_pack($link);
     }
     foreach my $id (Scramble::Model::Reference::get_ids()) {
-	my $html = eval { Scramble::Model::Reference::get_reference_html_with_name_only({ 'id' => $id }) };
+        my $html = eval { Scramble::Page::ReferenceFragment::get_reference_html_with_name_only({ 'id' => $id }) };
 	next unless $html;
 	$id =~ s/\s+/\\s+/g;
 	$g_transformations{'reference'}{$id} = _insert_links_pack($html);

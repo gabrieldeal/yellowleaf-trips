@@ -143,7 +143,7 @@ sub get_reports_for_location_html {
 
     my $location = $self->{location};
 
-    my @references_html = Scramble::Model::Reference::get_page_references_html($location->get_references());
+    my @references_html = Scramble::Page::ReferenceFragment::get_page_references_html($location->get_references());
 
     my @reports = Scramble::Model::Report::get_reports_for_location($location);
     return undef unless @reports || @references_html;

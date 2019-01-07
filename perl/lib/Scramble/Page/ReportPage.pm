@@ -50,7 +50,7 @@ sub create {
     my $long_route_references = '';
     if ($self->report()->get_references() == 1) {
       $short_route_references = Scramble::Misc::make_colon_line("Reference", 
-								Scramble::Model::Reference::get_reference_html_with_name_only($self->report()->get_references(),
+                                                                Scramble::Page::ReferenceFragment::get_reference_html_with_name_only($self->report()->get_references(),
                                                                                                                               'name-ids' => [qw(page-name name)]));
     } else {
       $long_route_references = Scramble::Misc::make_optional_line("<h2>References</h2>%s",
@@ -175,7 +175,7 @@ sub get_embedded_google_map_html {
 sub get_reference_html {
     my $self = shift;
 
-    my @references = map { Scramble::Model::Reference::get_page_reference_html($_) } $self->report()->get_references();
+    my @references = map { Scramble::Page::ReferenceFragment::get_page_reference_html($_) } $self->report()->get_references();
     @references = Scramble::Misc::dedup(@references);
 
     return '' unless @references;

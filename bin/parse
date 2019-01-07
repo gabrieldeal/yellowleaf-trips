@@ -23,6 +23,7 @@ use Scramble::Page::ListIndex ();
 use Scramble::Page::ListKml ();
 use Scramble::Page::ListPage ();
 use Scramble::Page::LocationPage ();
+use Scramble::Page::ReferencesIndex ();
 use Scramble::Page::ReportIndexPage ();
 use Scramble::Page::ReportPage ();
 use Scramble::Page::ReportRss ();
@@ -167,7 +168,7 @@ sub main {
 
     should('kml') && copy_kml();
     should('report-index') && Scramble::Page::ReportIndexPage::create_all(); # This includes home.html
-    should('link') && Scramble::Model::Reference::make_references();
+    should('link') && Scramble::Page::ReferencesIndex::create();
     should('list') && Scramble::Page::ListIndex::create();
     should('list') && Scramble::Page::ListKml::create_all();
     should('list') && Scramble::Page::ListPage::create_all();

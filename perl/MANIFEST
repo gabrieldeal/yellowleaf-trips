@@ -26,5 +26,7 @@ lib/Scramble/Page/ListIndex.pm
 lib/Scramble/Page/ListKml.pm
 lib/Scramble/Page/ListPage.pm
 lib/Scramble/Page/LocationPage.pm
+lib/Scramble/Page/ReferenceFragment.pm
+lib/Scramble/Page/ReferencesIndex.pm
 lib/Scramble/Page/ReportIndexPage.pm
 lib/Spell.pm
