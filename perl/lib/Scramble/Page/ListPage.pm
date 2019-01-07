@@ -5,6 +5,8 @@ use strict;
 use Scramble::Model::List ();
 use Scramble::Misc ();
 
+# FIXME: Refactor display code into a template.
+
 sub new {
     my ($arg0, $list_xml) = @_;
 

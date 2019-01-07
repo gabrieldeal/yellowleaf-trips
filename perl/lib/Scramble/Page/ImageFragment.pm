@@ -4,6 +4,8 @@ use strict;
 
 use HTML::Entities ();
 
+# FIXME: Refactor display code into a template.
+
 sub new {
     my ($arg0, $image) = @_;
 
