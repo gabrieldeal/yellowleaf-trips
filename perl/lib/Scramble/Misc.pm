@@ -80,6 +80,8 @@ sub insert_links {
 
     make_link_transformations() unless keys %g_transformations;
 
+    my $orig_html = $html;
+
     # Turn this:
     # http://xxxxxxxxxxxxxx 
     # into this:
@@ -92,7 +94,14 @@ sub insert_links {
 	$html =~ s/$regex/$g_transformations{$key}{$regex}/g;
     }
 
-    return "<!-- LinksInserted -->" . _insert_links_unpack($html);
+    $html = _insert_links_unpack($html);
+
+    # FIXME: Deprecate most of this link insertion code.  Keep insertion of URL links.
+    if ($html ne $orig_html) {
+        print "Inserting deprecated link in $orig_html\n";
+    }
+
+    return "<!-- LinksInserted -->$html";
 }
 
 =head1 Formatting text
