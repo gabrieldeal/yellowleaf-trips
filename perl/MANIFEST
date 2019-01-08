@@ -4,6 +4,7 @@ lib/Scramble/Collection.pm
 lib/Scramble/Converter/Location.pm
 lib/Scramble/Converter.pm
 lib/Scramble/Converter/Report.pm
+lib/Scramble/Display/GeekeryPage.pm
 lib/Scramble/Display/ImageFragment.pm
 lib/Scramble/Display/ImageIndex.pm
 lib/Scramble/Display/ListIndex.pm
@@ -16,7 +17,6 @@ lib/Scramble/Display/ReportIndex.pm
 lib/Scramble/Display/ReportPage.pm
 lib/Scramble/Display/ReportRss.pm
 lib/Scramble/Display/WaypointsFragment.pm
-lib/Scramble/Geekery.pm
 lib/Scramble/Logger.pm
 lib/Scramble/Misc.pm
 lib/Scramble/Model/Area.pm

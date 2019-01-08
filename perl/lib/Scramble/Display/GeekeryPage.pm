@@ -1,4 +1,4 @@
-package Scramble::Geekery;
+package Scramble::Display::GeekeryPage;
 
 use strict;
 
@@ -212,7 +212,7 @@ sub get_total_climbed {
             'most-climbed-text' => \@most_climbed);
 }
 
-sub make_page {
+sub create {
     my %peak_info = get_total_climbed();
 
     my $total_climbed_html

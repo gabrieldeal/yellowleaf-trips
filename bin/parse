@@ -12,7 +12,7 @@ use File::Path ();
 use Getopt::Long ();
 use IO::File ();
 use Scramble::Model::Area ();
-use Scramble::Geekery ();
+use Scramble::Display::GeekeryPage ();
 use Scramble::Model::List ();
 use Scramble::Model::Location ();
 use Scramble::Logger ();
@@ -174,7 +174,7 @@ sub main {
     should('list') && Scramble::Display::ListPage::create_all();
     should('report') && Scramble::Display::ReportPage::create_all();
     should('rss') && Scramble::Display::ReportRss::create();
-    should('geekery') && Scramble::Geekery::make_page();
+    should('geekery') && Scramble::Display::GeekeryPage::create();
     should('picture-by-year') && Scramble::Display::ImageIndex::create_all(); # Favorites
     should('location') && Scramble::Display::LocationPage::create_all();
     should('short-trips') && Scramble::Stats::display_short_trips();
