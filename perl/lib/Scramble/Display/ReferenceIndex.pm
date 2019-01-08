@@ -1,4 +1,4 @@
-package Scramble::Display::ReferencesIndex;
+package Scramble::Display::ReferenceIndex;
 
 use strict;
 

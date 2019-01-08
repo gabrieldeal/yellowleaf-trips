@@ -23,8 +23,8 @@ use Scramble::Display::ListIndex ();
 use Scramble::Display::ListKml ();
 use Scramble::Display::ListPage ();
 use Scramble::Display::LocationPage ();
-use Scramble::Display::ReferencesIndex ();
-use Scramble::Display::ReportIndexPage ();
+use Scramble::Display::ReferenceIndex ();
+use Scramble::Display::ReportIndex ();
 use Scramble::Display::ReportPage ();
 use Scramble::Display::ReportRss ();
 use Scramble::Model::Reference ();
@@ -167,8 +167,8 @@ sub main {
     Scramble::Model::List::open(glob("$g_options{'data-directory'}/lists/*.xml"));
 
     should('kml') && copy_kml();
-    should('report-index') && Scramble::Display::ReportIndexPage::create_all(); # This includes home.html
-    should('link') && Scramble::Display::ReferencesIndex::create();
+    should('report-index') && Scramble::Display::ReportIndex::create_all(); # This includes home.html
+    should('link') && Scramble::Display::ReferenceIndex::create();
     should('list') && Scramble::Display::ListIndex::create();
     should('list') && Scramble::Display::ListKml::create_all();
     should('list') && Scramble::Display::ListPage::create_all();

@@ -1,4 +1,4 @@
-package Scramble::Display::ReportIndexPage;
+package Scramble::Display::ReportIndex;
 
 # Creates the report index pages.  E.g., "Most Recent Trips" and "2017 Trips".
 
@@ -108,12 +108,12 @@ sub create_all {
             $copyright_year = $latest_year;
         }
 
-        my $page = Scramble::Display::ReportIndexPage->new(title => $reports{$id}{title},
-                                                           copyright_year => $copyright_year,
-                                                           id => $id,
-                                                           reports => $reports{$id}{reports},
-                                                           subdirectory => $reports{$id}{subdirectory},
-                                                           change_year_dropdown_items => \@change_year_dropdown_items);
+        my $page = Scramble::Display::ReportIndex->new(title => $reports{$id}{title},
+                                                       copyright_year => $copyright_year,
+                                                       id => $id,
+                                                       reports => $reports{$id}{reports},
+                                                       subdirectory => $reports{$id}{subdirectory},
+                                                       change_year_dropdown_items => \@change_year_dropdown_items);
         $page->create();
     }
 }

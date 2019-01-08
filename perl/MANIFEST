@@ -11,8 +11,8 @@ lib/Scramble/Display/ListKml.pm
 lib/Scramble/Display/ListPage.pm
 lib/Scramble/Display/LocationPage.pm
 lib/Scramble/Display/ReferenceFragment.pm
-lib/Scramble/Display/ReferencesIndex.pm
-lib/Scramble/Display/ReportIndexPage.pm
+lib/Scramble/Display/ReferenceIndex.pm
+lib/Scramble/Display/ReportIndex.pm
 lib/Scramble/Display/ReportPage.pm
 lib/Scramble/Display/ReportRss.pm
 lib/Scramble/Display/WaypointsFragment.pm
