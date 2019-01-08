@@ -1,5 +1,3 @@
-lib/Peaks/Kloke.pm
-lib/Peaks/ListsOfJohn.pm
 lib/Scramble/Collection.pm
 lib/Scramble/Converter/Location.pm
 lib/Scramble/Converter.pm
@@ -29,6 +27,8 @@ lib/Scramble/Model/Reference.pm
 lib/Scramble/Model/Report.pm
 lib/Scramble/Model/Waypoint.pm
 lib/Scramble/Model/Waypoints.pm
+lib/Scramble/Peaks/Kloke.pm
+lib/Scramble/Peaks/ListsOfJohn.pm
 lib/Scramble/SpellCheck.pm
 lib/Scramble/Stats.pm
 lib/Scramble/Template.pm

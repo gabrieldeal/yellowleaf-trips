@@ -6,7 +6,7 @@ use lib './perl/lib';
 
 use IO::File;
 use Getopt::Long ();
-use Peaks::ListsOfJohn;
+use Scramble::PeakList::ListsOfJohn ();
 use Scramble::Misc ();
 
 my @g_options = qw(
@@ -21,9 +21,9 @@ sub main {
   get_options();
 
   my @peaks;
-  foreach my $name (keys %Peaks::ListsOfJohn::Peaks) {
+  foreach my $name (keys %Scramble::PeakList::ListsOfJohn::Peaks) {
       next unless $name =~ /$g_options{name}/i;
-      push @peaks, values %{ $Peaks::ListsOfJohn::Peaks{$name} };
+      push @peaks, values %{ $Scramble::PeakList::ListsOfJohn::Peaks{$name} };
   }
   if (! @peaks) {
     printf("Lists of John has no such peak '%s'", $g_options{name});
