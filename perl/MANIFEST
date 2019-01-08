@@ -34,4 +34,3 @@ lib/Scramble/Stats.pm
 lib/Scramble/Template.pm
 lib/Scramble/Tests.pm
 lib/Scramble/Time.pm
-lib/Spell.pm
