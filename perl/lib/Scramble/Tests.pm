@@ -59,7 +59,7 @@ sub test_files_exist {
 sub test_insert_links {
     my %tests = ("Mount Teneriffe" => "Mount Teneriffe", #qq(<a href="../../g/l/Mount-Teneriffe.html">Mount Teneriffe</a>),
 		 "Mount Teneriffe Trailhead" => "Mount Teneriffe Trailhead", #qq(<a href="../../g/l/Mount-Teneriffe-Trailhead.html">Mount Teneriffe Trailhead</a>),
-                 "middleforkpeaks" => qq(<a  href="../li/middleforkpeakselevation.html">Middle Fork Snoqualmie River peaks</a>),
+                 "middleforkpeaks" => qq(<a href="../li/middleforkpeakselevation.html">Middle Fork Snoqualmie River peaks</a>),
 		 "http://www.amazon.com/o/asin/B00000ASIN" => qq(<a href="http://www.amazon.com/o/asin/B00000ASIN">http://www.amazon.com/o/asin/B...</a>),
 		 "http://www.wta.org/" => qq(<a href="http://www.wta.org/">http://www.wta.org/</a>),
                  "mountaineersScramblingClass" => qq(<a href="http://www.mountaineers.org/">Mountaineer\'s scrambling course</a>),

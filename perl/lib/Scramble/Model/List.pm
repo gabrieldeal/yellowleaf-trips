@@ -165,9 +165,8 @@ sub get_list_path {
 sub make_list_link {
     my ($list_xml) = @_;
 
-    return sprintf(qq(<a %s href="%s">%s</a>),
-		   Scramble::Misc::get_target($list_xml->{'URL'}),
-		   $list_xml->{'URL'},
+    return sprintf(qq(<a href="%s">%s</a>),
+                   $list_xml->{'URL'},
 		   $list_xml->{'name'});
 }
 

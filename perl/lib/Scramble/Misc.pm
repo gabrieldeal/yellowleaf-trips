@@ -159,13 +159,6 @@ sub pluralize {
     return $number != 1 ? "$word$suffix" : $word;
 }
 
-# FIXME: Do I need this?
-sub get_target {
-    my ($url) = @_;
-
-    return ($url =~ /https?:/ ? q( target="_top" ) : '');
-}
-
 sub make_optional_line {
     my ($format, $arg2, $arg3) = @_;
 
