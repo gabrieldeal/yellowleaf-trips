@@ -1,4 +1,4 @@
-package Scramble::Page::ReferenceFragment;
+package Scramble::Display::ReferenceFragment;
 
 use strict;
 

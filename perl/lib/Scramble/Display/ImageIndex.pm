@@ -1,8 +1,8 @@
-package Scramble::Page::ImageIndex;
+package Scramble::Display::ImageIndex;
 
 use strict;
 
-use Scramble::Page::ImageFragment ();
+use Scramble::Display::ImageFragment ();
 
 my $g_pictures_by_year_threshold = 1;
 

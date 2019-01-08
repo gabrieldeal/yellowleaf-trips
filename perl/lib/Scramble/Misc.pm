@@ -7,7 +7,7 @@ use Scramble::Logger ();
 use Scramble::Model::Reference ();
 use Scramble::Model::List ();
 use Scramble::Model::Area ();
-use Scramble::Page::ImageFragment ();
+use Scramble::Display::ImageFragment ();
 use URI::Encode ();
 
 our $gEnableEmbeddedGoogleMap = 1;
@@ -37,7 +37,7 @@ sub make_link_transformations {
 	$g_transformations{'list'}{sprintf('\b%s\b', $id)} = _insert_links_pack($link);
     }
     foreach my $id (Scramble::Model::Reference::get_ids()) {
-        my $html = eval { Scramble::Page::ReferenceFragment::get_reference_html_with_name_only({ 'id' => $id }) };
+        my $html = eval { Scramble::Display::ReferenceFragment::get_reference_html_with_name_only({ 'id' => $id }) };
 	next unless $html;
 	$id =~ s/\s+/\\s+/g;
 	$g_transformations{'reference'}{$id} = _insert_links_pack($html);
@@ -454,7 +454,7 @@ sub render_images_into_flow {
   my @cells;
   push @cells, map { make_cell_html(content => $_) } @{ $args{'htmls'} || [] };
   push @cells, map {
-      my $fragment = Scramble::Page::ImageFragment->new($_);
+      my $fragment = Scramble::Display::ImageFragment->new($_);
       $fragment->create(%args)
   } @{ $args{'images'} };
 

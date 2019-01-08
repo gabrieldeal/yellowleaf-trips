@@ -1,10 +1,10 @@
-package Scramble::Page::ReferencesIndex;
+package Scramble::Display::ReferencesIndex;
 
 use strict;
 
 use Scramble::Misc ();
 use Scramble::Model::Reference ();
-use Scramble::Page::ReferenceFragment ();
+use Scramble::Display::ReferenceFragment ();
 
 sub create {
     my $references_html;
@@ -13,7 +13,7 @@ sub create {
 	next unless $reference->{'name'};
 	next unless $reference->{'link'};
         $references_html .= sprintf("<li>%s</li>",
-                                    Scramble::Page::ReferenceFragment::get_reference_html($reference));
+                                    Scramble::Display::ReferenceFragment::get_reference_html($reference));
     }
 
     Scramble::Misc::create("m/references.html",

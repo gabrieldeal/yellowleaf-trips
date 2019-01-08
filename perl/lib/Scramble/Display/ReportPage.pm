@@ -1,11 +1,11 @@
-package Scramble::Page::ReportPage;
+package Scramble::Display::ReportPage;
 
 # The page about one particular report.  E.g., /scramble/g/r/2018-10-06-little-giant.html
 
 use strict;
 
 use Scramble::Misc ();
-use Scramble::Page::WaypointsFragment ();
+use Scramble::Display::WaypointsFragment ();
 
 sub new {
     my ($arg0, $report) = @_;
@@ -50,7 +50,7 @@ sub create {
     my $long_route_references = '';
     if ($self->report()->get_references() == 1) {
       $short_route_references = Scramble::Misc::make_colon_line("Reference", 
-                                                                Scramble::Page::ReferenceFragment::get_reference_html_with_name_only($self->report()->get_references(),
+                                                                Scramble::Display::ReferenceFragment::get_reference_html_with_name_only($self->report()->get_references(),
                                                                                                                               'name-ids' => [qw(page-name name)]));
     } else {
       $long_route_references = Scramble::Misc::make_optional_line("<h2>References</h2>%s",
@@ -61,10 +61,10 @@ sub create {
     my $long_times_html = '';
     my $short_times_html = '';
     if ($waypoints->get_waypoints_with_times() > 2) {
-        $long_times_html = Scramble::Page::WaypointsFragment::get_detailed($waypoints);
+        $long_times_html = Scramble::Display::WaypointsFragment::get_detailed($waypoints);
     } else {
         # Some reports have zero waypoints but still have a car-to-car time.
-        $short_times_html = Scramble::Page::WaypointsFragment::get_short($waypoints);
+        $short_times_html = Scramble::Display::WaypointsFragment::get_short($waypoints);
     }
 
     my $right_html = <<EOT;
@@ -175,7 +175,7 @@ sub get_embedded_google_map_html {
 sub get_reference_html {
     my $self = shift;
 
-    my @references = map { Scramble::Page::ReferenceFragment::get_page_reference_html($_) } $self->report()->get_references();
+    my @references = map { Scramble::Display::ReferenceFragment::get_page_reference_html($_) } $self->report()->get_references();
     @references = Scramble::Misc::dedup(@references);
 
     return '' unless @references;
@@ -323,7 +323,7 @@ sub add_section_names {
 sub create_all {
     foreach my $report (Scramble::Model::Report::get_all()) {
         eval {
-            my $page = Scramble::Page::ReportPage->new($report);
+            my $page = Scramble::Display::ReportPage->new($report);
             $page->create();
         };
         if ($@) {

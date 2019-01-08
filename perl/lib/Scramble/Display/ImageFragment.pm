@@ -1,4 +1,4 @@
-package Scramble::Page::ImageFragment;
+package Scramble::Display::ImageFragment;
 
 use strict;
 

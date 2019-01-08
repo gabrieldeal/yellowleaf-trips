@@ -1,4 +1,4 @@
-package Scramble::Page::LocationPage;
+package Scramble::Display::LocationPage;
 
 use strict;
 
@@ -21,7 +21,7 @@ sub create_all {
     @locations = sort { lc($a->get_filename()) cmp lc($b->get_filename()) } @locations;
 
     foreach my $location (@locations) {
-        my $page = Scramble::Page::LocationPage->new($location);
+        my $page = Scramble::Display::LocationPage->new($location);
         $page->create();
     }
 }
@@ -143,7 +143,7 @@ sub get_reports_for_location_html {
 
     my $location = $self->{location};
 
-    my @references_html = Scramble::Page::ReferenceFragment::get_page_references_html($location->get_references());
+    my @references_html = Scramble::Display::ReferenceFragment::get_page_references_html($location->get_references());
 
     my @reports = Scramble::Model::Report::get_reports_for_location($location);
     return undef unless @reports || @references_html;

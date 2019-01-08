@@ -1,4 +1,4 @@
-package Scramble::Page::ReportRss;
+package Scramble::Display::ReportRss;
 
 use strict;
 
