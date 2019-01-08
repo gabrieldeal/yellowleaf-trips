@@ -194,7 +194,7 @@ sub make_1_column_page {
     my (%args) = @_;
 
     my $template = Scramble::Template::create('page');
-    $template->param(Scramble::Template::common_params(),
+    $template->param(Scramble::Template::common_params(%args),
                      enable_embedded_google_map => $args{'enable-embedded-google-map'},
                      html => $args{'html'},
                      include_header => $args{'include-header'},
