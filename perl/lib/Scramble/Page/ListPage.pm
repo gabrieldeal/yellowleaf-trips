@@ -42,39 +42,29 @@ sub create {
 	@column_names = split(/,\s*/, $list_xml->{'columns'});
     }
 
-    my $locations_html = <<EOT;
-<style type="text/css">
-th.list, td.list {
-    padding: 5px;
-}
-table.list, th.list, td.list {
-    border: 2px solid black;
-}
-table.list {
-    border-collapse: collapse;
-}
-</style>
-
-<table class="list">
-    <tr class="list">
-EOT
+    my @columns;
     foreach my $column_name (@column_names) {
-	$locations_html .= sprintf(qq(<th class="list">%s</th>), get_cell_title($column_name));
+        push @columns, {
+            name => get_cell_title($column_name),
+        };
     }
-    $locations_html .= "</tr>";
+
+    my @rows;
     foreach my $list_location (@{ $list_xml->{'location'} }) {
         my $location_object = Scramble::Model::List::get_location_object($list_location);
 	if ($location_object) {
 	    push @location_objects, $location_object;
 	}
 
-	$locations_html .= qq(<tr class="list">);
-	foreach my $column_name (@column_names) {
-	    $locations_html .= sprintf(qq(<td class="list">%s</td>), get_cell_value($column_name, $list_location));
-	}
-	$locations_html .= "</tr>";
+        push @rows, {
+            cells => [ map { { value_html => get_cell_value($_, $list_location) } } @column_names ],
+        }
     }
-    $locations_html .= "</table>";
+
+    my $template = Scramble::Template::create('list/table');
+    $template->param(columns => \@columns,
+                     rows => \@rows);
+    my $locations_html = $template->output();
 
     my $note = Scramble::Misc::make_optional_line("%s<p>",
 						  \&Scramble::Misc::htmlify,

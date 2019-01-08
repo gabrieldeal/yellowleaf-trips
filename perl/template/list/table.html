@@ -1,0 +1,21 @@
+<table class="table table-minimize-width">
+  <thead>
+    <tr>
+      <TMPL_LOOP NAME="columns">
+        <th scope="col"><TMPL_VAR name="name" /></th>
+      </TMPL_LOOP>
+    </tr>
+  </thead>
+
+  <tbody>
+    <TMPL_LOOP NAME="rows">
+      <tr>
+        <TMPL_LOOP NAME="cells">
+          <td>
+            <TMPL_VAR ESCAPE="none" NAME="value_html" />
+          </td>
+        </TMPL_LOOP>
+      </tr>
+    </TMPL_LOOP>
+  </tbody>
+</table>
