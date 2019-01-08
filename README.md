@@ -1,1 +1,1 @@
-The rotten code that builds http://yellowleaf.org/scramble/g/m/home.html
+A primitive CMS that builds https://yellowleaf.org/scramble/g/m/home.html
