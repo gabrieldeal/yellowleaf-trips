@@ -49,7 +49,7 @@ sub create_all {
 	my $images_html = Scramble::Misc::render_images_into_flow(images => $pictures{$year}{images});
 	my $title = "My Favorite Photos of $year";
 
-        my $template = Scramble::Template::create('image/favorites');
+        my $template = Scramble::Template::create('image/index');
         $template->param(change_year_dropdown_items => \@change_year_dropdown_items,
                          images_html => $images_html,
                          title => $title);

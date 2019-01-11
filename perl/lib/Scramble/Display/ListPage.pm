@@ -61,7 +61,7 @@ sub create {
         }
     }
 
-    my $template = Scramble::Template::create('list/table');
+    my $template = Scramble::Template::create('list/page');
     $template->param(columns => \@columns,
                      rows => \@rows);
     my $locations_html = $template->output();
