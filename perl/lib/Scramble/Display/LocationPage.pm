@@ -5,6 +5,8 @@ use strict;
 use Scramble::Misc ();
 use Scramble::Template ();
 
+# FIXME: Convert to a template.
+
 sub new {
     my ($arg0, $location) = @_;
 
@@ -77,10 +79,15 @@ EOT
                                                              'float-first' => 1,
                                                              'images' => [ $location->get_picture_objects() ]);
 
+    my $html = <<HTML;
+$cells_html
+<br clear="all" />
+HTML
+
     Scramble::Misc::create(sprintf("l/%s", $location->get_filename()),
                            Scramble::Misc::make_1_column_page(title => "$title$location_name_note",
 							      'include-header' => 1,
-                                                              html => $cells_html,
+                                                              html => $html,
 							      'no-add-picture' => 1,
                                                               'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap));
 }

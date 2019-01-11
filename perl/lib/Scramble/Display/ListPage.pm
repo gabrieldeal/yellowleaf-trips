@@ -91,6 +91,7 @@ $max_images = 100;
     my $html = <<EOT;
 $note
 $images_html
+<br clear="all" />
 EOT
 
     Scramble::Misc::create(Scramble::Model::List::get_list_path($list_xml),
