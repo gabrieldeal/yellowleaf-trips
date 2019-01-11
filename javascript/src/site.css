@@ -92,3 +92,7 @@ ul.floated-flow-list > li:first-of-type {
 .non-bootstrap-content {
     margin-left: 15px;
 }
+
+.basic-list-item {
+    display: block;
+}

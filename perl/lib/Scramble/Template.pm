@@ -22,6 +22,15 @@ my @g_navbar_links = (
     },
     );
 
+sub html {
+    my ($name, $params) = @_;
+
+    my $template = Scramble::Template::create($name);
+    $template->param(%$params);
+
+    return $template->output();
+}
+
 sub create {
     my ($name) = @_;
 

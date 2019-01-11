@@ -10,12 +10,7 @@ sub get_reference_html {
         die "Can not find " . Data::Dumper::Dumper($reference);
     }
 
-    my $type = Scramble::Model::Reference::get_reference_attr('type', $reference)
-        or Carp::confess("missing type for " . Data::Dumper::Dumper($reference));
-    my $season = Scramble::Model::Reference::get_reference_attr('season', $reference);
-    if ($season) {
-        $type = ucfirst($season) . " $type";
-    }
+    my $type = get_type($reference);
 
     my $note = Scramble::Misc::insert_links(Scramble::Model::Reference::get_reference_attr('note', $reference) || '');
     if ($note) {
@@ -23,6 +18,19 @@ sub get_reference_html {
     }
 
     return "$type: $retval$note";
+}
+
+sub get_type {
+    my ($reference) = @_;
+
+    my $type = Scramble::Model::Reference::get_reference_attr('type', $reference)
+        or Carp::confess("missing type for " . Data::Dumper::Dumper($reference));
+    my $season = Scramble::Model::Reference::get_reference_attr('season', $reference);
+    if ($season) {
+        $type = ucfirst($season) . " $type";
+    }
+
+    return $type;
 }
 
 sub get_page_reference_html {
