@@ -1,4 +1,4 @@
-package Scramble::Display::GeekeryPage;
+package Scramble::Controller::GeekeryPage;
 
 use strict;
 

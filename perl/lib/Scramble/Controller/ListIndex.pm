@@ -1,4 +1,4 @@
-package Scramble::Display::ListIndex;
+package Scramble::Controller::ListIndex;
 
 use strict;
 

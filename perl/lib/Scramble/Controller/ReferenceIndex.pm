@@ -1,10 +1,10 @@
-package Scramble::Display::ReferenceIndex;
+package Scramble::Controller::ReferenceIndex;
 
 use strict;
 
 use Scramble::Misc ();
 use Scramble::Model::Reference ();
-use Scramble::Display::ReferenceFragment ();
+use Scramble::Controller::ReferenceFragment ();
 
 sub create {
     my @references_param;
@@ -14,7 +14,7 @@ sub create {
 	next unless $reference->{'name'};
 	next unless $reference->{'link'};
         my $name = Scramble::Model::Reference::get_reference_attr('name', $reference);
-        my $type = Scramble::Display::ReferenceFragment::get_type($reference);
+        my $type = Scramble::Controller::ReferenceFragment::get_type($reference);
         my $url = Scramble::Model::Reference::get_reference_attr('URL', $reference);
 
         push @references_param, {

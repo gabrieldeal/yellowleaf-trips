@@ -1,4 +1,4 @@
-package Scramble::Display::ImageFragment;
+package Scramble::Controller::ImageFragment;
 
 use strict;
 

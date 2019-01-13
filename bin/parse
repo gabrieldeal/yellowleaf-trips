@@ -12,21 +12,21 @@ use File::Path ();
 use Getopt::Long ();
 use IO::File ();
 use Scramble::Model::Area ();
-use Scramble::Display::GeekeryPage ();
+use Scramble::Controller::GeekeryPage ();
 use Scramble::Model::List ();
 use Scramble::Model::Location ();
 use Scramble::Logger ();
 use Scramble::Misc ();
 use Scramble::Model::Image ();
-use Scramble::Display::ImageIndex ();
-use Scramble::Display::ListIndex ();
-use Scramble::Display::ListKml ();
-use Scramble::Display::ListPage ();
-use Scramble::Display::LocationPage ();
-use Scramble::Display::ReferenceIndex ();
-use Scramble::Display::ReportIndex ();
-use Scramble::Display::ReportPage ();
-use Scramble::Display::ReportRss ();
+use Scramble::Controller::ImageIndex ();
+use Scramble::Controller::ListIndex ();
+use Scramble::Controller::ListKml ();
+use Scramble::Controller::ListPage ();
+use Scramble::Controller::LocationPage ();
+use Scramble::Controller::ReferenceIndex ();
+use Scramble::Controller::ReportIndex ();
+use Scramble::Controller::ReportPage ();
+use Scramble::Controller::ReportRss ();
 use Scramble::Model::Reference ();
 use Scramble::Model::Report ();
 use Scramble::SpellCheck ();
@@ -148,11 +148,11 @@ sub main {
 	foreach my $file (@{ $g_options{'file'} }) {
             if ($file =~ m{/reports/}) {
                 my $report = Scramble::Model::Report::open_specific($file);
-                my $page = Scramble::Display::ReportPage->new($report);
+                my $page = Scramble::Controller::ReportPage->new($report);
                 $page->create();
             } else {
                 foreach my $location (Scramble::Model::Location::open_specific($file)) {
-                    my $page = Scramble::Display::LocationPage->new($location);
+                    my $page = Scramble::Controller::LocationPage->new($location);
                     $page->create();
                 }
             }
@@ -167,16 +167,16 @@ sub main {
     Scramble::Model::List::open(glob("$g_options{'data-directory'}/lists/*.xml"));
 
     should('kml') && copy_kml();
-    should('report-index') && Scramble::Display::ReportIndex::create_all(); # This includes home.html
-    should('link') && Scramble::Display::ReferenceIndex::create();
-    should('list') && Scramble::Display::ListIndex::create();
-    should('list') && Scramble::Display::ListKml::create_all();
-    should('list') && Scramble::Display::ListPage::create_all();
-    should('report') && Scramble::Display::ReportPage::create_all();
-    should('rss') && Scramble::Display::ReportRss::create();
-    should('geekery') && Scramble::Display::GeekeryPage::create();
-    should('picture-by-year') && Scramble::Display::ImageIndex::create_all(); # Favorites
-    should('location') && Scramble::Display::LocationPage::create_all();
+    should('report-index') && Scramble::Controller::ReportIndex::create_all(); # This includes home.html
+    should('link') && Scramble::Controller::ReferenceIndex::create();
+    should('list') && Scramble::Controller::ListIndex::create();
+    should('list') && Scramble::Controller::ListKml::create_all();
+    should('list') && Scramble::Controller::ListPage::create_all();
+    should('report') && Scramble::Controller::ReportPage::create_all();
+    should('rss') && Scramble::Controller::ReportRss::create();
+    should('geekery') && Scramble::Controller::GeekeryPage::create();
+    should('picture-by-year') && Scramble::Controller::ImageIndex::create_all(); # Favorites
+    should('location') && Scramble::Controller::LocationPage::create_all();
     should('short-trips') && Scramble::Stats::display_short_trips();
     should('party-stats') && Scramble::Stats::display_party_stats();
     should('test') && Scramble::Tests::run();

@@ -1,4 +1,4 @@
-package Scramble::Display::ListKml;
+package Scramble::Controller::ListKml;
 
 use strict;
 
@@ -24,7 +24,7 @@ sub create_all {
         }
 
         Scramble::Logger::verbose("Making list KML for $list_xml->{name}\n");
-        Scramble::Display::ListKml->new($list_xml)->create();
+        Scramble::Controller::ListKml->new($list_xml)->create();
     }
 }
 

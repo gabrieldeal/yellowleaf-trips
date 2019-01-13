@@ -1,10 +1,10 @@
-package Scramble::Display::ReportIndex;
+package Scramble::Controller::ReportIndex;
 
 # Creates the report index pages.  E.g., "Most Recent Trips" and "2017 Trips".
 
 use strict;
 
-use Scramble::Display::ImageFragment ();
+use Scramble::Controller::ImageFragment ();
 
 my $g_reports_on_index_page = 25;
 
@@ -44,7 +44,7 @@ sub get_report_params {
     my @images = $report->get_sorted_images();
 
     my @image_htmls = map {
-        my $fragment = Scramble::Display::ImageFragment->new($_);
+        my $fragment = Scramble::Controller::ImageFragment->new($_);
         $fragment->create('no-description' => 1,
                           'no-lightbox' => 1,
                           'no-report-link' => 1)
@@ -108,7 +108,7 @@ sub create_all {
             $copyright_year = $latest_year;
         }
 
-        my $page = Scramble::Display::ReportIndex->new(title => $reports{$id}{title},
+        my $page = Scramble::Controller::ReportIndex->new(title => $reports{$id}{title},
                                                        copyright_year => $copyright_year,
                                                        id => $id,
                                                        reports => $reports{$id}{reports},

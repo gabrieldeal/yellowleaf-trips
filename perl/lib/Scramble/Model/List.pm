@@ -4,8 +4,8 @@ use strict;
 
 use Scramble::Misc;
 use Scramble::Model;
-use Scramble::Display::ImageFragment ();
-use Scramble::Display::ListKml ();
+use Scramble::Controller::ImageFragment ();
+use Scramble::Controller::ListKml ();
 use Scramble::Logger;
 
 # FIXME: Convert this to a class.

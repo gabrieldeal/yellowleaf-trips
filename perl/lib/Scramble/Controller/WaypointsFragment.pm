@@ -1,4 +1,4 @@
-package Scramble::Display::WaypointsFragment;
+package Scramble::Controller::WaypointsFragment;
 
 use strict;
 

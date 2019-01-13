@@ -1,4 +1,4 @@
-package Scramble::Display::ReferenceFragment;
+package Scramble::Controller::ReferenceFragment;
 
 use strict;
 

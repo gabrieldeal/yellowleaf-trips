@@ -1,4 +1,4 @@
-package Scramble::Display::ReportRss;
+package Scramble::Controller::ReportRss;
 
 use strict;
 
