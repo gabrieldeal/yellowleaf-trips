@@ -34,7 +34,7 @@ sub html {
 sub create {
     my ($name) = @_;
 
-    my $filename = "perl/template/$name.html";
+    my $filename = "view/$name.html";
 
     return HTML::Template->new(filename => $filename,
                                default_escape => 'html');

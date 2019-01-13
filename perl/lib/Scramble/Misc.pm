@@ -193,7 +193,7 @@ sub make_optional_line {
 sub make_1_column_page {
     my (%args) = @_;
 
-    my $template = Scramble::Template::create('page');
+    my $template = Scramble::Template::create('shared/page');
     $template->param(Scramble::Template::common_params(%args),
                      enable_embedded_google_map => $args{'enable-embedded-google-map'},
                      html => $args{'html'},
@@ -250,7 +250,7 @@ sub get_multi_point_embedded_google_map_html {
 
     return '' unless @inputs;
 
-    my $template = Scramble::Template::create('fragment/map/small');
+    my $template = Scramble::Template::create('shared/map');
     $template->param(inputs => \@inputs);
     return $template->output();
 }

@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <TMPL_IF NAME="include_header">
-      <TMPL_INCLUDE NAME="fragment/head.html" />
+      <TMPL_INCLUDE NAME="head.html" />
     </TMPL_IF>
   </head>
   <body>
-    <TMPL_INCLUDE NAME="fragment/navbar.html" />
+    <TMPL_INCLUDE NAME="navbar.html" />
 
     <div class="non-bootstrap-content">
       <TMPL_UNLESS NAME="no_title">
@@ -15,7 +15,7 @@
 
       <TMPL_VAR ESCAPE="none" NAME="html" />
 
-      <TMPL_INCLUDE NAME="fragment/foot.html" />
+      <TMPL_INCLUDE NAME="foot.html" />
     </div>
 
   </body>
