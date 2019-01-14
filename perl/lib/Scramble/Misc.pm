@@ -431,7 +431,7 @@ sub make_cell_html {
     $contents_html
     <figcaption style="display: table-caption; caption-side: bottom ;">
         <div class="cell-description">$description</div>
-        <div class="report-link">$link</div>
+        <div class="trip-link">$link</div>
     </figcaption>
 </figure>
 EOT

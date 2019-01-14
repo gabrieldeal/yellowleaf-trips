@@ -34,31 +34,31 @@
 .cell-description  { 
     display: inline;
 }
-.report-link { 
+.trip-link { 
     font-size: small;
     display: inline;
 }
 
-.report-thumbnail {
+.trip-thumbnail {
     display: block;
     clear: left;
     margin-bottom: 1em;
     overflow: hidden;
 }
-.report-thumbnail-title {
+.trip-thumbnail-title {
     display: block;
     font-size: 130%;
     margin-bottom: 2px;
 }
-.report-thumbnail-image {
+.trip-thumbnail-image {
     display: inline-block;
     margin-right: 5px;
     float: left;
 }
-.report-thumbnail-date {
+.trip-thumbnail-date {
     display: block;
 }
-.report-thumbnail-type {
+.trip-thumbnail-type {
     display: block;
 }
 
@@ -66,11 +66,11 @@ a img {
     border: 0px;
 }
 
-.report-summary-container {
+.trip-summary-container {
     margin-bottom: 1em;
 }
 
-.report-summary-name {
+.trip-summary-name {
     margin-bottom: 0;
     margin-top: 0.25em;
 }

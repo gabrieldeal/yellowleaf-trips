@@ -28,13 +28,13 @@ sub create {
 
     my $count = 0;
     my $mime = MIME::Types->new(only_complete => 1);
-    foreach my $report (Scramble::Model::Trip::get_all()) {
+    foreach my $trip (Scramble::Model::Trip::get_all()) {
         last unless ++$count <= 15; 
-        next unless $report->should_show();
-        my $best_image = $report->get_best_picture_object();
+        next unless $trip->should_show();
+        my $best_image = $trip->get_best_picture_object();
 	next unless $best_image;
 
-	die Data::Dumper::Dumper($best_image) . "\n\n\n\n" . Data::Dumper::Dumper($report) unless $best_image->get_enlarged_img_url();
+	die Data::Dumper::Dumper($best_image) . "\n\n\n\n" . Data::Dumper::Dumper($trip) unless $best_image->get_enlarged_img_url();
 
 	my $image_url = sprintf(qq(https://yellowleaf.org/scramble/%s),
 				$best_image->get_enlarged_img_url());
@@ -42,18 +42,18 @@ sub create {
 	# an image in the feed preview.
 	$image_url =~ s{\.\./\.\./}{};
 
-        my $report_url = sprintf("https://yellowleaf.org/scramble/%s",
-				 $report->get_report_page_url());
-	$report_url =~ s{\.\./\.\./}{};
+        my $trip_url = sprintf("https://yellowleaf.org/scramble/%s",
+				 $trip->get_trip_page_url());
+	$trip_url =~ s{\.\./\.\./}{};
 
 	my $image_html = sprintf(qq(<a href="%s"><img src="%s" alt="%s"></a>),
-				 $report_url,
+				 $trip_url,
 				 $image_url,
 				 $best_image->get_description());
 	my $description = qq(<![CDATA[$image_html]]>);
 
-	$rss->add_item(title => $report->get_name(),
-		       link => $report_url,
+	$rss->add_item(title => $trip->get_name(),
+		       link => $trip_url,
 		       description => $description,
 		       content => {
 			   encoded => $description,

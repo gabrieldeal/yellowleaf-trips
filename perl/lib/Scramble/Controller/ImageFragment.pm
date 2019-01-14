@@ -32,7 +32,7 @@ sub create {
             my $url = $image->get_enlarged_img_url();
             if ($options{'no-lightbox'}) {
                 $css_class = '';
-                $url = $image->get_report_url();
+                $url = $image->get_trip_url();
             }
 
             my $title = HTML::Entities::encode_entities($image->get_description());
@@ -46,14 +46,14 @@ sub create {
         $description = Scramble::Misc::htmlify($image->get_description());
     }
 
-    my $report_link = '';
-    if ($image->get_report_url() && ! $options{'no-report-link'}) {
-        $report_link = $self->get_report_link_html();
+    my $trip_link = '';
+    if ($image->get_trip_url() && ! $options{'no-trip-link'}) {
+        $trip_link = $self->get_trip_link_html();
     }
 
     return Scramble::Misc::make_cell_html(content => $img_html,
 					  description => $description,
-					  link => $report_link);
+					  link => $trip_link);
 }
 
 sub get_video_tag {
@@ -83,11 +83,11 @@ sub get_img_tag {
                    HTML::Entities::encode_entities($self->{image}->get_description()));
 }
 
-sub get_report_link_html {
+sub get_trip_link_html {
     my $self = shift;
 
     return sprintf(qq(<a href="%s">%s</a>),
-                   $self->{image}->get_report_url(),
+                   $self->{image}->get_trip_url(),
                    $self->{image}->get_capture_date() || $self->{image}->get_date());
 }
 

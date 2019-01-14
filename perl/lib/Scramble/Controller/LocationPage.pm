@@ -46,8 +46,8 @@ sub create {
     my $description = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("<h2>Description</h2>%s",
 										 $location->get_description()));
 
-    my $reports_html = Scramble::Misc::make_optional_line("<h2>Trip Reports and References</h2> %s",
-                                                          $self->get_reports_for_location_html());
+    my $trips_html = Scramble::Misc::make_optional_line("<h2>Trip Reports and References</h2> %s",
+                                                          $self->get_trips_for_location_html());
     my $recognizable_areas_html = $self->get_recognizable_areas_html();
 
     my $state_html = Scramble::Misc::make_colon_line("State", $self->get_state_html());
@@ -66,7 +66,7 @@ $county_html
 $recognizable_areas_html
 $quad_links
 
-$reports_html
+$trips_html
 $description
 $naming_origin
 EOT
@@ -145,56 +145,56 @@ sub get_embedded_google_map_html {
     return Scramble::Misc::get_multi_point_embedded_google_map_html([ $self->{location} ]);
 }
 
-sub get_reports_for_location_html {
+sub get_trips_for_location_html {
     my $self = shift;
 
     my $location = $self->{location};
 
     my @references_html = Scramble::Controller::ReferenceFragment::get_page_references_html($location->get_references());
 
-    my @reports = Scramble::Model::Trip::get_reports_for_location($location);
-    return undef unless @reports || @references_html;
+    my @trips = Scramble::Model::Trip::get_trips_for_location($location);
+    return undef unless @trips || @references_html;
 
-    foreach my $report (@reports) {
-        next unless $report->should_show();
+    foreach my $trip (@trips) {
+        next unless $trip->should_show();
         push @references_html, sprintf("$Scramble::Misc::gSiteName: %s",
-                                       $self->get_report_link_html($report));
+                                       $self->get_trip_link_html($trip));
     }
 
     return '<ul><li>' . join('</li><li>', @references_html) . '</li></ul>';
 }
 
-sub get_report_link_html {
+sub get_trip_link_html {
     my $self = shift;
-    my ($report) = @_;
+    my ($trip) = @_;
 
-    my $date = $report->get_summary_date();
-    my $name = $report->get_summary_name();
-    my $image_html = $self->get_summary_image_html($report) || '';
-    my $type = $report->get_type();
+    my $date = $trip->get_summary_date();
+    my $name = $trip->get_summary_name();
+    my $image_html = $self->get_summary_image_html($trip) || '';
+    my $type = $trip->get_type();
 
     return <<EOT;
-<div class="report-thumbnail">
-    <div class="report-thumbnail-image">$image_html</div>
-    <div class="report-thumbnail-title">$name</div>
-    <div class="report-thumbnail-date">$date</div>
-    <div class="report-thumbnail-type">$type</div>
+<div class="trip-thumbnail">
+    <div class="trip-thumbnail-image">$image_html</div>
+    <div class="trip-thumbnail-title">$name</div>
+    <div class="trip-thumbnail-date">$date</div>
+    <div class="trip-thumbnail-type">$type</div>
 </div>
 EOT
 }
 
 sub get_summary_image_html {
     my $self = shift;
-    my ($report) = @_;
+    my ($trip) = @_;
 
     my $size = 125;
 
     my @image_htmls;
-    foreach my $image_obj ($report->get_sorted_images()) {
+    foreach my $image_obj ($trip->get_sorted_images()) {
         if ($image_obj) {
             my $image_html = sprintf(qq(<img width="$size" onload="Yellowleaf_main.resizeThumbnail(this, $size)" src="%s">),
                                      $image_obj->get_url());
-            $image_html = $report->link_if_should_show($image_html);
+            $image_html = $trip->link_if_should_show($image_html);
             push @image_htmls, $image_html;
         }
     }

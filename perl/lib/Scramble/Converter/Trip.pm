@@ -17,19 +17,19 @@ sub new {
 }
 
 sub xg { $_[0]->{xml_generator} }
-sub r { $_[0]->{report} }
+sub r { $_[0]->{trip} }
 
 sub convert {
     my $self = shift;
-    my ($report) = @_;
+    my ($trip) = @_;
 
-    $self->{report} = $report;
+    $self->{trip} = $trip;
     my $xg = $self->xg();
 
     my @tags;
-    push @tags, $xg->description({}, $report->get_route()) if $report->get_route();
-    push @tags, $xg->private({}, $report->_get_optional_content('private')) if $report->_get_optional_content('private');
-    push @tags, $xg->comments({}, $report->_get_optional_content('comments')) if  $report->_get_optional_content('comments');
+    push @tags, $xg->description({}, $trip->get_route()) if $trip->get_route();
+    push @tags, $xg->private({}, $trip->_get_optional_content('private')) if $trip->_get_optional_content('private');
+    push @tags, $xg->comments({}, $trip->_get_optional_content('comments')) if  $trip->_get_optional_content('comments');
     push @tags, $self->make_named_array_tag('locations', ['location', 'not']);
     push @tags, $self->make_named_array_tag('references', 'reference');
     push @tags, $self->make_named_array_tag('areas', 'area');
@@ -37,9 +37,9 @@ sub convert {
     push @tags, $self->make_named_array_tag('maps', 'map');
     push @tags, $self->make_named_array_tag('round-trip-distances', 'distance');
     push @tags, $self->make_party_tag();
-    if ($report->_get_optional('times', 'miles')) {
+    if ($trip->_get_optional('times', 'miles')) {
 	my $tag = "round-trip-distances";
-	push @tags, $xg->$tag({}, $xg->distance({type=>'foot', miles=>$report->_get_optional('times', 'miles')}));
+	push @tags, $xg->$tag({}, $xg->distance({type=>'foot', miles=>$trip->_get_optional('times', 'miles')}));
     }
     push @tags, $self->make_waypoints_tag();
     push @tags, $self->make_files_tag();

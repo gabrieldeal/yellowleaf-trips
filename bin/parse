@@ -48,7 +48,7 @@ my @g_options = qw(
 		   action=s@
 		   skip=s@
 		   file=s@
-		   reports-directory=s
+		   trips-directory=s
                    kml-directory=s
                    templates-directory=s
                    javascript-directory=s
@@ -96,7 +96,7 @@ sub get_options {
     }
 
     foreach my $required (qw(
-                             reports-directory
+                             trips-directory
                              output-directory
                              javascript-directory
                              templates-directory))
@@ -138,17 +138,17 @@ sub main {
     #     my @files = @{ $g_options{'file'} } || glob("$g_options{'data-directory'}/locations/*.xml");
     #     Scramble::Converter::convert_locations($g_options{'data-directory'}, @files);
     #     @files = ...
-    #     Scramble::Converter::convert_reports($g_options{'data-directory'}, @files);
+    #     Scramble::Converter::convert_trips($g_options{'data-directory'}, @files);
     #     exit 0;
     # }
 
     if (! @{ $g_options{'file'} }) {
-	Scramble::Model::Trip::open_all($g_options{'reports-directory'});
+	Scramble::Model::Trip::open_all($g_options{'trips-directory'});
     } else {
 	foreach my $file (@{ $g_options{'file'} }) {
-            if ($file =~ m{/reports/}) {
-                my $report = Scramble::Model::Trip::open_specific($file);
-                my $page = Scramble::Controller::TripPage->new($report);
+            if ($file =~ m{/trips/}) {
+                my $trip = Scramble::Model::Trip::open_specific($file);
+                my $page = Scramble::Controller::TripPage->new($trip);
                 $page->create();
             } else {
                 foreach my $location (Scramble::Model::Location::open_specific($file)) {
@@ -167,12 +167,12 @@ sub main {
     Scramble::Model::List::open(glob("$g_options{'data-directory'}/lists/*.xml"));
 
     should('kml') && copy_kml();
-    should('report-index') && Scramble::Controller::TripIndex::create_all(); # This includes home.html
+    should('trip-index') && Scramble::Controller::TripIndex::create_all(); # This includes home.html
     should('link') && Scramble::Controller::ReferenceIndex::create();
     should('list') && Scramble::Controller::ListIndex::create();
     should('list') && Scramble::Controller::ListKml::create_all();
     should('list') && Scramble::Controller::ListPage::create_all();
-    should('report') && Scramble::Controller::TripPage::create_all();
+    should('trip') && Scramble::Controller::TripPage::create_all();
     should('rss') && Scramble::Controller::TripRss::create();
     should('geekery') && Scramble::Controller::GeekeryPage::create();
     should('picture-by-year') && Scramble::Controller::ImageIndex::create_all(); # Favorites

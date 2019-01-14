@@ -6,11 +6,11 @@ sub display_short_trips {
     my $max_hours = 4;
     print "Trips shorter than $max_hours hours:\n";
 
-    my $short_reports = Scramble::Model::Trip::get_shorter_than($max_hours);
-    foreach my $report (sort { Scramble::Model::Trip::cmp_by_duration($a, $b) } @$short_reports) {
-        my $minutes = $report->get_waypoints()->get_car_to_car_delta();
+    my $short_trips = Scramble::Model::Trip::get_shorter_than($max_hours);
+    foreach my $trip (sort { Scramble::Model::Trip::cmp_by_duration($a, $b) } @$short_trips) {
+        my $minutes = $trip->get_waypoints()->get_car_to_car_delta();
         my $hours = $minutes / 60;
-        printf("    %2.3f hours, %s, %s\n", $hours, $report->get_start_date(), $report->get_name());
+        printf("    %2.3f hours, %s, %s\n", $hours, $trip->get_start_date(), $trip->get_name());
     }
     print "\n";
 }
@@ -18,14 +18,14 @@ sub display_short_trips {
 sub display_party_stats {
   my %stats;
   my %people;
-  foreach my $report (Scramble::Model::Trip::get_all()) {
-    my $party = $report->_get_optional_content('party');
+  foreach my $trip (Scramble::Model::Trip::get_all()) {
+    my $party = $trip->_get_optional_content('party');
     next unless $party;
 
     my @members = map { $_->{name} } @{ $party->{member} || [] };
     push @members, grep /\S/, split(/\n/, $party->{content}) if $party->{content};
 
-    my ($yyyy, $mm, $dd) = Scramble::Time::parse_date($report->get_start_date());
+    my ($yyyy, $mm, $dd) = Scramble::Time::parse_date($trip->get_start_date());
 
     die "$yyyy/$mm/$dd " . Data::Dumper::Dumper($party) unless $party->{size};
 
@@ -71,7 +71,7 @@ sub display_party_stats {
       $name =~ s/^Brett D$/Brett Dyson/i;
       $name =~ s/^Bruno$/Bruno Reinys/i;
       $people{$name}{trips}++;
-      $people{$name}{days} += $report->get_num_days();
+      $people{$name}{days} += $trip->get_num_days();
     }
   }
 

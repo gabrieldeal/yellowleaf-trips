@@ -1,7 +1,7 @@
 lib/Scramble/Collection.pm
 lib/Scramble/Converter/Location.pm
 lib/Scramble/Converter.pm
-lib/Scramble/Converter/Report.pm
+lib/Scramble/Converter/Trip.pm
 lib/Scramble/Controller/GeekeryPage.pm
 lib/Scramble/Controller/ImageFragment.pm
 lib/Scramble/Controller/ImageIndex.pm
@@ -11,9 +11,9 @@ lib/Scramble/Controller/ListPage.pm
 lib/Scramble/Controller/LocationPage.pm
 lib/Scramble/Controller/ReferenceFragment.pm
 lib/Scramble/Controller/ReferenceIndex.pm
-lib/Scramble/Controller/ReportIndex.pm
-lib/Scramble/Controller/ReportPage.pm
-lib/Scramble/Controller/ReportRss.pm
+lib/Scramble/Controller/TripIndex.pm
+lib/Scramble/Controller/TripPage.pm
+lib/Scramble/Controller/TripRss.pm
 lib/Scramble/Controller/WaypointsFragment.pm
 lib/Scramble/Logger.pm
 lib/Scramble/Misc.pm
@@ -24,7 +24,7 @@ lib/Scramble/Model/List.pm
 lib/Scramble/Model/Location.pm
 lib/Scramble/Model.pm
 lib/Scramble/Model/Reference.pm
-lib/Scramble/Model/Report.pm
+lib/Scramble/Model/Trip.pm
 lib/Scramble/Model/Waypoint.pm
 lib/Scramble/Model/Waypoints.pm
 lib/Scramble/Peaks/Kloke.pm

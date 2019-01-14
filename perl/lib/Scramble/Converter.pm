@@ -28,44 +28,44 @@ sub convert_locations {
     }
 }
 
-sub get_converted_report_path {
-    my ($data_directory, $report) = @_;
+sub get_converted_trip_path {
+    my ($data_directory, $trip) = @_;
 
 
     my %args = (
-                'trip-id' => $report->get_trip_id(),
-                'date' => $report->get_start_date(),
+                'trip-id' => $trip->get_trip_id(),
+                'date' => $trip->get_start_date(),
                );
     my @images = Scramble::Model::Image::get_all_images_collection()->find(%args);
     if (@images) {
-	return sprintf("%s/report.xml", $images[0]->get_source_directory());
+	return sprintf("%s/trip.xml", $images[0]->get_source_directory());
     }
 
-    my $subdir = File::Basename::basename($report->{path});
+    my $subdir = File::Basename::basename($trip->{path});
     $subdir =~ s/\.xml$//;
-    $subdir = "$data_directory/gabrielx/reports/$subdir";
+    $subdir = "$data_directory/gabrielx/trips/$subdir";
     File::Path::mkpath([ $subdir ], 0, 0755);
 
-    return "$subdir/report.xml";
+    return "$subdir/trip.xml";
 }
 
-sub convert_reports {
+sub convert_trips {
     my $data_directory = shift;
     my @files = @_;
 
     my $converter = Scramble::Converter::Trip->new();
 
-    @files = glob("$data_directory/gabrielx/reports/*.xml") unless @files;
+    @files = glob("$data_directory/gabrielx/trips/*.xml") unless @files;
 
     foreach my $file (@files) {
-	my @reports;
-	my $report = Scramble::Model::Trip->new($file);
-	next unless $report;
+	my @trips;
+	my $trip = Scramble::Model::Trip->new($file);
+	next unless $trip;
 
-        my $path = get_converted_report_path($data_directory, $report);
+        my $path = get_converted_trip_path($data_directory, $trip);
 	
 	my $fh = IO::File->new($path, 'w') or die "Failed to create $path: $!";
-	$fh->print($converter->convert($report) . "\n") or die;
+	$fh->print($converter->convert($trip) . "\n") or die;
 	$fh->close() or die;
 
         Scramble::Model::parse($path);

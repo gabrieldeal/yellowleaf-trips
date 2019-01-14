@@ -1,12 +1,12 @@
 package Scramble::Controller::TripIndex;
 
-# Creates the report index pages.  E.g., "Most Recent Trips" and "2017 Trips".
+# Creates the trip index pages.  E.g., "Most Recent Trips" and "2017 Trips".
 
 use strict;
 
 use Scramble::Controller::ImageFragment ();
 
-my $g_reports_on_index_page = 25;
+my $g_trips_on_index_page = 25;
 
 sub new {
     my ($arg0, %args) = @_;
@@ -19,35 +19,35 @@ sub new {
 sub create {
     my $self = shift;
 
-    my @report_params = map { $self->get_report_params($_) } @{ $self->{reports} };
+    my @trip_params = map { $self->get_trip_params($_) } @{ $self->{trips} };
 
     my $template = Scramble::Template::create('trip/index');
     $template->param(Scramble::Template::common_params(),
                      change_year_dropdown_items => $self->{change_year_dropdown_items},
-                     reports => \@report_params,
+                     trips => \@trip_params,
                      title => $self->{title});
     my $html = $template->output();
 
     Scramble::Misc::create("$self->{subdirectory}/$self->{id}.html", $html);
 }
 
-sub get_report_params {
+sub get_trip_params {
     my $self = shift;
-    my ($report) = @_;
+    my ($trip) = @_;
 
-    my $type = $report->get_type();
-    my $name_html = $report->get_name();
+    my $type = $trip->get_type();
+    my $name_html = $trip->get_name();
     $name_html .= " $type" unless $name_html =~ /${type}$/;
-    $name_html = $report->get_summary_name($name_html);
-    my $date = $report->get_summary_date();
+    $name_html = $trip->get_summary_name($name_html);
+    my $date = $trip->get_summary_date();
 
-    my @images = $report->get_sorted_images();
+    my @images = $trip->get_sorted_images();
 
     my @image_htmls = map {
         my $fragment = Scramble::Controller::ImageFragment->new($_);
         $fragment->create('no-description' => 1,
                           'no-lightbox' => 1,
-                          'no-report-link' => 1)
+                          'no-trip-link' => 1)
     } @images;
 
     return {
@@ -64,37 +64,37 @@ sub get_report_params {
 
 # home.html
 sub create_all {
-    my %reports;
+    my %trips;
     my $count = 0;
     my $latest_year = 0;
-    my @reports = sort { Scramble::Model::Trip::cmp($b, $a) } Scramble::Model::Trip::get_all();
-    foreach my $report (@reports) {
-	my ($yyyy) = $report->get_parsed_start_date();
+    my @trips = sort { Scramble::Model::Trip::cmp($b, $a) } Scramble::Model::Trip::get_all();
+    foreach my $trip (@trips) {
+	my ($yyyy) = $trip->get_parsed_start_date();
         $latest_year = $yyyy if $yyyy > $latest_year;
 
-        push @{ $reports{$yyyy} }, $report;
-        if ($count++ < $g_reports_on_index_page) {
-            push @{ $reports{'index'} }, $report;
+        push @{ $trips{$yyyy} }, $trip;
+        if ($count++ < $g_trips_on_index_page) {
+            push @{ $trips{'index'} }, $trip;
         }
     }
 
-    foreach my $id (keys %reports) {
+    foreach my $id (keys %trips) {
         my $title = $id eq 'index' ? "Most Recent Trips" : "$id Trips";
-        $reports{$id} = {
+        $trips{$id} = {
             title => $title,
-            reports => $reports{$id},
+            trips => $trips{$id},
             subdirectory => "r",
         };
     }
     # The home page slowly became almost exactly the same as the
-    # reports index page.
+    # trips index page.
     #
     # FIXME: delete r/index.html?
-    $reports{home} = { %{ $reports{index} } };
-    $reports{home}{subdirectory} = "m";
+    $trips{home} = { %{ $trips{index} } };
+    $trips{home}{subdirectory} = "m";
 
     my @change_year_dropdown_items;
-    foreach my $year (reverse sort keys %reports) {
+    foreach my $year (reverse sort keys %trips) {
         next unless $year =~ /^\d{4}$/;
         push @change_year_dropdown_items, {
             url => "../../g/r/$year.html",
@@ -102,17 +102,17 @@ sub create_all {
         };
     }
 
-    foreach my $id (keys %reports) {
+    foreach my $id (keys %trips) {
         my $copyright_year = $id;
         if ($id !~ /^\d+$/) {
             $copyright_year = $latest_year;
         }
 
-        my $page = Scramble::Controller::TripIndex->new(title => $reports{$id}{title},
+        my $page = Scramble::Controller::TripIndex->new(title => $trips{$id}{title},
                                                        copyright_year => $copyright_year,
                                                        id => $id,
-                                                       reports => $reports{$id}{reports},
-                                                       subdirectory => $reports{$id}{subdirectory},
+                                                       trips => $trips{$id}{trips},
+                                                       subdirectory => $trips{$id}{subdirectory},
                                                        change_year_dropdown_items => \@change_year_dropdown_items);
         $page->create();
     }

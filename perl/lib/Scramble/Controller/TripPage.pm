@@ -1,6 +1,6 @@
 package Scramble::Controller::TripPage;
 
-# The page about one particular report.  E.g., /scramble/g/r/2018-10-06-little-giant.html
+# The page about one particular trip.  E.g., /scramble/g/r/2018-10-06-little-giant.html
 
 use strict;
 
@@ -8,23 +8,23 @@ use Scramble::Misc ();
 use Scramble::Controller::WaypointsFragment ();
 
 sub new {
-    my ($arg0, $report) = @_;
+    my ($arg0, $trip) = @_;
 
     my $self = {
-        report => $report,
+        trip => $trip,
     };
 
     return bless($self, ref($arg0) || $arg0);
 }
 
-sub report { $_[0]{report} }
+sub trip { $_[0]{trip} }
 
 sub make_date_html {
     my $self = shift;
 
-    my $date = $self->report()->get_start_date();
-    if (defined $self->report()->get_end_date()) {
-	$date .= " to " . $self->report()->get_end_date();
+    my $date = $self->trip()->get_start_date();
+    if (defined $self->trip()->get_end_date()) {
+	$date .= " to " . $self->trip()->get_end_date();
     }
 
     return Scramble::Misc::make_colon_line("Date", $date);
@@ -34,36 +34,36 @@ sub get_elevation_gain_html {
     my $self = shift;
 
     return Scramble::Misc::make_optional_line("<b>Elevation gain:</b> approx. %s<br>",
-                                              $self->report()->get_waypoints()->get_elevation_gain("ascending|descending"));
+                                              $self->trip()->get_waypoints()->get_elevation_gain("ascending|descending"));
 }
 
 sub create {
     my $self = shift;
 
     my $date = $self->make_date_html();
-    my $trip_type = Scramble::Misc::make_colon_line("Trip type", $self->report()->get_type());
+    my $trip_type = Scramble::Misc::make_colon_line("Trip type", $self->trip()->get_type());
     my $elevation_html = $self->get_elevation_gain_html();
     my $miles_html = $self->get_distances_html();
     my $quads_html = $self->get_map_summary_html();
     my $recognizable_areas_html = $self->get_recognizable_areas_html();
     my $short_route_references = '';
     my $long_route_references = '';
-    if ($self->report()->get_references() == 1) {
+    if ($self->trip()->get_references() == 1) {
       $short_route_references = Scramble::Misc::make_colon_line("Reference", 
-                                                                Scramble::Controller::ReferenceFragment::get_reference_html_with_name_only($self->report()->get_references(),
+                                                                Scramble::Controller::ReferenceFragment::get_reference_html_with_name_only($self->trip()->get_references(),
                                                                                                                               'name-ids' => [qw(page-name name)]));
     } else {
       $long_route_references = Scramble::Misc::make_optional_line("<h2>References</h2>%s",
                                                              $self->get_reference_html());
     }
 
-    my $waypoints = $self->report()->get_waypoints();
+    my $waypoints = $self->trip()->get_waypoints();
     my $long_times_html = '';
     my $short_times_html = '';
     if ($waypoints->get_waypoints_with_times() > 2) {
         $long_times_html = Scramble::Controller::WaypointsFragment::get_detailed($waypoints);
     } else {
-        # Some reports have zero waypoints but still have a car-to-car time.
+        # Some trips have zero waypoints but still have a car-to-car time.
         $short_times_html = Scramble::Controller::WaypointsFragment::get_short($waypoints);
     }
 
@@ -88,14 +88,14 @@ EOT
 
     my $count = 1;
     my $cells_html;
-    my @map_objects = $self->report()->get_map_objects();
+    my @map_objects = $self->trip()->get_map_objects();
     my @sections = $self->split_pictures_into_sections();
     foreach my $section (@sections) {
         if (@sections > 1) {
 	    if ($count == 1) {
 		$cells_html .= Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
 								       'images' => [@map_objects ],
-                                                                       'no-report-link' => 1);
+                                                                       'no-trip-link' => 1);
 		@htmls = @map_objects = ();
                 $cells_html .= '<br clear="all" />';
 	    }
@@ -104,20 +104,20 @@ EOT
 
         $cells_html .= Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
                                                                'images' => [@map_objects, @{ $section->{pictures} } ],
-                                                               'no-report-link' => 1);
+                                                               'no-trip-link' => 1);
         $cells_html .= '<br clear="all" />';
         @htmls = @map_objects = ();
         $count++;
     }
 
-    my $route = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("%s", $self->report()->get_route()));
+    my $route = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("%s", $self->trip()->get_route()));
     if ($route) {
 	$route = "<p>$route</p>";
     }
 
-    my $title = $self->report()->get_name();
-    if ($self->report()->get_state() eq 'attempted') {
-      $title .= sprintf(" (%s)", $self->report()->get_state());
+    my $title = $self->trip()->get_name();
+    if ($self->trip()->get_state() eq 'attempted') {
+      $title .= sprintf(" (%s)", $self->trip()->get_state());
     }
 
     my $html = <<EOT;
@@ -126,7 +126,7 @@ $cells_html
 EOT
 
     my $copyright_year = $self->get_copyright_html();
-    Scramble::Misc::create(sprintf("r/%s", $self->report()->get_filename()),
+    Scramble::Misc::create(sprintf("r/%s", $self->trip()->get_filename()),
                            Scramble::Misc::make_1_column_page('title' => $title,
 							      'include-header' => 1,
                                                               'html' => $html,
@@ -137,7 +137,7 @@ EOT
 sub get_distances_html {
     my $self = shift;
 
-    my $distances = $self->report()->get_round_trip_distances();
+    my $distances = $self->trip()->get_round_trip_distances();
     if (! $distances) {
         return '';
     }
@@ -162,10 +162,10 @@ sub get_distances_html {
 sub get_embedded_google_map_html {
     my $self = shift;
 
-    return '' if $self->report()->get_map_objects();
+    return '' if $self->trip()->get_map_objects();
 
-    my @locations = $self->report()->get_location_objects();
-    my $kml_url = $self->report()->get_kml() ? $self->report()->get_kml()->get_full_url() : undef;
+    my @locations = $self->trip()->get_location_objects();
+    my $kml_url = $self->trip()->get_kml() ? $self->trip()->get_kml()->get_full_url() : undef;
     return '' unless $kml_url or grep { defined $_->get_latitude() } @locations;
 
     my %options = ('kml-url' => $kml_url);
@@ -175,7 +175,7 @@ sub get_embedded_google_map_html {
 sub get_reference_html {
     my $self = shift;
 
-    my @references = map { Scramble::Controller::ReferenceFragment::get_page_reference_html($_) } $self->report()->get_references();
+    my @references = map { Scramble::Controller::ReferenceFragment::get_page_reference_html($_) } $self->trip()->get_references();
     @references = Scramble::Misc::dedup(@references);
 
     return '' unless @references;
@@ -186,12 +186,12 @@ sub get_reference_html {
 sub get_map_summary_html {
     my $self = shift;
 
-    return '' if $self->report()->no_maps();
+    return '' if $self->trip()->no_maps();
 
     my $type = 'USGS quad';
     my %maps;
 
-    foreach my $map ($self->report()->get_maps()) {
+    foreach my $map ($self->trip()->get_maps()) {
         my $map_type = Scramble::Model::Reference::get_map_type($map);
         next unless defined $map_type && $type eq $map_type;
         my $name = Scramble::Model::Reference::get_map_name($map);
@@ -199,13 +199,13 @@ sub get_map_summary_html {
     }
 
     if ($type eq 'USGS quad') {
-        foreach my $location ($self->report()->get_location_objects()) {
+        foreach my $location ($self->trip()->get_location_objects()) {
             foreach my $quad ($location->get_quad_objects()) {
                 $maps{$quad->get_short_name()} = 1;
             }
         }
 
-        foreach my $area ($self->report()->get_areas_collection()->find('type' => 'USGS quad')) {
+        foreach my $area ($self->trip()->get_areas_collection()->find('type' => 'USGS quad')) {
             $maps{$area->get_short_name()} = 1;
         }
     }
@@ -221,7 +221,7 @@ sub get_map_summary_html {
 sub get_recognizable_areas_html {
     my $self = shift;
 
-    my @areas = $self->{report}->get_recognizable_areas();
+    my @areas = $self->{trip}->get_recognizable_areas();
     my @names = map { $_->get_short_name() } @areas;
 
     return Scramble::Misc::make_colon_line("In", join(", ", @names));
@@ -230,7 +230,7 @@ sub get_recognizable_areas_html {
 sub get_copyright_html {
     my $self = shift;
 
-    my $copyright_year = $self->report()->get_end_date() ? $self->report()->get_end_date() : $self->report()->get_start_date();
+    my $copyright_year = $self->trip()->get_end_date() ? $self->trip()->get_end_date() : $self->trip()->get_start_date();
     ($copyright_year) = Scramble::Time::parse_date($copyright_year);
 
     return $copyright_year;
@@ -239,7 +239,7 @@ sub get_copyright_html {
 sub split_pictures_into_sections {
     my $self = shift;
 
-    my @picture_objs = $self->report()->get_picture_objects();
+    my @picture_objs = $self->trip()->get_picture_objects();
     return ({ name => '', pictures => []}) unless @picture_objs;
 
     my @sections;
@@ -300,7 +300,7 @@ sub add_section_names {
     my $self = shift;
     my ($split_picture_objs) = @_; # each element is an array of picture objects
 
-    my $start_days = Scramble::Time::get_days_since_1BC($self->report()->get_start_date());
+    my $start_days = Scramble::Time::get_days_since_1BC($self->trip()->get_start_date());
     my @sections;
     foreach my $picture_objs (@$split_picture_objs) {
         my $section_name = '';
@@ -321,15 +321,15 @@ sub add_section_names {
 # Statics
 
 sub create_all {
-    foreach my $report (Scramble::Model::Trip::get_all()) {
+    foreach my $trip (Scramble::Model::Trip::get_all()) {
         eval {
-            my $page = Scramble::Controller::TripPage->new($report);
+            my $page = Scramble::Controller::TripPage->new($trip);
             $page->create();
         };
         if ($@) {
             local $SIG{__DIE__};
             die sprintf("Error while making HTML for %s:\n%s",
-                        $report->{'path'},
+                        $trip->{'path'},
                         $@);
         }
     }

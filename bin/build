@@ -12,7 +12,7 @@ dir="$(dirname "$0")/.."
 cd "$dir" \
     && perl bin/parse \
 	    --data-directory "$data_dir" \
-	    --reports-directory "$data_dir/reports/" \
+	    --trips-directory "$data_dir/trips/" \
 	    --output-directory "$data_dir/html" \
 	    -v \
 	    "$@"

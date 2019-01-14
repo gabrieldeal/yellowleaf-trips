@@ -49,10 +49,10 @@ sub nlvl {
 
 sub get_stats {
     my %stats;
-    foreach my $report (Scramble::Model::Trip::get_all()) {
-	my $date = $report->get_start_date();
+    foreach my $trip (Scramble::Model::Trip::get_all()) {
+	my $date = $trip->get_start_date();
 	my ($year) = ($date =~ /^(\d\d\d\d)\//);
-	my $gain = $report->get_waypoints()->get_elevation_gain("ascending|descending");
+	my $gain = $trip->get_waypoints()->get_elevation_gain("ascending|descending");
 
         if (! exists $stats{$year}) {
             $stats{$year} = {
@@ -70,35 +70,35 @@ sub get_stats {
         }
 
 
-	my $ndays = $report->get_num_days();
+	my $ndays = $trip->get_num_days();
 	$stats{$year}{'total-days'} += $ndays;
 	$stats{$year}{'total-trips'}++;
-        if ($report->get_type() =~ /crag|climb|boulder/) {
+        if ($trip->get_type() =~ /crag|climb|boulder/) {
             $stats{$year}{'climbing-days'} += $ndays;
             $stats{$year}{'climbing-trips'}++;
-        } elsif ($report->get_type() =~ /trail run/) {
+        } elsif ($trip->get_type() =~ /trail run/) {
             $stats{$year}{'trail-run-days'} += $ndays;
             $stats{$year}{'trail-run-trips'}++;
         }
 
-	my @locations = grep { $_->get_type() eq 'peak' } $report->get_location_objects();
+	my @locations = grep { $_->get_type() eq 'peak' } $trip->get_location_objects();
         $stats{$year}{'total-peaks'} += @locations;
 
 	if (! defined $stats{$year}{'max-peaks'} or $stats{$year}{'max-peaks'} < @locations) {
 	    $stats{$year}{'max-peaks'} = @locations;
-	    $stats{$year}{'max-peaks-URL'} = $report->get_report_page_url();
+	    $stats{$year}{'max-peaks-URL'} = $trip->get_trip_page_url();
 	}
 
 	if (defined $gain) {
 	    $gain = Scramble::Misc::numerify($gain);
 	    if (! defined $stats{$year}{'max-gain'} or $stats{$year}{'max-gain'} < $gain) {
 		$stats{$year}{'max-gain'} = $gain;
-		$stats{$year}{'max-gain-URL'} = $report->get_report_page_url();
+		$stats{$year}{'max-gain-URL'} = $trip->get_trip_page_url();
 	    }
-	    my $gain_per_day = $gain / $report->get_num_days();
+	    my $gain_per_day = $gain / $trip->get_num_days();
 	    if (! defined $stats{$year}{'max-gain-per-day'} or $stats{$year}{'max-gain-per-day'} < $gain_per_day) {
 		$stats{$year}{'max-gain-per-day'} = $gain_per_day;
-		$stats{$year}{'max-gain-per-day-URL'} = $report->get_report_page_url();
+		$stats{$year}{'max-gain-per-day-URL'} = $trip->get_trip_page_url();
 	    }
 	    
 	    $stats{$year}{'elevation-gain'} += $gain;
@@ -193,7 +193,7 @@ sub get_total_climbed {
 	next if ! ($location->get_type() eq 'peak'
                    || (defined $location->get_prominence()
                        && $location->get_prominence() > 400));
-        my $count = scalar(grep { $_->get_state() eq 'done' } Scramble::Model::Trip::get_reports_for_location($location));
+        my $count = scalar(grep { $_->get_state() eq 'done' } Scramble::Model::Trip::get_trips_for_location($location));
         next unless $count;
 	$unique_count++;
         $summit_count += $count;

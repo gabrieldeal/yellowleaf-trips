@@ -40,13 +40,13 @@ sub _check_spelling_in_all_documents {
 
     my @misspelled;
 
-    foreach my $report (Scramble::Model::Trip::get_all()) {
+    foreach my $trip (Scramble::Model::Trip::get_all()) {
         my @texts;
-        push @texts, $report->get_route() if defined $report->get_route();
-        push @texts, $report->get_name();
-        push @texts, $report->get_type();
+        push @texts, $trip->get_route() if defined $trip->get_route();
+        push @texts, $trip->get_name();
+        push @texts, $trip->get_type();
         foreach my $text (@texts) {
-            push @misspelled, _check_spelling_in_text($text, $report->get_filename(), $report->get_start_date());
+            push @misspelled, _check_spelling_in_text($text, $trip->get_filename(), $trip->get_start_date());
         }
     }
 

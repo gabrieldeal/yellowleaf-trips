@@ -15,8 +15,8 @@ use Scramble::Time ();
 
 our @ISA = qw(Scramble::Model);
 
-my %location_to_reports_mapping;
-my $g_report_collection = Scramble::Collection->new();
+my %location_to_trips_mapping;
+my $g_trip_collection = Scramble::Collection->new();
 my $g_max_rating = 5;
 
 sub new {
@@ -58,7 +58,7 @@ sub new {
 	$self->set('end-date', Scramble::Time::normalize_date_string($self->get_end_date()));
     }
 
-    my @images = Scramble::Model::Image::read_images_from_report(File::Basename::dirname($path), $self);
+    my @images = Scramble::Model::Image::read_images_from_trip(File::Basename::dirname($path), $self);
     my $image_collection = Scramble::Collection->new(objects => \@images);
 
     my $picture_objs = [
@@ -69,7 +69,7 @@ sub new {
     if (@$picture_objs && $picture_objs->[0]->in_chronological_order()) {
         $picture_objs = [ sort { $a->get_chronological_order() <=> $b->get_chronological_order() } @$picture_objs ];
     }
-    $self->set_picture_objects([ grep { ! $_->get_should_skip_report() } @$picture_objs]);
+    $self->set_picture_objects([ grep { ! $_->get_should_skip_trip() } @$picture_objs]);
 
     $self->{'map-objects'} = [ $image_collection->find('type' => 'map') ];
 
@@ -79,7 +79,7 @@ sub new {
 
     if ($self->should_show()) {
         foreach my $image (@$picture_objs, $self->get_map_objects()) {
-            $image->set_report_url($self->get_report_page_url());
+            $image->set_trip_url($self->get_trip_page_url());
         }
     }
 
@@ -153,7 +153,7 @@ sub link_if_should_show {
     my ($html) = @_;
 
     return ($self->should_show() 
-            ? sprintf(qq(<a href="%s">%s</a>), $self->get_report_page_url(), $html) 
+            ? sprintf(qq(<a href="%s">%s</a>), $self->get_trip_page_url(), $html) 
             : $html);
 }
 
@@ -182,7 +182,7 @@ sub get_maps {
     return grep { ! $_->{'skip-map'} } @maps;
 }
 
-sub get_report_page_url {
+sub get_trip_page_url {
     my $self = shift;
 
     return sprintf("../../g/r/%s", $self->get_filename());
@@ -237,39 +237,39 @@ sub get_references {
 
 sub equals {
     my $self = shift;
-    my ($report) = @_;
+    my ($trip) = @_;
 
-    return $report->get_id() eq $self->get_id();
+    return $trip->get_id() eq $self->get_id();
 }
 
 sub cmp_by_duration {
-    my ($report1, $report2) = @_;
+    my ($trip1, $trip2) = @_;
 
-    return $report1->get_waypoints()->get_car_to_car_delta() <=> $report2->get_waypoints()->get_car_to_car_delta();
+    return $trip1->get_waypoints()->get_car_to_car_delta() <=> $trip2->get_waypoints()->get_car_to_car_delta();
 }
 
 sub cmp {
-    my ($report1, $report2) = @_;
+    my ($trip1, $trip2) = @_;
 
-    if ($report1->get_start_date() ne $report2->get_start_date()) {
-        return $report1->get_start_date() cmp $report2->get_start_date();
+    if ($trip1->get_start_date() ne $trip2->get_start_date()) {
+        return $trip1->get_start_date() cmp $trip2->get_start_date();
     }
 
-    if (! defined $report1->get_trip_id() || ! defined $report2->get_trip_id()) {
-        return defined $report1->get_trip_id() ? 1 : -1;
+    if (! defined $trip1->get_trip_id() || ! defined $trip2->get_trip_id()) {
+        return defined $trip1->get_trip_id() ? 1 : -1;
     }
 
-    return $report1->get_trip_id() cmp $report2->get_trip_id();
+    return $trip1->get_trip_id() cmp $trip2->get_trip_id();
 }
 
 sub open_specific {
     my ($path) = @_;
 
-    $path = "$path/report.xml" if !-f $path && -f "$path/report.xml";
+    $path = "$path/trip.xml" if !-f $path && -f "$path/trip.xml";
 
-    my $report = Scramble::Model::Trip->new($path);
-    $g_report_collection->add($report) if defined $report;
-    return $report;
+    my $trip = Scramble::Model::Trip->new($path);
+    $g_trip_collection->add($trip) if defined $trip;
+    return $trip;
 }
 
 sub open_all {
@@ -277,21 +277,24 @@ sub open_all {
 
     die "No such directory '$directory'" unless -d $directory;
 
-    foreach my $path (reverse(sort(glob("$directory/*/report.xml")))) {
+    my $glob = "$directory/*/trip.xml";
+    my @paths = reverse(sort(glob($glob)));
+    @paths || die "No trips in $glob";
+    foreach my $path (@paths) {
 	open_specific($path);
     }
 }
 
 sub get_all {
-    return $g_report_collection->get_all();
+    return $g_trip_collection->get_all();
 }
 
-sub get_reports_for_location {
+sub get_trips_for_location {
     my ($location) = @_;
 
     my @retval;
-    foreach my $report (get_all()) {
-	push @retval, $report if grep { $location->equals($_) } $report->get_location_objects();
+    foreach my $trip (get_all()) {
+	push @retval, $trip if grep { $location->equals($_) } $trip->get_location_objects();
     }
     return @retval;
 }
@@ -299,15 +302,15 @@ sub get_reports_for_location {
 sub get_shorter_than {
     my ($hours) = @_;
 
-    my @reports;
-    foreach my $report (get_all()) {
-        my $minutes = $report->get_waypoints()->get_car_to_car_delta();
+    my @trips;
+    foreach my $trip (get_all()) {
+        my $minutes = $trip->get_waypoints()->get_car_to_car_delta();
         next unless defined $minutes;
         next unless $minutes < $hours * 60;
-        push @reports, $report;
+        push @trips, $trip;
     }
 
-    return \@reports;
+    return \@trips;
 }
 
 ######################################################################

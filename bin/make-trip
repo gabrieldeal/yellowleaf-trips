@@ -52,7 +52,7 @@ sub make_xml {
 
     my $sections = read_trip_sections($spreadsheet_filename);
 
-    my ($data_dir, $image_subdir) = ($image_dir =~ m{^(.*)/reports/+([^/]+)/*$});
+    my ($data_dir, $image_subdir) = ($image_dir =~ m{^(.*)/trips/+([^/]+)/*$});
     defined $image_subdir or die "Bad images dir: $image_dir";
 
     my ($date) = ($image_subdir =~ /^(\d{4}-\d\d-\d\d)/);
@@ -61,12 +61,12 @@ sub make_xml {
     my %image_data = process_images($image_dir);
     my %gps_data = process_gpx(\%image_data);
 
-    my $report_xml_file = "$data_dir/reports/$image_subdir/report.xml";
-    if (-e $report_xml_file) {
-      print "$report_xml_file already exists\n";
+    my $trip_xml_file = "$data_dir/trips/$image_subdir/trip.xml";
+    if (-e $trip_xml_file) {
+      print "$trip_xml_file already exists\n";
     } else {
         my @locations = prompt_for_locations();
-        my $report_xml = make_report_xml(date => $date,
+        my $trip_xml = make_trip_xml(date => $date,
                                          title => $title,
                                          trip_type => $trip_type,
                                          locations => \@locations,
@@ -74,7 +74,7 @@ sub make_xml {
                                          gps_data => \%gps_data,
                                          image_data => \%image_data,
                                          image_subdir => $image_subdir);
-        write_file($report_xml_file, $report_xml);
+        write_file($trip_xml_file, $trip_xml);
     }
 
     # geotag($image_data{files});
@@ -209,7 +209,7 @@ sub validate_arguments {
     defined $title or die "Missing arguments: image-dir trip-type title";
     -d $image_dir or die "Non-existant image dir: $image_dir";
 
-    my ($data_dir, $image_subdir) = ($image_dir =~ m{^(.*)/reports/+([^/]+)/*$});
+    my ($data_dir, $image_subdir) = ($image_dir =~ m{^(.*)/trips/+([^/]+)/*$});
     defined $image_subdir or die "Bad images dir: $image_dir";
 
     my ($date) = ($image_subdir =~ /^(\d{4}-\d\d-\d\d)/);
@@ -252,7 +252,7 @@ sub make_locations_xml {
     return $xg->locations(map { $xg->location($_) } @location_attrs);
 }
 
-sub make_report_xml {
+sub make_trip_xml {
     my %args = @_;
 
     $args{title} =~ s/&/&amp;/g; # It is still the dark ages here.

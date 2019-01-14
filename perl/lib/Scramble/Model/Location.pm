@@ -160,14 +160,14 @@ sub get_naming_origin { $_[0]->_get_optional('name', 'origin'); }
 sub get_picture_objects {
     my $self = shift;
 
-    # Need to load lazily so this is done after all the reports are loaded.
+    # Need to load lazily so this is done after all the trips are loaded.
 
     return @{ $self->{'picture-objects'} } if $self->{'picture-objects'};
 
     $self->{'picture-objects'} = [];
     foreach my $regex ($self->get_regex_keys()) {
 	foreach my $image (Scramble::Model::Image::get_all_images_collection()->get_all()) {
-	    # FIXME: Should get the USGS quads from the report or
+	    # FIXME: Should get the USGS quads from the trip or
 	    # the images and get the location names from the
 	    # image, then do real matching.  This is very broken
 	    # for locations like Green Mountain that are on

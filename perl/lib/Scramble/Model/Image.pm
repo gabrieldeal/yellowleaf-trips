@@ -89,9 +89,9 @@ sub get_from { $_[0]->{'from'} || '' }
 sub get_owner { $_[0]->{'owner'} }
 sub get_url { sprintf("../../$g_pics_dir/%s/%s", $_[0]->get_subdirectory(), $_[0]->get_filename()) }
 sub get_full_url { sprintf("https://yellowleaf.org/scramble/$g_pics_dir/%s/%s", $_[0]->get_subdirectory(), $_[0]->get_filename()) }
-sub get_report_url { $_[0]->{'report-url'} }
-sub set_report_url { $_[0]->{'report-url'} = $_[1] }
-sub get_should_skip_report { $_[0]->{'skip-report'} }
+sub get_trip_url { $_[0]->{'trip-url'} }
+sub set_trip_url { $_[0]->{'trip-url'} = $_[1] }
+sub get_should_skip_trip { $_[0]->{'skip-trip'} }
 sub get_type { $_[0]->{'type'} }
 sub get_poster { $_[0]->{'poster'} }
 sub get_poster_url { sprintf("../../$g_pics_dir/%s/%s", $_[0]->get_subdirectory(), $_[0]->get_poster()) }
@@ -191,20 +191,20 @@ sub cmp {
 
 sub get_all_images_collection { $g_collection }
 
-sub read_images_from_report {
-    my ($directory, $report) = @_;
+sub read_images_from_trip {
+    my ($directory, $trip) = @_;
 
-    my $date = $report->get_start_date();
+    my $date = $trip->get_start_date();
     my ($year, $month, $day) = Scramble::Time::parse_date($date);
 
-    my $in_chronological_order = $report->_get_optional('files', 'in-chronological-order');
+    my $in_chronological_order = $trip->_get_optional('files', 'in-chronological-order');
     if (defined($in_chronological_order) && '' eq $in_chronological_order) {
 	die "images.in-chronological-order is empty";
     }
 
     my @images;
     my $chronological_order = 0;
-    foreach my $image_xml (@{ $report->_get_optional('files', "file") || [] }) {
+    foreach my $image_xml (@{ $trip->_get_optional('files', "file") || [] }) {
         next if $image_xml->{skip};
         push @images, Scramble::Model::Image->new_from_attrs({ 'date' => "$year/$month/$day",
                                                                    'source-directory' => $directory,

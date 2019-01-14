@@ -85,7 +85,7 @@ sub get_reference_html_with_name_only {
     return $retval;
 }
 
-# References to a page within a site (probably a trip report) instead
+# References to a page within a site (probably a trip trip) instead
 # of the home page for the site.  Used on the "trip reports and
 # references" section.
 sub get_page_references_html {
