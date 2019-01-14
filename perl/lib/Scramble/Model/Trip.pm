@@ -1,4 +1,4 @@
-package Scramble::Model::Report;
+package Scramble::Model::Trip;
 
 use strict;
 
@@ -267,7 +267,7 @@ sub open_specific {
 
     $path = "$path/report.xml" if !-f $path && -f "$path/report.xml";
 
-    my $report = Scramble::Model::Report->new($path);
+    my $report = Scramble::Model::Trip->new($path);
     $g_report_collection->add($report) if defined $report;
     return $report;
 }

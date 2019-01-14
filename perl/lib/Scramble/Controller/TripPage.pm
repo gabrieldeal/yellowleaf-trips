@@ -1,4 +1,4 @@
-package Scramble::Controller::ReportPage;
+package Scramble::Controller::TripPage;
 
 # The page about one particular report.  E.g., /scramble/g/r/2018-10-06-little-giant.html
 
@@ -321,9 +321,9 @@ sub add_section_names {
 # Statics
 
 sub create_all {
-    foreach my $report (Scramble::Model::Report::get_all()) {
+    foreach my $report (Scramble::Model::Trip::get_all()) {
         eval {
-            my $page = Scramble::Controller::ReportPage->new($report);
+            my $page = Scramble::Controller::TripPage->new($report);
             $page->create();
         };
         if ($@) {

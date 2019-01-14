@@ -49,7 +49,7 @@ sub nlvl {
 
 sub get_stats {
     my %stats;
-    foreach my $report (Scramble::Model::Report::get_all()) {
+    foreach my $report (Scramble::Model::Trip::get_all()) {
 	my $date = $report->get_start_date();
 	my ($year) = ($date =~ /^(\d\d\d\d)\//);
 	my $gain = $report->get_waypoints()->get_elevation_gain("ascending|descending");
@@ -193,7 +193,7 @@ sub get_total_climbed {
 	next if ! ($location->get_type() eq 'peak'
                    || (defined $location->get_prominence()
                        && $location->get_prominence() > 400));
-        my $count = scalar(grep { $_->get_state() eq 'done' } Scramble::Model::Report::get_reports_for_location($location));
+        my $count = scalar(grep { $_->get_state() eq 'done' } Scramble::Model::Trip::get_reports_for_location($location));
         next unless $count;
 	$unique_count++;
         $summit_count += $count;

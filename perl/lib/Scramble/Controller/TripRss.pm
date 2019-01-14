@@ -1,4 +1,4 @@
-package Scramble::Controller::ReportRss;
+package Scramble::Controller::TripRss;
 
 use strict;
 
@@ -28,7 +28,7 @@ sub create {
 
     my $count = 0;
     my $mime = MIME::Types->new(only_complete => 1);
-    foreach my $report (Scramble::Model::Report::get_all()) {
+    foreach my $report (Scramble::Model::Trip::get_all()) {
         last unless ++$count <= 15; 
         next unless $report->should_show();
         my $best_image = $report->get_best_picture_object();

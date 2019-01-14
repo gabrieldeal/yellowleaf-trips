@@ -1,4 +1,4 @@
-package Scramble::Controller::ReportIndex;
+package Scramble::Controller::TripIndex;
 
 # Creates the report index pages.  E.g., "Most Recent Trips" and "2017 Trips".
 
@@ -21,7 +21,7 @@ sub create {
 
     my @report_params = map { $self->get_report_params($_) } @{ $self->{reports} };
 
-    my $template = Scramble::Template::create('report/index');
+    my $template = Scramble::Template::create('trip/index');
     $template->param(Scramble::Template::common_params(),
                      change_year_dropdown_items => $self->{change_year_dropdown_items},
                      reports => \@report_params,
@@ -67,7 +67,7 @@ sub create_all {
     my %reports;
     my $count = 0;
     my $latest_year = 0;
-    my @reports = sort { Scramble::Model::Report::cmp($b, $a) } Scramble::Model::Report::get_all();
+    my @reports = sort { Scramble::Model::Trip::cmp($b, $a) } Scramble::Model::Trip::get_all();
     foreach my $report (@reports) {
 	my ($yyyy) = $report->get_parsed_start_date();
         $latest_year = $yyyy if $yyyy > $latest_year;
@@ -108,7 +108,7 @@ sub create_all {
             $copyright_year = $latest_year;
         }
 
-        my $page = Scramble::Controller::ReportIndex->new(title => $reports{$id}{title},
+        my $page = Scramble::Controller::TripIndex->new(title => $reports{$id}{title},
                                                        copyright_year => $copyright_year,
                                                        id => $id,
                                                        reports => $reports{$id}{reports},

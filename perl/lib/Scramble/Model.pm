@@ -74,7 +74,7 @@ sub set {
 }
 
 ######################################################################
-# shared between Scramble::Model::Location and Scramble::Model::Report
+# shared between Scramble::Model::Location and Scramble::Model::Trip
 ######################################################################
 
 sub get_areas_from_xml {

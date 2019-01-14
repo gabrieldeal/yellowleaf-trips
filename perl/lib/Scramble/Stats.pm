@@ -6,8 +6,8 @@ sub display_short_trips {
     my $max_hours = 4;
     print "Trips shorter than $max_hours hours:\n";
 
-    my $short_reports = Scramble::Model::Report::get_shorter_than($max_hours);
-    foreach my $report (sort { Scramble::Model::Report::cmp_by_duration($a, $b) } @$short_reports) {
+    my $short_reports = Scramble::Model::Trip::get_shorter_than($max_hours);
+    foreach my $report (sort { Scramble::Model::Trip::cmp_by_duration($a, $b) } @$short_reports) {
         my $minutes = $report->get_waypoints()->get_car_to_car_delta();
         my $hours = $minutes / 60;
         printf("    %2.3f hours, %s, %s\n", $hours, $report->get_start_date(), $report->get_name());
@@ -18,7 +18,7 @@ sub display_short_trips {
 sub display_party_stats {
   my %stats;
   my %people;
-  foreach my $report (Scramble::Model::Report::get_all()) {
+  foreach my $report (Scramble::Model::Trip::get_all()) {
     my $party = $report->_get_optional_content('party');
     next unless $party;
 

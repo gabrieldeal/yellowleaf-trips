@@ -1,4 +1,4 @@
-package Scramble::Converter::Report;
+package Scramble::Converter::Trip;
 
 use strict;
 

@@ -24,11 +24,11 @@ use Scramble::Controller::ListKml ();
 use Scramble::Controller::ListPage ();
 use Scramble::Controller::LocationPage ();
 use Scramble::Controller::ReferenceIndex ();
-use Scramble::Controller::ReportIndex ();
-use Scramble::Controller::ReportPage ();
-use Scramble::Controller::ReportRss ();
+use Scramble::Controller::TripIndex ();
+use Scramble::Controller::TripPage ();
+use Scramble::Controller::TripRss ();
 use Scramble::Model::Reference ();
-use Scramble::Model::Report ();
+use Scramble::Model::Trip ();
 use Scramble::SpellCheck ();
 use Scramble::Stats ();
 use Scramble::Tests ();
@@ -143,12 +143,12 @@ sub main {
     # }
 
     if (! @{ $g_options{'file'} }) {
-	Scramble::Model::Report::open_all($g_options{'reports-directory'});
+	Scramble::Model::Trip::open_all($g_options{'reports-directory'});
     } else {
 	foreach my $file (@{ $g_options{'file'} }) {
             if ($file =~ m{/reports/}) {
-                my $report = Scramble::Model::Report::open_specific($file);
-                my $page = Scramble::Controller::ReportPage->new($report);
+                my $report = Scramble::Model::Trip::open_specific($file);
+                my $page = Scramble::Controller::TripPage->new($report);
                 $page->create();
             } else {
                 foreach my $location (Scramble::Model::Location::open_specific($file)) {
@@ -167,13 +167,13 @@ sub main {
     Scramble::Model::List::open(glob("$g_options{'data-directory'}/lists/*.xml"));
 
     should('kml') && copy_kml();
-    should('report-index') && Scramble::Controller::ReportIndex::create_all(); # This includes home.html
+    should('report-index') && Scramble::Controller::TripIndex::create_all(); # This includes home.html
     should('link') && Scramble::Controller::ReferenceIndex::create();
     should('list') && Scramble::Controller::ListIndex::create();
     should('list') && Scramble::Controller::ListKml::create_all();
     should('list') && Scramble::Controller::ListPage::create_all();
-    should('report') && Scramble::Controller::ReportPage::create_all();
-    should('rss') && Scramble::Controller::ReportRss::create();
+    should('report') && Scramble::Controller::TripPage::create_all();
+    should('rss') && Scramble::Controller::TripRss::create();
     should('geekery') && Scramble::Controller::GeekeryPage::create();
     should('picture-by-year') && Scramble::Controller::ImageIndex::create_all(); # Favorites
     should('location') && Scramble::Controller::LocationPage::create_all();

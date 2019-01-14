@@ -53,13 +53,13 @@ sub convert_reports {
     my $data_directory = shift;
     my @files = @_;
 
-    my $converter = Scramble::Converter::Report->new();
+    my $converter = Scramble::Converter::Trip->new();
 
     @files = glob("$data_directory/gabrielx/reports/*.xml") unless @files;
 
     foreach my $file (@files) {
 	my @reports;
-	my $report = Scramble::Model::Report->new($file);
+	my $report = Scramble::Model::Trip->new($file);
 	next unless $report;
 
         my $path = get_converted_report_path($data_directory, $report);

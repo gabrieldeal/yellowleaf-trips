@@ -40,7 +40,7 @@ sub _check_spelling_in_all_documents {
 
     my @misspelled;
 
-    foreach my $report (Scramble::Model::Report::get_all()) {
+    foreach my $report (Scramble::Model::Trip::get_all()) {
         my @texts;
         push @texts, $report->get_route() if defined $report->get_route();
         push @texts, $report->get_name();
