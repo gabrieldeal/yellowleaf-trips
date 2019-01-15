@@ -50,8 +50,7 @@ sub create {
     my $long_route_references = '';
     if ($self->trip()->get_references() == 1) {
       $short_route_references = Scramble::Misc::make_colon_line("Reference", 
-                                                                Scramble::Controller::ReferenceFragment::get_reference_html_with_name_only($self->trip()->get_references(),
-                                                                                                                              'name-ids' => [qw(page-name name)]));
+                                                                Scramble::Controller::ReferenceFragment::get_reference_html_with_name_only($self->trip()->get_references()));
     } else {
       $long_route_references = Scramble::Misc::make_optional_line("<h2>References</h2>%s",
                                                              $self->get_reference_html());
@@ -192,9 +191,9 @@ sub get_map_summary_html {
     my %maps;
 
     foreach my $map ($self->trip()->get_maps()) {
-        my $map_type = Scramble::Model::Reference::get_map_type($map);
+        my $map_type = $map->{id};
         next unless defined $map_type && $type eq $map_type;
-        my $name = Scramble::Model::Reference::get_map_name($map);
+        my $name = $map->{name};
         $maps{$name} = 1;
     }
 

@@ -30,7 +30,8 @@ sub _add_words {
         }
     }
 
-    foreach my $id (Scramble::Model::Reference::get_ids()) {
+    my @reference_ids = map { $_->get_id() } Scramble::Model::Reference::get_all();
+    foreach my $id (@reference_ids) {
         add_words($id);
     }
 }

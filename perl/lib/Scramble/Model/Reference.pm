@@ -4,90 +4,93 @@ use strict;
 
 use Scramble::Model;
 
-# FIXME: Convert to a class.
+my $g_collection = Scramble::Collection->new();
 
-my $g_references_xml;
+sub get_all { $g_collection->get_all() }
+sub find_or_create {
+    my ($reference_xml) = @_;
+
+    if ($reference_xml->{id}) {
+        return $g_collection->find_one(id => $reference_xml->{id});
+    }
+
+    return Scramble::Model::Reference->new($reference_xml);
+}
+
+sub new {
+    my ($arg0, $data) = @_;
+
+    my $self = { %$data };
+
+    if(grep { !/^(id|name|skip|page-name|note|season|link|type|URL)$/ } keys %$data) {
+        die "Unrecognized attribute in " . Data::Dumper::Dumper($data);
+    }
+
+    return bless($self, ref($arg0) || $arg0);
+}
 
 sub open {
     my ($data_dir) = @_;
 
     my $file = "$data_dir/references.xml";
-    $g_references_xml = Scramble::Model::parse($file, "keyattr" => ["id"]);
-    if ("HASH" ne ref($g_references_xml->{'reference'})) {
-        die "$file is malformed.  Is there a missing 'id' attribute?";
+    my $references_xml = Scramble::Model::parse($file);
+
+    foreach my $reference_xml (@{ $references_xml->{reference} }) {
+        my $reference = Scramble::Model::Reference->new($reference_xml);
+        $g_collection->add($reference);
     }
 }
 
-sub get_all { $g_references_xml->{reference} }
+sub get_id { $_[0]->{id} }
+sub get_name { $_[0]->{name} || $_[0]->{'page-name'} }
+sub get_page_name { $_[0]->{'page-name'} }
+sub get_note { $_[0]->{note} }
+sub get_season { $_[0]->{season} }
+sub should_link { $_[0]->{link} }
+sub should_skip { $_[0]->{skip} }
+sub get_type { $_[0]->{type} }
+sub get_url { $_[0]->{URL} }
 
-sub get_ids {
-    return keys(%{ get_all() });
-}
+sub get_cmp_value {
+    my ($self) = @_;
 
-sub get_type_for_cmp {
-    my ($reference) = @_;
-
-    my $type = get_reference_attr('type', $reference);
-    if (defined $type) {
-	$type = lc($type);
+    my $cmp_value = $self->get_type();
+    if (defined $cmp_value) {
+	$cmp_value = lc($cmp_value);
     }
-    my $page_name = get_reference_attr('page-name', $reference);
-    if (! defined $type && defined $page_name) {
-	$type = "webpage";
+    if (! defined $cmp_value && defined $self->get_page_name()) {
+	$cmp_value = "webpage";
     }
-    my $season = get_reference_attr('season', $reference);
+    my $season = $self->get_season();
     if (defined $season) {
-        $type = "$season $type";
+        $cmp_value = "$season $cmp_value";
     }
 
-    my $id = get_reference_attr('id', $reference);
-    if (! defined $id) {
-	die "unable to determine type: " . Data::Dumper::Dumper($reference)
-	    unless defined $type;
-	return $type;
-    }elsif ('routeMap' eq $id) {
+    if (! defined $self->get_id()) {
+	die "unable to determine type: " . Data::Dumper::Dumper($self)
+	    unless defined $cmp_value;
+	return $cmp_value;
+    }elsif ('routeMap' eq $self->get_id()) {
 	return "1";
-    } elsif ('topozoneMap' eq $id) {
+    } elsif ('topozoneMap' eq $self->get_id()) {
 	return "2";
     } else {
-	die "unable to determine type: " . Data::Dumper::Dumper($reference)
-	    unless defined $type;
-	return $type;
+	die "unable to determine type: " . Data::Dumper::Dumper($self)
+	    unless defined $cmp_value;
+	return $cmp_value;
     }
 }
-sub cmp_references {
+sub cmp {
     my ($a, $b) = @_;
 
-    my $atype = get_type_for_cmp($a);
-    my $btype = get_type_for_cmp($b);
+    my $a_cmp_value = get_cmp_value($a);
+    my $b_cmp_value = get_cmp_value($b);
 
-    my $astring = $atype . hu(get_reference_attr('name', $a));
-    my $bstring = $btype . hu(get_reference_attr('name', $b));
+    my $astring = $a_cmp_value . hu($a->get_name());
+    my $bstring = $b_cmp_value . hu($b->get_name());
     return $astring cmp $bstring;
 }
 
 sub hu { $_[0] ? $_[0] : '' }
-
-sub get_map_type { $_[0]->{'id'} }
-sub get_map_name { $_[0]->{'name'} }
-
-sub get_reference_attr {
-    my ($attr, $reference) = @_;
-
-    if ($reference->{$attr}) {
-	return $reference->{$attr};
-    }
-
-    if (! $reference->{'id'}) {
-	return undef;
-    }
-
-    my $reference_xml = get_all()->{ $reference->{'id'} };
-    if (! defined $reference_xml) {
-	return undef;
-    }
-
-    return $reference_xml->{$attr};
-}
 
 1;

@@ -225,8 +225,14 @@ sub get_sorted_images {
 sub get_references {
     my $self = shift;
 
+    return @{ $self->{'reference-objects'} } if $self->{'reference-objects'};
+
     my @references = @{ $self->_get_optional('references', 'reference') || [] };
-    @references = sort { Scramble::Model::Reference::cmp_references($a, $b) } @references;
+    @references = map { Scramble::Model::Reference::find_or_create($_) } @references;
+    @references = grep { !$_->should_skip() } @references;
+    @references = sort { Scramble::Model::Reference::cmp($a, $b) } @references;
+
+    $self->{'reference-objects'} = \@references;
 
     return @references;
 }

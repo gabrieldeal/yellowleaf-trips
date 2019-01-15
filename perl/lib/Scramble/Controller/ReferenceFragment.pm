@@ -2,6 +2,8 @@ package Scramble::Controller::ReferenceFragment;
 
 use strict;
 
+# FIXME: Refactor this.
+
 sub get_reference_html {
     my ($reference) = @_;
 
@@ -12,9 +14,10 @@ sub get_reference_html {
 
     my $type = get_type($reference);
 
-    my $note = Scramble::Misc::insert_links(Scramble::Model::Reference::get_reference_attr('note', $reference) || '');
+    my $note = $reference->get_note() || '';
     if ($note) {
-	$note = " ($note)";
+        $note = Scramble::Misc::insert_links($note);
+        $note = " ($note)";
     }
 
     return "$type: $retval$note";
@@ -23,11 +26,10 @@ sub get_reference_html {
 sub get_type {
     my ($reference) = @_;
 
-    my $type = Scramble::Model::Reference::get_reference_attr('type', $reference)
+    my $type = $reference->get_type()
         or Carp::confess("missing type for " . Data::Dumper::Dumper($reference));
-    my $season = Scramble::Model::Reference::get_reference_attr('season', $reference);
-    if ($season) {
-        $type = ucfirst($season) . " $type";
+    if ($reference->get_season()) {
+        $type = ucfirst($reference->get_season()) . " $type";
     }
 
     return $type;
@@ -36,39 +38,27 @@ sub get_type {
 sub get_page_reference_html {
     my ($reference) = @_;
 
-    my $type = Scramble::Model::Reference::get_reference_attr('type', $reference);
+    my $type = $reference->get_type();
     if (defined $type && $type =~ /book/i) {
         return get_reference_html($reference);
     }
 
-    my $name = Scramble::Model::Reference::get_reference_attr('name', $reference)
-	|| die "No name in " . Data::Dumper::Dumper($reference);
+    my $name = $reference->get_name() || die "No name in " . Data::Dumper::Dumper($reference);
 
-    my $note = Scramble::Misc::make_optional_line(" (%s)",
-                                                  Scramble::Model::Reference::get_reference_attr('note', $reference));
-    return "$name: " .  get_reference_html_with_name_only($reference, 'name-ids' => ["page-name", "type"]) . $note;
+    my $note = Scramble::Misc::make_optional_line(" (%s)", $reference->get_note());
+    return "$name: " .  get_reference_html_with_name_only($reference) . $note;
 }
 
 sub get_reference_html_with_name_only {
     my ($reference, %options) = @_;
 
     my $retval = '';
-    my $id = $reference->{'id'};
-    my $url = Scramble::Model::Reference::get_reference_attr('URL', $reference);
-
-    my @name_ids = qw(name);
-    if (defined $options{'name-ids'}) {
-	@name_ids = @{ $options{'name-ids'} };
-    }
-    my $name;
-    foreach my $id (@name_ids) {
-        $name = Scramble::Model::Reference::get_reference_attr($id, $reference);
-	last if defined $name;
-    }
-
+    my $id = $reference->get_id();
+    my $url = $reference->get_url();
+    my $name = $reference->get_name();
     defined $name or Carp::confess("Unable to get name from " . Data::Dumper::Dumper($reference));
 
-    my $type = Scramble::Model::Reference::get_reference_attr('type', $reference);
+    my $type = $reference->get_type();
 
     if ($url) {
         if ($id && $id eq 'USGS quad') {
@@ -85,7 +75,7 @@ sub get_reference_html_with_name_only {
     return $retval;
 }
 
-# References to a page within a site (probably a trip trip) instead
+# References to a page within a site (probably a trip report) instead
 # of the home page for the site.  Used on the "trip reports and
 # references" section.
 sub get_page_references_html {
@@ -93,7 +83,7 @@ sub get_page_references_html {
 
     my @retval;
     my %eliminate_duplicates;
-    foreach my $reference (sort { Scramble::Model::Reference::cmp_references($b, $a) } @references) {
+    foreach my $reference (sort { Scramble::Model::Reference::cmp($b, $a) } @references) {
 	my $reference_html = get_page_reference_html($reference);
 	next if $eliminate_duplicates{$reference_html};
 	$eliminate_duplicates{$reference_html} = 1;

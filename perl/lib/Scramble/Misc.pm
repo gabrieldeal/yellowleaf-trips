@@ -36,9 +36,11 @@ sub make_link_transformations {
 	my $link = Scramble::Model::List::make_list_link($list_xml);
 	$g_transformations{'list'}{sprintf('\b%s\b', $id)} = _insert_links_pack($link);
     }
-    foreach my $id (Scramble::Model::Reference::get_ids()) {
-        my $html = eval { Scramble::Controller::ReferenceFragment::get_reference_html_with_name_only({ 'id' => $id }) };
-	next unless $html;
+
+    foreach my $reference (Scramble::Model::Reference::get_all()) {
+        my $html = eval { Scramble::Controller::ReferenceFragment::get_reference_html_with_name_only($reference) };
+        next unless $html;
+        my $id = $reference->get_id();
 	$id =~ s/\s+/\\s+/g;
 	$g_transformations{'reference'}{$id} = _insert_links_pack($html);
     }
@@ -141,7 +143,7 @@ sub make_colon_line {
 
     return '' unless $text;
 
-    return "<b>$title:</b> $text<br>\n";
+    return "<b>$title: </b> $text<br>\n";
 }
 
 sub make_location_into_path {

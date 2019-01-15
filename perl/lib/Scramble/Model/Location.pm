@@ -146,7 +146,6 @@ sub name_is_unique { return ! $_[0]->{'has-twin'} }
 sub get_country_object { $_[0]->{'country-object'} }
 
 sub get_type { $_[0]->_get_required('type') }
-sub get_references { @{ $_[0]->_get_optional('references', 'reference') || [] } }
 sub get_description { $_[0]->_get_optional_content('description') }
 sub get_elevation { $_[0]->_get_optional('elevation') }
 sub get_prominence { $_[0]->_get_optional("prominence") }
@@ -156,6 +155,21 @@ sub get_UTM_zone { $_[0]->_get_optional('coordinates', 'zone') }
 sub get_UTM_easting { $_[0]->_get_optional('coordinates', 'easting') }
 sub get_UTM_northing { $_[0]->_get_optional('coordinates', 'northing') }
 sub get_naming_origin { $_[0]->_get_optional('name', 'origin'); }
+
+sub get_references {
+    my $self = shift;
+
+    return @{ $self->{'reference-objects'} } if $self->{'reference-objects'};
+
+    my @references = @{ $self->_get_optional('references', 'reference') || [] };
+    @references = map { Scramble::Model::Reference::find_or_create($_) } @references;
+    @references = grep { !$_->should_skip() } @references;
+
+    $self->{'reference-objects'} = \@references;
+
+    return @references;
+}
+
 
 sub get_picture_objects {
     my $self = shift;

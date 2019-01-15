@@ -8,19 +8,18 @@ use Scramble::Controller::ReferenceFragment ();
 
 sub create {
     my @references_param;
-    my @references = values %{ Scramble::Model::Reference::get_all() };
-    @references = sort { Scramble::Model::Reference::cmp_references($a, $b) } @references;
+    my @references = Scramble::Model::Reference::get_all();
+    @references = sort { Scramble::Model::Reference::cmp($a, $b) } @references;
     foreach my $reference (@references) {
-	next unless $reference->{'name'};
-	next unless $reference->{'link'};
-        my $name = Scramble::Model::Reference::get_reference_attr('name', $reference);
+        next unless $reference->get_name();
+        next unless $reference->should_link();
+
         my $type = Scramble::Controller::ReferenceFragment::get_type($reference);
-        my $url = Scramble::Model::Reference::get_reference_attr('URL', $reference);
 
         push @references_param, {
-            name => $name,
+            name => $reference->get_name(),
             type => $type,
-            url => $url,
+            url => $reference->get_url(),
         };
     }
 
