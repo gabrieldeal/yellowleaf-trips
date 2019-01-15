@@ -14,7 +14,6 @@ our $HACK_DIRECTORY;
 my @g_hidden_locations;
 my @g_locations;
 my $g_opened = 0;
-my $g_avvy_elev_threshold = 1500;
 my %g_check_for_duplicate_ids;
 
 sub in_areas_transitive_closure {

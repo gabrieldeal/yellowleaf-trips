@@ -6,7 +6,6 @@ use File::Basename ();
 use Scramble::Collection ();
 use Scramble::Template ();
 
-my $g_image_rating_threshold = 1;
 my $g_pics_dir = "pics";
 my $g_collection = Scramble::Collection->new();
 

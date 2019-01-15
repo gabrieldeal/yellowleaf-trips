@@ -10,9 +10,7 @@ use Scramble::Time ();
 
 our @ISA = qw(Scramble::Model);
 
-my %location_to_trips_mapping;
 my $g_trip_collection = Scramble::Collection->new();
-my $g_max_rating = 5;
 
 sub new {
     my ($arg0, $path) = @_;
