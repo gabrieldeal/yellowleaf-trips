@@ -2,7 +2,11 @@ package Scramble::Controller::TripRss;
 
 use strict;
 
+use DateTime ();
+use DateTime::Format::Mail ();
+use MIME::Types ();
 use Scramble::Misc ();
+use XML::RSS ();
 
 sub create {
     # http://feedvalidator.org/

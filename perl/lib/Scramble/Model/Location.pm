@@ -2,7 +2,6 @@ package Scramble::Model::Location;
 
 use strict;
 
-use Math::Trig ();
 use Scramble::Model::Image ();
 use Scramble::Misc ();
 use Scramble::Model ();

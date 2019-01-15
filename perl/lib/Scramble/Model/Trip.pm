@@ -2,11 +2,6 @@ package Scramble::Model::Trip;
 
 use strict;
 
-use XML::RSS ();
-use MIME::Types ();
-use DateTime ();
-use DateTime::Format::Mail ();
-use JSON ();
 use Scramble::Model::Waypoints ();
 use Scramble::Model::Image ();
 use Scramble::Model::Reference ();
