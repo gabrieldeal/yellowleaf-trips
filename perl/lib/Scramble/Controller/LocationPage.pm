@@ -33,47 +33,28 @@ sub create {
 
     my $location = $self->{location};
 
-    my $location_name_note = ($location->get_is_unofficial_name()
-			      ? " (unofficial name)"
-			      : '');
-    my $prominence = Scramble::Misc::make_optional_line(qq(<b><a href="http://www.peaklist.org/theory/theory.html">Clean Prominence</a>:</b> %s<br>),
-							\&Scramble::Misc::format_elevation,
-							$location->get_prominence());
-    my $quad_links = $self->get_quads_html();
-    my $county_html = Scramble::Misc::make_optional_line("<b>County:</b> %s<br>",
-							 $self->get_counties_html());
-    my $elevation = Scramble::Misc::make_colon_line("Elevation", $self->get_formatted_elevation());
-    my $description = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("<h2>Description</h2>%s",
-										 $location->get_description()));
-
-    my $trips_html = Scramble::Misc::make_optional_line("<h2>Trip Reports and References</h2> %s",
-                                                          $self->get_trips_for_location_html());
-    my $recognizable_areas_html = $self->get_recognizable_areas_html();
-
-    my $state_html = Scramble::Misc::make_colon_line("State", $self->get_state_html());
-
-    my $aka_html = Scramble::Misc::make_optional_line("<b>AKA:</b> %s<br>",
-						      $self->get_aka_names_html());
-    my $title = sprintf("Location: %s", $location->get_name());
-    my $naming_origin = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("<h2>Name origin</h2> %s",
-                                                                                   $location->get_naming_origin()));
-    my $text_html = <<EOT;
-$aka_html
-$elevation
-$prominence
-$state_html
-$county_html
-$recognizable_areas_html
-$quad_links
-
-$trips_html
-$description
-$naming_origin
-EOT
+    my %params = (
+        aka => to_comma_separated_list($self->{location}->get_aka_names()),
+        counties => to_comma_separated_list($self->get_counties()),
+        description_html => Scramble::Misc::htmlify($location->get_description()),
+        elevation => Scramble::Misc::format_elevation($location->get_elevation()),
+        name_origin_html => Scramble::Misc::htmlify($location->get_naming_origin()),
+        prominence => Scramble::Misc::format_elevation($location->get_prominence()),
+        recognizable_areas => to_comma_separated_list($self->get_recognizable_areas()),
+        state => $self->get_state(),
+        trips_html => $self->get_trips_for_location_html(),
+        usgs_quads => to_comma_separated_list($self->get_quads()),
+        );
+    my $text_html = Scramble::Template::html('location/page', \%params);
 
     my @htmls = ($text_html);
     my $map_html =  $self->get_embedded_google_map_html();
     push @htmls, $map_html if $map_html;
+
+    my $title = sprintf("Location: %s", $location->get_name());
+    if ($location->get_is_unofficial_name()) {
+        $title .= " (unofficial name)";
+    }
 
     my $cells_html = Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
                                                              'float-first' => 1,
@@ -85,50 +66,41 @@ $cells_html
 HTML
 
     Scramble::Misc::create(sprintf("l/%s", $location->get_filename()),
-                           Scramble::Misc::make_1_column_page(title => "$title$location_name_note",
+                           Scramble::Misc::make_1_column_page(title => $title,
 							      'include-header' => 1,
                                                               html => $html,
 							      'no-add-picture' => 1,
                                                               'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap));
 }
 
-sub get_aka_names_html {
-    my $self = shift;
+sub to_comma_separated_list {
+    my @elements = @_;
 
-    my @aka_names = $self->{location}->get_aka_names();
-    my $delim = grep(/,/, @aka_names) ? ';' : ',';
+    my $delim = grep(/,/, @elements) ? ';' : ',';
 
-    return join("$delim ", @aka_names);
+    return join("$delim ", @elements);
 }
 
-sub get_recognizable_areas_html {
+sub get_recognizable_areas {
     my $self = shift;
 
     my @areas = $self->{location}->get_recognizable_areas();
-    my @names = map { $_->get_short_name() } @areas;
-
-    return Scramble::Misc::make_colon_line("In", join(", ", @names));
+    return map { $_->get_short_name() } @areas;
 }
 
-sub get_quads_html {
+sub get_quads {
     my $self = shift;
 
-    return '' unless $self->{location}->get_quad_objects();
-    my $links = join(", ", map { $_->get_short_name() } $self->{location}->get_quad_objects());
-    my $title = sprintf("USGS %s", Scramble::Misc::pluralize(scalar($self->{location}->get_quad_objects()),
-							     "quad"));
-    return Scramble::Misc::make_colon_line($title, $links);
+    return map { $_->get_short_name() } $self->{location}->get_quad_objects();
 }
 
-sub get_counties_html {
+sub get_counties {
     my $self = shift;
 
-    my @htmls = map { $_->get_short_name() } $self->{location}->get_county_objects();
-
-    return @htmls ? join(", ", @htmls) : undef;
+    return map { $_->get_short_name() } $self->{location}->get_county_objects();
 }
 
-sub get_state_html {
+sub get_state {
     my $self = shift;
 
     if (! $self->{location}->get_state_object()) {

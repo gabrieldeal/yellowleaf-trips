@@ -112,7 +112,7 @@ Two consecutive newlines will turn into a <p> HTML tag.
 sub htmlify {
     my ($html) = @_;
 
-    return unless defined $html;
+    return '' unless defined $html;
 
     $html = insert_links($html);
 
@@ -290,6 +290,8 @@ sub convert_feet_to_meters {
 
 sub format_elevation {
     my ($elevation) = @_;
+
+    return '' unless $elevation;
 
     my %details = get_elevation_details($elevation);
 

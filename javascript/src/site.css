@@ -1,3 +1,14 @@
+.field-container {
+    display: block;
+}
+.field-name {
+    display: inline;
+    font-weight: bold;
+}
+.field-value {
+    display: inline;
+}
+
 .centered-spinner {
     left: 50%;
     pointer-events: none;
