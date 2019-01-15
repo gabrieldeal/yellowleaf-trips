@@ -30,7 +30,7 @@ use Scramble::Controller::TripRss ();
 use Scramble::Model::Reference ();
 use Scramble::Model::Trip ();
 use Scramble::SpellCheck ();
-use Scramble::Stats ();
+use Scramble::Controller::StatsStdout ();
 use Scramble::Tests ();
 
 my $gRoot = "yellowleaf.org/scramble";
@@ -177,8 +177,8 @@ sub main {
     should('geekery') && Scramble::Controller::GeekeryPage::create();
     should('picture-by-year') && Scramble::Controller::ImageIndex::create_all(); # Favorites
     should('location') && Scramble::Controller::LocationPage::create_all();
-    should('short-trips') && Scramble::Stats::display_short_trips();
-    should('party-stats') && Scramble::Stats::display_party_stats();
+    should('short-trips') && Scramble::Controller::StatsStdout::display_short_trips();
+    should('party-stats') && Scramble::Controller::StatsStdout::display_party_stats();
     should('test') && Scramble::Tests::run();
 
     return 0;

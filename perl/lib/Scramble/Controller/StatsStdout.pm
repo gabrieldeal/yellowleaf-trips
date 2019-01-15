@@ -1,4 +1,4 @@
-package Scramble::Stats;
+package Scramble::Controller::StatsStdout;
 
 use strict;
 
