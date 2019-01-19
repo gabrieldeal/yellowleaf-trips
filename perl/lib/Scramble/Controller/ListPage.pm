@@ -8,23 +8,23 @@ use Scramble::Misc ();
 # FIXME: Refactor display code into a template.
 
 sub new {
-    my ($arg0, $list_xml) = @_;
+    my ($arg0, $list) = @_;
 
     my $self = {
-        list_xml => $list_xml,
+        list => $list,
     };
 
     return bless($self, ref($arg0) || $arg0);
 }
 
 sub create_all {
-    foreach my $list_xml (Scramble::Model::List::get_all_lists()) {
-        if ($list_xml->{'skip'}) {
+    foreach my $list (Scramble::Model::List::get_all()) {
+        if ($list->should_skip) {
             next;
         }
 
-        Scramble::Logger::verbose("Making list page for $list_xml->{name}\n");
-        my $page = Scramble::Controller::ListPage->new($list_xml);
+        Scramble::Logger::verbose("Making list page for " . $list->get_name . "\n");
+        my $page = Scramble::Controller::ListPage->new($list);
         $page->create();
     }
 }
@@ -32,33 +32,25 @@ sub create_all {
 sub create {
     my $self = shift;
 
-    my $list_xml = $self->{list_xml};
-
-    my @location_objects;
-    my $county = $list_xml->{'location'}[0]{'county'};
-
-    my @column_names = qw(order name elevation quad);
-    if ($list_xml->{'columns'}) {
-	@column_names = split(/,\s*/, $list_xml->{'columns'});
-    }
+    my $list = $self->{list};
 
     my @columns;
-    foreach my $column_name (@column_names) {
+    foreach my $column_name ($list->get_columns) {
         push @columns, {
             name => get_cell_title($column_name),
         };
     }
 
+    my @location_objects;
     my @rows;
-    foreach my $list_location (@{ $list_xml->{'location'} }) {
-        my $location_object = Scramble::Model::List::get_location_object($list_location);
+    foreach my $list_location ($list->get_locations) {
+        my $location_object = $list_location->get_location_object;
 	if ($location_object) {
 	    push @location_objects, $location_object;
 	}
 
-        push @rows, {
-            cells => [ map { { value_html => get_cell_value($_, $list_location) } } @column_names ],
-        }
+        my @cells = map { { value_html => get_cell_value($_, $list_location) } } $list->get_columns;
+        push @rows, { cells => \@cells }
     }
 
     my $template = Scramble::Template::create('list/page');
@@ -66,10 +58,7 @@ sub create {
                      rows => \@rows);
     my $locations_html = $template->output();
 
-    my $note = Scramble::Misc::make_optional_line("%s<p>",
-						  \&Scramble::Misc::htmlify,
-						  $list_xml->{'content'});
-    my $max_images = @{ $list_xml->{'location'} } / 6;
+    my $max_images = $list->get_locations / 6;
     if ($max_images < 10) {
         $max_images = 10;
     }
@@ -81,20 +70,19 @@ $max_images = 100;
     my @image_htmls = map { Scramble::Misc::make_cell_html(content => $_->create()) } @image_fragments;
 
     my @cells = ($locations_html);
-    push @cells, get_map_html($list_xml, \@location_objects) if @location_objects;
+    push @cells, get_map_html($list, \@location_objects) if @location_objects;
     push @cells, @image_htmls;
 
     my $images_html = Scramble::Misc::render_cells_into_flow(\@cells, 'float-first' => 1);
 
-    my $title = $list_xml->{'name'};
+    my $title = $list->get_name;
 
     my $html = <<EOT;
-$note
 $images_html
 <br clear="all" />
 EOT
 
-    Scramble::Misc::create(Scramble::Model::List::get_list_path($list_xml),
+    Scramble::Misc::create($list->get_list_path,
 			   Scramble::Misc::make_1_column_page(title => $title,
 							      html => $html,
                                                               'enable-embedded-google-map' => 1,
@@ -107,11 +95,11 @@ sub get_cell_value {
     if ($name eq 'name') {
         return (get_location_link_html('name' => $list_location->{'name'},
 				       'quad' => $list_location->{'quad'})
-                . (Scramble::Model::List::get_is_unofficial_name($list_location) ? "*" : '')
+                . ($list_location->get_is_unofficial_name ? "*" : '')
 		. Scramble::Misc::make_optional_line(" (AKA %s)",
-                                                     Scramble::Model::List::get_aka_names($list_location)));
+                                                     $list_location->get_aka_names));
     } elsif ($name eq 'elevation') {
-        return Scramble::Misc::format_elevation_short(Scramble::Model::List::get_elevation($list_location));
+        return Scramble::Misc::format_elevation_short($list_location->get_elevation);
     } elsif ($name eq 'quad') {
         return '' unless $list_location->{'quad'};
         my $quad = eval { Scramble::Model::Area::get_all()->find_one('id' => $list_location->{'quad'},
@@ -165,9 +153,9 @@ sub get_location_link_html {
 }
 
 sub get_map_html {
-    my ($list_xml, $locations) = @_;
+    my ($list, $locations) = @_;
 
-    my %options = ('kml-url' => Scramble::Model::List::get_kml_url($list_xml));
+    my %options = ('kml-url' => $list->get_kml_url);
     Scramble::Misc::get_multi_point_embedded_google_map_html($locations, \%options);
 }
 

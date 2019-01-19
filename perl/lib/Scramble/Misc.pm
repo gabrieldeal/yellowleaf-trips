@@ -29,11 +29,11 @@ The 'id' from list names turns into a link with the 'name' from that list.
 =cut
 my %g_transformations;
 sub make_link_transformations {
-    foreach my $list_xml (Scramble::Model::List::get_all_lists()) {
-	next unless $list_xml->{'id'};
-	my $id = $list_xml->{'id'};
+    foreach my $list (Scramble::Model::List::get_all()) {
+        next unless $list->get_id;
+        my $id = $list->get_id;
 
-	my $link = Scramble::Model::List::make_list_link($list_xml);
+        my $link = $list->get_link_html;
 	$g_transformations{'list'}{sprintf('\b%s\b', $id)} = _insert_links_pack($link);
     }
 
@@ -146,6 +146,7 @@ sub make_colon_line {
     return "<b>$title: </b> $text<br>\n";
 }
 
+# FIXME: Move into Location.
 sub make_location_into_path {
     my ($name) = @_;
 

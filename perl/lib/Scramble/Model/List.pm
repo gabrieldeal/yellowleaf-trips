@@ -4,36 +4,59 @@ use strict;
 
 use Scramble::Misc;
 use Scramble::Model;
+use Scramble::Model::List::Location;
 use Scramble::Logger;
 
-# FIXME: Convert this to a class.
+my $g_collection = Scramble::Collection->new;
 
-my @g_lists;
-sub get_all_lists {
-    return @g_lists;
+sub get_all {
+    return $g_collection->get_all();
 }
 
-sub get_sortby {
-    my ($list_xml) = @_;
+sub new {
+    my ($arg0, $list_xml) = @_;
 
-    return $list_xml->{'sortby'};
-}
-
-sub get_id {
-    my ($list_xml, $sortby) = @_;
-
-    defined $list_xml->{'id'} or die "Missing ID";
-    my $id = $list_xml->{'id'};
-    if (defined $sortby) {
-	$id .= $sortby;
-    } elsif (exists $list_xml->{'sortedby'}) {
-	$id .= $list_xml->{'sortedby'};
+    my @unrecognized_attributes = grep { !/^(name|path|sortby|id|content|columns|location|quad)$/ } keys %$list_xml;
+    if(@unrecognized_attributes) {
+        local $Data::Dumper::Maxdepth = 1;
+        die "Unrecognized attribute (@unrecognized_attributes) in " . Data::Dumper::Dumper($list_xml);
     }
 
-    return $id;
+    my @columns = ($list_xml->{columns}
+                   ? split(/,\s*/, $list_xml->{columns})
+                   : qw(order name elevation quad));
+
+    my $self = {
+        columns => \@columns,
+        content => $list_xml->{content},
+        id => $list_xml->{id},
+        name => $list_xml->{name},
+        quad => $list_xml->{quad},
+        sortby => $list_xml->{sortby},
+    };
+    bless($self, ref($arg0) || $arg0);
+
+    $self->_initialize_list_locations($list_xml->{location});
+
+    return $self;
 }
 
-sub location_equals {
+sub get_columns { @{ $_[0]->{columns} } }
+sub get_content { $_[0]->{content} }
+sub get_id { $_[0]->{id} }
+sub get_locations { @{ $_[0]->{list_locations} } }
+sub get_name { $_[0]->{name} }
+sub get_quad { $_[0]->{quad} }
+sub get_sortby { $_[0]->{sortby} }
+sub should_skip { $_[0]->{skip} }
+
+sub get_url {
+    my $self = shift;
+
+    return sprintf("../%s", $self->get_list_path());
+}
+
+sub _list_location_equals {
     my ($a, $b) = @_;
 
     return ($a->{'name'} eq $b->{'name'}
@@ -42,144 +65,98 @@ sub location_equals {
                 || $a->{'county'} eq $b->{'county'}));
 }
 
-sub new_sorted_list {
-    my ($old_list, $sortby) = @_;
+sub _initialize_list_locations {
+    my $self = shift;
+    my ($list_location_xmls) = @_;
 
-    my %new_list = %$old_list;
-    $new_list{'location'} = [ map { { %$_ } } @{ $old_list->{'location'} } ];
-    $new_list{'location'} = [ sort({ sort_list($sortby, $a, $b) } @{ $new_list{'location'} }) ];
-    $new_list{'sortedby'} = $sortby;
+    my @list_locations = map { Scramble::Model::List::Location->new($_) } @$list_location_xmls;
+    @list_locations = sort { $self->_cmp_list_locations($a, $b) } @list_locations;
 
-    # Now that it is sorted, remove duplicate locations from the list:
-    for (my $i = 0; $i + 1 < @{ $new_list{'location'} }; ++$i) {
-        my $cur = $new_list{'location'}[$i];
-        my $next = $new_list{'location'}[$i+1];
-        if (location_equals($cur, $next)) {
-            splice(@{ $new_list{'location'} }, $i + 1, 1);
-            $i--;
+    # Now that it is sorted, find duplicate locations:
+    for (my $i = 0; $i + 1 < @list_locations; ++$i) {
+        my $cur = $list_locations[$i];
+        my $next = $list_locations[$i+1];
+        if (_list_location_equals($cur, $next)) {
+            local $Data::Dumper::Maxdepth = 2;
+            die("Duplicate list locations:"
+                . Data::Dumper::Dumper($cur) . "\n"
+                . Data::Dumper::Dumper($next) . "\n");
+
         }
     }
 
     my $count = 1;
-    map { $_->{'order'} = $count++ } @{ $new_list{'location'} };
+    map { $_->set_order($count++) } @list_locations;
 
-    return \%new_list;
+    $self->{list_locations} = \@list_locations;
 }
 
 sub open {
     my (@paths) = @_;
     
-    @g_lists = Scramble::Model::open_documents(@paths);
-    @g_lists or die "No lists";
+    my @list_xmls = Scramble::Model::open_documents(@paths);
+    @list_xmls or die "No lists";
 
-    for (my $i = 0; $i < @g_lists; ++$i) {
-	Scramble::Logger::verbose "Processing $g_lists[$i]{'name'}\n";
-	next unless exists $g_lists[$i]{'sortby'};
-	
-	my $sortby = get_sortby($g_lists[$i]);
-	my $new_list = new_sorted_list($g_lists[$i], $sortby);
-	splice(@g_lists, $i, 1, $new_list);
-    }
-    for (my $i = 0; $i < @g_lists; ++$i) {
-        $g_lists[$i]{'internal-URL'} = sprintf("../%s",
-                                               get_list_path($g_lists[$i]));
-	next if exists $g_lists[$i]{'URL'};
-	$g_lists[$i]{'URL'} = $g_lists[$i]{'internal-URL'};
+    foreach my $list_xml (@list_xmls) {
+        Scramble::Logger::verbose "Reading list $list_xml->{path}\n";
+        my $list = Scramble::Model::List->new($list_xml);
+        $g_collection->add($list);
     }
 }
 
-sub sort_list {
-    my ($by, $l1, $l2) = @_;
+sub _cmp_list_locations {
+    my $self = shift;
+    my ($list_location1, $list_location2) = @_;
 
-    if ($by eq 'elevation') {
-        my %e1 = Scramble::Misc::get_elevation_details(get_elevation($l1));
-        my %e2 = Scramble::Misc::get_elevation_details(get_elevation($l2));
+    if ($self->get_sortby eq 'elevation') {
+        my %e1 = Scramble::Misc::get_elevation_details($list_location1->get_elevation);
+        my %e2 = Scramble::Misc::get_elevation_details($list_location2->get_elevation);
 	return $e2{feet} <=> $e1{feet};
-    } elsif ($by eq 'MVD') {
-        return $l2->{'MVD'} <=> $l1->{'MVD'};
+    } elsif ($self->get_sortby eq 'MVD') {
+        return $list_location2->get_mvd <=> $list_location1->get_mvd;
+    } elsif ($self->get_sortby eq 'order') {
+        return $list_location2->get_order <=> $list_location1->get_order;
     } else {
-	die "Not implemented '$by'";
+        die "Not implemented: " . $self->get_sortby;
     }
 }
 
-sub get_location_object {
-    my ($list_location) = @_;
-
-    my $name = $list_location->{'name'};
-    return undef unless $name;
-
-    if (! exists $list_location->{'object'}) {
-	$list_location->{'object'} =  eval { 
-	    Scramble::Model::Location::find_location('name' => $name,
-                                                     'quad' => $list_location->{'quad'},
-                                                     'include-unvisited' => 1);
-	  };
-    }
-    return $list_location->{'object'};
-}
-
-sub get_is_unofficial_name {
-    my ($list_location) = @_;
-
-    my $location = get_location_object($list_location);
-    if ($location) {
-	return $location->get_is_unofficial_name();
-    }
-
-    return $list_location->{'unofficial-name'};
-}
-
-sub get_elevation {
-    my ($list_location) = @_;
-
-    local $Data::Dumper::Maxdepth = 2;
-
-    my $location = get_location_object($list_location);
-    if ($location) {
-	return $location->get_elevation() || die "No elevation: " . Data::Dumper::Dumper($list_location);
-    }
-
-    return $list_location->{'elevation'} || die "No elevation: " . Data::Dumper::Dumper($list_location);
-}
-
-sub get_aka_names {
-    my ($list_location) = @_;
-    
-    my $location = get_location_object($list_location);
-    if ($location) {
-	return join(", ", $location->get_aka_names());
-    }
-
-    return $list_location->{'AKA'};
-}
 
 sub get_list_path {
-    my ($list_xml, $sortby) = @_;
+    my $self = shift;
 
-    return sprintf("li/%s.html",
-		   Scramble::Misc::make_location_into_path(get_id($list_xml, $sortby)));
+    my $name = $self->get_id;
+
+    # For preserving the odd, legacy paths:
+    $name =~ s/-/--/g;
+    if ($self->get_sortby ne 'order') {
+        $name .= $self->get_sortby;
+    }
+
+    return "li/$name.html";
 }
 
-sub make_list_link {
-    my ($list_xml) = @_;
+sub get_link_html {
+    my ($self) = @_;
 
     return sprintf(qq(<a href="%s">%s</a>),
-                   $list_xml->{'URL'},
-		   $list_xml->{'name'});
+                   $self->get_url,
+                   $self->get_name);
 }
 
 sub get_kml_path {
-    my ($list_xml) = @_;
+    my ($self) = @_;
 
-    my $list_id = Scramble::Misc::make_location_into_path(Scramble::Model::List::get_id($list_xml, ''));
+    my $kml_path = $self->get_list_path;
+    $kml_path =~ s/\.html/.kml/;
 
-    return "li/$list_id.kml"
+    return $kml_path;
 }
 
 sub get_kml_url {
-    my ($list_xml) = @_;
+    my ($self) = @_;
 
-    my $path = get_kml_path($list_xml);
+    my $path = $self->get_kml_path;
 
     return "../$path";
 }

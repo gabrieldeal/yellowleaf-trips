@@ -4,23 +4,23 @@ use strict;
 
 sub get_list_html {
     my @htmls;
-    foreach my $list_xml (Scramble::Model::List::get_all_lists()) {
+    foreach my $list (Scramble::Model::List::get_all()) {
 	my $climbed_count = 0;
-	foreach my $list_location (@{ $list_xml->{'location'} }) {
-	    my $location_object = Scramble::Model::List::get_location_object($list_location);
+        foreach my $list_location ($list->get_locations) {
+            my $location_object = $list_location->get_location_object;
 	    next unless $location_object && $location_object->have_visited();
 	    $climbed_count++;
 	}
 	next unless $climbed_count;
 
-	my $total = @{ $list_xml->{'location'} };
+        my $total = $list->get_locations;
         my $percent = 100 * $climbed_count / $total;
         my $html = sprintf(qq(Climbed % 6.2f%% (%d/%d) of <a href="%s">%s</a>),
                            $percent,
                            $climbed_count,
                            $total,
-                           $list_xml->{'internal-URL'},
-                           $list_xml->{'name'});
+                           $list->get_url,
+                           $list->get_name);
         $html =~ s/ /&nbsp;/; # line up the column of percentages in HTML
         $html =~ s/ /&nbsp;/;
 	push @htmls, { html => $html, percent => $percent };

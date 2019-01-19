@@ -9,14 +9,14 @@ use Scramble::Misc ();
 
 sub create {
     my @lists;
-    foreach my $list_xml (Scramble::Model::List::get_all_lists()) {
-        if ($list_xml->{'skip'}) {
+    foreach my $list (Scramble::Model::List::get_all()) {
+        if ($list->should_skip) {
             next;
         }
 
         push @lists, {
-            name => $list_xml->{name},
-            url => $list_xml->{URL}
+            name => $list->get_name,
+            url => $list->get_url
         };
     }
 
