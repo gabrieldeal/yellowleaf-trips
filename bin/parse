@@ -143,7 +143,7 @@ sub main {
     # }
 
     if (! @{ $g_options{'file'} }) {
-	Scramble::Model::Trip::open_all($g_options{'trips-directory'});
+        Scramble::Model::Trip::open_all($g_options{'trips-directory'}, $g_options{'data-directory'});
     } else {
 	foreach my $file (@{ $g_options{'file'} }) {
             if ($file =~ m{/trips/}) {

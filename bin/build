@@ -7,12 +7,12 @@ umask 022
 # rm -rf cover_db && PERL5OPT=-MDevel::Cover bin/build && cover && cp -r /home/vagrant/projects/yellowleaf-trips/cover_db /vagrant/
 # file:///C:/Users/Gabriel/projects/personal-environment/vagrant/ubuntu-16.04/cover_db/coverage.html
 
-data_dir="/home/gabrielx/projects/yellowleaf-trips-data/"
+data_dir="/home/gabrielx/projects/yellowleaf-trips-data"
 dir="$(dirname "$0")/.."
 cd "$dir" \
     && perl bin/parse \
 	    --data-directory "$data_dir" \
-	    --trips-directory "$data_dir/trips/" \
+	    --trips-directory "/media/gabrielx/Backup/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports" \
 	    --output-directory "$data_dir/html" \
 	    -v \
 	    "$@"

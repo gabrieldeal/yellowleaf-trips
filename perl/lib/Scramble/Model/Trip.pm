@@ -13,7 +13,7 @@ our @ISA = qw(Scramble::Model);
 my $g_trip_collection = Scramble::Collection->new();
 
 sub new {
-    my ($arg0, $path) = @_;
+    my ($arg0, $path, $images_directory) = @_;
 
     my $self = Scramble::Model::parse($path);
     bless($self, ref($arg0) || $arg0);
@@ -51,7 +51,9 @@ sub new {
 	$self->set('end-date', Scramble::Time::normalize_date_string($self->get_end_date()));
     }
 
-    my @images = Scramble::Model::Image::read_images_from_trip(File::Basename::dirname($path), $self);
+    my $subdir = File::Basename::basename(File::Basename::dirname($path));
+    my $trip_images_directory = "$images_directory/$subdir";
+    my @images = Scramble::Model::Image::read_images_from_trip($trip_images_directory, $self);
     my $image_collection = Scramble::Collection->new(objects => \@images);
 
     my $picture_objs = [
@@ -262,25 +264,26 @@ sub cmp {
 }
 
 sub open_specific {
-    my ($path) = @_;
+    my ($path, $images_directory) = @_;
 
     $path = "$path/trip.xml" if !-f $path && -f "$path/trip.xml";
 
-    my $trip = Scramble::Model::Trip->new($path);
+    my $trip = Scramble::Model::Trip->new($path, $images_directory);
     $g_trip_collection->add($trip) if defined $trip;
     return $trip;
 }
 
 sub open_all {
-    my ($directory) = @_;
+    my ($images_directory, $data_directory) = @_;
 
-    die "No such directory '$directory'" unless -d $directory;
+    die "No such directory '$images_directory'" unless -d $images_directory;
+    die "No such directory '$data_directory'" unless -d $data_directory;
 
-    my $glob = "$directory/*/trip.xml";
+    my $glob = "$data_directory/trips/*/trip.xml";
     my @paths = reverse(sort(glob($glob)));
     @paths || die "No trips in $glob";
     foreach my $path (@paths) {
-	open_specific($path);
+        open_specific($path, $images_directory);
     }
 }
 
