@@ -49,6 +49,7 @@ sub common_params {
     return (
         copyright_year => $year,
         copyright_holder => $copyright,
+        deploy_refresh => $$, # Cheap way to invalidate browser cache.
         navbar_links => \@g_navbar_links,
         );
 }
