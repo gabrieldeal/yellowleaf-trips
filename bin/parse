@@ -147,7 +147,7 @@ sub main {
     } else {
 	foreach my $file (@{ $g_options{'file'} }) {
             if ($file =~ m{/trips/}) {
-                my $trip = Scramble::Model::Trip::open_specific($file);
+                my $trip = Scramble::Model::Trip::open_specific($file, $g_options{'trips-directory'});
                 my $page = Scramble::Controller::TripPage->new($trip);
                 $page->create();
             } else {
