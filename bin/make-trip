@@ -26,9 +26,6 @@ my $LARGE_IMAGE_SIZE = 1075;
 
 my $dir = shift @ARGV;
 
-if ($ARGV[-1] =~ /fuck-line-feeds/) {
-  pop @ARGV;
-}
 
 my $xg = XML::Generator->new(escape => 'always',
                              conformance => 'strict',
