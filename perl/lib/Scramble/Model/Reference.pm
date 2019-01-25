@@ -2,6 +2,7 @@ package Scramble::Model::Reference;
 
 use strict;
 
+use Scramble::Collection ();
 use Scramble::Model;
 
 my $g_collection = Scramble::Collection->new();
