@@ -2,6 +2,8 @@ package Scramble::Controller::TripPage;
 
 # The page about one particular trip.  E.g., /scramble/g/r/2018-10-06-little-giant.html
 
+# FIXME: Convert to a template.
+
 use strict;
 
 use Scramble::Misc ();
