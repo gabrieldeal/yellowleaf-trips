@@ -10,10 +10,8 @@ function fix_file_permissions() {
     find "$@" -type f -a \! -perm -a=r -exec chmod a+r {} \;
 }
 
-skip_perm="$1"
-
-home_dir="/vagrant_gabriel_home/"
-output_dir="$home_dir/projects/yellowleaf-trips"
+home_dir="/home/gabrielx"
+output_dir="$home_dir/projects/yellowleaf-trips-data"
 html_dir="$output_dir/html"
 
 if [ ! -d $html_dir ]
@@ -22,30 +20,30 @@ then
 	exit 1
 fi
 
-if [ -z "$skip_perm" ]
-then
-    fix_file_permissions "$output_dir" "$home_dir/pictures" "$home_dir/Backups"
-fi
-
 # Do images first, then HTML.  This avoids broken images while in the middle of an update.
 echo "Ready to rsync KML & images? (ctrl-c to abort)"
 read pauseme
-rsync --size-only \
+rsync \
+      --size-only \
       -e ssh \
       -avz \
-      --exclude '*' \
-      --include '*.kml' \
-      --include '*.jpg' \
+      --exclude '*.html' \
+      --exclude '*.js' \
+      --exclude '*.css' \
       --rsync-path=/home/gabrielx1/bin/rsync \
       "$html_dir/" \
-      gabrielx1@192.186.234.160:~/public_html/scramble
+      gabrielx1@192.186.234.160:~/public_html/scramble \
+    | grep -E '^deleting|[^/]$|^$'
 
 echo
 echo "Ready to sync everything else? (ctrl-c to abort)"
 read pauseme
-rsync --delete \
+rsync \
       --size-only \
       -e ssh \
       -avz \
       --rsync-path=/home/gabrielx1/bin/rsync \
-      "$html_dir/" gabrielx1@192.186.234.160:~/public_html/scramble
+      "$html_dir/" \
+      gabrielx1@192.186.234.160:~/public_html/scramble \
+    | grep -E '^deleting|[^/]$|^$'
+
