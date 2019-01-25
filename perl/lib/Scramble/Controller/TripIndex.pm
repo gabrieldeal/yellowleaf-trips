@@ -35,9 +35,7 @@ sub get_trip_params {
     my $self = shift;
     my ($trip) = @_;
 
-    my $type = $trip->get_type();
     my $name_html = $trip->get_name();
-    $name_html .= " $type" unless $name_html =~ /${type}$/;
     $name_html = $trip->get_summary_name($name_html);
     my $date = $trip->get_summary_date();
 
