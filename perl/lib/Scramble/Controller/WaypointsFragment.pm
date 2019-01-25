@@ -9,13 +9,11 @@ sub get_short {
 
     my $delta = $waypoints->get_car_to_car_delta();
     return '' unless $delta;
-
-   Scramble::Misc::make_colon_line("Car-to-car time",
-                                     Scramble::Time::format_time(0, $delta));
+    return Scramble::Time::format_time(0, $delta);
 }
 
 # FIXME: Refactor display code into a template.
-sub get_detailed {
+sub get_detailed_html {
     my ($waypoints) = @_;
 
     my @waypoints = $waypoints->get_waypoints_with_times();

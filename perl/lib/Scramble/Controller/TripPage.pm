@@ -2,8 +2,6 @@ package Scramble::Controller::TripPage;
 
 # The page about one particular trip.  E.g., /scramble/g/r/2018-10-06-little-giant.html
 
-# FIXME: Convert to a template.
-
 use strict;
 
 use Scramble::Misc ();
@@ -21,65 +19,22 @@ sub new {
 
 sub trip { $_[0]{trip} }
 
-sub make_date_html {
-    my $self = shift;
-
-    my $date = $self->trip()->get_start_date();
-    if (defined $self->trip()->get_end_date()) {
-	$date .= " to " . $self->trip()->get_end_date();
-    }
-
-    return Scramble::Misc::make_colon_line("Date", $date);
-}
-
-sub get_elevation_gain_html {
-    my $self = shift;
-
-    return Scramble::Misc::make_optional_line("<b>Elevation gain:</b> approx. %s<br>",
-                                              $self->trip()->get_waypoints()->get_elevation_gain("ascending|descending"));
-}
-
 sub create {
     my $self = shift;
 
-    my $date = $self->make_date_html();
-    my $trip_type = Scramble::Misc::make_colon_line("Trip type", $self->trip()->get_type());
-    my $elevation_html = $self->get_elevation_gain_html();
-    my $miles_html = $self->get_distances_html();
-    my $quads_html = $self->get_map_summary_html();
-    my $recognizable_areas_html = $self->get_recognizable_areas_html();
-    my $short_route_references = '';
-    my $long_route_references = '';
-    if ($self->trip()->get_references() == 1) {
-      $short_route_references = Scramble::Misc::make_colon_line("Reference", 
-                                                                Scramble::Controller::ReferenceFragment::get_reference_html_with_name_only($self->trip()->get_references()));
-    } else {
-      $long_route_references = Scramble::Misc::make_optional_line("<h2>References</h2>%s",
-                                                             $self->get_reference_html());
-    }
+    my %params = (
+        $self->get_time_params,
+        $self->get_maps_summary_params,
+        $self->get_references_params,
+        start_date => $self->trip->get_start_date,
+        end_date => $self->trip->get_end_date,
+        trip_type => $self->trip->get_type,
+        distances_html => $self->get_distances_html,
+        elevation_gain => $self->get_elevation_gain,
+        recognizable_areas => $self->get_recognizable_areas,
+       );
 
-    my $waypoints = $self->trip()->get_waypoints();
-    my $long_times_html = '';
-    my $short_times_html = '';
-    if ($waypoints->get_waypoints_with_times() > 2) {
-        $long_times_html = Scramble::Controller::WaypointsFragment::get_detailed($waypoints);
-    } else {
-        # Some trips have zero waypoints but still have a car-to-car time.
-        $short_times_html = Scramble::Controller::WaypointsFragment::get_short($waypoints);
-    }
-
-    my $right_html = <<EOT;
-$date
-$short_times_html
-$miles_html
-$elevation_html
-$trip_type
-$quads_html
-$recognizable_areas_html
-$short_route_references
-$long_times_html
-$long_route_references
-EOT
+    my $right_html = Scramble::Template::html('trip/page', \%params);
 
     my @htmls;
     push @htmls, $right_html;
@@ -87,6 +42,7 @@ EOT
     my $map_html = $self->get_embedded_google_map_html();
     push @htmls, $map_html if $map_html;
 
+    # FIXME: Refactor this into a template.
     my $count = 1;
     my $cells_html;
     my @map_objects = $self->trip()->get_map_objects();
@@ -133,6 +89,43 @@ EOT
                                                               'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap));
 }
 
+sub get_elevation_gain {
+    my $self = shift;
+
+    return $self->trip->get_waypoints->get_elevation_gain("ascending|descending");
+}
+
+sub get_time_params {
+    my $self = shift;
+
+    my $waypoints = $self->trip()->get_waypoints();
+
+    if ($waypoints->get_waypoints_with_times() <= 2) {
+        # Some trips have zero waypoints but still have a car-to-car time.
+        return (
+            short_time => Scramble::Controller::WaypointsFragment::get_short($waypoints),
+            );
+    }
+
+    return (
+        detailed_times_html => Scramble::Controller::WaypointsFragment::get_detailed_html($waypoints),
+        );
+}
+
+sub get_references_params {
+    my $self = shift;
+
+    if ($self->trip()->get_references() == 1) {
+        return (
+            short_references_html => Scramble::Controller::ReferenceFragment::get_reference_html_with_name_only($self->trip()->get_references()),
+            )
+    }
+
+    return (
+        detailed_references_html => $self->get_reference_html(),
+        );
+}
+
 sub get_distances_html {
     my $self = shift;
 
@@ -151,8 +144,7 @@ sub get_distances_html {
 					 $distance->{'type'});
     }
 
-    # FIXME: Move into template.
-    return sprintf("<b>Round-trip distance:</b> approx. %s %s%s<br>",
+    return sprintf("%s %s%s",
 		   $total_miles,
 		   Scramble::Misc::pluralize($total_miles, 'mile'),
 		   (@parenthesis_htmls == 1 ? '' : " (" . join(", ", @parenthesis_htmls) . ")"));
@@ -182,10 +174,10 @@ sub get_reference_html {
     return '<ul><li>' . join('</li><li>', @references) . '</li></ul>';
 }
 
-sub get_map_summary_html {
+sub get_maps_summary_params {
     my $self = shift;
 
-    return '' if $self->trip()->no_maps();
+    return () if $self->trip()->no_maps();
 
     my $type = 'USGS quad';
     my %maps;
@@ -210,20 +202,24 @@ sub get_map_summary_html {
     }
 
     my @maps = keys %maps;
-    return '' unless @maps;
-    return '' if @maps > 15;
+    return () unless @maps;
+    return () if @maps > 15;
 
     my $title = Scramble::Misc::pluralize(scalar(@maps), $type);
-    return Scramble::Misc::make_colon_line($title, join(", ", @maps));
+
+    return (
+        maps_title => $title,
+        maps => join(", ", @maps),
+        );
 }
 
-sub get_recognizable_areas_html {
+sub get_recognizable_areas {
     my $self = shift;
 
     my @areas = $self->{trip}->get_recognizable_areas();
     my @names = map { $_->get_short_name() } @areas;
 
-    return Scramble::Misc::make_colon_line("In", join(", ", @names));
+    return join(", ", @names);
 }
 
 sub split_pictures_into_sections {
