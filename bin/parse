@@ -209,12 +209,6 @@ sub make_templates() {
                    "Missing Page",
                    'no-insert-links' => 1,
                    'no-add-picture' => 1);
-    make_html_file("$g_options{'templates-directory'}/misc/usgs.html",
-                   "Topo Map",
-                   'enable-embedded-google-map' => 1,
-                   'no-title' => 1,
-                   'no-insert-links' => 1,
-                   'no-add-picture' => 1);
 }
 
 sub copy_kml {
