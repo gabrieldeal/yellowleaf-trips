@@ -55,7 +55,7 @@ sub get_reference_html_with_name_only {
     my $retval = '';
     my $id = $reference->get_id();
     my $url = $reference->get_url();
-    my $name = $reference->get_name();
+    my $name = $reference->get_page_name() || $reference->get_name();
     defined $name or Carp::confess("Unable to get name from " . Data::Dumper::Dumper($reference));
 
     my $type = $reference->get_type();
