@@ -10,11 +10,13 @@ sub get_all { $g_collection->get_all() }
 sub find_or_create {
     my ($reference_xml) = @_;
 
+    my $reference = {};
     if ($reference_xml->{id}) {
-        return $g_collection->find_one(id => $reference_xml->{id});
+        $reference = $g_collection->find_one(id => $reference_xml->{id});
     }
+    my %merged_reference_xml = (%$reference, %$reference_xml);
 
-    return Scramble::Model::Reference->new($reference_xml);
+    return Scramble::Model::Reference->new(\%merged_reference_xml);
 }
 
 sub new {
@@ -42,7 +44,7 @@ sub open {
 }
 
 sub get_id { $_[0]->{id} }
-sub get_name { $_[0]->{name} || $_[0]->{'page-name'} }
+sub get_name { $_[0]->{name} }
 sub get_page_name { $_[0]->{'page-name'} }
 sub get_note { $_[0]->{note} }
 sub get_season { $_[0]->{season} }
