@@ -24,33 +24,30 @@ local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
 my $SMALL_IMAGE_SIZE = 333;
 my $LARGE_IMAGE_SIZE = 1075;
 
-my $dir = shift @ARGV;
+my $image_dir = '/media/gabrielx/Backup/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports';
+my $data_dir = '/home/gabrielx/projects/yellowleaf-trips-data';
 
+my $subdir = shift @ARGV;
 
 my $xg = XML::Generator->new(escape => 'always',
                              conformance => 'strict',
                              pretty => 4);
-my $data_dir;
 
 
-exit(make_xml($dir, @ARGV));
+exit(make_xml($subdir, @ARGV));
 
 ######################################################################
 
 sub make_xml {
-    my ($image_dir, $trip_type, $title, $spreadsheet_filename) = @_;
+    my ($image_subdir, $trip_type, $title, $spreadsheet_filename) = @_;
 
     $ENV{TZ} || die "Set Timezone.  E.g., export TZ='America/Los_Angeles'";
+    defined $title or die "Missing arguments: image-subdir trip-type title";
 
-    $data_dir = "$image_dir/../../..";
-
-    defined $title or die "Missing arguments: image-dir trip-type title";
+    my $image_dir = "$image_dir/$image_subdir";
     -d $image_dir or die "Non-existant image dir: $image_dir";
 
     my $sections = read_trip_sections($spreadsheet_filename);
-
-    my ($data_dir, $image_subdir) = ($image_dir =~ m{^(.*)/trips/+([^/]+)/*$});
-    defined $image_subdir or die "Bad images dir: $image_dir";
 
     my ($date) = ($image_subdir =~ /^(\d{4}-\d\d-\d\d)/);
     defined $date or die "Unable to get date from image subdirectory: $image_subdir";
