@@ -115,7 +115,7 @@ sub _cmp_list_locations {
     } elsif ($self->get_sortby eq 'MVD') {
         return $list_location2->get_mvd <=> $list_location1->get_mvd;
     } elsif ($self->get_sortby eq 'order') {
-        return $list_location2->get_order <=> $list_location1->get_order;
+        return $list_location1->get_order <=> $list_location2->get_order;
     } else {
         die "Not implemented: " . $self->get_sortby;
     }
