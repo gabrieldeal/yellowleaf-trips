@@ -43,15 +43,7 @@ sub create {
 sub common_params {
     my %args = @_;
 
-    my $year;
-    if (exists $args{'copyright-year'}) {
-        $year = $args{'copyright-year'};
-    } elsif (exists $args{'date'}) {
-        ($year) = Scramble::Time::parse_date($args{'date'});
-    } else {
-        $year = '2004';
-    }
-
+    my $year = (localtime)[5] + 1900;
     my $copyright = $args{copyright} || 'Gabriel Deal';
 
     return (

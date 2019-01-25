@@ -126,13 +126,11 @@ $route
 $cells_html
 EOT
 
-    my $copyright_year = $self->get_copyright_html();
     Scramble::Misc::create(sprintf("r/%s", $self->trip()->get_filename()),
                            Scramble::Misc::make_1_column_page('title' => $title,
 							      'include-header' => 1,
                                                               'html' => $html,
-                                                              'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap,
-							      'copyright-year' => $copyright_year));
+                                                              'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap));
 }
 
 sub get_distances_html {
@@ -226,15 +224,6 @@ sub get_recognizable_areas_html {
     my @names = map { $_->get_short_name() } @areas;
 
     return Scramble::Misc::make_colon_line("In", join(", ", @names));
-}
-
-sub get_copyright_html {
-    my $self = shift;
-
-    my $copyright_year = $self->trip()->get_end_date() ? $self->trip()->get_end_date() : $self->trip()->get_start_date();
-    ($copyright_year) = Scramble::Time::parse_date($copyright_year);
-
-    return $copyright_year;
 }
 
 sub split_pictures_into_sections {
