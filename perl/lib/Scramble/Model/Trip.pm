@@ -276,9 +276,6 @@ sub open_specific {
 sub open_all {
     my ($images_directory, $data_directory) = @_;
 
-    die "No such directory '$images_directory'" unless -d $images_directory;
-    die "No such directory '$data_directory'" unless -d $data_directory;
-
     my $glob = "$data_directory/trips/*/trip.xml";
     my @paths = reverse(sort(glob($glob)));
     @paths || die "No trips in $glob";
