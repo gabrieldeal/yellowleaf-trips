@@ -25,6 +25,7 @@ sub dedup {
     return @deduped;
 }
 
+# FIXME: Deprecate this.
 sub make_colon_line {
     my ($title, $text) = @_;
 
@@ -45,6 +46,7 @@ sub pluralize {
     return $number != 1 ? "$word$suffix" : $word;
 }
 
+# FIXME: Deprecate this.
 sub make_optional_line {
     my ($format, $arg2, $arg3) = @_;
 
@@ -67,6 +69,7 @@ sub make_optional_line {
     return sprintf($format, $hash->{$key});
 }
 
+# FIXME: Move to Scramble::Template.
 sub make_1_column_page {
     my (%args) = @_;
 
@@ -82,6 +85,7 @@ sub make_1_column_page {
 }
 
 
+# FIXME: Move to a fragment controller.
 sub _get_point_json {
     my (@locations) = @_;
 
@@ -162,6 +166,7 @@ sub set_output_directory { $g_output_directory = $_[0] }
 
 ######################################################################
 
+# FIXME: Change data so this is not needed.
 sub numerify_longitude {
     my ($lon) = @_;
 
@@ -173,7 +178,6 @@ sub numerify_longitude {
 	die "Unable to parse longitude '$lon'";
     }
 }
-
 sub numerify_latitude {
     my ($lat) = @_;
 
@@ -187,6 +191,7 @@ sub numerify_latitude {
     }
 }
 
+# FIXME: change data so this is not needed.
 sub numerify {
     my ($string) = @_;
 
