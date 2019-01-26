@@ -133,6 +133,8 @@ sub get_trips_for_location_html {
                                        $self->get_trip_link_html($trip));
     }
 
+    return '' unless @references_html;
+
     return '<ul><li>' . join('</li><li>', @references_html) . '</li></ul>';
 }
 
