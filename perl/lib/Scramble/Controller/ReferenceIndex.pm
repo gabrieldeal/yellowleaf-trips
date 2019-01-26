@@ -27,9 +27,9 @@ sub create {
     my $html = Scramble::Template::html('reference/index', \%params);
 
     Scramble::Misc::create("m/references.html",
-                           Scramble::Misc::make_1_column_page(title => "References",
-                                                              html => $html,
-                                                              'include-header' => 1));
+                           Scramble::Template::page_html(title => "References",
+                                                         html => $html,
+                                                         'include-header' => 1));
 }
 
 1;

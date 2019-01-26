@@ -79,10 +79,10 @@ $images_html
 EOT
 
     Scramble::Misc::create($list->get_list_path,
-			   Scramble::Misc::make_1_column_page(title => $title,
-							      html => $html,
-                                                              'enable-embedded-google-map' => 1,
-                                                              'include-header' => 1));
+                           Scramble::Template::page_html(title => $title,
+                                                         html => $html,
+                                                         'enable-embedded-google-map' => 1,
+                                                         'include-header' => 1));
 }
 
 sub get_cell_value {

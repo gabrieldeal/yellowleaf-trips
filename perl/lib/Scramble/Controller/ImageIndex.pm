@@ -55,10 +55,10 @@ sub create_all {
 	my $name = $pictures{$year}{name};
         my $filename = sprintf($filename_format, $name);
 	Scramble::Misc::create($filename,
-			       Scramble::Misc::make_1_column_page(title => $title,
-								  'include-header' => 1,
-                                                                  'no-title' => 1,
-                                                                  html => $template->output()));
+			       Scramble::Template::page_html(title => $title,
+                                                             'include-header' => 1,
+                                                             'no-title' => 1,
+                                                             html => $template->output()));
     }
 }
 

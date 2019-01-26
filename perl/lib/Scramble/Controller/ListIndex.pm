@@ -25,9 +25,9 @@ sub create {
     my $html = $template->output();
 
     Scramble::Misc::create("li/index.html",
-                           Scramble::Misc::make_1_column_page(title => "Peak Lists",
-                                                              html => $html,
-                                                              'include-header' => 1));
+                           Scramble::Template::page_html(title => "Peak Lists",
+                                                         html => $html,
+                                                         'include-header' => 1));
 }
 
 1;

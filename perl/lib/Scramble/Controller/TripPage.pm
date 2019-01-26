@@ -86,10 +86,10 @@ $cells_html
 EOT
 
     Scramble::Misc::create(sprintf("r/%s", $self->trip()->get_filename()),
-                           Scramble::Misc::make_1_column_page('title' => $title,
-							      'include-header' => 1,
-                                                              'html' => $html,
-                                                              'enable-embedded-google-map' => 1));
+                           Scramble::Template::page_html('title' => $title,
+                                                         'include-header' => 1,
+                                                         'html' => $html,
+                                                         'enable-embedded-google-map' => 1));
 }
 
 sub get_elevation_gain {

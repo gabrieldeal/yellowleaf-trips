@@ -238,9 +238,9 @@ $most_climbed
 EOT
 
     Scramble::Misc::create("m/geekery.html",
-                           Scramble::Misc::make_1_column_page(title => "Numbers",
-                                                              'include-header' => 1,
-                                                              html => $html));
+                           Scramble::Template::page_html(title => "Numbers",
+                                                         'include-header' => 1,
+                                                         html => $html));
 }
 
 1;

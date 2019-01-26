@@ -68,11 +68,11 @@ $cells_html
 HTML
 
     Scramble::Misc::create(sprintf("l/%s", $location->get_filename()),
-                           Scramble::Misc::make_1_column_page(title => $title,
-							      'include-header' => 1,
-                                                              html => $html,
-							      'no-add-picture' => 1,
-                                                              'enable-embedded-google-map' => 1));
+                           Scramble::Template::page_html(title => $title,
+                                                         'include-header' => 1,
+                                                         html => $html,
+                                                         'no-add-picture' => 1,
+                                                         'enable-embedded-google-map' => 1));
 }
 
 sub to_comma_separated_list {

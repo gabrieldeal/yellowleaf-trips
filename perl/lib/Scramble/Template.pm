@@ -22,6 +22,20 @@ my @g_navbar_links = (
     },
     );
 
+sub page_html {
+    my (%args) = @_;
+
+    my $template = Scramble::Template::create('shared/page');
+    $template->param(Scramble::Template::common_params(%args),
+                     enable_embedded_google_map => $args{'enable-embedded-google-map'},
+                     html => $args{'html'},
+                     include_header => $args{'include-header'},
+                     no_title => $args{'no-title'},
+                     title => $args{title});
+
+    return $template->output();
+}
+
 sub html {
     my ($name, $params) = @_;
 
