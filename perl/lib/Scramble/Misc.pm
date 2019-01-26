@@ -146,19 +146,6 @@ sub make_colon_line {
     return "<b>$title: </b> $text<br>\n";
 }
 
-# FIXME: Move into Location.
-sub make_location_into_path {
-    my ($name) = @_;
-
-    # breaks deprecated make_path_into_location() functionality.
-    $name =~ s/\#//g;
-
-    $name =~ s/-/--/g;
-    $name =~ s/ /-/g;
-
-    return $name;
-}
-
 sub pluralize {
     my ($number, $word) = @_;
 

@@ -263,7 +263,13 @@ sub get_id {
 sub get_filename { 
     my $self = shift;
 
-    return sprintf("%s.html", Scramble::Misc::make_location_into_path($self->get_id()));
+    my ($path) = $self->get_id();
+
+    $path =~ s/\#//g;
+    $path =~ s/-/--/g;
+    $path =~ s/ /-/g;
+
+    return "$path.html";
 }
 
 
