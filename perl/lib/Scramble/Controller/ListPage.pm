@@ -58,11 +58,7 @@ sub create {
                      rows => \@rows);
     my $locations_html = $template->output();
 
-    my $max_images = $list->get_locations / 6;
-    if ($max_images < 10) {
-        $max_images = 10;
-    }
-$max_images = 100;
+    my $max_images = 100;
 
     my @images = get_images_to_display_for_locations('locations' => \@location_objects,
 						     'max-images' => $max_images);
