@@ -4,6 +4,7 @@ package Scramble::Controller::TripPage;
 
 use strict;
 
+use Scramble::Htmlify ();
 use Scramble::Misc ();
 use Scramble::Controller::ImageListFragment ();
 use Scramble::Controller::WaypointsFragment ();
@@ -68,7 +69,7 @@ sub create {
         $count++;
     }
 
-    my $route = Scramble::Misc::htmlify(Scramble::Misc::make_optional_line("%s", $self->trip()->get_route()));
+    my $route = Scramble::Htmlify::htmlify(Scramble::Misc::make_optional_line("%s", $self->trip()->get_route()));
     if ($route) {
 	$route = "<p>$route</p>";
     }

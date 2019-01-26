@@ -2,6 +2,9 @@ package Scramble::Controller::GeekeryPage;
 
 use strict;
 
+use Scramble::Htmlify ();
+use Scramble::Misc ();
+
 sub get_list_html {
     my @htmls;
     foreach my $list (Scramble::Model::List::get_all()) {
@@ -204,7 +207,7 @@ sub get_total_climbed {
 
     my @most_climbed;
     foreach my $name (sort { $climbed{$b} <=> $climbed{$a} } keys %climbed) {
-        push @most_climbed, Scramble::Misc::htmlify("Climbed $name $climbed{$name} times.");
+        push @most_climbed, Scramble::Htmlify::htmlify("Climbed $name $climbed{$name} times.");
     }
 
     return ('unique-count' => $unique_count,

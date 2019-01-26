@@ -101,7 +101,7 @@ sub get_cell_value {
         return $list_location->{'quad'} unless $quad;
         return $quad->get_short_name();
     } elsif ($name eq 'description') {
-	return Scramble::Misc::insert_links($list_location->{$name});
+        return Scramble::Htmlify::insert_links($list_location->{$name});
     } elsif ($list_location->{$name}) {
 	return $list_location->{$name};
     } else {

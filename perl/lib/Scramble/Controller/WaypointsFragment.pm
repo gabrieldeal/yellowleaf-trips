@@ -43,8 +43,8 @@ sub get_detailed_html {
 	push @waypoint_htmls, sprintf("%s %s from %s to %s",
 				      Scramble::Time::format_time(0, $delta),
 				      $type,
-				      Scramble::Misc::insert_links($w1->get_location()),
-				      Scramble::Misc::insert_links($w2->get_location()));
+				      Scramble::Htmlify::insert_links($w1->get_location()),
+				      Scramble::Htmlify::insert_links($w2->get_location()));
     }
 
     my @summary_htmls;

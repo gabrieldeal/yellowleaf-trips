@@ -68,7 +68,7 @@ sub test_insert_links {
 		 );
 
     while (my ($text, $expected) = each %tests) {
-	assert_equals(Scramble::Misc::insert_links($text),
+        assert_equals(Scramble::Htmlify::insert_links($text),
 		      "<!-- LinksInserted -->$expected");
     }
 }

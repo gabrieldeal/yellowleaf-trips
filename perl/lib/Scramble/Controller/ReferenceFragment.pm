@@ -16,7 +16,7 @@ sub get_reference_html {
 
     my $note = $reference->get_note() || '';
     if ($note) {
-        $note = Scramble::Misc::insert_links($note);
+        $note = Scramble::Htmlify::insert_links($note);
         $note = " ($note)";
     }
 

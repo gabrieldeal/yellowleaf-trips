@@ -2,6 +2,7 @@ package Scramble::Controller::LocationPage;
 
 use strict;
 
+use Scramble::Htmlify ();
 use Scramble::Misc ();
 use Scramble::Template ();
 
@@ -36,9 +37,9 @@ sub create {
     my %params = (
         aka => to_comma_separated_list($self->{location}->get_aka_names()),
         counties => to_comma_separated_list($self->get_counties()),
-        description_html => Scramble::Misc::htmlify($location->get_description()),
+        description_html => Scramble::Htmlify::htmlify($location->get_description()),
         elevation => Scramble::Misc::format_elevation($location->get_elevation()),
-        name_origin_html => Scramble::Misc::htmlify($location->get_naming_origin()),
+        name_origin_html => Scramble::Htmlify::htmlify($location->get_naming_origin()),
         prominence => Scramble::Misc::format_elevation($location->get_prominence()),
         recognizable_areas => to_comma_separated_list($self->get_recognizable_areas()),
         state => $self->get_state(),
