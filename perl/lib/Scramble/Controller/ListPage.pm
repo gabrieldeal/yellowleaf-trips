@@ -3,6 +3,7 @@ package Scramble::Controller::ListPage;
 use strict;
 
 use Scramble::Controller::ElevationFragment ();
+use Scramble::Controller::MapFragment ();
 use Scramble::Model::List ();
 use Scramble::Misc ();
 
@@ -151,7 +152,7 @@ sub get_map_html {
     my ($list, $locations) = @_;
 
     my %options = ('kml-url' => $list->get_kml_url);
-    Scramble::Misc::get_multi_point_embedded_google_map_html($locations, \%options);
+    Scramble::Controller::MapFragment::create($locations, \%options);
 }
 
 1;

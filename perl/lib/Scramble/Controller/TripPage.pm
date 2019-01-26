@@ -7,6 +7,7 @@ use strict;
 use Scramble::Htmlify ();
 use Scramble::Misc ();
 use Scramble::Controller::ImageListFragment ();
+use Scramble::Controller::MapFragment ();
 use Scramble::Controller::WaypointsFragment ();
 
 sub new {
@@ -88,7 +89,7 @@ EOT
                            Scramble::Misc::make_1_column_page('title' => $title,
 							      'include-header' => 1,
                                                               'html' => $html,
-                                                              'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap));
+                                                              'enable-embedded-google-map' => 1));
 }
 
 sub get_elevation_gain {
@@ -162,7 +163,7 @@ sub get_embedded_google_map_html {
     return '' unless $kml_url or grep { defined $_->get_latitude() } @locations;
 
     my %options = ('kml-url' => $kml_url);
-    return Scramble::Misc::get_multi_point_embedded_google_map_html(\@locations, \%options);
+    return Scramble::Controller::MapFragment::create(\@locations, \%options);
 }
 
 sub get_reference_html {

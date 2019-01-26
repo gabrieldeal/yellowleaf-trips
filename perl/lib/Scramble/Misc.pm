@@ -6,9 +6,6 @@ use IO::File ();
 use Scramble::Logger ();
 use URI::Encode ();
 
-our $gEnableEmbeddedGoogleMap = 1;
-my $gDisableGoogleMaps = 0;
-
 our $gSiteName = 'yellowleaf.org';
 
 sub dedup {
@@ -84,57 +81,6 @@ sub make_1_column_page {
     return $template->output();
 }
 
-
-# FIXME: Move to a fragment controller.
-sub _get_point_json {
-    my (@locations) = @_;
-
-    @locations or die "Missing locations";
-
-    my @points;
-    foreach my $location (@locations) {
-        my $lat = $location->get_latitude();
-        my $lon = $location->get_longitude();
-        my $name = $location->get_name();
-        my $link = $location->get_short_link_html();
-        $link =~ s/\"/\\\"/g;
-        $link =~ s/\'/\\'/g;
-        push @points, qq({"lat":$lat,"lon":$lon,"name":"$name"});
-    }
-
-    return sprintf("[%s]", join(",", @points));
-}
-sub get_multi_point_embedded_google_map_html {
-    my ($locations, $options) = @_;
-
-    return '' if $gDisableGoogleMaps;
-
-    my (@inputs);
-
-    @$locations = map { $_->get_latitude() ? ($_) : () } @$locations;
-    if (@$locations) {
-	my $points_json = _get_point_json(@$locations);
-	my $encoded_points_json = URI::Encode::uri_encode($points_json);
-        push @inputs, {
-            name => 'points',
-            value => $points_json
-        };
-    }
-
-    if ($options->{'kml-url'}) {
-        my $escaped_kml_url = URI::Encode::uri_encode($options->{'kml-url'});
-        push @inputs, {
-            name => 'kmlUrl',
-            value => "'$escaped_kml_url'"
-        };
-    }
-
-    return '' unless @inputs;
-
-    my $template = Scramble::Template::create('shared/map');
-    $template->param(inputs => \@inputs);
-    return $template->output();
-}
 
 sub slurp {
     my ($path) = @_;

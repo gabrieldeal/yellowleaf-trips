@@ -2,6 +2,7 @@ package Scramble::Controller::LocationPage;
 
 use strict;
 
+use Scramble::Controller::MapFragment ();
 use Scramble::Htmlify ();
 use Scramble::Misc ();
 use Scramble::Template ();
@@ -71,7 +72,7 @@ HTML
 							      'include-header' => 1,
                                                               html => $html,
 							      'no-add-picture' => 1,
-                                                              'enable-embedded-google-map' => $Scramble::Misc::gEnableEmbeddedGoogleMap));
+                                                              'enable-embedded-google-map' => 1));
 }
 
 sub to_comma_separated_list {
@@ -115,7 +116,7 @@ sub get_embedded_google_map_html {
 
     return '' unless $self->{location}->get_longitude();
 
-    return Scramble::Misc::get_multi_point_embedded_google_map_html([ $self->{location} ]);
+    return Scramble::Controller::MapFragment::create([ $self->{location} ]);
 }
 
 sub get_trips_for_location_html {
