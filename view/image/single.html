@@ -1,0 +1,28 @@
+<figure class="cell-container">
+  <tmpl_if is_video>
+    <tmpl_include single/video.html />
+  </tmpl_if>
+  <tmpl_if is_picture>
+    <tmpl_include single/picture.html />
+  </tmpl_if>
+  <tmpl_if html>
+    <tmpl_var html escape=none />
+  </tmpl_if>
+
+  <figcaption class="cell-caption">
+    <tmpl_unless no_description>
+      <div class="cell-description">
+        <tmpl_var description />
+    </tmpl_unless>
+
+    <tmpl_unless no_trip_date>
+      <div class="cell-date">
+        <tmpl_if trip_url>
+          <a href="<tmpl_var trip_url escape=none />"><tmpl_var trip_date /></a>
+        <tmpl_else>
+          <tmpl_var trip_date />
+        </tmpl_if>
+      </div>
+    </tmpl_unless>
+  </figcaption>
+</figure>

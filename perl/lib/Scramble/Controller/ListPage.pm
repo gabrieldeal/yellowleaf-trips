@@ -62,14 +62,12 @@ sub create {
 
     my @images = get_images_to_display_for_locations('locations' => \@location_objects,
 						     'max-images' => $max_images);
-    my @image_fragments = map { Scramble::Controller::ImageFragment->new($_) } @images;
-    my @image_htmls = map { Scramble::Misc::make_cell_html(content => $_->create()) } @image_fragments;
+    my @htmls = [$locations_html];
+    push @htmls, get_map_html($list, \@location_objects) if @location_objects;
 
-    my @cells = ($locations_html);
-    push @cells, get_map_html($list, \@location_objects) if @location_objects;
-    push @cells, @image_htmls;
-
-    my $images_html = Scramble::Misc::render_cells_into_flow(\@cells, 'float-first' => 1);
+    my $images_html = Scramble::Controller::ImageListFragment::create(htmls => [$locations_html],
+                                                                      images => \@images,
+                                                                      'float-first' => 1);
 
     my $title = $list->get_name;
 

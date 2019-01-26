@@ -93,7 +93,16 @@ sub set_trip_url { $_[0]->{'trip-url'} = $_[1] }
 sub get_should_skip_trip { $_[0]->{'skip-trip'} }
 sub get_type { $_[0]->{'type'} }
 sub get_poster { $_[0]->{'poster'} }
-sub get_poster_url { sprintf("../../$g_pics_dir/%s/%s", $_[0]->get_subdirectory(), $_[0]->get_poster()) }
+
+sub get_poster_url {
+    my $self = shift;
+
+    if (!$self->get_poster) {
+        return '';
+    }
+
+    return sprintf("../../$g_pics_dir/%s/%s", $self->get_subdirectory(), $self->get_poster());
+}
 
 sub get_capture_date {
     my $self = shift;

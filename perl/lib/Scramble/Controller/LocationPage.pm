@@ -56,9 +56,9 @@ sub create {
         $title .= " (unofficial name)";
     }
 
-    my $cells_html = Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
-                                                             'float-first' => 1,
-                                                             'images' => [ $location->get_picture_objects() ]);
+    my $cells_html = Scramble::Controller::ImageListFragment::create('htmls' => \@htmls,
+                                                                     'float-first' => 1,
+                                                                     'images' => [ $location->get_picture_objects() ]);
 
     my $html = <<HTML;
 $cells_html
@@ -125,7 +125,6 @@ sub get_trips_for_location_html {
     my @references_html = Scramble::Controller::ReferenceFragment::get_page_references_html($location->get_references());
 
     my @trips = Scramble::Model::Trip::get_trips_for_location($location);
-    return undef unless @trips || @references_html;
 
     foreach my $trip (@trips) {
         next unless $trip->should_show();

@@ -424,50 +424,6 @@ sub commafy {
     return $number;					 
 }
 
-sub make_cell_html {
-  my (%args) = @_;
-
-  my $contents_html = $args{content} || die "Missing 'content' argument";
-  my $description = $args{description} || '';
-  my $link = $args{link} || '';
-
-  return <<EOT;
-<figure style="display: table;">
-    $contents_html
-    <figcaption style="display: table-caption; caption-side: bottom ;">
-        <div class="cell-description">$description</div>
-        <div class="trip-link">$link</div>
-    </figcaption>
-</figure>
-EOT
-}
-sub render_cells_into_flow {
-  my ($htmls, %args) = @_;
-
-  return '' unless @$htmls;
-
-  # `float: left` breaks the favorite photos page.  Not having `float: left` breaks
-  # photos in quad, list & location pages.
-  my $float_class = $args{'float-first'} ? 'floated-flow-list' : '';
-
-  return (qq(<ul class="flow-list $float_class">)
-          . join("", map { qq(<li class="flow-list-item">$_</li>) } @$htmls)
-          . "</ul>");
-}
-
-sub render_images_into_flow {
-  my (%args) = @_;
-
-  my @cells;
-  push @cells, map { make_cell_html(content => $_) } @{ $args{'htmls'} || [] };
-  push @cells, map {
-      my $fragment = Scramble::Controller::ImageFragment->new($_);
-      $fragment->create(%args)
-  } @{ $args{'images'} };
-
-  return Scramble::Misc::render_cells_into_flow(\@cells, %args);
-}
-
 sub sanitize_for_filename {
     my ($filename) = @_;
 

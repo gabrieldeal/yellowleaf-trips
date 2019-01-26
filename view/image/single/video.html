@@ -1,0 +1,10 @@
+<video width="320"
+       height="180"
+       <tmpl_if enlarged_image_url>
+         poster="<tmpl_var video_poster_url escape=url />"
+         preload="none"
+       </tmpl_if>
+       controls>
+  <source src="<tmpl_var video_url escape=none />"
+          type="video/mp4" />
+</video>

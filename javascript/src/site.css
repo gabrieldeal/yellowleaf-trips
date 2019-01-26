@@ -39,13 +39,17 @@
     margin-bottom: 10px;
 }
 
-.image-description {
-    display: inline-block;
+.cell-container {
+    display: table;
 }
-.cell-description  { 
+.cell-caption {
+    display: table-caption;
+    caption-side: bottom;
+}
+.cell-description  {
     display: inline;
 }
-.trip-link { 
+.cell-date {
     font-size: small;
     display: inline;
 }

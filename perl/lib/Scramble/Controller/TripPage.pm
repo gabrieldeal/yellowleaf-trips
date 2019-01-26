@@ -5,6 +5,7 @@ package Scramble::Controller::TripPage;
 use strict;
 
 use Scramble::Misc ();
+use Scramble::Controller::ImageListFragment ();
 use Scramble::Controller::WaypointsFragment ();
 
 sub new {
@@ -50,18 +51,18 @@ sub create {
     foreach my $section (@sections) {
         if (@sections > 1) {
 	    if ($count == 1) {
-		$cells_html .= Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
-								       'images' => [@map_objects ],
-                                                                       'no-trip-link' => 1);
+                $cells_html .= Scramble::Controller::ImageListFragment::create(htmls => \@htmls,
+                                                                               images => [@map_objects],
+                                                                               'no-trip-date' => 1);
 		@htmls = @map_objects = ();
                 $cells_html .= '<br clear="all" />';
 	    }
             $cells_html .= qq(<h2>$section->{name}</h2>);
 	}
 
-        $cells_html .= Scramble::Misc::render_images_into_flow('htmls' => \@htmls,
-                                                               'images' => [@map_objects, @{ $section->{pictures} } ],
-                                                               'no-trip-link' => 1);
+        $cells_html .= Scramble::Controller::ImageListFragment::create(htmls => \@htmls,
+                                                                       images => [@map_objects, @{ $section->{pictures} } ],
+                                                                       'no-trip-date' => 1);
         $cells_html .= '<br clear="all" />';
         @htmls = @map_objects = ();
         $count++;
