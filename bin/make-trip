@@ -406,7 +406,7 @@ sub process_images {
             } else {
                 # Older processed files start with "<NNNNN>-"
                 ($orig_filename) = ($enl_filename =~ /^(?:\d+-)?([-\w_\(\)]+)-enl.jpg$/) or die "Failed to parse '$enl_filename'";
-                my $orig_filename_glob = "$dir/$orig_filename.*";
+                my $orig_filename_glob = "$dir/$orig_filename.xmp";
                 my @orig_filenames = glob($orig_filename_glob);
                 @orig_filenames == 1 or die(sprintf("Got %s matches for '$orig_filename_glob': @orig_filenames", scalar(@orig_filenames)));
 	    
@@ -526,7 +526,7 @@ sub get_image_metadata {
   my ($file) = @_;
 
   print "Reading metadata in $file...\n";
-  my @tags = qw(ImageDescription Rating DateCreated CreateDate Creator Copyright);
+  my @tags = qw(Description ImageDescription Rating DateCreated CreateDate Creator Copyright);
   # perl -mImage::ExifTool -mData::Dumper -e "print Data::Dumper::Dumper(Image::ExifTool::ImageInfo('XXXXX.MP4'))"
   my $info = Image::ExifTool::ImageInfo($file, \@tags);
   die "Error opening $file: " . $info->{Error} if exists $info->{Error};
@@ -538,7 +538,7 @@ sub get_image_metadata {
       $timestamp =~ s/\.\d\d\d$//;
   }
 
-  my $caption = $info->{'ImageDescription'} || '';
+  my $caption = $info->{'ImageDescription'} || $info->{'Description'} || '';
   $caption = '' if $caption eq "OLYMPUS DIGITAL CAMERA";
   $caption =~ s/&/&amp;/g;
   $caption =~ s/"/&quot;/g;
