@@ -197,7 +197,7 @@ sub get_total_climbed {
         next unless $count;
 	$unique_count++;
         $summit_count += $count;
-        if ($count > 3) {
+        if ($count > 5) {
             $climbed{$location->get_name()} = $count;
         }
     }
