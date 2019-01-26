@@ -2,6 +2,7 @@ package Scramble::Model::Waypoints;
 
 use strict;
 
+use Scramble::Controller::ElevationFragment ();
 use Scramble::Model::Waypoint ();
 
 our @ISA = qw(Scramble::Model);
@@ -52,7 +53,7 @@ sub get_elevation_gain {
     my $gain = $self->_get_optional("elevation-gain");
     if (defined $gain) {
         return undef if $gain == 0;
-        return Scramble::Misc::format_elevation($gain);
+        return Scramble::Controller::ElevationFragment::format_elevation($gain);
     }
 
     my @waypoints = $self->get_on_trail_waypoints();
@@ -70,7 +71,7 @@ sub get_elevation_gain {
     }
 
     return undef if $gain == 0;
-    return Scramble::Misc::format_elevation($gain);
+    return Scramble::Controller::ElevationFragment::format_elevation($gain);
 }
 
 sub get_car_to_car_delta {

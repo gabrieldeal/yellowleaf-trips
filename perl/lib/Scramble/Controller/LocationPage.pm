@@ -38,9 +38,9 @@ sub create {
         aka => to_comma_separated_list($self->{location}->get_aka_names()),
         counties => to_comma_separated_list($self->get_counties()),
         description_html => Scramble::Htmlify::htmlify($location->get_description()),
-        elevation => Scramble::Misc::format_elevation($location->get_elevation()),
+        elevation => Scramble::Controller::ElevationFragment::format_elevation($location->get_elevation()),
         name_origin_html => Scramble::Htmlify::htmlify($location->get_naming_origin()),
-        prominence => Scramble::Misc::format_elevation($location->get_prominence()),
+        prominence => Scramble::Controller::ElevationFragment::format_elevation($location->get_prominence()),
         recognizable_areas => to_comma_separated_list($self->get_recognizable_areas()),
         state => $self->get_state(),
         trips_html => $self->get_trips_for_location_html(),
@@ -178,11 +178,11 @@ sub get_summary_image_html {
 
 sub get_formatted_elevation {
     my $self = shift;
-    return $self->_get_formatted_elevation(\&Scramble::Misc::format_elevation);
+    return $self->_get_formatted_elevation(\&Scramble::Controller::ElevationFragment::format_elevation);
 }
 sub get_short_formatted_elevation {
     my $self = shift;
-    return $self->_get_formatted_elevation(\&Scramble::Misc::format_elevation_short);
+    return $self->_get_formatted_elevation(\&Scramble::Controller::ElevationFragment::format_elevation_short);
 }
 sub _get_formatted_elevation {
     my $self = shift;

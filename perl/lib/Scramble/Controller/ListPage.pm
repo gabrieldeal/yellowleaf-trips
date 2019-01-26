@@ -2,6 +2,7 @@ package Scramble::Controller::ListPage;
 
 use strict;
 
+use Scramble::Controller::ElevationFragment ();
 use Scramble::Model::List ();
 use Scramble::Misc ();
 
@@ -93,7 +94,7 @@ sub get_cell_value {
 		. Scramble::Misc::make_optional_line(" (AKA %s)",
                                                      $list_location->get_aka_names));
     } elsif ($name eq 'elevation') {
-        return Scramble::Misc::format_elevation_short($list_location->get_elevation);
+        return Scramble::Controller::ElevationFragment::format_elevation_short($list_location->get_elevation);
     } elsif ($name eq 'quad') {
         return '' unless $list_location->{'quad'};
         my $quad = eval { Scramble::Model::Area::get_all()->find_one('id' => $list_location->{'quad'},

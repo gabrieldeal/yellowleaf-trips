@@ -2,6 +2,7 @@ package Scramble::Model::List;
 
 use strict;
 
+use Scramble::Controller::ElevationFragment ();
 use Scramble::Misc;
 use Scramble::Model;
 use Scramble::Model::List::Location;
@@ -109,8 +110,8 @@ sub _cmp_list_locations {
     my ($list_location1, $list_location2) = @_;
 
     if ($self->get_sortby eq 'elevation') {
-        my %e1 = Scramble::Misc::get_elevation_details($list_location1->get_elevation);
-        my %e2 = Scramble::Misc::get_elevation_details($list_location2->get_elevation);
+        my %e1 = Scramble::Controller::ElevationFragment::get_elevation_details($list_location1->get_elevation);
+        my %e2 = Scramble::Controller::ElevationFragment::get_elevation_details($list_location2->get_elevation);
 	return $e2{feet} <=> $e1{feet};
     } elsif ($self->get_sortby eq 'MVD') {
         return $list_location2->get_mvd <=> $list_location1->get_mvd;

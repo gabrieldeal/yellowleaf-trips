@@ -129,12 +129,12 @@ sub get_stats {
         my $formatted_max_gain = '?';
         my $formatted_max_gain_per_day = '?';
         if (defined $stats{$year}{'gain-count'} && $stats{$year}{'gain-count'} > 0) {
-            $formatted_max_gain_per_day = Scramble::Misc::format_elevation_short($stats{$year}{'max-gain-per-day'});
-            $formatted_max_gain = Scramble::Misc::format_elevation_short($stats{$year}{'max-gain'});
+            $formatted_max_gain_per_day = Scramble::Controller::ElevationFragment::format_elevation_short($stats{$year}{'max-gain-per-day'});
+            $formatted_max_gain = Scramble::Controller::ElevationFragment::format_elevation_short($stats{$year}{'max-gain'});
             $stats{$year}{'average-gain'} = int($stats{$year}{'elevation-gain'} / $stats{$year}{'gain-count'});
-            $formatted_average_gain = Scramble::Misc::format_elevation_short($stats{$year}{'average-gain'});
+            $formatted_average_gain = Scramble::Controller::ElevationFragment::format_elevation_short($stats{$year}{'average-gain'});
             $stats{$year}{'estimated-gain'} = $stats{$year}{'average-gain'} * $stats{$year}{'total-trips'};
-            $formatted_estimated_gain = Scramble::Misc::format_elevation_short($stats{$year}{'estimated-gain'});
+            $formatted_estimated_gain = Scramble::Controller::ElevationFragment::format_elevation_short($stats{$year}{'estimated-gain'});
             $average_gain_per_trip = sprintf("%.2f", $stats{$year}{'average-gain'} * $stats{$year}{'total-trips'} / 5280);
         }
 	$html .= sprintf(qq(<tr>
