@@ -2,7 +2,7 @@ package Scramble::Controller::MapFragment;
 
 use strict;
 
-sub create {
+sub html {
     my ($locations, $options) = @_;
 
     my (@inputs);

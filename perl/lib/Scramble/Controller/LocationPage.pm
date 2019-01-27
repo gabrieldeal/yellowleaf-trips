@@ -58,9 +58,9 @@ sub create {
         $title .= " (unofficial name)";
     }
 
-    my $cells_html = Scramble::Controller::ImageListFragment::create('htmls' => \@htmls,
-                                                                     'float-first' => 1,
-                                                                     'images' => [ $location->get_picture_objects() ]);
+    my $cells_html = Scramble::Controller::ImageListFragment::html('htmls' => \@htmls,
+                                                                   'float-first' => 1,
+                                                                   'images' => [ $location->get_picture_objects() ]);
 
     my $html = <<HTML;
 $cells_html
@@ -116,7 +116,7 @@ sub get_embedded_google_map_html {
 
     return '' unless $self->{location}->get_longitude();
 
-    return Scramble::Controller::MapFragment::create([ $self->{location} ]);
+    return Scramble::Controller::MapFragment::html([ $self->{location} ]);
 }
 
 sub get_trips_for_location_html {

@@ -43,9 +43,9 @@ sub get_trip_params {
 
     my @image_htmls = map {
         my $fragment = Scramble::Controller::ImageFragment->new($_);
-        $fragment->create('no-description' => 1,
-                          'no-lightbox' => 1,
-                          'no-trip-link' => 1)
+        $fragment->html('no-description' => 1,
+                        'no-lightbox' => 1,
+                        'no-trip-link' => 1)
     } @images;
 
     return {

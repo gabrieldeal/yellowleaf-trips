@@ -44,7 +44,7 @@ sub create_all {
     }
 
     foreach my $year (sort keys %pictures) {
-        my $images_html = Scramble::Controller::ImageListFragment::create(images => $pictures{$year}{images});
+        my $images_html = Scramble::Controller::ImageListFragment::html(images => $pictures{$year}{images});
 	my $title = "My Favorite Photos of $year";
 
         my $template = Scramble::Template::create('image/index');

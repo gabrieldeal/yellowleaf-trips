@@ -67,9 +67,9 @@ sub create {
     my @htmls = [$locations_html];
     push @htmls, get_map_html($list, \@location_objects) if @location_objects;
 
-    my $images_html = Scramble::Controller::ImageListFragment::create(htmls => [$locations_html],
-                                                                      images => \@images,
-                                                                      'float-first' => 1);
+    my $images_html = Scramble::Controller::ImageListFragment::html(htmls => [$locations_html],
+                                                                    images => \@images,
+                                                                    'float-first' => 1);
 
     my $title = $list->get_name;
 
@@ -152,7 +152,7 @@ sub get_map_html {
     my ($list, $locations) = @_;
 
     my %options = ('kml-url' => $list->get_kml_url);
-    Scramble::Controller::MapFragment::create($locations, \%options);
+    Scramble::Controller::MapFragment::html($locations, \%options);
 }
 
 1;

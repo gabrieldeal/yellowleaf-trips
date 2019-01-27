@@ -12,7 +12,7 @@ sub new {
     return bless($self, ref($arg0) || $arg0);
 }
 
-sub create {
+sub html {
     my $self = shift;
     my (%options) = @_;
 

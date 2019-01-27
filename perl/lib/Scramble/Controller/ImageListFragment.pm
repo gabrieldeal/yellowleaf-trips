@@ -2,7 +2,7 @@ package Scramble::Controller::ImageListFragment;
 
 use strict;
 
-sub create {
+sub html {
     my (%args) = @_;
 
     my @cells;

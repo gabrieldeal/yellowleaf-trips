@@ -53,18 +53,18 @@ sub create {
     foreach my $section (@sections) {
         if (@sections > 1) {
 	    if ($count == 1) {
-                $cells_html .= Scramble::Controller::ImageListFragment::create(htmls => \@htmls,
-                                                                               images => [@map_objects],
-                                                                               'no-trip-date' => 1);
+                $cells_html .= Scramble::Controller::ImageListFragment::html(htmls => \@htmls,
+                                                                             images => [@map_objects],
+                                                                             'no-trip-date' => 1);
 		@htmls = @map_objects = ();
                 $cells_html .= '<br clear="all" />';
 	    }
             $cells_html .= qq(<h2>$section->{name}</h2>);
 	}
 
-        $cells_html .= Scramble::Controller::ImageListFragment::create(htmls => \@htmls,
-                                                                       images => [@map_objects, @{ $section->{pictures} } ],
-                                                                       'no-trip-date' => 1);
+        $cells_html .= Scramble::Controller::ImageListFragment::html(htmls => \@htmls,
+                                                                     images => [@map_objects, @{ $section->{pictures} } ],
+                                                                     'no-trip-date' => 1);
         $cells_html .= '<br clear="all" />';
         @htmls = @map_objects = ();
         $count++;
@@ -163,7 +163,7 @@ sub get_embedded_google_map_html {
     return '' unless $kml_url or grep { defined $_->get_latitude() } @locations;
 
     my %options = ('kml-url' => $kml_url);
-    return Scramble::Controller::MapFragment::create(\@locations, \%options);
+    return Scramble::Controller::MapFragment::html(\@locations, \%options);
 }
 
 sub get_reference_html {
