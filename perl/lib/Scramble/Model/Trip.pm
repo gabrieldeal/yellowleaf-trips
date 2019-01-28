@@ -198,20 +198,6 @@ sub get_summary_date {
     return $date;
 }
 
-# FIXME: Move to a fragment controller.
-sub get_summary_name {
-    my $self = shift;
-    my ($name) = @_;
-
-    $name = $self->get_name() unless $name;
-    $name = $self->link_if_should_show($name);
-    if ($self->get_state() ne 'done') {
-	$name .= sprintf(" (%s)", $self->get_state());
-    }
-
-    return $name;
-}
-
 sub get_sorted_images {
     my $self = shift;
 
