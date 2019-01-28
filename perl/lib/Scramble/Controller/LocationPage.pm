@@ -34,12 +34,18 @@ sub create {
     my $self = shift;
 
     my $location = $self->{location};
+    my @map_inputs = Scramble::Controller::MapFragment::params([ $self->{location} ]);
+    my @image_params = map {
+        Scramble::Controller::ImageFragment->new($_)->params;
+    } $location->get_picture_objects;
 
     my %params = (
         aka => to_comma_separated_list($self->{location}->get_aka_names()),
         counties => to_comma_separated_list($self->get_counties()),
         description_html => Scramble::Htmlify::htmlify($location->get_description()),
         elevation => Scramble::Controller::ElevationFragment::format_elevation($location->get_elevation()),
+        images => \@image_params,
+        map_inputs => \@map_inputs,
         name_origin_html => Scramble::Htmlify::htmlify($location->get_naming_origin()),
         prominence => Scramble::Controller::ElevationFragment::format_elevation($location->get_prominence()),
         recognizable_areas => to_comma_separated_list($self->get_recognizable_areas()),
@@ -47,28 +53,11 @@ sub create {
         trips_html => $self->get_trips_for_location_html(),
         usgs_quads => to_comma_separated_list($self->get_quads()),
         );
-    my $text_html = Scramble::Template::html('location/page', \%params);
 
-    my @htmls = ($text_html);
-    my $map_html =  $self->get_embedded_google_map_html();
-    push @htmls, $map_html if $map_html;
-
-    my $title = sprintf("Location: %s", $location->get_name());
-    if ($location->get_is_unofficial_name()) {
-        $title .= " (unofficial name)";
-    }
-
-    my $cells_html = Scramble::Controller::ImageListFragment::html('htmls' => \@htmls,
-                                                                   'float-first' => 1,
-                                                                   'images' => [ $location->get_picture_objects() ]);
-
-    my $html = <<HTML;
-$cells_html
-<br clear="all" />
-HTML
+    my $html = Scramble::Template::html('location/page', \%params);
 
     Scramble::Misc::create(sprintf("l/%s", $location->get_filename()),
-                           Scramble::Template::page_html(title => $title,
+                           Scramble::Template::page_html(title => $self->get_title,
                                                          'include-header' => 1,
                                                          html => $html,
                                                          'no-add-picture' => 1,
@@ -81,6 +70,17 @@ sub to_comma_separated_list {
     my $delim = grep(/,/, @elements) ? ';' : ',';
 
     return join("$delim ", @elements);
+}
+
+sub get_title {
+    my $self = shift;
+
+    my $title = sprintf("Location: %s", $self->{location}->get_name());
+    if ($self->{location}->get_is_unofficial_name()) {
+        $title .= " (unofficial name)";
+    }
+
+    return $title;
 }
 
 sub get_recognizable_areas {
@@ -109,14 +109,6 @@ sub get_state {
       return undef;
     }
     return $self->{location}->get_state_object()->get_short_name();
-}
-
-sub get_embedded_google_map_html {
-    my $self = shift;
-
-    return '' unless $self->{location}->get_longitude();
-
-    return Scramble::Controller::MapFragment::html([ $self->{location} ]);
 }
 
 sub get_trips_for_location_html {

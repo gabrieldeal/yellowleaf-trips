@@ -2,7 +2,7 @@ package Scramble::Controller::MapFragment;
 
 use strict;
 
-sub html {
+sub params {
     my ($locations, $options) = @_;
 
     my (@inputs);
@@ -25,10 +25,17 @@ sub html {
         };
     }
 
+    return @inputs;
+}
+
+sub html {
+    my ($locations, $options) = @_;
+
+    my (@inputs) = params($locations, $options);
     return '' unless @inputs;
 
     my $template = Scramble::Template::create('shared/map');
-    $template->param(inputs => \@inputs);
+    $template->param(map_inputs => \@inputs);
 
     return $template->output();
 }

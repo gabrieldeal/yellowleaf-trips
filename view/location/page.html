@@ -1,63 +1,81 @@
-<tmpl_if name="aka">
-  <div class="field-container">
-    <div class="field-name">AKA:</div>
-    <div class="field-value"><tmpl_var name="aka" /></div>
-  </div>
-</tmpl_if>
+<ul class="flow-list floated-flow-list">
+  <li class="flow-list-item">
+    <tmpl_if name="aka">
+      <div class="field-container">
+        <div class="field-name">AKA:</div>
+        <div class="field-value"><tmpl_var name="aka" /></div>
+      </div>
+    </tmpl_if>
 
-<tmpl_if name="elevation">
-  <div class="field-container">
-    <div class="field-name">Elevation:</div>
-    <div class="field-value"><tmpl_var name="elevation" /></div>
-  </div>
-</tmpl_if>
+    <tmpl_if name="elevation">
+      <div class="field-container">
+        <div class="field-name">Elevation:</div>
+        <div class="field-value"><tmpl_var name="elevation" /></div>
+      </div>
+    </tmpl_if>
 
-<tmpl_if name="prominence">
-  <div class="field-container">
-    <div class="field-name">Prominence:</div>
-    <div class="field-value"><tmpl_var name="prominence" /></div>
-  </div>
-</tmpl_if>
+    <tmpl_if name="prominence">
+      <div class="field-container">
+        <div class="field-name">Prominence:</div>
+        <div class="field-value"><tmpl_var name="prominence" /></div>
+      </div>
+    </tmpl_if>
 
-<tmpl_if name="state">
-  <div class="field-container">
-    <div class="field-name">State:</div>
-    <div class="field-value"><tmpl_var name="state" /></div>
-  </div>
-</tmpl_if>
+    <tmpl_if name="state">
+      <div class="field-container">
+        <div class="field-name">State:</div>
+        <div class="field-value"><tmpl_var name="state" /></div>
+      </div>
+    </tmpl_if>
 
-<tmpl_if name="counties">
-  <div class="field-container">
-    <div class="field-name">Counties:</div>
-    <div class="field-value"><tmpl_var name="counties" /></div>
-  </div>
-</tmpl_if>
+    <tmpl_if name="counties">
+      <div class="field-container">
+        <div class="field-name">Counties:</div>
+        <div class="field-value"><tmpl_var name="counties" /></div>
+      </div>
+    </tmpl_if>
 
-<tmpl_if name="recognizable_areas">
-  <div class="field-container">
-    <div class="field-name">In:</div>
-    <div class="field-value"><tmpl_var name="recognizable_areas" /></div>
-  </div>
-</tmpl_if>
+    <tmpl_if name="recognizable_areas">
+      <div class="field-container">
+        <div class="field-name">In:</div>
+        <div class="field-value"><tmpl_var name="recognizable_areas" /></div>
+      </div>
+    </tmpl_if>
 
-<tmpl_if name="usgs_quads">
-  <div class="field-container">
-    <div class="field-name">USGS Quad:</div>
-    <div class="field-value"><tmpl_var name="usgs_quads" /></div>
-  </div>
-</tmpl_if>
+    <tmpl_if name="usgs_quads">
+      <div class="field-container">
+        <div class="field-name">USGS Quad:</div>
+        <div class="field-value"><tmpl_var name="usgs_quads" /></div>
+      </div>
+    </tmpl_if>
 
-<tmpl_if name="trips_html">
-  <h2>Trip Reports and References</h2>
-  <tmpl_var escape="none" name="trips_html" />
-</tmpl_if>
+    <tmpl_if name="trips_html">
+      <h2>Trip Reports and References</h2>
+      <tmpl_var escape="none" name="trips_html" />
+    </tmpl_if>
 
-<tmpl_if name="description_html">
-  <h2>Description</h2>
-  <tmpl_var escape="none" name="description_html" />
-</tmpl_if>
+    <tmpl_if name="description_html">
+      <h2>Description</h2>
+      <tmpl_var escape="none" name="description_html" />
+    </tmpl_if>
 
-<tmpl_if name="name_origin_html">
-  <h2>Name Origin</h2>
-  <tmpl_var escape="none" name="name_origin_html" />
-</tmpl_if>
+    <tmpl_if name="name_origin_html">
+      <h2>Name Origin</h2>
+      <tmpl_var escape="none" name="name_origin_html" />
+    </tmpl_if>
+  </li>
+
+  <tmpl_if map_inputs>
+    <li class="flow-list-item">
+      <tmpl_include ../shared/map.html />
+    </li>
+  </tmpl_if>
+
+  <tmpl_loop images>
+    <li class="flow-list-item">
+      <tmpl_include ../image/single.html />
+    </li>
+  </tmpl_loop>
+</ul>
+
+<br clear="all" />
