@@ -54,24 +54,12 @@
       <ul>
         <tmpl_loop trips>
           <li>
-            <tmpl_var site_name />:
             <div class="trip-thumbnail">
-              <div class="trip-thumbnail-image">
-                <a href="<tmpl_var trip_url escape=none />"
-                   alt="<tmpl_var image_description />">
-                  <img width="125"
-                       onload="Yellowleaf_main.resizeThumbnail(this, 125)"
-                       src="<tmpl_var image_url escape=none />">
-                </a>
-              </div>
               <div class="trip-thumbnail-title">
-                <tmpl_var name_html escape=none />
+                <a href="<tmpl_var url escape=none />"><tmpl_var name /></a>
               </div>
               <div class="trip-thumbnail-date">
                 <tmpl_var date />
-              </div>
-              <div class="trip-thumbnail-type">
-                <tmpl_var type />
               </div>
             </div>
           </li>

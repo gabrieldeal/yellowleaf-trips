@@ -119,16 +119,10 @@ sub get_trips_params {
     foreach my $trip (@trips) {
         next unless $trip->should_show();
 
-        my @images = $trip->get_sorted_images;
-
         push @trip_params, {
             date => $trip->get_summary_date,
-            image_description => @images ? $images[0]->get_description : undef,
-            image_url => @images ? $images[0]->get_url : undef,
-            name_html => $trip->get_summary_name,
-            site_name => $Scramble::Misc::gSiteName,
-            trip_url => $trip->get_trip_page_url,
-            type => $trip->get_type,
+            name => $trip->get_name,
+            url => $trip->get_trip_page_url,
         };
     }
 

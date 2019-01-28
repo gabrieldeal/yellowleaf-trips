@@ -6,8 +6,6 @@ use IO::File ();
 use Scramble::Logger ();
 use URI::Encode ();
 
-our $gSiteName = 'yellowleaf.org';
-
 sub dedup {
     my (@dups) = @_;
 
