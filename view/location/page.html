@@ -49,9 +49,34 @@
       </div>
     </tmpl_if>
 
-    <tmpl_if name="trips_html">
-      <h2>Trip Reports and References</h2>
-      <tmpl_var escape="none" name="trips_html" />
+    <tmpl_if name="trips">
+      <h2>Trip Reports</h2>
+      <ul>
+        <tmpl_loop trips>
+          <li>
+            <tmpl_var site_name />:
+            <div class="trip-thumbnail">
+              <div class="trip-thumbnail-image">
+                <a href="<tmpl_var trip_url escape=none />"
+                   alt="<tmpl_var image_description />">
+                  <img width="125"
+                       onload="Yellowleaf_main.resizeThumbnail(this, 125)"
+                       src="<tmpl_var image_url escape=none />">
+                </a>
+              </div>
+              <div class="trip-thumbnail-title">
+                <tmpl_var name_html escape=none />
+              </div>
+              <div class="trip-thumbnail-date">
+                <tmpl_var date />
+              </div>
+              <div class="trip-thumbnail-type">
+                <tmpl_var type />
+              </div>
+            </div>
+          </li>
+        </tmpl_loop>
+      </ul>
     </tmpl_if>
 
     <tmpl_if name="description_html">

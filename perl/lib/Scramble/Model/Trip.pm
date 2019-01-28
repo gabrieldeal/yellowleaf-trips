@@ -183,6 +183,7 @@ sub get_trip_page_url {
     return sprintf("../../g/r/%s", $self->get_filename());
 }
 
+# FIXME: Move to a fragment controller.
 sub get_summary_date {
     my $self = shift;
 
@@ -197,6 +198,7 @@ sub get_summary_date {
     return $date;
 }
 
+# FIXME: Move to a fragment controller.
 sub get_summary_name {
     my $self = shift;
     my ($name) = @_;

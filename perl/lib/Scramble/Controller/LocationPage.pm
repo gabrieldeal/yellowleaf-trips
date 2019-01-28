@@ -50,7 +50,7 @@ sub create {
         prominence => Scramble::Controller::ElevationFragment::format_elevation($location->get_prominence()),
         recognizable_areas => to_comma_separated_list($self->get_recognizable_areas()),
         state => $self->get_state(),
-        trips_html => $self->get_trips_for_location_html(),
+        trips => $self->get_trips_params(),
         usgs_quads => to_comma_separated_list($self->get_quads()),
         );
 
@@ -111,62 +111,28 @@ sub get_state {
     return $self->{location}->get_state_object()->get_short_name();
 }
 
-sub get_trips_for_location_html {
+sub get_trips_params {
     my $self = shift;
 
-    my $location = $self->{location};
-
-    my @references_html = Scramble::Controller::ReferenceFragment::get_page_references_html($location->get_references());
-
-    my @trips = Scramble::Model::Trip::get_trips_for_location($location);
-
+    my @trips = Scramble::Model::Trip::get_trips_for_location($self->{location});
+    my @trip_params;
     foreach my $trip (@trips) {
         next unless $trip->should_show();
-        push @references_html, sprintf("$Scramble::Misc::gSiteName: %s",
-                                       $self->get_trip_link_html($trip));
+
+        my @images = $trip->get_sorted_images;
+
+        push @trip_params, {
+            date => $trip->get_summary_date,
+            image_description => @images ? $images[0]->get_description : undef,
+            image_url => @images ? $images[0]->get_url : undef,
+            name_html => $trip->get_summary_name,
+            site_name => $Scramble::Misc::gSiteName,
+            trip_url => $trip->get_trip_page_url,
+            type => $trip->get_type,
+        };
     }
 
-    return '' unless @references_html;
-
-    return '<ul><li>' . join('</li><li>', @references_html) . '</li></ul>';
-}
-
-sub get_trip_link_html {
-    my $self = shift;
-    my ($trip) = @_;
-
-    my $date = $trip->get_summary_date();
-    my $name = $trip->get_summary_name();
-    my $image_html = $self->get_summary_image_html($trip) || '';
-    my $type = $trip->get_type();
-
-    return <<EOT;
-<div class="trip-thumbnail">
-    <div class="trip-thumbnail-image">$image_html</div>
-    <div class="trip-thumbnail-title">$name</div>
-    <div class="trip-thumbnail-date">$date</div>
-    <div class="trip-thumbnail-type">$type</div>
-</div>
-EOT
-}
-
-sub get_summary_image_html {
-    my $self = shift;
-    my ($trip) = @_;
-
-    my $size = 125;
-
-    my @image_htmls;
-    foreach my $image_obj ($trip->get_sorted_images()) {
-        if ($image_obj) {
-            my $image_html = sprintf(qq(<img width="$size" onload="Yellowleaf_main.resizeThumbnail(this, $size)" src="%s">),
-                                     $image_obj->get_url());
-            $image_html = $trip->link_if_should_show($image_html);
-            push @image_htmls, $image_html;
-        }
-    }
-
-    return $image_htmls[0];
+    return \@trip_params;
 }
 
 sub get_formatted_elevation {
