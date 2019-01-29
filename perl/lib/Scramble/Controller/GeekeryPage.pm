@@ -5,8 +5,8 @@ use strict;
 use Scramble::Htmlify ();
 use Scramble::Misc ();
 
-sub get_list_html {
-    my @htmls;
+sub get_list_stats {
+    my @stats;
     foreach my $list (Scramble::Model::List::get_all()) {
 	my $climbed_count = 0;
         foreach my $list_location ($list->get_locations) {
@@ -18,174 +18,87 @@ sub get_list_html {
 
         my $total = $list->get_locations;
         my $percent = 100 * $climbed_count / $total;
-        my $html = sprintf(qq(Climbed % 6.2f%% (%d/%d) of <a href="%s">%s</a>),
-                           $percent,
-                           $climbed_count,
-                           $total,
-                           $list->get_url,
-                           $list->get_name);
-        $html =~ s/ /&nbsp;/; # line up the column of percentages in HTML
-        $html =~ s/ /&nbsp;/;
-	push @htmls, { html => $html, percent => $percent };
+        push @stats, {
+            list_name => $list->get_name,
+            list_url => $list->get_url,
+            percent => int($percent),
+            total_count => $total,
+        };
     }
 
-    @htmls = reverse sort { $a->{percent} <=> $b->{percent} } @htmls;
-    @htmls = map { $_->{html} } @htmls;
-    return Scramble::Misc::make_optional_line("<h2>Peak Lists</h2> %s",
-					      join("<br>", @htmls));
+    @stats = reverse sort { $a->{percent} <=> $b->{percent} } @stats;
+
+    return (
+        list_stats_rows => \@stats,
+    );
 }
 
-sub get_total_days {
-  my ($stats) = @_;
+sub get_yearly_stats {
+    my @column_keys = qw(
+        year
+        total_peaks
+        total_trips
+        climbing_trips
+        trail_run_trips
+        total_days
+        climbing_days
+        trail_run_days
+    );
 
-  if ($stats->{'total-days'}) {
-      return $stats->{'total-days'};
-  }
-  return '?';
-}
-
-sub nlvl {
-    my ($first_choice, $second_choice) = @_;
-
-    return defined $first_choice ? $first_choice : $second_choice;
-}
-
-sub get_stats {
     my %stats;
     foreach my $trip (Scramble::Model::Trip::get_all()) {
 	my $date = $trip->get_start_date();
 	my ($year) = ($date =~ /^(\d\d\d\d)\//);
-	my $gain = $trip->get_waypoints()->get_elevation_gain("ascending|descending");
 
         if (! exists $stats{$year}) {
-            $stats{$year} = {
-                             'total-days' => 0,
-                             'total-trips' => 0,
-                             'total-peaks' => 0,
-                             'max-gain' => 0,
-                             'mail-gain-per-day' => 0,
-                             'estimated-gain' => 0,
-                             'climbing-trips' => 0,
-                             'climbing-days' => 0,
-                             'trail-run-trips' => 0,
-                             'trail-run-days' => 0,
-                            };
+            $stats{$year} = { map { ($_ => 0) } @column_keys };
+            $stats{$year}{year} = $year;
         }
 
-
 	my $ndays = $trip->get_num_days();
-	$stats{$year}{'total-days'} += $ndays;
-	$stats{$year}{'total-trips'}++;
+	$stats{$year}{total_days} += $ndays;
+	$stats{$year}{total_trips}++;
         if ($trip->get_type() =~ /crag|climb|boulder/) {
-            $stats{$year}{'climbing-days'} += $ndays;
-            $stats{$year}{'climbing-trips'}++;
+            $stats{$year}{climbing_days} += $ndays;
+            $stats{$year}{climbing_trips}++;
         } elsif ($trip->get_type() =~ /trail run/) {
-            $stats{$year}{'trail-run-days'} += $ndays;
-            $stats{$year}{'trail-run-trips'}++;
+            $stats{$year}{trail_run_days} += $ndays;
+            $stats{$year}{trail_run_trips}++;
         }
 
 	my @locations = grep { $_->get_type() eq 'peak' } $trip->get_location_objects();
-        $stats{$year}{'total-peaks'} += @locations;
-
-	if (! defined $stats{$year}{'max-peaks'} or $stats{$year}{'max-peaks'} < @locations) {
-	    $stats{$year}{'max-peaks'} = @locations;
-	    $stats{$year}{'max-peaks-URL'} = $trip->get_trip_page_url();
-	}
-
-	if (defined $gain) {
-	    $gain = Scramble::Misc::numerify($gain);
-	    if (! defined $stats{$year}{'max-gain'} or $stats{$year}{'max-gain'} < $gain) {
-		$stats{$year}{'max-gain'} = $gain;
-		$stats{$year}{'max-gain-URL'} = $trip->get_trip_page_url();
-	    }
-	    my $gain_per_day = $gain / $trip->get_num_days();
-	    if (! defined $stats{$year}{'max-gain-per-day'} or $stats{$year}{'max-gain-per-day'} < $gain_per_day) {
-		$stats{$year}{'max-gain-per-day'} = $gain_per_day;
-		$stats{$year}{'max-gain-per-day-URL'} = $trip->get_trip_page_url();
-	    }
-	    
-	    $stats{$year}{'elevation-gain'} += $gain;
-	    $stats{$year}{'gain-count'}++;
-	    
-	}
-    }
-    my $html = qq(<tr>
-		  <th>Year</th>
-		  <th>Total trips</th>
-		  <th>Climbing trips</th>
-		  <th>Trail Run trips</th>
-		  <th>Total days</th>
-		  <th>Climbing days</th>
-		  <th>Trail Run days</th>
-		  <th>Total peaks</th>
-		  <th>Max gain in one trip</th>
-		  <th>Max gain per day in one trip</th>
-		  <th>Most peaks in one trip</th>
-		  </tr>);
-    foreach my $year (sort keys %stats) {
-        my $formatted_average_gain = '?';
-        my $average_gain_per_trip = '?';
-        my $formatted_estimated_gain = '?';
-        my $formatted_max_gain = '?';
-        my $formatted_max_gain_per_day = '?';
-        if (defined $stats{$year}{'gain-count'} && $stats{$year}{'gain-count'} > 0) {
-            $formatted_max_gain_per_day = Scramble::Controller::ElevationFragment::format_elevation_short($stats{$year}{'max-gain-per-day'});
-            $formatted_max_gain = Scramble::Controller::ElevationFragment::format_elevation_short($stats{$year}{'max-gain'});
-            $stats{$year}{'average-gain'} = int($stats{$year}{'elevation-gain'} / $stats{$year}{'gain-count'});
-            $formatted_average_gain = Scramble::Controller::ElevationFragment::format_elevation_short($stats{$year}{'average-gain'});
-            $stats{$year}{'estimated-gain'} = $stats{$year}{'average-gain'} * $stats{$year}{'total-trips'};
-            $formatted_estimated_gain = Scramble::Controller::ElevationFragment::format_elevation_short($stats{$year}{'estimated-gain'});
-            $average_gain_per_trip = sprintf("%.2f", $stats{$year}{'average-gain'} * $stats{$year}{'total-trips'} / 5280);
-        }
-	$html .= sprintf(qq(<tr>
-			    <td><a href="%s">%d</a></td>
-			    <td align=right>%d</td> <!-- total trips -->
-			    <td align=right>%d</td>
-			    <td align=right>%d</td>
-			    <td align=right>%d</td> <!-- total days -->
-			    <td align=right>%d</td>
-			    <td align=right>%d</td>
-			    <td align=right>%d</td> <!-- total peaks -->
-			    <td align=right><a href="%s">%s</a></td> <!-- max gain in one trip -->
-			    <td align=right><a href="%s">%s</a></td> <!-- max gain in one day -->
-			    <td align=right><a href="%s">%d</a></td> <!-- max peaks -->
-			    </tr>),
-			 "../../g/r/$year.html",
-			 $year,
-			 nlvl($stats{$year}{'total-trips'}, 0),
-                         nlvl($stats{$year}{'climbing-trips'}, 0),
-                         nlvl($stats{$year}{'trail-run-trips'}, 0),
-			 nlvl($stats{$year}{'total-days'}, 0),
-                         nlvl($stats{$year}{'climbing-days'}, 0),
-                         nlvl($stats{$year}{'trail-run-days'}, 0),
-			 nlvl($stats{$year}{'total-peaks'}, 0),
-			 nlvl($stats{$year}{'max-gain-URL'}, "?"),
-			 $formatted_max_gain,
-			 nlvl($stats{$year}{'max-gain-per-day-URL'}, "?"),
-			 $formatted_max_gain_per_day,
-			 nlvl($stats{$year}{'max-peaks-URL'}, "?"),
-			 nlvl($stats{$year}{'max-peaks'}, 0));
+        $stats{$year}{total_peaks} += @locations;
     }
 
-    $html = Scramble::Misc::make_optional_line("<h2>Stats</h2> <table border=1>%s</table>",
-                                               $html);
     my $this_year  = Date::Manip::UnixDate("today", "%Y");
     if (exists $stats{$this_year}) {
-        $html .= "<h2>Projections for $this_year</h2>";
         my $day_of_year = Date::Manip::UnixDate("today", "%j");
-        $html .= Scramble::Misc::make_colon_line("Number of days",
-                                                 sprintf("%d", (365/$day_of_year) * get_total_days($stats{$this_year})));
-        $html .= Scramble::Misc::make_colon_line("Number of trips",
-                                                 sprintf("%d", (365/$day_of_year) * $stats{$this_year}{'total-trips'}));
-        $html .= Scramble::Misc::make_colon_line("Number of climbing trips",
-                                                 sprintf("%d", (365/$day_of_year) * $stats{$this_year}{'climbing-trips'}));
-        $html .= Scramble::Misc::make_colon_line("Number of trail run trips",
-                                                 sprintf("%d", (365/$day_of_year) * $stats{$this_year}{'trail-run-trips'}));
-        $html .= Scramble::Misc::make_colon_line("Number of peaks",
-                                                 sprintf("%d", (365/$day_of_year) * $stats{$this_year}{'total-peaks'}));
+        foreach my $column_key (@column_keys) {
+            my $new_value;
+            if ($column_key eq 'year') {
+                $new_value = "$this_year (projected)";
+            } else {
+                $new_value = 365 / $day_of_year * $stats{$this_year}{$column_key};
+            }
+            $stats{$this_year}{$column_key} = $new_value;
+        }
     }
 
-    return $html;
+    my $column_names = [ map {
+                           { name => join(' ', map { ucfirst } split('_', $_)) }
+                         } @column_keys ];
+
+    my @rows;
+    foreach my $year (sort keys %stats) {
+        push @rows, {
+            values => [ map { { value => $stats{$year}{$_} } } @column_keys ],
+        };
+    }
+
+    return (
+        yearly_stats_columns => $column_names,
+        yearly_stats_rows => \@rows,
+    );
 }
 
 sub get_total_climbed {
@@ -201,44 +114,39 @@ sub get_total_climbed {
 	$unique_count++;
         $summit_count += $count;
         if ($count > 5) {
-            $climbed{$location->get_name()} = $count;
+            $climbed{$location->get_id} = {
+                count => $count,
+                location => $location,
+            };
         }
     }
 
     my @most_climbed;
-    foreach my $name (sort { $climbed{$b} <=> $climbed{$a} } keys %climbed) {
-        push @most_climbed, Scramble::Htmlify::htmlify("Climbed $name $climbed{$name} times.");
+    foreach my $id (sort { $climbed{$b}{count} <=> $climbed{$a}{count} } keys %climbed) {
+        my $location = $climbed{$id}{location};
+        push @most_climbed, {
+            count => $climbed{$id}{count},
+            name => $location->get_name,
+            url => $location->get_url,
+        };
     }
 
-    return ('unique-count' => $unique_count,
-            'total-count' => $summit_count,
-            'most-climbed-text' => \@most_climbed);
+    return (unique_peaks => $unique_count,
+            total_peaks => $summit_count,
+            repeat_count => $summit_count - $unique_count,
+            most_climbed_peaks => \@most_climbed);
 }
 
 sub create {
-    my %peak_info = get_total_climbed();
-
-    my $total_climbed_html
-        = sprintf("%s unique peaks climbed.<br>%s total peaks climbed (including %s repeats).<br>",
-                  Scramble::Misc::commafy($peak_info{'unique-count'}),
-                  Scramble::Misc::commafy($peak_info{'total-count'}),
-                  Scramble::Misc::commafy($peak_info{'total-count'} - $peak_info{'unique-count'}));
-
-    my $most_climbed = join("<br>", @{ $peak_info{'most-climbed-text'} });
-
-    my $list_html = get_list_html();
-    my $stats_html = get_stats();
-
-    my $html = <<EOT;
-$total_climbed_html
-$list_html
-$stats_html
-<h2>Most Climbed Peaks</h2>
-$most_climbed
-EOT
+    my $params = {
+        get_yearly_stats,
+        get_list_stats,
+        get_total_climbed,
+    };
+    my $html = Scramble::Template::html('geekery/page', $params);
 
     Scramble::Misc::create("m/geekery.html",
-                           Scramble::Template::page_html(title => "Numbers",
+                           Scramble::Template::page_html(title => "Geekery",
                                                          'include-header' => 1,
                                                          html => $html));
 }

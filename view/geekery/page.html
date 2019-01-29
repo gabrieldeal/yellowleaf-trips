@@ -1,0 +1,76 @@
+<tmpl_var total_peaks /> total peaks climbed.
+<tmpl_var unique_peaks /> unique peaks plus <tmpl_var repeat_count /> repeats.
+<br />
+
+<h2>Peak Lists</h2>
+<table class="table table-minimize-width">
+  <thead>
+    <tr>
+      <th scope="col">Total Peaks in List</th>
+      <th scope="col">Percent Climbed</th>
+      <th scope="col">List Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tmpl_loop list_stats_rows>
+      <tr>
+        <td>
+          <tmpl_var total_count />
+        </td>
+        <td>
+          <tmpl_var percent />%
+        </td>
+        <td>
+          <a href="<tmpl_var list_url escape=none />"><tmpl_var list_name /></a>
+        </td>
+      </tr>
+    </tmpl_loop>
+  </tbody>
+</table>
+
+<h2>Yearly Stats</h2>
+<table class="table table-minimize-width">
+  <thead>
+    <tr>
+      <tmpl_loop yearly_stats_columns>
+        <th scope="col"><tmpl_var name /></th>
+      </tmpl_loop>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tmpl_loop yearly_stats_rows>
+      <tr>
+        <tmpl_loop values>
+          <td>
+            <tmpl_var ESCAPE="none" value />
+          </td>
+        </tmpl_loop>
+      </tr>
+    </tmpl_loop>
+  </tbody>
+</table>
+
+<h2>Most Climbed Peaks</h2>
+<table class="table table-minimize-width">
+  <thead>
+    <tr>
+      <th scope="col">Times Climbed</th>
+      <th scope="col">Peak Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tmpl_loop most_climbed_peaks>
+      <tr>
+        <td>
+          <tmpl_var count />
+        </td>
+        <td>
+          <a href="<tmpl_var url escape=none />"><tmpl_var name /></a>
+        </td>
+      </tr>
+    </tmpl_loop>
+  </tbody>
+</table>

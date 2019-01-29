@@ -421,14 +421,20 @@ sub find_cached_location {
     return $locations[0];
 }
 
+sub get_url {
+    my $self = shift;
+
+    return sprintf("../../g/l/%s", $self->get_filename());
+}
+
 sub get_short_link_html {
     my $self = shift;
     my ($name) = @_;
 
     $name = $self->get_name() unless defined $name;
 
-    sprintf(qq(<a href="../../g/l/%s">%s</a>),
-	    $self->get_filename(),
+    sprintf(qq(<a href="%s">%s</a>),
+            $self->get_url,
 	    $name);
 }
 
