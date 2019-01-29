@@ -2,8 +2,6 @@ package Scramble::Controller::ReferenceFragment;
 
 use strict;
 
-# FIXME: Refactor this.
-
 sub new {
     my ($arg0, $reference) = @_;
 

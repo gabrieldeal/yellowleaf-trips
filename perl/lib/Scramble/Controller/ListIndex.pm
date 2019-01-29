@@ -5,8 +5,6 @@ use strict;
 use Scramble::Model::List ();
 use Scramble::Misc ();
 
-# FIXME: Refactor display code into a template.
-
 sub create {
     my @lists;
     foreach my $list (Scramble::Model::List::get_all()) {

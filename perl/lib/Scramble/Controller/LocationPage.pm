@@ -7,8 +7,6 @@ use Scramble::Htmlify ();
 use Scramble::Misc ();
 use Scramble::Template ();
 
-# FIXME: Convert to a template.
-
 sub new {
     my ($arg0, $location) = @_;
 
