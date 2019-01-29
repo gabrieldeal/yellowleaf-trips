@@ -25,7 +25,7 @@ sub trip { $_[0]{trip} }
 sub create {
     my $self = shift;
 
-    my %params = (
+    my $first_section_params = {
         $self->get_time_params,
         $self->get_maps_summary_params,
         $self->get_references_params,
@@ -34,56 +34,48 @@ sub create {
         trip_type => $self->trip->get_type,
         distances_html => $self->get_distances_html,
         elevation_gain => $self->get_elevation_gain,
+        map_inputs => $self->get_map_params,
         recognizable_areas => $self->get_recognizable_areas,
-       );
-
-    my $right_html = Scramble::Template::html('trip/page', \%params);
-
-    my @htmls;
-    push @htmls, $right_html;
-
-    my $map_html = $self->get_embedded_google_map_html();
-    push @htmls, $map_html if $map_html;
-
-    # FIXME: Refactor this into a template.
-    my $count = 1;
-    my $cells_html;
+    };
     my @map_objects = $self->trip()->get_map_objects();
-    my @sections = $self->split_pictures_into_sections();
-    foreach my $section (@sections) {
-        if (@sections > 1) {
-	    if ($count == 1) {
-                $cells_html .= Scramble::Controller::ImageListFragment::html(htmls => \@htmls,
-                                                                             images => [@map_objects],
-                                                                             'no-trip-date' => 1);
-		@htmls = @map_objects = ();
-                $cells_html .= '<br clear="all" />';
-	    }
-            $cells_html .= qq(<h2>$section->{name}</h2>);
-	}
 
-        $cells_html .= Scramble::Controller::ImageListFragment::html(htmls => \@htmls,
-                                                                     images => [@map_objects, @{ $section->{pictures} } ],
-                                                                     'no-trip-date' => 1);
-        $cells_html .= '<br clear="all" />';
-        @htmls = @map_objects = ();
+    my @sections_params;
+    my @sections = $self->split_pictures_into_sections();
+    my $count = 1;
+    foreach my $section (@sections) {
+        my $images = [@map_objects, @{ $section->{pictures} } ];
+        my @image_params = map {
+            Scramble::Controller::ImageFragment->new($_)->params('no-trip-date' => 1);
+        } @$images;
+
+        if (@sections > 1 && $count == 1) {
+            push @sections_params, $first_section_params;
+            $first_section_params = {};
+        }
+        push @sections_params, {
+            %$first_section_params,
+            images => \@image_params,
+            name => @sections > 1 ? $section->{name} : undef,
+        };
+
+        @map_objects = ();
+        $first_section_params = {};
+
         $count++;
     }
 
-    my $route = Scramble::Htmlify::htmlify(Scramble::Misc::make_optional_line("%s", $self->trip()->get_route()));
-    if ($route) {
-	$route = "<p>$route</p>";
-    }
+    my $route_html = Scramble::Htmlify::htmlify($self->trip()->get_route());
 
     my $title = $self->trip()->get_name();
     if ($self->trip()->get_state() eq 'attempted') {
       $title .= sprintf(" (%s)", $self->trip()->get_state());
     }
 
-    my $html = <<EOT;
-$route
-$cells_html
-EOT
+    my $params = {
+        route_html => $route_html,
+        sections => \@sections_params,
+    };
+    my $html = Scramble::Template::html('trip/page', $params);
 
     Scramble::Misc::create(sprintf("r/%s", $self->trip()->get_filename()),
                            Scramble::Template::page_html('title' => $title,
@@ -153,17 +145,17 @@ sub get_distances_html {
 		   (@parenthesis_htmls == 1 ? '' : " (" . join(", ", @parenthesis_htmls) . ")"));
 }
 
-sub get_embedded_google_map_html {
+sub get_map_params {
     my $self = shift;
 
-    return '' if $self->trip()->get_map_objects();
+    return [] if $self->trip()->get_map_objects();
 
     my @locations = $self->trip()->get_location_objects();
     my $kml_url = $self->trip()->get_kml() ? $self->trip()->get_kml()->get_full_url() : undef;
-    return '' unless $kml_url or grep { defined $_->get_latitude() } @locations;
+    return [] unless $kml_url or grep { defined $_->get_latitude() } @locations;
 
     my %options = ('kml-url' => $kml_url);
-    return Scramble::Controller::MapFragment::html(\@locations, \%options);
+    return [Scramble::Controller::MapFragment::params(\@locations, \%options)];
 }
 
 sub get_reference_html {
