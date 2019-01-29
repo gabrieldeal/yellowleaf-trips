@@ -1,21 +1,39 @@
-<table class="table table-minimize-width">
-  <thead>
-    <tr>
-      <TMPL_LOOP NAME="columns">
-        <th scope="col"><TMPL_VAR name="name" /></th>
-      </TMPL_LOOP>
-    </tr>
-  </thead>
+<ul class="flow-list floated-flow-list">
+  <li class="flow-list-item">
+    <table class="table table-minimize-width">
+      <thead>
+        <tr>
+          <TMPL_LOOP NAME="list_columns">
+            <th scope="col"><TMPL_VAR name="name" /></th>
+          </TMPL_LOOP>
+        </tr>
+      </thead>
 
-  <tbody>
-    <TMPL_LOOP NAME="rows">
-      <tr>
-        <TMPL_LOOP NAME="cells">
-          <td>
-            <TMPL_VAR ESCAPE="none" NAME="value_html" />
-          </td>
+      <tbody>
+        <TMPL_LOOP NAME="list_rows">
+          <tr>
+            <TMPL_LOOP NAME="cells">
+              <td>
+                <TMPL_VAR ESCAPE="none" NAME="value_html" />
+              </td>
+            </TMPL_LOOP>
+          </tr>
         </TMPL_LOOP>
-      </tr>
-    </TMPL_LOOP>
-  </tbody>
-</table>
+      </tbody>
+    </table>
+  </li>
+
+  <tmpl_if map_inputs>
+    <li class="flow-list-item">
+      <tmpl_include ../shared/map.html />
+    </li>
+  </tmpl_if>
+
+  <tmpl_loop images>
+    <li class="flow-list-item">
+      <tmpl_include ../image/single.html />
+    </li>
+  </tmpl_loop>
+</ul>
+
+<br clear="all" />

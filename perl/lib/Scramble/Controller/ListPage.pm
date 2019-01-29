@@ -55,31 +55,22 @@ sub create {
         push @rows, { cells => \@cells }
     }
 
-    my $template = Scramble::Template::create('list/page');
-    $template->param(columns => \@columns,
-                     rows => \@rows);
-    my $locations_html = $template->output();
-
-    my $max_images = 100;
-
     my @images = get_images_to_display_for_locations('locations' => \@location_objects,
-						     'max-images' => $max_images);
-    my @htmls = [$locations_html];
-    push @htmls, get_map_html($list, \@location_objects) if @location_objects;
+                                                     'max-images' => 100);
+    my @image_params = map {
+        Scramble::Controller::ImageFragment->new($_)->params;
+    } @images;
 
-    my $images_html = Scramble::Controller::ImageListFragment::html(htmls => [$locations_html],
-                                                                    images => \@images,
-                                                                    'float-first' => 1);
-
-    my $title = $list->get_name;
-
-    my $html = <<EOT;
-$images_html
-<br clear="all" />
-EOT
+    my $params = {
+        images => \@image_params,
+        list_columns => \@columns,
+        list_rows => \@rows,
+        map_inputs => get_map_params($list, \@location_objects),
+    };
+    my $html = Scramble::Template::html('list/page', $params);
 
     Scramble::Misc::create($list->get_list_path,
-                           Scramble::Template::page_html(title => $title,
+                           Scramble::Template::page_html(title => $list->get_name,
                                                          html => $html,
                                                          'enable-embedded-google-map' => 1,
                                                          'include-header' => 1));
@@ -148,11 +139,14 @@ sub get_location_link_html {
     } || $args{'name'};
 }
 
-sub get_map_html {
+sub get_map_params {
     my ($list, $locations) = @_;
 
-    my %options = ('kml-url' => $list->get_kml_url);
-    Scramble::Controller::MapFragment::html($locations, \%options);
+    my $options = {
+        'kml-url' => $list->get_kml_url,
+    };
+
+    return [Scramble::Controller::MapFragment::params($locations, $options)];
 }
 
 1;
