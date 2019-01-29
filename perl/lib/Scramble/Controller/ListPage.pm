@@ -7,16 +7,17 @@ use Scramble::Controller::MapFragment ();
 use Scramble::Model::List ();
 use Scramble::Misc ();
 
-# FIXME: Refactor display code into a template.
-
 sub new {
     my ($arg0, $list) = @_;
 
     my $self = {
         list => $list,
     };
+    bless($self, ref($arg0) || $arg0);
 
-    return bless($self, ref($arg0) || $arg0);
+    $self->{locations} = $self->initialize_locations;
+
+    return $self;
 }
 
 sub create_all {
@@ -43,20 +44,13 @@ sub create {
         };
     }
 
-    my @location_objects;
     my @rows;
     foreach my $list_location ($list->get_locations) {
-        my $location_object = $list_location->get_location_object;
-	if ($location_object) {
-	    push @location_objects, $location_object;
-	}
-
         my @cells = map { { value_html => get_cell_value($_, $list_location) } } $list->get_columns;
         push @rows, { cells => \@cells }
     }
 
-    my @images = get_images_to_display_for_locations('locations' => \@location_objects,
-                                                     'max-images' => 100);
+    my @images = $self->get_images_to_display('max-images' => 100);
     my @image_params = map {
         Scramble::Controller::ImageFragment->new($_)->params;
     } @images;
@@ -65,7 +59,7 @@ sub create {
         images => \@image_params,
         list_columns => \@columns,
         list_rows => \@rows,
-        map_inputs => get_map_params($list, \@location_objects),
+        map_inputs => $self->get_map_params,
     };
     my $html = Scramble::Template::html('list/page', $params);
 
@@ -108,11 +102,12 @@ my %gCellTitles = ('name' => 'Location Name',
 		   );
 sub get_cell_title { return $gCellTitles{$_[0]} || ucfirst($_[0]) }
 
-sub get_images_to_display_for_locations {
+sub get_images_to_display {
+    my $self = shift;
     my (%args) = @_;
 
     my $max_images = $args{'max-images'};
-    my $locations = $args{'locations'};
+    my $locations = $self->{locations};
 
     my @images;
     foreach my $location (@$locations) {
@@ -140,13 +135,27 @@ sub get_location_link_html {
 }
 
 sub get_map_params {
-    my ($list, $locations) = @_;
+    my $self = shift;
 
     my $options = {
-        'kml-url' => $list->get_kml_url,
+        'kml-url' => $self->{list}->get_kml_url,
     };
 
-    return [Scramble::Controller::MapFragment::params($locations, $options)];
+    return [Scramble::Controller::MapFragment::params($self->{locations}, $options)];
+}
+
+sub initialize_locations {
+    my $self = shift;
+
+    my @locations;
+    foreach my $list_location ($self->{list}->get_locations) {
+        my $location_object = $list_location->get_location_object;
+	if ($location_object) {
+	    push @locations, $location_object;
+	}
+    }
+
+    return \@locations;
 }
 
 1;
