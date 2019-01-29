@@ -25,63 +25,28 @@ sub trip { $_[0]{trip} }
 sub create {
     my $self = shift;
 
-    my $first_section_params = {
-        $self->get_time_params,
-        $self->get_maps_summary_params,
-        $self->get_references_params,
-        start_date => $self->trip->get_start_date,
-        end_date => $self->trip->get_end_date,
-        trip_type => $self->trip->get_type,
-        distances_html => $self->get_distances_html,
-        elevation_gain => $self->get_elevation_gain,
-        map_inputs => $self->get_map_params,
-        recognizable_areas => $self->get_recognizable_areas,
-    };
-    my @map_objects = $self->trip()->get_map_objects();
-
-    my @sections_params;
-    my @sections = $self->split_pictures_into_sections();
-    my $count = 1;
-    foreach my $section (@sections) {
-        my $images = [@map_objects, @{ $section->{pictures} } ];
-        my @image_params = map {
-            Scramble::Controller::ImageFragment->new($_)->params('no-trip-date' => 1);
-        } @$images;
-
-        if (@sections > 1 && $count == 1) {
-            push @sections_params, $first_section_params;
-            $first_section_params = {};
-        }
-        push @sections_params, {
-            %$first_section_params,
-            images => \@image_params,
-            name => @sections > 1 ? $section->{name} : undef,
-        };
-
-        @map_objects = ();
-        $first_section_params = {};
-
-        $count++;
-    }
-
-    my $route_html = Scramble::Htmlify::htmlify($self->trip()->get_route());
-
-    my $title = $self->trip()->get_name();
-    if ($self->trip()->get_state() eq 'attempted') {
-      $title .= sprintf(" (%s)", $self->trip()->get_state());
-    }
-
     my $params = {
-        route_html => $route_html,
-        sections => \@sections_params,
+        route_html => Scramble::Htmlify::htmlify($self->trip()->get_route()),
+        sections => $self->get_sections_params,
     };
     my $html = Scramble::Template::html('trip/page', $params);
 
     Scramble::Misc::create(sprintf("r/%s", $self->trip()->get_filename()),
-                           Scramble::Template::page_html('title' => $title,
+                           Scramble::Template::page_html('title' => $self->get_title,
                                                          'include-header' => 1,
                                                          'html' => $html,
                                                          'enable-embedded-google-map' => 1));
+}
+
+sub get_title {
+    my $self = shift;
+
+    my $title = $self->trip->get_name;
+    if ($self->trip->get_state eq 'attempted') {
+      $title .= sprintf(" (%s)", $self->trip->get_state);
+    }
+
+    return $title;
 }
 
 sub get_elevation_gain {
@@ -217,19 +182,66 @@ sub get_recognizable_areas {
     return join(", ", @names);
 }
 
+sub get_sections_params {
+    my $self = shift;
+
+    my $first_section_params = {
+        $self->get_time_params,
+        $self->get_maps_summary_params,
+        $self->get_references_params,
+        start_date => $self->trip->get_start_date,
+        end_date => $self->trip->get_end_date,
+        trip_type => $self->trip->get_type,
+        distances_html => $self->get_distances_html,
+        elevation_gain => $self->get_elevation_gain,
+        map_inputs => $self->get_map_params,
+        recognizable_areas => $self->get_recognizable_areas,
+    };
+
+    my @sections_params;
+    my @sections = $self->split_pictures_into_sections;
+
+    if (@sections > 1) {
+        push @sections_params, $first_section_params;
+        $first_section_params = {};
+    }
+
+    foreach my $section (@sections) {
+        my @image_params = map {
+            Scramble::Controller::ImageFragment->new($_)->params('no-trip-date' => 1);
+        } @{ $section->{pictures} };
+
+        push @sections_params, {
+            %$first_section_params,
+            images => \@image_params,
+            name => @sections > 1 ? $section->{name} : undef,
+        };
+
+        $first_section_params = {};
+    }
+
+    return \@sections_params;
+}
+
 sub split_pictures_into_sections {
     my $self = shift;
 
+    my @map_images = $self->trip->get_map_objects;
+
     my @picture_objs = $self->trip()->get_picture_objects();
-    return ({ name => '', pictures => []}) unless @picture_objs;
+    return ({ name => '', pictures => \@map_images}) unless @picture_objs;
 
     my @sections;
-    if (!@picture_objs[0]->get_section_name()) {
+    if (@picture_objs[0]->get_section_name()) {
+        @sections = $self->split_by_section_name(@picture_objs);
+    } else {
         my $split_picture_objs = $self->split_by_date(@picture_objs);
-        return $self->add_section_names($split_picture_objs);
+        @sections = $self->add_section_names($split_picture_objs);
     }
 
-    return $self->split_by_section_name(@picture_objs);
+    unshift @{ $sections[0]{pictures} }, @map_images;
+
+    return @sections;
 }
 
 sub split_by_section_name {
