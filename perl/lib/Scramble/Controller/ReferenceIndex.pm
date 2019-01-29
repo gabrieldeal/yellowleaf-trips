@@ -14,7 +14,7 @@ sub create {
         next unless $reference->get_name();
         next unless $reference->should_link();
 
-        my $type = Scramble::Controller::ReferenceFragment::get_type($reference);
+        my $type = Scramble::Controller::ReferenceFragment->new($reference)->get_type;
 
         push @references_param, {
             name => $reference->get_name(),

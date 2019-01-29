@@ -1,0 +1,11 @@
+<tmpl_var type />:
+
+<tmpl_if url>
+  <a href="<tmpl_var url escape=none />"><tmpl_var name /></a>
+<tmpl_else>
+  <u><tmpl_var name /></u>
+</tmpl_if>
+
+<tmpl_if note_html>
+  (<tmpl_var note_html escape=none />)
+</tmpl_if>

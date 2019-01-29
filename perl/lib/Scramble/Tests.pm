@@ -62,7 +62,7 @@ sub test_insert_links {
                  "middleforkpeaks" => qq(<a href="../li/middleforkpeakselevation.html">Middle Fork Snoqualmie River peaks</a>),
 		 "http://www.amazon.com/o/asin/B00000ASIN" => qq(<a href="http://www.amazon.com/o/asin/B00000ASIN">http://www.amazon.com/o/asin/B...</a>),
 		 "http://www.wta.org/" => qq(<a href="http://www.wta.org/">http://www.wta.org/</a>),
-                 "mountaineersScramblingClass" => qq(<a href="http://www.mountaineers.org/">Mountaineer\'s scrambling course</a>),
+                 "mountaineersScramblingClass" => qq(<a href="http://www.mountaineers.org/">Mountaineer&#39;s scrambling course</a>),
 		 
 		 "wta" => qq(<a href="http://www.wta.org/~wta/cgi-bin/wtaweb.pl?7+tr">Washington Trails Association</a>),
 		 );

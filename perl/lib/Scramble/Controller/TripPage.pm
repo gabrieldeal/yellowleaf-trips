@@ -75,15 +75,17 @@ sub get_time_params {
 sub get_references_params {
     my $self = shift;
 
-    if ($self->trip()->get_references() == 1) {
-        return (
-            short_references_html => Scramble::Controller::ReferenceFragment::get_reference_html_with_name_only($self->trip()->get_references()),
-            )
-    }
+    my @references = $self->trip->get_references;;
 
-    return (
-        detailed_references_html => $self->get_reference_html(),
-        );
+    if (@references == 0) {
+        return ();
+    } elsif (@references == 1) {
+        return %{ Scramble::Controller::ReferenceFragment->new($references[0])->short_params };
+    } else {
+        my @params = map { Scramble::Controller::ReferenceFragment->new($_)->params } @references;
+
+        return (references => \@params);
+    }
 }
 
 sub get_distances_html {
@@ -121,17 +123,6 @@ sub get_map_params {
 
     my %options = ('kml-url' => $kml_url);
     return [Scramble::Controller::MapFragment::params(\@locations, \%options)];
-}
-
-sub get_reference_html {
-    my $self = shift;
-
-    my @references = map { Scramble::Controller::ReferenceFragment::get_page_reference_html($_) } $self->trip()->get_references();
-    @references = Scramble::Misc::dedup(@references);
-
-    return '' unless @references;
-
-    return '<ul><li>' . join('</li><li>', @references) . '</li></ul>';
 }
 
 sub get_maps_summary_params {

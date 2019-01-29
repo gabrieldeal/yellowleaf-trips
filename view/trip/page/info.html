@@ -48,10 +48,12 @@
   </div>
 </tmpl_if>
 
-<tmpl_if name="short_references_html">
+<tmpl_if name="reference_name">
   <div class="field-container">
     <div class="field-name">References:</div>
-    <div class="field-value"><tmpl_var escape="none" name="short_references_html" /></div>
+    <div class="field-value">
+      <tmpl_include ../../reference/single/short.html />
+    </div>
   </div>
 </tmpl_if>
 
@@ -62,9 +64,15 @@
   </div>
 </tmpl_if>
 
-<tmpl_if name="detailed_references_html">
+<tmpl_if name="references">
   <div class="field-container">
     <h2>References</h2>
-    <tmpl_var escape="none" name="detailed_references_html" />
+    <ul>
+      <tmpl_loop references>
+        <li>
+          <tmpl_include ../../reference/single/full.html />
+        </li>
+      </tmpl_loop>
+    </ul>
   </div>
 </tmpl_if>

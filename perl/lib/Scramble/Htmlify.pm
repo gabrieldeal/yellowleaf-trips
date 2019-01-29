@@ -25,10 +25,14 @@ sub make_link_transformations {
     }
 
     foreach my $reference (Scramble::Model::Reference::get_all()) {
-        my $html = eval { Scramble::Controller::ReferenceFragment::get_reference_html_with_name_only($reference) };
+        my $reference_fragment = Scramble::Controller::ReferenceFragment->new($reference);
+        my $html = Scramble::Template::html('reference/single/short', $reference_fragment->short_params);
+        $html =~ s/^\s*//;
+        $html =~ s/\s*$//;
         next unless $html;
+
         my $id = $reference->get_id();
-	$id =~ s/\s+/\\s+/g;
+        $id =~ s/\s+/\\s+/g;
 	$g_transformations{'reference'}{$id} = _insert_links_pack($html);
     }
     my @types = keys %g_transformations;

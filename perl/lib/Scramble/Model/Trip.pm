@@ -214,6 +214,7 @@ sub get_references {
     @references = map { Scramble::Model::Reference::find_or_create($_) } @references;
     @references = grep { !$_->should_skip() } @references;
     @references = sort { Scramble::Model::Reference::cmp($a, $b) } @references;
+    @references = Scramble::Misc::dedup(@references);
 
     $self->{'reference-objects'} = \@references;
 
