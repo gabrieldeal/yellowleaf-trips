@@ -20,15 +20,6 @@ sub dedup {
     return @deduped;
 }
 
-# FIXME: Deprecate this.
-sub make_colon_line {
-    my ($title, $text) = @_;
-
-    return '' unless $text;
-
-    return "<b>$title: </b> $text<br>\n";
-}
-
 sub pluralize {
     my ($number, $word) = @_;
 
