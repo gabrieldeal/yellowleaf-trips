@@ -74,11 +74,8 @@ sub get_cell_value {
     my ($name, $list_location) = @_;
 
     if ($name eq 'name') {
-        return (get_location_link_html('name' => $list_location->{'name'},
-				       'quad' => $list_location->{'quad'})
-                . ($list_location->get_is_unofficial_name ? "*" : '')
-		. Scramble::Misc::make_optional_line(" (AKA %s)",
-                                                     $list_location->get_aka_names));
+        return get_location_link_html('name' => $list_location->{'name'},
+                                      'quad' => $list_location->{'quad'});
     } elsif ($name eq 'elevation') {
         return Scramble::Controller::ElevationFragment::format_elevation_short($list_location->get_elevation);
     } elsif ($name eq 'quad') {

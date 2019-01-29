@@ -32,29 +32,6 @@ sub pluralize {
     return $number != 1 ? "$word$suffix" : $word;
 }
 
-# FIXME: Deprecate this.
-sub make_optional_line {
-    my ($format, $arg2, $arg3) = @_;
-
-    if (ref($arg2) eq 'CODE') {
-	return '' unless defined $arg3;
-	my $value = $arg2->(@_[2..$#_]);
-	return (defined $value ? sprintf($format, $value) : '');
-    }
-    
-    if (! $arg3) {
-	return $arg2 ? sprintf($format, $arg2) : '';
-    }
-    
-    my ($key, $hash) = ($arg2, $arg3);
-    
-    if (! exists $hash->{$key}) {
-	return "";
-    }
-    
-    return sprintf($format, $hash->{$key});
-}
-
 sub slurp {
     my ($path) = @_;
 
