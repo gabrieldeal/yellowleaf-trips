@@ -125,10 +125,6 @@ sub get_num_days {
   my ($syear, $smonth, $sday) = Scramble::Time::parse_date($self->get_start_date());
   my ($eyear, $emonth, $eday) = Scramble::Time::parse_date($self->get_end_date());
 
-  if (! defined $syear) {
-    return 1;
-  }
-
   my $start = Date::Manip::Date_DaysSince1BC($smonth, $sday, $syear);
   my $end = Date::Manip::Date_DaysSince1BC($emonth, $eday, $eyear);
 
