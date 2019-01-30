@@ -3,6 +3,7 @@ package Scramble::Controller::LocationPage;
 use strict;
 
 use Scramble::Controller::MapFragment ();
+use Scramble::Controller::TripFragment ();
 use Scramble::Htmlify ();
 use Scramble::Misc ();
 use Scramble::Template ();
@@ -118,7 +119,7 @@ sub get_trips_params {
         next unless $trip->should_show();
 
         push @trip_params, {
-            date => $trip->get_summary_date,
+            date => Scramble::Controller::TripFragment::get_date_summary($trip),
             name => $trip->get_name,
             url => $trip->get_trip_page_url,
         };

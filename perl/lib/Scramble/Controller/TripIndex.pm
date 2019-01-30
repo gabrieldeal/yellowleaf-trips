@@ -5,6 +5,7 @@ package Scramble::Controller::TripIndex;
 use strict;
 
 use Scramble::Controller::ImageFragment ();
+use Scramble::Controller::TripFragment ();
 
 my $g_trips_on_index_page = 25;
 
@@ -35,7 +36,7 @@ sub get_trip_params {
     my $self = shift;
     my ($trip) = @_;
 
-    my $date = $trip->get_summary_date();
+    my $date = Scramble::Controller::TripFragment::get_date_summary($trip);
 
     my @images = $trip->get_sorted_images();
 

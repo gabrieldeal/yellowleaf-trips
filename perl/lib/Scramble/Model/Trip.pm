@@ -183,21 +183,6 @@ sub get_trip_page_url {
     return sprintf("../../g/r/%s", $self->get_filename());
 }
 
-# FIXME: Move to a fragment controller.
-sub get_summary_date {
-    my $self = shift;
-
-    my $date = $self->get_start_date();
-    if (defined $self->get_end_date()) {
-        my $start_day = Scramble::Time::get_days_since_1BC($self->get_start_date());
-        my $end_day = Scramble::Time::get_days_since_1BC($self->get_end_date());
-        my $num_days = 1 + $end_day - $start_day;
-        $date .= " ($num_days days)";
-    }
-
-    return $date;
-}
-
 sub get_sorted_images {
     my $self = shift;
 
