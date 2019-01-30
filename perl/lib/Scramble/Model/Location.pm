@@ -35,48 +35,62 @@ sub new {
     my $self = bless({ %$args }, ref($arg0) || $arg0);
 
     $self->{'have-visited'} = 0;
-    {
-	my @areas = $self->get_areas_from_xml();
-	$self->{'areas-object'} = Scramble::Collection->new('objects' => \@areas);
-    }
 
-    {
-	my @quad_objs = $self->get_areas_collection()->find('type' => 'USGS quad');
-
-	$self->{'quad-objects'} = [ sort { $a->get_id() cmp $b->get_id() } @quad_objs ];
-	$self->get_areas_collection()->add(@quad_objs);
-    }
-
-    $self->{'state-object'} = (eval { $self->get_areas_collection()->find_one('type' => 'state') } 
-			       || eval { Scramble::Model::Area::get_all()->find_one('id' => $self->_get_required('state')) } );
-    if ($self->get_state_object()) {
-      $self->get_areas_collection()->add($self->get_state_object());
-    }
-
-    {
-	my @county_ids;
-	if (my @county_objs = $self->get_areas_collection()->find('type' => 'county')) {
-	    push @county_ids, map { $_->get_id() } @county_objs;
-	}
-	$self->{'county-objects'} = [ map { Scramble::Model::Area::get_all()->find_one('id' => $_) } @county_ids ];
-	$self->get_areas_collection()->add($self->get_county_objects());
-    }
-
+    $self->initialize_areas;
+    $self->initialize_quads;
+    $self->initialize_state;
+    $self->initialize_counties;
     $self->get_areas_collection()->add($self->in_areas_transitive_closure());
-
     $self->{'country-object'} = $self->get_areas_collection()->find_one('type' => 'country');
-
-
-    $self->_get_longitude();
-    $self->_get_latitude();
-    $self->_get_UTM_from_lat_lon();
+    $self->initialize_longitude();
+    $self->initialize_latitude();
+    $self->initialize_UTM_from_lat_lon();
 #    if (! defined $self->get_latitude() && 'peak' eq $self->get_type()) {
 #	die sprintf("'%s' is missing coordinates\n", $self->get_name());
 #    }
 
     return $self;
 }
-sub _get_longitude {
+
+sub initialize_areas {
+    my $self = shift;
+
+    my @areas = $self->get_areas_from_xml;
+
+    $self->{'areas-object'} = Scramble::Collection->new('objects' => \@areas);
+}
+
+sub initialize_quads {
+    my $self = shift;
+
+    my @quad_objs = $self->get_areas_collection->find('type' => 'USGS quad');
+
+    $self->{'quad-objects'} = [ sort { $a->get_id cmp $b->get_id } @quad_objs ];
+    $self->get_areas_collection->add(@quad_objs);
+}
+
+sub initialize_state {
+    my $self = shift;
+
+    $self->{'state-object'} = (eval { $self->get_areas_collection->find_one('type' => 'state') }
+                               || eval { Scramble::Model::Area::get_all->find_one('id' => $self->_get_required('state')) } );
+    if ($self->get_state_object) {
+      $self->get_areas_collection->add($self->get_state_object);
+    }
+}
+
+sub initialize_counties {
+    my $self = shift;
+
+    my @county_ids;
+    if (my @county_objs = $self->get_areas_collection->find('type' => 'county')) {
+        push @county_ids, map { $_->get_id } @county_objs;
+    }
+    $self->{'county-objects'} = [ map { Scramble::Model::Area::get_all->find_one('id' => $_) } @county_ids ];
+    $self->get_areas_collection->add($self->get_county_objects);
+}
+
+sub initialize_longitude {
     my $self = shift;
 
     my $lon = $self->_get_optional('coordinates', 'longitude');
@@ -85,7 +99,8 @@ sub _get_longitude {
     $self->set([ 'coordinates', 'longitude' ], 
 	       Scramble::Misc::numerify_longitude($lon));
 }
-sub _get_latitude {
+
+sub initialize_latitude {
     my $self = shift;
 
     my $lat = $self->_get_optional('coordinates', 'latitude');
@@ -94,6 +109,7 @@ sub _get_latitude {
     $self->set([ 'coordinates', 'latitude' ], 
 	       Scramble::Misc::numerify_latitude($lat));
 }
+
 sub _datum_translate {
     my ($datum) = @_;
 
@@ -102,7 +118,9 @@ sub _datum_translate {
 
     return $datum;
 }
-sub _get_UTM_from_lat_lon {
+
+# FIXME: I do not think this is needed.
+sub initialize_UTM_from_lat_lon {
     my $self = shift;
 
     return unless defined $self->get_latitude();
