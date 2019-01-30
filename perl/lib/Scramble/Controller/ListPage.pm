@@ -127,7 +127,11 @@ sub get_location_link_html {
 
     return eval {
 	my $location = Scramble::Model::Location::find_location(%args);
-	return $location->get_short_link_html();
+
+        # FIXME: move to template.
+        return sprintf(qq(<a href="%s">%s</a>),
+                       $location->get_url,
+                       $location->get_name);
     } || $args{'name'};
 }
 

@@ -403,17 +403,6 @@ sub get_url {
     return sprintf("../../g/l/%s", $self->get_filename());
 }
 
-sub get_short_link_html {
-    my $self = shift;
-    my ($name) = @_;
-
-    $name = $self->get_name() unless defined $name;
-
-    sprintf(qq(<a href="%s">%s</a>),
-            $self->get_url,
-	    $name);
-}
-
 my %g_location_names_to_objects_mapping;
 sub _make_regex {
     my ($regex) = @_;
