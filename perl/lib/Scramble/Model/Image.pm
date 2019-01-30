@@ -46,7 +46,7 @@ sub copy {
     }
 }
 
-sub new_from_attrs {
+sub new {
     my $arg0 = shift;
     my ($args) = @_;
 
@@ -214,12 +214,12 @@ sub read_images_from_trip {
     my $chronological_order = 0;
     foreach my $image_xml (@{ $trip->_get_optional('files', "file") || [] }) {
         next if $image_xml->{skip};
-        push @images, Scramble::Model::Image->new_from_attrs({ 'date' => "$year/$month/$day",
-                                                                   'source-directory' => $directory,
-                                                                   'chronological-order' => $chronological_order++,
-                                                                   'in-chronological-order' => $in_chronological_order,
-                                                                   %$image_xml,
-                                                             });
+        push @images, Scramble::Model::Image->new({ date => "$year/$month/$day",
+                                                    'source-directory' => $directory,
+                                                    'chronological-order' => $chronological_order++,
+                                                    'in-chronological-order' => $in_chronological_order,
+                                                    %$image_xml,
+                                                  });
     }
 
     $g_collection->add(@images);
