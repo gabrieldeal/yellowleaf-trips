@@ -23,49 +23,66 @@ sub new {
 
     bless($self, ref($arg0) || $arg0);
 
-    $self->{'waypoints'} = Scramble::Model::Waypoints->new($self->get_filename(),
-                                                           $self->_get_optional('waypoints'));
+    $self->initialize_locations;
+    $self->initialize_areas;
+    $self->initialize_images($images_directory);
+    $self->initialize_waypoints;
+    $self->initialize_dates;
+
+    return $self;
+}
+
+sub initialize_locations {
+    my $self = shift;
 
     my @location_objects;
-    foreach my $location_element ($self->get_locations()) {
-	push @location_objects, Scramble::Model::Location::find_location('name' => $location_element->{'name'},
-                                                                         'quad' => $location_element->{'quad'},
-                                                                         'country' => $location_element->{country},
-                                                                         'include-unvisited' => 1,
+    foreach my $location_xml ($self->get_locations) {
+        my $location = Scramble::Model::Location::find_location(
+            name => $location_xml->{name},
+            quad => $location_xml->{quad},
+            country => $location_xml->{country},
+            'include-unvisited' => 1,
             );
+        $location->set_have_visited;
+
+        push @location_objects, $location;
     }
+
     $self->{'location-objects'} = \@location_objects;
-    foreach my $location ($self->get_location_objects()) {
-	$location->set_have_visited();
-    }
+}
 
-    {
-	my @areas;
-	push @areas, map { $_->get_areas_collection->get_all() } $self->get_location_objects();
-	push @areas, $self->get_areas_from_xml();
-	@areas = Scramble::Misc::dedup(@areas);
-	$self->{'areas-object'} = Scramble::Collection->new('objects' => \@areas);
-    }
+sub initialize_areas {
+    my $self = shift;
 
-    $self->set('start-date', Scramble::Time::normalize_date_string($self->get_start_date()));
-    if (defined $self->get_end_date()) {
-	$self->set('end-date', Scramble::Time::normalize_date_string($self->get_end_date()));
-    }
+    my @areas;
+    push @areas, map { $_->get_areas_collection->get_all } $self->get_location_objects;
+    push @areas, $self->get_areas_from_xml;
+    @areas = Scramble::Misc::dedup(@areas);
 
-    my $subdir = File::Basename::basename(File::Basename::dirname($path));
-    my $trip_images_directory = "$images_directory/$subdir";
-    my @images = Scramble::Model::Image::read_images_from_trip($trip_images_directory, $self);
+    $self->{'areas-object'} = Scramble::Collection->new('objects' => \@areas);
+}
+
+sub initialize_images {
+    my $self = shift;
+    my ($images_dir) = @_;
+
+    # FIXME: Move $subdir into trip.xml and move all trip.xml files into the same
+    # directory?
+    my $subdir = File::Basename::basename(File::Basename::dirname($self->{path}));
+    my $trip_images_dir = "$images_dir/$subdir";
+    my @images = Scramble::Model::Image::read_images_from_trip($trip_images_dir, $self);
     my $image_collection = Scramble::Collection->new(objects => \@images);
 
-    my $picture_objs = [
+    my @pictures = (
         $image_collection->find('type' => 'picture'),
         $image_collection->find('type' => 'movie'),
-    ];
-
-    if (@$picture_objs && $picture_objs->[0]->in_chronological_order()) {
-        $picture_objs = [ sort { $a->get_chronological_order() <=> $b->get_chronological_order() } @$picture_objs ];
+    );
+    if (@pictures && $pictures[0]->in_chronological_order) {
+        @pictures = sort {
+            $a->get_chronological_order <=> $b->get_chronological_order
+        } @pictures;
     }
-    $self->set_picture_objects([ grep { ! $_->get_should_skip_trip() } @$picture_objs]);
+    $self->set_picture_objects([ grep { ! $_->get_should_skip_trip } @pictures]);
 
     $self->{'map-objects'} = [ $image_collection->find('type' => 'map') ];
 
@@ -73,13 +90,28 @@ sub new {
     die "Too many KMLs" if @kmls > 1;
     $self->{'kml'} = $kmls[0] if @kmls;
 
-    if ($self->should_show()) {
-        foreach my $image (@$picture_objs, $self->get_map_objects()) {
-            $image->set_trip_url($self->get_trip_page_url());
+    if ($self->should_show) {
+        foreach my $image (@pictures, $self->get_map_objects) {
+            $image->set_trip_url($self->get_trip_page_url);
         }
     }
+}
 
-    return $self;
+sub initialize_waypoints {
+    my $self = shift;
+
+    $self->{'waypoints'} = Scramble::Model::Waypoints->new($self->get_filename,
+                                                           $self->_get_optional('waypoints'));
+}
+
+sub initialize_dates {
+    my $self = shift;
+
+    $self->set('start-date', Scramble::Time::normalize_date_string($self->get_start_date));
+
+    if (defined $self->get_end_date) {
+	$self->set('end-date', Scramble::Time::normalize_date_string($self->get_end_date));
+    }
 }
 
 sub get_id { $_[0]->get_start_date() . "|" . ($_[0]->get_trip_id() || "") }
