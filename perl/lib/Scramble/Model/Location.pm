@@ -35,14 +35,14 @@ sub new {
 
     $self->{'have-visited'} = 0;
 
+    $self->initialize_longitude;
+    $self->initialize_latitude;
     $self->initialize_areas;
     $self->initialize_quads;
     $self->initialize_state;
     $self->initialize_counties;
     $self->get_areas_collection()->add($self->in_areas_transitive_closure());
     $self->{'country-object'} = $self->get_areas_collection()->find_one('type' => 'country');
-    $self->initialize_longitude();
-    $self->initialize_latitude();
 
     return $self;
 }
@@ -126,10 +126,11 @@ sub new_objects {
     return @retval;
 }
 
-sub name_is_unique { return ! $_[0]->{'has-twin'} }
-
 sub get_country_object { $_[0]->{'country-object'} }
-
+sub get_areas_collection { $_[0]->{'areas-object'} }
+sub get_quad_objects  { @{ $_[0]->{'quad-objects'} } }
+sub get_state_object { $_[0]->{'state-object'} }
+sub get_county_objects { @{ $_[0]->{'county-objects'} } }
 sub get_type { $_[0]->_get_required('type') }
 sub get_description { $_[0]->_get_optional_content('description') }
 sub get_elevation { $_[0]->_get_optional('elevation') }
@@ -137,6 +138,7 @@ sub get_prominence { $_[0]->_get_optional("prominence") }
 sub get_latitude { $_[0]->_get_optional('coordinates', 'latitude') }
 sub get_longitude { $_[0]->_get_optional('coordinates', 'longitude') }
 sub get_naming_origin { $_[0]->_get_optional('name', 'origin'); }
+sub name_is_unique { return ! $_[0]->{'has-twin'} }
 
 sub get_references {
     my $self = shift;
@@ -218,12 +220,6 @@ sub get_aka_names {
     return @{ $self->{'aka-names'} };
 }
 
-sub get_areas_collection { $_[0]->{'areas-object'} }
-
-sub get_quad_objects  { @{ $_[0]->{'quad-objects'} } }
-
-sub get_state_object { $_[0]->{'state-object'} }
-
 # Only guarantee on this string is that it will differ if the location
 # objects represent different locations.
 # This id shouldn't change over time.
@@ -247,9 +243,6 @@ sub get_filename {
 
     return "$path.html";
 }
-
-
-sub get_county_objects { @{ $_[0]->{'county-objects'} } }
 
 sub have_visited { $_[0]->{'have-visited'} }
 sub set_have_visited {
