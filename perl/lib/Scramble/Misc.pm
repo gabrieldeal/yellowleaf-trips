@@ -54,14 +54,10 @@ sub create {
     $ofh->close() or die "Failed to flush to '$path': $!";
 }
 
-######################################################################
-# Config
-
+# FIXME: Get rid of this.
 my $g_output_directory;
 sub get_output_directory { $g_output_directory }
 sub set_output_directory { $g_output_directory = $_[0] }
-
-######################################################################
 
 # FIXME: Change data so this is not needed.
 sub numerify_longitude {
