@@ -6,7 +6,6 @@ use Scramble::Model::Image ();
 use Scramble::Misc ();
 use Scramble::Model ();
 use Scramble::Model::Area ();
-use Geo::Coordinates::UTM ();
 
 our @ISA = qw(Scramble::Model);
 our $HACK_DIRECTORY;
@@ -44,10 +43,6 @@ sub new {
     $self->{'country-object'} = $self->get_areas_collection()->find_one('type' => 'country');
     $self->initialize_longitude();
     $self->initialize_latitude();
-    $self->initialize_UTM_from_lat_lon();
-#    if (! defined $self->get_latitude() && 'peak' eq $self->get_type()) {
-#	die sprintf("'%s' is missing coordinates\n", $self->get_name());
-#    }
 
     return $self;
 }
@@ -110,32 +105,6 @@ sub initialize_latitude {
 	       Scramble::Misc::numerify_latitude($lat));
 }
 
-sub _datum_translate {
-    my ($datum) = @_;
-
-    $datum = "Clarke 1866" if uc($datum) eq 'NAD27';
-    $datum = "GRS 1980" if uc($datum) eq 'NAD83'; # ?
-
-    return $datum;
-}
-
-# FIXME: I do not think this is needed.
-sub initialize_UTM_from_lat_lon {
-    my $self = shift;
-
-    return unless defined $self->get_latitude();
-
-    my ($zone, $easting, $northing) = Geo::Coordinates::UTM::latlon_to_utm(_datum_translate($self->get_map_datum()),
-									   $self->get_latitude(), 
-									   $self->get_longitude());
-    $easting = int($easting + .5);
-    $northing = int($northing + .5);
-
-    $self->set([ 'coordinates', 'zone' ], $zone);
-    $self->set([ 'coordinates', 'easting' ], $easting);
-    $self->set([ 'coordinates', 'northing' ], $northing);
-}
-
 sub new_objects {
     my ($arg0, $path) = @_;
 
@@ -167,9 +136,6 @@ sub get_elevation { $_[0]->_get_optional('elevation') }
 sub get_prominence { $_[0]->_get_optional("prominence") }
 sub get_latitude { $_[0]->_get_optional('coordinates', 'latitude') }
 sub get_longitude { $_[0]->_get_optional('coordinates', 'longitude') }
-sub get_UTM_zone { $_[0]->_get_optional('coordinates', 'zone') }
-sub get_UTM_easting { $_[0]->_get_optional('coordinates', 'easting') }
-sub get_UTM_northing { $_[0]->_get_optional('coordinates', 'northing') }
 sub get_naming_origin { $_[0]->_get_optional('name', 'origin'); }
 
 sub get_references {
@@ -237,14 +203,6 @@ sub get_name {
     }
 
     return $name->{'value'};
-}
-
-sub get_map_datum { 
-    my $self = shift;
-
-    my $datum = $self->_get_optional('coordinates', 'datum');
-    return undef unless defined $datum;
-    return uc($datum);
 }
 
 sub get_aka_names {
