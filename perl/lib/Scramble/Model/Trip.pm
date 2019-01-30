@@ -139,15 +139,6 @@ sub should_show {
     return 1;
 }
 
-sub link_if_should_show {
-    my $self = shift;
-    my ($html) = @_;
-
-    return ($self->should_show() 
-            ? sprintf(qq(<a href="%s">%s</a>), $self->get_trip_page_url(), $html) 
-            : $html);
-}
-
 sub get_parsed_start_date {
     my $self = shift;
 

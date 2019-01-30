@@ -61,7 +61,10 @@ sub get_summary_name {
     my ($trip) = @_;
 
     my $name = $trip->get_name;
-    $name = $trip->link_if_should_show($name);
+    if ($trip->should_show) {
+        # FIXME: Move into the template.
+        $name = sprintf(qq(<a href="%s">$name</a>), $trip->get_trip_page_url);
+    }
     if ($trip->get_state ne 'done') {
         $name .= sprintf(" (%s)", $trip->get_state);
     }
