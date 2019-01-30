@@ -6,7 +6,6 @@ use strict;
 
 use Scramble::Htmlify ();
 use Scramble::Misc ();
-use Scramble::Controller::ImageListFragment ();
 use Scramble::Controller::MapFragment ();
 use Scramble::Controller::WaypointsFragment ();
 

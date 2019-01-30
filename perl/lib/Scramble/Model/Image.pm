@@ -139,20 +139,6 @@ sub get_rating {
   return 3;
 }
 
-sub get_best_images {
-    my @images = @_;
-
-    @images = Scramble::Misc::dedup(@images);
-    @images = sort { Scramble::Model::Image::cmp($a, $b) } @images;
-
-    my $max = 50;
-    if (@images > $max) {
-        @images = @images[0 .. $max-1];
-    }
-
-    return @images;
-}
-
 sub get_enlarged_img_url {
     my $self = shift;
 

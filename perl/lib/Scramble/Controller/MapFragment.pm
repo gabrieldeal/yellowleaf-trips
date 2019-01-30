@@ -28,18 +28,6 @@ sub params {
     return @inputs;
 }
 
-sub html {
-    my ($locations, $options) = @_;
-
-    my (@inputs) = params($locations, $options);
-    return '' unless @inputs;
-
-    my $template = Scramble::Template::create('shared/map');
-    $template->param(map_inputs => \@inputs);
-
-    return $template->output();
-}
-
 sub _get_point_json {
     my (@locations) = @_;
 

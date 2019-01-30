@@ -2,6 +2,8 @@ package Scramble::Controller::ImageIndex;
 
 use strict;
 
+use Scramble::Controller::ImageListFragment ();
+
 my $g_pictures_by_year_threshold = 1;
 
 sub create_all {
@@ -44,7 +46,7 @@ sub create_all {
     }
 
     foreach my $year (sort keys %pictures) {
-        my $images_html = Scramble::Controller::ImageListFragment::html(images => $pictures{$year}{images});
+        my $images_html = Scramble::Controller::ImageListFragment::html($pictures{$year}{images});
 	my $title = "My Favorite Photos of $year";
 
         my $template = Scramble::Template::create('image/index');

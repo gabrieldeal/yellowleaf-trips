@@ -84,27 +84,6 @@ sub numerify_latitude {
     }
 }
 
-# FIXME: change data so this is not needed.
-sub numerify {
-    my ($string) = @_;
-
-    my $orig_str = $string;
-    $string =~ s/^~//; # elevation
-    $string =~ s/,//g; # elevation
-    $string =~ s/ m$//; # elevation
-    $string =~ s/\+$//; # elevation
-
-    $string =~ s/\s+\((approx )?[\d,]+ meters\)$//; # elevation
-    $string =~ s/\s+feet//; # elevation
-
-    $string =~ s/ N$//; # latitude
-    $string =~ s/^(\d+\.\d+) W/-$1/; # longitude
-
-    die "Can't numerify '$orig_str': $string" unless $string =~ /^-?\d+(\.\d+)?( m)?$/;
-
-    return $string;
-}
-
 sub commafy {
     my ($number) = @_;
     1 while $number =~ s/(\d)(\d\d\d)(,|$)/$1,$2/g;

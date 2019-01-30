@@ -3,17 +3,12 @@ package Scramble::Controller::ImageListFragment;
 use strict;
 
 sub html {
-    my (%args) = @_;
+    my ($images) = @_;
 
     my @cells;
-    if ($args{htmls}) {
-        push @cells, map { { html => $_} } grep($_, @{ $args{htmls} });
-    }
-    if ($args{images}) {
-        push @cells, map {
-            Scramble::Controller::ImageFragment->new($_)->params(%args);
-        } @{ $args{images} };
-    }
+    push @cells, map {
+        Scramble::Controller::ImageFragment->new($_)->params;
+    } @$images;
 
     return '' unless @cells;
 
@@ -21,7 +16,7 @@ sub html {
   # photos in quad, list & location pages.
     my $params = {
         cells => \@cells,
-        is_floated => $args{'float-first'},
+        is_floated => 0,
     };
 
     return Scramble::Template::html('image/list', $params);

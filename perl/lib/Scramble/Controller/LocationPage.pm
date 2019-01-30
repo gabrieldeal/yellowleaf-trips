@@ -128,23 +128,4 @@ sub get_trips_params {
     return \@trip_params;
 }
 
-sub get_formatted_elevation {
-    my $self = shift;
-    return $self->_get_formatted_elevation(\&Scramble::Controller::ElevationFragment::format_elevation);
-}
-sub get_short_formatted_elevation {
-    my $self = shift;
-    return $self->_get_formatted_elevation(\&Scramble::Controller::ElevationFragment::format_elevation_short);
-}
-sub _get_formatted_elevation {
-    my $self = shift;
-    my ($format_func) = @_;
-
-    if (defined $self->{location}->get_elevation()) {
-	return $format_func->($self->{location}->get_elevation());
-    }
-
-    return undef;
-}
-
 1;

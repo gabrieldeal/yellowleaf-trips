@@ -37,17 +37,6 @@ sub get_location_object {
     return $location;
 }
 
-sub get_is_unofficial_name {
-    my ($self) = @_;
-
-    my $location = $self->get_location_object;
-    if ($location) {
-	return $location->get_is_unofficial_name();
-    }
-
-    return $self->{'unofficial-name'};
-}
-
 sub get_elevation {
     my ($self) = @_;
 
@@ -59,17 +48,6 @@ sub get_elevation {
     }
 
     return $self->{'elevation'} || die "No elevation: " . Data::Dumper::Dumper($self);
-}
-
-sub get_aka_names {
-    my ($self) = @_;
-
-    my $location = $self->get_location_object;
-    if ($location) {
-	return join(", ", $location->get_aka_names());
-    }
-
-    return $self->{'AKA'};
 }
 
 1;
