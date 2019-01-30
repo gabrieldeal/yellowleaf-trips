@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 umask 022
 
-# PERL5OPT="-d:NYTProf"
+# To run the debugger:
+# Put $DB::single=1; where you want to break.
+# PERL5OPT="-d" bin/build
 
 # To get line coverage:
-# rm -rf cover_db && PERL5OPT=-MDevel::Cover bin/build && cover && cp -r /home/vagrant/projects/yellowleaf-trips/cover_db /vagrant/
-# file:///C:/Users/Gabriel/projects/personal-environment/vagrant/ubuntu-16.04/cover_db/coverage.html
+# rm -rf cover_db && PERL5OPT=-MDevel::Cover bin/build && cover && ls -l cover_db
 
 data_dir="/home/gabrielx/projects/yellowleaf-trips-data"
 dir="$(dirname "$0")/.."

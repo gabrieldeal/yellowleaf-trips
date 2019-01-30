@@ -15,6 +15,7 @@ WriteMakefile(
         'vars' => 0,
         'Date::Manip' => 0,
         'DateTime' => 0,
+        'Devel::Cover' => 0, # Debugging
         'Geo::Gpx' => 0,
         'Getopt::Long' => 0,
         'HTML::Entities' => 0,
@@ -24,8 +25,8 @@ WriteMakefile(
         'List::Util' => 0,
         'MIME::Types' => 0,
         'Spreadsheet::Read' => 0,
-        'Term::ReadLine::Gnu' => 0,
-        'Term::ReadLine::Perl' => 0,
+        'Term::ReadLine::Gnu' => 0, # Debugging
+        'Term::ReadLine::Perl' => 0, # Debugging
         'Text::CSV' => 0,
         'URI::Encode' => 0,
         'XML::Generator' => 0,
