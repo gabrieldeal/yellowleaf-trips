@@ -16,11 +16,12 @@ sub new {
     my ($arg0, $path, $images_directory) = @_;
 
     my $self = Scramble::Model::parse($path);
-    bless($self, ref($arg0) || $arg0);
     if ($self->{'skip'}) {
-	return undef;
         print "Skipping $path because 'skip=true'\n";
+        return undef;
     }
+
+    bless($self, ref($arg0) || $arg0);
 
     $self->{'waypoints'} = Scramble::Model::Waypoints->new($self->get_filename(),
                                                            $self->_get_optional('waypoints'));
