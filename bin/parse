@@ -61,7 +61,7 @@ my %g_options = (
                  "skip" => [],
                  "timezone" => "PDT",
                  "kml-directory" => "kml",
-                 "templates-directory" => "perl/template",
+                 "templates-directory" => "view",
                  "javascript-directory" => "javascript/dist",
                  "output-directory" => "html",
 		 );
@@ -279,8 +279,7 @@ sub make_html_file {
     my ($filename, $title, %options) = @_;
 
     if (! -e $filename) {
-        print "Missing $filename\n";
-        return;
+        die "Missing $filename";
     }
 
     my $html = make_template_html($filename, %options);
@@ -288,10 +287,10 @@ sub make_html_file {
     my ($ofile) = ($filename =~ m,/([^/]+)$,);
 
     Scramble::Misc::create("m/$ofile",
-			   Scramble::Misc::make_1_column_page(title => $title, 
-							      'include-header' => 1,
-                                                              %options,
-                                                              html => $html));
+                           Scramble::Template::page_html(title => $title,
+                                                         'include-header' => 1,
+                                                         %options,
+                                                         html => $html));
 }
 
 1;
