@@ -131,7 +131,6 @@ sub main {
 
     Scramble::Model::Location::set_data_directory($g_options{'data-directory'});
     Scramble::Model::Area::open($g_options{'data-directory'});
-    Scramble::Model::Area::Quad::init();
     Scramble::Model::Reference::open($g_options{'data-directory'});
 
     # if (0 && should('convert')) {

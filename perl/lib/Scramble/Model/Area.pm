@@ -122,8 +122,7 @@ sub open {
                                                        });
 		get_all()->add($neighbor);
 	    }
-	    $neighbor->add_neighboring_quad_id($dirs->[1], $quad->get_id());
-	}
+        }
     }
 }
 
