@@ -50,9 +50,6 @@ sub _get_point_json {
         my $lat = $location->get_latitude();
         my $lon = $location->get_longitude();
         my $name = $location->get_name();
-        my $link = $location->get_short_link_html();
-        $link =~ s/\"/\\\"/g;
-        $link =~ s/\'/\\'/g;
         push @points, qq({"lat":$lat,"lon":$lon,"name":"$name"});
     }
 
