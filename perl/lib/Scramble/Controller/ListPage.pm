@@ -74,8 +74,8 @@ sub get_cell_params {
     my ($name, $list_location) = @_;
 
     if ($name eq 'name') {
-        return get_location_name_cell_params(name => $list_location->{name},
-                                             quad => $list_location->{quad});
+        return get_location_name_cell_params(name => $list_location->get_name,
+                                             quad => $list_location->get_quad);
     }
 
     my $value;
@@ -83,8 +83,14 @@ sub get_cell_params {
         $value = format_elevation_short($list_location->get_elevation);
     } elsif ($name eq 'quad') {
         $value = get_quad_cell_params($list_location);
-    } elsif ($list_location->{$name}) {
-        my $value = $list_location->{$name};
+    } elsif ($name eq 'order') {
+        $value = $list_location->get_order;
+    } elsif ($name eq 'note') {
+        $value = $list_location->get_note;
+    } elsif ($name eq 'county') {
+        $value = $list_location->get_county;
+    } else {
+        die "Unrecognized field '$name'";
     }
 
     return {
@@ -125,7 +131,7 @@ sub get_images_to_display {
 sub get_quad_cell_params {
     my ($list_location) = @_;
 
-    my $quad_id = $list_location->{'quad'};
+    my $quad_id = $list_location->get_quad;
     return unless $quad_id;
 
     my $quad = eval {

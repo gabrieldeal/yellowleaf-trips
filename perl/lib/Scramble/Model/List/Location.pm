@@ -14,6 +14,8 @@ sub new {
     return bless($self, ref($arg0) || $arg0);
 }
 
+sub get_county { $_[0]{county} }
+sub get_note { $_[0]{note} }
 sub get_name { $_[0]{name} }
 sub get_quad { $_[0]{quad} }
 sub get_mvd { $_[0]{MVD} }
