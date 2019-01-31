@@ -16,6 +16,7 @@ lib/Scramble/Controller/TripPage.pm
 lib/Scramble/Controller/TripRss.pm
 lib/Scramble/Controller/WaypointsFragment.pm
 lib/Scramble/Htmlify.pm
+lib/Scramble/Ingestion/Trip.pm
 lib/Scramble/Logger.pm
 lib/Scramble/Misc.pm
 lib/Scramble/Model/Area.pm
