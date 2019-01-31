@@ -20,6 +20,20 @@ sub new {
     return $self;
 }
 
+sub initialize_locations {
+    my $self = shift;
+
+    my @locations;
+    foreach my $list_location ($self->{list}->get_locations) {
+        my $location_object = $list_location->get_location_object;
+	if ($location_object) {
+	    push @locations, $location_object;
+	}
+    }
+
+    return \@locations;
+}
+
 sub create_all {
     foreach my $list (Scramble::Model::List::get_all()) {
         if ($list->should_skip) {
@@ -98,36 +112,6 @@ sub get_cell_params {
     };
 }
 
-my %gCellTitles = ('name' => 'Location Name',
-		   'elevation' => 'Elevation',
-		   'quad' => 'USGS quad',
-		   'description' => 'name',
-		   );
-sub get_cell_title { return $gCellTitles{$_[0]} || ucfirst($_[0]) }
-
-sub get_images_to_display {
-    my $self = shift;
-    my (%args) = @_;
-
-    my $max_images = $args{'max-images'};
-    my $locations = $self->{locations};
-
-    my @images;
-    foreach my $location (@$locations) {
-      my @location_images = $location->get_picture_objects();
-      @location_images = sort { Scramble::Model::Image::cmp($a, $b) } @location_images;
-      push @images, $location_images[0] if @location_images;
-    }
-
-    @images = Scramble::Misc::dedup(@images);
-    @images = sort { Scramble::Model::Image::cmp($a, $b) } @images;
-    if (@images > $max_images) {
-	@images = @images[0..$max_images-1];
-    }
-
-    return @images;
-}
-
 sub get_quad_cell_params {
     my ($list_location) = @_;
 
@@ -159,6 +143,36 @@ sub get_location_name_cell_params {
     };
 }
 
+my %gCellTitles = ('name' => 'Location Name',
+		   'elevation' => 'Elevation',
+		   'quad' => 'USGS quad',
+		   'description' => 'name',
+		   );
+sub get_cell_title { return $gCellTitles{$_[0]} || ucfirst($_[0]) }
+
+sub get_images_to_display {
+    my $self = shift;
+    my (%args) = @_;
+
+    my $max_images = $args{'max-images'};
+    my $locations = $self->{locations};
+
+    my @images;
+    foreach my $location (@$locations) {
+      my @location_images = $location->get_picture_objects();
+      @location_images = sort { Scramble::Model::Image::cmp($a, $b) } @location_images;
+      push @images, $location_images[0] if @location_images;
+    }
+
+    @images = Scramble::Misc::dedup(@images);
+    @images = sort { Scramble::Model::Image::cmp($a, $b) } @images;
+    if (@images > $max_images) {
+	@images = @images[0..$max_images-1];
+    }
+
+    return @images;
+}
+
 sub get_map_params {
     my $self = shift;
 
@@ -167,20 +181,6 @@ sub get_map_params {
     };
 
     return [Scramble::Controller::MapFragment::params($self->{locations}, $options)];
-}
-
-sub initialize_locations {
-    my $self = shift;
-
-    my @locations;
-    foreach my $list_location ($self->{list}->get_locations) {
-        my $location_object = $list_location->get_location_object;
-	if ($location_object) {
-	    push @locations, $location_object;
-	}
-    }
-
-    return \@locations;
 }
 
 1;
