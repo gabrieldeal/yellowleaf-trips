@@ -5,8 +5,8 @@ use strict;
 
 use Data::Dumper;
 use Google::GeoCoder::Smart;
-use Scramble::PeakList::Kloke;
-use Scramble::PeakList::ListsOfJohn;
+use Scramble::Ingestion::PeakList::Kloke;
+use Scramble::Ingestion::PeakList::ListsOfJohn;
 
 exit(main());
 
@@ -25,15 +25,15 @@ sub make_placemarks {
   my $unknown_lat = 47.3400;
   my $unknown_lon = -120.0;
 
-  foreach my $kloke_peak (sort { $a->{name} cmp $b->{name} } @{ $Scramble::PeakList::Kloke::PeakList }) {
+  foreach my $kloke_peak (sort { $a->{name} cmp $b->{name} } @{ $Scramble::Ingestion::PeakList::Kloke::Ingestion::PeakList }) {
     my $name = $kloke_peak->{name};
     my @quads = split(/,\s*/, $kloke_peak->{quads});
     my $elevation = $kloke_peak->{elevation};
 
     my @john_peaks;
     foreach my $quad (@quads) {
-      if (exists $Scramble::PeakList::ListsOfJohn::Peaks{$name}{$quad}) {
-	push @john_peaks, $Scramble::PeakList::ListsOfJohn::Peaks{$name}{$quad};
+      if (exists $Scramble::Ingestion::PeakList::ListsOfJohn::Peaks{$name}{$quad}) {
+	push @john_peaks, $Scramble::Ingestion::PeakList::ListsOfJohn::Peaks{$name}{$quad};
       }
     }
 
@@ -41,12 +41,12 @@ sub make_placemarks {
       die "Multiple matches: " . Dumper(\@john_peaks);
     }
     if (@john_peaks == 0) {
-      my @quads = keys %{ $Scramble::PeakList::ListsOfJohn::Peaks{$name} };
+      my @quads = keys %{ $Scramble::Ingestion::PeakList::ListsOfJohn::Peaks{$name} };
       if (@quads == 1
-	  && $Scramble::PeakList::ListsOfJohn::Peaks{$name}{$quads[0]}{elevation} == $elevation
+	  && $Scramble::Ingestion::PeakList::ListsOfJohn::Peaks{$name}{$quads[0]}{elevation} == $elevation
 	  && ! ($name =~  /^Point /))
       {
-	push @john_peaks, $Scramble::PeakList::ListsOfJohn::Peaks{$name}{$quads[0]};
+	push @john_peaks, $Scramble::Ingestion::PeakList::ListsOfJohn::Peaks{$name}{$quads[0]};
       }
     }
     if (@john_peaks == 0) {

@@ -5,7 +5,7 @@ use strict;
 use Getopt::Long ();
 use IO::File;
 use Scramble::Misc ();
-use Scramble::PeakList::ListsOfJohn ();
+use Scramble::Ingestion::PeakList::ListsOfJohn ();
 
 my @g_options = qw(
     name=s
@@ -17,9 +17,9 @@ sub create {
     get_options();
 
     my @peaks;
-    foreach my $name (keys %Scramble::PeakList::ListsOfJohn::Peaks) {
+    foreach my $name (keys %Scramble::Ingestion::PeakList::ListsOfJohn::Peaks) {
         next unless $name =~ /$g_options{name}/i;
-        push @peaks, values %{ $Scramble::PeakList::ListsOfJohn::Peaks{$name} };
+        push @peaks, values %{ $Scramble::Ingestion::PeakList::ListsOfJohn::Peaks{$name} };
     }
     if (! @peaks) {
         printf("Lists of John has no such peak '%s'", $g_options{name});

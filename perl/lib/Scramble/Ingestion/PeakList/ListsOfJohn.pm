@@ -1,4 +1,4 @@
-package Scramble::PeakList::ListsOfJohn;
+package Scramble::Ingestion::PeakList::ListsOfJohn;
 
 sub BEGIN {
 my $data = [

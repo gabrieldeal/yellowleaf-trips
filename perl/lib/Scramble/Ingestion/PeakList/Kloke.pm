@@ -1,6 +1,6 @@
-package Scramble::PeakList::Kloke;
+package Scramble::Ingestion::PeakList::Kloke;
 
-$Peaks::Kloke::PeakList = [{ name => "Abiel Peak", elevation => 5365, quads => "Lost Lake", },
+$Peaks::Kloke::Ingestion::PeakList = [{ name => "Abiel Peak", elevation => 5365, quads => "Lost Lake", },
 	     { name => "K9", elevation => 6242, quads => "Stevens Pass", },
 	     { name => "Point 6131", elevation => 6131, quads => "Wenatchee Lake", },
 	     { name => "Acorn Mountain", elevation => 4724, quads => "Damnation Peak, Marblemount", },
