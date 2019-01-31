@@ -2,6 +2,9 @@ package Scramble::Controller::ElevationFragment;
 
 use strict;
 
+use Exporter 'import';
+our @EXPORT_OK = qw(format_elevation_short);
+
 sub format_elevation {
     my ($elevation) = @_;
 

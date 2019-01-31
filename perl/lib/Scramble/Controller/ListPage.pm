@@ -2,7 +2,7 @@ package Scramble::Controller::ListPage;
 
 use strict;
 
-use Scramble::Controller::ElevationFragment ();
+use Scramble::Controller::ElevationFragment qw(format_elevation_short);
 use Scramble::Controller::MapFragment ();
 use Scramble::Model::List ();
 use Scramble::Misc ();
@@ -46,7 +46,7 @@ sub create {
 
     my @rows;
     foreach my $list_location ($list->get_locations) {
-        my @cells = map { { value_html => get_cell_value($_, $list_location) } } $list->get_columns;
+        my @cells = map { get_cell_params($_, $list_location) } $list->get_columns;
         push @rows, { cells => \@cells }
     }
 
@@ -70,28 +70,30 @@ sub create {
                                                          'include-header' => 1));
 }
 
-sub get_cell_value {
+sub get_cell_params {
     my ($name, $list_location) = @_;
 
     if ($name eq 'name') {
-        return get_location_link_html('name' => $list_location->{'name'},
-                                      'quad' => $list_location->{'quad'});
-    } elsif ($name eq 'elevation') {
-        return Scramble::Controller::ElevationFragment::format_elevation_short($list_location->get_elevation);
-    } elsif ($name eq 'quad') {
-        return '' unless $list_location->{'quad'};
-        my $quad = eval { Scramble::Model::Area::get_all()->find_one('id' => $list_location->{'quad'},
-                                                                     'type' => 'USGS quad') };
-        return $list_location->{'quad'} unless $quad;
-        return $quad->get_short_name();
-    } elsif ($name eq 'description') {
-        return Scramble::Htmlify::insert_links($list_location->{$name});
-    } elsif ($list_location->{$name}) {
-	return $list_location->{$name};
-    } else {
-	return "";
+        return get_location_name_cell_params(name => $list_location->{name},
+                                             quad => $list_location->{quad});
     }
+
+    my $value;
+    if ($name eq 'elevation') {
+        $value = format_elevation_short($list_location->get_elevation);
+    } elsif ($name eq 'quad') {
+        $value = get_quad_cell_params($list_location);
+    } elsif ($name eq 'description') {
+        $value = Scramble::Htmlify::insert_links($list_location->{$name});
+    } elsif ($list_location->{$name}) {
+        my $value = $list_location->{$name};
+    }
+
+    return {
+        value_html => $value,
+    };
 }
+
 my %gCellTitles = ('name' => 'Location Name',
 		   'elevation' => 'Elevation',
 		   'quad' => 'USGS quad',
@@ -122,17 +124,35 @@ sub get_images_to_display {
     return @images;
 }
 
-sub get_location_link_html {
+sub get_quad_cell_params {
+    my ($list_location) = @_;
+
+    my $quad_id = $list_location->{'quad'};
+    return unless $quad_id;
+
+    my $quad = eval {
+        Scramble::Model::Area::get_all()->find_one('id' => $quad_id,
+                                                   'type' => 'USGS quad')
+    };
+    return $quad->get_short_name if $quad;
+
+    return $quad_id;
+}
+
+sub get_location_name_cell_params {
     my (%args) = @_;
 
-    return eval {
-	my $location = Scramble::Model::Location::find_location(%args);
+    my $location = eval { Scramble::Model::Location::find_location(%args) };
+    if ($location) {
+        return {
+            url => $location->get_url,
+            value_html => $location->get_name,
+        };
+    }
 
-        # FIXME: move to template.
-        return sprintf(qq(<a href="%s">%s</a>),
-                       $location->get_url,
-                       $location->get_name);
-    } || $args{'name'};
+    return {
+        value_html => $args{'name'},
+    };
 }
 
 sub get_map_params {

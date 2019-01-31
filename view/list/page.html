@@ -14,7 +14,13 @@
           <tr>
             <TMPL_LOOP NAME="cells">
               <td>
+                <tmpl_if url>
+                  <a href="<tmpl_var url />">
+                </tmpl_if>
                 <TMPL_VAR ESCAPE="none" NAME="value_html" />
+                <tmpl_if url>
+                  </a>
+                </tmpl_if>
               </td>
             </TMPL_LOOP>
           </tr>
