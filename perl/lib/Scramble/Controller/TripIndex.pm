@@ -48,28 +48,14 @@ sub get_trip_params {
     } @images;
 
     return {
-        name_html => $self->get_summary_name($trip),
         date => $date,
         image_html_1 => $image_htmls[0],
         image_html_2 => $image_htmls[1],
-        image_html_3 => $image_htmls[2]
+        image_html_3 => $image_htmls[2],
+        name => $trip->get_name,
+        state => $trip->get_state ne 'done' ? $trip->get_state : undef,
+        url => $trip->should_show ? $trip->get_trip_page_url : undef,
     };
-}
-
-sub get_summary_name {
-    my $self = shift;
-    my ($trip) = @_;
-
-    my $name = $trip->get_name;
-    if ($trip->should_show) {
-        # FIXME: Move into the template.
-        $name = sprintf(qq(<a href="%s">$name</a>), $trip->get_trip_page_url);
-    }
-    if ($trip->get_state ne 'done') {
-        $name .= sprintf(" (%s)", $trip->get_state);
-    }
-
-    return $name;
 }
 
 ######################################################################

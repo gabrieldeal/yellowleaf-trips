@@ -17,7 +17,13 @@
         <div class="row">
           <div class="col-12">
             <h2 class="trip-summary-name">
-              <TMPL_VAR ESCAPE="none" NAME="name_html" />
+              <tmpl_if url >
+                <a href="<tmpl_var url escape=none />">
+              </tmpl_if>
+              <tmpl_var name /> <tmpl_if state>(<tmpl_var state />)</tmpl_if>
+              <tmpl_if url >
+                </a>
+              </tmpl_if>
             </h2>
             <div class="trip-summary-date">
               <TMPL_VAR NAME="date" />
