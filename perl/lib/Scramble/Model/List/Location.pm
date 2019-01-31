@@ -2,6 +2,8 @@ package Scramble::Model::List::Location;
 
 use strict;
 
+use Scramble::Collection ();
+
 my $g_collection = Scramble::Collection->new;
 
 sub new {
