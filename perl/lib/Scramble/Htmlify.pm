@@ -6,6 +6,8 @@ use Scramble::Controller::ReferenceFragment ();
 use Scramble::Model::List ();
 use Scramble::Model::Reference ();
 
+# FIXME: What can I get rid of from this dark corner?
+
 =head1 Inserting links into text
 
 The 'id' from references.xml turns into a link named by the 'name' for

@@ -6,6 +6,7 @@ use Scramble::Controller::ImageListFragment ();
 
 my $g_pictures_by_year_threshold = 1;
 
+# FIXME: break up this long function.
 sub create_all {
     my $n_pictures_per_year = 50;
     my $n_per_date = 4;
