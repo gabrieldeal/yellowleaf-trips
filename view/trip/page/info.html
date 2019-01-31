@@ -57,10 +57,24 @@
   </div>
 </tmpl_if>
 
-<tmpl_if name="detailed_times_html">
+<tmpl_if detailed_times>
   <div class="field-container">
     <div class="field-name">Car-to-car:</div>
-    <div class="field-value"><tmpl_var escape="none" name="detailed_times_html" /></div>
+    <div class="field-value">
+      <tmpl_var summary_time_html />
+      <ul>
+        <tmpl_loop detailed_times>
+          <li>
+            <tmpl_var time_html />
+            <tmpl_var type />
+            from
+            <tmpl_var from_location_html escape=none />
+            to
+            <tmpl_var to_location_html escape=none />
+          </li>
+        </tmpl_loop>
+      </ul>
+    </div>
   </div>
 </tmpl_if>
 

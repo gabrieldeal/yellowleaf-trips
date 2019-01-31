@@ -62,13 +62,12 @@ sub get_time_params {
     if ($waypoints->get_waypoints_with_times() <= 2) {
         # Some trips have zero waypoints but still have a car-to-car time.
         return (
-            short_time => Scramble::Controller::WaypointsFragment::get_short($waypoints),
+            short_time => Scramble::Controller::WaypointsFragment::get_short_html($waypoints),
             );
     }
 
-    return (
-        detailed_times_html => Scramble::Controller::WaypointsFragment::get_detailed_html($waypoints),
-        );
+    my $detailed_params = Scramble::Controller::WaypointsFragment::get_detailed_params($waypoints);
+    return %$detailed_params;
 }
 
 sub get_references_params {

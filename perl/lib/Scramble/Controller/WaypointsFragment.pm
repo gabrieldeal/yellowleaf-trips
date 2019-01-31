@@ -4,7 +4,7 @@ use strict;
 
 use HTML::Entities ();
 
-sub get_short {
+sub get_short_html {
     my ($waypoints) = @_;
 
     my $delta = $waypoints->get_car_to_car_delta();
@@ -12,14 +12,13 @@ sub get_short {
     return Scramble::Time::format_time(0, $delta);
 }
 
-# FIXME: Refactor display code into a template.
-sub get_detailed_html {
+sub get_detailed_params {
     my ($waypoints) = @_;
 
     my @waypoints = $waypoints->get_waypoints_with_times();
     return '' unless @waypoints;
 
-    my @waypoint_htmls;
+    my @waypoint_params;
     my @summaries;
 
     for (my $i = 1; $i < @waypoints; ++$i) {
@@ -40,26 +39,18 @@ sub get_detailed_html {
 			       'type' => $type,
 			   };
 	}
-	push @waypoint_htmls, sprintf("%s %s from %s to %s",
-				      Scramble::Time::format_time(0, $delta),
-				      $type,
-				      Scramble::Htmlify::insert_links($w1->get_location()),
-				      Scramble::Htmlify::insert_links($w2->get_location()));
+        push @waypoint_params, {
+            time_html => Scramble::Time::format_time(0, $delta),
+            type => $type,
+            from_location_html => Scramble::Htmlify::insert_links($w1->get_location),
+            to_location_html => Scramble::Htmlify::insert_links($w2->get_location),
+        };
     }
 
-    my @summary_htmls;
-
-    if ($waypoints->get_car_to_car_delta()) {
-        unshift @summary_htmls, get_short($waypoints);
-    }
-
-    my $html = "@summary_htmls";
-    if (@waypoint_htmls) {
-        $html .= sprintf("<ul><li>%s</li></ul>",
-                         join("</li><li>", @waypoint_htmls));
-    }
-
-    return $html;
+    return {
+        summary_time_html => get_short_html($waypoints),
+        detailed_times => \@waypoint_params,
+    };
 }
 
 1;
