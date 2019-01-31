@@ -83,8 +83,6 @@ sub get_cell_params {
         $value = format_elevation_short($list_location->get_elevation);
     } elsif ($name eq 'quad') {
         $value = get_quad_cell_params($list_location);
-    } elsif ($name eq 'description') {
-        $value = Scramble::Htmlify::insert_links($list_location->{$name});
     } elsif ($list_location->{$name}) {
         my $value = $list_location->{$name};
     }
