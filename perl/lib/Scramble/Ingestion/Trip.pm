@@ -61,7 +61,11 @@ sub make_xml {
 
     # geotag($image_data{files});
 
-    chmod(0744, glob("$image_dir/*")) || die "Failed to chmod: $!";
+    my $glob = "$image_dir/*";
+    my @files = glob($glob);
+    if (@files) {
+        chmod(0744, @files) || die "Failed to chmod ($!) '$glob'";
+    }
 
     return 0;
 }
