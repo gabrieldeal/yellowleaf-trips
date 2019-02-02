@@ -397,7 +397,7 @@ sub process_images {
             } else {
                 # Older processed files start with "<NNNNN>-"
                 ($orig_filename) = ($enl_filename =~ /^(?:\d+-)?([-\w_\(\)]+)-enl.jpg$/) or die "Failed to parse '$enl_filename'";
-                my $orig_filename_glob = "$dir/$orig_filename.xmp";
+                my $orig_filename_glob = get_metadata_filename("$dir/$orig_filename");
                 my @orig_filenames = glob($orig_filename_glob);
                 @orig_filenames == 1 or die(sprintf("Got %s matches for '$orig_filename_glob': @orig_filenames", scalar(@orig_filenames)));
                 
@@ -455,6 +455,18 @@ sub process_images {
     return (files => \@files,
 	    first_timestamp => $first_timestamp,
 	    last_timestamp => $last_timestamp);
+}
+
+sub get_metadata_filename {
+    my ($path_prefix) = @_;
+
+    my @extensions = map { ($_, uc($_)) } qw(xmp dng);
+    foreach my $extension (@extensions) {
+        my $path = "$path_prefix.$extension";
+        return $path if -e $path;
+    }
+
+    die qq(Unable to find metadata file matching "$path_prefix.*");
 }
 
 sub get_rating {
