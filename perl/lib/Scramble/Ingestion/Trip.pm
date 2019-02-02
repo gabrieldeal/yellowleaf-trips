@@ -43,7 +43,10 @@ sub make_xml {
     my %image_data = process_images($image_dir);
     my %gps_data = process_gpx(\%image_data);
 
-    my $trip_xml_file = "$data_dir/trips/$image_subdir/trip.xml";
+    # FIXME: Get rid of $image_subdir and put all trip XML files in trips/.
+    my $trip_dir = "$data_dir/trips/$image_subdir";
+    File::Path::mkpath([$trip_dir], 0, 0755);
+    my $trip_xml_file = "$trip_dir/trip.xml";
     if (-e $trip_xml_file) {
         print "$trip_xml_file already exists\n";
     } else {
