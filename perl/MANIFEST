@@ -12,6 +12,7 @@ lib/Scramble/Controller/ReferenceIndex.pm
 lib/Scramble/Controller/TripIndex.pm
 lib/Scramble/Controller/TripPage.pm
 lib/Scramble/Controller/TripRss.pm
+lib/Scramble/Controller/TripXml.pm
 lib/Scramble/Controller/WaypointsFragment.pm
 lib/Scramble/Converter.pm
 lib/Scramble/Converter/Location.pm

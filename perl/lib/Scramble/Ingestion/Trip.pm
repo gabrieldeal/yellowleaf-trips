@@ -8,21 +8,17 @@ use File::Spec ();
 use Geo::Gpx ();
 use IO::File ();
 use Image::ExifTool ();
+use Scramble::Controller::TripXml ();
 use Scramble::Model::Area ();
 use Scramble::Model::Location ();
 use Scramble::Time ();
 use Spreadsheet::Read ();
-use XML::Generator ();
 
 # FIXME: Refactor everything
 
 my $g_data_dir = '/home/gabrielx/projects/yellowleaf-trips-data';
 my $g_image_dest_basedir = "$g_data_dir/html/pics";
 my $g_image_src_basedir = '/media/gabrielx/Backup/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports';
-
-my $xg = XML::Generator->new(escape => 'always',
-                             conformance => 'strict',
-                             pretty => 4);
 
 sub make_xml {
     my ($image_subdir, $trip_type, $title, $spreadsheet_filename) = @_;
@@ -55,14 +51,14 @@ sub make_xml {
     } else {
         my @locations = prompt_for_locations();
         my $sections = read_trip_sections($spreadsheet_filename);
-        my $trip_xml = make_trip_xml(date => $date,
-                                     title => $title,
-                                     trip_type => $trip_type,
-                                     locations => \@locations,
-                                     sections => $sections,
-                                     gps_data => \%gps_data,
-                                     image_data => \%image_data,
-                                     image_subdir => $image_subdir);
+        my $trip_xml = Scramble::Controller::TripXml::html(date => $date,
+                                                           title => $title,
+                                                           trip_type => $trip_type,
+                                                           locations => \@locations,
+                                                           sections => $sections,
+                                                           gps_data => \%gps_data,
+                                                           image_data => \%image_data,
+                                                           image_subdir => $image_subdir);
         write_file($trip_xml_file, $trip_xml);
     }
 
@@ -214,118 +210,6 @@ sub validate_arguments {
 
     my ($date) = ($image_subdir =~ /^(\d{4}-\d\d-\d\d)/);
     defined $date or die "Unable to get date from image subdirectory: $image_subdir";
-}
-
-sub make_locations_xml {
-    my ($locations) = @_;
-
-    my @location_attrs = map {
-        {
-            name => $_->get_name,
-            quad => ($_->get_quad_objects)[0]->get_id,
-        }
-    } @$locations;
-
-    return $xg->locations(map { $xg->location($_) } @location_attrs);
-}
-
-sub make_trip_xml {
-    my %args = @_;
-
-    $args{title} =~ s/&/&amp;/g; # It is still the dark ages here.
-
-    my $files_xml = make_files_xml($args{image_data}{files}, $args{date}, $args{sections});
-    my $locations_xml = make_locations_xml($args{locations});
-
-    my $start = $args{gps_data}{start} || $args{image_data}{first_timestamp} || '';
-    my $end = $args{gps_data}{end} || $args{image_data}{last_timestamp} || '';
-
-    return <<EOT;
-<trip filename="$args{image_subdir}"
-      start-date="$args{date}"
-      name="$args{title}"
-      type="$args{trip_type}"
-      trip-id="1"
->
-    <description />
-    <references />
-
-    $locations_xml
-
-    <party size="">
-        <member name="Gabriel Deal" type="author"/>
-        Lindsay Malone
-    </party>
-
-    <round-trip-distances>
-        <distance type="foot" miles=""/>
-        <distance type="bike" miles=""/>
-    </round-trip-distances>
-
-    <waypoints elevation-gain="">
-        <waypoint type="ascending"
-               location-description=""
-               time="$start"
-        />
-        <waypoint type="break"
-               location-description=""
-               time="$end"
-        />
-    </waypoints>
-
-    $files_xml
-</trip>
-EOT
-}
-
-sub prompt_yes_or_no {
-    my ($prompt) = @_;
-    while (1) {
-        print "$prompt\ny/n (y)? ";
-        my $answer = <STDIN>;
-        chomp $answer;
-
-        return 1 if lc($answer) eq 'y' || $answer eq '';
-        return 0 if lc($answer) eq 'n';
-    }
-}
-
-sub make_files_xml {
-    my ($files, $date, $sections) = @_;
-
-    my @file_xmls;
-    foreach my $file (sort { $a->{timestamp} cmp $b->{timestamp} } @$files) {
-        my %optional_attrs;
-        if ($file->{caption} =~ /^(.+)\s+(from|over)\s+(.+)/) {
-            my ($of, $term, $from) = ($1, $2, $3);
-            $from = '' if $term eq 'over';
-            my $question = "\n$file->{caption}\nSet the 'of' and 'from' attributes to the below? ('n' sets it to nothing)\nof: $of\nfrom: $from";
-            @optional_attrs{'of', 'from'} = prompt_yes_or_no($question) ? ($of, $from) : ('', '');
-        }
-
-        my $section_name;
-        if ($file->{timestamp}) {
-            my ($year, $mm, $dd) = Scramble::Time::parse_date_and_time($file->{timestamp});
-            $section_name = $sections->{"$year/$mm/$dd"};
-        }
-
-        push @file_xmls, $xg->file({ %optional_attrs,
-                                         'description' => $file->{caption},
-                                         'thumbnail-filename' => $file->{thumb_filename},
-                                         'large-filename' => $file->{enl_filename},
-                                         rating => $file->{rating},
-                                         type => $file->{type},
-                                         owner => $file->{owner},
-                                         'capture-timestamp' => $file->{timestamp},
-                                         'section-name' => $section_name,
-                                   });
-    }
-
-    return $xg->files({ date => $date,
-                        'in-chronological-order' => "true",
-                        'trip-id' => 1,
-                      },
-                      @file_xmls);
 }
 
 sub make_kml {
