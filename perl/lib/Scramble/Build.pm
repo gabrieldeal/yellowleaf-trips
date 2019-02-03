@@ -32,13 +32,13 @@ use Scramble::Tests ();
 my $gRoot = "yellowleaf.org/scramble";
 
 my @g_options = qw(
-    data-directory=s
+    xml-src-directory=s
     timezone=s
     verbose
     action=s@
     skip=s@
     file=s@
-    trips-directory=s
+    files-src-directory=s
     kml-directory=s
     templates-directory=s
     javascript-directory=s
@@ -82,7 +82,7 @@ sub get_options {
     }
 
     foreach my $required (qw(
-                          trips-directory
+                          files-src-directory
                           output-directory
                           javascript-directory
                           templates-directory))
@@ -114,24 +114,26 @@ sub create {
     should('javascript') && make_javascript();
     should('template') && make_templates();
 
-    Scramble::Model::Location::set_data_directory($g_options{'data-directory'});
-    Scramble::Model::Area::open($g_options{'data-directory'});
-    Scramble::Model::Reference::open($g_options{'data-directory'});
+    Scramble::Model::Location::set_xml_src_directory($g_options{'xml-src-directory'});
+    Scramble::Model::Area::open($g_options{'xml-src-directory'});
+    Scramble::Model::Reference::open($g_options{'xml-src-directory'});
 
     # if (0 && should('convert')) {
-    #     my @files = @{ $g_options{'file'} } || glob("$g_options{'data-directory'}/locations/*.xml");
-    #     Scramble::Converter::convert_locations($g_options{'data-directory'}, @files);
+    #     my @files = @{ $g_options{'file'} } || glob("$g_options{'xml-src-directory'}/locations/*.xml");
+    #     Scramble::Converter::convert_locations($g_options{'xml-src-directory'}, @files);
     #     @files = ...
-    #     Scramble::Converter::convert_trips($g_options{'data-directory'}, @files);
+    #     Scramble::Converter::convert_trips($g_options{'xml-src-directory'}, @files);
     #     exit 0;
     # }
 
     if (! @{ $g_options{'file'} }) {
-        Scramble::Model::Trip::open_all($g_options{'trips-directory'}, $g_options{'data-directory'});
+        Scramble::Model::Trip::open_all($g_options{'files-src-directory'},
+                                        $g_options{'xml-src-directory'});
     } else {
 	foreach my $file (@{ $g_options{'file'} }) {
             if ($file =~ m{/trips/}) {
-                my $trip = Scramble::Model::Trip::open_specific($file, $g_options{'trips-directory'});
+                my $trip = Scramble::Model::Trip::open_specific($file,
+                                                                $g_options{'files-src-directory'});
                 my $page = Scramble::Controller::TripPage->new($trip);
                 $page->create;
             } else {
@@ -142,12 +144,12 @@ sub create {
             }
         }
     }
-    should('spell') && Scramble::SpellCheck::check_spelling("$g_options{'data-directory'}/dictionary");
+    should('spell') && Scramble::SpellCheck::check_spelling("$g_options{'xml-src-directory'}/dictionary");
     if (@{ $g_options{'file'} }) {
         return 0;
     }
 
-    Scramble::Model::List::open(glob("$g_options{'data-directory'}/lists/*.xml"));
+    Scramble::Model::List::open(glob("$g_options{'xml-src-directory'}/lists/*.xml"));
 
     should('kml') && copy_kml();
     should('trip-index') && Scramble::Controller::TripIndex::create_all(); # This includes home.html

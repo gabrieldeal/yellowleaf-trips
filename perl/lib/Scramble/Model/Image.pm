@@ -36,7 +36,7 @@ sub new {
 sub get_id { $_[0]->get_source_directory() . "|" . $_[0]->get_filename() }
 sub get_chronological_order { $_[0]->{'chronological-order'} }
 sub in_chronological_order { $_[0]->{'in-chronological-order'} }
-sub get_source_directory { $_[0]->{'source-directory'} }
+sub get_source_directory { $_[0]->{'source-directory'} } # FIXME: Rename to trip files src dir.
 sub get_filename { $_[0]->{'thumbnail-filename'} }
 sub get_enlarged_filename { $_[0]->{'large-filename'} }
 sub get_subdirectory { $_[0]->{'subdirectory'} }
@@ -149,7 +149,7 @@ sub cmp {
 sub get_all_images_collection { $g_collection }
 
 sub read_images_from_trip {
-    my ($directory, $trip) = @_;
+    my ($trip_files_src_dir, $trip) = @_;
 
     my $date = $trip->get_start_date();
     my ($year, $month, $day) = Scramble::Time::parse_date($date);
@@ -164,7 +164,7 @@ sub read_images_from_trip {
     foreach my $image_xml (@{ $trip->_get_optional('files', "file") || [] }) {
         next if $image_xml->{skip};
         push @images, Scramble::Model::Image->new({ date => "$year/$month/$day",
-                                                    'source-directory' => $directory,
+                                                    'source-directory' => $trip_files_src_dir,
                                                     'chronological-order' => $chronological_order++,
                                                     'in-chronological-order' => $in_chronological_order,
                                                     %$image_xml,

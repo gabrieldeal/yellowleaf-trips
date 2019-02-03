@@ -8,7 +8,7 @@ use Scramble::Model ();
 use Scramble::Model::Area ();
 
 our @ISA = qw(Scramble::Model);
-our $HACK_DIRECTORY;
+our $LOCATION_XML_SRC_DIRECTORY;
 
 my @g_hidden_locations;
 my @g_locations;
@@ -263,10 +263,10 @@ sub set_have_visited {
 # static methods
 ######################################################################
 
-sub set_data_directory {
-    my ($data_dir) = @_;
+sub set_xml_src_directory {
+    my ($dir) = @_;
 
-    $HACK_DIRECTORY = "$data_dir/locations";
+    $LOCATION_XML_SRC_DIRECTORY = "$dir/locations";
 }
 
 sub open_specific {
@@ -361,7 +361,8 @@ sub find_location {
 
     # Lazily load the location:
     my $name = $args{'name'} || die "Not given name";
-    my $path = sprintf("$HACK_DIRECTORY/%s.xml", Scramble::Misc::sanitize_for_filename($name));
+    my $path = sprintf("$LOCATION_XML_SRC_DIRECTORY/%s.xml",
+                       Scramble::Misc::sanitize_for_filename($name));
     die "Unable to lazily load from $path" unless -f $path;
     open_specific($path);
 

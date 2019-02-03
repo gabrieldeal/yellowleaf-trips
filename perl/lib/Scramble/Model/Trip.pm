@@ -13,7 +13,7 @@ our @ISA = qw(Scramble::Model);
 my $g_trip_collection = Scramble::Collection->new();
 
 sub new {
-    my ($arg0, $path, $images_directory) = @_;
+    my ($arg0, $path, $files_src_dir) = @_;
 
     my $self = Scramble::Model::parse($path);
     if ($self->{'skip'}) {
@@ -25,7 +25,7 @@ sub new {
 
     $self->initialize_locations;
     $self->initialize_areas;
-    $self->initialize_images($images_directory);
+    $self->initialize_images($files_src_dir);
     $self->initialize_waypoints;
     $self->initialize_dates;
 
@@ -64,13 +64,13 @@ sub initialize_areas {
 
 sub initialize_images {
     my $self = shift;
-    my ($images_dir) = @_;
+    my ($files_src_dir) = @_;
 
     # FIXME: Move $subdir into trip.xml and move all trip.xml files into the same
     # directory?
     my $subdir = File::Basename::basename(File::Basename::dirname($self->{path}));
-    my $trip_images_dir = "$images_dir/$subdir";
-    my @images = Scramble::Model::Image::read_images_from_trip($trip_images_dir, $self);
+    my $trip_files_src_dir = "$files_src_dir/$subdir";
+    my @images = Scramble::Model::Image::read_images_from_trip($trip_files_src_dir, $self);
     my $image_collection = Scramble::Collection->new(objects => \@images);
 
     my @pictures = (
@@ -258,23 +258,24 @@ sub cmp {
 }
 
 sub open_specific {
-    my ($path, $images_directory) = @_;
+    my ($path_or_dir, $files_src_dir) = @_;
 
-    $path = "$path/trip.xml" if !-f $path && -f "$path/trip.xml";
+    my $path =  -d $path_or_dir ? "$path_or_dir/trip.xml" : $path_or_dir;
+    die "Bad trip location '$path_or_dir'" unless -f $path;
 
-    my $trip = Scramble::Model::Trip->new($path, $images_directory);
+    my $trip = Scramble::Model::Trip->new($path, $files_src_dir);
     $g_trip_collection->add($trip) if defined $trip;
     return $trip;
 }
 
 sub open_all {
-    my ($images_directory, $data_directory) = @_;
+    my ($files_src_dir, $xml_src_dir) = @_;
 
-    my $glob = "$data_directory/trips/*/trip.xml";
+    my $glob = "$xml_src_dir/trips/*/trip.xml";
     my @paths = reverse(sort(glob($glob)));
     @paths || die "No trips in $glob";
     foreach my $path (@paths) {
-        open_specific($path, $images_directory);
+        open_specific($path, $files_src_dir);
     }
 }
 

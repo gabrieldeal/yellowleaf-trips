@@ -16,9 +16,9 @@ use Spreadsheet::Read ();
 
 # FIXME: Refactor everything
 
-my $g_data_dir = '/home/gabrielx/projects/yellowleaf-trips-data';
-my $g_image_dest_basedir = "$g_data_dir/html/pics";
-my $g_image_src_basedir = '/media/gabrielx/Backup/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports';
+my $g_xml_src_dir = '/home/gabrielx/projects/yellowleaf-trips-data';
+my $g_image_output_dir = "$g_xml_src_dir/html/pics";
+my $g_files_src_dir = '/media/gabrielx/Backup/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports';
 
 sub make_xml {
     my ($image_subdir, $trip_type, $title, $spreadsheet_filename) = @_;
@@ -26,27 +26,27 @@ sub make_xml {
     $ENV{TZ} || die "Set Timezone.  E.g., export TZ='America/Los_Angeles'";
     defined $title or die "Missing arguments: image-subdir trip-type title";
 
-    my $image_src_dir = "$g_image_src_basedir/$image_subdir";
-    -d $image_src_dir or die "Non-existant image dir: $image_src_dir";
+    my $trip_image_src_dir = "$g_files_src_dir/$image_subdir";
+    -d $trip_image_src_dir or die "Non-existant image dir: $trip_image_src_dir";
 
-    my $image_dest_dir = "$g_image_dest_basedir/$image_subdir";
-    -d $image_dest_dir or die "Non-existant image dir: $image_dest_dir";
+    my $trip_image_output_dir = "$g_image_output_dir/$image_subdir";
+    -d $trip_image_output_dir or die "Non-existant image dir: $trip_image_output_dir";
 
     my ($date) = ($image_subdir =~ /^(\d{4}-\d\d-\d\d)/);
     defined $date or die "Unable to get date from image subdirectory: $image_subdir";
 
     # FIXME: Create the KML in the dest dir?
-    create_kml($image_src_dir);
+    create_kml($trip_image_src_dir);
 
-    my $files = read_trip_files($image_src_dir);
+    my $files = read_trip_files($trip_image_src_dir);
     my $timestamps = get_timestamps($files);
 
-    copy_misc_images($g_image_dest_basedir);
+    copy_misc_images($g_image_output_dir);
 
-    ingest_trip_files($image_src_dir, $image_dest_dir, $files);
+    ingest_trip_files($trip_image_src_dir, $trip_image_output_dir, $files);
 
     # FIXME: Get rid of $image_subdir and put all trip XML files in trips/.
-    my $trip_dir = "$g_data_dir/trips/$image_subdir";
+    my $trip_dir = "$g_xml_src_dir/trips/$image_subdir";
     File::Path::mkpath([$trip_dir], 0, 0755);
     my $trip_xml_file = "$trip_dir/trip.xml";
     if (-e $trip_xml_file) {
@@ -65,7 +65,7 @@ sub make_xml {
         write_file($trip_xml_file, $trip_xml);
     }
 
-    my $glob = "$image_src_dir/*";
+    my $glob = "$trip_image_src_dir/*";
     my @files = glob($glob);
     if (@files) {
         chmod(0744, @files) || die "Failed to chmod ($!) '$glob'";
@@ -228,8 +228,8 @@ sub prompt_for_locations {
 
     my $prompt = "Location (^D to quit): ";
     print $prompt;
-    Scramble::Model::Area::open($g_data_dir);
-    Scramble::Model::Location::set_data_directory($g_data_dir);
+    Scramble::Model::Area::open($g_xml_src_dir);
+    Scramble::Model::Location::set_xml_src_directory($g_xml_src_dir);
     my %opened_locations;
     while (my $location_name = <STDIN>) {
         my @location_matches;

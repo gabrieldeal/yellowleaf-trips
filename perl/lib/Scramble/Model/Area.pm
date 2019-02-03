@@ -95,12 +95,12 @@ sub add_location {
 sub get_all { $g_all }
 
 sub open {
-    my ($data_dir) = @_;
+    my ($xml_src_dir) = @_;
 
     return if $g_all;
 
     my @areas;
-    my $areas_xml = Scramble::Model::parse("$data_dir/areas.xml");
+    my $areas_xml = Scramble::Model::parse("$xml_src_dir/areas.xml");
     foreach my $area_xml (@{ $areas_xml->{'area'} }) {
 	my $area = Scramble::Model::Area->new($area_xml);
 	push @areas, $area;

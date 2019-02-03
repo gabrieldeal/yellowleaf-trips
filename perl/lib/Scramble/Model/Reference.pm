@@ -33,9 +33,9 @@ sub new {
 }
 
 sub open {
-    my ($data_dir) = @_;
+    my ($xml_src_dir) = @_;
 
-    my $file = "$data_dir/references.xml";
+    my $file = "$xml_src_dir/references.xml";
     my $references_xml = Scramble::Model::parse($file);
 
     foreach my $reference_xml (@{ $references_xml->{reference} }) {

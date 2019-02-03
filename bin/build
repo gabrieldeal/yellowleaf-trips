@@ -1,19 +1,21 @@
 #!/usr/bin/env bash
 umask 022
 
-# To run the debugger:
-# Put $DB::single=1; where you want to break.
-# PERL5OPT="-d" bin/build
+# RAW, JPG, and GPX:
+files_src_dir="/media/gabrielx/Backup/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports"
 
-# To get line coverage:
-# rm -rf cover_db && PERL5OPT=-MDevel::Cover bin/build && cover && ls -l cover_db
+# areas.xml, locations/*.xml, trips/*.xml, dictionary, etc:
+xml_src_dir="/home/gabrielx/projects/yellowleaf-trips-data"
 
-data_dir="/home/gabrielx/projects/yellowleaf-trips-data"
-dir="$(dirname "$0")/.."
-cd "$dir" \
+# HTML, CSS, JS, KML, images, etc:
+output_dir="$xml_src_dir/html"
+
+code_dir="$(dirname "$0")/.."
+
+cd "$code_dir" \
     && perl bin/parse \
-	    --data-directory "$data_dir" \
-	    --trips-directory "/media/gabrielx/Backup/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports" \
-	    --output-directory "$data_dir/html" \
+	    --xml-src-directory "$xml_src_dir" \
+	    --files-src-directory "$files_src_dir" \
+	    --output-directory "$output_dir" \
 	    -v \
 	    "$@"
