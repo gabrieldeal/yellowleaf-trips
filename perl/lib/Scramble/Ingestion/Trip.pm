@@ -16,8 +16,9 @@ use XML::Generator ();
 
 # FIXME: Refactor everything
 
-my $image_dir = '/media/gabrielx/Backup/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports';
-my $data_dir = '/home/gabrielx/projects/yellowleaf-trips-data';
+my $g_data_dir = '/home/gabrielx/projects/yellowleaf-trips-data';
+my $g_image_dest_basedir = "$g_data_dir/html/pics";
+my $g_image_src_basedir = '/media/gabrielx/Backup/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports';
 
 my $xg = XML::Generator->new(escape => 'always',
                              conformance => 'strict',
@@ -29,19 +30,26 @@ sub make_xml {
     $ENV{TZ} || die "Set Timezone.  E.g., export TZ='America/Los_Angeles'";
     defined $title or die "Missing arguments: image-subdir trip-type title";
 
-    my $image_dir = "$image_dir/$image_subdir";
-    -d $image_dir or die "Non-existant image dir: $image_dir";
+    my $image_src_dir = "$g_image_src_basedir/$image_subdir";
+    -d $image_src_dir or die "Non-existant image dir: $image_src_dir";
+
+    my $image_dest_dir = "$g_image_dest_basedir/$image_subdir";
+    -d $image_dest_dir or die "Non-existant image dir: $image_dest_dir";
 
     my $sections = read_trip_sections($spreadsheet_filename);
 
     my ($date) = ($image_subdir =~ /^(\d{4}-\d\d-\d\d)/);
     defined $date or die "Unable to get date from image subdirectory: $image_subdir";
 
-    my %image_data = process_images($image_dir);
-    my %gps_data = process_gpx(\%image_data);
+    my %image_data = read_images($image_src_dir);
+    my %gps_data = read_gpx(\%image_data);
+
+    copy_misc_images($g_image_dest_basedir);
+
+    ingest_trip_files($image_src_dir, $image_dest_dir, $image_data{files});
 
     # FIXME: Get rid of $image_subdir and put all trip XML files in trips/.
-    my $trip_dir = "$data_dir/trips/$image_subdir";
+    my $trip_dir = "$g_data_dir/trips/$image_subdir";
     File::Path::mkpath([$trip_dir], 0, 0755);
     my $trip_xml_file = "$trip_dir/trip.xml";
     if (-e $trip_xml_file) {
@@ -61,7 +69,7 @@ sub make_xml {
 
     # geotag($image_data{files});
 
-    my $glob = "$image_dir/*";
+    my $glob = "$image_src_dir/*";
     my @files = glob($glob);
     if (@files) {
         chmod(0744, @files) || die "Failed to chmod ($!) '$glob'";
@@ -86,8 +94,10 @@ sub metadata_from_gpx {
         );
 }
 
-sub process_gpx {
+sub read_gpx {
     my ($images) = @_;
+
+    print "Reading GPX files...\n";
 
     my @gpx_files = grep { $_->{type} eq 'gps' } @{ $images->{files} };
 
@@ -149,8 +159,8 @@ sub prompt_for_locations {
 
     my $prompt = "Location (^D to quit): ";
     print $prompt;
-    Scramble::Model::Area::open($data_dir);
-    Scramble::Model::Location::set_data_directory($data_dir);
+    Scramble::Model::Area::open($g_data_dir);
+    Scramble::Model::Location::set_data_directory($g_data_dir);
     my %opened_locations;
     while (my $location_name = <STDIN>) {
         my @location_matches;
@@ -358,8 +368,10 @@ sub make_kml {
               '-o', $kml_path);
 }
 
-sub process_images {
+sub read_images {
     my ($dir) = @_;
+
+    print "Reading images in $dir...\n";
 
     -d $dir or die "No such directory '$dir'";
     $dir =~ s{/*$}{};
@@ -435,21 +447,12 @@ sub process_images {
         };
     }
 
-    my (@file_xmls, $first_timestamp, $last_timestamp);
+    my ($first_timestamp, $last_timestamp);
     foreach my $file (@files) {
-        print "$file->{type} $file->{thumb_filename}:\n";
-
-        if ($file->{type} eq 'movie') {
-            reencode_video($dir, $file);
-        } elsif ($file->{type} eq 'picture') {
-            interlace_images($dir, $file);
-
-	    $last_timestamp = $file->{timestamp};
-	    if (! defined $first_timestamp) {
-		$first_timestamp = $file->{timestamp};
-	    }
-	}
-
+        $last_timestamp = $file->{timestamp};
+        if (! defined $first_timestamp && defined $file->{timestamp}) {
+            $first_timestamp = $file->{timestamp};
+        }
     }
 
     return (files => \@files,
@@ -485,6 +488,16 @@ sub get_rating {
     }
 }
 
+sub process_trip_file {
+    my ($dir, $file) = @_;
+
+    if ($file->{type} eq 'movie') {
+        reencode_video($dir, $file);
+    } elsif ($file->{type} eq 'picture') {
+        interlace_image($dir, $file);
+    }
+}
+
 # Chrome will not display videos from Lindsay's PowerShot without this
 # reencoding.
 sub reencode_video {
@@ -503,14 +516,16 @@ sub reencode_video {
     my_system(@command);
 }
 
-sub interlace_images {
+sub interlace_image {
     my ($dir, $file) = @_;
 
-    my $thumb_file = $file->{thumb_filename};
-    my $enl_file = $file->{enl_filename};
-
-    interlace($dir, $thumb_file);
-    interlace($dir, $enl_file);
+    foreach my $file ($file->{thumb_filename}, $file->{enl_filename}) {
+        print "\tInterlacing $file\n";
+        my_system("mogrify",
+                  "-strip", # breaks geotagging
+                  "-interlace", "Line",
+                  "$dir/$file");
+    }
 }
 
 sub write_file {
@@ -555,39 +570,7 @@ sub get_image_metadata {
     };
 }
 
-sub get_image_attributes {
-    my ($file) = @_;
-
-    my $command = qq(identify -verbose "$file");
-    my $data = `$command`;
-
-    my ($height, $width) = ($data =~ /^\s*Geometry: (\d+)x(\d+)\+/m);
-    die "Unable to get size from command $command" unless defined $width;
-
-    my ($interlacing) = ($data =~ /^\s*Interlace: (\w+)/m);
-    die "No interlacing from $command" unless defined $interlacing;
-
-    return { height => $height,
-             width => $width,
-             interlaced => $interlacing ne 'None',
-    };
-}
-
 sub min { $_[0] < $_[1] ? $_[0] : $_[1] }
-
-sub interlace {
-    my ($dir, $file) = @_;
-
-    my $image_attrs = get_image_attributes("$dir/$file");
-
-    if (! $image_attrs->{interlaced}) {
-        print "\tInterlacing $file\n";
-        my_system("mogrify",
-                  "-strip", # breaks geotagging
-                  "-interlace", "Line",
-                  "$dir/$file");
-    }
-}
 
 sub my_system {
     my (@command) = @_;
@@ -596,6 +579,59 @@ sub my_system {
     return if 0 == system @command;
 
     die "Command exited with failure code ($?): @command";
+}
+
+sub copy_trip_file {
+    my ($file, $src_dir, $dest_dir) = @_;
+
+    next unless defined $file;
+
+    my $source = "$src_dir/$file";
+    my $dest = "$dest_dir/$file";
+    my $source_mtime = (stat($source))[9] or die "Error getting size '$source': $!";
+    my $dest_mtime = (stat($dest))[9];
+    if (defined $dest_mtime && $source_mtime < $dest_mtime) {
+        return;
+    }
+
+    print "cp $source $dest_dir\n";
+    system("cp", $source, $dest_dir) == 0 or die "Can't copy '$source' to '$dest_dir': $!";
+}
+
+sub ingest_trip_files {
+    my ($src_dir, $dest_dir, $files) = @_;
+
+    print "Copying trip files...\n";
+
+    File::Path::mkpath([$dest_dir], 0, 0755);
+
+    foreach my $file (@$files) {
+        my @file_variants = ($file->{thumb_filename}, $file->{enl_filename});
+        my $is_updated = 0;
+        foreach my $file_variant (@file_variants) {
+            if (copy_trip_file($file_variant, $src_dir, $dest_dir)) {
+                $is_updated = 1;
+            }
+        }
+
+        if ($is_updated) {
+            process_trip_file($dest_dir, $file);
+        }
+    }
+}
+
+sub copy_misc_images {
+    my ($dest_dir) = @_;
+
+    my @images = glob "images/*.{gif,ico,png,json}";
+    @images or die "Unable to find the misc images";
+
+    File::Path::mkpath([$dest_dir], 0, 0755);
+    foreach my $image (@images) {
+        if (system("cp", $image, "$dest_dir/..") != 0) {
+            die "Can't copy '$image' to '$dest_dir': $!";
+        }
+    }
 }
 
 1;

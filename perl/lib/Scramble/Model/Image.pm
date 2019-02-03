@@ -9,43 +9,6 @@ use Scramble::Template ();
 my $g_pics_dir = "pics";
 my $g_collection = Scramble::Collection->new();
 
-sub _copy {
-    my ($file1, $file2, $file3, $dir, $target_dir) = @_;
-
-    foreach my $file ($file1, $file2, $file3) {
-        next unless defined $file;
-        my $source = "$dir/$file";
-        my $target = "$target_dir/$file";
-        my $source_size = (stat($source))[7] or die "Error getting size '$source': $!";
-        my $target_size = (stat($target))[7];
-        if (defined $target_size && $source_size == $target_size) {
-            next;
-        }
-        Scramble::Logger::verbose("cp $source $target_dir\n");
-        system("cp", $source, $target_dir) == 0 or die "Can't copy '$source' to '$target_dir': $!";
-    }
-}
-sub copy {
-    Scramble::Logger::verbose("Copying new images...");
-
-    my $output_image_dir = Scramble::Misc::get_output_directory() . "/$g_pics_dir/";
-
-    File::Path::mkpath([$output_image_dir], 0, 0755);
-    foreach my $image (glob "images/*.{gif,ico,png,json}") {
-        system("cp", $image, $output_image_dir) == 0 or die "Can't copy '$image' to '$output_image_dir': $!";
-    }
-
-    foreach my $image (get_all_images_collection()->get_all()) {
-        my $target_dir = "$output_image_dir/" . $image->get_subdirectory();
-        File::Path::mkpath([$target_dir], 0, 0755);
-        _copy($image->get_filename(),
-              $image->get_enlarged_filename(),
-              $image->get_poster(),
-              $image->get_source_directory(),
-              $target_dir);
-    }
-}
-
 sub new {
     my $arg0 = shift;
     my ($args) = @_;

@@ -134,7 +134,6 @@ sub create {
                 my $trip = Scramble::Model::Trip::open_specific($file, $g_options{'trips-directory'});
                 my $page = Scramble::Controller::TripPage->new($trip);
                 $page->create;
-                should('copy-images') && Scramble::Model::Image::copy();
             } else {
                 foreach my $location (Scramble::Model::Location::open_specific($file)) {
                     my $page = Scramble::Controller::LocationPage->new($location);
@@ -143,7 +142,6 @@ sub create {
             }
         }
     }
-    should('copy-images') && Scramble::Model::Image::copy();
     should('spell') && Scramble::SpellCheck::check_spelling("$g_options{'data-directory'}/dictionary");
     if (@{ $g_options{'file'} }) {
         return 0;
