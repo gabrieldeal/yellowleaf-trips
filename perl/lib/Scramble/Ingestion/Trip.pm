@@ -16,9 +16,6 @@ use XML::Generator ();
 
 # FIXME: Refactor everything
 
-my $SMALL_IMAGE_SIZE = 333;
-my $LARGE_IMAGE_SIZE = 1075;
-
 my $image_dir = '/media/gabrielx/Backup/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports';
 my $data_dir = '/home/gabrielx/projects/yellowleaf-trips-data';
 
@@ -512,8 +509,8 @@ sub interlace_images {
     my $thumb_file = $file->{thumb_filename};
     my $enl_file = $file->{enl_filename};
 
-    interlace($dir, $thumb_file, $SMALL_IMAGE_SIZE);
-    interlace($dir, $enl_file, $LARGE_IMAGE_SIZE);
+    interlace($dir, $thumb_file);
+    interlace($dir, $enl_file);
 }
 
 sub write_file {
@@ -579,23 +576,9 @@ sub get_image_attributes {
 sub min { $_[0] < $_[1] ? $_[0] : $_[1] }
 
 sub interlace {
-    my ($dir, $file, $target_height) = @_;
+    my ($dir, $file) = @_;
 
     my $image_attrs = get_image_attributes("$dir/$file");
-
-    my $interlace_pct;
-    if ($image_attrs->{width} > $image_attrs->{height}) {
-        # Landscape orientation
-        $interlace_pct = min(100, 100 * $target_height / $image_attrs->{width});
-    } else {
-        # Portrait orientation
-        $interlace_pct = min(100, 100 * $target_height / $image_attrs->{height});
-    }
-
-    my $delta = 0.1;
-    if (abs($interlace_pct - 100.0) > $delta) {
-        die "Image is the wrong size: $dir/$file";
-    }
 
     if (! $image_attrs->{interlaced}) {
         print "\tInterlacing $file\n";
