@@ -561,7 +561,7 @@ sub my_system {
     die "Command exited with failure code ($?): @command";
 }
 
-sub copy_trip_file {
+sub copy_file {
     my ($file, $src_dir, $dest_dir) = @_;
 
     next unless defined $file;
@@ -588,7 +588,7 @@ sub ingest_trip_files {
         my @file_variants = ($file->{thumb_filename}, $file->{enl_filename});
         my $is_updated = 0;
         foreach my $file_variant (@file_variants) {
-            if (copy_trip_file($file_variant, $src_dir, $dest_dir)) {
+            if (copy_file($file_variant, $src_dir, $dest_dir)) {
                 $is_updated = 1;
             }
         }
@@ -602,12 +602,15 @@ sub ingest_trip_files {
 sub copy_misc_images {
     my ($dest_dir) = @_;
 
-    my @images = glob "images/*.{gif,ico,png,json}";
-    @images or die "Unable to find the misc images";
+    my $src_dir = "images";
+
+    my @image_paths = glob "$src_dir/*.{gif,ico,png,json}";
+    @image_paths or die "Unable to find the misc images";
 
     File::Path::mkpath([$dest_dir], 0, 0755);
-    foreach my $image (@images) {
-        my_system("cp", $image, "$dest_dir/..");
+    foreach my $image_path (@image_paths) {
+        my $image_filename = File::Basename::basename($image_path);
+        copy_file($image_filename, $src_dir, $dest_dir);
     }
 }
 
