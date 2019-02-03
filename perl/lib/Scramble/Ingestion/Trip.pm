@@ -104,7 +104,13 @@ sub read_gpx {
     return {} unless @gpx_files;
 
     my %first_gpx = metadata_from_gpx($gpx_files[0]);
-    my %last_gpx = metadata_from_gpx($gpx_files[-1]);
+
+    my %last_gpx;
+    if (@gpx_files == 1) {
+        %last_gpx = %first_gpx;
+    } else {
+        %last_gpx = metadata_from_gpx($gpx_files[-1]);
+    }
 
     return (
         start => $first_gpx{start},
