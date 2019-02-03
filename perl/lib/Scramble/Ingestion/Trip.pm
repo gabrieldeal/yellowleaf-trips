@@ -36,8 +36,6 @@ sub make_xml {
     my $image_dest_dir = "$g_image_dest_basedir/$image_subdir";
     -d $image_dest_dir or die "Non-existant image dir: $image_dest_dir";
 
-    my $sections = read_trip_sections($spreadsheet_filename);
-
     my ($date) = ($image_subdir =~ /^(\d{4}-\d\d-\d\d)/);
     defined $date or die "Unable to get date from image subdirectory: $image_subdir";
 
@@ -56,6 +54,7 @@ sub make_xml {
         print "$trip_xml_file already exists\n";
     } else {
         my @locations = prompt_for_locations();
+        my $sections = read_trip_sections($spreadsheet_filename);
         my $trip_xml = make_trip_xml(date => $date,
                                      title => $title,
                                      trip_type => $trip_type,
@@ -82,6 +81,9 @@ sub metadata_from_gpx {
     my ($file) = @_;
 
     my $path = $file->{'dir'} . '/' . $file->{enl_filename};
+
+    print "Reading $path...\n";
+
     my $xml = Scramble::Misc::slurp($path);
     my $gpx = Geo::Gpx->new(xml => $xml);
     my $points = $gpx->tracks->[0]{segments}[0]{points};
@@ -96,8 +98,6 @@ sub metadata_from_gpx {
 
 sub read_gpx {
     my ($images) = @_;
-
-    print "Reading GPX files...\n";
 
     my @gpx_files = grep { $_->{type} eq 'gps' } @{ $images->{files} };
 
@@ -594,8 +594,7 @@ sub copy_trip_file {
         return;
     }
 
-    print "cp $source $dest_dir\n";
-    system("cp", $source, $dest_dir) == 0 or die "Can't copy '$source' to '$dest_dir': $!";
+    my_system("cp", $source, $dest_dir);
 }
 
 sub ingest_trip_files {
@@ -628,9 +627,7 @@ sub copy_misc_images {
 
     File::Path::mkpath([$dest_dir], 0, 0755);
     foreach my $image (@images) {
-        if (system("cp", $image, "$dest_dir/..") != 0) {
-            die "Can't copy '$image' to '$dest_dir': $!";
-        }
+        my_system("cp", $image, "$dest_dir/..");
     }
 }
 
