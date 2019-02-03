@@ -35,6 +35,8 @@ sub make_xml {
     my ($date) = ($image_subdir =~ /^(\d{4}-\d\d-\d\d)/);
     defined $date or die "Unable to get date from image subdirectory: $image_subdir";
 
+    create_kml($image_src_dir);
+
     my %image_data = read_images($image_src_dir);
     my %gps_data = read_gpx(\%image_data);
 
@@ -199,11 +201,14 @@ sub prompt_for_locations {
     return @locations;
 }
 
-sub make_kml {
-    my ($output_dir, @gpx_paths) = @_;
+sub create_kml {
+    my ($dir) = @_;
+
+    my @gpx_paths = sort(glob "$dir/*.gpx");
+    return unless @gpx_paths;
 
     # gpsconvert chokes on cygwin-style paths.
-    my $kml_path = File::Spec->abs2rel("$output_dir/route.kml");
+    my $kml_path = File::Spec->abs2rel("$dir/route.kml");
     return if -e $kml_path;
 
     my @gpx_args;
@@ -227,11 +232,9 @@ sub read_images {
 
     -d $dir or die "No such directory '$dir'";
     $dir =~ s{/*$}{};
-    my @gpx_filenames = sort(glob "$dir/*.gpx");
-    make_kml($dir, @gpx_filenames) if @gpx_filenames;
 
-    my @filenames = @gpx_filenames;
-    push @filenames, glob "$dir/*.kml";
+    my @filenames;
+    push @filenames, glob "$dir/*.{kml,gpx}";
     push @filenames, glob "$dir/*-enl\.{jpg,png}";
     push @filenames, glob "$dir/*.{mp4,MP4,MOV,mov}";
     @filenames = sort @filenames;
