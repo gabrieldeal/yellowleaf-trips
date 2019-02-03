@@ -37,12 +37,12 @@ sub make_xml {
 
     create_kml($image_src_dir);
 
-    my %image_data = read_trip_files($image_src_dir);
-    my %gps_data = read_gpx(\%image_data);
+    my $files = read_trip_files($image_src_dir);
+    my $timestamps = get_timestamps($files);
 
     copy_misc_images($g_image_dest_basedir);
 
-    ingest_trip_files($image_src_dir, $image_dest_dir, $image_data{files});
+    ingest_trip_files($image_src_dir, $image_dest_dir, $files);
 
     # FIXME: Get rid of $image_subdir and put all trip XML files in trips/.
     my $trip_dir = "$g_data_dir/trips/$image_subdir";
@@ -58,8 +58,8 @@ sub make_xml {
                                                            trip_type => $trip_type,
                                                            locations => \@locations,
                                                            sections => $sections,
-                                                           gps_data => \%gps_data,
-                                                           image_data => \%image_data,
+                                                           timestamps => $timestamps,
+                                                           files => $files,
                                                            image_subdir => $image_subdir);
         write_file($trip_xml_file, $trip_xml);
     }
@@ -73,7 +73,7 @@ sub make_xml {
     return 0;
 }
 
-sub metadata_from_gpx {
+sub get_gpx_metadata {
     my ($file) = @_;
 
     my $path = $file->{'dir'} . '/' . $file->{enl_filename};
@@ -92,14 +92,14 @@ sub metadata_from_gpx {
         );
 }
 
-sub read_gpx {
+sub get_gpx_timestamps {
     my ($images) = @_;
 
-    my @gpx_files = grep { $_->{type} eq 'gps' } @{ $images->{files} };
+    my @gpx_files = grep { $_->{type} eq 'gps' } @$images;
 
     return {} unless @gpx_files;
 
-    my %first_gpx = metadata_from_gpx($gpx_files[0]);
+    my %first_gpx = get_gpx_metadata($gpx_files[0]);
 
     my %last_gpx;
     if (@gpx_files == 1) {
@@ -108,10 +108,38 @@ sub read_gpx {
         %last_gpx = metadata_from_gpx($gpx_files[-1]);
     }
 
-    return (
+    return {
         start => $first_gpx{start},
         end => $last_gpx{end}
-        );
+    };
+}
+
+sub get_image_timestamps {
+    my ($trip_files) = @_;
+
+    my ($first_timestamp, $last_timestamp);
+    foreach my $trip_file (@$trip_files) {
+        $last_timestamp = $trip_file->{timestamp};
+        if (! defined $first_timestamp && defined $trip_file->{timestamp}) {
+            $first_timestamp = $trip_file->{timestamp};
+        }
+    }
+
+    return {
+        start => $first_timestamp,
+        end => $last_timestamp,
+    };
+}
+
+sub get_timestamps {
+    my ($files) = @_;
+
+    my $timestamps = get_gpx_timestamps($files);
+    if ($timestamps->{start} && $timestamps->{end}) {
+        return $timestamps;
+    }
+
+    return get_image_timestamps($files);
 }
 
 sub convert_date_time {
@@ -298,25 +326,7 @@ sub read_trip_files {
         };
     }
 
-    return (files => \@files,
-            get_timestamps(@files));
-}
-
-sub get_timestamps {
-    my (@trip_files) = @_;
-
-    my ($first_timestamp, $last_timestamp);
-    foreach my $trip_file (@trip_files) {
-        $last_timestamp = $trip_file->{timestamp};
-        if (! defined $first_timestamp && defined $trip_file->{timestamp}) {
-            $first_timestamp = $trip_file->{timestamp};
-        }
-    }
-
-    return (
-        first_timestamp => $first_timestamp,
-        last_timestamp => $last_timestamp,
-    );
+    return \@files;
 }
 
 sub get_original_filename {

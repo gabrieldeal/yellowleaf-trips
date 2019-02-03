@@ -79,11 +79,11 @@ sub html {
 
     $args{title} =~ s/&/&amp;/g; # It is still the dark ages here.
 
-    my $files_xml = make_files_xml($args{image_data}{files}, $args{date}, $args{sections});
+    my $files_xml = make_files_xml($args{files}, $args{date}, $args{sections});
     my $locations_xml = make_locations_xml($args{locations});
 
-    my $start = $args{gps_data}{start} || $args{image_data}{first_timestamp} || '';
-    my $end = $args{gps_data}{end} || $args{image_data}{last_timestamp} || '';
+    my $start = $args{timestamps}{start} || '';
+    my $end = $args{timestamps}{end} || '';
 
     return <<EOT;
 <trip filename="$args{image_subdir}"
