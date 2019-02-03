@@ -199,19 +199,6 @@ sub prompt_for_locations {
     return @locations;
 }
 
-sub validate_arguments {
-    my ($image_dir, $trip_type, $title) = @_;
-
-    defined $title or die "Missing arguments: image-dir trip-type title";
-    -d $image_dir or die "Non-existant image dir: $image_dir";
-
-    my ($data_dir, $image_subdir) = ($image_dir =~ m{^(.*)/trips/+([^/]+)/*$});
-    defined $image_subdir or die "Bad images dir: $image_dir";
-
-    my ($date) = ($image_subdir =~ /^(\d{4}-\d\d-\d\d)/);
-    defined $date or die "Unable to get date from image subdirectory: $image_subdir";
-}
-
 sub make_kml {
     my ($output_dir, @gpx_paths) = @_;
 
