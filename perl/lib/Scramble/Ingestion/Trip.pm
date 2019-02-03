@@ -66,8 +66,6 @@ sub make_xml {
         write_file($trip_xml_file, $trip_xml);
     }
 
-    # geotag($image_data{files});
-
     my $glob = "$image_src_dir/*";
     my @files = glob($glob);
     if (@files) {
@@ -217,29 +215,6 @@ sub validate_arguments {
     my ($date) = ($image_subdir =~ /^(\d{4}-\d\d-\d\d)/);
     defined $date or die "Unable to get date from image subdirectory: $image_subdir";
 }
-
-# sub geotag {
-#     my ($files) = @_;
-
-#     my @gpx_files = grep { $_->{type} eq 'gps'} @$files;
-#     return unless @gpx_files;
-#     die "Too many GPX files: @gpx_files" unless @gpx_files == 1;
-#     my $gpx_file = "$gpx_files[0]{dir}/$gpx_files[0]{enl_filename}";
-
-#     my @image_files = grep { $_->{type} eq 'picture' } @$files;
-#     return unless @image_files;
-#     my @image_filenames = map { ("$gpx_files[0]{dir}/$_->{thumb_filename}", "$gpx_files[0]{dir}/$_->{enl_filename}") } @image_files;
-
-#     # For example, the following command compensates for image times which
-#     # are 1 minute and 20 seconds behind GPS:
-#     # exiftool -geosync=+1:20 -geotag a.log DIR
-#     warn "Is camera and GPS synced????";
-#     my @command = ('exiftool',
-# 		   '-verbose',
-# 		   '-geotag', $gpx_file,
-# 		   @image_filenames);
-#     my_system(@command);
-# }
 
 sub make_locations_xml {
     my ($locations) = @_;
@@ -551,7 +526,6 @@ sub get_image_metadata {
 
     print "Reading metadata in $file...\n";
     my @tags = qw(Description ImageDescription Rating DateCreated CreateDate Creator Copyright);
-    # perl -mImage::ExifTool -mData::Dumper -e "print Data::Dumper::Dumper(Image::ExifTool::ImageInfo('XXXXX.MP4'))"
     my $info = Image::ExifTool::ImageInfo($file, \@tags);
     die "Error opening $file: " . $info->{Error} if exists $info->{Error};
     print "Warning opening $file: " . $info->{Warning} if exists $info->{Warning};
