@@ -37,7 +37,7 @@ sub make_xml {
 
     create_kml($image_src_dir);
 
-    my %image_data = read_images($image_src_dir);
+    my %image_data = read_trip_files($image_src_dir);
     my %gps_data = read_gpx(\%image_data);
 
     copy_misc_images($g_image_dest_basedir);
@@ -225,7 +225,7 @@ sub create_kml {
               '-o', $kml_path);
 }
 
-sub read_images {
+sub read_trip_files {
     my ($dir) = @_;
 
     print "Reading images in $dir...\n";
