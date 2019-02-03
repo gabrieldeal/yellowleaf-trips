@@ -35,6 +35,7 @@ sub make_xml {
     my ($date) = ($image_subdir =~ /^(\d{4}-\d\d-\d\d)/);
     defined $date or die "Unable to get date from image subdirectory: $image_subdir";
 
+    # FIXME: Create the KML in the dest dir?
     create_kml($image_src_dir);
 
     my $files = read_trip_files($image_src_dir);
@@ -71,6 +72,54 @@ sub make_xml {
     }
 
     return 0;
+}
+
+sub my_system {
+    my (@command) = @_;
+
+    print "Running @command\n";
+    return if 0 == system @command;
+
+    die "Command exited with failure code ($?): @command";
+}
+
+sub get_image_metadata {
+    my ($file) = @_;
+
+    print "Reading metadata in $file...\n";
+    my @tags = qw(Description ImageDescription Rating DateCreated CreateDate Creator Copyright);
+    my $info = Image::ExifTool::ImageInfo($file, \@tags);
+    die "Error opening $file: " . $info->{Error} if exists $info->{Error};
+    print "Warning opening $file: " . $info->{Warning} if exists $info->{Warning};
+
+    my $timestamp = $info->{'DateCreated (1)'} || $info->{DateCreated} || $info->{CreateDate} or warn "Missing date in '$file': " . Data::Dumper::Dumper($info);
+    if (defined $timestamp) {
+        $timestamp =~ s{^(\d{4}):(\d\d):(\d\d)}{$1/$2/$3};
+        $timestamp =~ s/\.\d\d\d$//;
+    }
+
+    my $caption = $info->{'ImageDescription'} || $info->{'Description'} || '';
+    $caption = '' if $caption eq "OLYMPUS DIGITAL CAMERA";
+    $caption =~ s/&/&amp;/g;
+    $caption =~ s/"/&quot;/g;
+
+    return {
+        rating => $info->{'Rating (1)'} || $info->{Rating},
+        timestamp => $timestamp,
+        caption => $caption,
+        creator => $info->{Creator},
+        copyright => $info->{Copyright},
+    };
+}
+
+sub convert_date_time {
+    my ($epoch_time) = @_;
+
+    my (undef, $minute, $hour, $day, $mon, $year) = localtime($epoch_time);
+    $year += 1900;
+    $mon += 1;
+
+    return sprintf("$year/%02d/%02d %02d:%02d", $mon, $day, $hour, $minute);
 }
 
 sub get_gpx_metadata {
@@ -140,16 +189,6 @@ sub get_timestamps {
     }
 
     return get_image_timestamps($files);
-}
-
-sub convert_date_time {
-    my ($epoch_time) = @_;
-
-    my (undef, $minute, $hour, $day, $mon, $year) = localtime($epoch_time);
-    $year += 1900;
-    $mon += 1;
-
-    return sprintf("$year/%02d/%02d %02d:%02d", $mon, $day, $hour, $minute);
 }
 
 sub read_trip_sections {
@@ -227,30 +266,6 @@ sub prompt_for_locations {
     print "\n";
 
     return @locations;
-}
-
-sub create_kml {
-    my ($dir) = @_;
-
-    my @gpx_paths = sort(glob "$dir/*.gpx");
-    return unless @gpx_paths;
-
-    # gpsconvert chokes on cygwin-style paths.
-    my $kml_path = File::Spec->abs2rel("$dir/route.kml");
-    return if -e $kml_path;
-
-    my @gpx_args;
-    foreach my $gpx_path (@gpx_paths) {
-        push @gpx_args, File::Spec->abs2rel($gpx_path);
-    }
-
-    my $gpsconvert = File::Basename::dirname($0) . "/gpsconvert";
-
-    my_system($gpsconvert,
-              '--no-waypoints',
-              '--simplify',
-              @gpx_args,
-              '-o', $kml_path);
 }
 
 sub glob_trip_files {
@@ -368,6 +383,30 @@ sub get_rating {
     }
 }
 
+sub create_kml {
+    my ($dir) = @_;
+
+    my @gpx_paths = sort(glob "$dir/*.gpx");
+    return unless @gpx_paths;
+
+    # gpsconvert chokes on cygwin-style paths.
+    my $kml_path = File::Spec->abs2rel("$dir/route.kml");
+    return if -e $kml_path;
+
+    my @gpx_args;
+    foreach my $gpx_path (@gpx_paths) {
+        push @gpx_args, File::Spec->abs2rel($gpx_path);
+    }
+
+    my $gpsconvert = File::Basename::dirname($0) . "/gpsconvert";
+
+    my_system($gpsconvert,
+              '--no-waypoints',
+              '--simplify',
+              @gpx_args,
+              '-o', $kml_path);
+}
+
 sub process_trip_file {
     my ($dir, $file) = @_;
 
@@ -418,46 +457,6 @@ sub write_file {
     $fh || die "Can't open '$filename': $!";
     $fh->print($content);
     $fh->close or die "Error writing to '$filename': $!";
-}
-
-sub get_image_metadata {
-    my ($file) = @_;
-
-    print "Reading metadata in $file...\n";
-    my @tags = qw(Description ImageDescription Rating DateCreated CreateDate Creator Copyright);
-    my $info = Image::ExifTool::ImageInfo($file, \@tags);
-    die "Error opening $file: " . $info->{Error} if exists $info->{Error};
-    print "Warning opening $file: " . $info->{Warning} if exists $info->{Warning};
-
-    my $timestamp = $info->{'DateCreated (1)'} || $info->{DateCreated} || $info->{CreateDate} or warn "Missing date in '$file': " . Data::Dumper::Dumper($info);
-    if (defined $timestamp) {
-        $timestamp =~ s{^(\d{4}):(\d\d):(\d\d)}{$1/$2/$3};
-        $timestamp =~ s/\.\d\d\d$//;
-    }
-
-    my $caption = $info->{'ImageDescription'} || $info->{'Description'} || '';
-    $caption = '' if $caption eq "OLYMPUS DIGITAL CAMERA";
-    $caption =~ s/&/&amp;/g;
-    $caption =~ s/"/&quot;/g;
-
-    return {
-        rating => $info->{'Rating (1)'} || $info->{Rating},
-        timestamp => $timestamp,
-        caption => $caption,
-        creator => $info->{Creator},
-        copyright => $info->{Copyright},
-    };
-}
-
-sub min { $_[0] < $_[1] ? $_[0] : $_[1] }
-
-sub my_system {
-    my (@command) = @_;
-
-    print "Running @command\n";
-    return if 0 == system @command;
-
-    die "Command exited with failure code ($?): @command";
 }
 
 sub copy_file {
