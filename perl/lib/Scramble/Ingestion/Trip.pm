@@ -225,6 +225,18 @@ sub create_kml {
               '-o', $kml_path);
 }
 
+sub glob_trip_files {
+    my ($dir) = @_;
+
+    my @filenames;
+    push @filenames, glob "$dir/*.{kml,gpx}";
+    push @filenames, glob "$dir/*-enl\.{jpg,png}";
+    push @filenames, glob "$dir/*.{mp4,MP4,MOV,mov}";
+    @filenames = sort @filenames;
+
+    return @filenames;
+}
+
 sub read_trip_files {
     my ($dir) = @_;
 
@@ -233,15 +245,11 @@ sub read_trip_files {
     -d $dir or die "No such directory '$dir'";
     $dir =~ s{/*$}{};
 
-    my @filenames;
-    push @filenames, glob "$dir/*.{kml,gpx}";
-    push @filenames, glob "$dir/*-enl\.{jpg,png}";
-    push @filenames, glob "$dir/*.{mp4,MP4,MOV,mov}";
-    @filenames = sort @filenames;
+    my @filenames = glob_trip_files($dir);
 
     my @files;
     foreach my $enl_filename (@filenames) {
-        next if $enl_filename =~ /-renc.mp4/i;
+        next if $enl_filename =~ /\.mp4$/i && $enl_filename !~ /-renc.mp4$/i;
         $enl_filename =~ s,.*/,,;
 
         my ($type, $caption, $owner, $rating, $timestamp, $orig_filename);
@@ -254,24 +262,12 @@ sub read_trip_files {
 	} else {
             $type = $enl_filename =~ /\.(mp4|mov)$/i ? 'movie' : 'picture';
 
-            my $metadata;
-            if ($type eq 'movie') {
-                $orig_filename = $enl_filename;
-                ($enl_filename) = ($orig_filename =~ /^([-\w_\(\)]+).(mp4|mov)$/i) or die "Failed to parse movie '$enl_filename'";
-                $enl_filename .= '-renc.mp4';
-                $metadata = get_image_metadata("$dir/$orig_filename");
+            my $orig_filename = get_original_filename($dir, $enl_filename, $type);
+            my $metadata = get_image_metadata("$dir/$orig_filename");
 
-            } else {
-                # Older processed files start with "<NNNNN>-"
-                ($orig_filename) = ($enl_filename =~ /^(?:\d+-)?([-\w_\(\)]+)-enl.jpg$/) or die "Failed to parse '$enl_filename'";
-                my $orig_filename_glob = get_metadata_filename("$dir/$orig_filename");
-                my @orig_filenames = glob($orig_filename_glob);
-                @orig_filenames == 1 or die(sprintf("Got %s matches for '$orig_filename_glob': @orig_filenames", scalar(@orig_filenames)));
-                
-                $metadata = get_image_metadata("$orig_filenames[0]");
+            if ($type ne 'movie') {
                 $rating = get_rating($metadata->{rating});
             }
-
             $caption = $metadata->{'caption'} || '';
             $owner = $metadata->{creator} || $metadata->{copyright} || 'Gabriel Deal';
             $timestamp = $metadata->{'timestamp'};
@@ -302,29 +298,48 @@ sub read_trip_files {
         };
     }
 
+    return (files => \@files,
+            get_timestamps(@files));
+}
+
+sub get_timestamps {
+    my (@trip_files) = @_;
+
     my ($first_timestamp, $last_timestamp);
-    foreach my $file (@files) {
-        $last_timestamp = $file->{timestamp};
-        if (! defined $first_timestamp && defined $file->{timestamp}) {
-            $first_timestamp = $file->{timestamp};
+    foreach my $trip_file (@trip_files) {
+        $last_timestamp = $trip_file->{timestamp};
+        if (! defined $first_timestamp && defined $trip_file->{timestamp}) {
+            $first_timestamp = $trip_file->{timestamp};
         }
     }
 
-    return (files => \@files,
-	    first_timestamp => $first_timestamp,
-	    last_timestamp => $last_timestamp);
+    return (
+        first_timestamp => $first_timestamp,
+        last_timestamp => $last_timestamp,
+    );
 }
 
-sub get_metadata_filename {
-    my ($path_prefix) = @_;
+sub get_original_filename {
+    my ($src_dir, $enl_filename, $type) = @_;
 
-    my @extensions = map { ($_, uc($_)) } qw(xmp dng);
+    my $orig_prefix;
+    if ($type eq 'movie') {
+        ($orig_prefix) = ($enl_filename =~ /^(.*)-renc.(mp4|mov)$/i);
+    } else {
+        # Older processed files start with "<NNNNN>-"
+        ($orig_prefix) = ($enl_filename =~ /^(?:\d+-)?([-\w_\(\)]+)-enl.jpg$/);
+    }
+    $orig_prefix or die "Failed to parse '$enl_filename'";
+
+    print "$orig_prefix\n";
+    my @extensions = map { ($_, uc($_)) } qw(xmp dng jpg mov mp4);
     foreach my $extension (@extensions) {
-        my $path = "$path_prefix.$extension";
-        return $path if -e $path;
+        my $orig_filename = "$orig_prefix.$extension";
+        my $orig_path = "$src_dir/$orig_filename";
+        return $orig_filename if -e $orig_path;
     }
 
-    die qq(Unable to find metadata file matching "$path_prefix.*");
+    die qq(Unable to find metadata file matching "$src_dir/$orig_prefix.*");
 }
 
 sub get_rating {
