@@ -17,20 +17,17 @@ use Spreadsheet::Read ();
 
 # FIXME: Refactor everything
 
-my $g_xml_src_dir = '/home/gabrielx/projects/yellowleaf-trips-data';
-my $g_files_src_dir = '/media/gabrielx/Backup/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports';
-
-sub make_xml {
-    my ($trip_files_subdir, $trip_type, $title, $spreadsheet_filename) = @_;
+sub create {
+    my (%args) = @_;
 
     $ENV{TZ} || die "Set Timezone.  E.g., export TZ='America/Los_Angeles'";
-    defined $title or die "Missing arguments: image-subdir trip-type title";
+    defined $args{title} or die "Missing arguments: image-subdir trip-type title";
 
-    my $trip_files_src_dir = "$g_files_src_dir/$trip_files_subdir";
+    my $trip_files_src_dir = "$args{files_src_dir}/$args{trip_files_subdir}";
     -d $trip_files_src_dir or die "Non-existant image dir: $trip_files_src_dir";
 
-    my ($date) = ($trip_files_subdir =~ /^(\d{4}-\d\d-\d\d)/);
-    defined $date or die "Unable to get date from image subdirectory: $trip_files_subdir";
+    my ($date) = ($args{trip_files_subdir} =~ /^(\d{4}-\d\d-\d\d)/);
+    defined $date or die "Unable to get date from image subdirectory: $args{trip_files_subdir}";
 
     # FIXME: Move this into Scramble::Build::Files.
     create_kml($trip_files_src_dir);
@@ -38,24 +35,21 @@ sub make_xml {
     my $files = read_trip_files($trip_files_src_dir);
     my $timestamps = get_timestamps($files);
 
-    # FIXME: Get rid of $trip_files_subdir and put all trip XML files in trips/.
-    my $trip_xml_src_dir = "$g_xml_src_dir/trips/$trip_files_subdir";
-
-    File::Path::mkpath([$trip_xml_src_dir], 0, 0755);
-    my $trip_xml_file = "$trip_xml_src_dir/trip.xml";
+    File::Path::mkpath([$args{output_dir}], 0, 0755);
+    my $trip_xml_file = "$args{output_dir}/trip.xml";
     if (-e $trip_xml_file) {
         print "$trip_xml_file already exists\n";
     } else {
-        my @locations = prompt_for_locations();
-        my $sections = read_trip_sections($spreadsheet_filename);
+        my @locations = prompt_for_locations($args{xml_src_dir});
+        my $sections = read_trip_sections($args{spreadsheet_filename});
         my $trip_xml = Scramble::Controller::TripXml::html(date => $date,
-                                                           title => $title,
-                                                           trip_type => $trip_type,
+                                                           title => $args{title},
+                                                           trip_type => $args{type},
                                                            locations => \@locations,
                                                            sections => $sections,
                                                            timestamps => $timestamps,
                                                            files => $files,
-                                                           trip_files_subdir => $trip_files_subdir);
+                                                           trip_files_subdir => $args{trip_files_subdir});
         write_file($trip_xml_file, $trip_xml);
     }
 
@@ -64,8 +58,6 @@ sub make_xml {
     if (@files) {
         chmod(0744, @files) || die "Failed to chmod ($!) '$glob'";
     }
-
-    return 0;
 }
 
 sub get_image_metadata {
@@ -209,12 +201,14 @@ sub get_first_quad_name {
 }
 
 sub prompt_for_locations {
+    my ($xml_src_dir) = @_;
+
     my @locations;
 
     my $prompt = "Location (^D to quit): ";
     print $prompt;
-    Scramble::Model::Area::open($g_xml_src_dir);
-    Scramble::Model::Location::set_xml_src_directory($g_xml_src_dir);
+    Scramble::Model::Area::open($xml_src_dir);
+    Scramble::Model::Location::set_xml_src_directory($xml_src_dir);
     my %opened_locations;
     while (my $location_name = <STDIN>) {
         my @location_matches;
@@ -341,7 +335,6 @@ sub get_original_filename {
     }
     $orig_prefix or die "Failed to parse '$enl_filename'";
 
-    print "$orig_prefix\n";
     my @extensions = map { ($_, uc($_)) } qw(xmp dng jpg mov mp4);
     foreach my $extension (@extensions) {
         my $orig_filename = "$orig_prefix.$extension";

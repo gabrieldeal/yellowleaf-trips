@@ -6,21 +6,42 @@ use lib './perl/lib';
 
 use Carp ();
 use Scramble::Ingestion::Trip ();
-use Scramble::Misc qw(get_options);
+use Scramble::Misc qw(get_options snake_case_keys);
 
 local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
 local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
 
+my $defaults = {
+    'files-src-dir' => '/media/gabrielx/Backup/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports',
+    'xml-src-dir' => '/home/gabrielx/projects/yellowleaf-trips-data',
+};
 my @options = qw(
+    files-src-dir=s
+    output-dir=s
+    spreadsheet_filename=s
+    title=s
     trip-files-subdir=s
+    type=s
+    xml-src-dir=s
 );
 my @required = qw(
+    files-src-dir
+    title
     trip-files-subdir
+    type
+    xml-src-dir
 );
 
-my %options = get_options(defaults => {},
+my %options = get_options(defaults => $defaults,
                           options => \@options,
                           required => \@required);
+%options = snake_case_keys(%options);
 
-exit(Scramble::Ingestion::Trip::make_xml($options{'trip-files-subdir'}, @ARGV));
+if (! $options{output_dir}) {
+    # FIXME: Get rid of the subdir and put all trip XML files in trips/.
+    $options{output_dir} = "$options{xml_src_dir}/trips/$options{trip_files_subdir}";
+}
 
+Scramble::Ingestion::Trip::create(snake_case_keys(%options));
+
+exit 0

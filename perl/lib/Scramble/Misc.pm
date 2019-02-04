@@ -11,6 +11,7 @@ use URI::Encode ();
 our @EXPORT_OK = qw(
     get_options
     my_system
+    snake_case_keys
 );
 
 sub dedup {
@@ -167,6 +168,17 @@ sub my_system {
     return if 0 == system @command;
 
     die "Command exited with failure code ($?): @command";
+}
+
+sub snake_case_keys {
+    my (%h) = @_;
+
+    return map {
+        my $orig_key = $_;
+        my $new_key = $orig_key;
+        $new_key =~ s/-/_/g;
+        ($new_key, $h{$orig_key})
+    } keys %h;
 }
 
 1;
