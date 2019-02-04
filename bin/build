@@ -1,22 +1,64 @@
-#!/usr/bin/env bash
-umask 022
+#!/usr/bin/perl
+#-*-perl-*-
 
-# RAW, JPG, and GPX:
-files_src_dir="/media/gabrielx/Backup/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports"
+use strict;
+use lib './perl/lib';
 
-# areas.xml, locations/*.xml, trips/*.xml, dictionary, etc:
-xml_src_dir="/home/gabrielx/projects/yellowleaf-trips-data"
+use Carp ();
+use Data::Dumper ();
+use Scramble::Build ();
+use Scramble::Misc qw(get_options);
 
-# HTML, CSS, JS, KML, images, etc:
-output_dir="$xml_src_dir/html"
+local $^W = 1;
+local $| = 1;
+local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
+local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
+$ENV{NODE_ENV} ||= 'production';
+local $Data::Dumper::Maxdepth = 5;
 
-cd "$(dirname "$0")/.."
-code_dir="$PWD"
+my @options = qw(
+    code-directory=s
+    xml-src-directory=s
+    timezone=s
+    verbose
+    action=s@
+    skip=s@
+    file=s@
+    files-src-directory=s
+    kml-directory=s
+    templates-directory=s
+    javascript-directory=s
+    output-directory=s
+    help
+    );
+my %defaults = (
+    "code-directory" => "/home/gabrielx/projects/yellowleaf-trips",
+    "files-src-directory" => "/media/gabrielx/Backup/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports",
+    "file" => [],
+    "action" => [],
+    "skip" => [],
+    "timezone" => "PDT",
+    "kml-directory" => "kml",
+    "templates-directory" => "view",
+    "javascript-directory" => "javascript/dist",
+    "xml-src-directory" => "/home/gabrielx/projects/yellowleaf-trips-data",
+    );
+my @required = qw(
+    code-directory
+    files-src-directory
+    javascript-directory
+    templates-directory
+    xml-src-directory
+    );
 
-perl bin/parse \
-     --code-directory "$code_dir" \
-     --xml-src-directory "$xml_src_dir" \
-     --files-src-directory "$files_src_dir" \
-     --output-directory "$output_dir" \
-     -v \
-     "$@"
+my %options = Scramble::Misc::get_options(defaults => \%defaults,
+                                          options => \@options,
+                                          required => \@required);
+
+if (! $options{'output-directory'}) {
+    $options{'output-directory'} = "$options{'xml-src-directory'}/html";
+}
+
+Scramble::Build::create(%options);
+
+exit 1;

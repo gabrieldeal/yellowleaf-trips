@@ -30,52 +30,17 @@ use Scramble::SpellCheck ();
 use Scramble::Tests ();
 
 my $gRoot = "yellowleaf.org/scramble";
+my %g_options;
 
-my @g_options = qw(
-    code-directory=s
-    xml-src-directory=s
-    timezone=s
-    verbose
-    action=s@
-    skip=s@
-    file=s@
-    files-src-directory=s
-    kml-directory=s
-    templates-directory=s
-    javascript-directory=s
-    output-directory=s
-    help
-    );
-my %g_options = (
-    "file" => [],
-    "action" => [],
-    "skip" => [],
-    "timezone" => "PDT",
-    "kml-directory" => "kml",
-    "templates-directory" => "view",
-    "javascript-directory" => "javascript/dist",
-    "output-directory" => "html",
-    );
-my @required = qw(
-    code-directory
-    files-src-directory
-    output-directory
-    javascript-directory
-    templates-directory
-    );
-
-sub get_options {
-    %g_options = Scramble::Misc::get_options(defaults => \%g_options,
-                                             options => \@g_options,
-                                             required => \@required);
-
-    Scramble::Misc::set_output_directory($g_options{'output-directory'});
-    Scramble::Logger::set_verbose($g_options{'verbose'});
-}
+# FIXME: Convert to a class.
 
 sub create {
+    %g_options = @_;
+
     srand($$ ^ time());
-    get_options();
+
+    Scramble::Misc::set_output_directory($g_options{'output-directory'});
+    Scramble::Logger::set_verbose($g_options{verbose});
 
     my $paths = [
         "$g_options{'output-directory'}/g/li",
@@ -126,7 +91,7 @@ sub create {
     }
     should('spell') && Scramble::SpellCheck::check_spelling("$g_options{'xml-src-directory'}/dictionary");
     if (@{ $g_options{'file'} }) {
-        return 0;
+        return;
     }
 
     Scramble::Model::List::open(glob("$g_options{'xml-src-directory'}/lists/*.xml"));
@@ -146,8 +111,6 @@ sub create {
     should('short-trips') && Scramble::Controller::StatsStdout::display_short_trips();
     should('party-stats') && Scramble::Controller::StatsStdout::display_party_stats();
     should('test') && Scramble::Tests::run();
-
-    return 0;
 }
 
 sub should {
