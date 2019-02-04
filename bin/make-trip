@@ -6,11 +6,21 @@ use lib './perl/lib';
 
 use Carp ();
 use Scramble::Ingestion::Trip ();
+use Scramble::Misc qw(get_options);
 
 local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
 local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
 
-my $subdir = shift @ARGV;
+my @options = qw(
+    trip-files-subdir=s
+);
+my @required = qw(
+    trip-files-subdir
+);
 
-exit(Scramble::Ingestion::Trip::make_xml($subdir, @ARGV));
+my %options = get_options(defaults => {},
+                          options => \@options,
+                          required => \@required);
+
+exit(Scramble::Ingestion::Trip::make_xml($options{'trip-files-subdir'}, @ARGV));
 

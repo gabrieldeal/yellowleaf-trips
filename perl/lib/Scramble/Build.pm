@@ -5,7 +5,6 @@ use strict;
 use Date::Manip ();
 use File::Find ();
 use File::Path ();
-use Getopt::Long ();
 use IO::File ();
 use Scramble::Controller::GeekeryPage ();
 use Scramble::Controller::ImageIndex ();
@@ -55,40 +54,17 @@ my %g_options = (
     "javascript-directory" => "javascript/dist",
     "output-directory" => "html",
     );
-
-sub usage {
-    my ($prog) = ($0 =~ /([^\/]+)$/);
-    sprintf("Usage: $prog [ OPTIONS ]\nOptions:\n\t--"
-	    . join("\n\t--", @g_options)
-            . <<EOT);
-
-
-Reads XML from the data directory and writes HTML to the html/g
-directory.
-EOT
-}
+my @required = qw(
+    files-src-directory
+    output-directory
+    javascript-directory
+    templates-directory
+    );
 
 sub get_options {
-    local $SIG{__WARN__};
-    if (! Getopt::Long::GetOptions(\%g_options, @g_options)
-	|| $g_options{'help'})
-    {
-	print usage();
-        exit 1;
-    }
-
-    if (exists $g_options{'timezone'}) {
-	$ENV{'TZ'} = $g_options{'timezone'};
-    }
-
-    foreach my $required (qw(
-                          files-src-directory
-                          output-directory
-                          javascript-directory
-                          templates-directory))
-    {
-	die "Missing --$required" unless exists $g_options{$required};
-    }
+    %g_options = Scramble::Misc::get_options(defaults => \%g_options,
+                                             options => \@g_options,
+                                             required => \@required);
 
     Scramble::Misc::set_output_directory($g_options{'output-directory'});
     Scramble::Logger::set_verbose($g_options{'verbose'});

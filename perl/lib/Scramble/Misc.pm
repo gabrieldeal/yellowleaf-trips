@@ -2,9 +2,13 @@ package Scramble::Misc;
 
 use strict;
 
+use Exporter 'import';
+use Getopt::Long ();
 use IO::File ();
 use Scramble::Logger ();
 use URI::Encode ();
+
+our @EXPORT_OK = qw(get_options);
 
 sub dedup {
     my (@dups) = @_;
@@ -114,6 +118,43 @@ sub choose_interactive {
     } while ($chosen_index !~ /^\d+$/ || $chosen_index < 0 || $chosen_index > $#choices);
 
     return $choices[$chosen_index]{value}
+}
+
+sub usage {
+    my ($options) = @_;
+
+    my ($prog) = ($0 =~ /([^\/]+)$/);
+
+    return sprintf("Usage: $prog [ OPTIONS ]\nOptions:\n\t--%s\n",
+                   join("\n\t--", @$options));
+}
+
+sub get_options {
+    my (%args) = @_;
+
+    my %results = %{ $args{defaults} };
+
+    local $SIG{__WARN__};
+    if (! Getopt::Long::GetOptions(\%results, @{ $args{options} })
+        || $results{help})
+    {
+        print usage($args{options});
+        exit 1;
+    }
+
+    foreach my $required (@{ $args{required} }) {
+        if (! exists $results{$required}) {
+            print "Missing --$required\n";
+            print usage($args{options});
+            exit 1;
+        }
+    }
+
+    if (exists $results{timezone}) {
+        $ENV{TZ} = $results{timezone};
+    }
+
+    return %results;
 }
 
 1;
