@@ -8,7 +8,10 @@ use IO::File ();
 use Scramble::Logger ();
 use URI::Encode ();
 
-our @EXPORT_OK = qw(get_options);
+our @EXPORT_OK = qw(
+    get_options
+    my_system
+);
 
 sub dedup {
     my (@dups) = @_;
@@ -155,6 +158,15 @@ sub get_options {
     }
 
     return %results;
+}
+
+sub my_system {
+    my (@command) = @_;
+
+    print "Running @command\n";
+    return if 0 == system @command;
+
+    die "Command exited with failure code ($?): @command";
 }
 
 1;

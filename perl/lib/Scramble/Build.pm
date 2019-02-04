@@ -6,6 +6,7 @@ use Date::Manip ();
 use File::Find ();
 use File::Path ();
 use IO::File ();
+use Scramble::Build::Files ();
 use Scramble::Controller::GeekeryPage ();
 use Scramble::Controller::ImageIndex ();
 use Scramble::Controller::ListIndex ();
@@ -31,6 +32,7 @@ use Scramble::Tests ();
 my $gRoot = "yellowleaf.org/scramble";
 
 my @g_options = qw(
+    code-directory=s
     xml-src-directory=s
     timezone=s
     verbose
@@ -55,6 +57,7 @@ my %g_options = (
     "output-directory" => "html",
     );
 my @required = qw(
+    code-directory
     files-src-directory
     output-directory
     javascript-directory
@@ -110,6 +113,7 @@ sub create {
             if ($file =~ m{/trips/}) {
                 my $trip = Scramble::Model::Trip::open_specific($file,
                                                                 $g_options{'files-src-directory'});
+                should('copy-images') && copy_and_process_files();
                 my $page = Scramble::Controller::TripPage->new($trip);
                 $page->create;
             } else {
@@ -127,6 +131,7 @@ sub create {
 
     Scramble::Model::List::open(glob("$g_options{'xml-src-directory'}/lists/*.xml"));
 
+    should('copy-images') && copy_and_process_files();
     should('kml') && copy_kml();
     should('trip-index') && Scramble::Controller::TripIndex::create_all(); # This includes home.html
     should('link') && Scramble::Controller::ReferenceIndex::create();
@@ -179,6 +184,15 @@ sub copy_kml {
     if ($?) {
         die "Error running $command: $!, $?";
     }
+}
+
+sub copy_and_process_files {
+    my @images = Scramble::Model::Image::get_all_images_collection()->get_all;
+
+    my $files = Scramble::Build::Files->new(images => \@images,
+                                            code_dir => $g_options{'code-directory'},
+                                            output_dir => $g_options{'output-directory'});
+    $files->build;
 }
 
 sub make_javascript {

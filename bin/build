@@ -10,12 +10,13 @@ xml_src_dir="/home/gabrielx/projects/yellowleaf-trips-data"
 # HTML, CSS, JS, KML, images, etc:
 output_dir="$xml_src_dir/html"
 
-code_dir="$(dirname "$0")/.."
+cd "$(dirname "$0")/.."
+code_dir="$PWD"
 
-cd "$code_dir" \
-    && perl bin/parse \
-	    --xml-src-directory "$xml_src_dir" \
-	    --files-src-directory "$files_src_dir" \
-	    --output-directory "$output_dir" \
-	    -v \
-	    "$@"
+perl bin/parse \
+     --code-directory "$code_dir" \
+     --xml-src-directory "$xml_src_dir" \
+     --files-src-directory "$files_src_dir" \
+     --output-directory "$output_dir" \
+     -v \
+     "$@"

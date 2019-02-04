@@ -6,6 +6,8 @@ use File::Basename ();
 use Scramble::Collection ();
 use Scramble::Template ();
 
+# FIXME: It is confusing to use a class named Images to represent GPX, KML and images.
+
 my $g_pics_dir = "pics";
 my $g_collection = Scramble::Collection->new();
 
@@ -36,10 +38,11 @@ sub new {
 sub get_id { $_[0]->get_source_directory() . "|" . $_[0]->get_filename() }
 sub get_chronological_order { $_[0]->{'chronological-order'} }
 sub in_chronological_order { $_[0]->{'in-chronological-order'} }
-sub get_source_directory { $_[0]->{'source-directory'} } # FIXME: Rename to trip files src dir.
+sub get_files_src_dir { $_[0]->{'source-directory'} } # FIXME: rename the 'source-directory' key.
+sub get_source_directory { $_[0]->get_files_src_dir } # FIXME: Deprecate this.
 sub get_filename { $_[0]->{'thumbnail-filename'} }
 sub get_enlarged_filename { $_[0]->{'large-filename'} }
-sub get_subdirectory { $_[0]->{'subdirectory'} }
+sub get_subdirectory { $_[0]->{'subdirectory'} } # FIXME: rename to get_trip_files_subdir?
 sub get_section_name { $_[0]->{'section-name'} }
 
 sub get_date { $_[0]->{'date'} } # optional for maps that are not for a particular trip
@@ -56,6 +59,23 @@ sub set_trip_url { $_[0]->{'trip-url'} = $_[1] }
 sub get_should_skip_trip { $_[0]->{'skip-trip'} }
 sub get_type { $_[0]->{'type'} }
 sub get_poster { $_[0]->{'poster'} }
+
+sub get_filenames {
+    my $self = shift;
+
+    if ($self->get_type eq 'movie' && $self->get_poster) {
+        return ($self->get_filename, $self->get_poster);
+    }
+    if ($self->get_type ne 'picture') {
+        return ($self->get_filename);
+    }
+    if (!$self->get_enlarged_filename) {
+        # Old trips like 2005-03-05-Goat-Mtn
+        return ($self->get_filename);
+    }
+
+    return ($self->get_filename, $self->get_enlarged_filename);
+}
 
 sub get_poster_url {
     my $self = shift;

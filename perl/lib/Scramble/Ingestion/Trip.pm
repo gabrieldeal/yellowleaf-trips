@@ -9,6 +9,7 @@ use Geo::Gpx ();
 use IO::File ();
 use Image::ExifTool ();
 use Scramble::Controller::TripXml ();
+use Scramble::Misc qw(my_system);
 use Scramble::Model::Area ();
 use Scramble::Model::Location ();
 use Scramble::Time ();
@@ -17,7 +18,6 @@ use Spreadsheet::Read ();
 # FIXME: Refactor everything
 
 my $g_xml_src_dir = '/home/gabrielx/projects/yellowleaf-trips-data';
-my $g_files_output_dir = "$g_xml_src_dir/html/pics";
 my $g_files_src_dir = '/media/gabrielx/Backup/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports';
 
 sub make_xml {
@@ -29,21 +29,14 @@ sub make_xml {
     my $trip_files_src_dir = "$g_files_src_dir/$trip_files_subdir";
     -d $trip_files_src_dir or die "Non-existant image dir: $trip_files_src_dir";
 
-    my $trip_files_output_dir = "$g_files_output_dir/$trip_files_subdir";
-    -d $trip_files_output_dir or die "Non-existant image dir: $trip_files_output_dir";
-
     my ($date) = ($trip_files_subdir =~ /^(\d{4}-\d\d-\d\d)/);
     defined $date or die "Unable to get date from image subdirectory: $trip_files_subdir";
 
-    # FIXME: Create the KML in the dest dir?
+    # FIXME: Move this into Scramble::Build::Files.
     create_kml($trip_files_src_dir);
 
     my $files = read_trip_files($trip_files_src_dir);
     my $timestamps = get_timestamps($files);
-
-    copy_misc_images($g_files_output_dir);
-
-    ingest_trip_files($trip_files_src_dir, $trip_files_output_dir, $files);
 
     # FIXME: Get rid of $trip_files_subdir and put all trip XML files in trips/.
     my $trip_xml_src_dir = "$g_xml_src_dir/trips/$trip_files_subdir";
@@ -73,15 +66,6 @@ sub make_xml {
     }
 
     return 0;
-}
-
-sub my_system {
-    my (@command) = @_;
-
-    print "Running @command\n";
-    return if 0 == system @command;
-
-    die "Command exited with failure code ($?): @command";
 }
 
 sub get_image_metadata {
@@ -408,46 +392,6 @@ sub create_kml {
               '-o', $kml_path);
 }
 
-sub process_trip_file {
-    my ($dir, $file) = @_;
-
-    if ($file->{type} eq 'movie') {
-        reencode_video($dir, $file);
-    } elsif ($file->{type} eq 'picture') {
-        interlace_image($dir, $file);
-    }
-}
-
-# Chrome will not display videos from Lindsay's PowerShot without this
-# reencoding.
-sub reencode_video {
-    my ($dir, $file) = @_;
-
-    my $reencoded_video = "$dir/$file->{enl_filename}";
-    my @command = ('ffmpeg',
-                   '-i', "$dir/$file->{orig_filename}",
-                   '-vcodec', 'h264',
-                   $reencoded_video);
-    if (-e $reencoded_video) {
-        print "Reencoded video already exists. Not running @command\n";
-        return;
-    }
-
-    my_system(@command);
-}
-
-sub interlace_image {
-    my ($dir, $file) = @_;
-
-    foreach my $file ($file->{thumb_filename}, $file->{enl_filename}) {
-        print "\tInterlacing $file\n";
-        my_system("mogrify",
-                  "-strip", # breaks geotagging
-                  "-interlace", "Line",
-                  "$dir/$file");
-    }
-}
-
 sub write_file {
     my ($filename, $content) = @_;
 
@@ -458,59 +402,6 @@ sub write_file {
     $fh || die "Can't open '$filename': $!";
     $fh->print($content);
     $fh->close or die "Error writing to '$filename': $!";
-}
-
-sub copy_file {
-    my ($file, $src_dir, $dest_dir) = @_;
-
-    next unless defined $file;
-
-    my $source = "$src_dir/$file";
-    my $dest = "$dest_dir/$file";
-    my $source_mtime = (stat($source))[9] or die "Error getting size '$source': $!";
-    my $dest_mtime = (stat($dest))[9];
-    if (defined $dest_mtime && $source_mtime < $dest_mtime) {
-        return;
-    }
-
-    my_system("cp", $source, $dest_dir);
-}
-
-sub ingest_trip_files {
-    my ($src_dir, $dest_dir, $files) = @_;
-
-    print "Copying trip files...\n";
-
-    File::Path::mkpath([$dest_dir], 0, 0755);
-
-    foreach my $file (@$files) {
-        my @file_variants = ($file->{thumb_filename}, $file->{enl_filename});
-        my $is_updated = 0;
-        foreach my $file_variant (@file_variants) {
-            if (copy_file($file_variant, $src_dir, $dest_dir)) {
-                $is_updated = 1;
-            }
-        }
-
-        if ($is_updated) {
-            process_trip_file($dest_dir, $file);
-        }
-    }
-}
-
-sub copy_misc_images {
-    my ($dest_dir) = @_;
-
-    my $src_dir = "images";
-
-    my @image_paths = glob "$src_dir/*.{gif,ico,png,json}";
-    @image_paths or die "Unable to find the misc images";
-
-    File::Path::mkpath([$dest_dir], 0, 0755);
-    foreach my $image_path (@image_paths) {
-        my $image_filename = File::Basename::basename($image_path);
-        copy_file($image_filename, $src_dir, $dest_dir);
-    }
 }
 
 1;
