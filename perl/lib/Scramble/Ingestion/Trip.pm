@@ -213,7 +213,7 @@ sub prompt_for_locations {
     while (my $location_name = <STDIN>) {
         my @location_matches;
         my $location_regex = "\Q". join('\E.*\Q', split(/\s+/, $location_name)) . "\E";
-        foreach my $location_path (glob("$Scramble::Model::Location::HACK_DIRECTORY/*.xml")) {
+        foreach my $location_path (glob("$Scramble::Model::Location::LOCATION_XML_SRC_DIRECTORY/*.xml")) {
             my $location_filename = File::Basename::basename($location_path);
             if ($location_filename =~ /$location_regex/i) {
                 if ($opened_locations{$location_filename}) {
