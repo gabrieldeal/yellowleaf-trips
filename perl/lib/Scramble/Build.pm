@@ -46,17 +46,7 @@ sub create {
     Scramble::Misc::set_output_directory($self->{output_directory});
     Scramble::Logger::set_verbose($self->{verbose});
 
-    my $paths = [
-        "$self->{output_directory}/g/li",
-        "$self->{output_directory}/g/a",
-        "$self->{output_directory}/g/js",
-        "$self->{output_directory}/g/r",
-        "$self->{output_directory}/g/l",
-        "$self->{output_directory}/g/enl",
-        "$self->{output_directory}/g/kml",
-        "$self->{output_directory}/g/m",
-    ];
-    File::Path::mkpath($paths, 0, 0755);
+    $self->create_directories;
 
     $self->should('htaccess') && $self->make_htaccess();
     $self->should('javascript') && $self->make_javascript();
@@ -66,33 +56,15 @@ sub create {
     Scramble::Model::Area::open($self->{xml_src_directory});
     Scramble::Model::Reference::open($self->{xml_src_directory});
 
-    # if (0 && $self->should('convert')) {
-    #     my @files = @{ $self->{file} } || glob("$self->{xml_src_directory}/locations/*.xml");
-    #     Scramble::Converter::convert_locations($self->{xml_src_directory}, @files);
-    #     @files = ...
-    #     Scramble::Converter::convert_trips($self->{xml_src_directory}, @files);
-    #     exit 0;
-    # }
+    0 && $self->should('convert') && $self->convert;
 
     if (! @{ $self->{file} }) {
         Scramble::Model::Trip::open_all($self->{files_src_directory},
                                         $self->{xml_src_directory});
     } else {
-	foreach my $file (@{ $self->{file} }) {
-            if ($file =~ m{/trips/}) {
-                my $trip = Scramble::Model::Trip::open_specific($file,
-                                                                $self->{files_src_directory});
-                $self->should('copy-images') && copy_and_process_files();
-                my $page = Scramble::Controller::TripPage->new($trip);
-                $page->create;
-            } else {
-                foreach my $location (Scramble::Model::Location::open_specific($file)) {
-                    my $page = Scramble::Controller::LocationPage->new($location);
-                    $page->create;
-                }
-            }
-        }
+        $self->build_specific_files;
     }
+
     $self->should('spell') && Scramble::SpellCheck::check_spelling("$self->{xml_src_directory}/dictionary");
     if (@{ $self->{file} }) {
         return;
@@ -126,6 +98,58 @@ sub should {
 
     return 1 if ! @{ $self->{action} };
     return scalar(grep { $page_type eq $_ || "${page_type}s" eq $_ } @{ $self->{action} });
+}
+
+sub convert {
+    my $self = shift;
+
+    die "This code is stale";
+
+    my @files = @{ $self->{file} } || glob("$self->{xml_src_directory}/locations/*.xml");
+    Scramble::Converter::convert_locations($self->{xml_src_directory}, @files);
+    @files = Scramble::Converter::convert_trips($self->{xml_src_directory}, @files);
+
+    exit 0;
+}
+
+sub create_directories {
+    my $self = shift;
+
+    my @subdirs = qw(
+        a
+        enl
+        js
+        kml
+        l
+        li
+        m
+        r
+    );
+    my @paths = map { "$self->{output_directory}/g/$_" } @subdirs;
+
+    File::Path::mkpath(\@paths, 0, 0755);
+}
+
+sub build_specific_files {
+    my $self = shift;
+
+    foreach my $file (@{ $self->{file} }) {
+        if ($file =~ m{/trips/}) {
+            my $trip = Scramble::Model::Trip::open_specific($file,
+                                                            $self->{files_src_directory});
+            $self->should('copy-images') && $self->copy_and_process_files();
+            my $page = Scramble::Controller::TripPage->new($trip);
+            $page->create;
+        } else {
+            # This does not work well because locations rely on
+            # opening all trips to know which locations have been
+            # visited.
+            foreach my $location (Scramble::Model::Location::open_specific($file)) {
+                my $page = Scramble::Controller::LocationPage->new($location);
+                $page->create;
+            }
+        }
+    }
 }
 
 sub make_templates {
