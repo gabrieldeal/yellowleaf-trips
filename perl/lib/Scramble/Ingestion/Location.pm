@@ -7,22 +7,25 @@ use IO::File;
 use Scramble::Misc ();
 use Scramble::Ingestion::PeakList::ListsOfJohn ();
 
-my @g_options = qw(
-    name=s
-    output-directory=s
-    );
-my %g_options = ();
+sub new {
+    my ($arg0, %args) = @_;
+
+    my $self = { %args };
+    bless($self, ref($arg0) || $arg0);
+
+    return $self;
+}
 
 sub create {
-    get_options();
+    my $self = shift;
 
     my @peaks;
     foreach my $name (keys %Scramble::Ingestion::PeakList::ListsOfJohn::Peaks) {
-        next unless $name =~ /$g_options{name}/i;
+        next unless $name =~ /$self->{name}/i;
         push @peaks, values %{ $Scramble::Ingestion::PeakList::ListsOfJohn::Peaks{$name} };
     }
     if (! @peaks) {
-        printf("Lists of John has no such peak '%s'", $g_options{name});
+        printf("Lists of John has no such peak '%s'", $self->{name});
         return 1;
     }
 
@@ -30,13 +33,12 @@ sub create {
         {
             name => "$_->{name} ($_->{quad})",
             value => $_,
-
         }
     } @peaks;
     my $peak = Scramble::Misc::choose_interactive(@choices);
 
     my $filename = Scramble::Misc::sanitize_for_filename($peak->{name});
-    $filename = $g_options{'output-directory'} . "/$filename.xml";
+    $filename = $self->{output_dir} . "/$filename.xml";
     die "$filename already exists" if -e $filename;
 
     my $xml = make_location_xml($peak);
@@ -50,26 +52,7 @@ sub create {
     return 0;
 }
 
-sub usage {
-    my ($prog) = ($0 =~ /([^\/]+)$/);
-    print("Usage: $prog [ OPTIONS ]\nOptions:\n\t--"
-          . join("\n\t--", @g_options));
-}
-
-sub get_options {
-    local $SIG{__WARN__};
-    if (! Getopt::Long::GetOptions(\%g_options, @g_options)
-        || $g_options{'help'})
-    {
-        print usage();
-        exit 1;
-    }
-
-    foreach my $required (qw(name output-directory)) {
-        die "Missing --$required" unless exists $g_options{$required};
-    }
-}
-
+# FIXME: Move into a Controller/LocationXml.pm
 sub make_location_xml {
     my ($peak) = @_;
 
