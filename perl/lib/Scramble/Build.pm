@@ -29,56 +29,60 @@ use Scramble::Model::Trip ();
 use Scramble::SpellCheck ();
 use Scramble::Tests ();
 
-my $gRoot = "yellowleaf.org/scramble";
-my %g_options;
+sub new {
+    my ($arg0, %args) = @_;
 
-# FIXME: Convert to a class.
+    my $self = { %args };
+    bless($self, ref($arg0) || $arg0);
+
+    return $self;
+}
 
 sub create {
-    %g_options = @_;
+    my $self = shift;
 
     srand($$ ^ time());
 
-    Scramble::Misc::set_output_directory($g_options{'output-directory'});
-    Scramble::Logger::set_verbose($g_options{verbose});
+    Scramble::Misc::set_output_directory($self->{output_directory});
+    Scramble::Logger::set_verbose($self->{verbose});
 
     my $paths = [
-        "$g_options{'output-directory'}/g/li",
-        "$g_options{'output-directory'}/g/a",
-        "$g_options{'output-directory'}/g/js",
-        "$g_options{'output-directory'}/g/r",
-        "$g_options{'output-directory'}/g/l",
-        "$g_options{'output-directory'}/g/enl",
-        "$g_options{'output-directory'}/g/kml",
-        "$g_options{'output-directory'}/g/m",
+        "$self->{output_directory}/g/li",
+        "$self->{output_directory}/g/a",
+        "$self->{output_directory}/g/js",
+        "$self->{output_directory}/g/r",
+        "$self->{output_directory}/g/l",
+        "$self->{output_directory}/g/enl",
+        "$self->{output_directory}/g/kml",
+        "$self->{output_directory}/g/m",
     ];
     File::Path::mkpath($paths, 0, 0755);
 
-    should('htaccess') && make_htaccess();
-    should('javascript') && make_javascript();
-    should('template') && make_templates();
+    $self->should('htaccess') && $self->make_htaccess();
+    $self->should('javascript') && $self->make_javascript();
+    $self->should('template') && $self->make_templates();
 
-    Scramble::Model::Location::set_xml_src_directory($g_options{'xml-src-directory'});
-    Scramble::Model::Area::open($g_options{'xml-src-directory'});
-    Scramble::Model::Reference::open($g_options{'xml-src-directory'});
+    Scramble::Model::Location::set_xml_src_directory($self->{xml_src_directory});
+    Scramble::Model::Area::open($self->{xml_src_directory});
+    Scramble::Model::Reference::open($self->{xml_src_directory});
 
-    # if (0 && should('convert')) {
-    #     my @files = @{ $g_options{'file'} } || glob("$g_options{'xml-src-directory'}/locations/*.xml");
-    #     Scramble::Converter::convert_locations($g_options{'xml-src-directory'}, @files);
+    # if (0 && $self->should('convert')) {
+    #     my @files = @{ $self->{file} } || glob("$self->{xml_src_directory}/locations/*.xml");
+    #     Scramble::Converter::convert_locations($self->{xml_src_directory}, @files);
     #     @files = ...
-    #     Scramble::Converter::convert_trips($g_options{'xml-src-directory'}, @files);
+    #     Scramble::Converter::convert_trips($self->{xml_src_directory}, @files);
     #     exit 0;
     # }
 
-    if (! @{ $g_options{'file'} }) {
-        Scramble::Model::Trip::open_all($g_options{'files-src-directory'},
-                                        $g_options{'xml-src-directory'});
+    if (! @{ $self->{file} }) {
+        Scramble::Model::Trip::open_all($self->{files_src_directory},
+                                        $self->{xml_src_directory});
     } else {
-	foreach my $file (@{ $g_options{'file'} }) {
+	foreach my $file (@{ $self->{file} }) {
             if ($file =~ m{/trips/}) {
                 my $trip = Scramble::Model::Trip::open_specific($file,
-                                                                $g_options{'files-src-directory'});
-                should('copy-images') && copy_and_process_files();
+                                                                $self->{files_src_directory});
+                $self->should('copy-images') && copy_and_process_files();
                 my $page = Scramble::Controller::TripPage->new($trip);
                 $page->create;
             } else {
@@ -89,60 +93,65 @@ sub create {
             }
         }
     }
-    should('spell') && Scramble::SpellCheck::check_spelling("$g_options{'xml-src-directory'}/dictionary");
-    if (@{ $g_options{'file'} }) {
+    $self->should('spell') && Scramble::SpellCheck::check_spelling("$self->{xml_src_directory}/dictionary");
+    if (@{ $self->{file} }) {
         return;
     }
 
-    Scramble::Model::List::open(glob("$g_options{'xml-src-directory'}/lists/*.xml"));
+    Scramble::Model::List::open(glob("$self->{xml_src_directory}/lists/*.xml"));
 
-    should('copy-images') && copy_and_process_files();
-    should('kml') && copy_kml();
-    should('trip-index') && Scramble::Controller::TripIndex::create_all(); # This includes home.html
-    should('link') && Scramble::Controller::ReferenceIndex::create();
-    should('list') && Scramble::Controller::ListIndex::create();
-    should('list') && Scramble::Controller::ListKml::create_all();
-    should('list') && Scramble::Controller::ListPage::create_all();
-    should('trip') && Scramble::Controller::TripPage::create_all();
-    should('rss') && Scramble::Controller::TripRss::create();
-    should('geekery') && Scramble::Controller::GeekeryPage::create();
-    should('picture-by-year') && Scramble::Controller::ImageIndex::create_all(); # Favorites
-    should('location') && Scramble::Controller::LocationPage::create_all();
-    should('short-trips') && Scramble::Controller::StatsStdout::display_short_trips();
-    should('party-stats') && Scramble::Controller::StatsStdout::display_party_stats();
-    should('test') && Scramble::Tests::run();
+    $self->should('copy-images') && $self->copy_and_process_files();
+    $self->should('kml') && $self->copy_kml();
+    $self->should('trip-index') && Scramble::Controller::TripIndex::create_all(); # Includes home.html
+    $self->should('link') && Scramble::Controller::ReferenceIndex::create();
+    $self->should('list') && Scramble::Controller::ListIndex::create();
+    $self->should('list') && Scramble::Controller::ListKml::create_all();
+    $self->should('list') && Scramble::Controller::ListPage::create_all();
+    $self->should('trip') && Scramble::Controller::TripPage::create_all();
+    $self->should('rss') && Scramble::Controller::TripRss::create();
+    $self->should('geekery') && Scramble::Controller::GeekeryPage::create();
+    $self->should('picture-by-year') && Scramble::Controller::ImageIndex::create_all(); # Favorites
+    $self->should('location') && Scramble::Controller::LocationPage::create_all();
+    $self->should('short-trips') && Scramble::Controller::StatsStdout::display_short_trips();
+    $self->should('party-stats') && Scramble::Controller::StatsStdout::display_party_stats();
+    $self->should('test') && Scramble::Tests::run();
 }
 
 sub should {
+    my $self = shift;
     my ($page_type) = @_;
 
-    return 0 if @{ $g_options{'file'} } && ! @{ $g_options{'action'} };
-    return 0 if grep { $page_type eq $_ || "${page_type}s" eq $_ } @{ $g_options{'skip'} };
+    return 0 if @{ $self->{file} } && ! @{ $self->{action} };
+    return 0 if grep { $page_type eq $_ || "${page_type}s" eq $_ } @{ $self->{skip} };
 
-    return 1 if ! @{ $g_options{'action'} };
-    return scalar(grep { $page_type eq $_ || "${page_type}s" eq $_ } @{ $g_options{'action'} });
+    return 1 if ! @{ $self->{action} };
+    return scalar(grep { $page_type eq $_ || "${page_type}s" eq $_ } @{ $self->{action} });
 }
 
 sub make_templates {
-    make_html_file("$g_options{'templates-directory'}/misc/kloke.html",
-                   "Kloke's Cascade winter climbs",
-                   'no-insert-links' => 1,
-                   'enable-embedded-google-map' => 1,
-                   'no-add-picture' => 1);
-    make_html_file("$g_options{'templates-directory'}/misc/sfox.html",
-                   "Steve Fox's winter scrambles",
-                   'no-insert-links' => 1,
-                   'no-add-picture' => 1);
-    make_html_file("$g_options{'templates-directory'}/misc/missing.html",
-                   "Missing Page",
-                   'no-insert-links' => 1,
-                   'no-add-picture' => 1);
+    my $self = shift;
+
+    $self->make_html_file("$self->{templates_directory}/misc/kloke.html",
+                          "Kloke's Cascade winter climbs",
+                          'no-insert-links' => 1,
+                          'enable-embedded-google-map' => 1,
+                          'no-add-picture' => 1);
+    $self->make_html_file("$self->{templates_directory}/misc/sfox.html",
+                          "Steve Fox's winter scrambles",
+                          'no-insert-links' => 1,
+                          'no-add-picture' => 1);
+    $self->make_html_file("$self->{templates_directory}/misc/missing.html",
+                          "Missing Page",
+                          'no-insert-links' => 1,
+                          'no-add-picture' => 1);
 }
 
 sub copy_kml {
+    my $self = shift;
+
     my $command = sprintf("cp %s/*.kml %s/g/kml/",
-                          $g_options{'kml-directory'},
-                          $g_options{'output-directory'});
+                          $self->{kml_directory},
+                          $self->{output_directory});
     system($command);
     if ($?) {
         die "Error running $command: $!, $?";
@@ -150,16 +159,20 @@ sub copy_kml {
 }
 
 sub copy_and_process_files {
+    my $self = shift;
+
     my @images = Scramble::Model::Image::get_all_images_collection()->get_all;
 
     my $files = Scramble::Build::Files->new(images => \@images,
-                                            code_dir => $g_options{'code-directory'},
-                                            output_dir => $g_options{'output-directory'});
+                                            code_dir => $self->{code_directory},
+                                            output_dir => $self->{output_directory});
     $files->build;
 }
 
 sub make_javascript {
-    my $target = $ENV{'NODE_ENV'} eq 'development' ? 'build-dev' : 'build';
+    my $self = shift;
+
+    my $target = $ENV{NODE_ENV} eq 'development' ? 'build-dev' : 'build';
 
     system("cd javascript && npm install && npm run $target");
     if ($?) {
@@ -167,8 +180,8 @@ sub make_javascript {
     }
 
     my $command = sprintf("cp %s/* %s/g/js/",
-                          $g_options{'javascript-directory'},
-                          $g_options{'output-directory'});
+                          $self->{javascript_directory},
+                          $self->{output_directory});
     print "$command\n";
     system($command);
     if ($?) {
@@ -177,26 +190,29 @@ sub make_javascript {
 }
 
 sub make_htaccess {
+    my $self = shift;
+
     # Not r or li -- they have index.html files.
     foreach my $dir (qw(m l a)) {
         Scramble::Misc::create("$dir/.htaccess", <<EOT);
-Redirect /scramble/g/$dir/index.html http://$gRoot/g/m/missing.html
+Redirect /scramble/g/$dir/index.html http://$self->{site_root}/g/m/missing.html
 EOT
     }
 
   Scramble::Misc::create(".htaccess", <<EOT);
 ErrorDocument 404 /scramble/g/m/missing.html
-Redirect /scramble/g/index.html http://$gRoot/g/m/missing.html
+Redirect /scramble/g/index.html http://$self->{site_root}/g/m/missing.html
 EOT
 
   # cheating here
   Scramble::Misc::create("../.htaccess", <<EOT);
 ErrorDocument 404 /scramble/g/m/home.html
-Redirect /scramble/index.html http://$gRoot/g/m/missing.html
+Redirect /scramble/index.html http://$self->{site_root}/g/m/missing.html
 EOT
 }
 
 sub make_template_html {
+    my $self = shift;
     my ($filename, %options) = @_;
 
     my $fh = IO::File->new($filename, 'r')
@@ -211,13 +227,14 @@ sub make_template_html {
 }
 
 sub make_html_file {
+    my $self = shift;
     my ($filename, $title, %options) = @_;
 
     if (! -e $filename) {
         die "Missing $filename";
     }
 
-    my $html = make_template_html($filename, %options);
+    my $html = $self->make_template_html($filename, %options);
 
     my ($ofile) = ($filename =~ m,/([^/]+)$,);
 

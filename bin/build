@@ -7,7 +7,7 @@ use lib './perl/lib';
 use Carp ();
 use Data::Dumper ();
 use Scramble::Build ();
-use Scramble::Misc qw(get_options);
+use Scramble::Misc qw(get_options snake_case_keys);
 
 local $^W = 1;
 local $| = 1;
@@ -26,6 +26,7 @@ my @options = qw(
     file=s@
     files-src-directory=s
     kml-directory=s
+    site-root=s
     templates-directory=s
     javascript-directory=s
     output-directory=s
@@ -39,6 +40,7 @@ my %defaults = (
     "skip" => [],
     "timezone" => "PDT",
     "kml-directory" => "kml",
+    "site-root" => "yellowleaf.org/scramble",
     "templates-directory" => "view",
     "javascript-directory" => "javascript/dist",
     "xml-src-directory" => "/home/gabrielx/projects/yellowleaf-trips-data",
@@ -54,11 +56,12 @@ my @required = qw(
 my %options = Scramble::Misc::get_options(defaults => \%defaults,
                                           options => \@options,
                                           required => \@required);
+%options = snake_case_keys(%options);
 
-if (! $options{'output-directory'}) {
-    $options{'output-directory'} = "$options{'xml-src-directory'}/html";
+if (! $options{output_directory}) {
+    $options{output_directory} = "$options{xml_src_directory}/html";
 }
 
-Scramble::Build::create(%options);
+Scramble::Build->new(%options)->create;
 
 exit 1;
