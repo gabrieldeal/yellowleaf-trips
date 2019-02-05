@@ -32,26 +32,28 @@ sub create {
     # FIXME: Move this into Scramble::Build::Files.
     create_kml($trip_files_src_dir);
 
+    my $trip_xml_file = "$args{output_dir}/trip.xml";
+    if (-e $trip_xml_file) {
+        print "$trip_xml_file already exists\n";
+        return;
+    }
+
     my $files = read_trip_files($trip_files_src_dir);
     my $timestamps = get_timestamps($files);
 
     File::Path::mkpath([$args{output_dir}], 0, 0755);
-    my $trip_xml_file = "$args{output_dir}/trip.xml";
-    if (-e $trip_xml_file) {
-        print "$trip_xml_file already exists\n";
-    } else {
-        my @locations = prompt_for_locations($args{xml_src_dir});
-        my $sections = read_trip_sections($args{spreadsheet_filename});
-        my $trip_xml = Scramble::Controller::TripXml::html(date => $date,
-                                                           title => $args{title},
-                                                           trip_type => $args{type},
-                                                           locations => \@locations,
-                                                           sections => $sections,
-                                                           timestamps => $timestamps,
-                                                           files => $files,
-                                                           trip_files_subdir => $args{trip_files_subdir});
-        write_file($trip_xml_file, $trip_xml);
-    }
+
+    my @locations = prompt_for_locations($args{xml_src_dir});
+    my $sections = read_trip_sections($args{spreadsheet_filename});
+    my $trip_xml = Scramble::Controller::TripXml::html(date => $date,
+                                                       title => $args{title},
+                                                       trip_type => $args{type},
+                                                       locations => \@locations,
+                                                       sections => $sections,
+                                                       timestamps => $timestamps,
+                                                       files => $files,
+                                                       trip_files_subdir => $args{trip_files_subdir});
+    write_file($trip_xml_file, $trip_xml);
 
     my $glob = "$trip_files_src_dir/*";
     my @files = glob($glob);
