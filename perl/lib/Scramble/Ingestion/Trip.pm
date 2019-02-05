@@ -17,42 +17,51 @@ use Spreadsheet::Read ();
 
 # FIXME: Refactor everything
 
+sub new {
+    my ($arg0, %args) = @_;
+
+    my $self = { %args };
+    bless($self, ref($arg0) || $arg0);
+
+    return $self;
+}
+
 sub create {
-    my (%args) = @_;
+    my $self = shift;
 
     $ENV{TZ} || die "Set Timezone.  E.g., export TZ='America/Los_Angeles'";
-    defined $args{title} or die "Missing arguments: image-subdir trip-type title";
+    defined $self->{title} or die "Missing arguments: image-subdir trip-type title";
 
-    my $trip_files_src_dir = "$args{files_src_dir}/$args{trip_files_subdir}";
+    my $trip_files_src_dir = "$self->{files_src_dir}/$self->{trip_files_subdir}";
     -d $trip_files_src_dir or die "Non-existant image dir: $trip_files_src_dir";
 
-    my ($date) = ($args{trip_files_subdir} =~ /^(\d{4}-\d\d-\d\d)/);
-    defined $date or die "Unable to get date from image subdirectory: $args{trip_files_subdir}";
+    my ($date) = ($self->{trip_files_subdir} =~ /^(\d{4}-\d\d-\d\d)/);
+    defined $date or die "Unable to get date from image subdirectory: $self->{trip_files_subdir}";
 
-    my $trip_xml_file = "$args{output_dir}/trip.xml";
+    my $trip_xml_file = "$self->{output_dir}/trip.xml";
     if (-e $trip_xml_file) {
         print "$trip_xml_file already exists\n";
         return;
     }
 
-    my $files = read_trip_files($trip_files_src_dir);
-    push @$files, files_created_by_build($files);
+    my $files = $self->read_trip_files($trip_files_src_dir);
+    push @$files, $self->files_created_by_build($files);
 
-    my $timestamps = get_timestamps($files);
+    my $timestamps = $self->get_timestamps($files);
 
-    File::Path::mkpath([$args{output_dir}], 0, 0755);
+    File::Path::mkpath([$self->{output_dir}], 0, 0755);
 
-    my @locations = prompt_for_locations($args{xml_src_dir});
-    my $sections = read_trip_sections($args{spreadsheet_filename});
+    my @locations = $self->prompt_for_locations($self->{xml_src_dir});
+    my $sections = $self->read_trip_sections($self->{spreadsheet_filename});
     my $trip_xml = Scramble::Controller::TripXml::html(date => $date,
-                                                       title => $args{title},
-                                                       trip_type => $args{type},
+                                                       title => $self->{title},
+                                                       trip_type => $self->{type},
                                                        locations => \@locations,
                                                        sections => $sections,
                                                        timestamps => $timestamps,
                                                        files => $files,
-                                                       trip_files_subdir => $args{trip_files_subdir});
-    write_file($trip_xml_file, $trip_xml);
+                                                       trip_files_subdir => $self->{trip_files_subdir});
+    $self->write_file($trip_xml_file, $trip_xml);
 
     my $glob = "$trip_files_src_dir/*";
     my @files = glob($glob);
@@ -62,6 +71,7 @@ sub create {
 }
 
 sub get_image_metadata {
+    my $self = shift;
     my ($file) = @_;
 
     print "Reading metadata in $file...\n";
@@ -91,6 +101,7 @@ sub get_image_metadata {
 }
 
 sub convert_date_time {
+    my $self = shift;
     my ($epoch_time) = @_;
 
     my (undef, $minute, $hour, $day, $mon, $year) = localtime($epoch_time);
@@ -101,6 +112,7 @@ sub convert_date_time {
 }
 
 sub get_gpx_metadata {
+    my $self = shift;
     my ($file) = @_;
 
     my $path = $file->{'dir'} . '/' . $file->{enl_filename};
@@ -114,25 +126,26 @@ sub get_gpx_metadata {
     my $end = $points->[-1]{time};
 
     return (
-        start => convert_date_time($start),
-        end => convert_date_time($end)
+        start => $self->convert_date_time($start),
+        end => $self->convert_date_time($end)
         );
 }
 
 sub get_gpx_timestamps {
+    my $self = shift;
     my ($images) = @_;
 
     my @gpx_files = grep { $_->{type} eq 'gps' } @$images;
 
     return {} unless @gpx_files;
 
-    my %first_gpx = get_gpx_metadata($gpx_files[0]);
+    my %first_gpx = $self->get_gpx_metadata($gpx_files[0]);
 
     my %last_gpx;
     if (@gpx_files == 1) {
         %last_gpx = %first_gpx;
     } else {
-        %last_gpx = metadata_from_gpx($gpx_files[-1]);
+        %last_gpx = $self->get_gpx_metadata($gpx_files[-1]);
     }
 
     return {
@@ -142,6 +155,7 @@ sub get_gpx_timestamps {
 }
 
 sub get_image_timestamps {
+    my $self = shift;
     my ($trip_files) = @_;
 
     my ($first_timestamp, $last_timestamp);
@@ -159,9 +173,10 @@ sub get_image_timestamps {
 }
 
 sub get_timestamps {
+    my $self = shift;
     my ($files) = @_;
 
-    my $timestamps = get_gpx_timestamps($files);
+    my $timestamps = $self->get_gpx_timestamps($files);
     if ($timestamps->{start} && $timestamps->{end}) {
         return $timestamps;
     }
@@ -170,6 +185,7 @@ sub get_timestamps {
 }
 
 sub read_trip_sections {
+    my $self = shift;
     my ($spreadsheet_filename) = @_;
 
     return {} unless $spreadsheet_filename;
@@ -191,6 +207,7 @@ sub read_trip_sections {
 }
 
 sub get_first_quad_name {
+    my $self = shift;
     my ($location) = @_;
 
     my @quads = $location->get_quad_objects;
@@ -202,6 +219,7 @@ sub get_first_quad_name {
 }
 
 sub prompt_for_locations {
+    my $self = shift;
     my ($xml_src_dir) = @_;
 
     my @locations;
@@ -233,7 +251,7 @@ sub prompt_for_locations {
         }
 
         my @location_choices = map {
-            { name => sprintf("%s (%s)", $_->get_name, get_first_quad_name($_)),
+            { name => sprintf("%s (%s)", $_->get_name, $self->get_first_quad_name($_)),
               value => $_
             }
         } @location_matches;
@@ -249,6 +267,7 @@ sub prompt_for_locations {
 }
 
 sub glob_trip_files {
+    my $self = shift;
     my ($dir) = @_;
 
     my @filenames;
@@ -260,7 +279,9 @@ sub glob_trip_files {
     return @filenames;
 }
 
+# FIXME: Refactor this.  Too long.
 sub read_trip_files {
+    my $self = shift;
     my ($dir) = @_;
 
     print "Reading images in $dir...\n";
@@ -268,7 +289,7 @@ sub read_trip_files {
     -d $dir or die "No such directory '$dir'";
     $dir =~ s{/*$}{};
 
-    my @filenames = glob_trip_files($dir);
+    my @filenames = $self->glob_trip_files($dir);
 
     my @files;
     foreach my $enl_filename (@filenames) {
@@ -285,11 +306,11 @@ sub read_trip_files {
 	} else {
             $type = $enl_filename =~ /\.(mp4|mov)$/i ? 'movie' : 'picture';
 
-            my $orig_filename = get_original_filename($dir, $enl_filename, $type);
-            my $metadata = get_image_metadata("$dir/$orig_filename");
+            my $orig_filename = $self->get_original_filename($dir, $enl_filename, $type);
+            my $metadata = $self->get_image_metadata("$dir/$orig_filename");
 
             if ($type ne 'movie') {
-                $rating = get_rating($metadata->{rating});
+                $rating = $self->get_rating($metadata->{rating});
             }
             $caption = $metadata->{'caption'} || '';
             $owner = $metadata->{creator} || $metadata->{copyright} || 'Gabriel Deal';
@@ -325,6 +346,7 @@ sub read_trip_files {
 }
 
 sub files_created_by_build {
+    my $self = shift;
     my ($files) = @_;
 
     my @gpx_files = grep { $_->{type} eq 'gps' } @$files;
@@ -338,6 +360,7 @@ sub files_created_by_build {
 }
 
 sub get_original_filename {
+    my $self = shift;
     my ($src_dir, $enl_filename, $type) = @_;
 
     my $orig_prefix;
@@ -360,6 +383,7 @@ sub get_original_filename {
 }
 
 sub get_rating {
+    my $self = shift;
     my ($rating) = @_;
 
     if (! defined $rating) {
@@ -376,6 +400,7 @@ sub get_rating {
 }
 
 sub write_file {
+    my $self = shift;
     my ($filename, $content) = @_;
 
     die "$filename already exists" if -e $filename;

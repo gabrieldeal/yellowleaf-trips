@@ -42,6 +42,6 @@ if (! $options{output_dir}) {
     $options{output_dir} = "$options{xml_src_dir}/trips/$options{trip_files_subdir}";
 }
 
-Scramble::Ingestion::Trip::create(snake_case_keys(%options));
+Scramble::Ingestion::Trip->new(%options)->create;
 
-exit 0
+exit 0;
