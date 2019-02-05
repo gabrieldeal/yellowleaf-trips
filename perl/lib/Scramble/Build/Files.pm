@@ -30,6 +30,7 @@ sub build {
 
     $self->copy_misc_images;
     $self->copy_and_process_trip_files;
+    $self->create_kmls;
 }
 
 sub copy {
@@ -42,7 +43,7 @@ sub copy {
     my $dest = "$args{dest_dir}/$args{filename}";
 
     # Cannot check size because only the destination images are interlaced.
-    my $source_mtime = (stat($source))[9] or die "Error getting size '$source': $!";
+    my $source_mtime = (stat($source))[9] or die "Error getting mtime '$source': $!";
     my $dest_mtime = (stat($dest))[9];
 
     if (defined $dest_mtime && $source_mtime < $dest_mtime) {
@@ -83,6 +84,10 @@ sub copy_and_process_trip_files {
         my $is_updated = 0;
         foreach my $filename ($image->get_filenames) {
             next unless $filename; # For old trips like 2013-11-17-nason
+
+            my $src_path = $image->get_files_src_dir . "/$filename";
+            next if $image->get_type eq 'kml' && ! -f $src_path;
+
             if ($self->copy(src_dir => $image->get_files_src_dir,
                             dest_dir => $self->get_trip_files_dest_dir($image),
                             filename => $filename))
@@ -157,6 +162,34 @@ sub get_trip_files_dest_dir {
     my ($image) = @_;
 
     return $self->{output_dir} . '/' . $image->get_subdirectory;
+}
+
+sub create_kmls {
+    my $self = shift;
+
+    foreach my $kml (grep { $_->{type} eq 'kml' } @{ $self->{images} }) {
+        $self->create_kml($kml);
+    }
+}
+
+sub create_kml {
+    my $self = shift;
+    my ($kml) = @_;
+
+    my $kml_path = $self->get_trip_files_dest_dir($kml) . "/" . $kml->get_filename;
+    return if -f $kml_path;
+
+    my $gpx_src_glob = $kml->get_files_src_dir . "/*.gpx";
+    my @gpx_paths = sort(glob $gpx_src_glob);
+    @gpx_paths > 0 or die "No GPX files at $gpx_src_glob";
+
+    my $gpsconvert = "$self->{code_dir}/bin/gpsconvert";
+
+    my_system($gpsconvert,
+              '--no-waypoints',
+              '--simplify',
+              @gpx_paths,
+              '-o', $kml_path);
 }
 
 1;

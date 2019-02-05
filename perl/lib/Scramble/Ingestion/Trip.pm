@@ -29,9 +29,6 @@ sub create {
     my ($date) = ($args{trip_files_subdir} =~ /^(\d{4}-\d\d-\d\d)/);
     defined $date or die "Unable to get date from image subdirectory: $args{trip_files_subdir}";
 
-    # FIXME: Move this into Scramble::Build::Files.
-    create_kml($trip_files_src_dir);
-
     my $trip_xml_file = "$args{output_dir}/trip.xml";
     if (-e $trip_xml_file) {
         print "$trip_xml_file already exists\n";
@@ -39,6 +36,8 @@ sub create {
     }
 
     my $files = read_trip_files($trip_files_src_dir);
+    push @$files, files_created_by_build($files);
+
     my $timestamps = get_timestamps($files);
 
     File::Path::mkpath([$args{output_dir}], 0, 0755);
@@ -325,6 +324,19 @@ sub read_trip_files {
     return \@files;
 }
 
+sub files_created_by_build {
+    my ($files) = @_;
+
+    my @gpx_files = grep { $_->{type} eq 'gps' } @$files;
+    my @kml_files = grep { $_->{type} eq 'kml' } @$files;
+    return () if @kml_files || !@gpx_files;
+
+    return ({
+        thumb_filename => 'route.kml',
+        type => 'kml',
+    });
+}
+
 sub get_original_filename {
     my ($src_dir, $enl_filename, $type) = @_;
 
@@ -361,30 +373,6 @@ sub get_rating {
     } else {
         die "Out-of-bounds rating '$rating'.  Must be 1, 2, or 3.";
     }
-}
-
-sub create_kml {
-    my ($dir) = @_;
-
-    my @gpx_paths = sort(glob "$dir/*.gpx");
-    return unless @gpx_paths;
-
-    # gpsconvert chokes on cygwin-style paths.
-    my $kml_path = File::Spec->abs2rel("$dir/route.kml");
-    return if -e $kml_path;
-
-    my @gpx_args;
-    foreach my $gpx_path (@gpx_paths) {
-        push @gpx_args, File::Spec->abs2rel($gpx_path);
-    }
-
-    my $gpsconvert = File::Basename::dirname($0) . "/gpsconvert";
-
-    my_system($gpsconvert,
-              '--no-waypoints',
-              '--simplify',
-              @gpx_args,
-              '-o', $kml_path);
 }
 
 sub write_file {
