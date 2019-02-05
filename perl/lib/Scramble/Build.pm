@@ -2,8 +2,6 @@ package Scramble::Build;
 
 use strict;
 
-use Date::Manip ();
-use File::Find ();
 use File::Path ();
 use IO::File ();
 use Scramble::Build::Files ();
@@ -42,36 +40,24 @@ sub create {
     my $self = shift;
 
     srand($$ ^ time());
-
     Scramble::Misc::set_output_directory($self->{output_directory});
     Scramble::Logger::set_verbose($self->{verbose});
-
-    $self->create_directories;
-
-    $self->should('htaccess') && $self->make_htaccess();
-    $self->should('javascript') && $self->make_javascript();
-    $self->should('template') && $self->make_templates();
-
     Scramble::Model::Location::set_xml_src_directory($self->{xml_src_directory});
     Scramble::Model::Area::open($self->{xml_src_directory});
     Scramble::Model::Reference::open($self->{xml_src_directory});
 
-    0 && $self->should('convert') && $self->convert;
-
-    if (! @{ $self->{file} }) {
-        Scramble::Model::Trip::open_all($self->{files_src_directory},
-                                        $self->{xml_src_directory});
-    } else {
-        $self->build_specific_files;
-    }
-
-    $self->should('spell') && Scramble::SpellCheck::check_spelling("$self->{xml_src_directory}/dictionary");
-    if (@{ $self->{file} }) {
+    $self->create_directories;
+    if ($self->build_specific_files) {
         return;
     }
 
+    Scramble::Model::Trip::open_all($self->{files_src_directory}, $self->{xml_src_directory});
     Scramble::Model::List::open(glob("$self->{xml_src_directory}/lists/*.xml"));
 
+    $self->should('spell') && Scramble::SpellCheck::check_spelling("$self->{xml_src_directory}/dictionary");
+    $self->should('htaccess') && $self->make_htaccess();
+    $self->should('javascript') && $self->make_javascript();
+    $self->should('template') && $self->make_templates();
     $self->should('copy-images') && $self->copy_and_process_files();
     $self->should('kml') && $self->copy_kml();
     $self->should('trip-index') && Scramble::Controller::TripIndex::create_all(); # Includes home.html
@@ -150,6 +136,8 @@ sub build_specific_files {
             }
         }
     }
+
+    return scalar(@{ $self->{file} });
 }
 
 sub make_templates {
