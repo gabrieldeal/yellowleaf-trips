@@ -189,7 +189,7 @@ sub copy_and_process_files {
 
     my $files = Scramble::Build::Files->new(images => \@images,
                                             code_dir => $self->{code_directory},
-                                            output_dir => $self->{output_directory});
+                                            output_dir => "$self->{output_directory}/pics");
     $files->build;
 }
 
