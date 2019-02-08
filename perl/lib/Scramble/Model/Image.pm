@@ -6,7 +6,7 @@ use File::Basename ();
 use Scramble::Collection ();
 use Scramble::Template ();
 
-# FIXME: It is confusing to use a class named Images to represent GPX, KML and images.
+# FIXME: It is confusing to use a class named Images to represent GPX, KML, maps and pictures.
 
 my $g_pics_dir = "pics";
 my $g_collection = Scramble::Collection->new();
@@ -19,9 +19,9 @@ sub new {
     bless $self, ref($arg0) || $arg0;
 
     $self->{'type'} = 'picture' unless exists $self->{'type'};
-    $self->{'subdirectory'} = File::Basename::basename($self->{'source-directory'});
+    $self->{trip_files_subdir} = File::Basename::basename($self->{trip_files_src_dir});
     $self->{'chronological-order'} = 0 unless exists $self->{'chronological-order'};
-    foreach my $key (qw(subdirectory thumbnail-filename type source-directory)) {
+    foreach my $key (qw(trip_files_subdir thumbnail-filename type trip_files_src_dir)) {
         die "Missing '$key': ", Data::Dumper::Dumper($self)
             unless defined $self->{$key};
     }
@@ -35,14 +35,13 @@ sub new {
     return $self;
 }
 
-sub get_id { $_[0]->get_source_directory() . "|" . $_[0]->get_filename() }
+sub get_id { $_[0]->get_trip_files_src_dir() . "|" . $_[0]->get_filename() }
 sub get_chronological_order { $_[0]->{'chronological-order'} }
 sub in_chronological_order { $_[0]->{'in-chronological-order'} }
-sub get_files_src_dir { $_[0]->{'source-directory'} } # FIXME: rename the 'source-directory' key.
-sub get_source_directory { $_[0]->get_files_src_dir } # FIXME: Deprecate this.
+sub get_trip_files_src_dir { $_[0]->{trip_files_src_dir} } # FIXME: Does this belong here? It seems like it should just be in Scramble::Build.
 sub get_filename { $_[0]->{'thumbnail-filename'} }
 sub get_enlarged_filename { $_[0]->{'large-filename'} }
-sub get_subdirectory { $_[0]->{'subdirectory'} } # FIXME: rename to get_trip_files_subdir?
+sub get_trip_files_subdir { $_[0]->{trip_files_subdir} }
 sub get_section_name { $_[0]->{'section-name'} }
 
 sub get_date { $_[0]->{'date'} } # optional for maps that are not for a particular trip
@@ -52,8 +51,8 @@ sub get_description { $_[0]->{'description'} }
 sub get_of { $_[0]->{'of'} } # undefined means we don't know. Empty string means it is not of any known location.
 sub get_from { $_[0]->{'from'} || '' }
 sub get_owner { $_[0]->{'owner'} }
-sub get_url { sprintf("../../$g_pics_dir/%s/%s", $_[0]->get_subdirectory(), $_[0]->get_filename()) }
-sub get_full_url { sprintf("https://yellowleaf.org/scramble/$g_pics_dir/%s/%s", $_[0]->get_subdirectory(), $_[0]->get_filename()) }
+sub get_url { sprintf("../../$g_pics_dir/%s/%s", $_[0]->get_trip_files_subdir(), $_[0]->get_filename()) }
+sub get_full_url { sprintf("https://yellowleaf.org/scramble/$g_pics_dir/%s/%s", $_[0]->get_trip_files_subdir(), $_[0]->get_filename()) }
 sub get_trip_url { $_[0]->{'trip-url'} }
 sub set_trip_url { $_[0]->{'trip-url'} = $_[1] }
 sub get_should_skip_trip { $_[0]->{'skip-trip'} }
@@ -84,7 +83,7 @@ sub get_poster_url {
         return '';
     }
 
-    return sprintf("../../$g_pics_dir/%s/%s", $self->get_subdirectory(), $self->get_poster());
+    return sprintf("../../$g_pics_dir/%s/%s", $self->get_trip_files_subdir(), $self->get_poster());
 }
 
 sub get_capture_date {
@@ -128,7 +127,7 @@ sub get_enlarged_img_url {
     return undef unless defined $self->get_enlarged_filename();
 
     return sprintf("../../$g_pics_dir/%s/%s",
-                   $self->get_subdirectory,
+                   $self->get_trip_files_subdir,
                    $self->get_enlarged_filename());
 }
 
@@ -184,7 +183,7 @@ sub read_images_from_trip {
     foreach my $image_xml (@{ $trip->_get_optional('files', "file") || [] }) {
         next if $image_xml->{skip};
         push @images, Scramble::Model::Image->new({ date => "$year/$month/$day",
-                                                    'source-directory' => $trip_files_src_dir,
+                                                    trip_files_src_dir => $trip_files_src_dir,
                                                     'chronological-order' => $chronological_order++,
                                                     'in-chronological-order' => $in_chronological_order,
                                                     %$image_xml,

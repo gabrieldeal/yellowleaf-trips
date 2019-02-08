@@ -38,7 +38,7 @@ sub get_converted_trip_path {
                );
     my @images = Scramble::Model::Image::get_all_images_collection()->find(%args);
     if (@images) {
-	return sprintf("%s/trip.xml", $images[0]->get_source_directory());
+        return sprintf("%s/trip.xml", $images[0]->get_trip_files_src_dir());
     }
 
     my $subdir = File::Basename::basename($trip->{path});

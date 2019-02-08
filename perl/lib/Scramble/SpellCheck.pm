@@ -53,7 +53,7 @@ sub _check_spelling_in_all_documents {
 
     foreach my $image (Scramble::Model::Image::get_all_images_collection()->get_all()) {
         foreach my $text ($image->get_description(), $image->get_of(), $image->get_from(), $image->get_section_name()) {
-            push @misspelled, _check_spelling_in_text($text, $image->get_source_directory(), $image->get_date());
+            push @misspelled, _check_spelling_in_text($text, $image->get_trip_files_src_dir(), $image->get_date());
         }
     }
 

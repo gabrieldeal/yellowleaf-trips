@@ -161,7 +161,7 @@ sub get_trip_files_dest_dir {
     my $self = shift;
     my ($image) = @_;
 
-    return $self->{output_dir} . '/' . $image->get_subdirectory;
+    return $self->{output_dir} . '/' . $image->get_trip_files_subdir;
 }
 
 sub create_kmls {
