@@ -19,18 +19,21 @@ sub new {
 }
 
 sub create_all {
+    my ($writer) = @_;
+
     my @locations = (Scramble::Model::Location::get_visited(),
                      Scramble::Model::Location::get_unvisited());
     @locations = sort { lc($a->get_filename()) cmp lc($b->get_filename()) } @locations;
 
     foreach my $location (@locations) {
         my $page = Scramble::Controller::LocationPage->new($location);
-        $page->create();
+        $page->create($writer);
     }
 }
 
 sub create {
     my $self = shift;
+    my ($writer) = @_;
 
     my $location = $self->{location};
     my @map_inputs = Scramble::Controller::MapFragment::params([ $self->{location} ]);
@@ -55,12 +58,12 @@ sub create {
 
     my $html = Scramble::Template::html('location/page', \%params);
 
-    Scramble::Misc::create(sprintf("l/%s", $location->get_filename()),
-                           Scramble::Template::page_html(title => $self->get_title,
-                                                         'include-header' => 1,
-                                                         html => $html,
-                                                         'no-add-picture' => 1,
-                                                         'enable-embedded-google-map' => 1));
+    $writer->create(sprintf("l/%s", $location->get_filename()),
+                    Scramble::Template::page_html(title => $self->get_title,
+                                                  'include-header' => 1,
+                                                  html => $html,
+                                                  'no-add-picture' => 1,
+                                                  'enable-embedded-google-map' => 1));
 }
 
 sub to_comma_separated_list {

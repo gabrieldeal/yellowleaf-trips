@@ -18,18 +18,21 @@ sub new {
 }
 
 sub create_all {
+    my ($writer) = @_;
+
     foreach my $list (Scramble::Model::List::get_all()) {
         if ($list->should_skip) {
             next;
         }
 
         Scramble::Logger::verbose("Making list KML for " . $list->get_name . "\n");
-        Scramble::Controller::ListKml->new($list)->create();
+        Scramble::Controller::ListKml->new($list)->create($writer);
     }
 }
 
 sub create {
     my $self = shift;
+    my ($writer) = @_;
 
     my $list = $self->{list};
 
@@ -62,7 +65,7 @@ EOT
     $kml .= "</kml>";
 
     my $path = $list->get_kml_path;
-    Scramble::Misc::create($path, $kml);
+    $writer->create($path, $kml);
 }
 
 1;

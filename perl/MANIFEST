@@ -1,5 +1,6 @@
 lib/Scramble/Build.pm
 lib/Scramble/Build/Files.pm
+lib/Scramble/Build/Writer.pm
 lib/Scramble/Collection.pm
 lib/Scramble/Controller/GeekeryPage.pm
 lib/Scramble/Controller/ImageFragment.pm

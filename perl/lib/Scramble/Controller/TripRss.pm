@@ -9,6 +9,8 @@ use Scramble::Misc ();
 use XML::RSS ();
 
 sub create {
+    my ($writer) = @_;
+
     # http://feedvalidator.org/
     # http://www.w3schools.com/rss/default.asp
 
@@ -67,7 +69,7 @@ sub create {
 				  });
     }
 
-    Scramble::Misc::create("r/rss.xml", $rss->as_string());
+    $writer->create("r/rss.xml", $rss->as_string());
 }
 
 1;

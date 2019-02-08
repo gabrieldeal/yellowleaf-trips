@@ -138,6 +138,8 @@ sub get_total_climbed {
 }
 
 sub create {
+    my ($writer) = @_;
+
     my $params = {
         get_yearly_stats,
         get_list_stats,
@@ -145,10 +147,10 @@ sub create {
     };
     my $html = Scramble::Template::html('geekery/page', $params);
 
-    Scramble::Misc::create("m/geekery.html",
-                           Scramble::Template::page_html(title => "Geekery",
-                                                         'include-header' => 1,
-                                                         html => $html));
+    $writer->create("m/geekery.html",
+                    Scramble::Template::page_html(title => "Geekery",
+                                                  'include-header' => 1,
+                                                  html => $html));
 }
 
 1;

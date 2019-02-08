@@ -5,6 +5,14 @@ use strict;
 use Scramble::Misc ();
 use Scramble::Time ();
 
+sub new {
+    my ($arg0, %args) = @_;
+
+    my $self = { %args };
+
+    return bless($self, ref($arg0) || $arg0);
+}
+
 sub assert {
     my ($a, $msg) = @_;
 
@@ -21,10 +29,12 @@ sub assert_equals {
 }
 
 sub run {
+    my $self = shift;
+
     foreach my $test_name (keys %{Scramble::Tests::}) {
 	next unless $test_name =~ /^test/;
 	Scramble::Logger::verbose("Running $test_name()\n");
-	$Scramble::Tests::{$test_name}->();
+        $self->$test_name();
     }
 }
 
@@ -44,15 +54,16 @@ sub test_assert {
 }
 
 sub test_files_exist {
+    my $self = shift;
+
     my @files = qw(
                    li/middleforkpeakselevation.html
 		   .htaccess
 		   );
 
-    my $outdir = Scramble::Misc::get_output_directory();
     foreach my $file (@files) {
-	my $path = "$outdir/g/$file";
-	assert(-f "$outdir/g/$file", "Missing $path");
+        my $path = "$self->{output_dir}/g/$file";
+        assert(-f "$self->{output_dir}/g/$file", "Missing $path");
     }
 }
 

@@ -7,6 +7,8 @@ use Scramble::Model::Reference ();
 use Scramble::Controller::ReferenceFragment ();
 
 sub create {
+    my ($writer) = @_;
+
     my @references_param;
     my @references = Scramble::Model::Reference::get_all();
     @references = sort { Scramble::Model::Reference::cmp($a, $b) } @references;
@@ -26,10 +28,10 @@ sub create {
     my %params = (references => \@references_param);
     my $html = Scramble::Template::html('reference/index', \%params);
 
-    Scramble::Misc::create("m/references.html",
-                           Scramble::Template::page_html(title => "References",
-                                                         html => $html,
-                                                         'include-header' => 1));
+    $writer->create("m/references.html",
+                    Scramble::Template::page_html(title => "References",
+                                                  html => $html,
+                                                  'include-header' => 1));
 }
 
 1;

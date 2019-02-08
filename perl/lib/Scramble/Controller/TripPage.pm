@@ -23,6 +23,7 @@ sub trip { $_[0]{trip} }
 
 sub create {
     my $self = shift;
+    my ($writer) = @_;
 
     my $params = {
         route_html => Scramble::Htmlify::htmlify($self->trip()->get_route()),
@@ -30,11 +31,11 @@ sub create {
     };
     my $html = Scramble::Template::html('trip/page', $params);
 
-    Scramble::Misc::create(sprintf("r/%s", $self->trip()->get_filename()),
-                           Scramble::Template::page_html('title' => $self->get_title,
-                                                         'include-header' => 1,
-                                                         'html' => $html,
-                                                         'enable-embedded-google-map' => 1));
+    $writer->create(sprintf("r/%s", $self->trip()->get_filename()),
+                    Scramble::Template::page_html('title' => $self->get_title,
+                                                  'include-header' => 1,
+                                                  'html' => $html,
+                                                  'enable-embedded-google-map' => 1));
 }
 
 sub get_title {
@@ -303,10 +304,12 @@ sub add_section_names {
 # Statics
 
 sub create_all {
+    my ($writer) = @_;
+
     foreach my $trip (Scramble::Model::Trip::get_all()) {
         eval {
             my $page = Scramble::Controller::TripPage->new($trip);
-            $page->create();
+            $page->create($writer);
         };
         if ($@) {
             local $SIG{__DIE__};

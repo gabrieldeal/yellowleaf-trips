@@ -19,6 +19,7 @@ sub new {
 
 sub create {
     my $self = shift;
+    my ($writer) = @_;
 
     my @trip_params = map { $self->get_trip_params($_) } @{ $self->{trips} };
 
@@ -29,7 +30,7 @@ sub create {
                      title => $self->{title});
     my $html = $template->output();
 
-    Scramble::Misc::create("$self->{subdirectory}/$self->{id}.html", $html);
+    $writer->create("$self->{subdirectory}/$self->{id}.html", $html);
 }
 
 sub get_trip_params {
@@ -63,6 +64,8 @@ sub get_trip_params {
 
 # home.html
 sub create_all {
+    my ($writer) = @_;
+
     my %trips;
     my $count = 0;
     my $latest_year = 0;
@@ -113,7 +116,7 @@ sub create_all {
                                                        trips => $trips{$id}{trips},
                                                        subdirectory => $trips{$id}{subdirectory},
                                                        change_year_dropdown_items => \@change_year_dropdown_items);
-        $page->create();
+        $page->create($writer);
     }
 }
 

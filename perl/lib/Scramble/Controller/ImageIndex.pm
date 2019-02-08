@@ -8,6 +8,8 @@ my $g_pictures_by_year_threshold = 1;
 
 # FIXME: break up this long function.
 sub create_all {
+    my ($writer) = @_;
+
     my $n_pictures_per_year = 50;
     my $n_per_date = 4;
 
@@ -57,11 +59,11 @@ sub create_all {
 
 	my $name = $pictures{$year}{name};
         my $filename = sprintf($filename_format, $name);
-	Scramble::Misc::create($filename,
-			       Scramble::Template::page_html(title => $title,
-                                                             'include-header' => 1,
-                                                             'no-title' => 1,
-                                                             html => $template->output()));
+        $writer->create($filename,
+                        Scramble::Template::page_html(title => $title,
+                                                      'include-header' => 1,
+                                                      'no-title' => 1,
+                                                      html => $template->output()));
     }
 }
 

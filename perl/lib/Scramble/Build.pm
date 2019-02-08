@@ -5,6 +5,7 @@ use strict;
 use File::Path ();
 use IO::File ();
 use Scramble::Build::Files ();
+use Scramble::Build::Writer ();
 use Scramble::Controller::GeekeryPage ();
 use Scramble::Controller::ImageIndex ();
 use Scramble::Controller::ListIndex ();
@@ -30,7 +31,10 @@ use Scramble::Tests ();
 sub new {
     my ($arg0, %args) = @_;
 
-    my $self = { %args };
+    my $self = {
+        %args,
+        writer => Scramble::Build::Writer->new($args{output_directory}),
+    };
     bless($self, ref($arg0) || $arg0);
 
     return $self;
@@ -40,7 +44,6 @@ sub create {
     my $self = shift;
 
     srand($$ ^ time());
-    Scramble::Misc::set_output_directory($self->{output_directory});
     Scramble::Logger::set_verbose($self->{verbose});
     Scramble::Model::Location::set_xml_src_directory($self->{xml_src_directory});
     Scramble::Model::Area::open($self->{xml_src_directory});
@@ -60,19 +63,19 @@ sub create {
     $self->should('template') && $self->make_templates();
     $self->should('copy-images') && $self->copy_and_process_files();
     $self->should('kml') && $self->copy_kml();
-    $self->should('trip-index') && Scramble::Controller::TripIndex::create_all(); # Includes home.html
-    $self->should('link') && Scramble::Controller::ReferenceIndex::create();
-    $self->should('list') && Scramble::Controller::ListIndex::create();
-    $self->should('list') && Scramble::Controller::ListKml::create_all();
-    $self->should('list') && Scramble::Controller::ListPage::create_all();
-    $self->should('trip') && Scramble::Controller::TripPage::create_all();
-    $self->should('rss') && Scramble::Controller::TripRss::create();
-    $self->should('geekery') && Scramble::Controller::GeekeryPage::create();
-    $self->should('picture-by-year') && Scramble::Controller::ImageIndex::create_all(); # Favorites
-    $self->should('location') && Scramble::Controller::LocationPage::create_all();
+    $self->should('trip-index') && Scramble::Controller::TripIndex::create_all($self->{writer}); # Includes home.html
+    $self->should('link') && Scramble::Controller::ReferenceIndex::create($self->{writer});
+    $self->should('list') && Scramble::Controller::ListIndex::create($self->{writer});
+    $self->should('list') && Scramble::Controller::ListKml::create_all($self->{writer});
+    $self->should('list') && Scramble::Controller::ListPage::create_all($self->{writer});
+    $self->should('trip') && Scramble::Controller::TripPage::create_all($self->{writer});
+    $self->should('rss') && Scramble::Controller::TripRss::create($self->{writer});
+    $self->should('geekery') && Scramble::Controller::GeekeryPage::create($self->{writer});
+    $self->should('picture-by-year') && Scramble::Controller::ImageIndex::create_all($self->{writer}); # Favorites
+    $self->should('location') && Scramble::Controller::LocationPage::create_all($self->{writer});
     $self->should('short-trips') && Scramble::Controller::StatsStdout::display_short_trips();
     $self->should('party-stats') && Scramble::Controller::StatsStdout::display_party_stats();
-    $self->should('test') && Scramble::Tests::run();
+    $self->should('test') && Scramble::Tests->new(output_dir => $self->{output_directory})->run;
 }
 
 sub should {
@@ -206,18 +209,18 @@ sub make_htaccess {
 
     # Not r or li -- they have index.html files.
     foreach my $dir (qw(m l a)) {
-        Scramble::Misc::create("$dir/.htaccess", <<EOT);
+        $self->{writer}->create("$dir/.htaccess", <<EOT);
 Redirect /scramble/g/$dir/index.html http://$self->{site_root}/g/m/missing.html
 EOT
     }
 
-  Scramble::Misc::create(".htaccess", <<EOT);
+  $self->{writer}->create(".htaccess", <<EOT);
 ErrorDocument 404 /scramble/g/m/missing.html
 Redirect /scramble/g/index.html http://$self->{site_root}/g/m/missing.html
 EOT
 
   # cheating here
-  Scramble::Misc::create("../.htaccess", <<EOT);
+  $self->{writer}->create("../.htaccess", <<EOT);
 ErrorDocument 404 /scramble/g/m/home.html
 Redirect /scramble/index.html http://$self->{site_root}/g/m/missing.html
 EOT
@@ -250,11 +253,11 @@ sub make_html_file {
 
     my ($ofile) = ($filename =~ m,/([^/]+)$,);
 
-    Scramble::Misc::create("m/$ofile",
-                           Scramble::Template::page_html(title => $title,
-                                                         'include-header' => 1,
-                                                         %options,
-                                                         html => $html));
+    $self->{writer}->create("m/$ofile",
+                            Scramble::Template::page_html(title => $title,
+                                                          'include-header' => 1,
+                                                          %options,
+                                                          html => $html));
 }
 
 1;

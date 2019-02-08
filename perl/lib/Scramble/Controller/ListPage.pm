@@ -35,6 +35,8 @@ sub initialize_locations {
 }
 
 sub create_all {
+    my ($writer) = @_;
+
     foreach my $list (Scramble::Model::List::get_all()) {
         if ($list->should_skip) {
             next;
@@ -42,12 +44,13 @@ sub create_all {
 
         Scramble::Logger::verbose("Making list page for " . $list->get_name . "\n");
         my $page = Scramble::Controller::ListPage->new($list);
-        $page->create();
+        $page->create($writer);
     }
 }
 
 sub create {
     my $self = shift;
+    my ($writer) = @_;
 
     my $list = $self->{list};
 
@@ -77,11 +80,11 @@ sub create {
     };
     my $html = Scramble::Template::html('list/page', $params);
 
-    Scramble::Misc::create($list->get_list_path,
-                           Scramble::Template::page_html(title => $list->get_name,
-                                                         html => $html,
-                                                         'enable-embedded-google-map' => 1,
-                                                         'include-header' => 1));
+    $writer->create($list->get_list_path,
+                    Scramble::Template::page_html(title => $list->get_name,
+                                                  html => $html,
+                                                  'enable-embedded-google-map' => 1,
+                                                  'include-header' => 1));
 }
 
 sub get_cell_params {

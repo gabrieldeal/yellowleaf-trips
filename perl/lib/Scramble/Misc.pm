@@ -50,23 +50,6 @@ sub slurp {
     };
 }
 
-# FIXME: Move to Scramble::Template?
-sub create {
-    my ($path, $html) = @_;
-
-    $path = get_output_directory() . "/g/$path";
-    Scramble::Logger::verbose "Creating $path\n";
-    my $ofh = IO::File->new($path, "w") 
-	or die "Unable to open '$path': $!";
-    $ofh->print($html) or die "Failed to write to '$path': $!";
-    $ofh->close() or die "Failed to flush to '$path': $!";
-}
-
-# FIXME: Get rid of this.
-my $g_output_directory;
-sub get_output_directory { $g_output_directory }
-sub set_output_directory { $g_output_directory = $_[0] }
-
 # FIXME: Change data so this is not needed.
 sub numerify_longitude {
     my ($lon) = @_;
