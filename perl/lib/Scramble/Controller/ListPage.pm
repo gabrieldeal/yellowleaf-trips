@@ -68,12 +68,12 @@ sub create {
     }
 
     my @pictures = $self->get_pictures_to_display('max-pictures' => 100);
-    my @image_params = map {
-        Scramble::Controller::ImageFragment->new($_)->params;
+    my @picture_params = map {
+        Scramble::Controller::PictureFragment->new($_)->params;
     } @pictures;
 
     my $params = {
-        images => \@image_params,
+        pictures => \@picture_params,
         list_columns => \@columns,
         list_rows => \@rows,
         map_inputs => $self->get_map_params,

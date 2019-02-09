@@ -1,6 +1,6 @@
 <tmpl_if route_html>
   <p>
-    <tmpl_var route_html escape=none />
+    <tmpl_var route_html escape="none" />
   </p>
 </tmpl_if>
 
@@ -21,9 +21,9 @@
     </li>
   </tmpl_if>
 
-  <tmpl_loop images>
+  <tmpl_loop pictures>
     <li class="flow-list-item">
-      <tmpl_include ../image/single.html />
+      <tmpl_include ../picture/single.html />
     </li>
   </tmpl_loop>
 </tmpl_loop>

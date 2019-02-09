@@ -7,7 +7,7 @@ use IO::File ();
 use Scramble::Build::Files ();
 use Scramble::Build::Writer ();
 use Scramble::Controller::GeekeryPage ();
-use Scramble::Controller::ImageIndex ();
+use Scramble::Controller::PictureIndex ();
 use Scramble::Controller::ListIndex ();
 use Scramble::Controller::ListKml ();
 use Scramble::Controller::ListPage ();
@@ -71,7 +71,7 @@ sub create {
     $self->should('trip') && Scramble::Controller::TripPage::create_all($self->{writer});
     $self->should('rss') && Scramble::Controller::TripRss::create($self->{writer});
     $self->should('geekery') && Scramble::Controller::GeekeryPage::create($self->{writer});
-    $self->should('picture-by-year') && Scramble::Controller::ImageIndex::create_all($self->{writer}); # Favorites
+    $self->should('picture-by-year') && Scramble::Controller::PictureIndex::create_all($self->{writer}); # Favorites
     $self->should('location') && Scramble::Controller::LocationPage::create_all($self->{writer});
     $self->should('short-trips') && Scramble::Controller::StatsStdout::display_short_trips();
     $self->should('party-stats') && Scramble::Controller::StatsStdout::display_party_stats();

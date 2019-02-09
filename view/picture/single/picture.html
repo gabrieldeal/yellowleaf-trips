@@ -1,0 +1,15 @@
+<tmpl_if picture_link_url>
+  <a class="<tmpl_var picture_link_class />"
+     href="<tmpl_var picture_link_url escape=none />"
+     title="<tmpl_var description />">
+</tmpl_if>
+
+  <img src="<tmpl_var small_picture_url escape=none />"
+       alt="<tmpl_var description />"
+       border="0"
+       hspace="1"
+       vspace="1" />
+
+<tmpl_if picture_link_url>
+  </a>
+</tmpl_if>

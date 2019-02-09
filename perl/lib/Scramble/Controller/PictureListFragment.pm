@@ -1,4 +1,4 @@
-package Scramble::Controller::ImageListFragment;
+package Scramble::Controller::PictureListFragment;
 
 use strict;
 
@@ -7,7 +7,7 @@ sub html {
 
     my @cells;
     push @cells, map {
-        Scramble::Controller::ImageFragment->new($_)->params;
+        Scramble::Controller::PictureFragment->new($_)->params;
     } @$pictures;
 
     return '' unless @cells;
@@ -19,7 +19,7 @@ sub html {
         is_floated => 0,
     };
 
-    return Scramble::Template::html('image/list', $params);
+    return Scramble::Template::html('picture/list', $params);
 }
 
 1;

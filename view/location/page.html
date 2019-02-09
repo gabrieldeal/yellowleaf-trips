@@ -56,7 +56,7 @@
           <li>
             <div class="trip-thumbnail">
               <div class="trip-thumbnail-title">
-                <a href="<tmpl_var url escape=none />"><tmpl_var name /></a>
+		<a href="<tmpl_var url escape=none />"><tmpl_var name /></a>
               </div>
               <div class="trip-thumbnail-date">
                 <tmpl_var date />
@@ -84,9 +84,9 @@
     </li>
   </tmpl_if>
 
-  <tmpl_loop images>
+  <tmpl_loop pictures>
     <li class="flow-list-item">
-      <tmpl_include ../image/single.html />
+      <tmpl_include ../picture/single.html />
     </li>
   </tmpl_loop>
 </ul>

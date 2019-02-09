@@ -197,13 +197,13 @@ sub get_sections_params {
     }
 
     foreach my $section (@sections) {
-        my @image_params = map {
-            Scramble::Controller::ImageFragment->new($_)->params('no-trip-date' => 1);
+        my @picture_params = map {
+            Scramble::Controller::PictureFragment->new($_)->params('no-trip-date' => 1);
         } @{ $section->{pictures} };
 
         push @sections_params, {
             %$first_section_params,
-            images => \@image_params,
+            pictures => \@picture_params,
             name => @sections > 1 ? $section->{name} : undef,
         };
 

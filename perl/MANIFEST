@@ -3,8 +3,9 @@ lib/Scramble/Build/Files.pm
 lib/Scramble/Build/Writer.pm
 lib/Scramble/Collection.pm
 lib/Scramble/Controller/GeekeryPage.pm
-lib/Scramble/Controller/ImageFragment.pm
-lib/Scramble/Controller/ImageIndex.pm
+lib/Scramble/Controller/PictureFragment.pm
+lib/Scramble/Controller/PictureIndex.pm
+lib/Scramble/Controller/PictureListFragment.pm
 lib/Scramble/Controller/ListIndex.pm
 lib/Scramble/Controller/ListKml.pm
 lib/Scramble/Controller/ListPage.pm

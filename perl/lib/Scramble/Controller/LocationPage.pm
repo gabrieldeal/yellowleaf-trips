@@ -37,8 +37,8 @@ sub create {
 
     my $location = $self->{location};
     my @map_inputs = Scramble::Controller::MapFragment::params([ $self->{location} ]);
-    my @image_params = map {
-        Scramble::Controller::ImageFragment->new($_)->params;
+    my @picture_params = map {
+        Scramble::Controller::PictureFragment->new($_)->params;
     } $location->get_picture_objects;
 
     my %params = (
@@ -46,7 +46,7 @@ sub create {
         counties => to_comma_separated_list($self->get_counties()),
         description_html => Scramble::Htmlify::htmlify($location->get_description()),
         elevation => Scramble::Controller::ElevationFragment::format_elevation($location->get_elevation()),
-        images => \@image_params,
+        pictures => \@picture_params,
         map_inputs => \@map_inputs,
         name_origin_html => Scramble::Htmlify::htmlify($location->get_naming_origin()),
         prominence => Scramble::Controller::ElevationFragment::format_elevation($location->get_prominence()),
@@ -54,7 +54,7 @@ sub create {
         state => $self->get_state(),
         trips => $self->get_trips_params(),
         usgs_quads => to_comma_separated_list($self->get_quads()),
-        );
+    );
 
     my $html = Scramble::Template::html('location/page', \%params);
 

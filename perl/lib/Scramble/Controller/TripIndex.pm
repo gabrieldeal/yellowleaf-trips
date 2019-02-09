@@ -4,7 +4,7 @@ package Scramble::Controller::TripIndex;
 
 use strict;
 
-use Scramble::Controller::ImageFragment ();
+use Scramble::Controller::PictureFragment ();
 use Scramble::Controller::TripFragment ();
 
 my $g_trips_on_index_page = 25;
@@ -42,7 +42,7 @@ sub get_trip_params {
     my @pictures = $trip->get_sorted_pictures;
 
     my @picture_htmls = map {
-        my $fragment = Scramble::Controller::ImageFragment->new($_);
+        my $fragment = Scramble::Controller::PictureFragment->new($_);
         $fragment->html('no-description' => 1,
                         'no-lightbox' => 1,
                         'no-trip-link' => 1)
@@ -50,9 +50,9 @@ sub get_trip_params {
 
     return {
         date => $date,
-        image_html_1 => $picture_htmls[0],
-        image_html_2 => $picture_htmls[1],
-        image_html_3 => $picture_htmls[2],
+        picture_html_1 => $picture_htmls[0],
+        picture_html_2 => $picture_htmls[1],
+        picture_html_3 => $picture_htmls[2],
         name => $trip->get_name,
         state => $trip->get_state ne 'done' ? $trip->get_state : undef,
         url => $trip->should_show ? $trip->get_trip_page_url : undef,
