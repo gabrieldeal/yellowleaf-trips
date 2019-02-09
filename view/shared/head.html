@@ -1,4 +1,4 @@
-<title><TMPL_VAR NAME="title" /></title>
+<title><tmpl_var title /></title>
 
 <link rel="apple-touch-icon" sizes="57x57" href="../../pics/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="../../pics/apple-icon-60x60.png">
@@ -22,11 +22,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<TMPL_IF NAME="enable_embedded_google_map">
+<tmpl_if enable_embedded_google_map>
   <script type="text/javascript"
     src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAL-uATrgEqPxb9sGCq4QFKnBOSwSaKC5g&sensor=false">
   </script>
-</TMPL_IF>
+</tmpl_if>
 
 <script type="text/javascript">
  var _gaq = _gaq || [];

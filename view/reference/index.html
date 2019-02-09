@@ -1,12 +1,12 @@
 <div class="non-bootstrap-content">
   <ul>
-    <TMPL_LOOP NAME="references">
+    <tmpl_loop references>
       <li class="basic-list-item">
-        <TMPL_VAR NAME='type' />:
-        <a href="<TMPL_VAR ESCAPE='none' name='url' />">
-          <TMPL_VAR NAME='name' />
+        <tmpl_var name="type" />:
+        <a href="<tmpl_var escape=none url />">
+          <tmpl_var name />
         </a>
       </li>
-    </TMPL_LOOP>
+    </tmpl_loop>
   </ul>
 </div>

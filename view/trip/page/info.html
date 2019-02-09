@@ -1,54 +1,54 @@
 <div class="field-container">
   <div class="field-name">Date:</div>
   <div class="field-value">
-    <tmpl_var name="start_date" />
-    <tmpl_if name="end_date">
-      to <tmpl_var name="end_date" />
+    <tmpl_var start_date />
+    <tmpl_if end_date>
+      to <tmpl_var end_date />
     </tmpl_if>
   </div>
 </div>
 
-<tmpl_if name="short_time">
+<tmpl_if short_time>
   <div class="field-container">
     <div class="field-name">Car-to-car:</div>
-    <div class="field-value"><tmpl_var name="short_time" /></div>
+    <div class="field-value"><tmpl_var short_time /></div>
   </div>
 </tmpl_if>
 
-<tmpl_if name="distances_html">
+<tmpl_if distances_html>
   <div class="field-container">
     <div class="field-name">Round-trip distance:</div>
-    <div class="field-value"><tmpl_var escape="none" name="distances_html" /></div>
+    <div class="field-value"><tmpl_var escape="none" distances_html /></div>
   </div>
 </tmpl_if>
 
-<tmpl_if name="elevation_gain">
+<tmpl_if elevation_gain>
   <div class="field-container">
     <div class="field-name">Elevation gain:</div>
-    <div class="field-value"><tmpl_var name="elevation_gain" /></div>
+    <div class="field-value"><tmpl_var elevation_gain /></div>
   </div>
 </tmpl_if>
 
 <div class="field-container">
   <div class="field-name">Trip type:</div>
-  <div class="field-value"><tmpl_var name="trip_type" /></div>
+  <div class="field-value"><tmpl_var trip_type /></div>
 </div>
 
-<tmpl_if name="maps">
+<tmpl_if maps>
   <div class="field-container">
-    <div class="field-name"><tmpl_var name="maps_title" />:</div>
-    <div class="field-value"><tmpl_var name="maps" /></div>
+    <div class="field-name"><tmpl_var maps_title />:</div>
+    <div class="field-value"><tmpl_var maps /></div>
   </div>
 </tmpl_if>
 
-<tmpl_if name="recognizable_areas">
+<tmpl_if recognizable_areas>
   <div class="field-container">
     <div class="field-name">In:</div>
-    <div class="field-value"><tmpl_var name="recognizable_areas" /></div>
+    <div class="field-value"><tmpl_var recognizable_areas /></div>
   </div>
 </tmpl_if>
 
-<tmpl_if name="reference_name">
+<tmpl_if reference_name>
   <div class="field-container">
     <div class="field-name">References:</div>
     <div class="field-value">
@@ -78,7 +78,7 @@
   </div>
 </tmpl_if>
 
-<tmpl_if name="references">
+<tmpl_if references>
   <div class="field-container">
     <h2>References</h2>
     <ul>

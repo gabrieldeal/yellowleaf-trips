@@ -1,5 +1,7 @@
 <ul>
-  <TMPL_LOOP NAME="lists">
-    <li><a href="<TMPL_VAR ESCAPE='none' NAME='url' />"><TMPL_VAR NAME='name' /></a></li>
-  </TMPL_LOOP>
+  <tmpl_loop lists>
+    <li>
+      <a href="<tmpl_var escape=none url />"><tmpl_var name /></a>
+    </li>
+  </tmpl_loop>
 </ul>

@@ -3,28 +3,28 @@
     <table class="table table-minimize-width">
       <thead>
         <tr>
-          <TMPL_LOOP NAME="list_columns">
-            <th scope="col"><TMPL_VAR name="name" /></th>
-          </TMPL_LOOP>
+          <tmpl_loop list_columns>
+            <th scope="col"><tmpl_var name /></th>
+          </tmpl_loop>
         </tr>
       </thead>
 
       <tbody>
-        <TMPL_LOOP NAME="list_rows">
+        <tmpl_loop list_rows>
           <tr>
-            <TMPL_LOOP NAME="cells">
+            <tmpl_loop cells>
               <td>
                 <tmpl_if url>
                   <a href="<tmpl_var url />">
                 </tmpl_if>
-                <TMPL_VAR ESCAPE="none" NAME="value_html" />
+                <tmpl_var escape="none" value_html />
                 <tmpl_if url>
                   </a>
                 </tmpl_if>
               </td>
-            </TMPL_LOOP>
+            </tmpl_loop>
           </tr>
-        </TMPL_LOOP>
+        </tmpl_loop>
       </tbody>
     </table>
   </li>

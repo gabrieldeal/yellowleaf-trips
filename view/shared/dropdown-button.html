@@ -8,8 +8,8 @@
     Change Year
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <TMPL_LOOP NAME="change_year_dropdown_items">
-          <a class="dropdown-item" href="<TMPL_VAR ESCAPE="none" NAME="url">"><TMPL_VAR NAME="text"></a>
-      </TMPL_LOOP>
+      <tmpl_loop change_year_dropdown_items>
+          <a class="dropdown-item" href="<tmpl_var escape=none url />"><tmpl_var text /></a>
+      </tmpl_loop>
   </div>
 </div>

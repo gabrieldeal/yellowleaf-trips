@@ -1,55 +1,55 @@
 <ul class="flow-list floated-flow-list">
   <li class="flow-list-item">
-    <tmpl_if name="aka">
+    <tmpl_if aka>
       <div class="field-container">
         <div class="field-name">AKA:</div>
-        <div class="field-value"><tmpl_var name="aka" /></div>
+        <div class="field-value"><tmpl_var aka /></div>
       </div>
     </tmpl_if>
 
-    <tmpl_if name="elevation">
+    <tmpl_if elevation>
       <div class="field-container">
         <div class="field-name">Elevation:</div>
-        <div class="field-value"><tmpl_var name="elevation" /></div>
+        <div class="field-value"><tmpl_var elevation /></div>
       </div>
     </tmpl_if>
 
-    <tmpl_if name="prominence">
+    <tmpl_if prominence>
       <div class="field-container">
         <div class="field-name">Prominence:</div>
-        <div class="field-value"><tmpl_var name="prominence" /></div>
+        <div class="field-value"><tmpl_var prominence /></div>
       </div>
     </tmpl_if>
 
-    <tmpl_if name="state">
+    <tmpl_if state>
       <div class="field-container">
         <div class="field-name">State:</div>
-        <div class="field-value"><tmpl_var name="state" /></div>
+        <div class="field-value"><tmpl_var state /></div>
       </div>
     </tmpl_if>
 
-    <tmpl_if name="counties">
+    <tmpl_if counties>
       <div class="field-container">
         <div class="field-name">Counties:</div>
         <div class="field-value"><tmpl_var name="counties" /></div>
       </div>
     </tmpl_if>
 
-    <tmpl_if name="recognizable_areas">
+    <tmpl_if recognizable_areas>
       <div class="field-container">
         <div class="field-name">In:</div>
-        <div class="field-value"><tmpl_var name="recognizable_areas" /></div>
+        <div class="field-value"><tmpl_var recognizable_areas /></div>
       </div>
     </tmpl_if>
 
-    <tmpl_if name="usgs_quads">
+    <tmpl_if usgs_quads>
       <div class="field-container">
         <div class="field-name">USGS Quad:</div>
-        <div class="field-value"><tmpl_var name="usgs_quads" /></div>
+        <div class="field-value"><tmpl_var usgs_quads /></div>
       </div>
     </tmpl_if>
 
-    <tmpl_if name="trips">
+    <tmpl_if trips>
       <h2>Trip Reports</h2>
       <ul>
         <tmpl_loop trips>
@@ -67,14 +67,14 @@
       </ul>
     </tmpl_if>
 
-    <tmpl_if name="description_html">
+    <tmpl_if description_html>
       <h2>Description</h2>
-      <tmpl_var escape="none" name="description_html" />
+      <tmpl_var escape="none" description_html />
     </tmpl_if>
 
-    <tmpl_if name="name_origin_html">
+    <tmpl_if name_origin_html>
       <h2>Name Origin</h2>
-      <tmpl_var escape="none" name="name_origin_html" />
+      <tmpl_var escape="none" name_origin_html />
     </tmpl_if>
   </li>
 

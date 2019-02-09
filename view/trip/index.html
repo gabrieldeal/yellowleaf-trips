@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <TMPL_INCLUDE NAME="../shared/head.html" />
+    <tmpl_include name="../shared/head.html" />
   </head>
   <body>
-    <TMPL_INCLUDE NAME="../shared/navbar.html" />
+    <tmpl_include name="../shared/navbar.html" />
 
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <TMPL_INCLUDE NAME="../shared/heading-with-dropdown.html" />
+          <tmpl_include name="../shared/heading-with-dropdown.html" />
         </div>
       </div>
 
-      <TMPL_LOOP NAME="trips">
+      <tmpl_loop trips>
         <div class="row">
           <div class="col-12">
             <h2 class="trip-summary-name">
@@ -26,35 +26,35 @@
               </tmpl_if>
             </h2>
             <div class="trip-summary-date">
-              <TMPL_VAR NAME="date" />
+              <tmpl_var date />
             </div>
           </div>
         </div>
 
         <div class="row">
-          <TMPL_IF NAME="picture_html_1">
+          <tmpl_if name="picture_html_1">
             <div class="col-lg-6 col-xl-4">
-              <TMPL_VAR ESCAPE="none" NAME="picture_html_1" />
+              <tmpl_var escape="none" name="picture_html_1" />
             </div>
-          </TMPL_IF>
-          <TMPL_IF NAME="picture_html_2">
+          </tmpl_if>
+          <tmpl_if name="picture_html_2">
             <div class="d-none d-lg-block col-lg-6 col-xl-4">
-              <TMPL_VAR ESCAPE="none" NAME="picture_html_2" />
+              <tmpl_var escape="none" name="picture_html_2" />
             </div>
-          </TMPL_IF>
-          <TMPL_IF NAME="picture_html_3">
+          </tmpl_if>
+          <tmpl_if name="picture_html_3">
             <div class="d-none d-xl-block col-xl-4">
-              <TMPL_VAR ESCAPE="none" NAME="picture_html_3" />
+              <tmpl_var escape="none" name="picture_html_3" />
             </div>
-          </TMPL_IF>
+          </tmpl_if>
         </div>
-      </TMPL_LOOP>
+      </tmpl_loop>
 
       <div class="row">
         <div class="col-12">
           <br />
-          <TMPL_INCLUDE NAME="../shared/dropdown-button.html" />
-          <TMPL_INCLUDE NAME="../shared/foot.html" />
+          <tmpl_include name="../shared/dropdown-button.html" />
+          <tmpl_include name="../shared/foot.html" />
         </div>
       </div>
     </div>
