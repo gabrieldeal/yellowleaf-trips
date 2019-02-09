@@ -2,7 +2,7 @@ package Scramble::Model::Location;
 
 use strict;
 
-use Scramble::Model::Image ();
+use Scramble::Model::File ();
 use Scramble::Misc ();
 use Scramble::Model ();
 use Scramble::Model::Area ();
@@ -164,7 +164,7 @@ sub get_picture_objects {
 
     $self->{'picture-objects'} = [];
     foreach my $regex ($self->get_regex_keys()) {
-	foreach my $image (Scramble::Model::Image::get_all_images_collection()->get_all()) {
+        foreach my $image (Scramble::Model::File::get_pictures_collection->get_all) {
 	    # FIXME: Should get the USGS quads from the trip or
 	    # the images and get the location names from the
 	    # image, then do real matching.  This is very broken

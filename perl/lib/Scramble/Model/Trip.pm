@@ -3,7 +3,7 @@ package Scramble::Model::Trip;
 use strict;
 
 use Scramble::Model::Waypoints ();
-use Scramble::Model::Image ();
+use Scramble::Model::File ();
 use Scramble::Model::Reference ();
 use Scramble::Template ();
 use Scramble::Time ();
@@ -70,7 +70,7 @@ sub initialize_images {
     # directory?
     my $subdir = File::Basename::basename(File::Basename::dirname($self->{path}));
     my $trip_files_src_dir = "$files_src_dir/$subdir";
-    my @images = Scramble::Model::Image::read_images_from_trip($trip_files_src_dir, $self);
+    my @images = Scramble::Model::File::read_from_trip($trip_files_src_dir, $self);
     my $image_collection = Scramble::Collection->new(objects => \@images);
 
     my @pictures = (
@@ -191,7 +191,7 @@ sub get_maps {
     my $self = shift;
 
     my @maps;
-    push @maps, map { $_->get_map_reference() } $self->get_map_objects();
+    push @maps, map { $_->get_reference() } $self->get_map_objects();
     push @maps, @{ $self->_get_optional('maps', 'map') || [] };
 
     return grep { ! $_->{'skip-map'} } @maps;

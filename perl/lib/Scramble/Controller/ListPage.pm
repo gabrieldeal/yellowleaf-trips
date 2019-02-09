@@ -163,12 +163,12 @@ sub get_images_to_display {
     my @images;
     foreach my $location (@$locations) {
       my @location_images = $location->get_picture_objects();
-      @location_images = sort { Scramble::Model::Image::cmp($a, $b) } @location_images;
+      @location_images = sort { $a->cmp($b) } @location_images;
       push @images, $location_images[0] if @location_images;
     }
 
     @images = Scramble::Misc::dedup(@images);
-    @images = sort { Scramble::Model::Image::cmp($a, $b) } @images;
+    @images = sort { $a->cmp($b) } @images;
     if (@images > $max_images) {
 	@images = @images[0..$max_images-1];
     }

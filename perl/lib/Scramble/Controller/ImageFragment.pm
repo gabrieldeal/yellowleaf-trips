@@ -24,7 +24,9 @@ sub params {
     my (%options) = @_;
 
     my $image = $self->{image};
+
     my $is_video = $image->get_type eq 'movie';
+    my $video_poster_url = $is_video ? $image->get_poster_url : undef;
 
     return {
         description => $image->get_description,
@@ -38,7 +40,7 @@ sub params {
         small_image_url => $image->get_url,
         trip_date => $image->get_capture_date || $image->get_date,
         trip_url => $image->get_trip_url,
-        video_poster_url => $image->get_poster_url,
+        video_poster_url => $video_poster_url,
     };
 }
 

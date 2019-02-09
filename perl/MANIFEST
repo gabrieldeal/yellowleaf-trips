@@ -27,7 +27,10 @@ lib/Scramble/Misc.pm
 lib/Scramble/Model.pm
 lib/Scramble/Model/Area.pm
 lib/Scramble/Model/Area/Quad.pm
-lib/Scramble/Model/Image.pm
+lib/Scramble/Model/File.pm
+lib/Scramble/Model/File/Gps.pm
+lib/Scramble/Model/File/Map.pm
+lib/Scramble/Model/File/Picture.pm
 lib/Scramble/Model/List.pm
 lib/Scramble/Model/Location.pm
 lib/Scramble/Model/Reference.pm

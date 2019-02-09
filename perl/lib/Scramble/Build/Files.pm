@@ -85,10 +85,10 @@ sub copy_and_process_trip_files {
         foreach my $filename ($image->get_filenames) {
             next unless $filename; # For old trips like 2013-11-17-nason
 
-            my $src_path = $image->get_files_src_dir . "/$filename";
+            my $src_path = $image->get_trip_files_src_dir . "/$filename";
             next if $image->get_type eq 'kml' && ! -f $src_path;
 
-            if ($self->copy(src_dir => $image->get_files_src_dir,
+            if ($self->copy(src_dir => $image->get_trip_files_src_dir,
                             dest_dir => $self->get_trip_files_dest_dir($image),
                             filename => $filename))
             {
@@ -128,7 +128,7 @@ sub reencode_trip_video {
     $src_filename =~ s/-renc\.(...)$/.$1/;
 
     my $src_video = sprintf("%s/%s",
-                            $image->get_files_src_dir,
+                            $image->get_trip_files_src_dir,
                             $src_filename);
 
     my @command = ('ffmpeg',
@@ -179,7 +179,7 @@ sub create_kml {
     my $kml_path = $self->get_trip_files_dest_dir($kml) . "/" . $kml->get_filename;
     return if -f $kml_path;
 
-    my $gpx_src_glob = $kml->get_files_src_dir . "/*.gpx";
+    my $gpx_src_glob = $kml->get_trip_files_src_dir . "/*.gpx";
     my @gpx_paths = sort(glob $gpx_src_glob);
     @gpx_paths > 0 or die "No GPX files at $gpx_src_glob";
 

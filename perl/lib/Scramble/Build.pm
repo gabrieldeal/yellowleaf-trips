@@ -20,7 +20,7 @@ use Scramble::Controller::TripRss ();
 use Scramble::Logger ();
 use Scramble::Misc ();
 use Scramble::Model::Area ();
-use Scramble::Model::Image ();
+use Scramble::Model::File ();
 use Scramble::Model::List ();
 use Scramble::Model::Location ();
 use Scramble::Model::Reference ();
@@ -128,14 +128,14 @@ sub build_specific_files {
                                                             $self->{files_src_directory});
             $self->should('copy-images') && $self->copy_and_process_files();
             my $page = Scramble::Controller::TripPage->new($trip);
-            $page->create;
+            $page->create($self->{writer});
         } else {
             # This does not work well because locations rely on
             # opening all trips to know which locations have been
             # visited.
             foreach my $location (Scramble::Model::Location::open_specific($file)) {
                 my $page = Scramble::Controller::LocationPage->new($location);
-                $page->create;
+                $page->create($self->{writer});
             }
         }
     }
@@ -176,7 +176,7 @@ sub copy_kml {
 sub copy_and_process_files {
     my $self = shift;
 
-    my @images = Scramble::Model::Image::get_all_images_collection()->get_all;
+    my @images = Scramble::Model::File::get_all;
 
     my $files = Scramble::Build::Files->new(images => \@images,
                                             code_dir => $self->{code_directory},

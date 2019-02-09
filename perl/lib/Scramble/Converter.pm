@@ -36,7 +36,7 @@ sub get_converted_trip_path {
                 'trip-id' => $trip->get_trip_id(),
                 'date' => $trip->get_start_date(),
                );
-    my @images = Scramble::Model::Image::get_all_images_collection()->find(%args);
+    my @images = Scramble::Model::File::get_pictures_collection()->find(%args);
     if (@images) {
         return sprintf("%s/trip.xml", $images[0]->get_trip_files_src_dir());
     }

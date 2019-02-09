@@ -54,8 +54,8 @@ sub make_files_tag {
     my $xg = $self->xg();
     my $r = $self->r();
 
-    my @images = Scramble::Model::Image::get_all_images_collection()->find('trip-id' => $r->get_trip_id(),
-                                                                           'date' => $r->get_start_date());
+    my @images = Scramble::Model::File::get_pictures_collection->find('trip-id' => $r->get_trip_id(),
+                                                                      'date' => $r->get_start_date());
 
     return () unless @images;
 

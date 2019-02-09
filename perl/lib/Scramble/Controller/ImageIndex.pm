@@ -13,7 +13,7 @@ sub create_all {
     my $n_pictures_per_year = 50;
     my $n_per_date = 4;
 
-    my @images = Scramble::Model::Image::get_all_images_collection()->find('type' => 'picture');
+    my @images = Scramble::Model::File::get_pictures_collection()->find('type' => 'picture');
 
     my %pictures;
     foreach my $image (@images) {
@@ -27,7 +27,7 @@ sub create_all {
         my @images = @{ $pictures{$year}{images} };
         @images = n_per_date($n_per_date, @images);
         if (@images > $n_pictures_per_year) {
-            @images = sort { Scramble::Model::Image::cmp($a, $b) } @images;
+            @images = sort { $a->cmp($b) } @images;
             @images = @images[0..$n_pictures_per_year-1];
         }
         @images = sort { $b->get_date() cmp $a->get_date() } @images;
@@ -70,7 +70,7 @@ sub create_all {
 sub n_per_date {
     my ($n, @images) = @_;
 
-    @images = sort { Scramble::Model::Image::cmp($a, $b) } @images;
+    @images = sort { $a->cmp($b) } @images;
 
     my %trips;
     foreach my $image (@images) {
