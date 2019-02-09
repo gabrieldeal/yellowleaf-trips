@@ -16,7 +16,7 @@ sub new {
 
     my @fields = qw(
         code_dir
-        images
+        files
         output_dir
     );
     my $self = { map { $_ => $args{$_} } @fields };
@@ -28,7 +28,7 @@ sub new {
 sub build {
     my $self = shift;
 
-    $self->copy_misc_images;
+    $self->copy_misc_files;
     $self->copy_and_process_trip_files;
     $self->create_kmls;
 }
@@ -42,7 +42,7 @@ sub copy {
     my $source = "$args{src_dir}/$args{filename}";
     my $dest = "$args{dest_dir}/$args{filename}";
 
-    # Cannot check size because only the destination images are interlaced.
+    # Cannot check size because only the destination pictures are interlaced.
     my $source_mtime = (stat($source))[9] or die "Error getting mtime '$source': $!";
     my $dest_mtime = (stat($dest))[9];
 
@@ -55,20 +55,20 @@ sub copy {
     return 1;
 }
 
-sub copy_misc_images {
+sub copy_misc_files {
     my $self = shift;
 
     my $glob = "$self->{code_dir}/images/*.{gif,ico,png,json}";
 
-    my @image_paths = glob $glob;
-    @image_paths or die "Unable to find $glob";
+    my @paths = glob $glob;
+    @paths or die "Unable to find $glob";
 
-    foreach my $image_path (@image_paths) {
-        my $src_dir = File::Basename::dirname($image_path);
-        my $image_filename = File::Basename::basename($image_path);
+    foreach my $path (@paths) {
+        my $src_dir = File::Basename::dirname($path);
+        my $filename = File::Basename::basename($path);
         $self->copy(src_dir => $src_dir,
                     dest_dir => $self->{output_dir},
-                    filename => $image_filename);
+                    filename => $filename);
     }
 }
 
@@ -80,16 +80,16 @@ sub copy_and_process_trip_files {
 
     print "Copying trip files...\n";
 
-    foreach my $image (@{ $self->{images} }) {
+    foreach my $file (@{ $self->{files} }) {
         my $is_updated = 0;
-        foreach my $filename ($image->get_filenames) {
+        foreach my $filename ($file->get_filenames) {
             next unless $filename; # For old trips like 2013-11-17-nason
 
-            my $src_path = $image->get_trip_files_src_dir . "/$filename";
-            next if $image->get_type eq 'kml' && ! -f $src_path;
+            my $src_path = $file->get_trip_files_src_dir . "/$filename";
+            next if $file->get_type eq 'kml' && ! -f $src_path;
 
-            if ($self->copy(src_dir => $image->get_trip_files_src_dir,
-                            dest_dir => $self->get_trip_files_dest_dir($image),
+            if ($self->copy(src_dir => $file->get_trip_files_src_dir,
+                            dest_dir => $self->get_trip_files_dest_dir($file),
                             filename => $filename))
             {
                 $is_updated = 1;
@@ -97,19 +97,19 @@ sub copy_and_process_trip_files {
         }
 
         if ($is_updated) {
-            $self->process_trip_file($image);
+            $self->process_trip_file($file);
         }
     }
 }
 
 sub process_trip_file {
     my $self = shift;
-    my ($image) = @_;
+    my ($file) = @_;
 
-    if ($image->get_type eq 'movie') {
-        $self->reencode_trip_video($image);
-    } elsif ($image->get_type eq 'picture') {
-        $self->interlace_trip_image($image);
+    if ($file->get_type eq 'movie') {
+        $self->reencode_trip_video($file);
+    } elsif ($file->get_type eq 'picture') {
+        $self->interlace_trip_picture($file);
     }
 }
 
@@ -117,18 +117,18 @@ sub process_trip_file {
 # reencoding.
 sub reencode_trip_video {
     my $self = shift;
-    my ($image) = @_;
+    my ($file) = @_;
 
     my $dest_video = sprintf("%s/%s",
-                             $self->get_trip_files_dest_dir($image),
-                             $image->get_filename);
+                             $self->get_trip_files_dest_dir($file),
+                             $file->get_filename);
 
     # FIXME: duplicate from Scramble::Build::Trip
-    my $src_filename = $image->get_filename;
+    my $src_filename = $file->get_filename;
     $src_filename =~ s/-renc\.(...)$/.$1/;
 
     my $src_video = sprintf("%s/%s",
-                            $image->get_trip_files_src_dir,
+                            $file->get_trip_files_src_dir,
                             $src_filename);
 
     my @command = ('ffmpeg',
@@ -143,13 +143,13 @@ sub reencode_trip_video {
     my_system(@command);
 }
 
-sub interlace_trip_image {
+sub interlace_trip_picture {
     my $self = shift;
-    my ($image) = @_;
+    my ($picture) = @_;
 
-    my $trip_files_dest_dir = $self->get_trip_files_dest_dir($image);
+    my $trip_files_dest_dir = $self->get_trip_files_dest_dir($picture);
 
-    foreach my $filename ($image->get_filenames) {
+    foreach my $filename ($picture->get_filenames) {
         my_system("mogrify",
                   "-strip", # breaks geotagging
                   "-interlace", "Line",
@@ -159,15 +159,15 @@ sub interlace_trip_image {
 
 sub get_trip_files_dest_dir {
     my $self = shift;
-    my ($image) = @_;
+    my ($file) = @_;
 
-    return $self->{output_dir} . '/' . $image->get_trip_files_subdir;
+    return $self->{output_dir} . '/' . $file->get_trip_files_subdir;
 }
 
 sub create_kmls {
     my $self = shift;
 
-    foreach my $kml (grep { $_->{type} eq 'kml' } @{ $self->{images} }) {
+    foreach my $kml (grep { $_->{type} eq 'kml' } @{ $self->{files} }) {
         $self->create_kml($kml);
     }
 }

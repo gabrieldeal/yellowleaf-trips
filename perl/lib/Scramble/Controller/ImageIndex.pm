@@ -13,25 +13,25 @@ sub create_all {
     my $n_pictures_per_year = 50;
     my $n_per_date = 4;
 
-    my @images = Scramble::Model::File::get_pictures_collection()->find('type' => 'picture');
+    my @pictures = Scramble::Model::File::get_pictures_collection()->find('type' => 'picture');
 
     my %pictures;
-    foreach my $image (@images) {
-	next unless $image->get_rating() <= $g_pictures_by_year_threshold;
-        my ($year) = Scramble::Time::parse_date($image->get_date());
+    foreach my $picture (@pictures) {
+	next unless $picture->get_rating() <= $g_pictures_by_year_threshold;
+        my ($year) = Scramble::Time::parse_date($picture->get_date());
 	next unless $year > 2004;
-        push @{ $pictures{$year}{images} }, $image;
+        push @{ $pictures{$year}{pictures} }, $picture;
     }
 
     foreach my $year (keys %pictures) {
-        my @images = @{ $pictures{$year}{images} };
-        @images = n_per_date($n_per_date, @images);
-        if (@images > $n_pictures_per_year) {
-            @images = sort { $a->cmp($b) } @images;
-            @images = @images[0..$n_pictures_per_year-1];
+        my @pictures = @{ $pictures{$year}{pictures} };
+        @pictures = n_per_date($n_per_date, @pictures);
+        if (@pictures > $n_pictures_per_year) {
+            @pictures = sort { $a->cmp($b) } @pictures;
+            @pictures = @pictures[0..$n_pictures_per_year-1];
         }
-        @images = sort { $b->get_date() cmp $a->get_date() } @images;
-        $pictures{$year}{images} = \@images;
+        @pictures = sort { $b->get_date() cmp $a->get_date() } @pictures;
+        $pictures{$year}{pictures} = \@pictures;
         $pictures{$year}{name} = $year;
     }
 
@@ -49,12 +49,12 @@ sub create_all {
     }
 
     foreach my $year (sort keys %pictures) {
-        my $images_html = Scramble::Controller::ImageListFragment::html($pictures{$year}{images});
+        my $pictures_html = Scramble::Controller::ImageListFragment::html($pictures{$year}{pictures});
 	my $title = "My Favorite Photos of $year";
 
         my $template = Scramble::Template::create('image/index');
         $template->param(change_year_dropdown_items => \@change_year_dropdown_items,
-                         images_html => $images_html,
+                         images_html => $pictures_html,
                          title => $title);
 
 	my $name = $pictures{$year}{name};
@@ -68,15 +68,15 @@ sub create_all {
 }
 
 sub n_per_date {
-    my ($n, @images) = @_;
+    my ($n, @pictures) = @_;
 
-    @images = sort { $a->cmp($b) } @images;
+    @pictures = sort { $a->cmp($b) } @pictures;
 
     my %trips;
-    foreach my $image (@images) {
-        my $key = $image->get_capture_date() || $image->get_date();
+    foreach my $picture (@pictures) {
+        my $key = $picture->get_capture_date() || $picture->get_date();
         if (@{ $trips{$key} || [] } < $n) {
-            push @{ $trips{$key} }, $image;
+            push @{ $trips{$key} }, $picture;
         }
     }
     return map { @{ $trips{$_} } } keys %trips;

@@ -61,7 +61,7 @@ sub create {
     $self->should('htaccess') && $self->make_htaccess();
     $self->should('javascript') && $self->make_javascript();
     $self->should('template') && $self->make_templates();
-    $self->should('copy-images') && $self->copy_and_process_files();
+    $self->should('copy-files') && $self->copy_and_process_files();
     $self->should('kml') && $self->copy_kml();
     $self->should('trip-index') && Scramble::Controller::TripIndex::create_all($self->{writer}); # Includes home.html
     $self->should('link') && Scramble::Controller::ReferenceIndex::create($self->{writer});
@@ -126,7 +126,7 @@ sub build_specific_files {
         if ($file =~ m{/trips/}) {
             my $trip = Scramble::Model::Trip::open_specific($file,
                                                             $self->{files_src_directory});
-            $self->should('copy-images') && $self->copy_and_process_files();
+            $self->should('copy-files') && $self->copy_and_process_files();
             my $page = Scramble::Controller::TripPage->new($trip);
             $page->create($self->{writer});
         } else {
@@ -176,9 +176,9 @@ sub copy_kml {
 sub copy_and_process_files {
     my $self = shift;
 
-    my @images = Scramble::Model::File::get_all;
+    my @files = Scramble::Model::File::get_all;
 
-    my $files = Scramble::Build::Files->new(images => \@images,
+    my $files = Scramble::Build::Files->new(files => \@files,
                                             code_dir => $self->{code_directory},
                                             output_dir => "$self->{output_directory}/pics");
     $files->build;

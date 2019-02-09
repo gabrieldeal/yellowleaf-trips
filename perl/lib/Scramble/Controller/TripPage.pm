@@ -216,10 +216,10 @@ sub get_sections_params {
 sub split_pictures_into_sections {
     my $self = shift;
 
-    my @map_images = $self->trip->get_map_objects;
+    my @maps = $self->trip->get_map_objects;
 
     my @picture_objs = $self->trip()->get_picture_objects();
-    return ({ name => '', pictures => \@map_images}) unless @picture_objs;
+    return ({ name => '', pictures => \@maps}) unless @picture_objs;
 
     my @sections;
     if (@picture_objs[0]->get_section_name()) {
@@ -229,7 +229,7 @@ sub split_pictures_into_sections {
         @sections = $self->add_section_names($split_picture_objs);
     }
 
-    unshift @{ $sections[0]{pictures} }, @map_images;
+    unshift @{ $sections[0]{pictures} }, @maps;
 
     return @sections;
 }

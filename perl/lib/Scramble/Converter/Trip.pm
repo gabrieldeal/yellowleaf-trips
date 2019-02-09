@@ -54,22 +54,22 @@ sub make_files_tag {
     my $xg = $self->xg();
     my $r = $self->r();
 
-    my @images = Scramble::Model::File::get_pictures_collection->find('trip-id' => $r->get_trip_id(),
-                                                                      'date' => $r->get_start_date());
+    my @pictures = Scramble::Model::File::get_pictures_collection->find('trip-id' => $r->get_trip_id(),
+                                                                        'date' => $r->get_start_date());
 
-    return () unless @images;
+    return () unless @pictures;
 
     my @files;
     my $in_chronological_order = undef;
-    foreach my $image (@images) {
-	$in_chronological_order = $image->in_chronological_order() unless defined $in_chronological_order;
-	push @files, $xg->file({ type => $image->get_type(),
-				 description => $image->get_description(),
-				 'thumbnail-filename' => $image->get_filename(),
-				 'large-filename' => $image->get_enlarged_filename(),
-				 rating => $image->get_rating(),
-				 owner => $image->{photographer},
-				 'capture-timestamp' => $image->{'capture-timestamp'}
+    foreach my $file (@files) {
+	$in_chronological_order = $file->in_chronological_order() unless defined $in_chronological_order;
+	push @files, $xg->file({ type => $file->get_type(),
+				 description => $file->get_description(),
+				 'thumbnail-filename' => $file->get_filename(),
+				 'large-filename' => $file->get_enlarged_filename(),
+				 rating => $file->get_rating(),
+				 owner => $file->{photographer},
+				 'capture-timestamp' => $file->{'capture-timestamp'}
 			     });
     }
 

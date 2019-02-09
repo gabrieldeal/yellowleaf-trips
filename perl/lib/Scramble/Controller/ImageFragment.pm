@@ -3,10 +3,10 @@ package Scramble::Controller::ImageFragment;
 use strict;
 
 sub new {
-    my ($arg0, $image) = @_;
+    my ($arg0, $picture) = @_;
 
     my $self = {
-        image => $image,
+        picture => $picture,
     };
 
     return bless($self, ref($arg0) || $arg0);
@@ -23,23 +23,23 @@ sub params {
     my $self = shift;
     my (%options) = @_;
 
-    my $image = $self->{image};
+    my $picture = $self->{picture};
 
-    my $is_video = $image->get_type eq 'movie';
-    my $video_poster_url = $is_video ? $image->get_poster_url : undef;
+    my $is_video = $picture->get_type eq 'movie';
+    my $video_poster_url = $is_video ? $picture->get_poster_url : undef;
 
     return {
-        description => $image->get_description,
-        enlarged_image_url => $image->get_enlarged_img_url,
+        description => $picture->get_description,
+        enlarged_image_url => $picture->get_enlarged_img_url,
         image_link_class => $options{'no-lightbox'} ? '' : 'lightbox-image',
-        image_link_url => $options{'no-lightbox'} ? $image->get_trip_url : $image->get_enlarged_img_url,
+        image_link_url => $options{'no-lightbox'} ? $picture->get_trip_url : $picture->get_enlarged_img_url,
         is_picture => !$is_video,
         is_video => $is_video,
         no_description => $options{'no-description'},
         no_trip_date => $options{'no-trip-date'},
-        small_image_url => $image->get_url,
-        trip_date => $image->get_capture_date || $image->get_date,
-        trip_url => $image->get_trip_url,
+        small_image_url => $picture->get_url,
+        trip_date => $picture->get_capture_date || $picture->get_date,
+        trip_url => $picture->get_trip_url,
         video_poster_url => $video_poster_url,
     };
 }

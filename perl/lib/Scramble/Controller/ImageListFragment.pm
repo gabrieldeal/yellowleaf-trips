@@ -3,12 +3,12 @@ package Scramble::Controller::ImageListFragment;
 use strict;
 
 sub html {
-    my ($images) = @_;
+    my ($pictures) = @_;
 
     my @cells;
     push @cells, map {
         Scramble::Controller::ImageFragment->new($_)->params;
-    } @$images;
+    } @$pictures;
 
     return '' unless @cells;
 

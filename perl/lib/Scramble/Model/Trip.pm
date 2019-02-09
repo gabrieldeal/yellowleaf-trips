@@ -25,7 +25,7 @@ sub new {
 
     $self->initialize_locations;
     $self->initialize_areas;
-    $self->initialize_images($files_src_dir);
+    $self->initialize_files($files_src_dir);
     $self->initialize_waypoints;
     $self->initialize_dates;
 
@@ -62,7 +62,7 @@ sub initialize_areas {
     $self->{'areas-object'} = Scramble::Collection->new('objects' => \@areas);
 }
 
-sub initialize_images {
+sub initialize_files {
     my $self = shift;
     my ($files_src_dir) = @_;
 
@@ -70,12 +70,12 @@ sub initialize_images {
     # directory?
     my $subdir = File::Basename::basename(File::Basename::dirname($self->{path}));
     my $trip_files_src_dir = "$files_src_dir/$subdir";
-    my @images = Scramble::Model::File::read_from_trip($trip_files_src_dir, $self);
-    my $image_collection = Scramble::Collection->new(objects => \@images);
+    my @files = Scramble::Model::File::read_from_trip($trip_files_src_dir, $self);
+    my $file_collection = Scramble::Collection->new(objects => \@files);
 
     my @pictures = (
-        $image_collection->find('type' => 'picture'),
-        $image_collection->find('type' => 'movie'),
+        $file_collection->find('type' => 'picture'),
+        $file_collection->find('type' => 'movie'),
     );
     if (@pictures && $pictures[0]->in_chronological_order) {
         @pictures = sort {
@@ -84,15 +84,15 @@ sub initialize_images {
     }
     $self->set_picture_objects([ grep { ! $_->get_should_skip_trip } @pictures]);
 
-    $self->{'map-objects'} = [ $image_collection->find('type' => 'map') ];
+    $self->{'map-objects'} = [ $file_collection->find('type' => 'map') ];
 
-    my @kmls = $image_collection->find('type' => 'kml');
+    my @kmls = $file_collection->find('type' => 'kml');
     die "Too many KMLs" if @kmls > 1;
     $self->{'kml'} = $kmls[0] if @kmls;
 
     if ($self->should_show) {
-        foreach my $image (@pictures, $self->get_map_objects) {
-            $image->set_trip_url($self->get_trip_page_url);
+        foreach my $map (@pictures, $self->get_map_objects) {
+            $map->set_trip_url($self->get_trip_page_url);
         }
     }
 }
@@ -140,12 +140,12 @@ sub get_filename {
 sub get_best_picture_object {
     my $self = shift;
 
-    my $best_image;
-    foreach my $image ($self->get_picture_objects()) {
-        $best_image = $image if ! defined $best_image;
-        $best_image = $image if $best_image->get_rating() >= $image->get_rating();
+    my $best_picture;
+    foreach my $picture ($self->get_picture_objects()) {
+        $best_picture = $picture if ! defined $best_picture;
+        $best_picture = $picture if $best_picture->get_rating() >= $picture->get_rating();
     }
-    return $best_image;
+    return $best_picture;
 }
 
 sub get_num_days {
@@ -203,7 +203,7 @@ sub get_trip_page_url {
     return sprintf("../../g/r/%s", $self->get_filename());
 }
 
-sub get_sorted_images {
+sub get_sorted_pictures {
     my $self = shift;
 
     return () unless $self->should_show();

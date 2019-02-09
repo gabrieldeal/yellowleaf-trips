@@ -51,9 +51,9 @@ sub _check_spelling_in_all_documents {
         }
     }
 
-    foreach my $image (Scramble::Model::File::get_pictures_collection->get_all) {
-        foreach my $text ($image->get_description(), $image->get_of(), $image->get_from(), $image->get_section_name()) {
-            push @misspelled, _check_spelling_in_text($text, $image->get_trip_files_src_dir(), $image->get_date());
+    foreach my $picture (Scramble::Model::File::get_pictures_collection->get_all) {
+        foreach my $text ($picture->get_description(), $picture->get_of(), $picture->get_from(), $picture->get_section_name()) {
+            push @misspelled, _check_spelling_in_text($text, $picture->get_trip_files_src_dir(), $picture->get_date());
         }
     }
 

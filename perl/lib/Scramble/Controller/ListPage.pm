@@ -67,10 +67,10 @@ sub create {
         push @rows, { cells => \@cells }
     }
 
-    my @images = $self->get_images_to_display('max-images' => 100);
+    my @pictures = $self->get_pictures_to_display('max-pictures' => 100);
     my @image_params = map {
         Scramble::Controller::ImageFragment->new($_)->params;
-    } @images;
+    } @pictures;
 
     my $params = {
         images => \@image_params,
@@ -153,27 +153,27 @@ my %gCellTitles = ('name' => 'Location Name',
 		   );
 sub get_cell_title { return $gCellTitles{$_[0]} || ucfirst($_[0]) }
 
-sub get_images_to_display {
+sub get_pictures_to_display {
     my $self = shift;
     my (%args) = @_;
 
-    my $max_images = $args{'max-images'};
+    my $max_pictures = $args{'max-pictures'};
     my $locations = $self->{locations};
 
-    my @images;
+    my @pictures;
     foreach my $location (@$locations) {
-      my @location_images = $location->get_picture_objects();
-      @location_images = sort { $a->cmp($b) } @location_images;
-      push @images, $location_images[0] if @location_images;
+      my @location_pictures = $location->get_picture_objects();
+      @location_pictures = sort { $a->cmp($b) } @location_pictures;
+      push @pictures, $location_pictures[0] if @location_pictures;
     }
 
-    @images = Scramble::Misc::dedup(@images);
-    @images = sort { $a->cmp($b) } @images;
-    if (@images > $max_images) {
-	@images = @images[0..$max_images-1];
+    @pictures = Scramble::Misc::dedup(@pictures);
+    @pictures = sort { $a->cmp($b) } @pictures;
+    if (@pictures > $max_pictures) {
+	@pictures = @pictures[0..$max_pictures-1];
     }
 
-    return @images;
+    return @pictures;
 }
 
 sub get_map_params {

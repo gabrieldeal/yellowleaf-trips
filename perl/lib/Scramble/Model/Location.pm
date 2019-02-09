@@ -164,20 +164,20 @@ sub get_picture_objects {
 
     $self->{'picture-objects'} = [];
     foreach my $regex ($self->get_regex_keys()) {
-        foreach my $image (Scramble::Model::File::get_pictures_collection->get_all) {
+        foreach my $picture (Scramble::Model::File::get_pictures_collection->get_all) {
 	    # FIXME: Should get the USGS quads from the trip or
-	    # the images and get the location names from the
-	    # image, then do real matching.  This is very broken
+	    # the pictures and get the location names from the
+	    # picture, then do real matching.  This is very broken
 	    # for locations like Green Mountain that are on
 	    # multiple quads.
-            if (defined $image->get_of()) {
-                next unless $image->get_of() =~ $regex;
+            if (defined $picture->get_of()) {
+                next unless $picture->get_of() =~ $regex;
             } else {
-                next unless $image->get_description() =~ $regex;
+                next unless $picture->get_description() =~ $regex;
             }
 	    
-	    my $key = $image->get_type() . "-objects";
-	    push @{ $self->{$key} }, $image;
+	    my $key = $picture->get_type() . "-objects";
+	    push @{ $self->{$key} }, $picture;
 	}
     }
     $self->{'picture-objects'} = [ Scramble::Misc::dedup(sort { $a->cmp($b) } @{ $self->{'picture-objects'} }) ];

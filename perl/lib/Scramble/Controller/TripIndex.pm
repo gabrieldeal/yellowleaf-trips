@@ -39,20 +39,20 @@ sub get_trip_params {
 
     my $date = Scramble::Controller::TripFragment::get_date_summary($trip);
 
-    my @images = $trip->get_sorted_images();
+    my @pictures = $trip->get_sorted_pictures;
 
-    my @image_htmls = map {
+    my @picture_htmls = map {
         my $fragment = Scramble::Controller::ImageFragment->new($_);
         $fragment->html('no-description' => 1,
                         'no-lightbox' => 1,
                         'no-trip-link' => 1)
-    } @images;
+    } @pictures;
 
     return {
         date => $date,
-        image_html_1 => $image_htmls[0],
-        image_html_2 => $image_htmls[1],
-        image_html_3 => $image_htmls[2],
+        image_html_1 => $picture_htmls[0],
+        image_html_2 => $picture_htmls[1],
+        image_html_3 => $picture_htmls[2],
         name => $trip->get_name,
         state => $trip->get_state ne 'done' ? $trip->get_state : undef,
         url => $trip->should_show ? $trip->get_trip_page_url : undef,

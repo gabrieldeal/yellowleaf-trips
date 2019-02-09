@@ -30,13 +30,13 @@ sub create {
     my $self = shift;
 
     $ENV{TZ} || die "Set Timezone.  E.g., export TZ='America/Los_Angeles'";
-    defined $self->{title} or die "Missing arguments: image-subdir trip-type title";
+    defined $self->{title} or die "Missing title";
 
     my $trip_files_src_dir = "$self->{files_src_dir}/$self->{trip_files_subdir}";
-    -d $trip_files_src_dir or die "Non-existant image dir: $trip_files_src_dir";
+    -d $trip_files_src_dir or die "Non-existant files dir: $trip_files_src_dir";
 
     my ($date) = ($self->{trip_files_subdir} =~ /^(\d{4}-\d\d-\d\d)/);
-    defined $date or die "Unable to get date from image subdirectory: $self->{trip_files_subdir}";
+    defined $date or die "Unable to get date from files subdirectory: $self->{trip_files_subdir}";
 
     my $trip_xml_file = "$self->{output_dir}/trip.xml";
     if (-e $trip_xml_file) {
@@ -70,7 +70,7 @@ sub create {
     }
 }
 
-sub get_image_metadata {
+sub get_picture_or_video_metadata {
     my $self = shift;
     my ($file) = @_;
 
@@ -133,9 +133,9 @@ sub get_gpx_metadata {
 
 sub get_gpx_timestamps {
     my $self = shift;
-    my ($images) = @_;
+    my ($files) = @_;
 
-    my @gpx_files = grep { $_->{type} eq 'gps' } @$images;
+    my @gpx_files = grep { $_->{type} eq 'gps' } @$files;
 
     return {} unless @gpx_files;
 
@@ -154,7 +154,7 @@ sub get_gpx_timestamps {
     };
 }
 
-sub get_image_timestamps {
+sub get_picture_timestamps {
     my $self = shift;
     my ($trip_files) = @_;
 
@@ -181,7 +181,7 @@ sub get_timestamps {
         return $timestamps;
     }
 
-    return get_image_timestamps($files);
+    return get_picture_timestamps($files);
 }
 
 sub read_trip_sections {
@@ -284,7 +284,7 @@ sub read_trip_files {
     my $self = shift;
     my ($dir) = @_;
 
-    print "Reading images in $dir...\n";
+    print "Reading files in $dir...\n";
 
     -d $dir or die "No such directory '$dir'";
     $dir =~ s{/*$}{};
@@ -307,7 +307,7 @@ sub read_trip_files {
             $type = $enl_filename =~ /\.(mp4|mov)$/i ? 'movie' : 'picture';
 
             my $orig_filename = $self->get_original_filename($dir, $enl_filename, $type);
-            my $metadata = $self->get_image_metadata("$dir/$orig_filename");
+            my $metadata = $self->get_picture_or_video_metadata("$dir/$orig_filename");
 
             if ($type ne 'movie') {
                 $rating = $self->get_rating($metadata->{rating});

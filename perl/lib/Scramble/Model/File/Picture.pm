@@ -103,13 +103,13 @@ sub cmp {
 }
 
 sub _cmp_date {
-    my ($image_a, $image_b) = @_;
+    my ($picture_a, $picture_b) = @_;
 
-    my $date_a = $image_a->get_date;
-    my $date_b = $image_b->get_date;
-    if ($image_a->get_datetime && $image_b->get_datetime) {
-        $date_a = $image_a->get_datetime;
-        $date_b = $image_b->get_datetime;
+    my $date_a = $picture_a->get_date;
+    my $date_b = $picture_b->get_date;
+    if ($picture_a->get_datetime && $picture_b->get_datetime) {
+        $date_a = $picture_a->get_datetime;
+        $date_b = $picture_b->get_datetime;
     }
 
     if (! defined $date_a) {

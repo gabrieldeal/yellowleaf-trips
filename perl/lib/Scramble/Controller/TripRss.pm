@@ -37,26 +37,26 @@ sub create {
     foreach my $trip (Scramble::Model::Trip::get_all()) {
         last unless ++$count <= 15; 
         next unless $trip->should_show();
-        my $best_image = $trip->get_best_picture_object();
-	next unless $best_image;
+        my $best_picture = $trip->get_best_picture_object();
+	next unless $best_picture;
 
-	die Data::Dumper::Dumper($best_image) . "\n\n\n\n" . Data::Dumper::Dumper($trip) unless $best_image->get_enlarged_img_url();
+	die Data::Dumper::Dumper($best_picture) . "\n\n\n\n" . Data::Dumper::Dumper($trip) unless $best_picture->get_enlarged_img_url();
 
-	my $image_url = sprintf(qq(https://yellowleaf.org/scramble/%s),
-				$best_image->get_enlarged_img_url());
+	my $picture_url = sprintf(qq(https://yellowleaf.org/scramble/%s),
+                                  $best_picture->get_enlarged_img_url());
 	# The "../.." in the URL was stopping Feedly from displaying
-	# an image in the feed preview.
-	$image_url =~ s{\.\./\.\./}{};
+	# an picture in the feed preview.
+	$picture_url =~ s{\.\./\.\./}{};
 
         my $trip_url = sprintf("https://yellowleaf.org/scramble/%s",
 				 $trip->get_trip_page_url());
 	$trip_url =~ s{\.\./\.\./}{};
 
-	my $image_html = sprintf(qq(<a href="%s"><img src="%s" alt="%s"></a>),
-				 $trip_url,
-				 $image_url,
-				 $best_image->get_description());
-	my $description = qq(<![CDATA[$image_html]]>);
+	my $picture_html = sprintf(qq(<a href="%s"><img src="%s" alt="%s"></a>),
+                                   $trip_url,
+                                   $picture_url,
+                                   $best_picture->get_description());
+	my $description = qq(<![CDATA[$picture_html]]>);
 
 	$rss->add_item(title => $trip->get_name(),
 		       link => $trip_url,
@@ -64,8 +64,8 @@ sub create {
 		       content => {
 			   encoded => $description,
 		       },
-		       enclosure => { url => $image_url,
-				      type => $mime->mimeTypeOf($best_image->get_filename()),
+		       enclosure => { url => $picture_url,
+				      type => $mime->mimeTypeOf($best_picture->get_filename()),
 				  });
     }
 
