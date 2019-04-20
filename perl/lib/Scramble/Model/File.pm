@@ -70,6 +70,13 @@ sub get_full_url {
                    $self->get_filename);
 }
 
+sub cmp_datetime {
+    my $self = shift;
+    my ($other) = @_;
+
+    return ($self->get_datetime || '') cmp ($other->get_datetime || '');
+}
+
 ######################################################################
 
 sub get_pictures_collection { $COLLECTIONS{picture} }

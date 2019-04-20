@@ -40,6 +40,7 @@ sub get_trip_params {
     my $date = Scramble::Controller::TripFragment::get_date_summary($trip);
 
     my @pictures = $trip->get_sorted_pictures;
+    @pictures = sort { $a->cmp_datetime($b) } grep(defined, @pictures[0..2]);
 
     my @picture_htmls = map {
         my $fragment = Scramble::Controller::PictureFragment->new($_);
