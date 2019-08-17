@@ -42,6 +42,11 @@ sub copy {
     my $source = "$args{src_dir}/$args{filename}";
     my $dest = "$args{dest_dir}/$args{filename}";
 
+    if (! -e $source) {
+        # Probably a movie that we have not yet reencoded.
+        return 1;
+    }
+
     # Cannot check size because only the destination pictures are interlaced.
     my $source_mtime = (stat($source))[9] or die "Error getting mtime '$source': $!";
     my $dest_mtime = (stat($dest))[9];
@@ -132,7 +137,7 @@ sub reencode_trip_video {
                             $src_filename);
 
     my @command = ('ffmpeg',
-                   '-i', $src_filename,
+                   '-i', $src_video,
                    '-vcodec', 'h264',
                    $dest_video);
     if (-e $dest_video) {

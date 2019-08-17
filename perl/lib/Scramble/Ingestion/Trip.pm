@@ -274,6 +274,7 @@ sub glob_trip_files {
     push @filenames, glob "$dir/*.{kml,gpx}";
     push @filenames, glob "$dir/*-enl\.{jpg,png}";
     push @filenames, glob "$dir/*.{mp4,MP4,MOV,mov}";
+    @filenames = grep { !/-renc.mp4$/i } @filenames;
     @filenames = sort @filenames;
 
     return @filenames;
@@ -293,7 +294,6 @@ sub read_trip_files {
 
     my @files;
     foreach my $enl_filename (@filenames) {
-        next if $enl_filename =~ /\.mp4$/i && $enl_filename !~ /-renc.mp4$/i;
         $enl_filename =~ s,.*/,,;
 
         my ($type, $caption, $owner, $rating, $timestamp, $orig_filename);
@@ -304,9 +304,15 @@ sub read_trip_files {
         } elsif ($enl_filename =~ /\broute\b/ or $enl_filename =~ /\bmap\b/) {
 	    $type = "map" ;
 	} else {
-            $type = $enl_filename =~ /\.(mp4|mov)$/i ? 'movie' : 'picture';
+            if ($enl_filename !~ /\.(mp4|mov)$/i) {
+                $type = 'picture';
+                $orig_filename = $self->get_original_filename($dir, $enl_filename, $type);
+            } else {
+                $type = 'movie';
+                $orig_filename = $enl_filename;
+                $enl_filename =~ s/\.(mp4|mov)$/-renc.$1/i;
+            }
 
-            my $orig_filename = $self->get_original_filename($dir, $enl_filename, $type);
             my $metadata = $self->get_picture_or_video_metadata("$dir/$orig_filename");
 
             if ($type ne 'movie') {
@@ -365,7 +371,7 @@ sub get_original_filename {
 
     my $orig_prefix;
     if ($type eq 'movie') {
-        ($orig_prefix) = ($enl_filename =~ /^(.*)-renc.(mp4|mov)$/i);
+        ($orig_prefix) = ($enl_filename =~ /^(.*).(mp4|mov)$/i);
     } else {
         # Older processed files start with "<NNNNN>-"
         ($orig_prefix) = ($enl_filename =~ /^(?:\d+-)?([-\w_\(\)]+)-enl.jpg$/);
