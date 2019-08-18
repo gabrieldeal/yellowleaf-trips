@@ -42,8 +42,8 @@ sub copy {
     my $source = "$args{src_dir}/$args{filename}";
     my $dest = "$args{dest_dir}/$args{filename}";
 
-    if (! -e $source && $source =~ /-renc.mp4$/) {
-        # Probably a movie that we have not yet reencoded.
+    if (! -e $source && $source =~ /-renc.mp4$/i) {
+        # The re-encoded movies are in the dest directory.
         return 1;
     }
 
