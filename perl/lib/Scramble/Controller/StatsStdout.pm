@@ -25,6 +25,8 @@ sub display_party_stats {
     my @members = map { $_->{name} } @{ $party->{member} || [] };
     push @members, grep /\S/, split(/\n/, $party->{content}) if $party->{content};
 
+    my $distances = $trip->get_round_trip_distances || [ { miles => 0 } ];
+    my $miles = List::Util::sum(map { $_->{miles} } @$distances);
     my ($yyyy, $mm, $dd) = Scramble::Time::parse_date($trip->get_start_date());
 
     die "$yyyy/$mm/$dd " . Data::Dumper::Dumper($party) unless $party->{size};
@@ -72,11 +74,16 @@ sub display_party_stats {
       $name =~ s/^Bruno$/Bruno Reinys/i;
       $people{$name}{trips}++;
       $people{$name}{days} += $trip->get_num_days();
+      $people{$name}{miles} += $miles;
     }
   }
 
   foreach my $name (sort { $people{$a}{trips} <=> $people{$b}{trips} } keys %people) {
-    printf("%d %d %s\n", $people{$name}{trips}, $people{$name}{days}, $name);
+    printf("%d %d %s mi %s\n",
+           $people{$name}{trips},
+           $people{$name}{days},
+           Scramble::Misc::commafy(int($people{$name}{miles})),
+           $name);
   }
 
   foreach my $mm (sort { $a <=> $b } keys %stats) {
