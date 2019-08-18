@@ -20,8 +20,22 @@ then
 	exit 1
 fi
 
+echo "Ready to rsync KML? (ctrl-c to abort)"
+read pauseme
+rsync \
+      --size-only \
+      -e ssh \
+      -avz \
+      --include '*.kml' \
+      --include '*/' \
+      --exclude '*' \
+      --rsync-path=/home/gabrielx1/bin/rsync \
+      "$html_dir/" \
+      gabrielx1@192.186.234.160:~/public_html/scramble \
+    | grep -E '^deleting|[^/]$|^$'
+
 # Do images first, then HTML.  This avoids broken images while in the middle of an update.
-echo "Ready to rsync KML & images? (ctrl-c to abort)"
+echo "Ready to rsync images? (ctrl-c to abort)"
 read pauseme
 rsync \
       --size-only \
