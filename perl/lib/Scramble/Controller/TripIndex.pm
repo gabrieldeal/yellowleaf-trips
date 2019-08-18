@@ -46,6 +46,7 @@ sub get_trip_params {
         my $fragment = Scramble::Controller::PictureFragment->new($_);
         $fragment->html('no-description' => 1,
                         'no-lightbox' => 1,
+                        'no-trip-date' => 1,
                         'no-trip-link' => 1)
     } @pictures;
 
