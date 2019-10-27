@@ -34,7 +34,7 @@ my @options = qw(
     );
 my %defaults = (
     "code-directory" => "/home/gabrielx/projects/yellowleaf-trips",
-    "files-src-directory" => "/media/gabrielx/Backup/Users/Gabriel/projects/yellowleaf-trips/data/gabrielx/reports",
+    "files-src-directory" => "/media/gabrielx/Backups/Users/Gabriel/d/Pictures/yellowleaf-trips",
     "file" => [],
     "action" => [],
     "skip" => [],
