@@ -69,7 +69,7 @@ sub _check_spelling_in_text {
     return unless @misspelled;
 
     my $message = $name . ": @misspelled.";
-    if (defined $date && $date gt '2007/07/01') {
+    if (defined $date && $date gt '2007/01/01') {
         return ($message);
     } else {
         print "Ignoring misspelled words from $message\n";
