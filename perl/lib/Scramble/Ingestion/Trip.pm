@@ -62,12 +62,6 @@ sub create {
                                                        files => $files,
                                                        trip_files_subdir => $self->{trip_files_subdir});
     $self->write_file($trip_xml_file, $trip_xml);
-
-    my $glob = "$trip_files_src_dir/*";
-    my @files = glob($glob);
-    if (@files) {
-        chmod(0744, @files) || die "Failed to chmod ($!) '$glob'";
-    }
 }
 
 sub get_picture_or_video_metadata {
