@@ -43,6 +43,7 @@ sub make_files_xml {
 
         push @file_xmls, $xg->file({ %optional_attrs,
                                          'description' => $file->{caption},
+                                         'is-summary' => $file->{is_summary},
                                          'thumbnail-filename' => $file->{thumb_filename},
                                          'large-filename' => $file->{enl_filename},
                                          rating => $file->{rating},

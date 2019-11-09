@@ -39,8 +39,7 @@ sub get_trip_params {
 
     my $date = Scramble::Controller::TripFragment::get_date_summary($trip);
 
-    my @pictures = $trip->get_sorted_pictures;
-    @pictures = sort { $a->cmp_datetime($b) } grep(defined, @pictures[0..2]);
+    my @pictures = $self->get_pictures($trip);
 
     my @picture_htmls = map {
         my $fragment = Scramble::Controller::PictureFragment->new($_);
@@ -60,6 +59,23 @@ sub get_trip_params {
         url => $trip->should_show ? $trip->get_trip_page_url : undef,
     };
 }
+
+sub get_pictures {
+    my $self = shift;
+    my ($trip) = @_;
+
+    return () unless $trip->should_show();
+
+    my @pictures = grep { $_->is_summary } $trip->get_picture_objects();
+    if (!@pictures) {
+        @pictures = $trip->get_picture_objects;
+    }
+
+    @pictures = sort { $a->get_rating() <=> $b->get_rating() } @pictures;
+
+    return sort { $a->cmp_datetime($b) } grep(defined, @pictures[0..2]);
+}
+
 
 ######################################################################
 # Static

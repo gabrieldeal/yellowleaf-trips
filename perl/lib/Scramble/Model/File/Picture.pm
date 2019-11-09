@@ -33,6 +33,7 @@ sub get_of { $_[0]->{'of'} } # undefined means we don't know. Empty string means
 sub get_poster { $_[0]->{poster} } # Video-specific
 sub get_section_name { $_[0]->{'section-name'} }
 sub in_chronological_order { $_[0]->{in_chronological_order} }
+sub is_summary { $_[0]->{'is-summary'} }
 
 sub get_filenames {
     my $self = shift;

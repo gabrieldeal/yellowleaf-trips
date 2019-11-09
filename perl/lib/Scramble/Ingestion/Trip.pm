@@ -69,8 +69,8 @@ sub get_picture_or_video_metadata {
     my ($file) = @_;
 
     print "Reading metadata in $file...\n";
-    my @tags = qw(Description ImageDescription Rating DateCreated CreateDate Creator Copyright);
-    my $info = Image::ExifTool::ImageInfo($file, \@tags);
+    my @tags = qw(Description ImageDescription Rating DateCreated CreateDate Creator Copyright Subject);
+    my $info = Image::ExifTool::ImageInfo($file) ; #, \@tags);
     die "Error opening $file: " . $info->{Error} if exists $info->{Error};
     print "Warning opening $file: " . $info->{Warning} if exists $info->{Warning};
 
@@ -91,6 +91,7 @@ sub get_picture_or_video_metadata {
         caption => $caption,
         creator => $info->{Creator},
         copyright => $info->{Copyright},
+        is_summary => ($info->{Subject} && $info->{Subject} =~ /summary/i),
     };
 }
 
@@ -290,7 +291,7 @@ sub read_trip_files {
     foreach my $enl_filename (@filenames) {
         $enl_filename =~ s,.*/,,;
 
-        my ($type, $caption, $owner, $rating, $timestamp, $orig_filename);
+        my ($type, $caption, $owner, $rating, $timestamp, $orig_filename, $is_summary);
 	if ($enl_filename =~ /\.(gpx)$/i) {
 	    $type = "gps";
         } elsif ($enl_filename =~ /\.(kml)$/i) {
@@ -315,6 +316,7 @@ sub read_trip_files {
             $caption = $metadata->{'caption'} || '';
             $owner = $metadata->{creator} || $metadata->{copyright} || 'Gabriel Deal';
             $timestamp = $metadata->{'timestamp'};
+            $is_summary = $metadata->{is_summary};
 	}
 
 	my $thumb_filename = $enl_filename;
@@ -330,7 +332,8 @@ sub read_trip_files {
         }
 
         push @files, {
-	    dir => $dir,
+            is_summary => $is_summary,
+            dir => $dir,
             orig_filename => $orig_filename,
             thumb_filename => $thumb_filename,
 	    enl_filename => $enl_filename,

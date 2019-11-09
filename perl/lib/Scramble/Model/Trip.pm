@@ -203,13 +203,6 @@ sub get_trip_page_url {
     return sprintf("../../g/r/%s", $self->get_filename());
 }
 
-sub get_sorted_pictures {
-    my $self = shift;
-
-    return () unless $self->should_show();
-    return sort { $a->get_rating() <=> $b->get_rating() } $self->get_picture_objects();
-}
-
 sub get_references {
     my $self = shift;
 
