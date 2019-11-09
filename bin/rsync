@@ -34,9 +34,10 @@ rsync \
       gabrielx1@192.186.234.160:~/public_html/scramble \
     | grep -E '^deleting|[^/]$|^$'
 
-# Do images first, then HTML.  This avoids broken images while in the middle of an update.
-echo "Ready to rsync images? (ctrl-c to abort)"
+echo "Ready to sync everything else? (ctrl-c to abort)"
 read pauseme
+
+# Do images first, then HTML.  This avoids broken images while in the middle of an update.
 rsync \
       --size-only \
       -e ssh \
@@ -50,8 +51,7 @@ rsync \
     | grep -E '^deleting|[^/]$|^$'
 
 echo
-echo "Ready to sync everything else? (ctrl-c to abort)"
-read pauseme
+
 rsync \
       --size-only \
       -e ssh \
