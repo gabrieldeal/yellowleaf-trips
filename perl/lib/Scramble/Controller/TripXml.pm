@@ -33,6 +33,10 @@ sub make_files_xml {
             $from = '' if $term eq 'over';
             my $question = "\n$file->{caption}\nSet the 'of' and 'from' attributes to the below? ('n' sets it to nothing)\nof: $of\nfrom: $from";
             @optional_attrs{'of', 'from'} = prompt_yes_or_no($question) ? ($of, $from) : ('', '');
+        } elsif($file->{caption} =~ /^\w+ (Peak|Mountain)$/ || $file->{caption} =~ /^Mount \w+$/) {
+            my $of = $file->{caption};
+            my $question = "\n$file->{caption}\nSet the 'of' to '$of'? ('n' sets it to nothing)";
+            @optional_attrs{'of'} = prompt_yes_or_no($question) ? $of : '';
         }
 
         my $section_name;
