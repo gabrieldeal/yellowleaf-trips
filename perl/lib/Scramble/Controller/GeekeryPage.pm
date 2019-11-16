@@ -66,7 +66,7 @@ sub get_yearly_stats {
             $stats{$year}{trail_run_trips}++;
         }
 
-	my @locations = grep { $_->get_type() eq 'peak' } $trip->get_location_objects();
+        my @locations = grep { $_->is_peak } $trip->get_location_objects();
         $stats{$year}{total_peaks} += @locations;
     }
 
@@ -106,7 +106,7 @@ sub get_total_climbed {
     my $summit_count = 0;
     my %climbed;
     foreach my $location (Scramble::Model::Location::get_visited()) {
-	next if ! ($location->get_type() eq 'peak'
+        next if ! ($location->is_peak
                    || (defined $location->get_prominence()
                        && $location->get_prominence() > 400));
         my $count = scalar(grep { $_->get_state() eq 'done' } Scramble::Model::Trip::get_trips_for_location($location));

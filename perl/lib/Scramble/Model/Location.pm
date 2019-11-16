@@ -139,6 +139,7 @@ sub get_latitude { $_[0]->_get_optional('coordinates', 'latitude') }
 sub get_longitude { $_[0]->_get_optional('coordinates', 'longitude') }
 sub get_naming_origin { $_[0]->_get_optional('name', 'origin'); }
 sub name_is_unique { return ! $_[0]->{'has-twin'} }
+sub is_peak { $_[0]->get_type eq 'peak' }
 
 sub get_references {
     my $self = shift;

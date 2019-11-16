@@ -25,6 +25,8 @@ sub display_party_stats {
     my @members = map { $_->{name} } @{ $party->{member} || [] };
     push @members, grep /\S/, split(/\n/, $party->{content}) if $party->{content};
 
+    my $num_peaks = grep { $_->is_peak } $trip->get_location_objects();
+
     my $distances = $trip->get_round_trip_distances || [ { miles => 0 } ];
     my $miles = List::Util::sum(map { $_->{miles} } @$distances);
     my ($yyyy, $mm, $dd) = Scramble::Time::parse_date($trip->get_start_date());
@@ -75,14 +77,16 @@ sub display_party_stats {
       $people{$name}{trips}++;
       $people{$name}{days} += $trip->get_num_days();
       $people{$name}{miles} += $miles;
+      $people{$name}{peaks} += $num_peaks;
     }
   }
 
   foreach my $name (sort { $people{$a}{trips} <=> $people{$b}{trips} } keys %people) {
-    printf("%d %d %s mi %s\n",
+    printf("%d %d %s mi %s peaks %s\n",
            $people{$name}{trips},
            $people{$name}{days},
            Scramble::Misc::commafy(int($people{$name}{miles})),
+           $people{$name}{peaks},
            $name);
   }
 
