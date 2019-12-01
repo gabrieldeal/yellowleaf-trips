@@ -47,6 +47,7 @@ sub get_on_trail_waypoints {
     return @on_trail_waypoints;
 }
 
+# FIXME: Move the elevation-gain attribute to the <distance> element.
 sub get_elevation_gain {
     my $self = shift;
 
