@@ -23,11 +23,11 @@ sub new {
 
     bless($self, ref($arg0) || $arg0);
 
+    $self->initialize_waypoints;
+    $self->initialize_dates;
     $self->initialize_locations;
     $self->initialize_areas;
     $self->initialize_files($files_src_dir);
-    $self->initialize_waypoints;
-    $self->initialize_dates;
 
     return $self;
 }
@@ -107,10 +107,13 @@ sub initialize_waypoints {
 sub initialize_dates {
     my $self = shift;
 
-    $self->set('start-date', Scramble::Time::normalize_date_string($self->get_start_date));
+    $self->set('start-date', Scramble::Time::normalize_date_string($self->get_start_date_str));
 
-    if (defined $self->get_end_date) {
-	$self->set('end-date', Scramble::Time::normalize_date_string($self->get_end_date));
+    my $end_date_str = $self->get_end_date_str;
+    if (defined $end_date_str) {
+        eval { # FIXME: Some waypoints have the time without the date.
+            $self->set('end-date', Scramble::Time::normalize_date_string($end_date_str));
+        };
     }
 }
 
@@ -120,7 +123,7 @@ sub get_areas_collection { $_[0]->{'areas-object'} }
 sub get_waypoints { $_[0]->{'waypoints'} }
 sub get_type { $_[0]->_get_optional('type') || 'scramble' }
 sub get_end_date { $_[0]->_get_optional('end-date') }
-sub get_start_date { $_[0]->_get_required('start-date') }
+sub get_start_date { $_[0]->_get_optional('start-date') }
 sub get_name { $_[0]->_get_required('name') }
 sub get_locations { @{ $_[0]->_get_optional('locations', 'location') || [] } }
 sub get_location_objects { @{ $_[0]->{'location-objects'} } }
@@ -131,6 +134,40 @@ sub get_map_objects { @{ $_[0]->{'map-objects'} } }
 sub get_picture_objects { @{ $_[0]->{'picture-objects'} } }
 sub set_picture_objects { $_[0]->{'picture-objects'} = $_[1] }
 sub get_round_trip_distances { $_[0]->_get_optional('round-trip-distances', 'distance') }
+
+sub get_end_date_str {
+    my $self = shift;
+
+    # FIXME: deprecate the end-date XML attribute in favor of waypoints.
+    my $end_date = $self->_get_optional('end-date');
+    if ($end_date) {
+        return $end_date;
+    }
+
+    my $last_waypoint = ($self->get_waypoints->get_waypoints)[-1];
+    if ($last_waypoint && $last_waypoint->has_time) {
+        return $last_waypoint->get_time;
+    }
+
+    return undef;
+}
+
+sub get_start_date_str {
+    my $self = shift;
+
+    # FIXME: deprecate the start-date XML attribute in favor of waypoints.
+    my $start_date = $self->_get_optional('start-date');
+    if ($start_date) {
+        return $start_date;
+    }
+
+    my $first_waypoint = ($self->get_waypoints->get_waypoints)[0];
+    if ($first_waypoint && $first_waypoint->has_time) {
+        return $first_waypoint->get_time;
+    }
+
+    return undef;
+}
 
 sub get_filename {
     my $self = shift;

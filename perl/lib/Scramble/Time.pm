@@ -7,7 +7,9 @@ use Date::Manip ();
 sub normalize_date_string {
     my ($date_string) = @_;
 
-    return join("/", parse_date($date_string));
+    my ($year, $mon, $day) = parse_date_and_time($date_string);
+
+    return "$year/$mon/$day";
 }
 
 sub parse_date {
@@ -37,7 +39,7 @@ sub parse_date_and_time {
     ($year, $mon, $day, $hour, $minute) = ($t =~ m,^(\d\d\d\d)/(\d\d)/(\d\d)\s+(\d\d?):(\d\d)$,);
   }
   if (! defined $day) {
-    ($year, $mon, $day) = ($t =~ m,^(\d\d\d\d)/(\d\d)/(\d\d)$,);
+    ($year, $mon, $day) = ($t =~ m,^(\d\d\d\d)[/-](\d\d)[/-](\d\d)$,);
   }
 
   if (! defined $day) {

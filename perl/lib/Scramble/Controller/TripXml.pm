@@ -92,7 +92,6 @@ sub html {
 
     return <<EOT;
 <trip filename="$args{trip_files_subdir}"
-      start-date="$args{date}"
       name="$args{title}"
       type="$args{trip_type}"
       trip-id="1"
