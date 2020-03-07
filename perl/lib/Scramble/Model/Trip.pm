@@ -29,6 +29,8 @@ sub new {
     $self->initialize_areas;
     $self->initialize_files($files_src_dir);
 
+    $self->validate;
+
     return $self;
 }
 
@@ -114,6 +116,15 @@ sub initialize_dates {
         eval { # FIXME: Some waypoints have the time without the date.
             $self->set('end-date', Scramble::Time::normalize_date_string($end_date_str));
         };
+    }
+}
+
+sub validate {
+    my $self = shift;
+
+    my $ndays = $self->get_num_days;
+    if ($ndays <= 0 || $ndays >= 1000) {
+        die sprintf("Got $ndays days from %s", $self->{path});
     }
 }
 
