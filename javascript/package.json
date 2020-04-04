@@ -4,14 +4,14 @@
   "description": "",
   "private": "true",
   "dependencies": {
-    "blueimp-gallery": "^2.33.0"
+    "blueimp-gallery": "^2.38.0"
   },
   "devDependencies": {
-    "css-loader": "^2.1.1",
-    "file-loader": "^1.1.11",
-    "style-loader": "^0.21.0",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.0"
+    "css-loader": "^3.4.0",
+    "file-loader": "^6.0.0",
+    "style-loader": "^1.1.0",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   },
   "scripts": {
     "build-dev": "webpack --mode development",
