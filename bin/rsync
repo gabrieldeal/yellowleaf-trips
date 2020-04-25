@@ -31,7 +31,7 @@ rsync \
       --exclude '*' \
       --rsync-path=/home/gabrielx1/bin/rsync \
       "$html_dir/" \
-      gabrielx1@192.186.234.160:~/public_html/scramble \
+      gabrielx1@yellowleaf.org:~/public_html/scramble \
     | grep -E '^deleting|[^/]$|^$'
 
 echo "Ready to sync everything else? (ctrl-c to abort)"
@@ -47,7 +47,7 @@ rsync \
       --exclude '*.css' \
       --rsync-path=/home/gabrielx1/bin/rsync \
       "$html_dir/" \
-      gabrielx1@192.186.234.160:~/public_html/scramble \
+      gabrielx1@yellowleaf.org:~/public_html/scramble \
     | grep -E '^deleting|[^/]$|^$'
 
 echo
@@ -58,6 +58,6 @@ rsync \
       -avz \
       --rsync-path=/home/gabrielx1/bin/rsync \
       "$html_dir/" \
-      gabrielx1@192.186.234.160:~/public_html/scramble \
+      gabrielx1@yellowleaf.org:~/public_html/scramble \
     | grep -E '^deleting|[^/]$|^$'
 
