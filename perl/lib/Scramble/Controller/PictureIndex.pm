@@ -31,6 +31,12 @@ sub create_all {
             @pictures = @pictures[0..$n_pictures_per_year-1];
         }
         @pictures = sort { $b->get_date() cmp $a->get_date() } @pictures;
+
+        if (@pictures < 5) {
+            delete $pictures{$year};
+            next;
+        }
+
         $pictures{$year}{pictures} = \@pictures;
         $pictures{$year}{name} = $year;
     }
