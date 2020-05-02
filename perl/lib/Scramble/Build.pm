@@ -15,6 +15,7 @@ use Scramble::Controller::LocationPage ();
 use Scramble::Controller::ReferenceIndex ();
 use Scramble::Controller::StatsStdout ();
 use Scramble::Controller::TripIndex ();
+use Scramble::Controller::TripPrivateIndex ();
 use Scramble::Controller::TripPage ();
 use Scramble::Controller::TripRss ();
 use Scramble::Logger ();
@@ -63,6 +64,7 @@ sub create {
     $self->should('template') && $self->make_templates();
     $self->should('copy-files') && $self->copy_and_process_files();
     $self->should('kml') && $self->copy_kml();
+    $self->should('trip-index') && Scramble::Controller::TripPrivateIndex->new->create($self->{writer});
     $self->should('trip-index') && Scramble::Controller::TripIndex::create_all($self->{writer}); # Includes home.html
     $self->should('link') && Scramble::Controller::ReferenceIndex::create($self->{writer});
     $self->should('list') && Scramble::Controller::ListIndex::create($self->{writer});
