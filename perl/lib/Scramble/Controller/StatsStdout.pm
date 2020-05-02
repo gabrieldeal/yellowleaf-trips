@@ -31,7 +31,7 @@ sub display_party_stats {
     my $miles = List::Util::sum(map { $_->{miles} } @$distances);
     my ($yyyy, $mm, $dd) = Scramble::Time::parse_date($trip->get_start_date());
 
-    die "$yyyy/$mm/$dd " . Data::Dumper::Dumper($party) unless $party->{size};
+    die "Missing party size in $yyyy/$mm/$dd " . Data::Dumper::Dumper($party) unless $party->{size};
 
     $stats{$mm}{trip_count}++;
     $stats{$mm}{person_count} += $party->{size};
