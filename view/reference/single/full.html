@@ -1,4 +1,6 @@
-<tmpl_var type />:
+<tmpl_if type>
+  <tmpl_var type />:
+</tmpl_if>
 
 <tmpl_if url>
   <a href="<tmpl_var url escape=none />"><tmpl_var name /></a>
