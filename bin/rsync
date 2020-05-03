@@ -20,6 +20,11 @@ then
 	exit 1
 fi
 
+dest_user=dogabrielx
+dest_path=/var/lib/docker/volumes/dogabrielx_letsencrypt-config/_data/www/scramble/
+dest_server=apps.yellowleaf.org
+dest="$dest_user@$dest_server:$dest_path"
+
 echo "Ready to rsync KML? (ctrl-c to abort)"
 read pauseme
 rsync \
@@ -29,9 +34,8 @@ rsync \
       --include '*.kml' \
       --include '*/' \
       --exclude '*' \
-      --rsync-path=/home/gabrielx1/bin/rsync \
       "$html_dir/" \
-      gabrielx1@yellowleaf.org:~/public_html/scramble \
+      "$dest" \
     | grep -E '^deleting|[^/]$|^$'
 
 echo "Ready to sync everything else? (ctrl-c to abort)"
@@ -45,9 +49,8 @@ rsync \
       --exclude '*.html' \
       --exclude '*.js' \
       --exclude '*.css' \
-      --rsync-path=/home/gabrielx1/bin/rsync \
       "$html_dir/" \
-      gabrielx1@yellowleaf.org:~/public_html/scramble \
+      "$dest" \
     | grep -E '^deleting|[^/]$|^$'
 
 echo
@@ -56,8 +59,7 @@ rsync \
       --size-only \
       -e ssh \
       -avz \
-      --rsync-path=/home/gabrielx1/bin/rsync \
       "$html_dir/" \
-      gabrielx1@yellowleaf.org:~/public_html/scramble \
+      "$dest" \
     | grep -E '^deleting|[^/]$|^$'
 
