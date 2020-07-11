@@ -266,9 +266,9 @@ sub glob_trip_files {
     my ($dir) = @_;
 
     my @filenames;
-    push @filenames, glob "$dir/*.{kml,gpx}";
-    push @filenames, glob "$dir/*-enl\.{jpg,png}";
-    push @filenames, glob "$dir/*.{mp4,MP4,MOV,mov}";
+    push @filenames, glob "'$dir/*.{kml,gpx}'";
+    push @filenames, glob "'$dir/*-enl\.{jpg,png}'";
+    push @filenames, glob "'$dir/*.{mp4,MP4,MOV,mov}'";
     @filenames = grep { !/-renc.mp4$/i } @filenames;
     @filenames = sort @filenames;
 
