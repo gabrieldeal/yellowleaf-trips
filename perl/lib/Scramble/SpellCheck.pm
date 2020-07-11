@@ -3,7 +3,6 @@ package Scramble::SpellCheck;
 use strict;
 
 use Scramble::Logger ();
-use Spell ();
 
 my %gWords;
 
