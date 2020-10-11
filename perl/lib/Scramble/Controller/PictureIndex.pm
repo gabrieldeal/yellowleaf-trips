@@ -4,7 +4,8 @@ use strict;
 
 use Scramble::Controller::PictureListFragment ();
 
-my $g_pictures_by_year_threshold = 1;
+my $rating_threshold = 1;
+my $g_num_pictures_threshold = 5;
 
 # FIXME: break up this long function.
 sub create_all {
@@ -17,7 +18,7 @@ sub create_all {
 
     my %pictures;
     foreach my $picture (@pictures) {
-	next unless $picture->get_rating() <= $g_pictures_by_year_threshold;
+	next unless $picture->get_rating() <= $rating_threshold;
         my ($year) = Scramble::Time::parse_date($picture->get_date());
 	next unless $year > 2004;
         push @{ $pictures{$year}{pictures} }, $picture;
@@ -32,7 +33,7 @@ sub create_all {
         }
         @pictures = sort { $b->get_date() cmp $a->get_date() } @pictures;
 
-        if (@pictures < 5) {
+        if (@pictures < $g_num_pictures_threshold) {
             delete $pictures{$year};
             next;
         }
