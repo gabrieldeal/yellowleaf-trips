@@ -101,6 +101,9 @@ sub html {
 
     $locations_xml
 
+    <birds>
+    </birds>
+
     <party size="">
         <member name="Gabriel Deal" type="author"/>
         Lindsay Malone
