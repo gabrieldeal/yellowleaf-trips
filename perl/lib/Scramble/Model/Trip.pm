@@ -145,7 +145,24 @@ sub get_kml { $_[0]->{kml} }
 sub get_map_objects { @{ $_[0]->{'map-objects'} } }
 sub get_picture_objects { @{ $_[0]->{'picture-objects'} } }
 sub set_picture_objects { $_[0]->{'picture-objects'} = $_[1] }
-sub get_round_trip_distances { $_[0]->_get_optional('round-trip-distances', 'distance') }
+
+sub get_round_trip_distances {
+    my $self = shift;
+
+    my $distances = $self->_get_optional('round-trip-distances', 'distance');
+    if (!$distances) {
+        return undef;
+    }
+
+    return [ map {
+        if ($_->{kilometers}) {
+            my $miles = 0.621371 * $_->{kilometers};
+            $_->{miles} = int($miles);
+        }
+
+        $_;
+    } @$distances ];
+}
 
 sub get_end_date_str {
     my $self = shift;
