@@ -51,7 +51,15 @@ sub get_on_trail_waypoints {
 sub get_elevation_gain {
     my $self = shift;
 
-    my $gain = $self->_get_optional("elevation-gain");
+    my $gain;
+    my $gain_meters = $self->_get_optional("elevation-gain-meters");
+    if (defined $gain_meters) {
+        $gain = 3.28084 * $gain_meters;
+        $gain = int($gain / 100) * 100;
+    } else {
+        # FIXME: convert the elevation-gain attribute to meters.
+        $gain = $self->_get_optional("elevation-gain");
+    }
     if (defined $gain) {
         return undef if $gain == 0;
         return Scramble::Controller::ElevationFragment::format_elevation($gain);
