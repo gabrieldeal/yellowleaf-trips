@@ -89,6 +89,7 @@ sub copy_and_process_trip_files {
         my $is_updated = 0;
         foreach my $filename ($file->get_filenames) {
             next unless $filename; # For old trips like 2013-11-17-nason
+            next if $file->get_type eq 'gps';
 
             my $src_path = $file->get_trip_files_src_dir . "/$filename";
             next if $file->get_type eq 'kml' && ! -f $src_path;
