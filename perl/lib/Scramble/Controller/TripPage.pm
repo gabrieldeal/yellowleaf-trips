@@ -175,12 +175,17 @@ sub get_recognizable_areas {
 sub get_sections_params {
     my $self = shift;
 
+    my $end_date = defined $self->trip->get_end_date
+                   && $self->trip->get_start_date ne $self->trip->get_end_date
+                   ? $self->trip->get_end_date
+                   : undef;
+
     my $first_section_params = {
         $self->get_time_params,
         $self->get_maps_summary_params,
         $self->get_references_params,
         start_date => $self->trip->get_start_date,
-        end_date => $self->trip->get_end_date,
+        end_date => $end_date,
         trip_type => $self->trip->get_type,
         distances_html => $self->get_distances_html,
         elevation_gain => $self->get_elevation_gain,
