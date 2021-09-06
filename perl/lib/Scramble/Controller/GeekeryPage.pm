@@ -39,7 +39,6 @@ sub get_yearly_stats {
         total_peaks
         total_trips
         climbing_trips
-        trail_run_trips
         total_days
         climbing_days
         trail_run_days
@@ -63,7 +62,6 @@ sub get_yearly_stats {
             $stats{$year}{climbing_trips}++;
         } elsif ($trip->get_type() =~ /trail run/) {
             $stats{$year}{trail_run_days} += $ndays;
-            $stats{$year}{trail_run_trips}++;
         }
 
         my @locations = grep { $_->is_peak } $trip->get_location_objects();
