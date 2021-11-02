@@ -20,7 +20,7 @@ sub create {
     my $self = shift;
 
     my @peaks;
-    foreach my $name (keys %Scramble::Ingestion::PeakList::ListsOfJohn::Peaks) {
+    foreach my $name (sort keys %Scramble::Ingestion::PeakList::ListsOfJohn::Peaks) {
         next unless $name =~ /$self->{name}/i;
         push @peaks, values %{ $Scramble::Ingestion::PeakList::ListsOfJohn::Peaks{$name} };
     }
