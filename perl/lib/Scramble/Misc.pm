@@ -164,4 +164,11 @@ sub snake_case_keys {
     } keys %h;
 }
 
+sub to_boolean {
+    my ($value) = @_;
+
+    return 0 if !defined $value || $value eq '0' || $value eq 'false';
+    return 1;
+}
+
 1;

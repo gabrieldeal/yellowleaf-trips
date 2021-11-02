@@ -2,6 +2,7 @@ package Scramble::Model::Trip;
 
 use strict;
 
+use Scramble::Misc ();
 use Scramble::Model::Waypoints ();
 use Scramble::Model::File ();
 use Scramble::Model::Reference ();
@@ -144,6 +145,13 @@ sub get_kml { $_[0]->{kml} }
 sub get_map_objects { @{ $_[0]->{'map-objects'} } }
 sub get_picture_objects { @{ $_[0]->{'picture-objects'} } }
 sub set_picture_objects { $_[0]->{'picture-objects'} = $_[1] }
+
+sub should_show_captions {
+    my $self = shift;
+
+    return 1 if ! defined $self->{'should-show-captions'};
+    return Scramble::Misc::to_boolean($self->{'should-show-captions'});
+}
 
 sub get_round_trip_distances {
     my $self = shift;

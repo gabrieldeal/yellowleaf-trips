@@ -95,6 +95,7 @@ sub html {
       name="$args{title}"
       type="$args{trip_type}"
       trip-id="1"
+      should-show-captions="true"
 >
     <description />
     <references />

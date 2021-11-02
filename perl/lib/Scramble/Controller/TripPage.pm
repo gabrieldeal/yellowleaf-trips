@@ -203,7 +203,10 @@ sub get_sections_params {
 
     foreach my $section (@sections) {
         my @picture_params = map {
-            Scramble::Controller::PictureFragment->new($_)->params('no-trip-date' => 1);
+            Scramble::Controller::PictureFragment->new($_)->params(
+                'no-trip-date' => 1,
+                'no-description' => !$self->trip->should_show_captions,
+            );
         } @{ $section->{pictures} };
 
         push @sections_params, {
