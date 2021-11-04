@@ -114,6 +114,7 @@ sub get_distances_html {
 sub get_map_params {
     my $self = shift;
 
+    return [] if $self->trip->should_hide_locations;
     return [] if $self->trip()->get_map_objects();
 
     my @locations = $self->trip()->get_location_objects();
@@ -127,6 +128,7 @@ sub get_map_params {
 sub get_maps_summary_params {
     my $self = shift;
 
+    return () if $self->trip->should_hide_locations;
     return () if $self->trip()->no_maps();
 
     my $type = 'USGS quad';
@@ -165,6 +167,8 @@ sub get_maps_summary_params {
 
 sub get_recognizable_areas {
     my $self = shift;
+
+    return '' if $self->trip->should_hide_locations;
 
     my @areas = $self->{trip}->get_recognizable_areas();
     my @names = map { $_->get_short_name() } @areas;
@@ -205,7 +209,7 @@ sub get_sections_params {
         my @picture_params = map {
             Scramble::Controller::PictureFragment->new($_)->params(
                 'no-trip-date' => 1,
-                'no-description' => !$self->trip->should_show_captions,
+                'no-description' => $self->trip->should_hide_locations,
             );
         } @{ $section->{pictures} };
 

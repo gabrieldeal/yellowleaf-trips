@@ -146,11 +146,10 @@ sub get_map_objects { @{ $_[0]->{'map-objects'} } }
 sub get_picture_objects { @{ $_[0]->{'picture-objects'} } }
 sub set_picture_objects { $_[0]->{'picture-objects'} = $_[1] }
 
-sub should_show_captions {
+sub should_hide_locations {
     my $self = shift;
 
-    return 1 if ! defined $self->{'should-show-captions'};
-    return Scramble::Misc::to_boolean($self->{'should-show-captions'});
+    return Scramble::Misc::to_boolean($self->{'should-hide-locations'});
 }
 
 sub get_round_trip_distances {
