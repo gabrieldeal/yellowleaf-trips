@@ -76,7 +76,7 @@ sub get_yearly_stats {
             if ($column_key eq 'year') {
                 $new_value = "$this_year (projected)";
             } else {
-                $new_value = 365 / $day_of_year * $stats{$this_year}{$column_key};
+                $new_value = int(365 / $day_of_year * $stats{$this_year}{$column_key});
             }
             $stats{$this_year}{$column_key} = $new_value;
         }
