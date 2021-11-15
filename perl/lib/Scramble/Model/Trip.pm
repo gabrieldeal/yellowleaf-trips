@@ -145,6 +145,7 @@ sub get_kml { $_[0]->{kml} }
 sub get_map_objects { @{ $_[0]->{'map-objects'} } }
 sub get_picture_objects { @{ $_[0]->{'picture-objects'} } }
 sub set_picture_objects { $_[0]->{'picture-objects'} = $_[1] }
+sub skip_spelling { $_[0]->_get_optional('skip-spelling') }
 
 sub should_hide_locations {
     my $self = shift;

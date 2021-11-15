@@ -30,6 +30,7 @@ sub get_id { $_[0]->get_trip_files_src_dir . "|" . $_[0]->get_filename }
 sub get_owner { $_[0]->{owner} }
 sub get_should_skip_trip { $_[0]->{'skip-trip'} }
 sub get_trip_files_src_dir { $_[0]->{trip_files_src_dir} } # FIXME: Does this belong here? It seems like it should just be in Scramble::Build.
+sub get_trip { $_[0]->{trip} }
 sub get_trip_files_subdir { $_[0]->{trip_files_subdir} }
 sub get_trip_url { $_[0]->{trip_url} }
 sub get_type { $_[0]->{type} }
@@ -114,6 +115,7 @@ sub read_from_trip {
             chronological_order => $chronological_order++,
             in_chronological_order => $in_chronological_order,
             date => "$year/$month/$day",
+            trip => $trip,
             trip_files_src_dir => $trip_files_src_dir,
             type => $type,
         };

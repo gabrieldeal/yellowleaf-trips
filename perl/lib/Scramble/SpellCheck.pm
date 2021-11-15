@@ -46,13 +46,13 @@ sub _check_spelling_in_all_documents {
         push @texts, $trip->get_name();
         push @texts, $trip->get_type();
         foreach my $text (@texts) {
-            push @misspelled, _check_spelling_in_text($text, $trip->get_filename(), $trip->get_start_date());
+            push @misspelled, _check_spelling_in_text($text, $trip->get_filename(), $trip);
         }
     }
 
     foreach my $picture (Scramble::Model::File::get_pictures_collection->get_all) {
         foreach my $text ($picture->get_description(), $picture->get_of(), $picture->get_from(), $picture->get_section_name()) {
-            push @misspelled, _check_spelling_in_text($text, $picture->get_trip_files_src_dir(), $picture->get_date());
+            push @misspelled, _check_spelling_in_text($text, $picture->get_trip_files_src_dir(), $picture->get_trip);
         }
     }
 
@@ -60,7 +60,7 @@ sub _check_spelling_in_all_documents {
 }
 
 sub _check_spelling_in_text {
-    my ($text, $name, $date) = @_;
+    my ($text, $name, $trip) = @_;
 
     return unless defined $text;
 
@@ -68,7 +68,7 @@ sub _check_spelling_in_text {
     return unless @misspelled;
 
     my $message = $name . ": @misspelled.";
-    if (defined $date && $date gt '2007/01/01') {
+    if (!$trip->skip_spelling) {
         return ($message);
     } else {
         print "Ignoring misspelled words from $message\n";
