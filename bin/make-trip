@@ -12,8 +12,8 @@ local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
 local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
 
 my $defaults = {
-    "files-src-dir" => "/media/gabrielx/TOSHIBA EXT/Backup/Gabriel/d/Pictures/yellowleaf-trips",
-    'xml-src-dir' => '/home/gabrielx/projects/yellowleaf-trips-data',
+    "files-src-dir" => "/media/$ENV{USER}/TOSHIBA EXT/Backup/Gabriel/d/Pictures/yellowleaf-trips",
+    'xml-src-dir' => "$ENV{HOME}/projects/yellowleaf-trips-data",
 };
 my @options = qw(
     files-src-dir=s

@@ -10,8 +10,7 @@ function fix_file_permissions() {
     find "$@" -type f -a \! -perm -a=r -exec chmod a+r {} \;
 }
 
-home_dir="/home/gabrielx"
-output_dir="$home_dir/projects/yellowleaf-trips-data"
+output_dir="$HOME/projects/yellowleaf-trips-data"
 html_dir="$output_dir/html"
 
 if [ ! -d $html_dir ]

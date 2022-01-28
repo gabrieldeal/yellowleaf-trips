@@ -12,7 +12,7 @@ local $SIG{__WARN__} = sub { Carp::confess "DIEING on warning: @_" };
 local $SIG{__DIE__}  = sub { Carp::confess "DIEING: @_" };
 
 my $defaults = {
-    'xml-src-dir' => '/home/gabrielx/projects/yellowleaf-trips-data',
+    'xml-src-dir' => "$ENV{HOME}/projects/yellowleaf-trips-data",
 };
 my @options = qw(
     name=s
