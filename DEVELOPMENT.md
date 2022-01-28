@@ -11,8 +11,13 @@ sudo apt update \
 # Build
 
 ```
-./bin/build -v -skip copy-files
+TZ='America/Los_Angeles' ./bin/make-trip --title "Northrup Point" --type hike --trip-files-subdir 2021-10-13-northrup-point
+
+./bin/make-location --name "Tiffany"
+
 ./bin/build -v -a copy-files --file ../yellowleaf-trips-data/trips/2021-10-12-northrup-cyn
+
+./bin/build -v -skip copy-files
 ```
 
 # Debugger:
