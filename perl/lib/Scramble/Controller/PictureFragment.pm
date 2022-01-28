@@ -34,7 +34,7 @@ sub params {
         picture_link_url => $options{'no-lightbox'} ? $picture->get_trip_url : $picture->get_enlarged_img_url,
         is_picture => !$is_video,
         is_video => $is_video,
-        no_description => $options{'no-description'},
+        no_description => $options{'no-description'} || $picture->get_trip->should_hide_locations,
         no_trip_date => $options{'no-trip-date'},
         small_picture_url => $picture->get_url,
         trip_date => $picture->get_capture_date || $picture->get_date,
