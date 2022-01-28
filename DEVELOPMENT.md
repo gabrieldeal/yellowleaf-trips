@@ -1,9 +1,18 @@
 # Install
 
 ```
-sudo add-apt-repository ppa:jonathonf/ffmpeg-3 && sudo apt update && sudo apt install ffmpeg libav-tools x264 x265
-sudo apt-get install gpsbabel imagemagick libexpat1-dev perl-doc
-cd perl && perl Makefile.PL && sudo cpan .
+sudo apt update \
+  && sudo apt -y install ffmpeg x264 x265 gpsbabel imagemagick libexpat1-dev perl-doc \
+  && cd perl \
+  && perl Makefile.PL \
+  && sudo cpan .
+```
+
+# Build
+
+```
+./bin/build -v -skip copy-files
+./bin/build -v -a copy-files --file ../yellowleaf-trips-data/trips/2021-10-12-northrup-cyn
 ```
 
 # Debugger:
