@@ -33,8 +33,8 @@ my @options = qw(
     help
     );
 my %defaults = (
-    "code-directory" => "/home/gabrielx/projects/yellowleaf-trips",
-    "files-src-directory" => "/media/gabrielx/TOSHIBA EXT/Backup/Gabriel/d/Pictures/yellowleaf-trips",
+    "code-directory" => "$ENV{HOME}/projects/yellowleaf-trips",
+    "files-src-directory" => "/media/$ENV{USER}/TOSHIBA EXT/Backup/Gabriel/d/Pictures/yellowleaf-trips",
     "file" => [],
     "action" => [],
     "skip" => [],
@@ -43,7 +43,7 @@ my %defaults = (
     "site-root" => "yellowleaf.org/scramble",
     "templates-directory" => "view",
     "javascript-directory" => "javascript/dist",
-    "xml-src-directory" => "/home/gabrielx/projects/yellowleaf-trips-data",
+    "xml-src-directory" => "$ENV{HOME}/projects/yellowleaf-trips-data",
     );
 my @required = qw(
     code-directory
