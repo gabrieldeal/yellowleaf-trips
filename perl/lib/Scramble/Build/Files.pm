@@ -182,7 +182,10 @@ sub create_kml {
     my $self = shift;
     my ($kml) = @_;
 
-    my $kml_path = $self->get_trip_files_dest_dir($kml) . "/" . $kml->get_filename;
+    my $dest_dir = $self->get_trip_files_dest_dir($kml);
+    File::Path::mkpath([$dest_dir], 0, 0755);
+
+    my $kml_path = $dest_dir . "/" . $kml->get_filename;
     return if -f $kml_path;
 
     my $gpx_src_glob = $kml->get_trip_files_src_dir . "/*.gpx";
