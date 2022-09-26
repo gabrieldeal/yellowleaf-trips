@@ -105,7 +105,7 @@ sub get_distances_html {
 					 $distance->{'type'});
     }
 
-    return sprintf("%s %s%s",
+    return sprintf("%.1f %s%s",
 		   $total_miles,
 		   Scramble::Misc::pluralize($total_miles, 'mile'),
 		   (@parenthesis_htmls == 1 ? '' : " (" . join(", ", @parenthesis_htmls) . ")"));
