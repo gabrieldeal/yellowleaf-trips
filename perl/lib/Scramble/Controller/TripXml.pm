@@ -108,11 +108,11 @@ sub html {
     </party>
 
     <round-trip-distances>
-        <distance type="foot" kilometers=""/>
-        <distance type="bike" kilometers=""/>
+        <distance type="foot" miles=""/>
+        <distance type="bike" miles=""/>
     </round-trip-distances>
 
-    <waypoints elevation-gain-meters="">
+    <waypoints elevation-gain="">
         <waypoint type="ascending"
                location-description=""
                time="$start"
