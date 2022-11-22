@@ -66,7 +66,7 @@ sub create {
     $self->should('kml') && $self->copy_kml();
     $self->should('trip-index') && Scramble::Controller::TripPrivateIndex->new->create($self->{writer});
     $self->should('trip-index') && Scramble::Controller::TripIndex::create_all($self->{writer}); # Includes home.html
-    $self->should('link') && Scramble::Controller::ReferenceIndex::create($self->{writer});
+    $self->should('references') && Scramble::Controller::ReferenceIndex::create($self->{writer});
     $self->should('list') && Scramble::Controller::ListIndex::create($self->{writer});
     $self->should('list') && Scramble::Controller::ListKml::create_all($self->{writer});
     $self->should('list') && Scramble::Controller::ListPage::create_all($self->{writer});
