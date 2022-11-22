@@ -226,10 +226,11 @@ sub prompt_for_locations {
     my %opened_locations;
     while (my $location_name = <STDIN>) {
         my @location_matches;
-        my $location_regex = "\Q". join('\E.*\Q', split(/\s+/, $location_name)) . "\E";
+        my $location_pattern = "\Q" . join("\E.*\Q", split(/\s+/, $location_name)) . "\E";
+        my $location_regex = qr/$location_pattern/i;
         foreach my $location_path (glob("$Scramble::Model::Location::LOCATION_XML_SRC_DIRECTORY/*.xml")) {
             my $location_filename = File::Basename::basename($location_path);
-            if ($location_filename =~ /$location_regex/i) {
+            if ($location_filename =~ $location_regex) {
                 if ($opened_locations{$location_filename}) {
                     @location_matches = @{ $opened_locations{$location_filename} };
                 } else {
