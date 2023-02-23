@@ -189,9 +189,7 @@ sub copy_and_process_files {
 sub make_javascript {
     my $self = shift;
 
-    my $target = $ENV{NODE_ENV} eq 'development' ? 'build-dev' : 'build';
-
-    system("cd javascript && npm install && npm run $target");
+    system("cd javascript && npm install && node -v && npm run build");
     if ($?) {
         die "Error running webpack";
     }
