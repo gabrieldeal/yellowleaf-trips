@@ -292,7 +292,9 @@ sub read_trip_files {
     foreach my $enl_filename (@filenames) {
         $enl_filename =~ s,.*/,,;
 
-        my ($type, $caption, $owner, $rating, $timestamp, $orig_filename, $is_summary);
+        my ($type, $owner, $rating, $orig_filename, $is_summary);
+        my $caption = '';
+        my $timestamp = '';
 	if ($enl_filename =~ /\.(gpx)$/i) {
 	    $type = "gps";
         } elsif ($enl_filename =~ /\.(kml)$/i) {
@@ -358,7 +360,9 @@ sub files_created_by_build {
     return () if @kml_files || !@gpx_files;
 
     return ({
+        caption => '',
         thumb_filename => 'route.kml',
+        timestamp => '',
         type => 'kml',
     });
 }
