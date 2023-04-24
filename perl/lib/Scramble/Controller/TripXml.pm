@@ -96,6 +96,7 @@ sub html {
       type="$args{trip_type}"
       trip-id="1"
       should-hide-locations="false"
+      should-not-show="false"
 >
     <description />
     <references />
