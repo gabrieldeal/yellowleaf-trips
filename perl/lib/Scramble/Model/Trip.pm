@@ -240,10 +240,8 @@ sub get_num_days {
 
 sub should_show {
     my $self = shift;
-    if ($self->_get_optional('should-not-show')) {
-	return 0;
-    }
-    return 1;
+
+    return ! Scramble::Misc::to_boolean($self->_get_optional('should-not-show'))
 }
 
 sub get_parsed_start_date {
