@@ -79,6 +79,7 @@ sub initialize_files {
     my @pictures = (
         $file_collection->find('type' => 'picture'),
         $file_collection->find('type' => 'movie'),
+        $file_collection->find('type' => 'sound'),
     );
     if (@pictures && $pictures[0]->in_chronological_order) {
         @pictures = sort {

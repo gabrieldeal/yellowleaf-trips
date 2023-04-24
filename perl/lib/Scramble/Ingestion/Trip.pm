@@ -270,6 +270,7 @@ sub glob_trip_files {
     push @filenames, glob "'$dir/*.{kml,gpx}'";
     push @filenames, glob "'$dir/*-enl\.{jpg,png}'";
     push @filenames, glob "'$dir/*.{mp4,MP4,MOV,mov}'";
+    push @filenames, glob "'$dir/*.{wav,WAV}'";
     @filenames = grep { !/-renc.mp4$/i } @filenames;
     @filenames = sort @filenames;
 
@@ -299,6 +300,8 @@ sub read_trip_files {
 	    $type = "gps";
         } elsif ($enl_filename =~ /\.(kml)$/i) {
 	    $type = "kml";
+        } elsif ($enl_filename =~ /\.wav$/i) {
+	    $type = "sound";
         } elsif ($enl_filename =~ /\broute\b/ or $enl_filename =~ /\bmap\b/) {
 	    $type = "map" ;
 	} else {
@@ -323,7 +326,7 @@ sub read_trip_files {
 	}
 
 	my $thumb_filename = $enl_filename;
-        if ($type ne 'gps' && $type ne 'kml' && $type ne 'movie') {
+        if ($type ne 'gps' && $type ne 'kml' && $type ne 'movie' && $type ne 'sound') {
             my ($base, $ext) = ($enl_filename =~ /^(.*)-enl\.(\w+)$/) or die "$enl_filename, $type";
             $thumb_filename = "$base-small.$ext";
             if (! -e "$dir/$thumb_filename") {

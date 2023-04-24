@@ -59,6 +59,16 @@ sub get_poster_url {
     return $self->_get_url($self->get_poster);
 }
 
+sub get_sound_url {
+    my $self = shift;
+
+    if ($self->get_type ne 'sound') {
+        return '';
+    }
+
+    return $self->_get_url($self->get_filename);
+}
+
 sub get_rating {
     my $self = shift;
 

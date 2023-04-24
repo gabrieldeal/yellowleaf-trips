@@ -14,6 +14,7 @@ my %TYPE_TO_PACKAGE = (
     map =>  "Scramble::Model::File::Map",
     movie => "Scramble::Model::File::Picture",
     picture => "Scramble::Model::File::Picture",
+    sound => "Scramble::Model::File::Picture",
 );
 my %COLLECTIONS = map { ($_, Scramble::Collection->new) } keys %TYPE_TO_PACKAGE;
 
