@@ -74,7 +74,7 @@ sub get_picture_or_video_metadata {
     die "Error opening $file: " . $info->{Error} if exists $info->{Error};
     print "Warning opening $file: " . $info->{Warning} if exists $info->{Warning};
 
-    my $timestamp = $info->{'DateCreated (1)'} || $info->{DateCreated} || $info->{CreateDate} or warn "Missing date in '$file': " . Data::Dumper::Dumper($info);
+    my $timestamp = $info->{'DateCreated (1)'} || $info->{DateCreated} || $info->{CreateDate} || $info->{HistoryWhen} || $info->{MetadataDate} or warn "Missing date in '$file': " . Data::Dumper::Dumper($info);
     if (defined $timestamp) {
         $timestamp =~ s{^(\d{4}):(\d\d):(\d\d)}{$1/$2/$3};
         $timestamp =~ s/\.\d\d\d$//;
