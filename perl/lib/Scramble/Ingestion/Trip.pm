@@ -319,7 +319,7 @@ sub read_trip_files {
             my $metadata = $self->get_picture_or_video_metadata("$dir/$orig_filename");
 
             if ($type ne 'movie') {
-                $rating = $self->get_rating($metadata->{rating});
+                $rating = $self->get_rating($metadata);
             }
             $caption = $metadata->{'caption'} || '';
             $owner = $metadata->{creator} || $metadata->{copyright} || 'Gabriel Deal';
@@ -397,8 +397,9 @@ sub get_original_filename {
 
 sub get_rating {
     my $self = shift;
-    my ($rating) = @_;
+    my ($metadata) = @_;
 
+    my $rating = $metadata->{rating};
     if (! defined $rating) {
         die "Missing rating";
     } elsif ($rating == 1) {
@@ -408,7 +409,7 @@ sub get_rating {
     } elsif ($rating == 3) {
         return 1;
     } else {
-        die "Out-of-bounds rating '$rating'.  Must be 1, 2, or 3.";
+        die "Out-of-bounds rating '$rating'. Must be 1, 2, or 3. " . Data::Dumper::Dumper($metadata);
     }
 }
 
