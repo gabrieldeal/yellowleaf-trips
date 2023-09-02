@@ -71,8 +71,10 @@ sub get_picture_or_video_metadata {
     print "Reading metadata in $file...\n";
     my @tags = qw(Description ImageDescription Rating DateCreated CreateDate Creator Copyright Subject);
     my $info = Image::ExifTool::ImageInfo($file) ; #, \@tags);
-    die "Error opening $file: " . $info->{Error} if exists $info->{Error};
-    print "Warning opening $file: " . $info->{Warning} if exists $info->{Warning};
+    die "Error while opening $file: " . $info->{Error} if exists $info->{Error};
+    if (exists $info->{Warning} && $info->{Warning} !~ /Bad IDC_IFD SubDirectory/) {
+        print "Warning while opening $file: " . $info->{Warning};
+    }
 
     my $timestamp = $info->{'DateCreated (1)'} || $info->{DateCreated} || $info->{CreateDate} || $info->{HistoryWhen} || $info->{MetadataDate} or warn "Missing date in '$file': " . Data::Dumper::Dumper($info);
     if (defined $timestamp) {
