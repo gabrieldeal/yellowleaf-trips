@@ -49,7 +49,7 @@ sub get_name { $_[0]->{name} }
 sub get_page_name { $_[0]->{'page-name'} }
 sub get_note { $_[0]->{note} }
 sub get_season { $_[0]->{season} }
-sub should_link { $_[0]->{link} }
+sub should_link { Scramble::Misc::to_boolean($_[0]->{link}) }
 sub should_skip { $_[0]->{skip} }
 sub get_type { $_[0]->{type} }
 sub get_url { $_[0]->{URL} }
