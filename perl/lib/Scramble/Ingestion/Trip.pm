@@ -122,6 +122,11 @@ sub get_gpx_metadata {
     my $start = $points->[0]{time};
     my $end = $points->[-1]{time};
 
+    if (!defined $start) {
+        print "Warning: No start time in $path\n";
+        return ();
+    }
+
     return (
         start => $self->convert_date_time($start),
         end => $self->convert_date_time($end)
@@ -137,6 +142,7 @@ sub get_gpx_timestamps {
     return {} unless @gpx_files;
 
     my %first_gpx = $self->get_gpx_metadata($gpx_files[0]);
+    return unless $first_gpx{start};
 
     my %last_gpx;
     if (@gpx_files == 1) {
