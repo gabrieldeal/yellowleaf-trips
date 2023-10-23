@@ -87,13 +87,15 @@ sub get_picture_or_video_metadata {
     $caption =~ s/&/&amp;/g;
     $caption =~ s/"/&quot;/g;
 
+    my $is_summary = $info->{Subject} && $info->{Subject} =~ /summary/i;
+
     return {
         rating => $info->{'Rating (1)'} || $info->{Rating},
         timestamp => $timestamp,
         caption => $caption,
         creator => $info->{Creator},
         copyright => $info->{Copyright},
-        is_summary => ($info->{Subject} && $info->{Subject} =~ /summary/i),
+        is_summary => $is_summary,
     };
 }
 
