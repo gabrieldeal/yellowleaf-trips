@@ -188,7 +188,7 @@ sub create_kml {
     my $kml_path = $dest_dir . "/" . $kml->get_filename;
     return if -f $kml_path;
 
-    my $gpx_src_glob = $kml->get_trip_files_src_dir . "/*.gpx";
+    my $gpx_src_glob = $kml->get_trip_files_src_dir . "/*.{gpx,json}";
     my @gpx_paths = sort(glob "'$gpx_src_glob'");
     print join(", ", @gpx_paths) . "\n";
     @gpx_paths > 0 or die "No GPX files at $gpx_src_glob";

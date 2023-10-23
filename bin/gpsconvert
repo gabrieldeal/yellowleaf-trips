@@ -51,6 +51,9 @@ sub main {
         if ($input_type eq 'tpo') {
             $input_type = 'tpo3';
         }
+        if ($input_type eq 'json') {
+            $input_type = 'geojson';
+        }
 
         my $relative_input = File::Spec->abs2rel($input); # gpsbabel doesn't like cygwin-style paths.
         push @command, ("-i", $input_type, "-f", $relative_input);

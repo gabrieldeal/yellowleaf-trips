@@ -137,8 +137,7 @@ sub get_gpx_timestamps {
     my $self = shift;
     my ($files) = @_;
 
-    my @gpx_files = grep { $_->{type} eq 'gps' } @$files;
-
+    my @gpx_files = grep { $_->{thumb_filename} =~ /\.gpx$/i } @$files;
     return {} unless @gpx_files;
 
     my %first_gpx = $self->get_gpx_metadata($gpx_files[0]);
@@ -275,7 +274,7 @@ sub glob_trip_files {
     my ($dir) = @_;
 
     my @filenames;
-    push @filenames, glob "'$dir/*.{kml,gpx}'";
+    push @filenames, glob "'$dir/*.{kml,gpx,json}'";
     push @filenames, glob "'$dir/*-enl\.{jpg,png}'";
     push @filenames, glob "'$dir/*.{mp4,MP4,MOV,mov}'";
     push @filenames, glob "'$dir/*.{wav,WAV}'";
@@ -304,7 +303,7 @@ sub read_trip_files {
         my ($type, $owner, $rating, $orig_filename, $is_summary);
         my $caption = '';
         my $timestamp = '';
-	if ($enl_filename =~ /\.(gpx)$/i) {
+	if ($enl_filename =~ /\.(gpx|kml|json)$/i) {
 	    $type = "gps";
         } elsif ($enl_filename =~ /\.(kml)$/i) {
 	    $type = "kml";
