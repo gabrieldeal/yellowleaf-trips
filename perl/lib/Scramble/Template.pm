@@ -17,9 +17,6 @@ my @g_navbar_links = (
     { 'url' => qq(../../g/m/references.html),
           'text' => 'References',
     },
-    { 'url' => qq(mailto:scramble\@yellowleaf.org),
-          'text' => 'Contact',
-    },
     );
 
 sub page_html {
