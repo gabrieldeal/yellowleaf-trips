@@ -32,6 +32,10 @@ sub parse_date_and_time {
     ($year, $mon, $day, $hour, $minute, $seconds) = ($t =~ m,^(\d\d\d\d)/(\d\d)/(\d\d)\s+(\d\d):(\d\d):(\d\d)(-\d\d:\d\d)?$,);
   }
   if (! defined $day) {
+    my ($seconds);
+    ($year, $mon, $day, $hour, $minute) = ($t =~ m,^(\d\d\d\d)/(\d\d)/(\d\d)\s+(\d\d):(\d\d)(-\d\d:\d\d)?$,);
+  }
+  if (! defined $day) {
     my ($seconds, $ms);
     ($year, $mon, $day, $hour, $minute, $seconds, $ms) = ($t =~ m,^(\d\d\d\d)/(\d\d)/(\d\d)\s+(\d\d):(\d\d):(\d\d)\.(\d+)$,);
   }

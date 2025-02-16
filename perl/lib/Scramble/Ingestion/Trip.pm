@@ -388,7 +388,7 @@ sub get_original_filename {
         ($orig_prefix) = ($enl_filename =~ /^(.*).(mp4|mov)$/i);
     } else {
         # Older processed files start with "<NNNNN>-"
-        ($orig_prefix) = ($enl_filename =~ /^(?:\d+-)?([-\w~_\(\)]+)-enl.jpg$/);
+        ($orig_prefix) = ($enl_filename =~ /^(?:\d+-)?([- \w~_\(\)]+)-enl.jpg$/);
     }
     $orig_prefix or die "Failed to parse '$enl_filename'";
 
