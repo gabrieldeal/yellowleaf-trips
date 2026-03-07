@@ -50,6 +50,7 @@ sub make_files_xml {
                                          'is-summary' => $file->{is_summary},
                                          'thumbnail-filename' => $file->{thumb_filename},
                                          'large-filename' => $file->{enl_filename},
+                                         'original-filename' => $file->{orig_filename},
                                          rating => $file->{rating},
                                          type => $file->{type},
                                          owner => $file->{owner},

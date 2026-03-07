@@ -130,7 +130,7 @@ sub reencode_trip_video {
                              $file->get_filename);
 
     # FIXME: duplicate from Scramble::Build::Trip
-    my $src_filename = $file->get_filename;
+    my $src_filename = $file->get_original_filename || $file->get_filename;
     $src_filename =~ s/-renc\.(...)$/.$1/;
 
     my $src_video = sprintf("%s/%s",

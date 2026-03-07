@@ -27,6 +27,7 @@ sub initialize {
 
 sub get_description { $_[0]->{description} }
 sub get_filename { $_[0]->{'thumbnail-filename'} }
+sub get_original_filename { $_[0]->{'original-filename'} }
 sub get_id { $_[0]->get_trip_files_src_dir . "|" . $_[0]->get_filename }
 sub get_owner { $_[0]->{owner} }
 sub get_should_skip_trip { $_[0]->{'skip-trip'} }

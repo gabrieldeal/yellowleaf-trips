@@ -76,7 +76,7 @@ sub get_picture_or_video_metadata {
         print "Warning while opening $file: " . $info->{Warning};
     }
 
-    my $timestamp = $info->{'DateCreated (1)'} || $info->{DateCreated} || $info->{CreateDate} || $info->{HistoryWhen} || $info->{MetadataDate} or warn "Missing date in '$file': " . Data::Dumper::Dumper($info);
+    my $timestamp = $info->{'DateCreated (1)'} || $info->{DateCreated} || $info->{CreateDate} || $info->{HistoryWhen} || $info->{MetadataDate} || $info->{DateTimeOriginal} or warn "Missing date in '$file': " . Data::Dumper::Dumper($info);
     if (defined $timestamp) {
         $timestamp =~ s{^(\d{4}):(\d\d):(\d\d)}{$1/$2/$3};
         $timestamp =~ s/\.\d\d\d$//;
@@ -278,7 +278,7 @@ sub glob_trip_files {
     my @filenames;
     push @filenames, glob "'$dir/*.{kml,gpx,json}'";
     push @filenames, glob "'$dir/*-enl\.{jpg,png}'";
-    push @filenames, glob "'$dir/*.{mp4,MP4,MOV,mov}'";
+    push @filenames, glob "'$dir/*.{mp4,MP4,MOV,mov,MTS}'";
     push @filenames, glob "'$dir/*.{wav,WAV}'";
     @filenames = grep { !/-renc.mp4$/i } @filenames;
     @filenames = sort @filenames;
@@ -314,13 +314,13 @@ sub read_trip_files {
         } elsif ($enl_filename =~ /\broute\b/ or $enl_filename =~ /\bmap\b/) {
 	    $type = "map" ;
 	} else {
-            if ($enl_filename !~ /\.(mp4|mov)$/i) {
+            if ($enl_filename !~ /\.(mp4|mov|mts)$/i) {
                 $type = 'picture';
                 $orig_filename = $self->get_original_filename($dir, $enl_filename, $type);
             } else {
                 $type = 'movie';
                 $orig_filename = $enl_filename;
-                $enl_filename =~ s/\.(mp4|mov)$/-renc.$1/i;
+                $enl_filename =~ s/\.(mp4|mov|mts)$/-renc.mp4/i;
             }
 
             my $metadata = $self->get_picture_or_video_metadata("$dir/$orig_filename");
@@ -385,14 +385,14 @@ sub get_original_filename {
 
     my $orig_prefix;
     if ($type eq 'movie') {
-        ($orig_prefix) = ($enl_filename =~ /^(.*).(mp4|mov)$/i);
+        ($orig_prefix) = ($enl_filename =~ /^(.*).(mp4|mov|mts)$/i);
     } else {
         # Older processed files start with "<NNNNN>-"
         ($orig_prefix) = ($enl_filename =~ /^(?:\d+-)?([- \w~_\(\)]+)-enl.jpg$/);
     }
     $orig_prefix or die "Failed to parse '$enl_filename'";
 
-    my @extensions = map { ($_, uc($_)) } qw(xmp dng jpg mov mp4);
+    my @extensions = map { ($_, uc($_)) } qw(xmp dng jpg mov mp4 mts);
     foreach my $extension (@extensions) {
         my $orig_filename = "$orig_prefix.$extension";
         my $orig_path = "$src_dir/$orig_filename";
